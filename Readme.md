@@ -1,3 +1,7 @@
+# Projet 
+
+Ce cours latex est tapé par un élève de MPI* du lycée Champollion. Il regroupe l'ensemble du programme ainsi que des dépassements de celui-ci, notamment à travers la TD X-ENS.
+
 # Fonctionnement général du cours LaTeX
 
 ## Installation et compilation 
