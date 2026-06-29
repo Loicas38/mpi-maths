@@ -51,6 +51,7 @@ Thumbs.db
 *.swp
 *.swo
 
+# DUsed for tests and flashcards generated
 *.txt
 *.pkl
 *.cpython

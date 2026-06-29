@@ -1,8 +1,10 @@
-# Fonctionnement de la classe Latex prepacours.cls
+# Fonctionnement général du cours LaTeX
 
-## installation et compilation 
+## Installation et compilation 
 
 J'utilise personnelement Miktex. Pour le faire fonctionner, il a d'abord fallu installer strawberry, puis miktex. Ensuite, vous pouvez l'utiliser en ligne de commande ou directement dans VS code avec l'extension latex workshop qui est vraiment bien. On peut aussi faire un script python qui gère la compilation.
+
+Je n'ai pas testé la compatibilité avec les autres logiciels LaTeX.
 
 On peut également compiler en ligne sur des sites comme overleaf. 
 
@@ -10,7 +12,7 @@ On peut également compiler en ligne sur des sites comme overleaf.
 
 La page wipipedia aide au formules tex (https://fr.wikipedia.org/wiki/Aide:Formules_TeX) contient à peu près tout ce qui est nécessaire pour écrire du latex. 
 
-Vous pouvez également activer copilot dans vs code avec les suggestions. Il est vraiment très puissant et devine assez souvent ce que vous vouliez écrire. 
+Vous pouvez également activer copilot dans vs code avec les suggestions. Il est vraiment très puissant et devine assez souvent ce que vous vouliez écrire, mais restez tout de même prudent, il a vite fait de dire des bêtises ...
 
 ## Environnements personalisés 
 
@@ -35,7 +37,7 @@ Il existe également une variante des environnements permettant de mettre un tit
 \end{propositionnt}
 ```
 
-Tous les environnements peuvent fonctionner dans ce mode en ajoutant simplement "nt" à la fin du mot. 
+Tous les environnements peuvent fonctionner dans ce mode en ajoutant simplement "nt" à la fin du mot (pour no title). 
 
 
 Il existe également les environnements "idée" pour mettre par exmple une idée du principe général des preuves. Ceux si cont affichés dans la marge au niveau de l'endroit où ils sont appelés. Ils s'utilisent comme suit : 
@@ -64,6 +66,18 @@ Par défaut, le package affiche "Démonstration", puis le contenu fournit. Il es
 
 "Titre" sera alors affiché à la place de "Démonstration". 
 
+Un autre environnement sympa sont les notes dans la marge. Il y en a une qui est prédéfini, celle de danger, qui s'utilise ainsi : 
+```latex
+\danger{Contenu de la note dans la marge}
+```
+
+Et un autre environnement plus générique : 
+```latex
+\marginenote{Titre de la note}{Contenu de la note}
+```
+
+Il est généralement conseillé, lorsque ces environnements sont utilisés au milieu du texte, de leur ajouter des `\lvspace` ou `\avspace` par la suite, qui sont des commandes expliquées dans le paragraphe suivant.
+
 ## Titres 
 
 Il existe différents niveaux de titres, dans cet ordre : 
@@ -75,11 +89,19 @@ Il existe différents niveaux de titres, dans cet ordre :
 \paragraph{Plus vraiment un titre...}
 ```
 
-Seuls les deux premiers sont affichés dans la table des matières. La profondeur de la table des matières peut être modifiée dans le fichier prépacours.cls, en augmentant ou diminuant le paramètre "tocdepth". 
+Seuls les deux premiers sont affichés dans la table des matières. La profondeur de la table des matières peut être modifiée dans le fichier prépacours.cls, en augmentant ou diminuant le paramètre "tocdepth". Le fait que les subsubsection ne soient pas numérotés est une des personalisations de la classe.
+
+Pour afficher un titre sans que celui -ci n'apparaisse dans la table des matière, vous pouvez ajouter une étoile : 
+
+```latex
+\section*{Titre non numéroté}
+```
+
+Et de même pour les autres niveaux de titre.
 
 ## Commandes personalisées 
 
-J'ai également un fichier de raccourcis pour gagner du temps lorsque je tape, réunis dans le fichier "raccourcis.sty". 
+J'ai également un fichier de raccourcis pour gagner du temps lorsque je tape, réunis dans le fichier "raccourcis.sty". En voici les principaux : 
 
 Pour les ensembles de nombres : 
 ```latex
@@ -129,9 +151,9 @@ Avant de pouvoir compiler le fichier avec la clasee, il faut lui fournir un cert
 \chapitre{Numéro du chapitre (NECESSAIREMENT UN NOMBRE)}{titre du chapitre}
 ```
 
-## Subtilitées 
+La majorité de celles-ci sont réunis dans un fichier qui est simplement inclus au début de chaque chapitre, pour ne pas tout retaper à chaque fois.
 
-N'étant pas un grand expert du latex, je n'ai pas trouvé de meilleur façon de faire ce qui suit (et ce n'est pas forcément super pratique)
+## Présentation 
 
 Pour que la page de garde avec la table des matières apparaisse, ainsi que la première page de cours avec le titre en grand, il faut utiliser la commande \pagedegarde au tout début du contenu du document. Cela donne donc quelque chose du type : 
 
@@ -257,3 +279,31 @@ cours_.tex
 \end{document}
 ```
 
+
+Pour compiler tout cela en automatique, je vous conseille vivement de vous créer un petit script python ou autre. Personnelement utilisant windows (hérésie je sais), j'avais un script powershell qui se trouve dans le dossier `compilation`, afin de tout compiler d'un coup. Attention : la compilation de l'intégrale prend plusieurs minutes sur mon ordi ...
+
+
+## Index
+
+J'ai également créé un index, qui apparait à la fin du document, pour accéder aux notions importantes rapidement. Pour ajouter un nouvel élément dans l'index, il suffit d'utiliser cette commande : 
+```latex
+\index{Notion}
+```
+
+### Spécificités 
+
+On peut ajouter des éléments et des sous éléments, associés à un même élément. Pour cela, on met un `!`.
+Par exemple, groupe et anneau sont tout deux associés à morphisme de cette façon : 
+```latex
+\index{Morphisme!d'anneau}
+\index{Morphisme!de groupe}
+```
+
+Et si un terme contient un accent, pour le respect de l'ordre alphabétique, il faut utiliser cette syntaxe : 
+```latex
+\index{Version sans accent@Version avec accents}
+```
+
+## Conclusion
+
+Vous avez normalement toutes les clés de base pour survivre, et sinon les autres petits détails viendront tout seuls ! En tout cas bon courage à toi topin, et bon apprentissage !
