@@ -1,0 +1,145 @@
+\documentclass{prepacours}
+\setlength{\headheight}{15.5pt}
+
+\usepackage{mathrsfs}
+\usepackage{raccourcis}
+
+
+\annee{2025-2026}
+\filiere{MPI}
+\etablissement{Lycée Champollion}
+\auteur{Lucas Dehmas}
+
+\begin{document}
+
+\chapitre{0}{Intro}
+
+\pagedegarde
+
+\section{Mathématiques : mode d'emploi}
+\subsection{But}
+
+Etablir de manière logique des orioruérés sur des objers en partant de 
+\begin{itemize}
+    \item propriétés déjà étables
+    \item propriétés admises = axiomes
+\end{itemize}
+
+\subsection{Support matériel}
+
+Les objets mathématiques sont représentés par des lettres, parfois déclinées avec des 
+machins bizarres ou indexées. 
+
+Règle fondamentale : deux objets différents portent deux noms différents. 
+
+\subsection{Objets étudiés}
+
+En maths actuelles, on étudie les ensembles. 
+
+Relation fondamentale entre ensembles : l'appartenance. Si $a$ et $b$ sont des 
+ensembles, deux cas possibles : 
+
+\begin{itemize}
+    \item $a$ appartient à $b$, noté $a \in b$
+    \item $a$ n'appartient pas à $b$, noté $a \notin b$
+\end{itemize}
+
+\begin{definition}{Inclusion}{}
+    Si $a$, $b$ sont des ensembles, on dit que $a$ est inclus dans $b$ et on note 
+    $a \subset b$ ssi pour tout élément $x$ de $a$, on a $x \in b$
+\end{definition}
+
+\subsection{La théorie des ensembles}
+
+\underline{Problème} : il faut choisir une axiomatique assez riche pour être utile, 
+pas trop pour ne pas être contradictoire. 
+
+\underline{Choix :} Théorème des ensembles de Zemelo Frankil avec l'axiome du choix.
+
+En gros : 
+
+\begin{enumerate}
+    \item Deux ensembles sont identiques si ils ont les même éléments. 
+    \item Il existe un ensemble, l'ensemble vide, ne contenant aucun élément
+    \item Si $a$ et $b$ sont des ensembles, il existe un ensemble $c = \{a, b\}$
+            dont les éléments sont exactement $a$ et $b$
+    \item Réunion : si $a$ est un ensemble, il existe un ensemble $b$ dont les éléments
+        sont les éléments des éléments de $a$. Donc $b = \bigcup_{x \in a} x$.
+    \item Ensemble des parties : si $a$ est un ensemble, il existe un ensemble noté
+        $\mathbb P(a)$ dont les éléments sont les sous ensembles de $a$
+    \item Produit cartésien : Si $a$ et $b$ sont deux ensembles, il existe un ensemble
+        noté $a \times b$ dont les éléments sont les couples $(x, y)$ où $x \in a$ 
+        et $y \in b$
+    \item Axiome de compréhension : Si $a$ est un ensemble et $P$ une propriété réalisable
+        par des éléments de $a$, on peut constituer l'ensemble $b = \{x \in a \mid P(x)\}$
+    \item Axiome de l'infini : L'ensemble $\mathbb N$ existe.
+    \item Axiome du choix : Si $A$ est un ensemble d'ensembles non vides, il existe une 
+        application $\fonction{f}{A}{E}{P}{x}$ avec $x \in P$ où $E = \bigcup_{P \in A} P$
+\end{enumerate}
+
+\section{Les types de raisonements}
+
+\subsection{Règle générale}
+
+C'est le réusltat à démontrer qui guide dans le choix du raisonnement utilisé et des
+acteurs mis en oeuvre. 
+
+\subsection{Types d'énoncés}
+\subsubsection{Cas quelconques}
+
+Raisonnement par l'absurde (ne pas utiliser en priorité)
+
+\subsubsection{Enoncés du type P ou Q }
+On suppose que $P$ n'est pas réalisé et on montre $Q$.
+
+\subsubsection{Enoncé P implique Q }
+
+On suppose $P$, on en déduit par une suite de donc que $Q$ l'est aussi.
+
+On peut également raisonner par contraposée, supposer non Q et en déduire non P. 
+
+\subsubsection{Enoncé P equivalent à Q }
+
+On montre les deux implications.
+
+\subsubsection{Enoncé A = B }
+
+On montre les deux inclusions. 
+
+\subsubsection{Enoncés du type pour tout x de E, P(x)}
+
+On considère un élément $x$ de $E$ et on établit $P(x)$. 
+
+\subsubsection{Enoncé du type il existe un unique x dans E, P(x)}
+
+\underline{Analyse - synthèse}:
+\begin{itemize}
+    \item Analyse : On suppose qu'un tel $x$ existe et on l'identifie. On en 
+        déduit l'uniciré en cas d'existence. 
+    \item Synthèse : on vérifie que la valeur identifiée convient. 
+\end{itemize}
+
+
+\underline{Existence - unicité}
+\begin{itemize}
+    \item Exitence : on exhibe un $x$ qui convient
+    \item unicité : on suppose que $x_1$ et $x_2$ conviennent, et on montre que 
+        $x_1 = x_2$
+\end{itemize}
+
+\subsubsection{Enoncé du type il existe x dans E, P(x)}
+
+On devine et exhibe un $x$ qui convient ou on commence une analyse jusqu'à obtenir
+suffisament d'informations pour identifier un tel $x$. 
+
+\subsubsection{Enoncé pour tout n dans N, P(n)}
+
+On peut raisonner par récurrence : 
+\begin{itemize}
+    \item simple
+    \item double
+    \item avec prédécesseurs (= forte)
+\end{itemize}
+
+
+\end{document}

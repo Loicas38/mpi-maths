@@ -1,0 +1,1326 @@
+\section{Cas de \texorpdfstring{$\R$}{R}}
+\subsection{Valeur absolue}
+
+\begin{definition}{Valeur absolue}{}
+    $\forall x \in \R, \mid x \mid = \max\{x, -x\}$
+\end{definition}
+
+\begin{proposition}{Propriétés valeur absolue}{}
+    $\forall x, y \in \mathbb R$, on a : 
+
+    \begin{itemize}
+        \item $\mid x \mid = 0$ ssi $x = 0$
+        \item $ \mid xy \mid = \mid x \mid \mid y \mid$
+        \item $\mid x + y \mid \leqslant \mid x \mid + \mid y \mid$
+        \item $ \mid \mid x \mid - \mid y \mid \mid \leqslant \mid x + y \mid$
+    \end{itemize}
+\end{proposition}
+
+
+\begin{exemple}
+    Soient $a, b \in \R$ et $\varepsilon > 0$ alors 
+
+    $\mid a - b \mid \leqslant \varepsilon$ ssi $b - \varepsilon \leqslant a \leqslant b + \varepsilon$
+    ssi $a - \varepsilon \leqslant b \leqslant a + \varepsilon$
+\end{exemple}
+
+\subsection{Bornes supérieures et inférieures}
+
+\begin{theoreme}{Def borne supérieure}{}
+    Soit $A \subset \R$ non vide et majorée. 
+
+    Il existe un unique réel $\alpha$ appelé borne supérieure de $A$ et noté 
+    $\alpha = \sup A$ tel que : 
+    \begin{itemize}
+        \item $\alpha$ est un majorant de $A$, c'est à dire $\forall a \in A, a \leqslant \alpha$
+        \item $\alpha$ est le plus petit des majorants de $A$ c'est à dire $\forall m \in \R$: 
+    \end{itemize}
+
+    $$ (\forall a \in A, a \leqslant m ) \Rightarrow \alpha \leqslant m$$
+\end{theoreme}
+
+\begin{theoreme}{Caractérisation séquentielle de la borne sup}{}
+    Soit $A \subset \R$ non vide majorée et soit $\alpha \in \R$ un majorant de $A$. 
+
+    Alors $\alpha = \sup A$ ssi il existe $(u_n)_{n \in \N}$ suite de $A$
+    telle que $\lim_{n \to + \infty} u_n = \alpha$
+\end{theoreme}
+
+
+\begin{exemple}
+    Soient $A, B \in \mathcal P(\R)$ non vides et majorées. 
+
+    Alors $A + B = \{x + y, x \in A, y \in B\} = \{z \in \R \mid \exists (x, y) \in (A \times B), z = x + y\}$
+
+    est non vide et majorée, et $\sup( A + B) = \sup A + \sup B$
+
+    Preuve : 
+
+    $A \neq \emptyset$ et $B \neq \emptyset$ donc $A + B \neq \emptyset$ 
+
+    $\forall z \in A + B, \exists(x, y) \in (A \times B), z = x + y$
+
+    Or $x \leqslant \sup A $ et $y \leqslant \sup B$
+
+    Donc $z = x + y \leqslant \sup A + \sup B$
+
+    Donc $A + B$ est majoré par $\sup A + \sup B$
+
+    Donc $\sup( A+ B)$ existe et $\sup (A + B) \leqslant \sup A + \sup B$
+
+    \uindent{Solution 1 }
+
+    \svspace Soient $x \in A$ et $y \in B$ 
+
+    Alors $x + y \leqslant \sup(A + B)$
+
+    Donc $x \leqslant \sup(A + B) - y$
+
+    Fixons $y \in B$. C'est vrai pour tout $x \in A$
+
+    Donc $\sup(A + B) - y$ est un majorant de $A$. 
+
+    Donc $\sup A \leqslant \sup(A + B) - y$
+
+    Donc $y \leqslant \sup(A + b) - \sup(A)$ (Le therme de droite est un majorant de $B$)
+
+    Or cela est vrai pour tout $y$, donc $\sup B \leqslant \sup(A + B) - \sup A$
+
+    Donc $\sup A + \sup B \leqslant \sup(A + B)$
+
+    \uindent{Solution 2 }
+
+    \svspace Soit $(u_n)_{n \in N}$ suite de $A$ telle que $u_n \longrightarrow \sup A$
+    et $(v_n)_{n \in N}$ suite de $B$ telle que $ v_n \longrightarrow \sup B$
+    alors $u_n + v_n \in A + B$. 
+
+    Donc $\forall n \in N, u_n + v_n \leqslant \sup(A + B)$
+    
+    donc à la limite $\sup A + \sup B \leqslant \sup(A + B)$
+
+\end{exemple}
+
+\subsection{Distance }
+
+\begin{definition}{distance dans $\R$}{}
+    Soient $x, y \in \R$. On définit leur distance par $\text d (x, y) = \mid y - x \mid$
+\end{definition}
+
+\section{Espace vectoriel normé}
+
+Soit $\mathbb K = \R$ ou $\C$ et $E$ un espace vectoriel sur $\K$.
+
+\subsection{Définition}
+
+\begin{definition}{Définition d'une norme}{}
+    On appelle norme sur $E$ toute application 
+    \danger{Bien penser à vérifier que c'est une application à valeurs dans $\R^+$ pour montrer qu'on a une norme !}
+
+    \lvspace \avspace $$\fonction{N}{E}{\R^+}{u}{N(u)}$$
+
+    vérifiant : 
+    \begin{itemize}
+        \item Séparation : $\forall u \in E, N(u) = 0 \Rightarrow u = 0$
+        \item Homogénéité : $\forall u \in E, \forall \lambda \in \K, N(\lambda u) = \mid \lambda \mid N(u)$
+        \item Inégalité triangulaire : $\forall u, v \in E, N(u + v) \leqslant N(u) + N(v)$
+    \end{itemize}
+
+    $(E, N)$ est alors appelé espace vectoriel normé.
+\end{definition}
+
+\begin{exemple}
+    $(\R, \mid \cdot \mid)$
+
+    $(\C, \mid \cdot \mid)$
+\end{exemple}
+
+
+\subsection{Seconde inégalité triangulaire }
+
+\begin{proposition}{Seconde inégalité triangulaire}{}
+    Soit $(E, N)$ un espace vectoriel normé. 
+
+    $\forall u, v \in E, $
+
+    $$\mid N(u) - N(v) \mid \leqslant N(u + v)$$
+    $$\mid N(u) - N(v) \mid \leqslant N(u - v)$$
+\end{proposition}
+
+\idee{
+    Utiliser l'astuce $x - x$ pour faire apparaitre les bons termes, 
+    puis inégalité triangulaire.
+}
+
+\begin{proof}
+
+    Soient $u, v \in E$
+
+    \begin{align*}
+    N(u) &= N(u + v - v) \\
+         &\leqslant N(u + v) + N(-v) \\
+         &\leqslant N(u + v) + N(v)
+    \end{align*}
+
+    Donc $N(u) - N(v) \leqslant N(u + v)$
+
+    En faisant jouer à $(u, v)$ le rôle de $(v, u)$, 
+    $$ N(v) - N(u) \leqslant N(v + u) = N(u + v)$$
+
+    Donc $\mid N(u) - N(v) \mid \leqslant N(u + v)$
+
+    En faisant jouer à $(u, -v)$ le rôle de $(u, v)$, on en déduit : 
+    $$\mid N(u) - N(v) \mid \leqslant N(u - v)$$
+\end{proof}
+
+
+\subsection{Distance associée}
+
+\begin{definition}{}{}
+    Soit $(E, N)$ un espace vectoriel normé. 
+
+    On définit $d_N$ la distance associée par 
+    $$\forall (u, v) \in E^2, d_N(u, v) = N(v - u) = N(u - v)$$
+\end{definition}
+
+\begin{proposition}{propriétés distance}{}
+    Avec ces hypothèses, on a pour $u, v, w \in E$ et $\lambda \in \K$
+
+    \begin{enumerate}
+        \item $d_N(u, v) = 0$ ssi $u = v$
+        \item $d_N(\lambda u, \lambda v) = \mid \lambda \mid d_N(u, v)$
+        \item $d_N(u, w) \leqslant d(u, v) + d(v, w)$
+        \item $d_N (u, v) = d_N (v, u)$
+        \item $d_N (u + w, v + w) = d_N (u, v)$
+    \end{enumerate}
+\end{proposition}
+
+\idee{
+    Astuce du topin pour le 3.
+}
+
+\begin{proof}
+
+    Pour le 3 : 
+
+    $d_N(u, w) = N(u - w) = N( u - v + v - w) \leqslant N(u - v) + N(v - w)$
+
+    Evident pour le reste.
+\end{proof}
+
+
+
+\subsubsection{Distance à une partie non vide}
+
+\begin{definition}{Définition distance à une partie}{}
+    Soit $(E, N)$ un espace vectoriel normé, avec $A \subset E$ non vide. 
+    Soit $x \in E$. 
+
+    On appelle distance de $x$ à $A$ et on note $d(x, A) = d_A(x)$ le réel positif
+    $$d_A(x) = \inf \space \{d(x, a), a \in A\}$$
+\end{definition}
+
+\begin{proposition}{Inégalité distance à une partie / entre deux points}{}
+    Pour $x, y \in E$ et $A \subset E$ non vide, 
+    $$\mid d_A(x) - d_A(y)\mid \leqslant d(x, y)$$
+\end{proposition}
+
+\idee{
+    Astuce du topin, on fait apparaitre $y$ dans la distance entre $x$ et $a$.
+}
+
+\begin{proof}
+    Soit $a \in A$ $d(x, a) \leqslant d(x, y) + d(y, a)$
+
+    Or $d(x, a) \geqslant d_A(x)$
+
+    Donc $d_A(x) - d(x, y) \leqslant d(y, a)$ avec le terme de gauche le minorant de
+    $\{d(y, a), a \in A\}$
+
+    Donc $d_A(x) - d(x, y) \leqslant d_A(y)$
+
+    Donc $d_A(x) - d_A(y) \leqslant d(x, y)$
+
+    De même $d_A(y) - d_A(x) \leqslant d(y, x) \leqslant d(x, y)$
+\end{proof}
+
+\subsection{Boules et sphères}
+
+Soit $(E, N)$ un espace vectoriel normé et $d$ la distance associée à $N$. 
+
+
+\begin{definition}{Definition vecteur unitaire}{}
+    Soit $u \in E$. On dit que $u$ est unitaire ssi $N(u) = 1$
+\end{definition}
+
+\begin{exemple}
+    Soit $a \in E$ non nul. 
+
+    Alors $u = \frac{a }{N(a)}$ est unitaire colinéaire à $a$. 
+
+    Si $\K = \R$, $-u$ en est un autre. 
+
+    Si $\K = \C$, tous les $e^{i \theta u}$, où $\theta \in \R$, conviennent. 
+\end{exemple}
+
+\begin{definition}{Boules ouvertes, fermées et sphère}{}
+    Soit $\omega \in E$ et $R > 0$. On définit : 
+    \begin{itemize}
+        \item La boule fermée de centre $\omega$ et de rayon $R$, $B' = \{u \in E, d(\omega, u) \leqslant R\}$
+        \item La boule ouverte de centre $\omega$ et de rayon $R$, $B = \{u \in E, d(\omega, u) < R\}$
+        \item La sphère de centre $\omega$ et de rayon $R$, $S = \{u \in E \mid d(\omega, u) = R\} = B' \backslash B$
+    \end{itemize}  
+\end{definition}
+
+\begin{exemple}
+    Dans $(\C, \mid \cdot \mid)$ les boules fermées sont les disques, et les sphères sont les cercles. 
+
+    Dans $(\R, \mid \cdot \mid)$, les boules fermées sont les segments non 
+    réduits à un singleton.
+    
+    $\forall a \in \R, \forall R > 0$, $B'(w, R) = \left[w - R, w + R\right]$
+
+    $\forall a < b \in \R, \left[a, b \right] = B'(\frac{a + b} 2, \frac{b - a} 2)$
+
+    Les sphères sont les paires de réels: $S(\omega, R) = \{w - R, w + R\}$
+\end{exemple}
+
+\subsubsection{Convexité}
+
+\begin{definition}{Partie convexe}{}
+    Soit $A \subset E$. 
+    On dit que $A$ est convexe ssi $\forall a, b \in A, \inter{a}{b} \subset A$ où 
+    $$\inter{a}{b} = \{\lambda a + (1 - \lambda)b, \lambda \in [0, 1]\}$$
+\end{definition}
+
+\begin{definition}{Barycentre (hors programme)}{}
+    Soient $a_1, \dots, a_n \in E$ et $\lambda_1, \dots, \lambda_n \in \inter{0}{1}$
+    tels que $\sum_{i = 1}^n \lambda_i = 1$
+
+    On appelle barycentre du système $\{(a_1, \lambda_1), \dots, (a_n, \lambda_n)\}$
+    ou barycentre des points $(a_1, \dots, a_n)$ munis des coefficients $(\lambda_1, \dots, \lambda_n)$
+
+    $$\operatorname{Bar}(\left\{(a_1, \lambda_1), \dots, (a_n, \lambda_n)\right\}) = \sum_{i = 1}^n \lambda_i a_i$$
+
+    Ainsi $\inter{a}{b}$ est l'ensemble des barycentres de $a$ et $b$ à coefs positifs. 
+\end{definition}
+
+\begin{proposition}{Nature d'une intersection de convexes - légèrement hp}{}
+    Soit $I$ un ensemble non vide et $(A_i)_{i \in I}$ des parties convexes de $E$. 
+
+    Alors $\displaystyle B = \bigcap_{i \in I} A_i$ est convexe.
+\end{proposition}
+
+\idee{
+    On prend deux éléments de $B$, on en fait un autre, et on montre son appartenance
+    aux $A_i$.
+}
+
+\begin{proof}
+    Soit $(A_i)_{i \in I}$ des convexes de $E$. 
+
+    Soient $a, b \in B$ et $\lambda \in \inter{0}{1}$. 
+
+    Posons $c = \lambda a + (1 - \lambda)b$. 
+
+    Montrons que $c \in B$. 
+
+    Soit $i \in I$. Montrons que $c \in A_i$. 
+
+    On a $a, b \in B$ donc $a, b \in A_i$, or $A_i$ est convexe. 
+
+    Donc $c \in A_i$ donc $c \in B$ donc $B$ convexe. 
+\end{proof}
+
+\begin{definition}{Enveloppe convexe - hors programme}{}
+    Soit $A \subset E$ non vide. 
+
+    L'intersection $B$ de tous les convexes de $E$ contenant $A$ est donc un convexe
+    de $E$ contenant $A$ appelée enveloppe convexe de $A$.
+\end{definition}
+
+\begin{theoreme}{Enveloppe convexe avec les barycentres - hors programme}{}
+    Avec ces notations, l'enveloppe convexe de $A$ est l'ensemble des barycentres à
+    coefs positifs de points de $A$. 
+\end{theoreme}
+
+\begin{proof}
+    Notons:
+    
+    $\displaystyle C = \left\{\sum_{i = 1}^n \lambda_i a_i, (a_1, \dots, a_n) \in A, (\lambda_1, \dots, \lambda_n) \in \R^+ \text{ tq } \sum_{i = 1}^n \lambda_i = 1, n \in \N^*\right\}$
+    et $B$ l'enveloppe convexe de $A$. 
+
+    Soit $a \in A$. 
+
+    $a = 1 \times a$ donc $a \in C$ donc $A \subset C$. 
+
+    Montrons que $C$ est convexe. 
+
+    Soient $x, y \in C$ et $\alpha \in \inter{0}{1}$. 
+
+    $\exists n, q \in \N^*$
+
+    $\exists a_1, \dots, a_n, b_1, \dots, b_p \in A$
+
+    $\exists \lambda_1, \dots, \lambda_n, \mu_1, \dots, \mu_p \geqslant 0$ tels que 
+    $\displaystyle \sum_{i = 1}^{n} \lambda_i = 1$, et $\displaystyle \sum_{j = 1}^{p} \mu_j = 1$ et 
+    $\displaystyle x = \sum_{i = 1}^{n }\lambda_i a_i$ et $\displaystyle y = \sum_{j = 1}^{p } \mu_j b_j$
+
+    Considérons $z = \alpha x + (1 - \alpha)y$ et montrons que $z \in C$. 
+
+    $\displaystyle z = \sum_{i = 1}^{n} \alpha \lambda_i a_i + \sum_{j = 1}^{p } (1 - \alpha) \mu_j b_j$
+    qui est bien une combinaison linéaire à coefs positifs de points de $A$. 
+
+    On a bien aussi $\displaystyle \sum_{i = 1}^{n } \alpha \lambda_i + \sum_{j = 1}^{p } (1 - \alpha) \mu_j$
+    $ = \alpha + (1 - \alpha) = 1$. 
+
+    Donc $z \in C$ donc $C$ convexe dans $B \subset C$. 
+
+    Montrons que $C \subset B$. 
+
+    Soit $x \in C$, qui s'écrit $\displaystyle x = \sum_{ i = 1}^{n }\lambda_i a_i$ où 
+    $\displaystyle \sum_{i = 1}^{n } \lambda_i = 1$ et $a_i \in A$
+
+    \quad \underline{Si $n = 1$ :} $x = a_i$ ou $a_1 \in A$
+    or $A \subset B$ donc $x \in B$
+
+    \quad \underline{Si $n = 2$: } $x = \lambda_1 a_1 + \lambda_2 a_2$ ou $a_1, a_2 \in A$ et 
+    $\lambda_1 + \lambda_2 = 1$. 
+
+    Donc $x = \lambda_1 a_1 + (1 - \lambda)a_2$. 
+
+    Or $a_1, a_2 \in B$ et $B$ convexe donc $x \in B$. 
+
+    \uindent{Preuve par récurrence : }
+
+    Supposons que l'on a le résultat pour tout $x \in C$ correspondant à une combinaison
+    linéaire de $(n - 1)$ éléments de $B$. 
+
+    On a $\displaystyle x = \sum_{i = 1}^{n } \lambda_i a_i$ avec $a_i \in A$ donc $a_i \in B$.
+
+    \quad \underline{Si $\lambda_n = 0$ ou $\lambda = 1$ : } On est dans l'hypothèse 
+    de récurrence, donc $x \in B$. 
+
+    \quad \underline{Sinon :} $\displaystyle x = (1 - \lambda_n) \sum_{i = 1}^{n - 1} \frac{\lambda_1}{1 - \lambda_n} x_i + \lambda_n x_n$
+
+    On a $\displaystyle \sum_{i = 1}^{n - 1} \frac{\lambda_i}{1 - \lambda_n} = \frac{\sum_{i = 1}{n - 1} \lambda_i}{1 - \lambda_n} = 1$
+
+    Donc (HR), $\displaystyle w = \sum_{i = 1}^{n-1} \frac{\lambda_i}{1 - \lambda_n} a_i \in B$
+
+    Comme $\displaystyle x = (1 - \lambda_n)w + \lambda_n a_n$ et que $B$ est convexe, $x \in B$. 
+
+    D'où la récurrence, $C \subset B$ donc $C = B$. 
+
+\end{proof}
+
+\begin{exemple}
+    Soit $P \in \C[X]$ de degré $\geqslant 2$. Alors les racines de $P'$ sont dans 
+    l'enveloppe convexe des racines de $P$. 
+
+    Notons $\displaystyle P = \lambda \prod_{i = 1}^{k }(X - z_i)^{m_i}$ car $\C$ est algébriquement clos
+    donc $P$ scindé. 
+
+    On a $\displaystyle P' = \lambda \sum_{i = 1}^{k } m_i (X - z_i)^{m_i - 1} \prod_{j = 1, j \neq i}^{k}(X - z_j)^{m_j}$
+
+    Soit $\alpha$ une racine de $P'$ qui n'est pas racine de $P$.
+
+    Donc $\displaystyle \sum_{i = 1}^{k }m_i(\alpha - z_i)^{m_i - 1} \prod_{j = 1}^{k } (\alpha - z_j)^{m_j} = 0$
+
+    Donc en divisant par $P(\alpha)$ : 
+    $$ \sum_{i = 1}^{k } \frac{m_i}{\alpha - z_i} = 0$$
+    donc $\displaystyle \sum_{i = 1}^{k } \frac{m_i}{\bar \alpha - \bar z_i} = 0$
+    
+    Donc $\displaystyle \sum_{i = 1}^{k }\frac{m_i }{\mid \alpha - z_i \mid ^2} (\alpha - z_i) = 0$
+    
+    En posant $\beta = \frac{m_i}{\mid \alpha - z_i \mid ^2}$
+    
+    Donc $\displaystyle \sum_{i = 1}^{n }\beta_i \alpha = \sum_{i = 1}^{n } \beta_i z_i$
+
+    Donc $\displaystyle \alpha = \sum_{i = 1}^{n }\frac{\beta_i}{s} z_i$
+
+    Or $\displaystyle \sum_{i = 1}^{n }\frac{\beta_i }{S } = 1$. 
+\end{exemple}
+
+\begin{proposition}{Convexité des boules}{}
+    Toute boule d'un espace vectoriel normé est convexe. 
+\end{proposition}
+
+
+\idee{
+    Astuce du topin, utiliser la distance au centre
+    en faisant apparaitre le rayon.
+}
+
+\begin{proof}
+    \quad \underline{Boule fermée :}
+
+    Soit $\omega \in E$, $R > 0$ et $A = B'( \omega, R)$
+    
+    Soient $a, b \in A, \lambda \in \inter{0}{1}$ et $c = \lambda a + (1 - \lambda)b$
+
+    \begin{align*}
+        N(c - \omega) & = N(\lambda a + (1 - \lambda)b - \lambda \omega - (1 - \lambda) \omega) \\
+        & = N(\lambda(a - \omega) + (1 - \lambda)(b - \omega)) \\
+        & \leqslant \, \mid \lambda \mid N(a - \omega) + \mid 1 - \lambda \mid N(b - \omega) \\
+        & \leqslant \lambda R + (1 - \lambda)R = R \\
+    \end{align*}
+
+    \quad \underline{boules ouvertes : }
+
+    Soit $\omega  \in E, R > 0, A = B(\omega, R)$. 
+
+    Soient $a, b \in A, \lambda \in \inter{0}{1}$ et $c = \lambda a + (1 - \lambda)b$.
+
+    Montrons que $c \in A$. 
+    \begin{itemize}
+        \item si $\lambda = 0, c = b$ donc $c \in A$
+        \item si $\lambda = 1, c = a$ donc $c \in A$
+    \end{itemize}
+
+    Sinon, 
+    \begin{align*}
+        d(\omega, c) & = N(\lambda a + (1 - \lambda) b - \omega) \\
+        & = N(\lambda a + (1 - \lambda) b - (\lambda + 1- \lambda) \omega) \\
+        & = N(\lambda(a - \omega) + (1 - \lambda) (b - \omega) \\
+        & \leqslant \, \mid \lambda \mid N(a - \omega) + (1 - \lambda)N(b - \omega)) \\
+        & < (\mid \lambda \mid + \mid 1 - \lambda \mid) R = R
+    \end{align*}
+\end{proof}
+
+\subsection{Parties et applications bornées}
+
+Soit $(E, N)$ un espace vectoriel normé sur $\K$. 
+
+\begin{definition}{Partie bornée}{}
+    Soit $A \subset E$. On dit que $A$ est bornée ssi $\exists M > 0, \forall x \in A, N(x) \leqslant M$, 
+    c'est à dire ssi $\exists M > 0, A \subset B'(0, M)$
+\end{definition}
+
+\begin{theoreme}{Diamètre}{}
+    Soit $A \subset E$ non vide et bornée. 
+
+    Alors $B = \{d(x, y), (x, y) \in A^2\}$ est une partie de $\R$ non vide et majorée.
+
+    En effet, si $(x, y) \in A^2$, 
+
+    \[
+    \begin{array}{rcl}
+        d(x, y) & = & N(x - y) \\
+        \space & \leqslant & N(x) + N(y) \\
+        \space & \leqslant & 2 M \\
+    \end{array}
+    \]
+
+    On définit le diamètre de $A$ noté $\tau(A)$ comme étant égal à : 
+    $$\tau(A) = \sup B = \sup \{d(x, y), (x, y) \in A^2\}$$
+\end{theoreme}
+
+\begin{proposition}{Diamètre d'une boule}{}
+    Toute boule est bornée de diamètre égal au double de son rayon.
+\end{proposition}
+
+\idee{
+    Astuce du topin, on passe par $\omega$ et inégalité triangulaire pour majorer. 
+    
+    Pour minorer, carac séquentielle, distance entre éléments de deux suites.
+}
+
+\begin{proof}
+    Soit $\omega \in E, R>0$ et $A = B(\omega, R)$ ou $A = B'(\omega, R)$. 
+
+    Soit $x, y \in A$. 
+
+    \[
+    \begin{array}{rcl}
+        d(x, y) & = & N(x - y) \\
+        \space & = & N(x - \omega + \omega - y) \\
+        \space & \leqslant & d(x, \omega) + d(\omega, y) \\
+        \space & \leqslant & 2R \\
+    \end{array}
+    \]
+
+    $N(x) = N(x - \omega + \omega) \leqslant R + N(\omega)$ donc $A$ bornée. 
+
+    Donc $\tau(A) \leqslant 2R$
+
+    Soit $v$ un vecteur non nul de $E$ et $u = \frac v {N(v)}$. 
+
+    Posons pour $n \in \N^*,$
+
+    \[
+    \begin{array}{rcl}
+        x_n & = & \omega + (1 - \frac 1 n) R u \\
+        y_n & = & \omega - ( 1 - \frac 1 n) R u \\
+    \end{array}
+    \]
+
+    On a $d(x_n, \omega) = N((1 - \frac 1 n)Ru) = ( 1 - \frac 1 n )R < R$
+
+    donc $x_n \in B(\omega, R)$ donc $x_n \in A$. 
+
+    De même, $y_n \in A$.
+
+    Donc $\forall n \in \N^*$, 
+
+    $\alpha_n = d(x_n, y_n) \in B$
+
+    Or 
+    \[
+    \begin{array}{rcl}
+        \alpha_n & = & N(x_n - y_n) \\
+        \space & = & 2 (1 - 1 / n) R \\
+        \space & \to & 2 R \\
+    \end{array}
+    \]
+
+    Donc par passage à la borne sup, $\tau(A) = \sup B = 2R$.    
+\end{proof}
+
+\subsubsection{Application bornées}
+
+\begin{definition}{application bornée}{}
+    Soit $X$ un espace vectoriel normé non vide et $f \in \mathscr F(X, E)$. 
+    On dit que $f$ est bornée ssi
+     $$\exists M > 0, \forall x \in X, N(f(x)) \leqslant M$$
+    c'est à dire l'image directe $f(X)$ est bornée dans $E$. 
+\end{definition}
+
+\begin{exemple}
+    Si $X = \N$, une application de $X$ dans $E$ est une suite $\fonction{u}{\N}{E}{n}{u_n}$.
+    $u = (u_n)_{n \in \N}$.  Cette suite est bornée ssi $\exists M > 0, \forall n \in \N, N(u_n) \leqslant M$
+\end{exemple}
+
+\begin{proposition}{nature ensemble des fonctions bornées}{}
+    Soit $X \neq \emptyset, (E, N)$ un espace vectoriel normé. 
+
+    L'ensemble des fonctions bornées de $X$ dans $E$ est un $\K$-espace vectoriel noté
+    $\mathscr B(X, E)$.
+
+    Si $X = \N$, l'ensemble des suites bornées sur $E$ est noté $\mathscr B(\N, E) = \ell^\infty (E)$
+\end{proposition}
+
+\idee{
+    Montrer que c'est un sous espace vectoriel. 
+}
+
+\begin{proof}
+    $E$ étant un $\K$-espace vectoriel, on sait que $\mathscr F(X, E)$ est un 
+    $\K$-espace vectoriel. 
+
+    Montrons que $\mathscr B(X, E)$ en est un sous-espace vectoriel. 
+    \begin{itemize}
+        \item $\mathscr B(X, E) \subset \mathscr F(X, E)$
+        \item La fonction constante nulle de $X$ dans $E$ est bornée donc $\mathscr B(X, E) \neq \emptyset$
+        \item Soient $f, g \in \mathscr B(X, E)$, $\alpha, \beta \in \K$. Par hypothèse, 
+            $\exists M_1 > 0, \exists M_2 > 0$, $\forall x \in X, N(f(x)) \leqslant M_1$ et 
+            $N(g(x)) \leqslant M_2$
+
+            \[
+            \begin{array}{rclr}
+                N(\alpha f + \beta g ) & = & N(\alpha f(x) + \beta g(x)) & \text{ par def} \\
+                \space & \leqslant & N(\alpha f(x)) + N(\beta g(x)) & \text{inégalité triangulaire} \\
+                \space & \leqslant & \mid \alpha \mid N(f(x)) + \mid \beta \mid N(g(x)) \\
+                \space & \leqslant & \mid \alpha \mid M_1 + \mid \beta \mid M_2\\
+            \end{array}
+            \]
+    \end{itemize}
+
+    Donc $\alpha f + \beta g$ bornée. 
+\end{proof}
+
+\section{Equivalence des normes}
+
+\subsection{Définitions}
+
+Soit $E$ un $\K$-espace vectoriel. 
+
+\begin{definition}{Normes équivalentes}{}
+    Soient $N_1$ et $N_2$ deux normes sur $E$. 
+
+    On dit que $N_1$ et $N_2$ sont équivalentes ssi $ \exists \alpha > 0, \exists \beta > 0, $
+    $$\forall x \in E, \, \beta N_2(x) \leqslant N_1(x) \leqslant \alpha N_2(x)$$
+\end{definition}
+
+\begin{remarque}
+    (légèrement hors programme)
+
+    Si on a seulement $\exists \alpha > 0, \forall x \in E, N_1(x) \leqslant \alpha N_2(x)$
+    on dit que $N_2$ est plus fine que $N_1$. 
+\end{remarque}
+
+\begin{proposition}{nature relation de l'équivalence des normes}{}
+    L'équivalence entre normes est une relation d'équivalence dans l'ensemble des normes 
+    sur $E$. 
+\end{proposition}
+
+\idee{
+    Montrer les 3 propriétés d'une relation d'équivalence
+}
+
+\begin{proof}
+    \quad \underline{Réflexivité :}
+
+    Soit $N $ norme sur $E$. 
+
+    On a $\forall x \in E, \; 1 N(x) \leqslant N(x) \leqslant 1N(x)$
+
+    \quad \underline{Symétrie :}
+
+    Soient $N_1$ et $N_2$ deux normes sur $E$ telles que : 
+
+    $$ \exists \alpha > 0, \exists \beta > 0, \forall x \in E, \beta N_2(x) \leqslant N_1(x) \leqslant \alpha N_2(x)$$
+    Donc $\frac 1 \alpha N_1(x) \leqslant N_2(x) \leqslant \frac 1 \beta N_1(x)$
+
+    \quad \underline{Transitivité : }
+
+    Soient $N_1, N_2, N_3$ trois normes telles que 
+
+    $\exists \alpha > 0, \exists \beta >0 , \beta N_2(x) \leqslant N_1(x) \leqslant \alpha N_2(x)$
+
+    $\exists \gamma > 0, \exists \tau > 0, \gamma N_3(x) \leqslant N_2(x) \leqslant \tau N_3(x)$
+
+    Donc $\beta \gamma N_3(x) \leqslant N_1(x) \leqslant \alpha \tau N_3(x)$
+\end{proof}
+
+\subsection{Proposition}
+
+\begin{proposition}{Equivalence bornage norme}{}
+    Soient $N_1$ et $N_2$ deux normes équivalentes de $E$ et soit $A \subset E$. 
+
+    Alors $A$ est bornée pour $N_1$ ssi $A$ est bornée pour $N_2$
+\end{proposition}
+
+\idee{
+    On suppose $A$ bornée et on utilise la def de normes équivalentes.
+}
+
+\begin{proof}
+    Supposons que $A$ est bornée pour $N$, $\exists M > 0, \forall x \in A, N_1(x) \leqslant M$
+
+    Par équivalence, $\exists \alpha > 0, \forall y \in E, N_2(y) \leqslant \alpha N_1(y)$
+
+    Donc $\forall x \in A, N_2(x) \leqslant \alpha M$
+
+    Donc $A$ est bornée pour $N_2$.
+
+    Réciproque identique.
+\end{proof}
+
+\subsection{Proposition}
+
+\begin{proposition}{montrer que deux normes ne sont pas équivalentes}{}
+    Soient $N_1, N_2$ deux normes sur $E$ telles qu'il existe $(u_n)_{n \in \N}$ suite
+    de vecteurs non nuls de $E$ vérifiant 
+    $$ \frac{N_1(u_n )}{N_2(u_n )} \limit{n}{+ \infty} 0$$ 
+    ou $$\frac{N_2(u_n )}{N_1(u_n )} \limit{n}{+ \infty} 0$$
+
+    Alors $N_1$ et $N_2$ ne sont pas équivalentes.
+\end{proposition}
+
+\begin{remarque}
+    Une suite qui marche souvent est $x^n$.
+\end{remarque}
+
+\idee{
+    Par l'absurde.
+}
+
+\begin{proof}
+    Si $N_1$ et $N_2$ avaient été équivalentes on aurait eu 
+    $\exists \alpha, \beta > 0, \forall x \in E, \alpha N_1(x) \leqslant N_2(x) \leqslant \beta N_1(x)$
+    en particulier $\forall n \in \N, \alpha \leqslant \frac{N_2(u_n)}{N_1(u_n)} \leqslant \beta$
+
+    Absurde à cause de la limite.
+\end{proof}
+
+
+\subsection{Exemples}
+
+\subsubsection{Dans R²}
+
+\begin{exemple}
+    On montre (cf IV) que 
+
+    $\fonction{|| \cdot ||_1}{\R^2}{\R}{(x, y)}{\mid x \mid + \mid y \mid}$
+
+    $\fonction{|| \cdot ||_2}{\R^2}{\R}{(x, y)}{\sqrt{x^2 + y^2} = ||(x, y)||_2}$
+
+    $\fonction{|| \cdot ||_3}{\R^2}{\R}{(x, y)}{\max (\mid x \mid, \mid y \mid)}$
+    sont des normes.
+
+    Soit $u = (x, y) \in \R^2$. 
+
+    $|| u ||_\infty \leqslant \mid x \mid + \mid y \mid \leqslant 2 ||u||_\infty$
+    donc $|| u ||_\infty \leqslant ||u_1|| \leqslant 2 ||u||_\infty$
+
+    Donc $|| \cdot ||$ et $|| \cdot ||_1$ équivalentes. 
+
+    On peut montrer de même les autres équivalences.
+\end{exemple}
+
+\subsubsection{Dans \texorpdfstring{$\mathscr C([0, 1], \R)$}{C([0, 1], R)}}
+
+\begin{exemple}
+    On a les mêmes genre de normes sur les fonctions avec les intégrales ou le sup. 
+
+    $|| f ||_1 = \int_{0}^{1} \mid f(t) \mid \text d t \leqslant \int_{0}^{1} ||f||_\infty \leqslant ||f ||_\infty$
+
+    Donc la norme infinie est plus fine que le norme 1. 
+
+    Posons $\forall n \in \N^*, f_n (x) = x^n$. 
+
+    Alors $\int_{0}^{1} x^n \text d x = \left[\frac {x^n + 1}{n+ 1}\right] = \frac 1 {n + 1}$
+    et $||f_n|| = 1$
+
+    Donc $\frac{||f_n||_1}{||f_n||_\infty} \limit{n}{+ \infty} 0$ : les normes ne sont pas équivalentes. 
+
+    De même, la norme infinie est plus fine que la norme 2, et $x^n$ montre aussi 
+    que les normes infinies et 2 ne sont pas équivalentes.
+
+    $\frac{||f_n||_1}{||f_n||_2} = \frac{\sqrt{2n + 1}}{n+1} \sim \sqrt{\frac 2 n} \limit{n}{+ \infty} 0$
+
+    Donc elles ne sont pas équivalentes. 
+
+    Comme $(f, g) \mapsto \int_{0}^{1}fg = <f, g>$ est un produit scalaire, on 
+    a par Cauchy Schwarz : 
+
+    $||f||_1 = \int_{0}^{1} \mid f \mid \times 1 = <\mid f \mid, 1>$
+
+    Donc norme 2 plus fine que norme 1. 
+\end{exemple}
+
+\begin{theoreme}{Equivalence des normes dans un ev de dim finie}{}
+    Si $E$ est un $\K$-espace vectoriel de dimension finie, toutes les normes 
+    sur $E$ sont équivalentes entre elles.
+\end{theoreme}
+
+\section{Normes classiques}
+
+\subsection{Normes infinies}
+
+\subsubsection{Cas général}
+
+\begin{theoreme}{lemme de la borne sup}{}
+    Soit $A$ une partie non vide et majorée de $\R$ et $k \geqslant 0$. 
+    
+    En notant $kA = \{ka, a \in A \}$, on a $\sup kA = k \sup A$.
+\end{theoreme}
+
+\begin{proof}
+    $A$ est majorée donc $kA$ l'est aussi. 
+
+    \quad \underline{Si $k = 0$ :}
+
+    C'est évident, $kA = \{0\}$
+
+    \quad \underline{Sinon : }
+
+    Soit $b \in A$ il vient $b = ka$ où $a \in A$, or $a \leqslant \sup A$ donc 
+    $b \leqslant k \sup A$. 
+
+    $k \sup A$ est donc un majorant de $k A$ donc $\sup k A \leqslant k \sup A$. 
+
+    Appliquons ce résultat à $A' = kA$ et $k' = \frac 1 k$. 
+
+    Ainsi, $\sup k' A' \leqslant k' \sup A'$ donc $\sup A \leqslant \frac 1 k \sup k A$
+
+    Donc $k \sup A \leqslant \sup k A$. 
+\end{proof}
+
+\begin{proposition}{Norme infinie}{}
+    Soit $X$ un ensemble non vide et $E = \mathscr B(X, \K)$ l'espace vectoriel  des 
+    fonctions bornées à valeur dans $\K$. 
+
+    Pour $f \in E$ on note : 
+    $$||f||_\infty = \sup \{\mid f(x) \mid, x \in X\}$$
+
+    Alors $|| \cdot ||_\infty$ est une norme appelée norme de la convergence uniforme. 
+\end{proposition}
+
+\begin{proof}
+    $|| \cdot ||_\infty$ est bien définie à valeur dans $\R^+$.
+
+    Montrons que la norme infnie est une norme sur $\mathscr B (X, \K)$. 
+
+    \quad \underline{Séparation : }
+
+    Soit $f \in \mathscr B(X, \K)$, tel que $||f ||_\infty = 0$. 
+
+    Alors $\forall x \in X, \mid f(x) \mid \leqslant 0 = 0$
+
+    Donc $f = 0$. 
+
+    \quad \underline{Homogénéité : }
+
+    Soit $f \in \mathscr B(X, \K), \lambda \in \K$. 
+
+    \[
+    \begin{array}{rcl}
+        || \lambda f ||_\infty & = & \sup\{\mid \lambda \mid \mid f(x) \mid, x \in X\} \\
+        \space & = & \mid \lambda \mid \sup \{ \mid f(x) \mid , x \in X\} \\
+        \space & = & \mid \lambda \mid ||f ||_\infty \\
+    \end{array}
+    \]
+
+    \quad \underline{Inégalité triangulaire : }
+
+    Soient $f, g \in \mathscr B(X, \K)$. 
+
+    Soit $x \in X$. 
+
+    \[
+    \begin{array}{rcl}
+        \mid (f + g)(x) \mid & = & \mid f(x) + g(x) \mid \\
+        \space & \leqslant & \mid f(x) \mid + \mid g(x) \mid \\
+        \space & \leqslant & ||f||_\infty + ||g ||_\infty \\
+    \end{array}
+    \]
+
+    vrai pour tout $x$ donc $|| f + g||_\infty \leqslant ||f||_\infty + ||g||_\infty$
+\end{proof}
+
+\subsubsection{Norme infinie sur \texorpdfstring{$\K^n$}{kn}}
+
+\begin{definition}{Norme infinie sur Kn}{}
+    Pour $X = \{1, \dots, n\}$ et en utilisant via la bijection $\mathscr B(X, \K)$
+    à $\K^n$ 
+
+    $$\fonction{}{\mathscr B(X, \K)}{\K^n}{f}{(f(1), \dots, f(n))}$$
+
+    On a ainsi construit $|| \cdot ||_\infty$ sur $\K^n$ qui est donc une norme définie
+    par $||(x_1, \dots, x_n)||_\infty = \sup\{\mid x_1\mid \dots \mid x_n \mid \} = \max (\mid x_1\mid \dots \mid x_n \mid)$
+\end{definition}
+
+
+\subsubsection{Norme définie sur \texorpdfstring{$\ell^\infty(\K)$}{l infinie (K)}}
+
+\begin{definition}{espace vectoriel des suites bornées}{}
+    On note $\ell^\infty(K) = \mathscr B(\N, \K)$ l'espace vectoriel des suites bornées
+    à valeurs dans $\K$. On y a ainsi défini la norme $|| \cdot ||_\infty$ par 
+
+    $$||(u_n)_{n \in \N} ||_\infty = \sup\{\mid u_n \mid, n \in \N\}$$
+\end{definition}
+
+\subsubsection{Norme infinie sur \texorpdfstring{$\mathscr C([a, b], \K)$}{C([a, b], K)}}
+
+\begin{definition}{}{}
+    On a $\mathscr C(\inter{a}{b}, \K) \subset \mathscr B(\inter{a}{b}, \K)$
+    par le théorème des bornes atteintes. 
+
+    On peut donc munir cet espace de la norme infinie par : 
+    $\forall f \in \mathscr C(\inter{a}{b}, \K)$
+
+    \[
+    \begin{array}{rcl}
+        ||f ||_\infty & =& \sup\{\mid f(x) \mid, x \in \inter{a}{b}\} \\
+        \space & = & \max\{\mid f(x) \mid, x \in \inter{a}{b}\} \\
+    \end{array}
+    \]
+
+
+\end{definition}
+
+
+\subsection{Applications, produit cartésien d'evns}
+
+\begin{theoreme}{Norme produit}{}
+    Soient $(E_1, N_1), \dots, (E_p, N_p)$ des espaces vectoriels normés
+    et $E$ l'espace vectoriel $E = E1 \times E_2 \dots \times E_p$
+
+    Alors pour $u = (u_1, \dots, u_p) \in E$ on pose 
+
+    $$N_\infty(u) = \max(N_1(u_1), \dots, N_p(u_p))$$
+
+    alors $N_\infty$ est une norme sur $E$ appelée norme produit. 
+\end{theoreme}
+
+\begin{proof}
+    $N_\infty$ est bien définie et à valeurs dans $\R^+$
+
+    \quad \underline{Séparation : }
+
+    Supposons que $N_\infty(u) = 0$. 
+
+    Alors $\forall j \in \{1, \dots, p\}$ $N_j(u_j) = 0$
+
+    Or $N_j$ est une norme donc $u_j = 0$. 
+
+    \quad \underline{Homogénéité : }
+
+    Soit $\lambda \in K, u = (u_1, \dots, u_p)$. 
+
+    \[
+    \begin{array}{rcl}
+        N_\infty(\lambda u) & = & \max{N_j(\lambda u_j), j \in \{1, ..., p\}} \\
+        \space & = & \mid \lambda \mid \max\{N_j(u_j), j \in \{1, ..., p\}\} \\
+        \space & = & \mid \lambda \mid N_\infty(u) \\
+    \end{array}
+    \]
+
+    \quad \underline{Inégalité triangulaire : }
+
+    Soient $u = (u_1, \dots, u_p), v = (v_1, \dots, v_p) \in E$. 
+
+
+    $\forall j \in \{1, \dots, p\}$
+    \[
+        \begin{array}{rcl}
+            N_j(u_j + v_j) & \leqslant & N_j(u_j) + N_j(v_j) \\
+            \space & \leqslant & N_\infty(u) + N_\infty(v) \\
+        \end{array}
+    \]
+
+    Vrai pour tout $j$ donc $N_\infty(u + v) \leqslant N_\infty(u) + N_\infty(v)$
+\end{proof}
+
+\subsection{Norme 1}
+
+\subsubsection{Sur \texorpdfstring{$\K^n$}{kn}}
+
+\begin{definition}{Norme 1 sur Kn}{}
+    Pour $x = (x_1, \dots, x_n) \in \K^n$ on pose 
+
+    $$||x||_1 = \sum_{i = 1 }^{n } \mid x_i\mid$$
+\end{definition}
+
+\begin{theoreme}{Norme 1 sur $\K^n$}{}
+    La norme 1 est une norme 
+\end{theoreme}
+
+\begin{proof}
+    La norme 1 est à valeurs dans $\R^+$. 
+
+    Si la norme est nulle, alors somme de nb positifs nuls. 
+
+    Si $\displaystyle \lambda \in \K$, $||\lambda x || = \sum_{i = 1 }^{n }\mid \lambda x_i \mid = \mid \lambda \mid ||x_i||_1$
+
+    Inégalité trinagulaire classique à utiliser pour la prouver 
+\end{proof}
+
+\subsubsection{Sur \texorpdfstring{$\ell^1$}{l1} K ev des suites sommables sur K}
+
+\begin{definition}{Notation $\ell^1$}{}
+    On note $\ell^1(\K) = \{(u_n)_{n \in \N} \in \K^n \mid \sum_{n \leqslant 0} \mid u_n \mid \text{est une suite convergente}\}$
+\end{definition}
+
+\begin{theoreme}{Norme 1 suites}{}
+    En posant pour $u \in \ell^1(\K)$ 
+    $$||u||_1 = \sum_{i = 0}^{+ \infty }\mid u_i \mid$$ 
+    on définit une norme. 
+\end{theoreme}
+
+\begin{proof}
+    $|| u ||_1$ est bien def car la série converge absolument, et est à valeurs $\geqslant 0$
+
+    \quad \uline{Séparation : }
+
+    Si $||u ||_1 = 0$, alors $\displaystyle \sum_{i = 0}^{+ \infty}  \mid u_i \mid = 0 $
+
+    Donc $\forall i, \mid u_i\mid = 0 $ et $u = 0$. 
+
+    \quad \uline{Homogénéité : }
+
+    $\displaystyle \sum_{ i = 0 }^{+ \infty }\mid \lambda u_i \mid = \mid \lambda \mid \sum_{i = 0 }^{+ \infty }\mid u_i \mid$
+
+    \quad \uline{Inégalité triangulaire : }
+
+    Soient $u, v \in \ell^1(\K)$ 
+
+    \[ \displaystyle
+    \begin{aligned}
+        ||u + v ||_1 & =  \sum_{i = 0 }^{+ \infty }\mid u_i + v_i \mid \\
+        \space & \leqslant  \sum_{i = 0}^{+ \infty} \mid u_i \mid + \mid v_i \mid \\
+        \space & \leqslant  ||u||_1 + ||v||_1 \\
+    \end{aligned}
+    \]
+\end{proof}
+
+\subsubsection{Sur \texorpdfstring{$\mathscr C([a, b], \K)$}{C([a, b], K)}}
+
+\begin{definition}{Norme 1 sur C([a, b], K)}{}
+    On définit pour $f \in \mathscr C(\inter{a}{b}, \K)$, 
+    $$||f||_1 = \int_{a }^{b } \mid f(t) \mid \text d t$$
+\end{definition}
+
+\begin{remarque}
+    Si on prend le produit scalaire $<f, g> = \int_{a}^{b} fg$, on a 
+    $f(x) = <f', 1>$ (peut servir en exos). 
+\end{remarque}
+
+\begin{theoreme}{Norme de la convergence moyenne}{}
+    C'est une norme appelée norme de la convergence moyenne. 
+\end{theoreme}
+
+\begin{proof}
+    $||\cdot ||_1$ est bien définie et à valeurs dans $\R^+$
+
+    Si $||f||_1 = 0$ alors $\int_{a }^{b } \mid f(t) \mid \text d t = 0$
+
+    Or $\mid f \mid $ est continue positive donc $\forall t \in \inter{a}{b}, f(t) = 0$
+
+    \uindent{Homogénéité }
+
+    $|| \lambda f || = \mid \lambda \mid ||f||_1$ 
+
+    \uindent{Inégalité triangulaire }
+
+    Utiliser inégalité triangulaire classique et croissance de l'intégrale. 
+\end{proof}
+
+\begin{exemple}
+    Si $E = \K(X)$
+    
+    On peut poser pour $P \in E$ $||P|| = \int_{-1}^{2} \mid P(t) \mid \text d t$
+
+    La preuve est identique à celle d'avant sauf la fin de la verif de l'axiome de séparation 
+    où il faut ajouter que P(t) est nul sur le segment, donc a une infinité de racines donc
+    est nul. 
+\end{exemple}
+
+\subsection{Normes 2}
+
+\subsubsection{Cas \texorpdfstring{$\K = \R$}{K = R}}
+
+
+Soit $E$ un $\R$-espace vectoriel muni d'un produit scalaire $< \cdot , \cdot >$.
+
+
+\begin{theoreme}{norme euclidienne}{}
+    L'application $|| \cdot ||_2$ définie par : 
+    $$ \forall u \in E, ||u||_2 = \sqrt{<u, u>}$$
+    est une norme appelée norme euclidienne associée au produit scalaire. 
+\end{theoreme}
+
+\idee{
+    Pour l'inégalité triangulaire, utiliser Cauchy Schwarz. 
+}
+
+\begin{proof}
+    $|| \cdot ||_2$ est bien définie et à valeurs dans $\R^+$ car le produit scalaire est positif. 
+
+    \uindent{Séparation }
+
+    \svspace Si $||u||_2 = 0 $ alors $<u, u> = 0$ donc $u = 0$ car le produit scalaire est 
+    défini. 
+
+    \uindent{Homogénéité }
+
+    \svspace $||\lambda u|| = \sqrt{<\lambda u, \lambda u>} = \mid \lambda \mid ||u||_2$
+
+    \uindent{Inégalité triangulaire }
+
+    \svspace Soient $u, v \in E$
+
+    \[
+    \begin{array}{rcl}
+        ||u + v ||^2_2 & = & <u + v , u + v> \\
+        \space & = & ||u||_2^2 + 2 <u, v> + ||v||_2^2 \\
+        \space & \leqslant & ||u||_2^2 + 2 ||u||_2||v||_2 + ||v||_2^2 \\
+    \end{array}
+    \]
+
+    Donc $||u + v||_2^2 \leqslant (||u||_2 + ||v||_2)^2$
+\end{proof}
+
+\begin{definition}{Norme sur $\R^n$}{}
+    Pour $x = (x_1, \dots, x_n)$ et $y = (y_1, \dots, y_n)$, $\displaystyle <x, y> = \sum_{i = 1 }^{n }x_i y_i$ définit un 
+    produit scalaire sur $\R^n$. La norme associée est 
+    $$ ||x||_2 = \sqrt{\sum_{i = 1 }^{n }x_i^2}$$
+\end{definition}
+
+
+\begin{theoreme}{Espace vectoriel des suites de carré sommable}{}
+    L'ensemble $E = \ell^2(\R) = \{(u_n)_{n \in \N} \mid \sum_{n \leqslant 0 }u_n^2 \text{ converge}\}$
+    est un $\R$-espace vectoriel appelé espace des suites de carré sommable. 
+\end{theoreme}
+
+\idee{
+    cheat code avec l'identité remarquable
+}
+
+\begin{proof}
+    $E \subset \R^\N$
+
+    $0 \in E$
+
+    Soient $u, v \in E, \alpha \in \R$. 
+
+    $\forall n \in N,$
+
+    $(\alpha u_n + v_n)^2 = \alpha^2u_n^2 + v_n^2 + 2 \alpha u_n v_n$ Les deux premiers termes son des TGSCV
+
+    Et $\mid u_n v_n \mid \leqslant \frac 1 2 (u_n^2 + v_n^2)$
+
+    Donc $\sum_{n \geqslant 0} u_n v_n$ converge absolument donc converge. 
+
+    Donc $\sum_{n \geqslant 0} (\alpha u_n + v_n)^2$ est convergente. 
+\end{proof}
+
+\begin{theoreme}{Norme 2 suites}{}
+    Pour $u, v \in \ell^2(\R)$, $\displaystyle <u, v> = \sum_{n = 0 }^{+ \infty} u_n v_n$
+    définit un produit scalaire. 
+
+    La norme euclidienne associée est : 
+    $$||u||_2 = \sqrt{\sum_{n = 0 }^{\infty}u_n^2}$$
+\end{theoreme}
+
+\begin{proof}
+    Par la démo précédente, $<u, v>$ existe, est bilinéaire symétrique par calcul 
+    facile et $u_n = 0$ si la norme est nulle. 
+\end{proof}
+
+Soit $E = \mathscr C(\inter{a}{b}, \R)$
+
+\begin{theoreme}{norme de la convergence moyenne quadratique}{}
+    Pour $f, g \in E$, on pose 
+    $<f, g> = \int_{a}^{b} f(t)g(t) \text d t$
+    est un produit scalaire, et la norme associée est 
+    $$||f||_2 = \sqrt{\int_{a }^{b } f(t)^2 \text d t}$$
+    on l'appelle norme de la convergence moyenne quadratique. 
+\end{theoreme}
+
+\begin{proof}
+    Big flemme, facile et comme les autres
+\end{proof}
+
+\subsubsection{Cas des espaces complexes }
+
+\begin{definition}{Produit scalaire complexe}{}
+    Soit $E$ un $\C$-espace vectoriel et 
+    $$\fonction{<\cdot, \cdot>}{E \times E}{\C}{(u, v)}{<u, v>}$$
+    On dit que $<\cdot, \cdot>$ est un produit scalaire ou une forme 
+    sesquilinéaire à symétrie hermitienne définie positive. 
+
+    $\forall u, v, w \in E, \lambda \in \C$, 
+
+    \begin{itemize}
+        \item $<\lambda u + v, w> = \bar \lambda<u, w> + <v, w>$
+        \item $<u, v> = \overline{<v, u>}$
+        \item $<u, u> \in \R^+$
+        \item $<u, u> = 0$ ssi $u=0$
+    \end{itemize}
+\end{definition}
+
+\begin{theoreme}{Inégalité de Cauchy Schwarz complexe}{}
+    Inégalité de Cauchy Schwarz complexe :
+    $$\forall u, v \in E, \mid <u, v> \mid \leqslant ||u||_2 \cdot ||v||_2$$
+\end{theoreme}
+
+\idee{
+    Considérer $<\lambda u + v, \lambda u + v> \geqslant 0$ et choisir $\lambda$ 
+    astucieusement. 
+}
+
+\begin{proof}
+    Soient $u, v \in E$. 
+    Pour $\lambda \in \C$, 
+
+    $<\lambda u + v, \lambda u + v> \in \R^+ $
+
+    $$
+    \begin{array}{rcl}
+        <\lambda u + v, \lambda u + v> & = & \lambda <\lambda u + v, u > + <\lambda u + v, v> \\
+        \space & = & \lambda (\bar \lambda <u, u> + <v, u>) + \bar \lambda <u, v> + <v, v> \\
+        \space & = & \mid \lambda \mid^2 <u, u> + \bar \lambda <u, v> + <v, v> \\
+        \space & = & \mid \lambda \mid^2 <u, u> + 2 \re(\lambda <v, u>  + <v, v>) \\
+    \end{array}
+    $$
+
+    Considérons $\ds \lambda = - \frac{-<u, v>}{<u, u>}$ en ce $\lambda$ la quantité est dans
+    $\R^+$
+
+    $\displaystyle \frac{\mid <u, v>\mid^2}{<u, u>} - 2 \re \left(\frac{\mid <u, v>\mid^2}{<u, u}\right) + <v, v> \geqslant 0$
+
+    Donc $\displaystyle - \frac{\mid <u, v>\mid ^2}{<u, u>} + <v, v> \geqslant 0$
+
+    Donc $\mid <u, v> \mid^2 \leqslant <u, u> <v, v>$
+
+    Doncc $\mid <u, v> \leqslant ||u||_2 \cdot ||v||_2$ qui est l'inégalité de Cauchy Schwarz. 
+
+\end{proof}
+
+\begin{theoreme}{Norme hermitienne associée}{}
+    $||u||_2 = \sqrt{<u, v>}$ est une norme sur $E$ appelée norme hermitienne associée. 
+\end{theoreme}
+
+\begin{proof}
+    Cette norme existe et est positive. 
+
+    \quad \underline{Séparation : }
+
+    Si $||u||_2 = 0$ alors $u=0$
+
+    \quad \underline{Homogénéité : }
+
+    \[
+    \begin{array}{rcl}
+        || \lambda u ||_2 & = & \sqrt{<\lambda u, \lambda v} \\
+        \space & = & \mid \lambda \mid ||u||_2
+    \end{array}
+    \]
+
+    \quad \uline{Inégalité triangulaire :}
+    
+    Soient $u, v \in E$
+
+    $$
+    \begin{array}{rcl}
+        ||u + v||^2_2 & = & <u + v, u + v>  \\
+        \space & = & <u + u> + <u, v> + <v, u> + <v, v> \\
+        \space & = & ||u||_2^2 + <u, v> + \overline{<u, v>} + ||v||_2^2  \\
+        \space & =& ||u||_2^2 + 2 \re(<u, v>) + ||v||_2^2 \\
+        \space & \leqslant & ||u||_2^2 + 2 \mid <u, v> \mid + ||v||_2^2 \\
+        \space & \leqslant & ||u||_2^2 + 2 ||u||_2 ||v||_2 + ||v||_2^2 \\
+        \space & \leqslant & (||u||_2 + ||v||_2)^2 \\
+    \end{array}
+    $$
+
+\end{proof}
+
+\begin{exemple}
+    Si $u = (u_1, \dots, u_n)$, $\displaystyle ||u||_2 = \sqrt{\sum_{i = 1}^{n} \mid u_i \mid^2}$
+    définit une norme. 
+
+    C'est la norme euclidienne (resp hermitienne) canonique si $\K = \R$ (resp $\C$). 
+
+    Elle provient du produit scalaire défini par : 
+
+    $\forall u = (u_1, \dots, u_n), v = (v_1, \dots, v_n) \in \K^n$
+
+    $$
+    <u, v> = \begin{cases}
+        \ds \sum_{i = 1}^{n} u_i v_i & \text{si } \K = \R \\
+        \ds \sum_{i = 1}^{n} u_i \overline{v_i} & \text{si } \K = \C \\
+    \end{cases}
+    $$
+
+    Sur $\ell^2(\K)$ espace vectoriel des suites de carré sommables,
+    $\ds \ell^2(\K) = \{(u_n)_{n \in \N} \mid \sum_{n \geqslant 0} \mid u_n \mid^2 \text{ converge}\}$
+    
+    On pose $\ds ||u_n||_2 = \sqrt{\sum_{n = 0 }^{+ \infty} \mid u_n \mid^2}$
+
+    C'est une norme euclidienne (resp hermitienne) si $\K = \R$ (resp $\C$) issue
+    du produit scalaire $\ds <u_n, v_n> = \sum_{n = 0}^{+ \infty} u_n v_n \text{si } \K = \R$
+    $\ds <u_n, v_n> = \sum_{n = 0}^{+ \infty} u_n \overline{v_n} \text{si } \K = \C$
+
+    \uindent{preuve }
+
+    \svspace $\ds \forall n \in \N, \mid u_n v_n \mid \leqslant \frac 1 2 (\mid u_n \mid^2 + \mid v_n \mid^2)$ est le terme
+    général d'une série convergente. 
+
+    Et donc $\ell^2(\K)$ sev de $\K^\N$ car $\mid u_n + v_n \mid^2 \leqslant |\mid u_n \mid + 2 \mid u_n v_n \mid + \mid u_n \mid^2$
+
+    \uindent{Sur $\mathscr C(\inter{a}{b}, \K)$}
+
+    \avspace On pose $\ds ||f||_2 = \sqrt{\int_{a}^{b} \mid f(t) \mid^2 \text d t}$
+
+    C'est la norme de la convergence moyenne quadratique. Elle est issue du produit scalaire
+    $\ds <f, g> = \int_{a}^{b} f(t) \overline{g(t)} \text d t$
+
+    \uindent{preuve }
+
+    \svspace évidente sauf le si $||f||_2 = 0$ alors $\int_{a }^{b } \mid f(t) \mid^2 \text d t = 0$
+
+    Or $f$ continue donc $\mid f \mid ^2 = 0 $ donc $f = 0$.
+\end{exemple}
+
+

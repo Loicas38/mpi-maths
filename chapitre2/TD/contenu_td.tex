@@ -1,0 +1,271 @@
+
+
+\section{Énoncés des Exercices}
+
+% --- Exercice 1 (Source: Exercice 43 analyse) ---
+\begin{exercice}
+Soit $x_{0}\in\mathbb{R}$. On définit la suite $(u_{n})$ par $u_{0}=x_{0}$ et, $\forall n\in\mathbb{N}$, $u_{n+1}=\arctan(u_{n}).$
+\begin{enumerate}
+    \item 
+    \begin{enumerate}
+        \item Démontrer que la suite $(u_{n})$ est monotone et déterminer, en fonction de la valeur de $x_{0}$, le sens de variation de $(u_{n})$.
+        \item Montrer que $(u_{n})$ converge et déterminer sa limite.
+    \end{enumerate}
+    \item Déterminer l'ensemble des fonctions $h$ continues sur $\mathbb{R}$ telles que $\forall x\in\mathbb{R}$, $h(x)=h(\arctan x)$.
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 2 (Source: Exercice 1 Suites Arithmético-géométriques) ---
+\begin{exercice}
+\textbf{a)} On considère $a, b\in\mathbb{R}^{*}$, $u_{0}\in\mathbb{R}$ et $(u_{n})$ définie par $\forall n\in\mathbb{N}$, $u_{n+1}=au_{n}+b$.
+Déterminer $u_{n}$ en fonction de $n$. On pourra remarquer que pour un choix judicieux de $c$, la suite $u_{n}-c$ est géométrique.
+
+\textbf{b)} Votre banquier préféré vous prête une somme $S$ au taux d'intérêt fixe mensuel de $t\%$ sur une durée de $N$ mois avec remboursement mensuel constant.
+Déterminer votre remboursement mensuel en fonction de $S, t, N$.
+\end{exercice}
+
+% --- Exercice 3 (Source: Exercice 2) ---
+\begin{exercice}
+On suppose que $f\in C^{1}(I,I)$ et que $a\in I$ vérifie $f(a)=a$.
+On considère $u_{0}\in I$ et $\forall n\in\mathbb{N}$, $u_{n+1}=f(u_{n})$.
+On suppose que $f^{\prime}(a)\in]-1,1[$.
+Montrer qu'il existe un intervalle $J\subset I$ différent de $\{a\}$ tel que si on suppose $u_{0}\in J$, $(u_n)$ converge vers $a$ ($a$ est alors appelé point fixe attractif).
+\end{exercice}
+
+% --- Exercice 4 (Source: Exercice 3) ---
+\begin{exercice}
+On pose $u_{0}\in\mathbb{R}$ et $u_{n+1}=\frac{1}{3}(u_{n}^{3}+2)$.
+Étudier le comportement de $u_{n}$ en fonction de $u_{0}$.
+Déterminer un développement asymptotique de $u_{n}$ lorsqu'il y a convergence.
+Pour cela, on posera $v_{n}=1-u_{n}$, on trouvera un réel $\alpha<0$ tel que $v_{n+1}^{\alpha}-v_{n}^{\alpha}$ possède une limite finie non nulle, puis on appliquera le théorème de Cesàro à la suite $v_{n+1}^{\alpha}-v_{n}^{\alpha}$.
+\end{exercice}
+
+% --- Exercice 5 (Source: Exercice 4) ---
+\begin{exercice}
+On pose $\alpha=e^{\frac{1}{e}}$ et on définit une suite $(u_{n})_{n\in\mathbb{N}}$ par :
+$u_{0}=1$ et $\forall n\in\mathbb{N}$, $u_{n+1}=\alpha^{u_{n}}$.
+Étudier la convergence de cette suite.
+\end{exercice}
+
+% --- Exercice 6 (Source: EXERCICE 1 analyse) ---
+\begin{exercice}
+\textbf{1.} On considère deux suites numériques $(u_{n})_{n\in\mathbb{N}}$ et $(v_{n})_{n\in\mathbb{N}}$ telles que $(v_{n})_{n\in\mathbb{N}}$ est non nulle à partir d'un certain rang et $u_{n}\sim v_{n}$.
+Démontrer que $u_{n}$ et $v_{n}$ sont de même signe à partir d'un certain rang.
+
+\textbf{2.} Déterminer le signe, au voisinage de l'infini, de $u_{n}=\sinh(\frac{1}{n})-\tan(\frac{1}{n})$.
+\end{exercice}
+
+% --- Exercice 7 (Source: Exercice 5) ---
+\begin{exercice}
+On pose pour tout naturel $n\ge1$, $f_{n}(x)=nx^{n+1}-(n+1)x^{n}-\frac{1}{2}$.
+\begin{enumerate}
+    \item Montrer qu'il existe un unique réel $x_{n}>0$ tel que $f_{n}(x_{n})=0$.
+    \item Montrer que la suite $(x_{n})_{n\in\mathbb{N}}$ est monotone et qu'elle converge.
+    \item Déterminer sa limite $\ell$.
+    \item Déterminer un équivalent de $x_{n}-\ell$.
+    \textit{Indication :} On montrera d'abord qu'il existe un unique réel $\alpha>0$ tel que $e^{\alpha}(\alpha-1)=\frac{1}{2}$. On calculera ensuite pour $\beta\in\mathbb{R}$ un équivalent de $f_{n}(1+\frac{\alpha}{n}+\frac{\beta}{n^{2}})$. On en déduira qu'il existe deux réels $\beta$ et $\beta^{\prime}$ tels que pour $n$ assez grand $1+\frac{\alpha}{n}+\frac{\beta}{n^{2}}\le x_{n}\le1+\frac{\alpha}{n}+\frac{\beta^{\prime}}{n^{2}}$ puis on conclura.
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 8 (Source: Exercice 6) ---
+\begin{exercice}
+Soit $(x_{n})_{n\in\mathbb{N}}$ une suite réelle. Définissons les suites $(y_{n})_{n\in\mathbb{N}}$ et $(z_{n})_{n\in\mathbb{N}}$ par :
+$\forall n\in\mathbb{N}^{*}$, $y_{n}=x_{n+1}-x_{n}$ et $z_{n}=\frac{x_{n}}{n}$.
+Montrer que si $\lim_{n\rightarrow\infty}y_{n}=\ell$ alors $\lim_{n\rightarrow\infty}z_{n}=\ell$.
+Trouver un contre-exemple à la réciproque.
+\end{exercice}
+
+% --- Exercice 9 (Source: Exercice 7) ---
+\begin{exercice}
+On se place dans l'espace des fonctions bornées de $\mathbb{R}^{+}$ dans $\mathbb{R}$ muni de la norme infinie.
+Étudier la convergence de la suite $(f_{n})_{n\in\mathbb{N}}$ de fonctions dans les cas suivants :
+\begin{enumerate}
+    \item $f_{n}:\mathbb{R}^{+}\rightarrow\mathbb{R}, \quad x\mapsto\frac{x}{1+nx}$
+    \item $f_{n}:\mathbb{R}^{+}\rightarrow\mathbb{R}, \quad x\mapsto nxe^{-nx}\sin(x)$
+    \item $f_{n}:\mathbb{R}^{+}\rightarrow\mathbb{R}, \quad x\mapsto\frac{ne^{-x}+1}{x^{2}+n}$
+\end{enumerate}
+On commencera par démontrer que si $f_{n}$ converge vers $f$ pour la norme $\|\cdot\|_{\infty}$ alors pour tout $x$, $f_{n}(x)$ converge vers $f(x)$.
+\end{exercice}
+
+% --- Exercice 10 (Source: Exercice 8) ---
+\begin{exercice}
+On se place dans l'espace $E=\ell^{\infty}(\mathbb{R})$ des suites bornées sur $\mathbb{R}$ muni de la norme infinie.
+On considère une suite $(X_{p})_{p\in\mathbb{N}}$ d'éléments de $E$ définie par : $\forall p\in\mathbb{N}, X_{p}=(u_{n,p})_{n\in\mathbb{N}}$ avec $u_{n,p}=1$ si $n<p$ et $0$ sinon.
+On suppose dans un premier temps que la suite $(X_{p})_{p\in\mathbb{N}}$ converge vers une suite $Y=(y_{n})_{n\in\mathbb{N}}$.
+Montrer qu'alors pour tout naturel $n$, $y_{n}$ est la limite quand $p$ tend vers l'infini de la suite $u_{n,p}$.
+En déduire la valeur de $Y$. Conclure.
+\end{exercice}
+
+% --- Exercice 11 (Source: Exercice 9) ---
+\begin{exercice}
+On munit $M_{p}(\mathbb{R})$ de la norme $N(A) = \max\{|a_{ij}|, i,j\in\{1,\dots,p\}\}$.
+Soit $A\in M_{p}(\mathbb{R})$ telle que la suite $A^{n}$ converge.
+Montrer que la limite $L$ de la suite vérifie $L^{2}=L$. Qu'en déduire ?
+\end{exercice}
+
+% --- Exercice 12 (Source: Exercice 10) ---
+\begin{exercice}
+Soit $(x_{n})_{n\in\mathbb{N}}$ une suite réelle bornée. On pose pour tout naturel $n$,
+$a_{n}=\inf\{x_{p},p\ge n\}$ et $b_{n}=\sup\{x_{p},p\ge n\}$.
+\begin{enumerate}
+    \item Montrer que ces deux suites sont monotones et bornées.
+    \item On note $\ell$ la limite de la suite $(a_{n})_{n\in\mathbb{N}}$. Montrer que $\ell$ est une valeur d'adhérence de la suite $(x_{n})_{n\in\mathbb{N}}$.
+    Quel théorème venons-nous de démontrer ?
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 13 (Source: Exercice 11) ---
+\begin{exercice}
+Soit $(a_{n})_{n\in\mathbb{N}}$ une suite réelle telle que $a_{n+1}-a_{n}$ tend vers 0.
+Montrer que l'ensemble des valeurs d'adhérence de cette suite est un intervalle.
+\end{exercice}
+
+% --- Exercice 14 (Source: Exercice 12) ---
+\begin{exercice}
+On considère une suite $(u_{n})_{n\in\mathbb{N}}$ de réels strictement positifs tels que $\forall n,p\in\mathbb{N}$, $u_{n+p}\le u_{n}+u_{p}$ et on pose pour tout naturel $n$, $x_{n}=\frac{u_{n}}{n}$.
+\begin{enumerate}
+    \item Montrer que la suite $(x_{n})_{n\in\mathbb{N}}$ est bornée.
+    \item En déduire que l'on peut définir pour tout naturel $n$, $y_{n}=\sup\{x_{p}, p\ge n\}$.
+    \item Montrer que la suite $y_{n}$ converge. On notera $\ell$ sa limite.
+    \item Montrer que $\ell$ est une valeur d'adhérence de $(x_{n})_{n\in\mathbb{N}}$.
+    \item On fixe un entier $q$ non nul, montrer en utilisant la division euclidienne de $n$ par $q$ qu'il existe une constante $M_{q}$ telle que pour tout naturel $n$, $x_{n}\le x_{q}+\frac{M_{q}}{n}$.
+    \item En déduire que pour tout $q$ naturel, $\ell\le x_{q}$ et enfin que la suite $(x_{n})_{n\in\mathbb{N}}$ converge vers $\ell$.
+\end{enumerate}
+\textit{Ce résultat s'appelle le lemme sous-additif ou lemme de Fekete.}
+\end{exercice}
+
+\newpage
+\section{Corrections}
+
+% --- Correction 1 ---
+\begin{correction}{1}
+On pose $f(x)=\arctan x$.
+\textbf{1. (a)}
+\textit{Premier cas : Si $u_{1}<u_{0}$.}
+Puisque la fonction $f:x\mapsto \arctan x$ est strictement croissante sur $\mathbb{R}$, alors $\arctan(u_{1})<\arctan(u_{0})$, c'est-à-dire $u_{2}<u_{1}$.
+Par récurrence, on prouve que $\forall n\in\mathbb{N}$, $u_{n+1}<u_{n}$. Donc la suite $(u_{n})$ est strictement décroissante.
+\textit{Deuxième cas : Si $u_{1}>u_{0}$.}
+Par un raisonnement similaire, on prouve que la suite $(u_{n})$ est strictement croissante.
+\textit{Troisième cas : Si $u_{1}=u_{0}$.}
+La suite $(u_{n})$ est constante.
+
+Pour connaître les variations de la suite $(u_{n})$ il faut donc déterminer le signe de $u_{1}-u_{0}$, signe de $\arctan(u_{0})-u_{0}$.
+On pose alors $g(x)=\arctan x - x$ et on étudie le signe de la fonction $g$.
+On a $\forall x\in\mathbb{R}$, $g^{\prime}(x)=\frac{1}{1+x^{2}} - 1 = \frac{-x^{2}}{1+x^{2}}$ et donc $\forall x\in\mathbb{R}^{*}$, $g^{\prime}(x)<0$.
+Donc $g$ est strictement décroissante sur $\mathbb{R}$ et comme $g(0)=0$ alors :
+$\forall x\in]0,+\infty[$, $g(x)<0$ et $\forall x\in]-\infty,0[$, $g(x)>0$.
+On a donc trois cas suivant le signe de $x_{0}$ :
+\begin{itemize}
+    \item Si $x_{0}>0$, la suite $(u_{n})$ est strictement décroissante.
+    \item Si $x_{0}=0$, la suite $(u_{n})$ est constante.
+    \item Si $x_{0}<0$, la suite $(u_{n})$ est strictement croissante.
+\end{itemize}
+
+\textbf{1. (b)} La fonction $g$ étant strictement décroissante et continue sur $\mathbb{R}$, elle induit une bijection de $\mathbb{R}$ sur $g(\mathbb{R})=\mathbb{R}$.
+$0$ admet donc un unique antécédent par $g$ et, comme $g(0)=0$, alors 0 est le seul point fixe de $f$.
+Donc si la suite $(u_{n})$ converge, elle converge vers 0, le seul point fixe de $f$.
+\begin{itemize}
+    \item \textit{Si $u_{0}>0$ :} L'intervalle $]0,+\infty[$ étant stable par $f$, on a par récurrence $\forall n\in\mathbb{N}, u_{n}>0$. Donc la suite $(u_{n})$ est décroissante et minorée par 0, donc elle converge vers 0, unique point fixe de $f$.
+    \item \textit{Si $u_{0}<0$ :} Par un raisonnement similaire, on prouve que $(u_{n})$ est croissante et majorée par 0, donc elle converge vers 0.
+    \item \textit{Si $u_{0}=0$ :} La suite est constante égale à 0.
+\end{itemize}
+\textit{Conclusion :} $\forall u_{0}\in\mathbb{R}$, $(u_{n})$ converge vers 0.
+
+\textbf{2.} Soit $h$ une fonction continue sur $\mathbb{R}$ telle que $\forall x\in\mathbb{R}, h(x)=h(\arctan x)$.
+Soit $x\in\mathbb{R}$. Considérons la suite $(u_{n})$ définie par $u_{0}=x$ et $u_{n+1}=\arctan(u_{n})$.
+On a alors $h(x)=h(u_{0})=h(\arctan(u_{0}))=h(u_{1})=h(\arctan(u_{1}))=h(u_{2})=\dots$
+Par récurrence, on prouve que $\forall n\in\mathbb{N}$, $h(x)=h(u_{n})$.
+De plus $\lim_{n\rightarrow+\infty}h(u_{n})=h(0)$ par convergence de la suite $(u_{n})$ vers 0 et par continuité de $h$.
+On obtient ainsi : $h(x)=h(0)$ et donc $h$ est une fonction constante.
+Réciproquement, toutes les fonctions constantes conviennent.
+\end{correction}
+
+% --- Correction 2 ---
+\begin{correction}{2}
+\textbf{a)} On pose $c$ la constante telle que $c=ac+b$, c'est-à-dire $c=\frac{b}{1-a}$.
+Alors $v_{n}=u_{n}-c$ est géométrique de raison $a$.
+Donc pour tout $n$, $v_{n}=a^{n}v_{0}$ donc $u_{n}=c+a^{n}(u_{0}-c)$.
+
+\textbf{b)} On note $u_{n}$ le capital restant dû au bout de $n$ mois.
+On a donc $u_{0}=S$, pour tout $n$, $u_{n+1}=(1+t)u_{n}-R$.
+L'hypothèse $u_{N}=0$ permet de calculer $R$.
+\end{correction}
+
+% --- Correction 3 ---
+\begin{correction}{3}
+Par continuité de $f'$, il existe $\alpha>0$ et $\beta\in]0,1[$ tels que $\forall x\in]a-\alpha,a+\alpha[, |f^{\prime}(x)|\le\beta$.
+Posons $J=]a-\alpha,a+\alpha[\cap I$.
+Tout d'abord $J$ est bien stable par $f$, car si $x\in J$, $x\in I$ donc $f(x)\in I$.
+De plus par l'inégalité des accroissements finis, $|f(x)-a|=|f(x)-f(a)|\le \sup_{[a,x]}|f^{\prime}|\cdot|x-a|\le\beta|x-a| < |x-a| \le \alpha$. Donc $f(x)\in J$.
+Ainsi si on pose $u_{0}\in J$ tous les $u_{n}$ sont dans $J$.
+Et donc toujours par l'inégalité des accroissements finis, pour tout $n$, $|u_{n+1}-a|=|f(u_{n})-f(a)|\le\beta|u_{n}-a|$.
+Et donc par récurrence $|u_{n}-a|\le\beta^{n}|u_{0}-a|$ qui converge vers 0. Conclusion : $(u_n)$ converge vers $a$.
+\end{correction}
+
+% --- Correction 4 ---
+\begin{correction}{4}
+On pose pour $x$ réel $f(x)=\frac{1}{3}(x^{3}+2)$ et $g(x)=f(x)-x$.
+$f$ et $g$ sont polynomiales donc $C^{1}$ et pour tout $x$, $f^{\prime}(x)=x^{2}$ et $g^{\prime}(x)=x^{2}-1$.
+On étudie les variations :
+\begin{itemize}
+    \item $g$ croît sur $]-\infty, -1]$, décroît sur $[-1, 1]$, croît sur $[1, +\infty[$. $g(-1) = 0$ n'est pas correct ($g(-1) = 1/3(-1+2) - (-1) = 1/3+1 = 4/3$), le tableau du PDF montre des signes.
+    \item $g(x) = \frac{1}{3}x^3 - x + \frac{2}{3} = \frac{1}{3}(x^3 - 3x + 2) = \frac{1}{3}(x-1)^2(x+2)$.
+\end{itemize}
+On remarque aussi que les seuls points fixes de $f$ sont $-2$ et $1$.
+On en déduit que :
+\begin{itemize}
+    \item Si $u_{0}\in\{-2,1\}$, la suite est constante.
+    \item Si $u_{0}\in]-\infty,-2[$, comme cet intervalle est stable, tous les $u_{n}$ y sont, donc $u_{n+1}-u_{n}=g(u_{n})\le0$, donc la suite est décroissante. Si elle était minorée elle convergerait vers un point fixe $l$ avec $l\le u_{0}<-2$, absurde. Donc elle diverge vers $-\infty$.
+    \item Si $u_{0}\in]-2,1[$, comme cet intervalle est stable, $u_{n+1}-u_{n}=g(u_{n})\ge0$, donc la suite est croissante. Elle est majorée par 1, donc converge vers un point fixe $l$ avec $-2<u_{0}\le l\le1$, donc $l=1$.
+    \item Si $u_{0}\in]1,+\infty[$, intervalle stable, $u_{n+1}-u_{n}\ge0$, suite croissante. Si elle était majorée elle convergerait vers $l \ge u_0 > 1$, absurde. Elle diverge vers $+\infty$.
+\end{itemize}
+Les cas de convergence sont donc $u_{0}\in\{-2,1\}$ où la suite est constante et $u_{0}\in]-2,1[$.
+Dans ce dernier cas on pose $v_{n}=1-u_{n}$ qui est positive et converge vers 0.
+On trouve ensuite une relation de récurrence entre $v_{n+1}$ et $v_{n}$.
+Cela permet de faire un DL de $v_{n+1}^{\alpha}-v_{n}^{\alpha}$ et de trouver que pour $\alpha=-1$ cette quantité converge vers 1.
+On applique le théorème de Cesàro pour en déduire $v_{n}\sim\frac{1}{n}$.
+\end{correction}
+
+% --- Correction 5 ---
+\begin{correction}{5}
+Pour pouvoir poser $f(x)=\alpha^{x}=e^{x \ln \alpha}=e^{\frac{x}{e}}$.
+On étudie la fonction $f$, la fonction $g$ définie par $g(x)=f(x)-x$.
+On trace le tableau de variation et on en déduit facilement que $[0, e]$ est stable par $f$, que $e$ est l'unique point fixe de $f$ et que $u_{n}$ est croissante et converge vers $e$.
+\end{correction}
+
+% --- Correction 6 ---
+\begin{correction}{6}
+\textbf{1.} Par hypothèse, $\exists N_{0}\in\mathbb{N}, \forall n\ge N_{0}, v_{n}\ne0$.
+Ainsi la suite $(\frac{u_{n}}{v_{n}})$ est définie à partir du rang $N_{0}$.
+Comme $u_{n}\sim v_{n}$, on a $\lim_{n\rightarrow+\infty}\frac{u_{n}}{v_{n}}=1$.
+Alors, $\forall\epsilon>0, \exists N\ge N_{0}, \forall n\ge N \Rightarrow |\frac{u_{n}}{v_{n}}-1|\le\epsilon$.
+Prenons $\epsilon=\frac{1}{2}$. On en déduit que pour $n \ge N$, $\frac{1}{2} \le \frac{u_n}{v_n} \le \frac{3}{2}$.
+Donc $\frac{u_{n}}{v_{n}}>0$, ce qui implique que $u_{n}$ et $v_{n}$ sont de même signe.
+
+\textbf{2.} Au voisinage de $+\infty$, $\sinh(\frac{1}{n})=\frac{1}{n}+\frac{1}{6n^{3}}+o(\frac{1}{n^{3}})$ et $\tan\frac{1}{n}=\frac{1}{n}+\frac{1}{3n^{3}}+o(\frac{1}{n^{3}})$.
+Donc $u_{n}\sim -\frac{1}{6n^{3}}$.
+On en déduit, d'après 1, qu'à partir d'un certain rang, $u_{n}$ est négatif.
+\end{correction}
+
+% --- Correction 7 ---
+\begin{correction}{7}
+\textbf{1)} On étudie $f_{n}$ et on lui applique le théorème de la bijection, on trouve $x_{n}>1$.
+\textbf{2)} La stricte croissance de $f_{n}$ montre que $x_{n+1}-x_{n}$ est du même signe que $f_{n}(x_{n+1})-f_{n}(x_{n})=f_{n}(x_{n+1})$ car $f_n(x_n)=0$.
+Or $f_{n+1}(x_{n+1})=0=(n+1)x_{n+1}^{n+2}-(n+2)x_{n+1}^{n+1}-\frac{1}{2}$.
+Donc $\frac{1}{2}=(n+1)x_{n+1}^{n+2}-(n+2)x_{n+1}^{n+1}$.
+En injectant dans $f_n(x_{n+1})$, on trouve que $f_{n}(x_{n+1}) \le 0$ après factorisation.
+Donc la suite décroît et est minorée par 1. Elle converge.
+\textbf{3)} On a $\ell\ge1$. Supposons par l'absurde que $\ell>1$. En passant à la limite $f_{n}(x_{n})=0$ on tombe sur une contradiction (termes tendant vers l'infini), donc $\ell=1$.
+\textbf{4)} Le résultat sur $\alpha$ se montre par le théorème de la bijection.
+Puis on effectue un DL sur le calcul de $f_{n}(1+\frac{\alpha}{n}+\frac{\beta}{n^{2}})$.
+On trouve un équivalent dont le signe dépend de celui d'un polynôme de degré 1 en $\beta$.
+Il existe donc deux valeurs de $\beta$ pour lesquels cette valeur est positive, respectivement négative, et donc par stricte monotonie de $f_{n}$, l'inégalité cherchée donne $x_{n} - 1 \sim \frac{\alpha}{n}$.
+\end{correction}
+
+% --- Correction 8 ---
+\begin{correction}{8}
+On applique le théorème de Cesàro à la suite $y_{n}$.
+$z_n = \frac{1}{n} \sum_{k=0}^{n-1} (x_{k+1}-x_k) + \frac{x_0}{n} = \frac{1}{n} \sum_{k=0}^{n-1} y_k + \frac{x_0}{n}$.
+La moyenne de Cesàro converge vers $\ell$, et le terme $x_0/n$ tend vers 0.
+$(-1)^n$ est un contre-exemple à la réciproque ($z_n \to 0$ mais $y_n$ ne converge pas).
+\end{correction}

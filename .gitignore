@@ -1,0 +1,61 @@
+# LaTeX temporary and build artifacts
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.toc
+*.out
+*.synctex.gz
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+*.idx
+*.ilg
+*.ind
+*.lof
+*.lot
+*.lol
+*.nav
+*.snm
+*.vrb
+*.xdv
+*.acn
+*.acr
+*.alg
+*.glg
+*.glo
+*.gls
+*.ist
+*.maf
+*.mtc
+*.mtc0
+*.pyg
+*.thm
+*.ptc
+
+# latexmk/minted directories
+_minted*
+
+# Local build directories that can be regenerated
+**/output/
+**/%OUTDIR%/
+
+# Temporary files occasionally used during builds
+**/temp.tex
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
+*.tmp
+*.swp
+*.swo
+
+*.txt
+*.pkl
+*.cpython
+*expanded.tex
+*.json
+*.xmind
+*.svg
+*.html

@@ -1,0 +1,250 @@
+\section*{Dunford Jordan}
+
+\begin{theoreme}{Dunford Jordan}{}
+    Soit $A \in \mathscr M_n(\C)$.
+    Il existe un unique couple $(D, N)$ tel que :
+    \begin{itemize}
+        \item $D$ est diagonalisable, $N$ nilpotente et $ND = DN$.
+        \item $A = D + N$
+        \item $D$ et $N$ sont des polynômes en $A$.
+    \end{itemize}
+\end{theoreme}
+
+\begin{exemple}
+    Pour $A = \begin{pmatrix} 1 & 2 \\ 0 & 3 \end{pmatrix} = \begin{pmatrix} 1 & 0 \\ 0 & 3 \end{pmatrix} + \begin{pmatrix} 0 & 2 \\ 0 & 0 \end{pmatrix}$.
+    
+    Mais attention, il ne s'agit pas de sa décomposition de Dunford Jordan, car les deux matrices ne commutent pas.
+    De toute façon, $A$ est diagonalisable, donc sa partie nilpotente de la décomposition de Dunford Jordan est nulle.
+\end{exemple}
+
+\begin{proof}
+    \uline{Existence} : \\
+    $\displaystyle \chi_A = \prod (X - \lambda_i)^{m_i}$.
+    
+    Par Cayley Hamilton et décomposition des noyaux,
+    \[ \C^n = \ker \chi_A(A) = \bigoplus \ker ((A - \lambda_i I)^{m_i}) \]
+    
+    Chaque $E_i$ est stable par $f_A$, $f_A|_{E_i} : E_i \to E_i$ endo induit. \\
+    Sur $E_i$, $(f_A - \lambda_i I)^{m_i} = 0$.
+    
+    \avspace $n_i = f_A - \lambda_i \text{Id}$ sur $E_i$, $n_i$ est nilpotent sur $E_i$. \\
+    $d_i = \lambda_i \text{id}$ sur $E_i$, et sur $E_i$, $f_A = d_i + n_i$.
+    
+    Sur $\C^n$, $d = \bigoplus d_i$ et $n = \bigoplus n_i$.
+    
+    \avspace $\displaystyle Q_i = \prod_{j \neq i} (X - \lambda_j)^{m_j}$. Les $Q_i$ sont premiers entre eux dans leur ensemble. \\
+    Par Bezout, $\exists U_i, \, \sum U_i Q_i = 1$.
+    \[ \text{Id} = \sum \underbrace{U_i(f_A) \circ Q_i(f_A)}_{P_i(f_A)} \]
+
+    Alors $\forall x \in \C^n$, $P_i(f_A)(x) \in E_i = \ker((f_A - \lambda_i \text{Id})^{m_i})$.
+    
+    On pose $p_i = P_i(f_A)$ projecteurs associés à la décomposition $E = \bigoplus E_i$.
+    Les $p_i$ sont des polynômes en $f_A$.
+
+    \avspace Finalement $\displaystyle d = \sum \lambda_i p_i$ et $n = f_A - d$ polynômes en $f_A$.
+
+    \uindent{Unicité}
+    $d+n = d'+n'$ et $d', n'$ commutent avec $A$ et $d, n$ polynômes en $A$.
+
+    Donc $d-d' = n-n'$.
+
+    $d, d'$ commutent (car polynômes) et sont diagonalisables donc simultanément diagonalisables.
+    Donc $d-d'$ diagonalisable.
+    $n, n'$ nilpotents (et commutent) donc $n'-n$ nilpotent.
+
+    Donc $d-d' = n'-n = 0$.
+    Donc $d=d'$ et $n=n'$.
+\end{proof}
+
+%\restaurergeometrie
+
+\uindent{Application } soient $A, B \in \mathscr M_n(\C)$, $\fonction{\phi}{\mathscr M_n(\C)}{\mathscr M_n(\C)}{M}{\underset{= u_A(M)}{AM} + \underset{=v_B(M)}{MB}}$.
+
+On sait que : $A, B$ diagonalisables $\iff u_A, v_B$ diagonalisables
+
+$\implies u_A$ et $v_B$ sont simultanément diagonalisables (car commutent).
+
+$\implies \phi$ diagonalisable.
+
+\avspace 
+$\phi$ diagonalisable $\implies A$ et $B$ diago ?
+
+\begin{proof}
+    
+$A = D_A + N_A$, $B = D_B + N_B$.
+\[ \phi : M \mapsto D_A M + M D_B + N_A M + M N_B \]
+\[ = (u_{D_A} + v_{D_B}) + (u_{N_A} + v_{N_B}) \]
+
+$u_{D_A} + v_{D_B}$ est diagonalisable (somme de diagonalisables qui commutent).
+$u_{N_A} + v_{N_B}$ est nilpotent (somme de nilpotents qui commutent).
+Ces deux parties commutent.
+
+C'est la décomposition de Dunford de $\phi$ dans $\mathscr L(\mathscr M_n(\C))$.
+$\phi$ diagonalisable $\iff$ sa partie nilpotente est nulle.
+$\iff u_{N_A} + v_{N_B} = 0$.
+$\implies N_A = 0$ et $N_B = 0$.
+$\implies A$ et $B$ diagonalisables.
+
+
+Car $M \mapsto D_A M$ et $M \mapsto M D_B$ sont des endos qui commutent
+et sont diagonalisables.
+$\phi_N$ nilpotent par le même type d'argument.
+
+$\implies \phi_D \circ \phi_N = \phi_N \circ \phi_D$ car la mult à gauche/droite et
+des endos qui commutent et $N_A D_A = D_A N_A$ ...
+
+Donc $\phi = \phi_D + \phi_N$ est la décompo de Dunford Jordan de $\phi$.
+
+Si $\phi$ diagonalisable, alors $\phi_N = 0$ et donc
+$\forall M, \, N_A M = -M N_B$.
+
+$M = I_n \implies N_A = -N_B$.
+$\implies \forall M, N_A M - M N_A = 0$ et $N_A$ nilpotent.
+
+donc $N_A = N_B = 0$ et $A = D_A$.
+
+\end{proof} 
+\lvspace
+\uindent{Applicat 2 : D-J et exponentielles de matrices}
+
+\begin{theoreme}{}{}
+    Soit $M \in \mathscr M_n(\C)$, alors $M$ est diagonalisable
+    si et seulement si $e^M$ est diagonalisable.
+\end{theoreme}
+
+\begin{proof}
+    $\implies$ Si $M$ diagonalisable, $M = P D P^{-1}$, $e^M = P e^D P^{-1}$. $e^D$ diago.
+
+    \uline{Réciproque} :
+    Soit $M \in \mathscr M_n(\C)$, $M = D + N$, $DN=ND$ (Dunford).
+    \[ e^M = e^{D+N} = e^D e^N \quad (\text{car } N, D \text{ commutent}). \]
+
+    \[ e^N = \sum_{k=0}^{n-1} \frac{N^k}{k!} = I + \underbrace{N + \frac{N^2}{2} + \dots}_{\tilde N} \]
+    (car $N$ nilpotente). $\tilde N$ est nilpotente.
+
+    \[ e^M = \underbrace{e^D}_{\text{diag}} [ I + \tilde N ] = e^D + \underbrace{e^D \tilde N}_{\text{nilpotente}} \]
+
+    $e^D$ est diagonalisable.
+    $e^D \tilde N$ est nilpotente (car produit d'une matrice qui commute avec une nilpotente).
+    Les deux commutent (car $e^D$ commute avec $N$ donc avec $\tilde N$).
+
+    C'est donc la décomposition de Dunford de $e^M$.
+    Si $e^M$ diagonalisable, alors la partie nilpotente est nulle.
+
+    \[ e^D \tilde N = 0 \implies e^D (e^N - I) = 0 \]
+    Comme $e^D$ est inversible, $e^N - I = 0$, donc $e^N = I$.
+    \[ I + N + \frac{N^2}{2} + \dots = I \implies N \underbrace{\left( I + \frac{N}{2} + \dots \right)}_{\text{inversible}} = 0 \]
+    Donc $N = 0$.
+    Donc $M = D$ est diagonalisable.
+\end{proof}
+
+Donc $e^D [ e^N - I ]$ est nilpotente.
+
+On a donc la décompo de Jordan de $e^M$.
+$M = D+N$ et on suppose $e^M$ diagonalisable (hypothèse du théorème).
+Alors $e^D [ e^N - I ] = 0$ (car la partie nilpotente est nulle).
+
+Donc $e^N - I = 0 \implies e^N = I$.
+\[ e^N - I = N \underbrace{\left[ I + \frac{N}{2} + \dots + \frac{N^{k-1}}{k!} \right]}_{\text{inversible}} = 0 \]
+$I_n + N'$ possède $1$ pour valeur propre, donc inversible.
+Donc $N = 0 \implies M = D$.
+
+\lvspace
+\uindent{Applicat 3 : version multiplicative de D.J.}
+
+\begin{theoreme}{}{}
+    Soit $M \in GL_n(\C)$. Il existe un unique couple $(D, U)$ tel que :
+    \begin{itemize}
+        \item $M = D \times U$
+        \item $D$ diagonalisable et inversible
+        \item $U$ unipotente
+        \item $D U = U D$
+    \end{itemize}
+\end{theoreme}
+
+\[ M = D + N = D ( I + D^{-1} N ) \]
+$D$ est diago et inversible.
+$U = I + D^{-1} N$ est unipotente (car $D^{-1} N$ est nilpotente, produit de commutants dont un nilpotent).
+
+\begin{definition}{}{}
+    On dit que $A \in GL_n$ est unipotente si $A - I$ est nilpotente.
+    
+    $\hookrightarrow A$ est unipotente ssi $\text{Sp}(A) = \{1\}$.
+\end{definition}
+
+On veut montrer que $M \in GL_n(\C) \dots$ (suite au prochain épisode).
+
+\uindent{Application 4}
+\begin{theoreme}{}{}
+    $\exp : \mathscr M_n(\C) \to GL_n(\C)$ est surjective.
+\end{theoreme}
+
+\begin{proof}
+    \uline{démo} : On écrit $M = D U$ (DJ multiplicatif).
+    
+    \uindent{Aff} $\exists \Delta$ tq $D = e^\Delta$ et un polynôme en $D$.
+    
+    \uline{démo} :
+    \[ D = P \begin{pmatrix} \lambda_1 & & 0 \\ & \ddots & \\ 0 & & \lambda_n \end{pmatrix} P^{-1} \quad \text{et } \lambda_i \in \C^* \]
+    
+    \[ = P \begin{pmatrix} e^{\mu_1} & & 0 \\ & \ddots & \\ 0 & & e^{\mu_n} \end{pmatrix} P^{-1} \quad \text{où } e^{\mu_i} = \lambda_i \]
+    
+    \[ = P \exp \left( \begin{pmatrix} \mu_1 & & \\ & \ddots & \\ & & \mu_n \end{pmatrix} \right) P^{-1} \]
+    
+    \[ = \exp \left( P \begin{pmatrix} \mu_1 & & \\ & \ddots & \\ & & \mu_n \end{pmatrix} P^{-1} \right) \]
+    
+    \[ = \exp(\Delta) \quad \text{en posant } \Delta = P \text{diag}(\mu_i) P^{-1}. \]
+    
+    Soient $\lambda_1, \dots, \lambda_r$ les valeurs propres distinctes de $D$.
+    $\lambda_i = e^{\mu_i}$.
+    
+    \uline{Lagrange} : $\exists Q \in \C[X]$ tq $\forall i, \mu_i = Q(\lambda_i)$.
+    
+    \[ \text{donc } \begin{pmatrix} \mu_1 & & \\ & \ddots & \\ & & \mu_n \end{pmatrix} = Q \left( \begin{pmatrix} \lambda_1 & & \\ & \ddots & \\ & & \lambda_n \end{pmatrix} \right) \]
+    
+    et donc $\Delta = Q(D)$. 
+\end{proof}
+
+\uindent{Affirmation} $U = I + N'$ où $N'$ est nilpotente.
+On veut montrer que cela marche, c'est-à-dire que $U$ est une exponentielle.
+
+Posons $\ln(U) = \ln(I + N') \mathrel{\mathop:}= \sum_{k=1}^{n-1} \frac{(-1)^{k-1}}{k} (N')^k$.
+Montrons que $e^{\ln(U)} = U$.
+
+\begin{proof}[Démonstration du lemme]
+    Posons $\ln(1+X) = A(X)$ le polynôme tronqué à l'ordre $n-1$.
+    \[ \ln(1+x) = A(x) + x^n B(x) \]
+    avec $B(x)$ une fonction bornée au voisinage de 0 (reste du DL).
+    
+    \[ 1+x = e^{\ln(1+x)} = e^{A(x) + x^n B(x)} \]
+    Comme $A(x)$ et $x^n B(x)$ commutent (car scalaires/polynômes) :
+    \[ = e^{A(x)} e^{x^n B(x)} \]
+    
+    Or $e^{x^n B(x)} = 1 + x^n B(x) + \frac{(x^n B(x))^2}{2} + \dots = 1 + x^n C(x)$ avec $C(x)$ bornée.
+    
+    Donc $1+x = e^{A(x)} (1 + x^n C(x)) = e^{A(x)} + x^n C(x) e^{A(x)}$.
+    
+    Passage aux polynômes formels :
+    \[ 1+X \equiv e^{A(X)} \pmod{X^n} \]
+    \[ 1+X = \exp(A(X)) + X^n Q(X) \quad \text{où } Q \in \K[X] \]
+    
+    On applique cette égalité polynomiale à la matrice nilpotente $N'$ (avec $(N')^n = 0$).
+    \[ I + N' = \exp(A(N')) + (N')^n Q(N') \]
+    \[ U = e^{\ln(U)} + 0 \]
+    
+    Et par le DL, $e^{A(N')} = \sum_{k=0}^{n-1} \frac{A(N')^k}{k!}$.
+    
+    Donc $U = e^{\Gamma}$ avec $\Gamma = A(N') \in \mathscr M_n(\C)$.
+\end{proof}
+
+\begin{center}
+\fbox{\begin{minipage}{0.4\textwidth}
+    \centering
+    \textbf{Conclusion} \\
+    $\exp : \mathscr M_n(\C) \to GL_n(\C)$ est surjective.
+\end{minipage}}
+\end{center}
+
+\begin{remarque}
+    Méthode très utile : passer par le DL, utiliser les polynômes formels modulo $X^n$ et évaluer en une matrice nilpotente.
+\end{remarque}

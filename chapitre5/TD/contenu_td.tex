@@ -1,0 +1,381 @@
+\section{Énoncés des Exercices}
+
+\subsection{Ensembles dénombrables}
+
+% --- Exercice 1 ---
+\begin{exercice}
+Montrer que $\mathbb{R} \setminus \mathbb{Q}$ n'est pas dénombrable.
+\end{exercice}
+
+% --- Exercice 2 ---
+\begin{exercice}
+Soit $A$ un ensemble.
+\begin{enumerate}
+    \item Montrer que s'il existe une application injective de $A$ dans $\mathbb{N}$ alors $A$ est au plus dénombrable.
+    \item Montrer que s'il existe une application surjective de $\mathbb{N}$ dans $A$ alors $A$ est au plus dénombrable.
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 3 ---
+\begin{exercice}
+On dit qu'un réel $z$ est algébrique s'il existe un polynôme $P$ non nul à coefficients entiers tel que $P(z)=0$.
+On note $A$ l'ensemble des réels algébriques, $B$ l'ensemble des polynômes à coefficients entiers, $B_{n}$ l'ensemble des polynômes à coefficients entiers de degré égal à $n$.
+\begin{enumerate}
+    \item 
+    \begin{enumerate}
+        \item Montrer que pour tout naturel $n$, $B_{n}$ est dénombrable.
+        \item Montrer que $B$ est dénombrable.
+        \item En déduire que $A$ est dénombrable.
+    \end{enumerate}
+    \item On dit qu'un réel $z$ est transcendant s'il n'est pas algébrique. Montrer que l'ensemble des réels transcendants n'est pas dénombrable.
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 4 ---
+\begin{exercice}
+Soit $E$ un ensemble dénombrable. Montrer que l'ensemble $\mathcal{P}(E)$ des parties de $E$ n'est pas dénombrable.
+Raisonner par l'absurde en supposant l'existence d'une bijection $f$ de $E$ sur $\mathcal{P}(E)$ et en considérant la partie $A=\{x\in E, x\notin f(x)\}$.
+\end{exercice}
+
+\subsection{Familles sommables}
+
+% --- Exercice 5 ---
+\begin{exercice}
+Utiliser le fait que les familles $(\frac{(-1)^{n}}{n^{2}})_{n\in \mathbb{N}^{*}}$ et $(\frac{1}{n^{2}})_{n\in \mathbb{N}^{*}}$ sont sommables ainsi que le théorème de sommation par paquets pour calculer $\sum_{n=1}^{+\infty}\frac{(-1)^{n}}{n^{2}}$.
+\end{exercice}
+
+% --- Exercice 6 ---
+\begin{exercice}
+Soit $\alpha$ un réel. Montrer que la famille $(\frac{1}{p^{\alpha}})_{p\in \mathbb{Z}\setminus\{0\}}$ est sommable si et seulement si $\alpha>1$.
+\end{exercice}
+
+% --- Exercice 7 ---
+\begin{exercice}
+Étudier la sommabilité des familles suivantes :
+$$ \left(\frac{1}{x^{2}}\right)_{x\in \mathbb{Q}^{*+}}, \quad \left(\frac{a^{p}b^{q}}{(p+q)!}\right)_{(p,q)\in \mathbb{N}^{2}}(a,b\in\mathbb{C}), \quad \left(\frac{1}{a^{p}+b^{q}}\right)_{(p,q)\in \mathbb{N}^{2}}(a,b\in]1,+\infty[) $$
+\end{exercice}
+
+% --- Exercice 8 ---
+\begin{exercice}
+On rappelle que pour $x>1$, $\zeta(x)=\sum_{n=1}^{\infty}\frac{1}{n^{x}}$.
+\begin{enumerate}
+    \item Montrer la sommabilité de la famille $(\frac{1}{np^{n}})_{n,p\in[2,\infty[}$.
+    \item En calculant sa somme de deux manières différentes montrer que $\sum_{n=2}^{\infty}\frac{\zeta(n)-1}{n}=1-\gamma$ où $\gamma$ est la constante d'Euler, $\gamma=\lim_{n\rightarrow\infty}(\sum_{k=1}^{n}\frac{1}{k}-\ln(n))$.
+\end{enumerate}
+\textit{Indication :} On montrera que $\forall x\in]-1,1[$, $\ln(1-x)=-\sum_{k=1}^{\infty}\frac{x^{k}}{k}$ en remarquant que pour tout $N$, $\sum_{k=1}^{N}\frac{x^{k}}{k}=\int_{0}^{x}\sum_{k=1}^{N}t^{k-1} dt$.
+\end{exercice}
+
+\subsection{Suites doubles et produit de Cauchy}
+
+% --- Exercice 9 ---
+\begin{exercice}
+On pose pour tout naturel $n$, $u_{n}=\sum_{k=n}^{\infty}\frac{1}{k!}$.
+\begin{enumerate}
+    \item Montrer que la série $\sum u_{n}$ converge.
+    \item Calculer $\sum_{n=0}^{+\infty}u_{n}$.
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 10 ---
+\begin{exercice}
+Pour $\alpha>0$ étudier la sommabilité de la famille $(\frac{1}{(m+n)^{\alpha}})_{(m,n)\in \mathbb{N}^{*2}}$.
+Lorsqu'elle existe, exprimer sa somme à l'aide de la fonction $\zeta$.
+\end{exercice}
+
+% --- Exercice 11 (Classique) ---
+\begin{exercice}
+Montrer que $\sum_{p=2}^{+\infty}(\zeta(p)-1)=1$.
+On considérera la somme double $\sum_{m\ge2}\sum_{n\ge2}(\frac{1}{m^{n}})$ que l'on sommera de deux manières différentes.
+\end{exercice}
+
+% --- Exercice 12 ---
+\begin{exercice}
+On s'intéresse à $S=\sum_{\substack{(p,q)\in\mathbb{N}^{*2} \\ PGCD(p,q)=1}}\frac{1}{p^{2}q^{2}}$ et $T=\sum_{(p,q)\in\mathbb{N}^{*2}}\frac{1}{p^{2}q^{2}}$.
+\begin{enumerate}
+    \item Montrer l'existence et calculer $T$.
+    \item À l'aide du théorème de sommation par paquets exprimer $T$ à l'aide de $S$ et en déduire la valeur de $S$.
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 13 ---
+\begin{exercice}
+Montrer l'existence et calculer $\sum_{p,q\in \mathbb{N}}\frac{p!q!}{(p+q+2)!}$.
+\textit{Indication :} On montrera que pour $p$ fixé, on peut calculer la somme de la série en $q$ de manière télescopique.
+\end{exercice}
+
+% --- Exercice 14 ---
+\begin{exercice}
+Montrer l'existence et calculer $\sum_{p=0}^{\infty}\sum_{q=0}^{\infty}(2^{-3q-p-(p+q)^{2}})$.
+\end{exercice}
+
+% --- Exercice 15 ---
+\begin{exercice}
+Montrer que $\sum_{n=2}^{\infty}\frac{(-1)^{n}\zeta(n)}{n}=\gamma$ où $\gamma$ désigne la constante d'Euler.
+On commencera par montrer que la famille $(b_{n,k})_{k\ge2,n\ge2}$ est sommable où $b_{n,k}=\frac{(-1)^{n}}{nk^{n}}$.
+\end{exercice}
+
+% --- Complément ---
+\begin{exercice}[title={Complément : Exercice corrigé}]
+Soit $(a_{k})_{k\in \mathbb{N}}$ une suite d'entiers naturels non nuls tels que $\sum_{k\ge0}\frac{1}{a_{k}}$ converge.
+On considère pour tout $n$, $C_{n} = \{k\in\mathbb{N}, a_{k}\in\{1,\dots,n\}\}$ et $c_{n}=\text{Card}(C_{n})$.
+Montrons que $c_{n}=o(n)$.
+
+\textit{Solution :}
+Ma première idée est de poser pour tout naturel $n$ non nul, $D_{n}=\{k\in\mathbb{N}, a_{k}=n\}$ et $d_{n}=\text{Card}(D_{n})$.
+Alors pour tout $n$, $C_{n}=\bigcup_{k=1}^{n}D_{k}$ et donc $c_{n}=\sum_{k=1}^{n}d_{k}$ est croissante en tant que somme partielle d'une série à termes positifs.
+
+Faisons un détour par les familles sommables :
+La série à termes positifs $\sum_{k\ge0}\frac{1}{a_{k}}$ converge donc la famille $(\frac{1}{a_{k}})$ est sommable.
+De plus on a $\mathbb{N}=\bigcup_{n\in \mathbb{N}} D_{n}$ (union disjointe), donc on peut appliquer le théorème de sommation par paquets.
+Remarquons que $\sum_{k\in D_{n}} \frac{1}{a_{k}}=\sum_{k\in D_{n}} \frac{1}{n}=\frac{d_{n}}{n}$, on a donc la convergence de la série $\sum_{n\ge1}\frac{d_{n}}{n}$.
+
+Il faut maintenant en déduire des propriétés de la suite $(c_{n})$.
+Pour cela on va utiliser le lien suite-série, ce qui revient à faire une transformation d'Abel.
+Considérons la somme partielle (que l'on sait donc convergente) :
+$$ S_{N}=\sum_{n=1}^{N}\frac{d_{n}}{n}=\sum_{n=1}^{N}\frac{c_{n}-c_{n-1}}{n}=\sum_{n=1}^{N}\frac{c_{n}}{n}-\sum_{n=1}^{N}\frac{c_{n-1}}{n} $$
+$$ =\sum_{n=1}^{N}\frac{c_{n}}{n}-\sum_{n=0}^{N-1}\frac{c_{n}}{n+1}=\frac{c_{N}}{N}+\sum_{n=1}^{N-1}\frac{c_{n}}{n(n+1)} $$
+Et donc les sommes partielles de $\sum_{n\ge1}\frac{c_{n}}{n(n+1)}$ sont majorées donc cette série converge, et donc par équivalents des termes généraux positifs, la série $\sum_{n}\frac{c_{n}}{n^{2}}$ converge, avec $(c_{n})$ suite croissante.
+Reste à montrer qu'avec ces hypothèses on a $c_{n}=o(n)$.
+En notant $T_{n}=\sum_{k=1}^{n}\frac{c_{k}}{k^{2}}$ sa $n$-ième somme partielle on a donc convergence de cette suite et donc convergence vers 0 de $T_{2n}-T_{n}$.
+Or $T_{2n}-T_{n}=\sum_{k=n+1}^{2n}\frac{c_{k}}{k^{2}}\ge c_{n}\sum_{k=n+1}^{2n}\frac{1}{(2n)^{2}}\ge c_{n}\frac{n}{(2n)^{2}} = \frac{c_n}{4n}$.
+Et donc $\frac{c_n}{4n} \to 0$, d'où $c_{n}=o(n)$.
+\end{exercice}
+
+% --- Exercice Supplémentaire ---
+\begin{exercice}[title={Exercice Supplémentaire}]
+\textbf{1)} Étudier la convergence et la somme de $\sum_{n\ge1} w_n$ où $w_n = \sum_{k=1}^n \frac{1}{k^2} \times \frac{1}{(n-k)!}$.
+\textbf{2)} Même question pour $w_n = \frac{1}{2^n} \sum_{k=0}^n 2^k u_k$ sachant que $\sum \frac{1}{e^n}$ converge et $\sum u_n$ converge absolument.
+\end{exercice}
+
+\newpage
+\section{Corrections}
+
+% --- Correction 1 ---
+\begin{correction}{1}
+Montrons que $\mathbb{R} \setminus \mathbb{Q}$ est non dénombrable.
+Par l'absurde, si $\mathbb{R} \setminus \mathbb{Q}$ est dénombrable.
+On sait que $\mathbb{Q}$ est dénombrable.
+$\mathbb{R} = (\mathbb{R} \setminus \mathbb{Q}) \cup \mathbb{Q}$.
+Or la réunion de deux ensembles dénombrables est dénombrable.
+On en déduit que $\mathbb{R}$ est dénombrable, ce qui est absurde.
+\end{correction}
+
+% --- Correction 2 ---
+\begin{correction}{2}
+\textbf{1.} Soit $\varphi : A \to \mathbb{N}$ injective.
+L'application $\varphi : A \to \varphi(A)$ est bijective.
+Comme $\varphi(A) \subset \mathbb{N}$, $\varphi(A)$ est au plus dénombrable (partie de $\mathbb{N}$).
+Donc $A$ (en bijection avec $\varphi(A)$) est au plus dénombrable.
+
+\textbf{2.} Soit $\varphi : \mathbb{N} \to A$ surjective.
+Construisons $\psi : A \to \mathbb{N}$.
+Pour tout $a \in A$, l'ensemble $\varphi^{-1}(\{a\}) = \{n \in \mathbb{N}, \varphi(n)=a\}$ est une partie non vide de $\mathbb{N}$.
+Elle admet un plus petit élément. Posons $\psi(a) = \min(\varphi^{-1}(\{a\}))$.
+Soient $a, b \in A$ tels que $\psi(a) = \psi(b)$.
+Alors $\min(\varphi^{-1}(\{a\})) = \min(\varphi^{-1}(\{b\}))$. Notons $n$ cet entier.
+On a $\varphi(n) = a$ et $\varphi(n) = b$. Donc $a=b$.
+Ainsi $\psi$ est injective de $A$ dans $\mathbb{N}$.
+D'après la question 1, $A$ est au plus dénombrable.
+\end{correction}
+
+% --- Correction 3 ---
+\begin{correction}{3}
+\textbf{1. a)} $B_n \approx \mathbb{Z}^{n+1}$ via l'application $(a_0, \dots, a_n) \mapsto \sum_{k=0}^n a_k X^k$ (avec $a_n \neq 0$).
+$\mathbb{Z}$ est dénombrable, donc $\mathbb{Z}^{n+1}$ est dénombrable (produit fini).
+Donc $B_n$ est dénombrable.
+
+\textbf{1. b)} $B = \bigcup_{n \in \mathbb{N}} B_n$.
+$B$ est une réunion dénombrable d'ensembles dénombrables, donc $B$ est dénombrable.
+
+\textbf{1. c)} Pour tout polynôme $P \in B$, l'ensemble des racines de $P$, noté $Rac(P)$, est fini.
+$A = \bigcup_{P \in B} Rac(P)$.
+$A$ est une réunion dénombrable (indexée par $B$) d'ensembles finis.
+Donc $A$ est au plus dénombrable. Comme $\mathbb{Q} \subset A$ et $\mathbb{Q}$ est infini, $A$ est dénombrable.
+
+\textbf{2.} $\mathbb{R} = A \cup (\text{Transcenants})$.
+Si l'ensemble des transcendants était dénombrable, alors $\mathbb{R}$ serait dénombrable (union de deux dénombrables), ce qui est faux.
+Donc l'ensemble des nombres transcendants n'est pas dénombrable.
+\end{correction}
+
+% --- Correction 11 ---
+\begin{correction}{11}
+On s'intéresse à $\sum_{p=2}^\infty (\zeta(p)-1) = \sum_{p=2}^\infty \sum_{n=2}^\infty \frac{1}{n^p}$.
+Considérons la famille $(\frac{1}{n^p})_{n\ge2, p\ge2}$.
+C'est une famille à termes positifs.
+Fixons $n \ge 2$. La somme sur $p$ est une série géométrique :
+$\sum_{p=2}^\infty \frac{1}{n^p} = \sum_{p=2}^\infty (\frac{1}{n})^p = \frac{1}{n^2} \frac{1}{1-1/n} = \frac{1}{n(n-1)}$.
+Or $\frac{1}{n(n-1)} \sim \frac{1}{n^2}$ est le terme général d'une série convergente.
+La famille est donc sommable (Théorème de sommation par paquets / Fubini positif).
+On peut sommer dans l'autre sens (d'abord $p$, puis $n$) :
+$$ \sum_{n=2}^\infty \sum_{p=2}^\infty \frac{1}{n^p} = \sum_{n=2}^\infty \frac{1}{n(n-1)} $$
+C'est une série télescopique : $\frac{1}{n(n-1)} = \frac{1}{n-1} - \frac{1}{n}$.
+La somme partielle est $\sum_{n=2}^N (\frac{1}{n-1} - \frac{1}{n}) = 1 - \frac{1}{N} \to 1$.
+Donc $\sum_{p=2}^\infty (\zeta(p)-1) = 1$.
+\end{correction}
+
+% --- Correction 9 ---
+\begin{correction}{9}
+\textbf{1.} $u_n = \sum_{k=n}^\infty \frac{1}{k!}$. C'est le reste d'une série convergente (la série de l'exponentielle). Donc $u_n$ existe et tend vers 0.
+Pour la convergence de $\sum u_n$ :
+$\frac{1}{k!} = o(\frac{1}{2^k})$ (car $2^k/k! \to 0$).
+Donc $u_n = \sum_{k=n}^\infty \frac{1}{k!} = o(\sum_{k=n}^\infty \frac{1}{2^k}) = o(\frac{1}{2^{n-1}})$.
+$u_n$ est un $o$ du terme général d'une série géométrique convergente, donc $\sum u_n$ converge.
+
+\textbf{2.} Calcul de la somme $\sum_{n=0}^\infty u_n$.
+$$ \sum_{n=0}^\infty u_n = \sum_{n=0}^\infty \sum_{k=n}^\infty \frac{1}{k!} $$
+Comme les termes sont positifs, on peut appliquer Fubini (interversion des sommes).
+Le domaine de sommation est $0 \le n \le k < \infty$.
+$$ = \sum_{k=0}^\infty \sum_{n=0}^k \frac{1}{k!} = \sum_{k=0}^\infty \frac{1}{k!} \sum_{n=0}^k 1 = \sum_{k=0}^\infty \frac{k+1}{k!} $$
+$$ = \sum_{k=0}^\infty \frac{k}{k!} + \sum_{k=0}^\infty \frac{1}{k!} = \sum_{k=1}^\infty \frac{1}{(k-1)!} + \sum_{k=0}^\infty \frac{1}{k!} $$
+$$ = \sum_{j=0}^\infty \frac{1}{j!} + e = e + e = 2e $$
+\end{correction}
+
+% --- Correction 8 ---
+\begin{correction}{8}
+\textbf{a)} Soit $u_{n,p} = \frac{1}{n p^n}$ pour $n \ge 2, p \ge 2$.
+Fixons $n$. $\sum_{p \ge 2} \frac{1}{n p^n} = \frac{1}{n} \sum_{p=2}^\infty (\frac{1}{p})^n$.
+On sait que $\sum_{p=2}^\infty \frac{1}{p^n} \le \sum_{p=2}^\infty \frac{1}{p^2}$ (pour $n \ge 2$).
+Mais pour la sommabilité, il vaut mieux sommer d'abord sur $n$.
+Fixons $p \ge 2$. $\sum_{n=2}^\infty \frac{1}{n p^n}$.
+On sait que pour $x \in ]-1,1[$, $\ln(1-x) = -\sum_{n=1}^\infty \frac{x^n}{n}$.
+Donc $\sum_{n=1}^\infty \frac{1}{n p^n} = \sum_{n=1}^\infty \frac{(1/p)^n}{n} = -\ln(1-\frac{1}{p})$.
+Ainsi $\sum_{n=2}^\infty \frac{1}{n p^n} = -\ln(1-\frac{1}{p}) - \frac{1}{p} = -\ln(\frac{p-1}{p}) - \frac{1}{p} = \ln(p) - \ln(p-1) - \frac{1}{p}$.
+Quand $p \to \infty$, $\ln(1-\frac{1}{p}) + \frac{1}{p} \sim \frac{1}{2p^2}$.
+C'est le terme général d'une série convergente.
+La famille est donc sommable.
+
+\textbf{b)} Calculons la somme totale.
+D'une part, en sommant d'abord sur $p$ :
+$\sum_{n=2}^\infty \frac{1}{n} \sum_{p=2}^\infty \frac{1}{p^n} = \sum_{n=2}^\infty \frac{\zeta(n)-1}{n}$.
+D'autre part, en sommant d'abord sur $n$ (résultat précédent) :
+$\sum_{p=2}^\infty (\ln(p) - \ln(p-1) - \frac{1}{p})$.
+Soit $S_N = \sum_{p=2}^N (\ln p - \ln(p-1)) - \sum_{p=2}^N \frac{1}{p} = \ln N - \ln 1 - (H_N - 1)$.
+$S_N = 1 + \ln N - H_N$.
+On sait que $H_N = \ln N + \gamma + o(1)$.
+Donc $S_N = 1 + \ln N - (\ln N + \gamma + o(1)) \to 1 - \gamma$.
+Conclusion : $\sum_{n=2}^\infty \frac{\zeta(n)-1}{n} = 1-\gamma$.
+\end{correction}
+
+% --- Correction 12 ---
+\begin{correction}{12}
+\textbf{1)} Existence et calcul de $T = \sum_{(p,q)\in\mathbb{N}^{*2}}\frac{1}{p^{2}q^{2}}$.
+La série $\sum \frac{1}{p^2}$ converge absolument vers $\frac{\pi^2}{6}$.
+La famille est le produit de deux séries absolument convergentes, elle est donc sommable.
+$T = (\sum_{p=1}^\infty \frac{1}{p^2}) (\sum_{q=1}^\infty \frac{1}{q^2}) = \frac{\pi^2}{6} \times \frac{\pi^2}{6} = \frac{\pi^4}{36}$.
+
+\textbf{2)} On partitionne $\mathbb{N}^{*2}$ selon le PGCD $d$.
+$T = \sum_{d \ge 1} \sum_{\substack{PGCD(p,q)=d}} \frac{1}{p^2 q^2}$.
+Si $PGCD(p,q)=d$, alors $p=dp'$ and $q=dq'$ avec $PGCD(p',q')=1$.
+$\sum_{\substack{PGCD(p,q)=d}} \frac{1}{p^2 q^2} = \sum_{\substack{PGCD(p',q')=1}} \frac{1}{d^4 p'^2 q'^2} = \frac{1}{d^4} S$.
+Donc $T = \sum_{d \ge 1} \frac{1}{d^4} S = S \sum_{d \ge 1} \frac{1}{d^4} = S \zeta(4)$.
+On sait que $\zeta(4) = \frac{\pi^4}{90}$.
+Donc $S = \frac{T}{\zeta(4)} = \frac{\pi^4/36}{\pi^4/90} = \frac{90}{36} = \frac{5}{2}$.
+\end{correction}
+
+% --- Correction 10 ---
+\begin{correction}{10}
+Étude de $\sum_{m,n \ge 1} \frac{1}{(m+n)^\alpha}$.
+Fixons $k = m+n$. $k$ peut prendre les valeurs $2, 3, \dots$.
+Pour un $k$ fixé, le nombre de couples $(m,n)$ tels que $m+n=k$ est le nombre de choix pour $m \in \{1, \dots, k-1\}$, soit $k-1$ couples.
+La somme par paquets (termes positifs) donne :
+$$ \sum_{(m,n)} \frac{1}{(m+n)^\alpha} = \sum_{k=2}^\infty \frac{k-1}{k^\alpha} \sim \sum \frac{1}{k^{\alpha-1}} $$
+La série converge si et seulement si $\alpha-1 > 1$, c'est-à-dire $\alpha > 2$.
+Calcul de la somme :
+$$ \sum_{k=2}^\infty \frac{k-1}{k^\alpha} = \sum_{k=2}^\infty \frac{1}{k^{\alpha-1}} - \sum_{k=2}^\infty \frac{1}{k^\alpha} = (\zeta(\alpha-1)-1) - (\zeta(\alpha)-1) = \zeta(\alpha-1) - \zeta(\alpha) $$
+\end{correction}
+
+% --- Correction 14 ---
+\begin{correction}{14}
+Terme général $a_{p,q} = 2^{-3q-p-(p+q)^{2}}$.
+Pour sommer, posons $k=p+q$.
+$a_{p,q} = 2^{-3(k-p)-p-k^2} = 2^{-3k+2p-k^2}$.
+Pour $k$ fixé, $p$ varie de $0$ à $k$.
+$\sum_{p=0}^k a_{p,q} = 2^{-3k-k^2} \sum_{p=0}^k (2^2)^p = 2^{-3k-k^2} \sum_{p=0}^k 4^p$.
+$\sum_{p=0}^k 4^p = \frac{4^{k+1}-1}{4-1} = \frac{1}{3}(4^{k+1}-1)$.
+La somme totale est $S = \frac{1}{3} \sum_{k=0}^\infty 2^{-3k-k^2} (2^{2k+2}-1) = \frac{1}{3} \sum_{k=0}^\infty (2^{-k-k^2+2} - 2^{-3k-k^2})$.
+C'est une somme télescopique ?
+Observons les exposants :
+Terme 1 : $2 - k - k^2$.
+Terme 2 : $-3k - k^2$.
+Si on regarde le terme 1 pour $k$ et le terme 2 pour $k-1$ :
+$-3(k-1)-(k-1)^2 = -3k+3-(k^2-2k+1) = -k^2-k+2$.
+C'est exactement l'exposant du terme 1 !
+Donc $\sum_{k=0}^N (u_k - u_{k+1})$ avec $u_k = 2^{2-k-k^2}$. (Attention aux indices, vérifions le décalage).
+Le terme générique est $v_k - w_k$ avec $v_k = 2^{2-k-k^2}$ et $w_k = 2^{-3k-k^2}$.
+On a $w_{k-1} = v_k$.
+Somme partielle : $\sum_{k=0}^N v_k - \sum_{k=0}^N w_k = \sum_{k=0}^N w_{k-1} - \sum_{k=0}^N w_k = w_{-1} - w_N$.
+(Attention $w_{-1}$ n'est pas défini par la formule de somme mais par la relation).
+Reprenons :
+$\sum_{k=0}^\infty 4^p 2^{\dots} - \sum \dots$
+Pour $k=0$, $v_0 = 2^2=4$, $w_0 = 2^0=1$. Terme est $(4-1)/3 = 1$.
+La somme est $\frac{1}{3} [ (v_0 + v_1 + \dots) - (w_0 + w_1 + \dots) ]$.
+Comme $v_k = w_{k-1}$, la somme est $\frac{1}{3} [ w_{-1} ]$ si on décale ?
+Plus simplement : $\sum_{k=0}^\infty (w_{k-1} - w_k)$.
+Pour $k=0$, le terme est $v_0 - w_0$.
+On a vu $v_0 = w_{-1}$. Donc c'est $w_{-1} - w_\infty$.
+$w_k \to 0$. Donc la somme est $w_{-1} = v_0 = 4$.
+Avec le facteur $1/3$, $S = 4/3$.
+\end{correction}
+
+% --- Correction 13 ---
+\begin{correction}{13}
+Calcul de $S = \sum_{p,q} \frac{p!q!}{(p+q+2)!}$.
+Fixons $p$. Sommons sur $q$.
+Utilisons l'astuce télescopique :
+$\frac{q!}{(p+q+2)!} = \frac{1}{p+1} \left( \frac{q!}{(p+q+1)!} - \frac{(q+1)!}{(p+q+2)!} \right)$.
+En effet, $\frac{1}{p+1} \frac{q!}{(p+q+2)!} [ (p+q+2) - (q+1) ] = \frac{1}{p+1} \frac{q!}{(p+q+2)!} (p+1) = \text{terme de gauche}$.
+Somme sur $q$ (de 0 à $\infty$) :
+$\frac{1}{p+1} \sum_{q=0}^\infty (u_q - u_{q+1})$ avec $u_q = \frac{q!}{(p+q+1)!}$.
+La somme est $\frac{1}{p+1} u_0 = \frac{1}{p+1} \frac{0!}{(p+1)!} = \frac{1}{(p+1)(p+1)!}$.
+Ah, attention, il y a un $p!$ en facteur dans la somme totale.
+Donc somme partielle en $q$ (multipliée par $p!$) :
+$p! \times \frac{1}{p+1} \frac{1}{(p+1)!} = \frac{1}{(p+1)^2}$.
+Maintenant on somme sur $p \ge 0$ :
+$\sum_{p=0}^\infty \frac{1}{(p+1)^2} = \sum_{k=1}^\infty \frac{1}{k^2} = \frac{\pi^2}{6}$.
+\end{correction}
+
+% --- Correction 7 ---
+\begin{correction}{7}
+\textbf{1.} Famille $(\frac{a^p b^q}{(p+q)!})$.
+Posons $k=p+q$.
+$\sum_{p,q} | \dots | = \sum_{k=0}^\infty \frac{1}{k!} \sum_{p=0}^k \binom{k}{p} |a|^p |b|^{k-p}$ (en introduisant artificiellement le binôme ? Non).
+Simplement $\sum_{p+q=k} \frac{|a|^p |b|^q}{k!}$.
+Or $(|a|+|b|)^k = \sum_{p=0}^k \binom{k}{p} |a|^p |b|^{k-p} = k! \sum_{p+q=k} \frac{|a|^p |b|^q}{p! q!}$.
+Ce n'est pas exactement le terme.
+Le terme est $\frac{1}{(p+q)!}$.
+$\sum_{k=0}^\infty \frac{1}{k!} \sum_{p=0}^k |a|^p |b|^{k-p} = \sum_{k=0}^\infty \frac{1}{k!} \frac{|b|^{k+1}-|a|^{k+1}}{|b|-|a|}$.
+Si $|a| \neq |b|$. C'est la différence de deux exponentielles divisée par $|b|-|a|$.
+La série converge pour tout $a,b$. La famille est sommable.
+Somme : $\frac{1}{b-a} ( \sum \frac{b^{k+1}}{k!} - \sum \frac{a^{k+1}}{k!} ) = \frac{b e^b - a e^a}{b-a}$.
+
+\textbf{2.} Famille $(\frac{1}{a^p+b^q})$ avec $a,b > 1$.
+Fixons $p$. $\frac{1}{a^p+b^q} \sim_{q \to \infty} \frac{1}{b^q}$. C'est une série géométrique convergente.
+Somme sur $p$ de $\sum_q \frac{1}{a^p+b^q}$.
+$\frac{1}{a^p+b^q} < \frac{1}{a^p}$.
+La série $\sum \frac{1}{a^p}$ converge car $a>1$.
+Cependant, pour la sommabilité double, il faut être plus précis.
+Pour $p,q$ grands, $a^p+b^q \ge \max(a^p, b^q)$.
+Est-ce que $\sum \frac{1}{\max(a^p, b^q)}$ converge ?
+On découpe selon $a^p \ge b^q \iff p \ln a \ge q \ln b \iff p \ge q \frac{\ln b}{\ln a}$.
+C'est une somme sur un secteur angulaire de termes géométriques. Cela converge.
+\end{correction}
+
+% --- Correction Exercice Supplémentaire ---
+\begin{correction}{Supplémentaire}
+\textbf{1.} $w_n = \sum_{k=1}^n \frac{1}{k^2} \frac{1}{(n-k)!}$.
+Posons $u_n = \frac{1}{n^2}$ pour $n \ge 1$, $u_0=0$.
+Posons $v_n = \frac{1}{n!}$ pour $n \ge 0$.
+$w_n$ est le terme général du produit de Cauchy de $\sum u_n$ et $\sum v_n$.
+$\sum |u_n|$ converge (Riemann $\alpha=2$).
+$\sum |v_n|$ converge (Exponentielle).
+Donc $\sum w_n$ converge absolument et sa somme est le produit des sommes.
+$\sum_{n=0}^\infty w_n = (\sum_{n=1}^\infty \frac{1}{n^2}) (\sum_{n=0}^\infty \frac{1}{n!}) = \frac{\pi^2}{6} \times e$.
+
+\textbf{2.} $w_n = \frac{1}{2^n} \sum_{k=0}^n 2^k u_k = \sum_{k=0}^n u_k \frac{1}{2^{n-k}}$.
+Posons $a_k = u_k$ et $b_k = \frac{1}{2^k}$.
+$w_n$ est le produit de Cauchy de $\sum u_n$ et $\sum \frac{1}{2^n}$.
+On nous dit que $\sum u_n$ converge absolument.
+$\sum \frac{1}{2^n}$ converge absolument (géométrique $1/2 < 1$).
+Donc $\sum w_n$ converge absolument.
+Somme = $(\sum_{n=0}^\infty u_n) (\sum_{n=0}^\infty \frac{1}{2^n}) = S_u \times 2$.
+\end{correction}

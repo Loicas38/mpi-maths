@@ -1,0 +1,201 @@
+\documentclass{../commun/prepacours}
+\usepackage{../commun/raccourcis}
+
+\input{../commun/config.tex}
+
+\usepackage{amsmath, amssymb}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta, positioning}
+\usepackage{pdflscape}
+
+
+% Initialiser les variables de chapitre pour éviter les erreurs
+\makeatletter
+\gdef\@numchapitre{}
+\gdef\@titrechapitre{Cours de Mathématiques}
+\makeatother
+
+\begin{document}
+
+% Page de garde avec table des matières globale
+\newgeometry{
+  top=3cm,
+  bottom=3cm,
+  left=3cm,
+  right=3cm
+}
+\pagestyle{empty} % Désactiver en-têtes et pieds pour toutes les pages de la TOC
+
+% ajout 
+
+% Décorations en arrière-plan
+\begin{tikzpicture}[remember picture,overlay]
+  % Coins supérieurs
+  \draw[bluebox, line width=2pt] (current page.north west) ++(0.5,-0.5) -- ++(3,0);
+  \draw[bluebox, line width=2pt] (current page.north west) ++(0.5,-0.5) -- ++(0,-3);
+  \draw[bluebox, line width=2pt] (current page.north east) ++(-0.5,-0.5) -- ++(-3,0);
+  \draw[bluebox, line width=2pt] (current page.north east) ++(-0.5,-0.5) -- ++(0,-3);
+  
+  % Coins inférieurs
+  \draw[bluebox, line width=2pt] (current page.south west) ++(0.5,0.5) -- ++(3,0);
+  \draw[bluebox, line width=2pt] (current page.south west) ++(0.5,0.5) -- ++(0,3);
+  \draw[bluebox, line width=2pt] (current page.south east) ++(-0.5,0.5) -- ++(-3,0);
+  \draw[bluebox, line width=2pt] (current page.south east) ++(-0.5,0.5) -- ++(0,3);
+  
+  % Motifs décoratifs subtils (cercles)
+  \foreach \i in {1,...,5} {
+    \draw[greenbox!30, line width=0.5pt] (current page.north west) ++(2+\i*0.3, -1.5) circle (0.15);
+  }
+  \foreach \i in {1,...,5} {
+    \draw[redbox!30, line width=0.5pt] (current page.south east) ++(-2-\i*0.3, 1.5) circle (0.15);
+  }
+\end{tikzpicture}
+
+\begin{center}
+  \vspace*{2cm}
+  
+  % Titre principal avec fioritures
+  \begin{tikzpicture}
+    \node[text width=12cm, align=center] {
+      {\Huge \bfseries TD X-ENS}
+
+      {\large \bfseries par L. Bonavero}
+    };
+    \draw[bluebox, line width=1.5pt] (-5,-1.2) -- (-2,-1.2);
+    \draw[bluebox, line width=1.5pt] (2,-1.2) -- (5,-1.2);
+  \end{tikzpicture}
+  
+  \vspace{1.5cm}
+  {\Large MP* / MPI* \par}
+  \vspace{0.5cm}
+  {\large Lycée Champollion \par}
+  \vspace{2cm}
+  
+  \begin{minipage}{0.8\textwidth}
+    \begin{tikzpicture}
+      \draw[bluebox, line width=1pt] (0,0) -- (\textwidth,0);
+    \end{tikzpicture}
+    \vspace{0.5cm}
+    
+    \quad Salut à toi qui passe par là ! Voici l'ensemble des séances de TD X-ENS de cette année. 
+    Les dernières séances du document sont normalement de bien meilleure qualité que les premières 
+    (non pas par rapport à ce qui a été dit en cours, mais par rapport à la façon dont cela a été retranscris 
+    ici). 
+
+    \svspace \quad Si vous constater des erreurs de n'importe quelle nature, merci de laisser un commentaire sur le document 
+    ou de m'envoyer un message. 
+
+    \avspace 
+    \begin{center}
+      Et surtout, enjoy !
+    \end{center}
+    
+    \vspace{0.5cm}
+    \begin{tikzpicture}
+      \draw[bluebox, line width=1pt] (0,0) -- (\textwidth,0);
+    \end{tikzpicture}
+  \end{minipage}
+  
+  \vfill
+  {\Large Année 2025-2026 \par}
+  \vspace{0.5cm}
+  {\normalsize Version du \today \par}
+  \vspace{1cm}
+\end{center}
+\clearpage
+
+% fin ajout
+
+
+\begin{center}
+  {\Huge \bfseries TD X-ENS \par}
+  \vspace{1cm}
+\end{center}
+\tableofcontents
+\vfill
+
+\clearpage
+\pagestyle{fancy} % Réactiver le style fancy pour la suite du document
+
+
+
+% Chapitre 1 : Normes et distances
+\chapitreintegral{1}{Complétude et suites de Cauchy}
+\input{../seance1/contenu.tex}
+
+
+\pagevide
+
+% Chapitre 2 : Suites
+\chapitreintegral{2}{Suites}
+\input{../seance2/contenu.tex}
+
+\pagevide
+\chapitreintegral{3}{Topologie et continuité}
+\input{../seance3/contenu.tex}
+
+\pagevide
+\chapitreintegral{4}{Convergence faible / convergence forte}
+\input{../seance4/contenu.tex}
+
+\pagevide
+\chapitreintegral{5}{Procédé diagonal}
+\input{../seance5/contenu.tex}
+
+\pagevide
+\chapitreintegral{6}{Compacité, Borel Lebesgue}
+\input{../seance6/contenu.tex}
+
+\pagevide
+\chapitreintegral{7}{Action de groupe}
+\input{../seance7/contenu.tex}
+
+\pagevide
+\chapitreintegral{8}{Burnside}
+\input{../seance8/contenu.tex}
+
+\pagevide
+\chapitreintegral{9}{Action d'un groupe par conjugaison sur lui-même}
+\input{../seance9/contenu.tex}
+
+\pagevide
+\chapitreintegral{10}{Le groupe GLn(R) et ses sous groupes}
+\input{../seance10/contenu.tex}
+
+\pagevide
+\chapitreintegral{11}{Le groupe SL2(Z)}
+\input{../seance11/contenu.tex}
+
+\pagevide
+\chapitreintegral{12}{Réduction simultanée}
+\input{../seance12/contenu.tex}
+
+\pagevide
+\chapitreintegral{13}{Réduction simultanée II}
+\input{../seance13/contenu.tex}
+
+\pagevide
+\chapitreintegral{14}{Dunford Jordan}
+\input{../seance14/contenu.tex}
+
+\pagevide
+\chapitreintegral{15}{Topologie matricielle, réduction}
+\input{../seance15/contenu.tex}
+
+\pagevide
+\chapitreintegral{16}{Topologie et différentielles}
+\input{../seance16/contenu.tex}
+
+\pagevide
+\chapitreintegral{17}{Espaces tangents}
+\input{../seance17/contenu.tex}
+
+\pagevide
+\chapitreintegral{18}{Calcul Différentiel et Inégalité des Accroissements Finis}
+\input{../seance18/contenu.tex}
+
+\pagevide
+\chapitreintegral{19}{Décomposition polaire}
+\input{../seance19/contenu.tex}
+
+\end{document}

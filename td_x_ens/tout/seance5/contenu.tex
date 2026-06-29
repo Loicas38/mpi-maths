@@ -1,0 +1,129 @@
+Soient $K_1$ et $K_2$ deux compacts. 
+
+Alors $(u_n), (v_n) \in (K_1 \times K_2)^\N$ sont des suites convergentes, et on a : 
+
+$u_{\varphi(n)} \to u \in K_1$ et $v_{\varphi\circ \psi(n)} \to v \in K_2$.
+
+Donc $(u, v)_{\varphi \circ \psi(n)} \to (u, v) \in K_1 \times K_2$. Il en est de même pour un un produit cartésien fini de compacts.
+
+\lvspace Ce qui nous intéresse est de savoir ce qui se passe dans le cas infini.
+
+\begin{theoreme}{Tychonoff}{}
+    Le produit cartésien quelconque de compacts est compact.
+\end{theoreme}
+
+Ce théorème n'a pas vraiment de sens au niveau prépa, mais on peut donner un sens à la version dénombrable.
+
+\begin{theoreme}{}{}
+    Soit $(K_n)_{n \in \N}$ une suite de compacts. Alors le produit cartésien $\displaystyle K = \prod_{n \in \N} K_n$ est compact : 
+    toute suite à valeurs dans $K$ admet une sous-suite convergente.
+\end{theoreme}
+
+\begin{proof}
+    Soit $(u_n)_{n \in \N}$ à valeurs dans $K$ : $\forall n \in \N, u_n = (u_n^{(0)}, u_n^{(1)}, u_n^{(2)}, \ldots)$ avec $u_n^{(i)} \in K_i^\N$.
+
+    puis utiliser le théorème suivant.
+\end{proof}
+
+\begin{theoreme}{}{}
+    Il existe une extraction $\varphi : \N \to \N$ tel que $\forall p , \, \exists \lambda_p \in K_p$ tel que $u_{\varphi(n)}^{(p)} \to \lambda_p \in K_p$.
+\end{theoreme}
+
+\begin{proof}
+    Soient $\varphi_1$ telle que $u_{\varphi_1(n)}^{(1)} \to \lambda_1 \in K_1$, $\varphi_2$ telle que $u_{\varphi_1 \circ \varphi_2(n)}^{(2)} \to \lambda_2 \in K_2$, etc.
+
+    On pose alors $\forall n \in \N^*$, $\varphi(n) = \varphi_1 \circ \varphi_2 \circ \cdots \circ \varphi_n(n)$.
+    On appelle cela l'extraction diagonale, et $\varphi$ est bien strictement croissante.
+
+    et donc $\forall p \in \N$, lorsque $n > p$, on a $\varphi(n) = \varphi_1 \circ \varphi_2 \circ \cdots \circ \varphi_p (\varphi_{p+1} \circ \cdots \circ \varphi_n(n))$, 
+    et donc $(u_{\varphi(n)}^{(p)})_{n \geqslant p}$ est extraite de $(u_{\varphi_1 \circ \varphi_2 \circ \cdots \circ \varphi_p }^{(p)})_{n \in \N}$, qui converge vers $\lambda_p$.
+
+\end{proof}
+
+\subsubsection{Applicaiton : }
+
+\begin{theoreme}{}{}
+    Dans $\ell^2(\N)$, la boule unité est faiblement compacte, c'est à dire que : 
+    Soit $(u^n)_{n \in \N}$ une suite bornée à valeurs dans $\ell^2(\N)$. Alors il existe 
+    $(u^{\varphi(n)})_{n \in \N}$ extraite, et $\exists u \in \ell^2(\N)$ telle que $u^{\varphi(n)} \rightharpoonup u$ : 
+    $\forall v \in \ell^2(\N)$, on a $<u^{\varphi(n)}, v> \to <u, v>$.
+\end{theoreme}
+
+\begin{proof}
+    $(u^n)_{n \in \N}$ est bornée dans $\ell^2(\N)$, donc $\exists M > 0$ tel que $\forall n \in \N$,
+    $\|u^n\|_2 \leqslant M$.
+
+    Donc $\displaystyle (u_p^n) \geqslant \sum_{p = 1}^{+\infty} |u_p^n|^2 \leqslant M^2$. 
+
+    A $p$ fixé, on a donc une suite $(u_p^n)_{n \in \N}$ bornée dans $\R$, et donc par le procédé diagonale, 
+    $\exists \varphi : \N \to \N$ telle que $\forall p \in \N$, $u_p^{\varphi(n)} \to u_p$. 
+
+    On pose $u = (u^p)_{p \in \N}$ la suite de toutes les limites.
+
+    Il reste à vérifier que $u \in \ell^2(\N)$ et que $u^{\varphi(n)} \rightharpoonup u$.
+
+    \uindent{Etape 1 } montrons que $u \in \ell^2(\N)$
+
+    \svspace Soit $N \in \N$, on a :
+    \[    \sum_{p = 1}^{N} |u_p^{\varphi(n)}|^2 \leqslant \sum_{p = 1 }^{+ \infty } |u_p^{\varphi(n)}|^2 \leqslant M^2. \]
+
+    Donc avec la limite quand $n \to + \infty$, on a : 
+    \[    \sum_{p = 1}^{N} |u_p|^2 \leqslant M^2. \]
+
+    Et donc $\sum u_p^2$ converge donc $(u_p) = u \in \ell^2(\N)$, et $\|u\|_2 \leqslant M$.
+
+    \uindent{Etape 2 } $\forall v \in \ell^2(\N)$, $<u^{\varphi(n)}, v> \limit n {+ \infty} <u, v>$, c'est à dire que : 
+    \[    \sum_{p = 1}^{+ \infty} u_p^{\varphi(n)} v_p \limit n {+ \infty} \sum_{p = 1}^{+ \infty} u_p v_p. \]
+
+    $$\sum_{p = 1 }^{+ \infty} (u_p^{\varphi(n)} - u_p) = \sum_{p = 1}^{N} (u_p^{\varphi(n)} - u_p)v_p + \sum_{p = N + 1}^{+ \infty} (u_p^{\varphi(n)} - u_p)v_p$$
+
+    \begin{align*}
+        \left| \sum_{p = N + 1}^{+ \infty} (u_p^{\varphi(n)} - u_p)v_p \right| &\leqslant \sum \left| u_p^{\varphi(n)} - u_p \right| |v_p| \\
+        &\underbrace{\leqslant}_{C.S.} \sqrt{\sum_{p = N + 1}^{+ \infty } \left| u_p^{\varphi(n)} - u_p \right|^2} \sqrt{\sum_{p = N + 1}^{+ \infty} |v_p|^2} \\
+        &\leqslant ||u^{\varphi(n)} - u||_2 \sqrt{\sum_{p = N + 1}^{+ \infty} |v_p|^2} \\
+        &\leqslant (||u^{\varphi(n)}||_2 + ||u||_2) \sqrt{\sum_{p = N + 1}^{+ \infty} |v_p|^2} \\
+        &\leqslant 2M \sqrt{\sum_{p = N + 1}^{+ \infty} |v_p|^2} 
+    \end{align*}
+
+    Or, $B = \sum_{p = N + 1}^{+ \infty} |v_p|^2 \limit N {+ \infty} 0$, étant le reste d'une série convergente.
+
+    Soit $\varepsilon > 0$, et $N \in \N$ tel que $2M B \leqslant \frac \varepsilon 2$
+
+    Donc $\forall n \in \N$, $\displaystyle \left| \sum_{p = 1}^{+ \infty} (u_p^{\varphi(n)} - u_p)v_p \right| \leqslant \sum_{p = 1 }^{N } |u_p^{\varphi(n)} - u_p| |v_p| + \frac \varepsilon 2$.
+
+    Or, $\forall p \in \ninter 1 N $, $u_p^{\varphi(n)} \to u_p$, donc $\exists n_0 \in \N$ tel que $\forall n \geqslant n_0$, $\sum_{p = 1}^{N} |u_p^{\varphi(n)} - u_p| |v_p| \leqslant \frac \varepsilon 2$.
+
+    Donc $\forall n \geqslant n_0$, $\left| \sum_{p = 1}^{+ \infty} (u_p^{\varphi(n)} - u_p)v_p \right| \leqslant \varepsilon$.
+\end{proof}
+
+
+\begin{exemple}
+    Application de ce qui vient d'être fait sur un cas plus général. 
+
+    Soit $(f_n)$ une suite de fonctions, avec $f_n : [0, 1] \to \R$ tel que : 
+    \begin{enumerate}
+        \item $\exists M, \forall x \in [0, 1], \forall n \in \N$, $|f_n(x)| \leqslant M$ 
+        \item $\forall n \in \N$, $f_n$ est croissante sur $[0, 1]$.
+    \end{enumerate}
+
+    Alors il existe une sous-suite $(f_{\varphi(n)})$ qui converge simplement vers une fonction $f : [0, 1] \to \R$ croissante et bornée.
+
+    \begin{proof}
+        Soit $D = \Q \cap [0, 1] = \{q_p\}_{p \in \N}$.
+
+        $\forall p \in \N$, la suite $(f_n(q_p))_{n \in \N}$ est bornée dans $\R$, donc par le procédé diagonal,
+        $\exists \varphi : \N \to \N$ telle que $\forall p \in \N, \forall x \in \Q$, $f_{\varphi(n)}(x) \limit n {+ \infty} f(x)$.
+
+        On étend $f$ à $[0, 1]$ par : 
+        \[    \tilde f : x \mapsto \sup_{f(y), y \in \Q, y \leqslant x} \]
+
+        \lvspace Affirmation 1 : $\tilde f$ est croissante, et coicide avec $f$ sur $\Q$. De plus $\tilde f$ est continue sur $[0, 1] \setminus \Delta$
+        avec $\Delta$ dénombrable.
+
+        \lvspace Affirmation 2 : Si $\alpha$ est un point de continuité de $\tilde f$, alors $\tilde f_{\varphi(n)}(\alpha) \limit n {+ \infty} \tilde f(\alpha)$.
+
+        Preuve pas complètement rédigée mais globalement il suffit de montrer que ça marche en les points continues, puis 
+        d'utiliser le procédé diagonal sur $\Delta$. De plus $\tilde f$ est croissante donc les points de discontinuité sont au plus dénombrables.
+    \end{proof}
+\end{exemple}
+

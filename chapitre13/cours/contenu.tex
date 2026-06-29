@@ -1,0 +1,2059 @@
+Motivation : modéliser des phénomènes aléatoires a l'aide de 3 outils : 
+
+\uindent{Univers $\Omega$ }
+
+Ensemble de tous les résultats possibles d'une expérience aléatoire.
+
+\uindent{Tribu $\mathcal A \subset \mathscr P(\Omega)$ }
+
+Ensemble de toutes les propriétés "raisonnables" que peut posséder 
+$\omega \in \Omega$. 
+
+Un élément de $\mathcal A$ est un évènement. 
+
+$A \in \mathcal A$ est un évènement tel que $A = \{ \omega \in \Omega, \omega \text{ satisfait à l'évènement } \}$
+
+
+\uindent{Probabilité $P$ }
+
+$\fonction P {\mathcal A}{\ninter 0 1} A {P(A)}$
+
+$P(A)$ évalue la vraisemblance de l'évènement $A$. 
+
+\section{Espaces probabilisé}
+
+Soit $\Omega$ un ensemble non vide appelé univers. 
+
+\subsection{Tribu }
+
+\begin{definition}{tribu}{}
+    Soit $\mathcal A \subset \mathscr P(\Omega)$. On dit que $\mathcal A$ est une tribu (ou une $\sigma$-algèbre)
+    ssi 
+    \begin{enumerate}
+        \item $\emptyset \in \mathcal A$
+        \item $\forall A \in \mathcal A$, $\Omega \setminus A = \bar A \in \mathcal A$ et $\mathcal A$ est stable 
+        par complémentaire ($\bar A = \{ \omega \in \Omega \mid \omega \notin A \}$).
+        \item $\mathcal A$ est stable par union dénombrable, c'est-à-dire si $(A_i)_{i \in \N}$ est une suite 
+        de $\mathcal A$, alors $\displaystyle \bigcup_{i \in \N} A_i = \{\omega \in \Omega \mid \exists i \in \N, \, \omega \in A_i\} \in \mathcal A$ 
+    \end{enumerate}
+    On a alors : 
+    \begin{enumerate}
+        \item $\Omega \in \mathcal A$
+        \item Si $(A_i)_{i \in \N} $ suite de $\mathcal A$ alors $\bigcap_{i \in \N} A_i = \{\omega \in \Omega \mid \forall i \in \N, \, \omega \in A_i\} \in \mathcal A$
+        \item $\mathcal A$ est stable par union et intersection finie. 
+    \end{enumerate}
+\end{definition}
+
+\begin{proof}
+    Par (1), $\emptyset \in \mathcal A$ donc par (2) $\bar \emptyset = \Omega \in A$
+
+    \avspace Soit $(A_i)_{i \in \N}$ dans $\displaystyle \mathcal A$, on a $\bigcap_{i \in \N} A_i = \overline{\bigcup_{i \in \N} \bar A_i}$
+
+    Or par (2), $\forall i, \, \bar A_i \in \mathcal A$, par (3) $\displaystyle \bigcup_{i \in \N} \bar A_i \in \mathcal A$
+    et par (2), $\displaystyle \bigcap_{i \in \N} A_i \in \mathcal A$
+
+    \avspace Soit $\displaystyle (A_i)_{1 \leqslant i \leqslant N}$ famille finie de $\mathcal A$ en posant 
+    $\forall i \geqslant N+ 1 $, $A_i = \emptyset \in \mathcal A$ et donc $\displaystyle \bigcup_{i \in \N} A_i \in \mathcal A$
+    donc $\displaystyle \bigcup_{i = 1}^N A_i \in \mathcal A$
+
+    \avspace Idem avec l'intersection en posant $A_i = \Omega$
+\end{proof}
+
+
+\begin{exemple}
+    $\mathcal A = \{\emptyset, \Omega\}$ est une tribu. 
+
+    \avspace Si $A_0 \in \mathscr P(\Omega)$ telle que $A_0 \neq \emptyset$ et $A_0 \neq \Omega$
+
+    \avspace $\mathcal A = \{\emptyset, A_0, \bar A_0, \Omega\}$ est une tribu, on l'appelle tribu 
+    engendrée par $A_0$. 
+
+    \avspace $\mathcal A = \mathscr P(\Omega)$ est une tribu. 
+
+    Si $\Omega$ est fini ou dénombrable c'est celle que l'on choisira. 
+
+    Si $\Omega$ est infini non dénombrable, $\mathscr P(\Omega)$ n'est pas une tribu intéressante. 
+
+    Si $\Omega = \R$ on utilise en général la tribu des boréliens qui est engendrée par les intervalles ouverts. 
+\end{exemple}
+
+\begin{definition}{}{}
+    Soit $\mathcal A$ une tribu de $\Omega$. 
+    \begin{itemize}
+        \item $(\Omega, \mathcal A)$ est appelé espace probabilisable. 
+        \item Un élément $A$ de $\mathcal A$ est appelé un évènement. 
+        \begin{itemize}
+            \item $A \subset \Omega$
+            \item $A = \{ \omega \in \Omega, \, \omega \in A\}$
+        \end{itemize}
+        \item $\bar A$ est appelé évènement contraire de $\mathcal A$
+        \item $\Omega$ est appelé évènement certain
+        \item $\emptyset$ est appelé évènement impossible
+    \end{itemize}
+\end{definition}
+
+Attention, il y a un problème dans cette définition, $A = \{ \omega \in \Omega, \, \omega \in A\}$ 
+n'a aucun sens (à montrer à Quibel un jour).
+
+\subsection{Probabilité}
+
+\begin{definition}{espace probabilisé}{}
+    Soit $(\Omega, \mathcal A)$ un espace probabilisable. On appelle probabilité 
+    sur cet espace toute application $\fonction{P}{\mathcal A}{[0, 1]}{A}{P(A)}$
+    vérifiant :
+    \begin{itemize}
+        \item $P(\Omega) = 1$
+        \item Pour toute suite $(A_n)$ d'évènements 2 à 2 disjoints, 
+        $\displaystyle P\left( \bigcup_{n \in \N} A_n \right) = \sum_{n = 0 }^{\infty    } P(A_n ) = \sum_{n \in \N    } P(A_n)$
+        appelé $\sigma$-additivité.
+    \end{itemize}
+
+    On dit alors que $(\Omega, \mathcal A, P)$ est un espace probabilisé. 
+\end{definition}
+
+\begin{proposition}{propriétés des probabilités}{}
+    \begin{itemize}
+        \item $P(\emptyset) = 0$
+        \item Si $A, B \in \mathcal A$, $P(\bar A) = 1 - P(A)$
+        \item Si $A \cap B = \emptyset$, $P(A \cup B) = P(A) + P(B)$
+        \item Si $A \subset B$, $P(A) \leqslant P(B)$
+        \item Pour tous $A, B \in \mathcal A$, $P(A \cup B) = P(A) + P(B) - P(A \cap B)$
+    \end{itemize}
+\end{proposition}
+
+\begin{proof}
+    Posons $P(\emptyset) = a \in [0, 1]$.
+
+    $\forall n \in \N$, $A_n = \emptyset$ donc $\bigcup_{n \in \N} A_n = \emptyset$
+
+    Donc par $\sigma$-additivité, $P(\emptyset) = P\left( \bigcup_{n \in \N} A_n \right) = \sum_{n \in \N} P(A_n) = \sum_{n \in \N} a$
+    Donc $a = 0$.
+
+    $A \in \mathcal A$, $A_0 = A$, $A_1 = \bar A$, $A_n = \emptyset$ pour $n \geqslant 2$.
+
+    Par $\sigma$-additivité, $1 = P(\Omega) = P(A \cup \bar A) = P(A) + P(\bar A) $
+
+    Si $A \cap B = \emptyset$, on pose $A_0 = A$, $A_1 = B$, $A_n = \emptyset$ pour $n \geqslant 2$.
+
+    Donc $P(A \cup B) = P(A) + P(B)$ par $\sigma$-additivité.
+
+    Si $A \subset B$, $B = A \cup (B \setminus A)$ et donc $P(B) = P(A) + P(B \setminus A) \geqslant P(A)$.
+
+    $A \cup B = A \cup (B \setminus A\cap B)$ et $B = (A \cap B) \cup (B \setminus A \cap B)$
+
+    Donc $P(A \cup B) = P(A) + P(B) + P(A \cap B)$ et $P(B) = P(A \cap B) + P(B \setminus A \cap B)$
+\end{proof}
+
+
+\subsubsection{Exemple fondamental : espaces probabilisés discrets }
+
+\begin{definition}{espace probabilisé discret}{}
+    Soit $\Omega$ un ensemble non vide. On appelle distribution de probabilités 
+    discrète sur $\Omega$ toute famille de $\R^+$ indexée par $\Omega$, sommable 
+    et de somme égale à 1.     
+
+    Une distribution de probabilités discrète sur $\Omega$ est donc une famille 
+    $(p_\omega)_{\omega \in \Omega}$ telle que : 
+    $$ \sum_{\omega \in \Omega } p_\omega = 1$$
+\end{definition}
+
+\begin{proposition}{support d'une distribution de probas discrète}{}
+    Une distribution de probas discrète $(p_\omega)_{\omega \in \Omega}$
+    est de support au plus dénombrable, c'est-à-dire que 
+    $\{\omega \in \Omega \mid p_\omega \neq 0 \}$ est au plus dénombrable.
+\end{proposition}
+
+\begin{proof}
+    Le support d'une famille sommable est au plus dénombrable.
+\end{proof}
+
+\begin{theoreme}{espace probabilisé discret}{}
+    Soit $\Omega \neq \emptyset$ et $(p_\omega)_{\omega \in \Omega}$ une distribution de probabilités discrète
+    sur $\Omega$. En posant $\mathcal A = \mathscr P(\Omega)$ et
+    $\fonction{P}{\mathscr P(\Omega)}{[0, 1]}{A}{P(A) = \sum_{\omega \in A} p_\omega }$
+    Alors $(\Omega, \mathcal A, P)$ est un espace probabilisé.
+
+    $P$ est appelée probabilité associée à cette distribution. 
+\end{theoreme}
+
+\begin{remarque}
+    On a en particulier, $\forall \omega \in \Omega, \, P(\{\omega\}) = p_\omega$
+\end{remarque}
+
+\begin{proof}
+    $\mathcal A = \mathscr P(\Omega)$ est une tribu.
+
+    $P$ est une proba : 
+
+    Si $A \subset \Omega$, $P(A) = \sum_{\omega \in A} p_\omega \leqslant \sum_{\omega \in \Omega} p_\omega = 1$
+
+    Donc $P(A) \in [0, 1]$.
+
+    $\displaystyle P(\Omega) = \sum_{\omega \in \Omega} p_\omega = 1$
+
+    Soit $(A_n)_{n \in \N}$ famille disjointe de parties de $\Omega$ et $A = \bigsqcup_{n \in \N} A_n$.
+
+    Montrons la $\sigma$-additivité :
+    $$ P(A) = \sum_{\omega \in A} p_\omega = \sum_{n \in \N} \sum_{\omega \in A_n} p_\omega = \sum_{n \in \N} P(A_n) $$
+    par le théorème de sommation par paquets.
+
+    Donc $P$ est une probabilité.
+\end{proof}
+
+\begin{theorement}{espace probabilisé discret}{}
+    Soit $\Omega$ un ensemble non vide au plus dénombrable,
+    $\mathcal A = \mathscr P(\Omega)$ et $P$ une probabilité sur $(\Omega, \mathcal A)$.
+
+    Alors en posant $\forall \omega \in \Omega, \, p_\omega = P(\{\omega\})$,
+    $(p_\omega)_{\omega \in \Omega}$ est une distribution de probabilités discrète 
+    et $P$ est la probabilité associée à cette distribution.
+\end{theorement}
+
+\begin{proof}
+    $\forall \omega, \, p_\omega \geqslant 0$ et $\displaystyle \Omega = \bigsqcup_{\omega \in \Omega} \{\omega\}$
+    et on a $\displaystyle P(\Omega) = 1 = \sum_{\omega \in \Omega}  p_\omega$ donc 
+    on a bien une distribution de probabilités discrète.
+
+    De plus $\forall A \in \mathscr P(\Omega)$, 
+    $\displaystyle A = \bigsqcup_{\omega \in A} \{\omega\}$ et donc $\displaystyle P(A) = \sum_{\omega \in A} P(\{\omega\}) = \sum_{\omega \in A} p_\omega$.
+
+    Donc $P$ est bien la proba associée à la distribution. 
+\end{proof}
+
+\begin{remarque}
+    Dans cette situation, pour $\omega \in \Omega, \, \{\omega\}$ est appelé un évènement élémentaire.
+\end{remarque}
+
+\begin{exemple}
+    Soit $\Omega$ un ensemble fini non vide de cardinal $N$. Alors la famille 
+    $(p_\omega)_{\omega \in \Omega}$ définie par
+    $\forall \omega \in \Omega, \, p_\omega = \frac 1 N$
+    est une distribution de probabilités discrète car 
+    $0 \leqslant \frac 1 N $ et $\displaystyle \sum_{\omega \in \Omega} p_\omega = \sum_{\omega \in \Omega} \frac 1 N = N \cdot \frac 1 N = 1$.
+
+    La proba $P$ associée est appelée probabilité uniforme sur $\Omega$ et vérifie 
+    $$\forall A \in \mathscr P(\Omega), \, P(A) = \frac{\text{card}(A)}{N}$$
+\end{exemple}
+
+\begin{exemple}
+    Jeu de pile ou face équilibré :
+    $$ \Omega = \{0, 1\}$$
+    $$ \mathcal A = \mathscr P(\Omega) = \{\emptyset, \{0\}, \{1\}, \{0, 1\}\}$$
+
+    $P(\{0\}) = P(\{1\}) = \frac 1 2$
+
+    Lancer de dé à 6 faces équilibré : 
+    $ \Omega = \{1, 2, 3, 4, 5, 6\}$, $\mathcal A = \mathscr P(\Omega)$ et
+    $\forall k \in \ninter 1 6, \, P(\{k\}) = \frac 1 6$. 
+\end{exemple}
+
+\subsection{Limites et continuités}
+
+Soit $(\Omega, \mathcal A, P)$ un espace probabilisé.
+
+\begin{theoreme}{continuité croissante}{}
+    Soit $(A_n)_{n \in \N}$ une suite croissante d'évènements, c'est à dire telle que $\forall n \in \N$, 
+    $A_n \subset A_{n+1}$. Alors $$P(A_n) \xrightarrow[n \to + \infty]{} P\left( \bigcup_{n \in \N} A_n \right)$$
+\end{theoreme}
+
+\idee{
+    Poser des évènements pour avoir une union disjointe. 
+}
+
+\begin{proof}
+    Posons $A = \bigcup_{n \in \N} A_n$. $A$ est bien un évènement car $\mathcal A$ est une tribu.
+
+    Posons $\forall k \in \N^*$, $B_k = A_k \setminus A_{k-1} = A_k \cap \bar A_{k-1} \in \mathcal A$
+    on a $A_k = B_k \sqcup A_{k - 1}$. 
+
+    Posons $B_0 = A_0$, donc $\forall n \in \N$, $\displaystyle A_n = \bigsqcup_{k = 0}^n B_k$ 
+    et $A = \displaystyle \bigcup_{n \in \N} A_n = \bigsqcup_{k \in \N} B_k$.
+
+    Or par $\sigma$-additivité, $\displaystyle P(A_n) = \sum_{k = 0}^n P(B_k)$ et 
+    $\displaystyle P(A) = \sum_{k \in \N} P(B_k)$.
+
+    Donc $P(A_n) \xrightarrow[n \to + \infty]{} P(A)$ par définition de la somme infinie.
+\end{proof}
+
+\begin{proposition}{}{}
+    Soit $(c_n)_{n \in \N}$ une suite quelconque d'évènement. Alors 
+    $$P\left( \bigcup_{k = 0}^n c_k \right) \xrightarrow[n \to + \infty]{} P\left( \bigcup_{k \in \N} c_k \right)$$
+\end{proposition}
+
+\idee{
+    Utiliser la continuité croissante.
+}
+
+\begin{proof}
+    On pose $\forall n \in \N, \, \displaystyle A_n = \bigcup_{k = 0}^n c_k$. 
+
+    Alors $(A_n)_{n \in \N}$ est croissante, c'est à dire que $A_n \subset A_{n + 1}$. 
+
+    Donc par continuité croissante, $P(A_n) \xrightarrow[n \to + \infty]{} P(A)$
+    avec $\displaystyle A = \bigcup_{k \in \N} A_k = \bigcup_{k \in \N} c_k$.
+\end{proof}
+
+\begin{theoreme}{continuité décroissante}{}
+    Soit $(B_n)_{n \in \N}$ une suite décroissante d'évènements c'est à dire telle que $\forall n \in \N, \, B_{n + 1} \subset B_n$.
+    Alors $$\displaystyle P(B_n) \xrightarrow[n \to + \infty]{} P\left( \bigcap_{n \in \N} B_n \right)$$
+\end{theoreme}
+
+\begin{proof}
+    On pose $\forall n, \, A_n = \bar B_n = C_\omega B_n$ alors 
+    $P(B_n) = 1 - P(A_n)$, or $A_n \subset A_{n + 1}$ donc par continuité croissante, 
+    $\displaystyle P(A_n) \xrightarrow[n \to + \infty]{} P\left( \bigcup_{n \in \N} A_n \right) = P\left( \overline{ \bigcap_{n \in \N} B_n } \right)$.
+\end{proof}
+
+\begin{proposition}{}{}
+    Soit $(C_n)_{n \in \N}$ une suite quelconque d'évènements. Alors
+    $$P\left( \bigcap_{k = 0}^n C_k \right) \xrightarrow[n \to + \infty]{} P\left( \bigcap_{k \in \N} C_k \right)$$
+\end{proposition}
+
+\begin{proof}
+    On applique la conséquence de la continuité croissante à $D_k = \bar C_k$.
+
+    $\displaystyle P\left( \bigcup_{k = 0}^n D_k \right) \xrightarrow[n \to + \infty]{} P\left( \bigcup_{k \in \N} D_k \right)$
+
+    Donc $\displaystyle 1 - P\left( \bigcap_{k = 0}^n C_k \right) \xrightarrow[n \to + \infty]{} 1 - P\left( \bigcap_{k \in \N} C_k \right)$
+\end{proof}
+
+\begin{theoreme}{Inégalité de Boole}{}
+    Soit $(c_n)_{n \in \N}$ une suite quelconque  d'évènements. Alors 
+    $$ P\left( \bigcup_{n \in \N} c_n \right) \leqslant \sum_{n \in \N} P(c_n) $$
+    cette somme étant éventuellement égale à $+ \infty$.
+\end{theoreme}
+
+\begin{proof}
+    Si les $c_k$ sont 2 à 2 disjoints, il y a égalité par $\sigma$-additivité.
+
+    \uindent{Cas 1} 
+
+    \svspace Si la série $(P(c_n))_{n \in \N}$ diverge, alors 
+    $\displaystyle \sum_{k \in \N} P(c_k) = + \infty$ et l'inégalité est vérifiée.
+
+    \uindent{Cas 2}
+    
+    \svspace Sinon, pour $n \in \N$, montrons par récurrence que 
+    $$ P\left( \bigcup_{k = 0}^n c_k \right) \leqslant \sum_{k = 0}^n P(c_k) $$
+
+    Hérédité : supposont que pour un certain $n \in \N$, $$P \underbrace{\left( \bigcup_{k = 0}^n c_k \right) }_{D_n} \leqslant \sum_{k = 0}^n P(c_k) $$
+
+    Alors 
+    \begin{align}
+        P(D_{n + 1}) & = P(D_n \cup c_{n + 1}) \\
+        & = P(D_n) + P(c_{n + 1}) - P(D_n \cap c_{n + 1}) \\
+        & \leqslant P(D_n) + P(c_{n + 1}) \\
+        & \leqslant \sum_{k = 0}^{n + 1} P(c_k)
+    \end{align}
+
+    En faisant tendre $n$ vers $+ \infty$ et en utilisant la continuité croissante, on obtient l'inégalité voulue.
+\end{proof}
+
+\subsection{Evènements négligeables et presque sûrs }
+
+\begin{definition}{évènements presque sûrs et négligeables}{}
+    Soit $A \in \mathcal A$. On dit que $A$ est un évènement négligeable ssi $P(A) = 0$.
+
+    On dit que $A$ est un évènement presque sûr ssi $P(A) = 1$.
+\end{definition}
+
+\begin{proposition}{}{stabilité des évènements négligeables et presque sûrs}{}
+    Une réunion finie ou dénombrable d'évènements négligeables est négligeable. 
+
+    Une intersection finie ou dénombrable d'évènements presque sûrs est presque sûre.
+\end{proposition}
+
+\idee{
+    Utiliser l'inégalité de Boole.
+}
+
+\begin{proof}
+    Soit $(A_n)_{n \in I}$ évènements négligeables avec $I$ fini ou dénombrable.
+
+    Alors $\displaystyle P\left( \bigcup_{n \in I} A_n \right) \leqslant \sum_{n \in I} P(A_n) \leqslant 0$
+    par inégalité de Boole.
+
+    Donc $\displaystyle P\left( \bigcup_{n \in I} A_n \right) = 0$. 
+
+    Soit $(B_n)_{n \in I}$ évènements presque sûrs. 
+    \begin{align}
+        P\left( \bigcap_{n \in I} B_n \right) & = 1 - P\left( \overline{ \bigcap_{n \in I} B_n } \right) \\
+        & = 1 - P\left( \bigcup_{n \in I} \bar B_n \right) \\
+        & \geqslant 1 - \sum_{n \in I} P(\bar B_n) \\
+        & = 1 - 0 = 1
+    \end{align}
+
+\end{proof}
+
+\begin{definition}{système quasi-complet d'évènements}{}
+    Soit $(A_n)_{n \in I}$ une famille d'évènements avec $I$ au plus dénombrable. On dit que cette famille
+    finie est un système quasi-complet d'évènements ssi 
+    \begin{itemize}
+        \item Pour $i \neq j$, $A_i \cap A_j = \emptyset$
+        \item $\displaystyle P\left( \bigcup_{n \in I} A_n \right) = 1$
+    \end{itemize}
+
+    c'est-à-dire que $\displaystyle \bigcup_{n \in I} A_n$ est un évènement presque sûr.
+\end{definition}
+
+\section{Probabilités conditionnelles et indépendance }
+
+Soit $(\Omega, \mathcal A , P)$ un espace probabilisé.
+
+\begin{theoreme}{probabilité conditionnelle}{}
+    Soit $B \in \mathcal A$ tel que $P(B) \neq 0$. Pour $A \in \mathcal A$, on pose 
+    $$P_B(A) = P(A \mid B) = \frac{P(A \cap B)}{P(B)}$$
+
+    alors $P_B$ est une probabilité sur $(\Omega, \mathcal A)$ appelée probabilité conditionnelle
+    sachant $B$.
+\end{theoreme}
+
+\begin{proof}
+    $P(B) \neq 0$ donc $P_B$ bien définie. 
+
+    Soit $A \in \mathcal A$, $A \cap B \subset B$ donc $0 \leqslant P(A \cap B) \leqslant P(B)$
+
+    Donc $0 \leqslant P_B(A) \leqslant 1$, donc $P_B$ est à valeurs dans $[0, 1]$.
+
+    $P_B(\Omega) = \frac{P(\Omega \cap B)}{P(B)} = 1$ 
+
+    $\sigma$-additivité : Soit $(A_n)_{n \in \N}$ suite d'évènements 2 à 2 disjoints.
+
+    \begin{align}
+        P_B\left( \bigsqcup_{n \in \N} A_n \right) & = \frac{P\left( \left( \bigsqcup_{n \in \N} A_n \right) \cap B \right)}{P(B)} \\
+        & = \frac{P\left( \bigsqcup_{n \in \N} (A_n \cap B) \right)}{P(B)} \\
+        & = \sum_{n = 0 }^{+ \infty } \frac{P(A_n \cap B)}{P(B)} \\
+        & = \sum_{n = 0}^{+ \infty} P_B(A_n)
+    \end{align}
+\end{proof}
+
+\subsection{Formule des probabilités somposées }
+
+\begin{theoreme}{formule des probabilités composées}{}
+    Soient $A_1, \dots, A_n \in \mathcal A$ tel que $P(A_1 \cap \dots \cap A_{n - 1}) \neq 0$,
+    alors $$P(A_1 \cap \dots A_n) = P(A_1) \cdot P(A_2 \mid A_1) \cdot P(A_3 \mid A_1 \cap A_2) \cdots P(A_n \mid A_1 \cap \dots \cap A_{n - 1})$$
+\end{theoreme}
+
+\begin{proof}
+    $P(A_n \mid A_1 \cap \dots \cap A_{n - 1}) = \frac{P(A_1 \cap \dots \cap A_n)}{P(A_1 \cap \dots \cap A_{n - 1})} \times \cdots \times \frac{P(A_1 \cap A_2)}{P(A_1)} \times P(A_1) = P(A_1 \cap \dots \cap A_n)$
+\end{proof}
+
+\subsection{Formules des probabilités totales }
+
+\begin{theoreme}{formule des probabilités totales}{}
+    Soit $I$ un ensemble au plus dénombrable et $(A_n)_{n \in I}$ un système quasi-complet d'évènements.
+    Soit $B \in \mathcal A$, alors 
+    $$P(B) = \sum_{n \in I} P(B \cap A_n)$$
+
+    De plus, si $\forall n \in I, \, P(A_n) \neq 0$, alors
+    $$P(B) = \sum_{n \in I} P(A_n) \cdot P(B \mid A_n)$$
+\end{theoreme}
+
+\begin{proof}
+    Notons $\displaystyle C = \overline{ \bigsqcup_{n \in I} A_n }$
+
+    A cause du système quasi-complet d'évènements, $P(C) = 0$ et 
+    $\displaystyle \Omega = C \sqcup \left( \bigsqcup_{n \in I} A_n \right)$
+    donc par $\sigma$-additivité,
+    $$ P(B) = P(B \cap C) + \sum_{n \in I} P(B \cap A_n) $$
+    or $B \cap C \subset C$ donc $P(B \cap C) = 0$, 
+    donc $$ P(B) = \sum_{n \in I} P(B \cap A_n) $$
+
+    Si de plus $P(A_n) \neq 0$, on a 
+    $$ P(B \mid A_n) = \frac{P(B \cap A_n)}{P(A_n)} $$
+
+    Donc $ P(B \cap A_n) = P(A_n) \cdot P(B \mid A_n) $
+\end{proof}
+
+\subsection{Formule de Bayes}
+
+\begin{theoreme}{formule de Bayes}{}
+    Soient $A, B \in \mathcal A$ tels que $P(A) \neq 0$ et $P(B) \neq 0$.
+    Alors 
+    $$ P(A \mid B) = \frac{P(A) \cdot P(B \mid A)}{P(B)} $$
+\end{theoreme}
+
+\begin{proof}
+    $P(A \cap B) = P(A \mid B) \cdot P(B) = P(B \mid A) \cdot P(A)$
+\end{proof}
+
+\begin{corollaire}{formule de Bayes généralisée}{}
+    Soit $I$ au plus dénombrable, et soit $(A_i)_{i \in I}$ système quasi-complet d'évènements 
+    de proba non nulles, et $B$ tel que $P(B) \neq 0$. Alors 
+    $$ P(A_n \mid B) = \frac{P(A_n) \cdot P(B \mid A_n)}{\sum_{i \in I} P(A_i) \cdot P(B \mid A_i)} $$
+\end{corollaire}
+
+\subsection{Evènements indépendants}
+\begin{definition}{indépendance}{}
+    Soient $A, B \in \mathcal A$. On dit que $A$ et $B$ sont indépendants ssi 
+    $$ P(A \cap B) = P(A) \cdot P(B) $$
+\end{definition}
+
+\begin{proposition}{caractérisation de l'indépendance}{}
+    Soient $A, B \in \mathcal A$ tels que $P(B) \neq 0$. 
+
+    Alors $A$ et $B$ sont indépendants ssi $P(A \mid B) = P(A)$.
+\end{proposition}
+
+\begin{proof}
+    Si $A$ et $B$ sont indépendants, alors 
+    $$ P(A \mid B) = \frac{P(A \cap B)}{P(B)} = \frac{P(A) \cdot P(B)}{P(B)} = P(A) $$
+
+    Si $P(A \mid B) = P(A)$, alors
+    $ \frac{P(A \cap B)  }{P(B) } = P(A) $ donc $P(A \cap B) = P(A) \cdot P(B)$
+\end{proof}
+
+\begin{proposition}{indépendance avec le contraire}{}
+    Si $A$ et $B$ sont indépendants, alors $A$ et $\overline B$ sont indépendants. 
+\end{proposition}
+
+\idee{
+    Utiliser système complet d'évènements $\{B, \bar B\}$.
+}
+
+\begin{proof}
+    Si $A$ et $B$ sont indépendants, alors 
+    $P(A \cap \bar B) + P(A \cap B) = P(A)$
+    donc $P(A \cap \bar B) = P(A) - P(A \cap B) = P(A) - P(A) \cdot P(B) = P(A) \cdot (1 - P(B)) = P(A) \cdot P(\bar B)$
+\end{proof}
+
+\begin{definition}{indépendance mutuelle}{}
+    Soit $I$ un ensemble non vide, et soit $(A_i)_{i \in I}$ une famille d'évènements.
+
+    On dit que ces évènements sont mutuellement indépendants ssi pour tout
+    ensemble fini $J \subset I$ non vide, on a 
+    $$ P\left( \bigcap_{j \in J} A_j \right) = \prod_{j \in J} P(A_j) $$
+
+    en particulier, si $j_1 \neq j_2 \in I$, alors 
+    $P(A_{j_1} \cap A_{j_2}) = P(A_{j_1}) \cdot P(A_{j_2})$, donc 
+    $A_{j_1}$ et $A_{j_2}$ sont indépendants. Les évènements sont donc deux à deux indépendants.
+\end{definition}
+
+\begin{proposition}{lien indépendance mutuelle et deux à deux}{}
+    L'indépendance d'évènements deux à deux n'implique pas l'indépendance mutuelle.
+\end{proposition}
+
+\begin{proof}
+    On lance 2 dés équilibrés.
+
+    A : le résultat du premier dé est pair.
+
+    B : le résultat du second dé est pair.
+
+    C : la somme des résultats est paire.
+
+    $\Omega = \ninter 1 6 ^2$, $P(A) = P(B) = \frac 1 2$
+
+    $P(A \cap B) = \frac 1 4 = P(A) \cdot P(B)$ car évènements indépendants.
+
+    \begin{align}
+        P(C) & = P(C \mid A) P(A) + P(C \mid \bar A) P(\bar A) \\
+        & = P(B) \cdot P(A) + P(\bar B) \cdot P(\bar A) \\
+        & = \frac 1 4 + \frac 1 4 = \frac 1 2 
+    \end{align} 
+
+    Donc $P(C \cap A) = P(B \cap A) = \frac 1 4 = P(C) \cdot P(A)$, donc 
+    $A$ et $C$ sont indépendants.
+
+    De même, $B$ et $C$ sont indépendants.
+
+    $P(A \cap B \cap C) = P(A \cap B) = \frac 1 4 \neq P(A) \cdot P(B) \cdot P(C) = \frac 1 8$
+
+    Donc $A, B, C$ sont deux à deux indépendants mais pas mutuellement indépendants.
+\end{proof}
+
+\section{Variables aléatoires }
+
+Soit $(\Omega, \mathcal A, P)$ un espace probabilisé et $E \neq \emptyset$. 
+
+\begin{definition}{variable aléatoire discrète}{}
+    On appelle variable aléatoire discrète sur $(\Omega, \mathcal A, P)$ à valeurs dans $E$
+    toute application $\fonction{X}{\Omega}{E}{\omega}{X(\omega)}$ telle que 
+    \begin{itemize}
+        \item $X(\Omega)$ est au plus dénombrable
+        \item $\forall x \in X(\Omega), \, X^{-1}(\{x\}) = \{\omega \in \Omega \mid X(\omega) = x\} \in \mathcal A$
+    \end{itemize}
+
+    On note alors l'évènement $\{X = x\} = X^{-1}(\{x\})$.
+    
+    Si $E = \R$, on dit que $X$ est une variable aléatoire réelle discrète.
+\end{definition}
+
+\begin{remarque}
+    Si $\Omega$ est au plus dénombrable, et $\mathcal A = \mathscr P(\Omega)$, toute application 
+    de $\Omega$ dans $E$ est une variable aléatoire discrète.
+\end{remarque}
+
+\subsection{Notations}
+
+Ce paragraphe avant la def est potentiellement un peu bizare.
+
+Soit $\fonction{X}{\Omega}{E}{\omega}{X(\omega)}$ une variable aléatoire discrète.
+
+Soit $A \subset E$, alors $A \cap X(\Omega)$ est au plus dénombrable. 
+
+Considérons $(x_i)_{i \in I}$ avec $I$ au plus dénombrable la famille des éléments 
+de $A \cap X(\Omega)$, $A \cap X(\Omega) = \{x_i, \, i \in I\}$.
+
+Ainsi $A \cap X(\Omega) = \bigsqcup_{i \in I} \{x_i\}$, or 
+$X^{-1}({x_i}) = \{\omega \in \Omega, X(\omega) = x_i\} \in \mathcal A$, or $\mathcal A$
+est une tribu, donc $\displaystyle \bigsqcup_{i \in I} X^{-1}(\{x_i\}) \in \mathcal A$.
+
+Or $\bigsqcup_{i \in I} X^{-1}(\{x_i\}) = \{\omega \in \Omega, \exists i \in I, X(\omega = x_i)\} = \{\omega \in \Omega, X(\omega) \in A\}$
+
+
+\begin{definition}{évènements associés à une variable aléatoire}{}
+    On notera alors $(X \in A) = X^{-1}(A) = \{\omega \in \Omega, X(\omega) \in A\}$ et donc 
+
+    $$\displaystyle (X \in A) = \bigsqcup_{i \in I} (X = x_i)$$
+    
+\end{definition}
+
+\begin{definition}{notations pour les variables aléatoires réelles}{}
+    Soit $\fonction{X}{\Omega}{\R}{\omega}{X(\omega)}$ une variable aléatoire réelle discrète.
+
+    Alors pour tout $a \in \R$, on utilise les notations suivantes : 
+
+    \begin{itemize}
+        \item $(X \in [a, + \infty[) = (X \geqslant a)$
+        \item $(X \in ]a, + \infty[) = (X > a)$
+        \item $(X \in ]-\infty, a]) = (X \leqslant a)$
+        \item $(X \in ]-\infty, a[) = (X < a)$
+    \end{itemize}
+
+    et par exemple, en notant $(x_i)_{i \in I}$ la famille des valeurs prises par $X$, 
+    $\displaystyle (X \geqslant a) = \bigsqcup_{\substack{i \in I \\ x_i \geqslant a}} (X = x_i)$.
+\end{definition}
+
+\subsection{Loi d'une variable aléatoire discrète }
+
+\begin{theoreme}{loi d'une variable aléatoire discrète}{}
+    Soit $X : \Omega \to E$ une variable aléatoire discrète. On considère l'espace probabilisable 
+    $(X(\Omega), \mathscr P(X(\Omega)))$, et la fonction 
+    $$\fonction{P_X}{\mathscr P(X(\Omega))}{[0, 1]}{A}{P(X^{-1}(A)) = P(X \in A)}$$
+
+    Alors $P_X$ est une probabilité appelée loi de $X$. Cette loi est donc caractérisée par la donnée de : 
+    \begin{itemize}
+        \item L'ensemble $X(\Omega)$
+        \item Pour tout $x \in X(\Omega)$, $P_X(\{x\}) = P(X = x)$
+    \end{itemize}
+    et on aura $\sum_{x \in X(\Omega)} P(X = x) = 1$
+
+    De plus pour tout $A \subset E$, $\ds P(X \in A) = \sum_{x \in (X(\Omega) \cap A)} P(X = x)$
+\end{theoreme}
+
+\begin{proof}
+    Si $A \in \mathscr P(X(\Omega))$, $X^{-1}(A) \in \mathcal A$ car $X$ est une variable aléatoire
+    donc $P(X^{-1}(A))$ est bien définie et dans $[0, 1]$.
+
+    \begin{align}
+        P_X(X(\Omega)) & = P(X^{-1}(X(\Omega))) \\
+        & = P(\Omega) = 1
+    \end{align}
+
+    \uindent{$\sigma$-additivité}
+
+    \svspace Soit $(A_n)_{n \in \N}$ une suite de parties de $X(\Omega)$ 2 à 2 disjointes.
+
+    \begin{align}
+        P_X \left( \bigsqcup_{n \in \N} A_n \right) & = P\left( X^{-1}\left( \bigsqcup_{n \in \N} A_n \right) \right) \\
+        & = P\left( \bigsqcup_{n \in \N} X^{-1}(A_n) \right) 
+    \end{align}
+
+    Soit $n_1 \neq n_2 \in \N$, montrons que $X^{-1}(A_{n_1}) \cap X^{-1}(A_{n_2}) = \emptyset$.
+
+    Si $\omega \in X^{-1}(A_{n_1}) \cap X^{-1}(A_{n_2})$, alors $X(\omega) \in A_{n_1}$ et $X(\omega) \in A_{n_2}$,
+    ce qui est impossible car $A_{n_1} \cap A_{n_2} = \emptyset$.
+
+    Donc l'union est disjointe. 
+
+    Donc $P_X(\bigsqcup_{n \in \N} A_n) = \sum_{n \in \N} P(X^{-1}(A_n)) = \sum_{n \in \N} P_X(A_n)$, 
+    d'où la $\sigma$-additivité.
+
+\end{proof}
+
+\begin{definition}{égalité de lois}{}
+    Soit $X$ variable aléatoire discrète définie sur $(\Omega, \mathcal A, P)$, $Y$ variable aléatoire discrète définie 
+    sur $(\Omega', \mathcal A', P')$ à valeurs dans $E$.
+
+    On suppose que $X(\Omega) = Y(\Omega')$ et que $\forall x \in X(\Omega), \, P(X = x) = P'(Y = x)$.
+
+    On dira alors que $X$ et $Y$ suivent la même loi, et on notera $X \sim Y$.
+\end{definition}
+
+\subsection{Composition}
+
+\begin{theoreme}{composition de variables aléatoires discrètes}{}
+    Soit $F$ un ensemble non vide, $f : E \to F$ et $X : \Omega \to E$ une variable aléatoire discrète, 
+    alors la composée $f \circ X : \Omega \to F$ est une variable aléatoire discrète notée $f(X)$.
+\end{theoreme}
+
+\begin{proof}
+    $X(\Omega)$ est au plus dénombrable, donc $f(X(\Omega))$ est au plus dénombrable.
+
+    Soit $y \in f(X(\Omega))$, 
+
+    \begin{align}
+        (f(X))^{-1}(\{y\}) & = \{\omega \in \Omega \mid f(X(\omega)) = y\} \\
+        & = \{\omega \in \Omega \mid X(\omega) \in f^{-1}(\{y\})\} \\
+        & \in \mathcal A
+    \end{align}
+
+    Donc $f(X)$ est une variable aléatoire discrète.
+\end{proof}
+
+\begin{theoreme}{}{}
+    Soient $X, Y$ deux variables aléatoires discrètes telles que $X \sim Y$. 
+
+    Soit $f : X(\Omega) \to F$, alors $f(X) \sim f(Y)$.
+\end{theoreme}
+
+\begin{proof}
+    $X$ sur $(\Omega, \mathcal A, P)$, $Y$ sur $(\Omega', \mathcal A', P')$.
+
+    On a $X \sim Y$, donc $X(\Omega) = Y(\Omega')$, donc $f(X(\Omega)) = f(Y(\Omega'))$.
+
+    Soit $z \in f(X(\Omega))$, $P(f(X) = z) = P(X \in f^{-1}(\{z\})) = P'(Y \in f^{-1}(\{z\})) = P'(f(Y) = z)$.
+
+    Donc $f(X) \sim f(Y)$.
+\end{proof}
+
+\subsection{Variables aléatoires indépendantes }
+
+\begin{definition}{indépendance de variables aléatoires discrètes}{}
+    Soit $I \neq \emptyset$, et soit $(X_n)_{n \in I}$ des variables aléatoires discrètes. 
+
+    On dit que ces variables aléatoires discrètes sont mutuellement indépendantes
+    (ou indépendantes) ssi pour tout ensemble fini $J \subset I$, pour tous 
+    $(x_j)_{j \in J}$ où $\forall n \in J, x_n \in X_n(\Omega)$, 
+    $\displaystyle P\left( \bigcap_{j \in J} (X_j = x_j) \right) = \prod_{j \in J} P(X_j = x_j)$
+
+    c'est à dire que les évènements $(X_j = x_j)$ sont mutuellement indépendants.
+\end{definition}
+
+
+\begin{proposition}{indépendance des évènements associés}{}
+    Soient $(X_n)_{n \in I}$ des variables aléatoires discrètes mutuellement indépendantes et 
+    $(A_n)_{n \in I}$ une famille de parties des $X_n(\Omega)$. 
+
+    Alors les évènements $(X_n \in A_n)_{n \in I}$ sont mutuellement indépendants, c'est à dire que pour 
+    $J \subset I$ fini, $$ P\left( \bigcap_{j \in J} (X_j \in A_j) \right) = \prod_{j \in J} P(X_j \in A_j) $$
+\end{proposition}
+
+Preuve inutile 
+ 
+\begin{proof}
+    Pour $n \in J = \ninter 1 N$, notons 
+    $(x_{i_n, n})_{i_n \in I_n}$ les éléments de $A_n$ famille au plus dénombrable, alors 
+    $P(X_n \in A_n) = \sum_{i_n \in I_n} P(X_n = x_{i_n, n})$.
+
+    Donc 
+    \begin{align}
+        \prod_{n \in J} P(X_n \in A_n) & = \sum_{i_1 \in I_1} \sum_{i_2 \in I_2} \cdots \sum_{i_N \in I_N} \prod_{n \in J} P(X_n = x_{i_n, n}) \\
+        & = \sum \dots \sum P(\bigcap_{n \in J} (X_n = x_{i_n, n})) \\
+        & = P(X_1 \in A_1 \cap \dots \cap X_n \in A_n)
+    \end{align}
+\end{proof}
+
+\begin{theoreme}{existence de suites de variables aléatoires indépendantes}{}
+    Soit $(L_i)_{i \in \N}$ une suite de lois de variables aléatoires discrètes. Alors il existe 
+    $(\Omega, \mathcal A, P)$ un espace probabilisé et $(X_i)_{i \in \N}$ une suite de variables aléatoires discrètes mutuellement indépendantes
+    sur $\Omega$ telles que $\forall i \in \N, \, X_i \sim L_i$. 
+\end{theoreme}
+
+\begin{corollaire}{suite iid}{}
+    Soit $L$ une loi de variables aléatoires discrètes. Il existe une suite 
+    $(X_n)_{n \in \N}$ de variables aléatoires discrètes mutuellement indépendantes
+    sur un espace probabilisé $(\Omega, \mathcal A, P)$ telles que $\forall n \in \N, \, X_n \sim L$.
+
+    On dira alors que la suite de variables aléatoires discrètes $(X_n)_{n \in \N}$ 
+    est iid, c'est à dire indépendante et identiquement distribuée.
+\end{corollaire}
+
+\subsection{Lois usuelles}
+
+\begin{definition}{loi uniforme}{}
+    Soit $n \geqslant 1$ et $E$ un ensemble fini de cardinal $n$. Une variable aléatoire $X$ suit la 
+    loi uniforme sur $E$ ssi 
+    \begin{itemize}
+        \item $X(\Omega) = E$
+        \item $\forall x \in E, \, P(X = x) = \frac 1 n$
+    \end{itemize}
+
+    On notera alors $X \sim \mathcal U(E)$.
+\end{definition}
+
+
+\begin{definition}{loi de Bernoulli}{}
+    Soit $p \in ]0, 1[$. Une variable aléatoire discrète suit la loi de Bernoulli de paramètre 
+    $p$ ssi 
+    \begin{itemize}
+        \item $X(\Omega) = \{0, 1\}$
+        \item $P(X = 1) = p$ 
+        \item $P(X = 0) = 1 - p$
+    \end{itemize}
+    On note alors $X \sim \mathcal B(p)$.
+\end{definition}
+
+\begin{definition}{loi binomiale}{}
+    Soit $p \in ]0, 1[$ et $n \geqslant 1$. Une variable aléatoire suit la loi binomiale de 
+    paramètres $n$ et $p$ ssi 
+    \begin{itemize}
+        \item $X(\Omega) = \ninter 0 n$
+        \item $\displaystyle \forall k \in \ninter 0 n, \, P(X = k) = \binom n k p^k (1 - p)^{n - k}$
+    \end{itemize}
+    On note alors $X \sim \mathcal B(n, p)$.
+\end{definition}
+
+\begin{remarque}
+    Soient $X_1, \dots, X_n$ suite de variables aléatoires discrètes iid suivant $\mathcal B(p)$, 
+    alors $\displaystyle X = \sum_{i = 1 }^{ n } X_i$ suit la loi $\mathcal B(n, p)$.
+\end{remarque}
+
+\begin{definition}{loi géométrique}{}
+    Soit $p \in ]0, 1[$. Une variable aléatoire $X$ suit la loi géométrique de paramètre $p$ ssi 
+    \begin{itemize}
+        \item $X(\Omega) = \N^*$
+        \item $\forall k \in \N^*, \, P(X = k) = p(1 - p)^{k - 1} $
+    \end{itemize}
+
+    Cela définit bien une loi de variable aléatoire car $\displaystyle \sum_{k = 1}^{+ \infty} p(1 - p)^{k - 1} = 1$
+    (formule somme géométrique).
+
+    On notera alors $X \sim \mathcal G(p)$.
+\end{definition}
+
+\uindent{Interprétation }
+
+\svspace Soit $(X_n)_{n \in \N^*}$ suite de variables aléatoires discrètes iid telles que $\forall n \in \N^*, \, X_n \sim \mathcal B(p)$.
+
+Pour $\omega \in \Omega$, on note $X(\omega) = \begin{cases}
+    + \infty & \text{ ssi } \forall n \in \N^*, X_n(\omega) = 0 \\
+    k & \text{ ssi } X_k(\omega) = 1 \text{ et } \forall n < k, \, X_n(\omega) = 0
+\end{cases}$
+
+\begin{align}
+    \displaystyle P(X = + \infty) & = P\left( \cap_{n \in \N} X_n = 0 \right) \\
+    & = \lim_{N \to + \infty} P\left( \cap_{n = 1}^N X_n = 0 \right) \\
+    & = \lim_{N \to + \infty} \prod_{n = 1 }^{N } P(X_n = 0) \\
+    & = \lim_{N \to + \infty} (1 - p)^N = 0
+\end{align}
+
+$P(X = 1) = P(X_1 = 1) = p$
+
+Si $k \geqslant 1$, 
+
+\begin{align}
+    P(X = k) & = P\left( X_1 = 0, \dots, X_{k - 1} = 0, X_k = 1 \right) \\
+    & = p (1 - p)^{k - 1}
+\end{align}
+
+Donc $X \sim \mathcal G(p)$.
+
+La loi géométrique est appelée loi du premier succès car elle modélise le nombre d'essais nécessaires pour obtenir le premier succès
+dans une suite d'expériences de Bernoulli indépendantes.
+
+\begin{definition}{loi de poisson }{}
+    Soit $\lambda > 0$. On dit qu'une variable aléatoire discrète $X$ suit la loi de 
+    Poisson de paramètre $\lambda$ ssi 
+    \begin{itemize}
+        \item $X(\Omega) = \N$
+        \item $\displaystyle \forall k \in \N, \, P(X = k) = \frac{e^{- \lambda} \lambda^k}{k!}$
+    \end{itemize}
+
+    On a bien $\displaystyle \sum_{k = 0}^{+ \infty} \frac{e^{- \lambda} \lambda^k}{k!} = e^{- \lambda} e^{\lambda} = 1$.
+
+    On note alors $X \sim \mathcal P(\lambda)$.
+\end{definition}
+
+\uindent{Interprétation }
+
+La loi de Poisson est la loi des évènements rares. Un évènement est dit rare lorsqu'il ne peut pas se produire 
+plus d'une fois dans un laps de temps assez court. 
+
+Soit $T > 0$ et $n \in \N^*$ assez grand pour que dans un intervalle de temps de durée 
+$\frac T n$ l'évènement se produise au plus une fois. 
+
+Donc dans chaque intervalle $\left[ \frac{kT} n, \frac{(k + 1)T}{n} \right[$ l'évènement se produit au plus
+une fois, avec une proba $p = \alpha \frac T n$. 
+
+Le nombre d'évènements dans l'intervalle $[0, T]$ suit donc une loi 
+binomiale $\mathcal B\left( n, \alpha \frac T n \right)$.
+
+Donc $\displaystyle \forall k \in \ninter 0 n$, $P(X = k) = \binom n k \left( \alpha \frac T n \right)^k \left( 1 - \alpha \frac T n \right)^{n - k}$.
+
+Fixons $k$ et faisons tendre $n$ vers l'infini.
+
+\begin{align}
+    P(X = k ) & = \frac{n!}{k! (n - k)!} \frac{\alpha^k T^k}{n^k} e^{(n - k) \ln \left( 1 - \alpha \frac T n \right)} \\
+    & \sim \frac{n^k}{k!} \frac{\alpha^k T^k}{n^k} e^{- \alpha T} \\
+    & \xrightarrow[n \to + \infty]{} \frac{(\alpha T)^k}{k!} e^{- \alpha T}
+\end{align}
+
+Donc $X \sim \mathcal P(\alpha T)$. 
+
+\section{Indépendance de variables aléatoires }
+
+Soit $(\Omega, \mathcal A, P)$ un espace probabilisé.
+
+\subsection{Loi conditionnelle}
+
+\begin{definition}{loi conditionnelle}{}
+    Soit $X$ une variable aléatoire discrète et $A \in \mathcal A$ un évènement tel que $P(A) \neq 0$.
+
+    On définit la loi conditionnelle de $X$ sachant $A$ par $\forall x \in X(\Omega)$,
+    $$ P(X = x \mid A) = \frac{P(X = x \cap A)}{P(A)}$$
+\end{definition}
+
+\subsection{Couples de variables aléatoires discrètes }
+
+\begin{theoreme}{couple de variables aléatoires discrètes}{}
+    Soient $X$ et $Y$ deux variables aléatoires discrètes sur $(\Omega, \mathcal A, P)$, on définit 
+    leur couple $(X, Y)$ par l'application 
+    $$\fonction{(X, Y)}{\Omega}{X(\Omega) \times Y(\Omega)}{\omega}{(X(\omega), Y(\omega))}$$
+    alors c'est une variable aléatoire discrète.
+\end{theoreme}
+
+\begin{proof}
+    $(X, Y)(\Omega) = \{(X(\omega), Y(\omega)), \omega \in \Omega \} \subset X(\Omega \times Y(\Omega))$ au plus dénombrable 
+    donc $(X, Y)(\Omega)$ aussi. 
+
+    Soit $(x, y) \in (X, Y)(\Omega)$. Alors 
+    \begin{align}
+        (X, Y)^{-1}(\{(x, y)\}) & = \{\omega \in \Omega, (X, Y)(\omega) = (x, y)\} \\
+        & = \{\omega \in \Omega, X(\omega) = x \text{ et } Y(\omega) = y\} \\
+        & = \{\omega \in \Omega, X(\omega) = x\} \cap \{\omega \in \Omega, Y(\omega) = y\} \\
+        & = X^{-1}(\{x\}) \cap Y^{-1}(\{y\}) \in \mathcal A
+    \end{align} 
+
+    Donc $(X, Y)$ est une variable aléatoire discrète et $((X, y) = (x, y)) = (X = x) \cap (Y = y) = (X = x, Y = y)$.
+\end{proof}
+
+\begin{corollaire}{somme de variables aléatoires discrètes}{}
+    Soient $X, Y$ deux variables aléatoires discrètes réelles sur $\Omega$, alors 
+    $\fonction{X + Y}{\Omega}{\R}{\omega}{X(\omega) + Y(\omega)}$ est une variable aléatoire discrète 
+    réelle. En effet, en posant $\fonction{f}{\R^2}{\R}{(x, y)}{x + y}$, on a $X + Y = f(X, Y)$ qui est 
+    la composée de deux variables aléatoires discrètes, et donc en est une. 
+\end{corollaire}
+
+\begin{definition}{lois conjointes et lois marginales}{}
+    Soient $X, Y$ deux variables aléatoires discrètes sur $(\Omega, \mathcal A, P)$.
+    La loi de la variable aléatoire discrète $(X, Y)$ est appelée loi conjointe. 
+
+    Les lois de $X$ et $Y$ sont appelées lois marginales.
+\end{definition}
+
+\begin{proposition}{lois marginales à partir de la loi conjointe}{}
+    On peut calculer les lois marginales à partir de la loi conjointe : en effet, si 
+    $x \in X(\Omega)$, 
+    \begin{align}
+        (X = x) & = \bigsqcup_{y \in Y(\Omega)} (X = x \cap Y = y) \\
+        & = \bigsqcup_{y \in Y(\Omega)} ((X, Y) = (x, y))
+    \end{align}
+
+    Donc $\displaystyle P(X = x) = \sum_{y \in Y(\Omega)} P((X, Y) = (x, y))$.
+    De même pour $Y$. 
+\end{proposition}
+
+\begin{exemple}
+    Marche de l'ivrogne. 
+
+    $X$ : déplacement horizontal.
+
+    $Y$ : déplacement vertical.
+
+    \uindent{Loi conjointe } 
+
+    \svspace 
+    
+    \begin{itemize}
+        \item $P((X, Y) = (1, 0)) 1 \frac 1 4$
+        \item $P((X, Y) = (-1, 0)) 1 \frac 1 4$
+        \item $P((X, Y) = (0, 1)) 1 \frac 1 4$
+        \item $P((X, Y) = (0, -1)) 1 \frac 1 4$
+    \end{itemize}
+
+    Lois marginales : 
+    \begin{itemize}
+        \item $P(X = 1) = P((X, Y) = (1, 0)) = \frac 1 4$
+        \item $P(X = -1) = P((X, Y) = (-1, 0)) = \frac 1 4$
+        \item $P(X = 0) = P((X, Y) = (0, 1)) + P((X, Y) = (0, -1)) = \frac 1 2$
+    \end{itemize}
+
+    On peut représenter cela sous forme d'un tableau : 
+    \begin{center}
+        \begin{tabular}{c|c|c|c|c|c}
+            $X \backslash Y$ & -1 & 0 & 1 & Total \\
+            \hline
+            -1 & 0 & $\frac 1 4$ & 0 & $\frac 1 4$ \\
+            \hline
+            0 & $\frac 1 4$ & 0 & $\frac 1 4$ & $\frac 1 2$ \\
+            \hline
+            1 & 0 & $\frac 1 4$ & 0 & $\frac 1 4$ \\
+            \hline
+            Total & $\frac 1 4$ & $\frac 1 2$ & $\frac 1 4$ & 1 
+        \end{tabular}
+    \end{center}
+
+
+\end{exemple}
+
+\begin{definition}{indépendance de variables aléatoires discrètes}{}
+    Deux variables aléatoires discrètes $(X, Y)$ sont indépendantes ssi 
+    $\forall (x, y) \in X(\Omega) \times Y(\Omega), \, P((X, Y) = (x, y)) = P(X = x) \cdot P(Y = y)$.
+
+    On notera alors $X \sqcup Y$.
+\end{definition}
+
+\begin{corollaire}{}{}
+    En ce cas pour $A \subset X(\Omega)$, et $B \subset Y(\Omega)$,
+    $P((X \in A) \cap (Y \in B)) = P(X \in A) \cdot P(Y \in B)$.
+\end{corollaire}
+
+\begin{proposition}{indépendance par composition}{}
+    Soit $X$ une variable aléatoire discrète à valeurs dans $E$, et 
+    $Y$ une variable aléatoire discrète à valeurs dans $F$. 
+
+    Soient $f : E \to E'$ et $g : F \to F'$. Alors si $X$ et $Y$ sont indépendantes,
+    $f(X)$ et $g(Y)$ le sont également.
+\end{proposition}
+
+\begin{proof}
+    Soient $a \in f(X(\Omega))$, et $b \in g(Y(\Omega))$. Donc $a \in E'$ et $b \in F'$.
+
+    \begin{align}
+        P(f(X) = a, g(Y) = b) & = P(X \in f^{-1}(\{a\}), Y \in g^{-1}(\{b\})) \\
+        & = P(X \in f^{-1}(\{a\})) \cdot P(Y \in g^{-1}(\{b\})) \\
+        & = P(f(X) = a) \cdot P(g(Y) = b)
+    \end{align}
+
+    Donc $f(X)$ et $g(Y)$ sont indépendantes.
+\end{proof}
+
+\subsection{Extension aux familles de n variables }
+
+\begin{proposition}{n-uplet de variables aléatoires discrètes}{}
+    Soient $(X_1, \dots, X_n)$ des variables aléatoires discrètes sur 
+    $(\Omega, \mathcal A, P)$. On définit leur $n$-uplet 
+    $\fonction{(X_1, \dots, X_n)}{\Omega}{X_1(\Omega) \times \cdots \times X_n(\Omega)}{\omega}{(X_1(\omega), \dots, X_n(\omega))}$.
+
+    Il s'agit d'une variable aléatoire discrète. On dit que ces variables sont indépendantes 
+    ssi $\forall k \leqslant n, \forall i_1, \dots, i_k \in \ninter 1 n, \forall (x_{i_1}, \dots, x_{i_k}) \in X_{i_1}(\Omega) \times \cdots \times X_{i_k}(\Omega)$,
+    $$ P((X_{i_1}, \dots, X_{i_k}) = (x_{i_1}, \dots, x_{i_k})) = \prod_{j = 1}^k P(X_{i_j} = x_{i_j})$$
+\end{proposition}
+
+Les résultats du 2) se généralisent à ce cas. 
+
+\subsection{Lemme des coalitions} 
+
+\begin{theoreme}{lemme des coalitions}{}
+    Soient $X_1, \dots, X_n$ des variables aléatoires discrètes indépendantes. 
+    Soit $m \in \ninter{1}{n - 1}$, et $f : X_1(\Omega) \times \cdots \times X_m(\Omega) \to E$,
+    $g : X_{m + 1}(\Omega) \times \cdots \times X_n(\Omega) \to F$.
+
+    Alors les variables aléatoires discrètes $f(X_1, \dots, X_m)$ et $g(X_{m + 1}, \dots, X_n)$ sont indépendantes.
+\end{theoreme}
+
+\begin{proof}
+    Posons $Y = (X_1, \dots, X_m)$ et $Z = (X_{m + 1}, \dots, X_n)$.
+
+    Les $(X_i)$ étant indépendants, $Y$ et $Z$ sont indépendants, donc par composition $f(Y)$ et $g(Z)$ sont indépendantes,
+    c'est à dire $f(X_1, \dots, X_m)$ et $g(X_{m + 1}, \dots, X_n)$ sont indépendantes.
+\end{proof}
+
+\begin{proposition}{}{}
+    Le lemme des coalitions reste vrai si $n$ considère plus de 2 coalitions. 
+\end{proposition}
+
+\section{Espérance}
+Soit $(\Omega, \mathcal A, P)$ un espace probabilisé. 
+
+\subsection{Variables aléatoires à valeurs positives}
+
+\begin{definition}{espérance d'une variable aléatoire positive}{}
+    Soit $X$ une variable aléatoire discrète à valeurs dans $\R^+ \cup \{+\infty\}$.
+
+    L'espérance de $X$ est définie comme étant la somme dans $[0, + \infty]$ 
+    de la famille des $(x P(X = x) )_{x \in X(\Omega)}$. On la note $E(X)$.
+
+    \uindent{Cas 1 } $P(X = + \infty) > 0$, alors $E(X) = + \infty$.
+
+    \uindent{Cas 2 } $P(X = + \infty) = 0$, alors on a une famille de réels positifs. 
+    Il y a alors deux cas : 
+    \begin{itemize}
+        \item Cette famille n'est pas sommable. Alors $E(X) = + \infty$.
+        \item Cette famille est sommable. On dit que $X$ est d'espérance finie, et 
+        $$ E(X) = \sum_{x \in X(\Omega)} x P(X = x) $$
+    \end{itemize}
+\end{definition}
+
+\begin{remarque}
+    Cette somme a bien un sens, car la famille est composée de réels positifs.
+\end{remarque}
+
+\begin{proposition}{espérance vad sur N }{}
+    Soit $X$ une variable aléatoire discrète à valeurs dans $\N \cup \{+\infty\}$. Alors
+    $$ E(X) = \sum_{n = 1}^{+ \infty} P(X \geqslant n) $$
+\end{proposition}
+
+\begin{proof}
+    Si $P(X = + \infty) >0$, $E(X) = + \infty$ et
+
+    $\forall n \geqslant 1, \, P(X \geqslant n) \geqslant P(X = + \infty) > 0$, donc
+    $\displaystyle \sum_{n = 1}^{+ \infty} P(X \geqslant n) \geqslant \sum_{n = 1}^{+ \infty} P(X = + \infty) = + \infty$.
+
+    \avspace Sinon $\sum_{n \geqslant 1} P(X \geqslant n)$ est la somme d'une série à termes positifs
+    convergente ou divergente.
+
+    Donc 
+    \begin{align}
+        \sum_{n = 1}^{+ \infty} P(X \geqslant n) & = \sum_{n = 1}^{+ \infty} \sum_{k = n}^{+ \infty} P(X = k) \\
+        & = \sum_{n = 1}^{+ \infty} \sum_{p = 0}^{+ \infty} \mathbb 1_{p \geqslant n} P(X = p) \\
+        & = \sum_{p = 0}^{+ \infty} \sum_{n = 1}^{+ \infty} \mathbb 1_{p \geqslant n} P(X = p) \\
+        & = \sum_{p = 0}^{+ \infty} p P(X = p) = E(X)
+    \end{align}
+
+    En utilisant le théorème de Fubini positif. 
+
+\end{proof}
+
+\begin{proposition}{espérance loi uniforme}{}
+    Soient $a, b \in \N$ et $X \sim \mathcal U(\ninter{a}{b})$. Alors
+    $$ E(X) = \frac{a + b}{2} $$
+\end{proposition}
+
+\begin{proof}
+    Variable aléatoire discrète à valeurs dans $\ninter{a}{b}$, donc l'espérance existe. 
+    \begin{align}
+        E(X) & = \sum_{n = a}^b n P(X = n) \\
+        & = \sum_{n = a}^b \frac n {b - a + 1} \\
+        & = \sum_{n = a }^{b } \frac 1 2 \frac{((n + 1)^2 - n^2 - 1)}{b - a + 1} \\
+        & = \sum_{n = a }^{b } \left( \frac {(n + 1)^2 - n^2}{b - a + 1} \right) - \frac {b - a + 1} {2 (b - a + 1)} \\
+        & = \frac{(b + 1)^2 - a^2}{2 (b - a + 1)} - \frac{b - a + 1}{2 (b - a + 1)} \\
+        & = \frac{b^2 + 2b + 1 - a^2 - b + a - 1}{2 (b - a + 1)} \\
+        & = \frac{b^2 - a^2 + b + a}{2 (b - a + 1)} \\
+        & = \frac{(b - a)(b + a) + (b + a)}{2 ( b - a + 1)} \\
+        & = \frac{(b - a + 1)(b + a)}{2 (b - a + 1)} \\
+        & = \frac{a + b}{2}
+    \end{align}
+
+\end{proof}
+
+\begin{proposition}{espérance loi de Bernoulli}{}
+    Soit $p \in ]0, 1[$ et $X \sim \mathcal B(p)$. Alors 
+    $$ E(X) = p $$
+\end{proposition}
+
+\begin{proof}
+    Si $X \sim \mathcal B(p)$, alors $X(\Omega) = \{0, 1\}$.
+    Donc $E(X) = 0 \cdot P(X = 0) + 1 \cdot P(X = 1) = p$.
+\end{proof}
+
+\begin{proposition}{espérance loi binomiale}{}
+    Soit $n \geqslant 1$ et $p \in ]0, 1[$, et $X \sim \mathcal B(n, p)$. Alors 
+    $$ E(X) = n p $$
+\end{proposition}
+
+\begin{proof}
+    Si $X \sim \mathcal B(n, p)$, alors
+       $$ E(X) = \sum_{k = 0}^n k \binom n k p^k (1 - p)^{n - k} $$
+    
+    or
+    \begin{align}
+        k \binom n k & = k \frac{n!}{k!(n - k)!} \\
+        & = n \frac{n!}{(k - 1)! (n - 1 - (k - 1))!} \\
+        & = n \frac{(n - 1)!}{(k - 1)!(n - 1 - (k - 1)!)} \\
+        & = n \binom{n - 1}{k - 1}
+    \end{align}
+
+    Et donc 
+    \begin{align}
+        E(X) & = \sum_{k = 1}^n n \binom{n - 1}{k - 1} p^k (1 - p)^{n - k} \\
+        & = n \sum_{k = 0 }^{n - 1} \binom{n - 1}{k} p^{k + 1} (1 - p)^{n - 1 - k} \\
+        & = n p \sum_{k = 0}^{n - 1} \binom{n - 1}{k} p^k (1 - p)^{n - 1 - k} \\
+        & = n p
+    \end{align}
+        
+\end{proof}
+
+\begin{proposition}{espérance loi géométrique}{}
+    Soit $p \in ]0, 1[$ et $X \sim \mathcal G(p)$. Alors 
+    $$ E(X) = \frac 1 p $$
+\end{proposition}
+
+\begin{proof}
+    Si $X \sim \mathcal G(p)$, alors 
+    $$E(X) = \sum_{n = 1}^{+ \infty} n p (1 - p)^{n - 1}$$
+
+    Pour $x \in ]-1, 1[$, posons $\displaystyle f(x) = \sum_{n = 0}^{+ \infty} x^n = \frac 1 {1 - x}$.
+
+    Alors $f$ est somme de série entière de rayon de convergence $R = 1$, donc 
+    $f$ est $\mathscr C^{1}$ sur $]-1, 1[$, et
+    $\displaystyle f'(x) = \sum_{n = 1}^{+ \infty} n x^{n - 1} = \frac 1 {(1 - x)^2}$.
+
+    $E(X) = p f'\left( 1 - p \right) = p \frac 1 {p^2} = \frac 1 p$.
+
+\end{proof}
+
+\begin{proposition}{espérance loi de Poisson}{}
+    Soit $\lambda > 0$ et $X \sim \mathcal P(\lambda)$. Alors 
+    $$ E(X) = \lambda $$
+\end{proposition}
+
+\begin{proof}
+    Si $X \sim \mathcal P(\lambda)$, alors 
+    \begin{align}
+        E(X) & = \sum_{k = 0}^{+ \infty} k \frac{e^{- \lambda} \lambda^k}{k!} \\
+        & = e^{- \lambda} \sum_{k = 1}^{+ \infty} \frac{\lambda^k}{(k - 1)!} \\
+        & = e^{- \lambda} \lambda \sum_{k = 0}^{+ \infty} \frac{\lambda^k}{k!} \\
+        & = e^{- \lambda} \lambda e^{\lambda} = \lambda
+    \end{align}
+\end{proof}
+
+\subsection{Variables aléatoires discrètes à valeurs complexes}
+
+\begin{definition}{espérance d'une variable aléatoire discrète complexe}{}
+    Une variable aléatoire discrète dans $\C$ est dite d'espérance finie ssi 
+    $(x(P(X = x)))_{x \in X(\Omega)}$ est sommable dans $\C$. On définit alors 
+    son espérance par 
+    $$ E(X) = \sum_{x \in X(\Omega)} x P(X = x) $$
+
+    L'ensemble des variables aléatoires complexes d'espérance finie est notée $L^1$.
+    Ainsi, $X \in L^1$ signifie que $E(X)$ existe dans $\C$, c'est à dire que 
+    $(x P(X = x))_{x \in X(\Omega)}$ est sommable, c'est à dire que 
+    $\displaystyle \sum_{x \in X(\Omega)} |x| P(X = x) < + \infty   $.
+\end{definition}
+
+\begin{definition}{variables centrées}{}
+    Soit $X \in L^1$. On dit que $X$ est centrée ssi 
+    $$ E(X) = 0 $$    
+\end{definition}
+
+\subsection{Formule de transfert}
+
+\begin{theoreme}{formule de transfert}{}
+    Soit $X$ une variable aléatoire discrète, et soit $f : X(\Omega) \to \C$.
+    Alors $f \circ X$ que l'on note $f(X)$ est une variable aléatoire discrète complexe. 
+
+    Alors $f(X)$ est d'espérance finie ssi la famille $(f(x) P(X = x))_{x \in X(\Omega)}$ 
+    est d'espérance finie, et en ce cas
+    $$ E(f(X)) = \sum_{x \in X(\Omega)} f(x) P(X = x) $$
+\end{theoreme}
+
+\begin{proof}
+    Notons $X(\Omega) = \{x_i, i \in I\}$ ensemble au plus dénombrable. Alors 
+    $f(X)(\Omega) = \{f(y_j), j \in J\}$ aussi.
+
+    On a $X(\Omega) = \bigsqcup_{j \in J} \underbrace{f^{-1}(\{y_j\})}_{X_j}$.
+
+    Considérons la famille $(f(x) P(X = x))_{x \in X(\Omega)}$ par le théorème de sommation 
+    par paquets, elle est sommable ssi : 
+    \begin{itemize}
+        \item $\forall j \in J, \, (f(x) P(X = x))_{x \in X_j}$ est sommable
+        \item La famille $\displaystyle \left(\sum_{x \in X_j} f(x) P(X = x)\right)_{j \in J}$ est sommable
+    \end{itemize}
+
+    Or si $x \in X_j$, $|f(x)| P(X = x) = |y_j| P(X = x)$ famille sommable 
+    de somme $\displaystyle \sum_{x \in X_j} |f(x)| P(X = x) = |y_j| P(X \in X_j) = |y_j| P(f(X) = y_j)$.
+
+    Donc la famille $(f(x) P(X = x))_{x \in X_j}$ est sommable ssi 
+
+    $(|y| P(f(X) = y))_{y \in f(X(\Omega))}$ l'est 
+
+    ssi $f(X)$ est d'espérance finie
+    et en ce cas par théorème de sommation par paquets,
+    \begin{align}
+        \sum_{x \in X(\Omega)} f(x) P(X = x) & = \sum_{j \in J} y_j P(f(X) = y_j) \\
+        & = \sum_{y \in f(X(\Omega))} y P(f(X) = y) \\
+        & = E(f(X))
+    \end{align}
+\end{proof}
+
+\subsection{Propriétés de l'espérance}
+
+\begin{proposition}{espace vectoriel et linéarité}{}
+    $L^1$ est un $\C$-espace vectoriel, et l'espérance est linéaire, c'est à dire si 
+    $X, Y \in L^1$, et $\alpha, \beta \in \C$, alors
+    $$ E(\alpha X + \beta Y) = \alpha E(X) + \beta E(Y) $$
+\end{proposition}
+
+\idee{
+    Commencer par majorer, puis calculer une fois l'existence établie.
+}
+
+\begin{proof}
+    $L^1 \subset \mathscr F(\Omega, \C)$
+
+    $o \in L^1$
+
+    Soit $X \in L^1, \alpha \in \C^*$. 
+
+    Considérons $\fonction{f}{X(\Omega)}{\C}{x}{\alpha x}$.
+    Alors $f(X) \in L^1$ ssi $(\alpha x P(X = x))_{x \in X(\Omega)}$ est sommable,
+    ssi $(x P(X = x))_{x \in X(\Omega)}$ est sommable, ssi $X \in L^1$.
+
+    De plus par le théorème de transfert, 
+    $E(f(X)) = E(\alpha X) = \sum_{x \in X(\Omega)} \alpha x P(X = x) = \alpha E(X)$.
+
+    \lvspace Soient $X, Y \in L^1$.
+
+    Considérons $Z = (X, Y)$ et $\fonction{f}{X(\Omega) \times Y(\Omega)}{\C}{(x, y)}{x + y}$.
+
+    Alors par le théorème de transfert, $f(Z) = X + Y$ est d'espérance finie ssi
+
+    $(f(x, y) p(Z = (x, y)))_{(x, y) \in X(\Omega) \times Y(\Omega)}$ est sommable.
+
+    Et alors $\displaystyle E(X + Y) = \sum_{z \in f(X(\Omega) \times Y(\Omega))} f(z) P(Z = z)$.
+
+    Considérons dans $\R \cup \{+ \infty \}$ 
+    \begin{align}
+        \sum_{(x, y) \in X(\Omega) \times Y(\Omega)} |f(x, y)| P(Z = (x, y)) & = \sum_{x \in X(\Omega)} \sum_{y \in Y(\Omega)} |x + y| P(X = x, Y = y) \\
+        & \leqslant \sum_{x \in X(\Omega)} \sum_{y \in Y(\Omega)} (|x| + |y|) P(X = x, Y = y) \\
+        & \leqslant \sum_{x \in X(\Omega)} |x| \sum_{y \in Y(\Omega)} P(X = x, Y = y) + \sum_{y \in Y(\Omega)} |y| \sum_{x \in X(\Omega)} P(X = x, Y = y) \\
+        & \leqslant \sum_{x \in X(\Omega)} |x| P(X = x) + \sum_{y \in Y(\Omega)} |y| P(Y = y) \\
+        & \leqslant E(|X|) + E(|Y|) < + \infty
+    \end{align}
+
+    car $X, Y \in L^1$.
+
+    Et donc $X + Y$ est d'espérance finie, donc par le théorème de transfert, 
+    \begin{align}
+        E(X + Y) & = \sum_{(x, y) \in X(\Omega) \times Y(\Omega)} f(x, y) P(Z = (x, y)) \\
+        & = E(X) + E(Y)
+    \end{align}
+    par le même calcul que précédemment.
+\end{proof}
+
+
+
+\begin{proposition}{positivité de l'espérance}{}
+    Soit $X \in L^1$ telle que $X \geqslant 0$, alors $E(X) \geqslant 0$.    
+\end{proposition}
+
+\begin{proof}
+    Par définition, $E(X) = \sum_{x \in X(\Omega)} x P(X = x)$, 
+    or $X \geqslant 0$ et donc $\forall x \in X(\Omega), \, x \geqslant 0$.
+    Donc $E(X)$ est somme de réels positifs, donc $E(X) \geqslant 0$.
+\end{proof}
+
+\begin{proposition}{croissance de l'espérance}{}
+    Soient $X, Y \in L^1$ telles que $X \leqslant Y$, alors 
+    $$ E(X) \leqslant E(Y) $$
+    
+\end{proposition}
+
+\idee{
+    Linéarité et positivité.
+}
+
+\begin{proof}
+    $Y - X \in L^1$ par linéarité, et $Y - X \geqslant 0$.
+
+    Donc par positivité de l'espérance, $E(Y - X) \geqslant 0$, donc 
+    $E(Y) - E(X) \geqslant 0$, donc $E(X) \leqslant E(Y)$.
+\end{proof}
+
+\begin{proposition}{inégalité triangulaire de l'espérance}{}
+    Soit $X \in L^1$, alors $|X| \in L^1$ et
+    $$ |E(X)| \leqslant E(|X|) $$
+    
+\end{proposition}
+
+\idee{
+    Formule de transfert et inégalité triangulaire classique.
+}
+
+\begin{proof}
+    $X \in L^1$ ssi $(x P(X = x))_{x \in X(\Omega)}$ est sommable
+
+    ssi $(|x| P(X = x))_{x \in X(\Omega)}$ est sommable
+
+    ssi $|X| \in L^1$ par formule de transfert.
+
+    Alors 
+    \begin{align}
+        |E(X)| & = \left| \sum_{x \in X(\Omega)} x P(X = x) \right| \\
+        & \leqslant \sum_{x \in X(\Omega)} |x| P(X = x) \\
+        & = E(|X|)
+    \end{align} 
+\end{proof}
+
+\begin{proposition}{critère de nullité espérance}{}
+    Soit $X \in L^1$ telle que $X \geqslant 0$. Alors 
+    $$ E(X) = 0 \iff P(X = 0) = 1 $$
+    
+\end{proposition}
+
+\begin{proof}
+    \begin{align}
+        E(X) & = \sum_{x \in X(\Omega)} x P(X = x) \\
+        & = 0
+    \end{align}
+
+    famille sommable de réels positifs, donc $\forall x \in X(\Omega), \, x P(X = x) = 0$, 
+
+    donc $\forall x \in X(\Omega) \setminus \{0\}, \, P(X = x) = 0$.
+
+    Or $\displaystyle 1 = \sum_{x \in X(\Omega)} P(X = x)$ donc $P(X = 0) = 1$.
+\end{proof}
+
+\begin{proposition}{majoration et vad dans $L^1$}{}
+    Soit $X, Y$ deux variables aléatoires discrètes complexes. Si 
+    $|X| \leqslant Y$ et $Y \in L^1$, alors $X \in L^1$.
+\end{proposition}
+
+
+\begin{proof}
+    $Y - |X| \geqslant 0$ variable aléatoire à valeurs dans $\R^+$ 
+    
+    donc $E(Y - |X|) \geqslant 0$ dans $\bar \R$, par linéarité $E(Y) - E(|X|) \geqslant 0$
+
+    donc $E(|X|) \leqslant E(Y) < + \infty$.
+
+    Donc $X \in L^1$.
+\end{proof}
+
+\subsection{Cas des variables aléatoires indépendantes }
+
+\begin{theoreme}{espérance du produit de variables indépendantes}{}
+    Soient $X, Y \in L^1$ telles que $X \sqcup Y$. Alors 
+    $XY \in L^1$ et $E(XY) = E(X) E(Y)$.
+\end{theoreme}
+
+\idee{
+    Théorème de transfert et TGSCV.
+}
+
+\begin{proof}
+    Posons $Z = (X, Y)$ et $\fonction{f}{X(\Omega) \times Y(\Omega)}{\C}{(x, y)}{xy}$.
+
+    Donc $XY = f(Z)$.
+
+    Par le théorème de transfert, $XY$ est d'espérance finie ssi $(f(x, y)P((X, Y) = (x, y)))_{(x, y) \in X(\Omega) \times Y(\Omega)}$ est sommable, 
+    or pour $(x, y) \in X(\Omega) \times Y(\Omega)$, 
+    \begin{align}
+        f(x, y) P((X, Y) = (x, y)) & = x y P(X = x, Y = y) \\
+        & = x P(X = x) \cdot y P(Y = y)
+    \end{align}
+    termes généraux de deux familles sommables, 
+    
+    donc $XY \in L^1$ et 
+    $E(XY) = \displaystyle \sum_{x \in X(\Omega)} x P(X = x) \sum_{y \in Y(\Omega)} y P(Y = y) = E(X) E(Y)$.
+\end{proof}
+
+\begin{proposition}{}{}
+    Soient $(X_1, \dots, X_p)$ dans $L^1$ mutuellement indépendantes, alors 
+    $\displaystyle \prod_{j = 1}^p X_j \in L^1$ et 
+    $$E\left( \prod_{j = 1}^{p } X_j \right) = \prod_{j = 1 }^{ p } E(X_j)$$
+\end{proposition}
+
+\idee{
+    Récurrence et lemme des coalitions. 
+}
+
+\begin{proof}
+    Par récurrence sur $p$. 
+
+    Supposons le résultat vrai au rang $p$, et montrons le au rang $p + 1$.
+
+    Soient $(X_1, \dots, X_{p + 1})$ dans $L^1$ mutuellement indépendantes.
+
+    Posons $\displaystyle Z = \prod_{j = 1 }^{ p } X_j$, alors on a par HR 
+    $Z \in L^1$ et $E(Z) = \prod_{j = 1 }^{ p } E(X_j)$.
+
+    Par le lemme des coalitions, $Z$ et $X_{p + 1}$ sont indépendantes.
+
+    Donc par le théorème précédent, 
+    $\displaystyle \prod_{j = 1 }^{p + 1} X_j = Z X_{p + 1} \in L^1$ et
+    $E(Z X_{p + 1}) = E(Z) E(X_{p + 1}) = \prod_{j = 1}^{p + 1} E(X_j)$.
+\end{proof}
+
+\section{Variance, covariance et écart-type }
+
+Soit $(\Omega, \mathcal A, P)$ un espace probabilisé. Toutes les variables aléatoires 
+considérées dans ce paragraphe sont réelles. 
+
+\subsection{Variables aléatoires possédant un moment d'ordre 2 }
+
+\begin{definition}{moment d'ordre 2}{}
+    Soit $X$ une variable aléatoire discrète réelle. 
+
+    On dit que $X$ possède un moment d'ordre 2 ssi $X^2 \in L^1$, c'est à dire que
+    $X^2$ est d'espérance finie.
+
+    L'ensemble des variables aléatoires discrètes réelles possédant un moment d'ordre 2 
+    est noté $L^2$.
+\end{definition}
+
+
+
+\begin{proposition}{relation entre L2 et L1}{}
+    Soit $X$ une variable aléatoire discrète réelle possédant un moment d'ordre $2$, 
+    alors $X$ est d'espérance finie, c'est à dire $L^2 \subset L^1$.
+\end{proposition}
+
+\begin{proof}
+    Soit $X \in L^2$. 
+
+    On a $1 \in L^1$, or $(|X| -1 )^2 \geqslant 0$, donc 
+    $X^2 - 2 |X| + 1 \leqslant 0$. 
+
+    Donc $|X| \leqslant \frac 1 2[1 + X^2]$. 
+
+    Donc $X \in L^1$. 
+\end{proof}
+
+\begin{proposition}{nature de L2}{}
+    $L^2$ est un $\R$-espace vectoriel. 
+\end{proposition}
+
+\uindent{Lemme } Si $X, Y \in L^2$, alors $XY \in L^1$.
+
+\idee{
+    Majorer $|XY|$ puis utiliser le fait que $L^2 \subset L^1$.
+}
+
+\begin{proof}
+    $(|X| - |Y|)^2 \geqslant 0$, donc $|XY| \leqslant \frac 1 2 (X^2 + Y^2)$.
+
+    Donc par majoration, $XY \in L^1$.
+
+    $L^2 \subset L^1$ qui est un $\mathbb R$ espace vectoriel. 
+
+    Soient $\alpha, \beta \in \R$ et $X, Y \in L^2$. Alors 
+
+    \begin{align}
+        (\alpha X + \beta Y)^2 & = \alpha^2 X^2 + \beta^2 Y^2 + 2 \alpha \beta XY \\
+        & \leqslant \alpha^2 X^2 + \beta^2 Y^2 + 2 \alpha \beta XY
+    \end{align}
+
+    Donc par majoration, $(\alpha X + \beta Y)^2 \in L^1$, donc $\alpha X + \beta Y \in L^2$.
+\end{proof}
+
+\subsection{Inégalité de Cauchy-Schwarz }
+
+\begin{theoreme}{inégalité de Cauchy-Schwarz}{}
+    Soient $X, Y \in L^2$, alors $XY \in L^1$ et
+    $$ (E(XY))^2 \leqslant E(X^2) E(Y^2) $$
+\end{theoreme}
+
+\begin{proof}
+    Pour tout réel $t \in \mathbb{R}$, considérons la variable aléatoire positive 
+    
+    $(tX + Y)^2$.
+    Son espérance est donc positive ou nulle :
+    $$ \forall t \in \mathbb{R}, \quad E\left( (tX + Y)^2 \right) \geqslant 0 $$
+    
+    En développant l'expression et en utilisant la linéarité de l'espérance, nous obtenons :
+    $$ t^2 E(X^2) + 2t E(XY) + E(Y^2) \geqslant 0 $$
+    
+    Considérons cette expression comme un polynôme $P$ en la variable $t$, de la forme $P(t) = A t^2 + Bt + C$ avec :
+    $$ A = E(X^2), \quad B = 2E(XY), \quad C = E(Y^2) $$
+    
+    Distinguons deux cas :
+    
+    \textbf{1. Cas principal :} Si $E(X^2) > 0$.
+    $P(t)$ est un polynôme du second degré. Puisqu'il est positif ou nul pour tout $t$ (sa parabole est au-dessus de l'axe des abscisses), son discriminant $\Delta$ doit être négatif ou nul :
+    $$ \Delta = B^2 - 4AC \leqslant 0 $$
+    
+    En remplaçant $A, B, C$ par leurs valeurs :
+    $$ (2E(XY))^2 - 4 E(X^2) E(Y^2) \leqslant 0 $$
+    $$ 4 (E(XY))^2 \leqslant 4 E(X^2) E(Y^2) $$
+    
+    En simplifiant par 4, nous obtenons l'inégalité de Cauchy-Schwarz :
+    $$ (E(XY))^2 \leqslant E(X^2) E(Y^2) $$
+    
+    \textbf{2. Cas dégénéré :} Si $E(X^2) = 0$.
+    Alors $X = 0$ presque sûrement, ce qui implique que le produit $XY = 0$ presque sûrement. 
+    L'inégalité devient $0 \leqslant 0$, ce qui est toujours vérifié.
+\end{proof}
+
+\begin{proposition}{cas d'égalité de Cauchy-Schwarz}{}
+    Soient $X, Y \in L^2$, alors $E(XY)^2 = E(X^2) E(Y^2)$ ssi 
+    $\begin{cases}
+        P(X = 0) = 1 \\
+        \text{ou} \\
+        \exists \alpha \in \R, \, P(Y = \alpha X) = 1
+    \end{cases}$
+\end{proposition}
+
+\begin{proof}
+    Cas 1 : $E(X^2) = 0$ alors $E(XY) =0$ et égalité. En ce cas $P(X^2 = 0) = 1$ donc 
+    $P(X = 0) = 1$.
+
+    \uindent{Cas 2 } $E(X^2) \neq 0$ en ce cas égalité ssi $\Delta = 0$, c'est à dire
+    
+    ssi $\exists \alpha \in \R, \, E((\alpha X + Y)^2) = 0$
+
+    ssi $\exists \alpha \in \R, \, P(\alpha X + Y = 0) = 1$
+\end{proof}
+
+\subsection{Variance et écart type }
+
+\begin{definition}{variance et écart type}{}
+    Soit $X \in L^2$. On définit la variance de $X$ par : 
+    $$V(X) = E\left( (X - E(X))^2 \right) $$
+
+    Son écart type : 
+    $$ \sigma(X) = \sqrt{V(X)} $$
+
+    On dit que $X$ est réduite ssi $\sigma(X) = 1$. 
+\end{definition}
+
+\begin{proposition}{critère de nullité de la variance}{}
+    Soit $X \in L^2$, alors $V(X) = 0$ ssi 
+    $\exists a \in \R$, $P(X = a) = 1$.
+\end{proposition}
+
+\begin{proof}
+    Si $P(X = a) = 1$, alors $E(X) = a$.
+
+    Donc $P((X - a)^2 = 0) = 1$, donc $E((X - a)^2) = 0$ donc $V(X) = 0$.
+
+    \uindent{Réciproquement } Si $V(X) = 0$, posons $a = E(X)$.
+
+    $E((X - a)^2) = 0$ or $(X - a)^2 \geqslant 0$, donc $P((X - a)^2 = 0) = 1$.
+\end{proof}
+
+\begin{proposition}{affine de la variance}{}
+    Soit $X \in L^2$, $a, b \in \R$. Alors $V(a X + b) = a^2 V(X)$ et 
+    $\sigma(a X + b) = |a| \sigma(X)$.
+\end{proposition}
+
+\begin{proof}
+    \begin{align}
+        V(a X + b) & = E\left( (a X + b - E(a X + b))^2 \right) \\
+        & = E\left( (a X - a E(X))^2 \right) \\
+        & = a^2 E\left( (X - E(X))^2 \right) \\
+        & = a^2 V(X)        
+    \end{align}
+\end{proof}
+
+\begin{corollaire}{variable centrée réduite}{}
+    Soit $X \in L^2$, tel que $\sigma \neq 0$. Alors 
+    $Y = \frac{X - E(X)}{\sigma(X)}$ est une variable aléatoire centrée réduite.
+\end{corollaire}
+
+\begin{proof}
+    $E(Y) = \frac{E(X) - E(X)}{\sigma(X)} = 0$ et 
+    $\sigma(Y) = \frac{\sigma(X)}{\sigma(X)} = 1$.
+\end{proof}
+
+\begin{proposition}{formule de König - Huygens}{}
+    Soit $X \in L^2$, alors
+    $$ V(X) = E(X^2) - (E(X))^2 $$
+\end{proposition}
+
+\begin{proof}
+    \begin{align}
+        V(X) & = E\left( (X - E(X))^2 \right) \\
+        & = E(X^2 - 2 X E(X) + (E(X))^2) \\
+        & = E(X^2) - 2 E(X) E(X) + (E(X))^2 \\
+        & = E(X^2) - (E(X))^2
+    \end{align}
+\end{proof}
+
+\subsubsection{Variance des lois classiques }
+
+\begin{proposition}{variance loi de Bernoulli}{}
+    Soit $p \in ]0, 1[$ et $X \sim \mathcal B(p)$. Alors 
+    $$ V(X) = p(1 - p) $$
+\end{proposition}
+
+\begin{proof}
+    $X \sim \mathcal B(p)$ 
+
+    $E(X^2) = 0^2 (1 - p) + 1^2 p = p$
+
+    Donc $V(X) = E(X^2) - (E(X))^2 = p - p^2 = p(1 - p)$.
+\end{proof}
+
+
+\begin{proposition}{variance loi binomiale}{}
+    Soit $n \geqslant 1$ et $p \in ]0, 1[$, et $X \sim \mathcal B(n, p)$. Alors 
+    $$ V(X) = n p (1 - p) $$
+\end{proposition}
+
+\idee{
+    Utiliser la relation $E(X^2) = E(X(X - 1)) + E(X)$.
+}
+
+\begin{proof}
+    $X \sim \mathcal B(n, p)$
+
+    Pour $k \geqslant 1$, $\displaystyle k \binom n k = n \binom{n - 1}{k - 1}$
+
+    $E(X^2) = E(X(X - 1) + X) = E(X(X - 1)) + E(X)$
+
+    \begin{align}
+        E(X(X - 1)) & = \sum_{k = 0}^n k (k - 1) \binom n k p^k (1 - p)^{n - k} \\
+        & = \sum_{k = 2}^n n (k - 1) \binom {n - 1}{k - 1} p^k (1 - p)^{n - k} \\
+        & = n \sum_{k = 2 }^{n } (n - 1) \binom{n - 2}{k - 2} p^k (1 - p)^{n - k} \\
+        & = n (n - 1) p^2 \sum_{j = 0}^{n - 2} \binom{n - 2}{j} p^j (1 - p)^{n - 2 - j} \\
+        & = n (n - 1) p^2
+    \end{align}
+
+    \begin{align}
+        V(X) & = n(n - 1) p^2 + np - n^2 p^2 \\
+        & = n p [(n - 1) p + 1 - n p] \\
+        & = n p (1 - p)
+    \end{align}
+\end{proof}
+
+\begin{proposition}{variance loi géométrique}{}
+    Soit $p \in ]0, 1[$ et $X \sim \mathcal G(p)$. Alors 
+    $$ V(X) = \frac{1 - p}{p^2} $$
+\end{proposition}
+
+\begin{proof}
+    Si $X \sim \mathcal G(p)$, alors
+    $E(X(X - 1)) = \displaystyle \sum_{k = 2}^{+ \infty} k (k - 1) p (1 - p)^{k - 1}$ (transfert).
+
+    Posons $\displaystyle f(x) = \sum_{k = 0}^{+ \infty} x^k = \frac 1 {1 - x}$.
+
+    $x \in ]-1, 1[$, $f'(x) = \displaystyle \sum_{k = 1}^{+ \infty} k x^{k - 1} = \frac 1 {(1 - x)^2}$.
+
+    $f''(x) = \displaystyle \sum_{k = 2}^{+ \infty} k (k - 1) x^{k - 2} = \frac 2 {(1 - x)^3}$.
+
+    \begin{align}
+        E(X(X - 1)) & = (1 - p) p f''(1 - p) \\
+        & = (1 - p) p \frac 2 {p^3} \\
+        & = \frac{2 (1 - p)}{p^2}
+    \end{align}
+
+    \begin{align}
+        V(X) & = E(X(X - 1)) + E(X) - (E(X))^2 \\
+        & = \frac{2 (1 - p)}{p^2} + \frac 1 p - \frac 1 {p^2} \\
+        & = \frac{1 - p}{p^2}
+    \end{align}
+\end{proof}
+
+\begin{proposition}{variance et espérance loi de Poisson}{}
+    Soit $\lambda > 0$ et $X \sim \mathcal P(\lambda)$. Alors 
+    $$ V(X) = \lambda $$
+\end{proposition}
+
+\begin{proof}
+    Si $X \sim \mathcal P(\lambda)$, alors 
+    \begin{align}
+        E(X(X - 1)) & = \sum_{k = 0}^{+ \infty} k (k - 1) \frac{e^{- \lambda} \lambda^k}{k!} \\
+        & = e^{- \lambda} \sum_{k = 2}^{+ \infty} \frac{\lambda^k}{(k - 2)!} \\
+        & = e^{- \lambda} \lambda^2 \sum_{k = 0}^{+ \infty} \frac{\lambda^k}{k!} \\
+        & = e^{- \lambda} \lambda^2 e^{\lambda} = \lambda^2
+    \end{align}
+
+    \begin{align}
+        V(X) & = E(X(X - 1)) + E(X) - (E(X))^2 \\
+        & = \lambda^2 + \lambda - \lambda^2 = \lambda
+    \end{align}
+\end{proof}
+
+\subsection{Covariance }
+
+\begin{definition}{covariance}{}
+    Soient $X, Y \in L^2$. On définit leur covariance par : 
+    $$ \cov(X, Y) = E\left( (X - E(X))(Y - E(Y)) \right) $$
+
+    En particulier, $\cov(X, X) = V(X)$.
+\end{definition}
+
+\begin{proposition}{formule de la covariance}{}
+    Soient $X, Y \in L^2$. Alors 
+    $$ \cov(X, Y) = E(XY) - E(X) E(Y) $$
+\end{proposition}
+
+\begin{proof}
+    \begin{align}
+        \cov(X, Y) & = E\left( (X - E(X))(Y - E(Y)) \right) \\
+        & = E(XY - X E(Y) - Y E(X) + E(X) E(Y)) \\
+        & = E(XY) - E(X) E(Y) - E(Y) E(X) + E(X) E(Y) \\
+        & = E(XY) - E(X) E(Y)
+    \end{align}
+\end{proof}
+
+\begin{definition}{décorrélation}{}
+    Soient $X, Y \in L^2$. On dit que $X$ et $Y$ sont \textbf{décorellées} ssi 
+    $$ \cov(X, Y) = 0 $$
+    c'est à dire ssi $E(XY) = E(X) E(Y)$.
+\end{definition}
+
+\begin{proposition}{indépendance et décorellation}{}
+    Si $X$ et $Y$ sont indépendantes, alors elles sont décorellées, donc $\cov(X, Y) = 0$.
+\end{proposition}
+
+\begin{remarque}
+    La réciproque est fausse. 
+\end{remarque}
+
+\begin{theoreme}{variance de la somme de variables}{}
+    Soient $(X_i)_{1 \leqslant i \leqslant n}$ suite de $L^2$. Alors 
+    $$ V\left( \sum_{i = 1}^n X_i \right) = \sum_{i = 1}^n V(X_i) + 2 \sum_{1 \leqslant i < j \leqslant n} \cov(X_i, X_j) $$
+\end{theoreme}
+
+\begin{corollaire}{variance de la somme de variables décorellées}{}
+    Si les $X_i$ sont 2 à 2 décorellées, alors
+    $$ V\left( \sum_{i = 1}^n X_i \right) = \sum_{i = 1}^n V(X_i) $$
+\end{corollaire}
+
+\begin{proof}
+    \begin{align}
+        V \left( \sum_{i = 1}^n X_i \right) & = E \left( \sum_{i = 1}^n X_i \right)^2 - \left( E \left( \sum_{i = 1}^n X_i \right) \right)^2 \\
+        & = E \left( \sum_{i = 1}^n X_i^2 + 2 \sum_{1 \leqslant i < j \leqslant n} X_i X_j \right) - \left( \sum_{i = 1}^n E(X_i) \right)^2 \\
+        & = \sum_{i = 1}^n E(X_i^2) + 2 \sum_{1 \leqslant i < j \leqslant n} E(X_i X_j) - \left( \sum_{i = 1}^n E(X_i)^2 + 2 \sum_{1 \leqslant i < j \leqslant n} E(X_i) E(X_j) \right) \\
+    \end{align}
+\end{proof}
+
+\section{Inégalités probabilistes }
+\subsection{Inégalité de Markov}
+
+\begin{proposition}{inégalité de Markov}{}
+    Soit $X \in L^1$ et $a > 0$, alors 
+    $$ P(|X| \geqslant a) \leqslant \frac{E(|X|)}{a} $$
+\end{proposition}
+
+\begin{proof}
+    \begin{align}
+        E(|X|) & = \sum_{x \in X(\Omega)} |x| P(X = x) \\
+        & \geqslant \sum_{\substack{x \in X(\Omega) \\ |x| \geqslant a}} |x| P(X = x) \\
+        & \geqslant \sum_{\substack{x \in X(\Omega) \\ |x| \geqslant a}} a P(X = x) \\
+        & = a P(|X| \geqslant a)
+    \end{align}
+\end{proof}
+
+\subsection{Inégalité de Bienaymé Tchebychev}
+
+\begin{theoreme}{inégalité de Bienaymé Tchebychev}{}
+    Soit $X \in L^2$. Notons $m = E(X)$ et $\sigma = \sigma(X)$.
+    Alors $$\forall \varepsilon > 0, P(|X - m| \geqslant \varepsilon) \leqslant \frac{\sigma^2}{\varepsilon^2}$$
+\end{theoreme}
+
+\begin{proof}
+    Posons $Y = (X - m)^2$, $a = \varepsilon^2$.
+
+    Par Markov, $P(|Y| \geqslant a) \leqslant \frac{E(|Y|)}{a}$.
+
+    Donc $P(|X - m| \geqslant \varepsilon) \leqslant \frac{\sigma^2}{\varepsilon^2}$.
+\end{proof}
+
+\subsection{Loi faible des grands nombres }
+
+\begin{proposition}{une inégalité de concentration}{}
+    Soit $(X_n)_{n \in \N}$ suite de variables aléatoires iid de $L^2$. 
+
+    Notons $\displaystyle S_n = \sum_{k = 1 }^{n } X_k$ et $\forall n \in \N, \, m = E(X_n)$ et $\sigma = \sigma(X_n)$.
+    Alors $$P\left( \left| \frac{S_n}{n} - m \right| \geqslant \varepsilon \right) \leqslant \frac{\sigma^2}{n \varepsilon^2}$$
+\end{proposition}
+
+\begin{proof}
+    On pose $X = \frac{S_n}{n}$ et $\displaystyle E(X) = \frac{\sum_{i = 1 }^{n } E(X_i)} n$. 
+
+    $\displaystyle V(X) = V\left( \frac 1 n \sum_{i = 1 }^{ n } X_i \right) = \frac 1 {n^2} \sum_{i = 1 }^{ n } V(X_i) = \frac{\sigma^2}{n}$.
+
+    Par Bienaymé Tchebychev,
+    $\displaystyle P\left( \left| \frac{S_n}{n} - m \right| \geqslant \varepsilon \right) = P(|X - E(X)| \geqslant \varepsilon) \leqslant \frac{\sigma^2}{n \varepsilon^2}$.
+\end{proof}
+
+\begin{proposition}{loi faible des grands nombres}{}
+    Soit $(X_n)_{n \in \N}$ suite iid de $L^2$. 
+    $\displaystyle S_n = \sum_{k = 1 }^{ n } X_k$ et $m = E(X_n)$. Alors 
+    $\forall \varepsilon > 0,$  $$P\left( \left| \frac{S_n}{n} - m \right| \geqslant \varepsilon \right) \xrightarrow[n \to + \infty]{} 0$$
+\end{proposition}
+
+\section{Fonctions génératrices }
+
+Soit $(\Omega, \mathcal A, P)$ un espace probabilisé. 
+
+\begin{definition}{fonction génératrice}{}
+    Soit $X$ une variable aléatoire à valeurs dans $\N$.
+
+    On définit pour tout $t \in \R$, lorsque cette série converge, 
+    $$ G_X(t) = \sum_{k = 0 }^{\infty } P(X = k) t^k $$
+    appelée fonction génératrice de $X$.
+
+    Lorsque $G_X(t)$ converge on a, par la formule de transfert,
+    $$ G_X(t) = E(t^X) $$
+\end{definition}
+
+\begin{theoreme}{rayon de convergence et continuité fonction génératrice}{}
+    Soit $X$ une variable aléatoire à valeurs dans $\N$. La série entière 
+    $G_X$ a un rayon de convergence supérieur ou égal à 1. 
+
+    La convergence est normale sur $[-1, 1]$, donc $G_X$ est continue sur $[-1, 1]$.
+\end{theoreme}
+
+\begin{proof}
+    En $t = 1$ la série converge donc le rayon de convergence $R \geqslant 1$.
+
+    Soit $t $ tel que $|t| \leqslant 1$, alors 
+    $|P(X = k) t^k| \leqslant P(X = k)$ terme général d'une série convergente d'où la 
+    convergence normale, et la continuité sur $[-1, 1]$.
+\end{proof}
+
+\subsection{Cas des lois usuelles }
+
+\begin{proposition}{fonction génératrice loi de Bernoulli}{}
+    Soit $p \in ]0, 1[$ et $X \sim \mathcal B(p)$. Alors 
+    $$ G_X(t) = q + p t $$
+    pour tout $t \in \R$, donc $R = + \infty$.
+\end{proposition}
+
+\begin{proof}
+    Si $X \sim \mathcal B(p)$, $t \in [-1, 1]$, alors
+    \begin{align}
+        G_X(t) & = \sum_{k = 0}^1 P(X = k) t^k \\
+        & = (1 - p) t^0 + p t^1 \\
+        & = 1 - p + p t
+    \end{align}
+\end{proof}
+
+\begin{proposition}{fonction génératrice loi binomiale}{}
+    Soit $n \geqslant 1$ et $p \in ]0, 1[$, et $X \sim \mathcal B(n, p)$. Alors 
+    $$ G_X(t) = (1 - p + p t)^n $$
+    pour tout $t \in \R$, donc $R = + \infty$.
+\end{proposition}
+
+\begin{proof}
+    Si $X \sim \mathcal B(n, p)$, $t \in [-1, 1]$ et $n \in \N^*$, alors
+    \begin{align}
+        G_X(t) & = \sum_{k = 0}^n \binom n k p^k (1 - p)^{n - k} t^k \\
+        & = \sum_{k = 0}^n \binom n k (p t)^k (1 - p)^{n - k} \\
+        & = (1 - p + p t)^n
+    \end{align}
+\end{proof}
+
+\begin{proposition}{fonction génératrice loi géométrique}{}
+    Soit $p \in ]0, 1[$ et $X \sim \mathcal G(p)$. Alors 
+    $$ G_X(t) = \frac{pt}{1 - q t} $$
+    pour tout $t \in \left]-\frac 1 q, \frac 1 q \right[$, donc 
+    $R = \frac 1 q $.
+\end{proposition}
+
+\begin{proof}
+    Si $X \sim \mathcal G(p)$, $t \in [-1, 1]$, alors
+    \begin{align}
+        G_X(t) & = \sum_{k = 1}^{\infty} p (1 - p)^{k - 1} t^k \\
+        & = \frac{pt}{1 - (1 - p) t} \\
+        & = \frac{pt}{1 - qt}
+    \end{align}
+\end{proof}
+
+\begin{proposition}{fonction génératrice loi de Poisson}{}
+    Soit $\lambda > 0$ et $X \sim \mathcal P(\lambda)$. Alors 
+    $$ G_X(t) = e^{\lambda (t - 1)} $$
+    pour tout $t \in \R$, donc $R = + \infty$.
+\end{proposition}
+
+\begin{proof}
+    Si $X \sim \mathcal P(\lambda)$, $t \in \R$, alors
+    \begin{align}
+        G_X(t) & = \sum_{k = 0}^{\infty} \frac{e^{- \lambda} \lambda^k}{k!} t^k \\
+        & = e^{- \lambda} \sum_{k = 0}^{\infty} \frac{(\lambda t)^k}{k!} \\
+        & = e^{- \lambda} e^{\lambda t} \\
+        & = e^{\lambda (t - 1)}
+    \end{align}
+\end{proof}
+
+\begin{theoreme}{récupération de la loi à partir de la fonction génératrice}{}
+    Soit $X$ une variable aléatoire à valeurs dans $\N$ de fonction génératrice $G_X$.
+    Alors $$\forall k \in \N, \, P(X = k) = \frac{G_X^{(k)}(0)}{k!}$$
+\end{theoreme}
+
+\begin{corollaire}{égalité des lois à partir de la fonction génératrice}{}
+    Soient $X, Y$ variables aléatoires discrètes à valeurs dans $\N$.
+    Si $G_X = G_Y$, alors $X$ et $Y$ ont la même loi.
+\end{corollaire}
+
+\begin{proof}
+    $G_X$ est un série entière de rayon de convergence non nul. 
+\end{proof}
+
+\subsection{Lien avec les moments}
+
+\begin{theoreme}{}{}
+    Soit $X$ une variable aléatoire à valeurs dans $\N$. Alors $X$ est 
+    d'espérance finie ssi $G_X$ est dérivable en $1$ et dans ce cas
+    $$ E(X) = G_X'(1) $$
+\end{theoreme}
+
+\begin{proof}
+    $\Leftarrow$ : non exigible 
+
+    $\Rightarrow$ : Supposons que $X$ est d'espérance finie.
+    
+    \uindent{Si $R = 1$ }
+
+    Alors 
+    $(k P(X = k))_{k \in \N}$ est sommable. 
+
+    Or $\forall t \in [-1, 1]$, $G_X(t) = \sum_{k = 0}^{\infty} \underbrace{P(X = k) t^k}_{U_k(t)}$.
+
+    $U_k$ est $\mathscr C^1$ et $u'_k(t) = k P(X = k) t^{k - 1}$.
+
+    Donc $\forall t \in [-1, 1]$, $|u'_k(t)| \leqslant k P(X = k)$ terme général d'une série convergente 
+    indépendante de $t$. 
+
+    Donc $\sum u'_k$ converge normalement sur $[-1, 1]$.
+
+    Donc $G_X$ dérivable en $1$ et $\displaystyle G'_X(1) = \sum_{k = 0}^{\infty} k P(X = k) 1^{k - 1} = E(X)$.
+
+    \uindent{Si $R > 1$ }
+
+    $G_X$ est dérivable en $1$ car $1$ est à l'intérieur de $]-R, R[$
+    et $\forall t \in ]-R, R[$, $\displaystyle G'_X(t) = \sum_{k = 0}^{\infty} k P(X = k) t^{k - 1}$.
+\end{proof}
+
+\begin{corollaire}{variance avec fonction génératrice}{}
+    Soit $X$ une variable aléatoire discrète à  valeurs dans $\N$ possédant un moment 
+    d'ordre $2$, c'est à dire $X \in L^2$. Alors 
+    $G_X$ est dérivable deux fois en $1$ et
+    $$ G''_X(1) = E(X(X - 1)) $$
+
+    Donc $$ V(X) = G''_X(1) + G'_X(1) - (G'_X(1))^2 $$
+\end{corollaire}
+
+\begin{proof}
+    Si $X \in L^2$, si $R = 1$ alors 
+    $\forall t \in [-1, 1]$ et 
+    \begin{align}
+        |u''_k(t)| & \leqslant k(k - 1) P(X = k) \\
+        & \leqslant k^2 P(X = k)
+    \end{align}
+    terme général d'une série convergente indépendante de $t$.
+
+    Donc $\sum_{k \geqslant 0} u''_k$ converge normalement sur $[-1, 1]$ et 
+    $$G''_X(1) = \sum_{k = 0}^{\infty} k (k - 1) P(X = k) = E(X(X - 1))$$
+
+    Si $R > 1$, $G_X$ est $\mathscr C^2$ sur $]-R, R[$ donc en dérivant 2 fois en 1 on obtient 
+    la même chose.
+
+    Donc \begin{align}
+        V(X) & = E(X^2) - (E(X))^2 \\
+        & = E(X(X - 1)) + E(X) - (E(X))^2 \\
+        & = G''_X(1) + G'_X(1) - (G'_X(1))^2
+    \end{align}
+    car $X \in L^2$ donc $X \in L^1$.
+\end{proof}
+
+\subsection{Fonction génératrice d'une somme }
+
+\begin{theoreme}{}{}
+    Soient $X_1, \dots, X_n$ des variables aléatoires discrètes à valeurs dans $\N$ mutuellement 
+    indépendantes. Alors $\forall t \in [-1, 1]$,
+    $$ G_{X_1 + \cdots + X_n}(t) = \prod_{i = 1}^n G_{X_i}(t) $$
+\end{theoreme}
+
+\begin{proof}
+    Soit $t \in [-1, 1]$.
+
+    $G_{X_1 + \cdots + X_n}(t) = E\left( t^{X_1 + \cdots + X_n} \right)$
+
+    Donc $G_{X_1 + \cdots + X_n}(t) = E\left( \prod_{i = 1 }^{n } t^{X_i} \right)$
+    Or les $X_i$ sont mutuellement indépendantes, donc par le lemme des coalitions, 
+    $(t^{X_i})_{1 \leqslant i \leqslant n}$ sont mutuellement indépendantes.
+
+    Donc 
+    \begin{align}
+        G_{X_1 + \cdots + X_n}(t) & = \prod_{i = 1 }^{ n } E\left( t^{X_i} \right) \\
+        & = \prod_{i = 1 }^{ n } G_{X_i}(t)
+    \end{align}
+\end{proof}

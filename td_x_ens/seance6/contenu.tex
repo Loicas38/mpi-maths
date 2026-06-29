@@ -1,0 +1,190 @@
+\begin{theoreme}{}{}
+    Soit $E$ un espace vectoriel normé de dimension quelconque, et soit $K \subset E$, alors 
+    $K$ est compact (1) ssi (2) $K$ pour toute famille d'ouverts $\{U_i\}_{i \in I}$ telle que
+    \[
+        K \subset \bigcup_{i \in I} U_i,
+    \]
+    il existe un sous-ensemble fini $J \subset I$ tel que 
+    \[
+        K \subset \bigcup_{j \in J} U_j.
+    \]
+
+\end{theoreme}
+
+\begin{proof}
+    Montrons (1) $\implies$ (2). Supposons donc que $K$ est compact. 
+
+    \uindent{Etape 1 } Montrons que $\forall \varepsilon > 0, exists N \in \N, \exists (x_1, \ldots, x_N) \in K^N$ tel que
+    $\displaystyle K \subset \bigcup_{i=1}^N B(x_i, \varepsilon)$
+
+    Montrons le par l'absurde : supposons qu'il existe $\varepsilon > 0$ tel que pour tout $N \in \N$ et pour tout $(x_1, \ldots, x_N) \in K^N$,
+    \[
+        K \not\subset \bigcup_{i=1}^N B(x_i, \varepsilon).
+    \]
+
+    Pour $N = 1$ : soit $x_0 \in K$, alors $K \not\subset B(x_0, \varepsilon)$, donc il existe $x_1 \in K$ tel que $x_1 \notin B(x_0, \varepsilon)$.
+
+    Donc $d(x_1, x_0) \geq \varepsilon$.
+
+    Pour $N = 2$ : soit $(x_0, x_1)$ comme précédemment, alors $K \not\subset B(x_0, \varepsilon) \cup B(x_1, \varepsilon)$, donc
+    il existe $x_2 \in K$ tel que $x_2 \notin B(x_0, \varepsilon) \cup B(x_1, \varepsilon)$.
+
+    Et ainsi de suite, donc on construit une suite $(x_n)_{n \in \N}$ dans $K$ telle que
+    $\exists (x_n) \in K^\N, \, \forall n \in \N, \, \forall k \in \ninter 0 {n - 1}, \, d(x_n, x_k) \geq \varepsilon$.
+
+    Donc $\forall n \neq m, \, ||x_n - x_m|| \geq \varepsilon$, donc la suite $(x_n)$ n'admet pas de sous-suite convergente, ce qui contredit la compacité de $K$.
+    Donc l'étape 1 est démontrée.
+
+    \uindent{Etape 2 } On suppose que $K \subset \bigcup_{i \in I} U_i$. 
+    Affirmation : $\exists \lambda > 0, \, \forall x \in K, \exists i_x \in J, B(x, \lambda) \subset U_{i_x}$. 
+    Ce lambda est appelé le nombre de Lebesgue de recouvrement.
+
+    Montrons cette affirmation par l'absurde : supposons que $\forall \lambda > 0, \, \exists x \in K$ tel que $\forall i \in I, B(x, \lambda) \not\subset U_i$.
+
+    En particulier, pour $\lambda = \frac{1}{n}$, il existe une suite $(x_n)_{n \in \N}$ dans $K$ telle que
+    $\forall n \in \N, \, \forall i \in I, B(x_n, \frac{1}{n}) \not\subset U_i$.
+
+    Comme $K$ est compact, il existe une sous-suite $(x_{\varphi(n)})$ telle que $x_{\varphi(n)} \xrightarrow[n \to + \infty]{} a \in K$. 
+
+    Donc $\exists i, a \in U_i$, $\exists r > 0, B(a, r) \subset U_i$.
+
+    Donc $B(x_{\varphi(n)}, \frac{1}{n}) \subset B(a, r)$ pour $n$ suffisamment grand, ce qui est une contradiction.
+
+    Donc l'affirmation est démontrée.
+
+    \uindent{Etape 3 } 
+
+    Soit $K \subset \bigcup_{i \in I} U_i$. D'après l'étape 2, il existe $\lambda > 0$ tel que
+    $\forall x \in K, \, \exists i_x \in I, B(x, \lambda) \subset U_{i_x}$.
+
+    D'après l'étape 1, $\varepsilon = \lambda$ il existe $N \in \N$ et $(x_1, \ldots, x_N) \in K^N$ tel que
+    \[
+        K \subset \bigcup_{i=1}^N B(x_i, \lambda) \subset \bigcup_{i=1}^N U_{i_{x_i}}
+    \]
+
+    Donc (2) est démontré.
+
+\end{proof}
+
+\begin{theoreme}{Version fermée de Lebesgue}{}
+    Soit $E$ un espace vectoriel normé de dimension quelconque, et soit $K \subset E$ un compact.
+    Soit $\{F_i\}_{i \in I}$ une famille de fermés telle que $\forall i \in I, F_i \subset K$ et 
+    pour tout sous-ensemble fini $J \subset I$, $\displaystyle \bigcap_{j \in J} F_j \neq \emptyset$.
+
+    Alors $\displaystyle \bigcap_{i \in I} F_i \neq \emptyset$.
+    
+\end{theoreme}
+
+\begin{proof}
+    Pososn $U_i = E \setminus F_i$, et montrons par l'absurde que $\bigcap_{i \in I} F_i \neq \emptyset$, et donc 
+    que $\displaystyle E = \bigcup_{i \in I} U_i$.
+
+    Comme $K$ est compact, $K \subset \bigcup_{i \in I} U_i$, donc d'après le théorème de Borel Lebesgue, 
+    il existe un sous-ensemble fini $J \subset I$ tel que
+    \[
+        K \subset \bigcup_{j \in J} U_j.
+    \]
+
+    Donc $\displaystyle \bigcap_{j \in J} F_j \subset E \setminus K \neq \emptyset$, ce qui est une contradiction.
+\end{proof}
+
+\begin{proof}
+    Montrons (2) $\implies$ (1) du théorème de Borel Lebesgue.
+
+    Soit $(x_n)_{n \in \N}$ une suite dans $K$. 
+
+    \uindent{Etape 1 } 
+
+    Affirmation : $\bigwedge = \{ \text{ensemble des valeurs d'adhérence de } (x_n) \} = \bigcap_{N \in \N} \overline{\{x_n, n \geq N\}}$ (à montrer)
+
+    
+    \uindent{Etape 2 } Si $K$ vérifie BL, alors $K$ est fermé (à montrer)
+
+    En utilisant les étapes 1 et 2, on a $\bigwedge \subset K$.
+
+    \uindent{Etape 3 } On veut montrer que $\bigwedge \neq \emptyset$.
+
+    On le suppose par l'absurde, donc $\bigwedge = \emptyset = \bigcap_{N \in \N} \underbrace{\overline{\{x_n, n \geq N\}}}_{= F_n \subset K}$.
+
+    et $F_n \subset F_{n + 1}$.
+
+    Alors en utilisant la version fermée de BL, $\exists N \in \N, F_N \neq \emptyset$, ce qui est une contradiction.
+\end{proof}
+
+\subsubsection{Application }
+
+Soit $(E, ||\cdot||)$ un espace vectoriel normé de dimension quelconque, et soit $(x_n)_{n \in \N} \in E^\N$, telle que 
+$x_n \xrightarrow[n \to + \infty]{} \ell \in E$. Alors $K = \{x_n, n \in \N\} \cup \{\ell\}$ est compact.
+
+\begin{proof}
+    En dimension finie : $K$ est fermé borné. 
+
+    Soit $a \in E \setminus K$, montrer alors qu'il existe $r > 0$ tel que $B(a, r) \subset E \setminus K$.
+
+    Le faire en dimension infinie avec le théorème de Borel Lebesgue.
+\end{proof}
+
+Idéaux de $\mathscr C([0, 1], \R) = A$
+
+\begin{theoreme}
+    Soit $I$ un idéam de $A$, $I \neq A$. Alors $\exists x \in [0, 1]$ tel que $I \subset m_x = \{f | f(x) = 0\}$, 
+    c'est-à-dire $\exists x \in [0, 1], \, \forall f \in I, f(x) = 0$.
+\end{theoreme}
+
+\begin{remarque}
+    Si $f \in I$, $\forall x, f(x) \neq 0$, $\frac 1 f \in A$ donc $f \times \frac 1 f = 1 \in I$, donc $I = A$.
+    Or $I \neq A$, donc $\forall f \in I, \, \exists x \in [0, 1], f(x) = 0$.
+\end{remarque}
+
+\begin{proof}
+    Montrons le par l'absurde. Supposons que $\forall x \in [0, 1], \, \exists f_x \in I$ tel que $f_x(x) \neq 0$.
+
+    Donc $\exists \eta_x > 0, \, \forall y \in ]x - \eta_x, x + \eta_x[, f_x(y) \neq 0$.
+
+    $[0, 1] \subset \bigcup_{x \in [0, 1]} ]x - \eta_x, x + \eta_x[$.
+
+    Or $[0, 1]$ compact, donc avec Borel Lebesgue, $\exists x_1, \ldots, x_N \in [0, 1]$ tels que 
+    \[
+        [0, 1] \subset \bigcup_{i=1}^N ]x_i - \eta_{x_i}, x_i + \eta_{x_i}[
+    \]
+
+    Posons alors $f = (f_{x_1})^2 + (f_{x_2})^2 + \cdots + (f_{x_N})^2 \in I$.
+
+    $f \geqslant 0$ et $f_{x_k} > 0$ sur $]x_k - \eta_{x_k}, x_k + \eta_{x_k}[$, donc $f > 0$ sur $[0, 1]$, ce qui est une contradiction.
+\end{proof}
+
+L'objectif maintenant est de trouver, sur $E = \mathscr C([0, 1], \R)$, toutes les formes continues $\varphi : E \to \R$ 
+telles que $\forall (f, g) \in E, \, \varphi(fg) = 0 \implies \varphi(f) = 0$ ou $\varphi(g) = 0$.
+
+\begin{proof}
+    Si $a \in [0, 1]$, $\fonction{\varepsilon_a}{E}{\R}{f}{f(a)}$, alors $\forall a \in [0, 1]$, $\forall \lambda \in \R$, 
+    $\lambda \varepsilon_a$ vérifie la propriété.
+
+    Si $\ker \varphi$ est un idéal, d'après le théorème précédent, $\exists a \in [0, 1]$ tel que $\ker \varphi \subset \ker \varepsilon_a$.
+
+    Donc $\exists \lambda \in \R$ tel que $\varphi = \lambda \varepsilon_a$.
+
+    \avspace Soit $f \in E$ tel que $\varphi(f) \neq 0$, et posons 
+    $\psi_1: g \mapsto \varphi(fg)$ et $\psi_2: g \mapsto \varphi(g)$.
+
+    Donc $\varphi(fg) = 0 \implies \varphi(g) = 0$, donc $\ker \psi_1 \subset \ker \psi_2$.
+
+    Donc $\exists \lambda \neq 0$, $\forall g, \varphi(g) = \lambda \varphi(fg)$. 
+
+    $\varphi(1) = \lambda \varphi(f)$, donc si $g = 1$, $\lambda = \frac{\varphi(1)}{\varphi(f)}$.
+
+    et $\varphi(1) \varphi(fg) = \varphi(f) \varphi(g)$. Ceci est valable $\forall f$ tels que $\varphi(f) \neq 0$ et $g$ quelconque.
+
+    Si $\varphi(f) = 0$, soit $h$ tel que $\varphi(h) \neq 0$, alors $f_n = f + \frac 1 n h$ vérifie $\varphi(f_n) \neq 0$.
+
+    Donc $\varphi(1) \varphi(f_n g) = \varphi(f_n) \varphi(g)$, et ce pour tout $n$.
+
+    $f_n  \xrightarrow[]{||\cdot||_\infty} f$, et $f_n g \xrightarrow[]{||\cdot||_\infty} fg$. 
+
+    Donc $\forall f \in E, \forall g \in E, \varphi(1) \varphi(fg) = \varphi(f) \varphi(g)$.
+
+    $\ker \varphi$ est un idéal : si $f \in I, g \in E$, alors $\varphi(1) \varphi(fg) = \varphi(f) \varphi(g) = 0$, donc $\varphi(fg) = 0$, donc $fg \in \ker \varphi$.
+
+
+\end{proof}
+

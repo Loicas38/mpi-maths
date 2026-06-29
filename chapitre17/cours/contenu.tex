@@ -1,0 +1,1813 @@
+\section{Rappels, calculs et bases}
+
+\begin{definition}{Espace euclidien}{}
+    \index{Espace!euclidien}
+    On appelle espace euclidien tout espace vectoriel réel $E$ de dimension finie,
+    muni d'un produit scalaire $\langle \cdot, \cdot \rangle$, c'est-à-dire tout espace 
+    préhilbertien réel $(E, \langle \cdot, \cdot \rangle)$ de dimension finie.
+
+    On note $\| \cdot \|_2$ la norme associée. $\forall u \in E, \| u \|_2 = \sqrt{\langle u, u \rangle}$.
+\end{definition}
+
+\begin{definition}{Orthogonalité et orthonormalité}{}
+    \index{Famille!orthogonale}
+    \index{Famille!orthonormale}
+    Soit $(e_j)_{1 \leqslant j \leqslant p}$ famille de vecteurs de $E$.
+    On dit qu'elle est orthogonale ssi pour $i \neq j$, $e_i \perp e_j$ c'est à dire 
+    que $\langle e_i, e_j \rangle = 0$.
+
+    On dit qu'elle est orthonormale si elle est de plus formée de vecteurs unitaires,
+    c'est à dire que $\forall i, j \in \ninter{1}{p}, \langle e_i, e_j \rangle = \delta_{i,j}$.
+
+    Toute famille orthonormale est libre. 
+\end{definition}
+
+\begin{theoreme}{Gram-Schmidt}{}
+    \index{Gram-Schmidt}
+    Soit $B = (e_1, \dots, e_p)$ une famille libre de $E$ et $F = \Vect B$. 
+    Ainsi $B$ est une base de $F$. Alors il existe une unique base orthonormée 
+    $B'$ de $F$ telle que en notant $B' = (\varepsilon_1, \dots, \varepsilon_p)$,
+    $\forall j \in \ninter{1}{p}, \Vect(e_1, \dots, e_j) = \Vect(\varepsilon_1, \dots, \varepsilon_j)$
+    et $\langle e_j , \varepsilon_j \rangle > 0$.
+
+    De plus cette base est obtenue par l'algorithme : 
+    \begin{itemize}
+        \item $\varepsilon_1 = \frac{e_1}{\| e_1 \|} $
+        \item Pour $j \in \ninter{2}{p}$, on calcul $u_j = e_j - \ds \sum_{i = 1}^{j - 1} \langle e_j, \varepsilon_i \rangle \varepsilon_i$
+        et alors $\varepsilon_j = \frac{u_j}{\| u_j \|}$.
+    \end{itemize}
+\end{theoreme}
+
+\begin{proposition}{coordonnées dans une base orthonormale}{}
+    Soit $B = (e_1, \dots, e_p)$ une base orthonormale de $E$. Alors pour tout 
+    $x \in E$, ses coordonnées dans cette base sont les $\langle x, e_j \rangle$. 
+    Ainsi, 
+    $$x = \sum_{j = 1}^p \langle x, e_j \rangle e_j$$    
+\end{proposition}
+
+Donc si $x, y \in E$, on a : 
+\begin{align}
+    \langle x, y \rangle & = \left\langle \sum_{j = 1}^p \langle x, e_j \rangle e_j, y \right\rangle \\
+    & = \sum_{j = 1}^p \sum_{i = 1}^{n } \langle x, e_j \rangle \langle y, e_i \rangle \langle e_j, e_i \rangle \\
+    & = \sum_{j = 1}^p \langle x, e_j \rangle \langle y, e_j \rangle
+\end{align}
+
+En notant $\ds x = \sum_{i = 1}^{p } x_i e_i$ et $\ds y = \sum_{i = 1}^{p } y_i e_i$, 
+$X = \begin{pmatrix}
+x_1 \\ \vdots \\ x_p
+\end{pmatrix}$ et $Y = \begin{pmatrix}y_1 \\ \vdots \\ y_p
+\end{pmatrix}$, on a $\langle x, y \rangle = \ds \sum_{i = 1}^{n } x_i y_i$ et donc $\langle x, y \rangle = X^T Y$.
+
+
+\subsection{Structures euclidiennes canoniques }
+\subsubsection{Sur \texorpdfstring{$E = \R^n$}{E = Rn}}
+
+Pour $x = \begin{pmatrix}
+x_1 \\ \vdots \\ x_n
+\end{pmatrix}$ et $y = \begin{pmatrix}y_1 \\ \vdots \\ y_n
+\end{pmatrix}$ dans $\R^n$, on pose $\langle x, y \rangle = \ds \sum_{i=1}^{n} x_i y_i$.
+
+C'est un produit scalaire pour lequel la base canonique est orthonormale.
+
+\subsubsection{Sur \texorpdfstring{$E = \mathscr M_n(\R)$}{E = Mn(R)}}
+
+Pour $A, B \in \mathscr M_n(\R)$ on pose $\langle A, B \rangle = \tr(A^\top B)$.
+
+Donc $\langle A, B \rangle = \ds \sum_{i = 1}^n \sum_{j = 1}^n a_{i,j} b_{i,j}$.
+
+La base $(E_{i,j})_{1 \leqslant i, j \leqslant n}$ des matrices élémentaires est une base orthonormale pour ce produit scalaire.
+
+Ce produit scalaire n'est pas complètement au programme. 
+
+\section{Matrices orthogonales}
+\subsection{Définition et caractérisation} 
+
+\begin{definition}{matrice orthogonale}{}
+    \index{Matrice!orthogonale}
+    Soit $A \in \mathscr M_n(\R)$. On dit que $A$ est orthogonale ssi $A^\top A = I_n$.
+\end{definition}
+
+\begin{remarque}
+    $A$ est orthogonale ssi $A$ est inversible et $A^{-1} = A^\top$. 
+
+    $A$ est orthogonale ssi $A^\top$ est orthogonale.
+\end{remarque}
+
+\begin{proposition}{caractérisation des matrices orthogonales par les colonnes}{}
+    Soit $A \in \mathscr M_n(\R)$. Notons $C_1, \dots, C_n$ ses colonnes (resp ses lignes). 
+    Alors $A$ est orthogonale ssi les $(C_1, \dots, C_n)$ (resp les lignes) forment une base orthonormale de $\R^n$,
+    identifiée à $\mathscr M_{n,1}(\R)$ (resp de $\R^n$ identifiée à $\mathscr M_{1,n}(\R)$).
+\end{proposition}
+
+\begin{proof}
+    En effet, par simple calcul, pour $i, j \in \ninter 1 n$, on a 
+    $(A^TA)_{i, j} = \sum_{k=1}^{n} a_{k, i} a_{k, j} = \langle C_i, C_j \rangle$ 
+\end{proof}
+
+
+\marginenote{Remarque}{Cela peut s'avérer utile pour sortir des vecteurs orthogonaux du chapeau, bien
+que cette méthode soit HP.}
+
+\lvspace
+\avspace 
+
+\begin{exemple}
+    Hors programme mais utile. 
+
+    Soient $e_1, e_2 \in \R^3$ tels que $\|e_1\| = \|e_2\| = 1$ et $e_1 \perp e_2$. 
+
+    Alors en notant $e_1 = \begin{pmatrix}
+        x \\ y \\ z
+    \end{pmatrix}$ et $e_2 = \begin{pmatrix}
+        x' \\ y' \\ z'
+        \end{pmatrix}$, le vecteur $e_3 = \begin{pmatrix}
+            x'' \\ y'' \\ z''
+        \end{pmatrix}$ défini par : 
+    \begin{itemize}
+        \item $x'' = \begin{vmatrix}
+            y & y' \\ z & z'
+        \end{vmatrix}$
+        \item $y'' = - \begin{vmatrix}
+            x & x' \\ z & z'
+        \end{vmatrix}$
+        \item $z'' = \begin{vmatrix}
+            x & x' \\ y & y'
+        \end{vmatrix}$
+    \end{itemize}
+
+    est appelé produit vectoriel de $e_1$ et $e_2$. Il est noté $e_3 = e_1 \wedge e_2$.
+
+    $(e_1, e_2, e_3)$ est une base orthonormale de $\R^3$ et $\det (e_1, e_2, e_3) = 1$. 
+    Cette base est dite directe.
+\end{exemple}
+
+\begin{exemple}
+    $e_1 = \frac 1 3 \begin{pmatrix}
+        2 \\ 2  \\ 1
+    \end{pmatrix}$ et $e_2 = \frac 1 3 \begin{pmatrix}
+        -2 \\ 1 \\2 
+    \end{pmatrix}$ sont orthogonaux et de norme 1.
+
+    On pose $e_3 = e_1 \wedge e_2 = \begin{pmatrix}
+        1/3 \\ -2/3 \\ 2/3
+    \end{pmatrix}$ et alors $(e_1, e_2, e_3)$ est une base orthonormale de $\R^3$.
+
+    Donc $A = \frac 1 3\begin{pmatrix}
+        2 & -2 & 1 \\
+        2 & 1 & -2 \\
+        1 & 2 & 2
+    \end{pmatrix}$ est une matrice orthogonale.
+\end{exemple}
+
+\begin{theoreme}{}{}
+    Soit $B$ une base orthonormée de $E$, $B'$ une base de $E$
+    et $P = P_{B \to B'}$ alors $B'$ est orthonormale ssi $P$ est orthogonale. 
+\end{theoreme}
+
+\begin{proof}
+    Les colonnes de $P$ sont les coordonnées des vecteurs de $B'$ dans la base $B$. 
+
+    Donc $P$ est orthogonale ssi ces colonnes forment une base orthonormale de $\mathscr M_{n, 1}(\R)$.
+     
+    Notons $C_1, \dots, C_n$ ces colonnes et $e'_1, \dots, e'_n$ les vecteurs de $B'$. 
+
+    Comme $B$ est une base orthonormée, $\langle e'_i, e'_j \rangle = \langle C_i, C_j \rangle$.
+
+    Donc $P$ orthogonale ssi $B$ est orthonormale. 
+\end{proof}
+
+\begin{definition}{Orthogonalement semblables}{}
+    \index{Matrices!orthogonalement semblables}
+    Soient $A, A' \in \mathscr M_n(\R)$. On dit que $A$ et $A'$ sont orthogonalement semblables ssi 
+    il existe $P$ matrice orthogonale telle que $A' = P^{-1} A P$ et alors 
+    $A' = P^T A P$.
+\end{definition}
+
+\subsection{Structure}
+
+\begin{theoreme}{Groupe orthogonal}{}
+    \index{Groupe!orthogonal}
+    L'ensemble $\mathcal O(n) = \mathcal O_n(\R)$ des matrices orthogonales est un sous-groupe de $(GL_n(\R), \cdot)$.
+\end{theoreme}
+
+\begin{proof}
+    \begin{itemize}
+        \item $\mathcal O(n) \subset GL_n(\R)$
+        \item $I_n \in \mathcal O(n)$ donc $\mathcal O(n) \neq \emptyset$
+        \item Soient $A, B \in \mathcal O(n)$
+    \end{itemize}
+
+    Soit $C = B^{-1} A$. Alors : 
+    \begin{align}
+        C^T C & = (B^{-1} A)^T (B^{-1} A) \\
+        & = A^T (B^{-1})^T B^{-1} A \\
+        & = A^T (B^T)^{-1} B^{-1} A \\
+        & = A^T (B B^T)^{-1} A \\
+        & = A^T I_n^{-1} A \\
+        & = A^T A \\
+        & = I_n
+    \end{align}
+\end{proof}
+
+\danger{Il ne s'agit en aucun cas d'une équivalence !!}
+
+\lvspace 
+
+\begin{proposition}{}{}
+    Soit $A \in \mathcal O(n)$, alors $\det A = \pm 1$.
+
+    \begin{itemize}
+        \item Si $\det A= 1$, on dit que $A$ est une matrice orthogonale positive ou directe.
+        \item Si $\det A = -1$, on dit que $A$ est une matrice orthogonale négative ou indirecte.
+    \end{itemize}
+\end{proposition}
+
+\begin{proof}
+    $A A^T = I_n$ donc $\det A \det A^T = 1$ et $\det A^T = \det A$ donc $(\det A)^2 = 1$ et $\det A = \pm 1$.
+\end{proof}
+
+\begin{theoreme}{groupe spécial orthogonal}{}
+    \index{Groupe!spécial orthogonal}
+    L'ensemble $SO(n) = SO_n(\R) = \mathcal O^+(n)$ des matrices orthogonales de déterminant $1$ est un 
+    sous-groupe de $\mathcal O(n)$ appelé groupe spécial orthogonal. 
+\end{theoreme}
+
+\begin{proof}
+    $SO(n) = \mathcal O(n) \cap SL_n(\R)$
+\end{proof}
+
+\subsection{Cas n = 2}
+
+\begin{theoreme}{Groupes orthogonaux en dimension 2}{}
+    $SO(2) = \left\{ \begin{pmatrix}
+        \cos \theta & -\sin \theta \\
+        \sin \theta & \cos \theta
+        \end{pmatrix}, \theta \in ]- \pi, \pi] \right\}$
+        
+        $\mathcal O(2) = SO(2) \cup \left\{ \begin{pmatrix}
+        \cos \theta & \sin \theta \\
+        \sin \theta & -\cos \theta
+        \end{pmatrix}, \theta \in ]- \pi, \pi] \right\}$.
+\end{theoreme}
+
+\begin{proof}
+    Soit $A = \begin{pmatrix}
+        a & b \\
+        c & d
+    \end{pmatrix} \in M_2(\R)$. Alors $A \in SO(2)$ ssi 
+    $\begin{cases}
+        a^2 + c^2 = 1 \\
+        b^2 + d^2 = 1 \\
+        ab + cd = 0 \\
+        ad - bc = 1
+    \end{cases}$, par calcul de déterminant et de $A^T A$.
+
+    Or $a^2 + c^2 = 1$ ssi $\exists \theta \in ]- \pi, \pi], a = \cos \theta, c = \sin \theta$ 
+
+    $b^2 + d^2 = 1$ ssi $\exists \varphi \in ]- \pi, \pi], b = - \sin \varphi$ et $d = \cos \varphi$.
+
+    $A \in SO(2)$ ssi 
+    $\begin{cases}
+        \sin (\theta - \varphi) = 0 \\
+        \cos (\theta - \varphi) = 1
+    \end{cases}$
+
+    ssi $\theta = \varphi$ et $A = \begin{pmatrix}
+        \cos \theta & -\sin \theta \\
+        \sin \theta & \cos \theta
+    \end{pmatrix}$.
+\end{proof}
+
+\begin{theoreme}{}{}
+    $\fonction{\varphi}{\R}{SO(2)}{\theta}{\begin{pmatrix}
+        \cos \theta & -\sin \theta \\
+        \sin \theta & \cos \theta
+    \end{pmatrix}}$ est un morphisme de groupes surjectif de noyau $2 \pi \Z$.
+\end{theoreme}
+
+\begin{proof}
+    $\varphi$ est bien définie et est surjective. 
+
+    Soit $\theta_1, \theta_2 \in \R$. Alors 
+    
+    \begin{align}
+        \varphi(\theta_1) \varphi(\theta_2) & = \begin{pmatrix}
+        \cos \theta_1 & -\sin \theta_1 \\
+        \sin \theta_1 & \cos \theta_1
+        \end{pmatrix} \begin{pmatrix}
+            \cos \theta_2 & -\sin \theta_2 \\
+            \sin \theta_2 & \cos \theta_2
+        \end{pmatrix} \\
+        & = \begin{pmatrix}
+            \cos (\theta_1 + \theta_2) & -\sin (\theta_1 + \theta_2) \\
+            \sin (\theta_1 + \theta_2) & \cos (\theta_1 + \theta_2)
+        \end{pmatrix} \\
+        &  = \varphi(\theta_1 + \theta_2)
+    \end{align}
+
+    Donc $\varphi$ morphisme de groupes de $(\R, +)$ vers $(SO(2), \cdot)$.
+
+    $\theta \in \Ker \varphi$ ssi $\begin{pmatrix}
+        \cos \theta & -\sin \theta \\
+        \sin \theta & \cos \theta
+    \end{pmatrix} = I_2$ ssi $\theta \in 2 \pi \Z$.
+\end{proof}
+
+\begin{theoreme}{}{}
+    L'application $\fonction{\psi}{\U}{SO(2)}{z}{\begin{pmatrix}
+        \re z & -\im z \\
+        \im z & \re z
+    \end{pmatrix}}$ est un isomorphisme de groupes. 
+
+    En particulier, $SO(2)$ est commutatif. 
+\end{theoreme}
+
+\begin{proof}
+    $\psi$ est bien défini, car si $z \in \U$, 
+    $(\re z)^2 + (\im z)^2 = |z|^2 = 1$ et 
+    $\re z (- \im z) + \re z \im z = 0$ donc $\psi(z) \in O(2)$. 
+
+    De plus $\det \psi(z) = \re z^2 + \im z ^2 = 1$ donc $\psi(z) \in SO(2)$.
+
+    \lvspace $\blacktriangleright$ Soient $z_1, z_2 \in \U$, alors $z_1 = e^{i \theta_1}$ et $z_2 = e^{i \theta_2}$ avec $\theta_1, \theta_2 \in ]- \pi, \pi]$.
+
+    Alors $\psi(z_1 \cdot z_2) = \varphi(\theta_1 + \theta_2) = \varphi(\theta_1) \varphi(\theta_2) = \psi(z_1) \psi(z_2)$.
+
+    Donc morphisme de groupes. 
+
+    \lvspace $\blacktriangleright$ Soit $A \in SO(2)$. Alors $\exists! \theta \in ]- \pi, \pi], A = \begin{pmatrix}
+        \cos \theta & -\sin \theta \\
+        \sin \theta & \cos \theta
+        \end{pmatrix}$
+
+        Pour $z \in \U$, $A = \psi(z)$ ssi $\begin{cases}
+\re z = \cos \theta \\
+\im z = \sin \theta
+        \end{cases}$ ssi $z = e^{i \theta}$ existe et est unique. 
+\end{proof}
+
+\subsection{Orientation}
+
+\begin{definition}{Orientation d'un espace euclidien}{}
+    Soit $E$ un $\R$-espace vectoriel. Orienter $E$ c'est choisir arbitrairement 
+    une base $B_0$ de $E$ que l'on qualifie de directe. 
+
+    Pour $B$ base de $E$, notons $A = P_{B_0 \to B}$, on a $\det A \neq 0$. 
+    \begin{itemize}
+        \item Si $\det A > 0$, on dit que $B$ est directe. 
+        \item Si $\det A < 0$, on dit que $B$ est indirecte.
+    \end{itemize}
+    Si $E = \R^n$ on décide en général que la base canonique est directe. 
+\end{definition}
+
+\begin{proposition}{indépendance déterminant base}{}
+    Soient $B$ et $B'$ deux bases orthonormées directes de $E$. Alors on a : 
+    $$\det_B = \det_{B'}$$
+    On le note $\operatorname{Det}$. 
+\end{proposition}
+
+\begin{remarque}
+    Hors programme : Dans $\R^3$, $\operatorname{Det} (e_1, e_2, e_3) = (e_1 \wedge e_2) \cdot e_3$
+\end{remarque}
+
+\subsection{Complément LHP : étude de \texorpdfstring{$\mathcal O(3)$}{O(3)}}
+
+Cette étude est reprise plus loin avec des outils plus adaptés. 
+
+Soit $A \in O(3)$. Alors $\exists P \in SO(3)$, $A = PA'P^{-1}$ où 
+
+\begin{itemize}
+    \item $\exists \theta \in \R$, $A' = \begin{pmatrix}
+        \cos \theta & -\sin \theta & 0 \\
+        \sin \theta & \cos \theta & 0 \\
+        0 & 0 & 1
+    \end{pmatrix}$
+    \item $\exists \theta \in \R, A' = \begin{pmatrix}
+        \cos \theta & -\sin \theta & 0 \\
+        \sin \theta & \cos \theta & 0 \\
+        0 & 0 & -1
+    \end{pmatrix}$
+\end{itemize}
+
+\begin{proof}
+    $\blacktriangleright$ $\deg \chi_A = 3$ a au moins une racine réelle, donc $A$ possède 
+    une valeur propre réelle $\lambda$. 
+
+    \avspace $\blacktriangleright$ Soit $X$ vecteur propre de $A$ associé à $\lambda$. 
+    Alors $AX = \lambda X$. 
+
+    $\| AX \|^2 = (AX)^T AX = X^T A^T A X = X^T X = \| X \|^2$ 
+
+    Or $\| AX \|^2 = \lambda^2 \| X \|^2$ et $\| X \|^2 \neq 0$ donc $\lambda^2 = 1$ et $\lambda = \pm 1$.
+
+    \uindent{Premier cas } 
+
+    \svspace $\chi_A = (X - 1)^3$, $A = I_3$ et on est dans le cas avec $\theta = 0$ et $P = I_3$.
+
+    \uindent{Deuxième cas }
+
+    \svspace $\chi_A = (X + 1)^3$ et $A = - I_3$, alors on est dans le cas avec $\theta = \pi$ et $P = I_3$.
+
+    \uindent{Troisième cas }
+
+    \svspace $\chi_A = (X - 1)^2 (X + 1)$ avec $e_1$ vecteur propre pour la valeur propre 1 de norme 1
+    et $e_2$ vecteur propre pour la valeur propre -1 de norme 1.
+
+    Montrons que $e_1$ et $e_2$ sont orthogonaux.
+
+    $A E_1 = e_1$ et $A e_2 = - e_2$ donc $\langle e_1, e_2 \rangle = e_1^T e_2 = \langle A e_1, -A e_2 \rangle = - e_1^T A^T A e_2$
+    et donc $\langle e_1, e_2 \rangle = - \langle e_1, e_2 \rangle$ et $\langle e_1, e_2 \rangle = 0$.
+
+    Posons $e_3 = e_1 \wedge e_2$. Alors $(e_1, e_2, e_3)$ est une base orthonormale de $\R^3$. 
+
+    $\langle A e_3, e_1 \rangle = \langle A e_3, A e_1 \rangle = \langle e_3, e_1 \rangle = 0$
+
+    Donc $A e_3 \perp e_1$ et de même, $A e_3 \perp e_2$.
+
+    Donc $A e_3 \in \Vect(e_3)$. 
+
+    Donc $e_3$ vecteur propre pour la valeur propre 1 à cause de $\chi$. Donc la matrice de l'endo 
+    de $(e_3, e_1, e_2)$ est de la forme $\begin{pmatrix}
+        1 & 0 & 0\\
+        0 & 1 & 0 \\
+        0 & 0 & -1
+        \end{pmatrix}$ donc on est dans le cas 2 avec $\theta = 0$ et 
+        $P = P_{\text{base cano } \to (e_3, e_1, e_2)}$.
+
+    \uindent{Quatrième cas }
+
+    \svspace $\chi_A = (X - 1)(X + 1)^2$, même raisonnement, et à la fin on trouve que 
+    $e_3$ est vecteur propre -1. 
+
+    Donc on est dans le cas 1 avec $\theta = \pi$
+
+    \uindent{Cinquième cas }
+
+    \svspace $\chi_A$ non scindé et $1$ valeur propre, donc 1 valeur propre simple. 
+
+    Soit $e_3$ vecteur propre pour la valeur propre 1. 
+
+    Soit $x \perp e_3$. Alors 
+
+    \begin{align}
+        \langle A x, e_3 \rangle & = \langle A x, A e_3 \rangle \\
+        & = x^T A^T A e_3 \\
+        & = x^T e_3 \\
+        & = 0
+    \end{align}
+
+    Donc $p\left( \Vect(e_3) \right)^\perp$ est stable. 
+
+    Soit $(e_1, e_2)$ base orthonormale de $P$ tel que $(e_1, e_2, e_3)$ soit directe. 
+
+    Alors $A$ est orthogonalement semblable à une matrice de la forme $\begin{pmatrix}
+        B & 0 \\
+        0 & 1
+    \end{pmatrix}$ avec $B$ matrice de l'endomorphisme induit à $P$. 
+
+    $A^T A = I_3$ donc par blocs $B^T B = I_2$ et $B \in O(2)$.
+
+    Mais $\chi_A$ n'est pas scindé, or le polynome caractéristique de 
+    $\begin{pmatrix}
+        \cos \theta & \sin \theta \\
+        \sin \theta & - \cos \theta
+    \end{pmatrix}$ est $X^2 - 1$ Donc $B$ est de la forme $\begin{pmatrix}
+        \cos \theta & -\sin \theta \\
+        \sin \theta & \cos \theta
+    \end{pmatrix}$ avec $\theta \in ]- \pi, \pi]$ d'où le résultat. 
+
+    \uindent{Sixième cas }
+
+    Si $\chi_A$ non scindé et -1 valeur propre, raisonnement identique pour obtenir 
+    $A' = \begin{pmatrix}
+        \cos \theta & -\sin \theta & 0 \\
+        \sin \theta & \cos \theta & 0 \\
+        0 & 0 & -1
+    \end{pmatrix}$ avec $\theta \in ]- \pi, \pi]$.
+\end{proof}
+
+\section{Adjoint d'un endomorphisme}
+
+Soit $E$ un espace euclidien. 
+
+\begin{theoreme}{représentation des formes linéaires}{}
+    L'application $\fonction{}{E}{E^*}{x}{\fonction{\varphi_x}{E}{\R}{y}{\langle x, y \rangle}}$ est un isomorphisme 
+    d'espaces vectoriels. 
+
+    En particulier, si $\varphi : E \to \R$ est une forme linéaire, alors $\exists ! x \in E$, 
+    $$\forall y \in E, \varphi(y) = \langle x, y \rangle$$
+\end{theoreme}
+
+\idee{Dimension et linéarité.}
+
+\begin{proof}
+    Notons $E^*$ l'espace vectoriel des formes linéaires sur $E$, et considérons 
+    $\fonction g E {E^*}{u}{\fonction{\varphi_u} E \R x {\langle u | x \rangle}}$
+
+    $\varphi_u$ et $g$ sont bien linéaires par bilinéarité du produit scalaire.
+
+    $\dim E= \dim E^* = p$
+
+    Soit $u \in \ker(g)$, alors $\varphi_u = 0$ donc $\forall x \in E, \langle u | x \rangle = 0$
+
+    En particulier, $\langle u | u \rangle = 0$ donc $u = 0$. Donc $g$ est injective, donc $g$ est un isomorphisme.
+
+    Donc $\forall \varphi \in E^*$, $\exists ! u \in E$ tel que $\varphi = \varphi_u$. 
+\end{proof}
+
+\begin{definition}{Adjoint d'un endomorphisme}{}
+    \index{Endomorphisme!adjoint}
+    Soit $u \in \mathscr L(E)$. Il existe alors un unique $u^* \in \mathscr L(E)$ tel que :
+    $$\forall x, y \in E \; \langle u(x), y \rangle = \langle x, u^* (y) \rangle$$
+    $u^*$ est appelé adjoint de $u$.
+\end{definition}
+
+\idee{
+    Utiliser l'isomorphisme de la prop précédente.
+}
+
+\begin{proof}
+    $\blacktriangleright$ Soit $y \in E$, et $\fonction \varphi E \R x {\langle u(x), y \rangle}$. Alors $\varphi$ est une forme linéaire, 
+    donc il existe un unique vecteur de $E$ que l'on note $u^*(y)$ tel que 
+    $\forall x \in E$, $\langle u(x), y \rangle = \langle x, u^*(y) \rangle$.
+
+    D'où l'existence d'un et unicité de $u^*$.
+
+    \avspace $\blacktriangleright$ Montrons maintenant la linéarité. Soient $y_1, y_2 \in E$ et $\alpha_1, \alpha_2 \in \R$. 
+
+    On a $\forall x \in E$, $\langle u(x), y_1 \rangle = \langle x, u^*(y_1) \rangle$ 
+    et $\langle u(x), y_2 \rangle = \langle x, u^*(y_2) \rangle$.
+
+    Donc $\langle u(x), \alpha_1 y_1 + \alpha_2 y_2 \rangle = \langle x, \alpha_1 u^*(y_1) + \alpha_2 u^*(y_2) \rangle$.
+
+    Donc $\alpha_1 u^*(y_1) + \alpha_2 u^*(y_2)$ vérifie la même égalité que $u^*(\alpha_1 y_1 + \alpha_2 y_2)$, et par unicité,
+    on a donc $u^*(\alpha_1 y_1 + \alpha_2 y_2) = \alpha_1 u^*(y_1) + \alpha_2 u^*(y_2)$.
+\end{proof}
+
+\begin{proposition}{adjoint de l'adjoint}{}
+    $\fonction{\varphi}{\mathscr L(E)}{\mathscr L(E)}{u}{u^*}$ est linéaire et involutive (i.e. $(u^*)^* = u$).
+\end{proposition}
+
+\begin{proof}
+    Soient $u, v \in \mathscr L(E)$ et $\alpha, \beta \in \R$. 
+
+    Soient $x, y \in E$, alors 
+    \begin{itemize}
+        \item $\langle u(x), y \rangle = \langle x, u^*(y) \rangle$ 
+        \item $\langle v(x), y \rangle = \langle x, v^*(y) \rangle$
+    \end{itemize}
+
+    On a donc $\langle (\alpha u + \beta v)(x), y \rangle = \langle x, (\alpha u^* + \beta v^*)(y) \rangle$ 
+    et par caractérisation de $(\alpha u + \beta v)^*$, on a 
+    $(\alpha u + \beta v)^*(y) = \alpha u^*(y) + \beta v^*(y)$.
+
+    Donc $(\alpha u + \beta v)^* = \alpha u^* + \beta v^*$.
+
+    \avspace $\blacktriangleright$ Pour $x, y \in E$, on a 
+    $\langle u^*(x), y \rangle = \langle x, u(y) \rangle$
+
+    Donc $(u^*)^*(y) = u(y)$ et $(u^*)^* = u$.
+\end{proof}
+
+\begin{proposition}{adjoint d'une composée}{}
+    $\forall u, v \in \mathscr L(E)$, alors $(u \circ v)^* = v^* \circ u^*$.
+\end{proposition}
+
+\idee{Appliquer plusieurs fois.}
+
+\begin{proof}
+    Soient $x, y \in E$. 
+
+    \begin{align}
+        \langle (u \circ v)(x), y \rangle & = \langle u(v(x)), y \rangle \\
+        & = \langle v(x), u^*(y) \rangle \\
+        & = \langle x, v^*(u^*(y)) \rangle \\
+        & = \langle x, (v^* \circ u^*)(y) \rangle
+    \end{align}
+
+    Or c'est vrai pour tout $x$ donc $(v^* \circ u^*)(y) = (u \circ v)^*(y)$ et 
+    également vrai pour tout $y$ donc $v^* \circ u^* = (u \circ v)^*$.
+\end{proof}
+
+\begin{proposition}{matrice de l'adjoint dans une base orthonormale}{}
+    Si $B$ est une base orthonormale de $E$, alors 
+    $$M_B(u^*) = (M_B(u))^T$$
+\end{proposition}
+
+\begin{proof}
+    Soient $x, y \in E$ et $B$ base orthonormale de $E$, $X = M_B(x)$, $Y = M_B(y)$, 
+    $A = M_B(u)$ et $A' = M_B(u^*)$.
+
+    $\langle u(x), y \rangle = \langle x, u^*(y) \rangle$ 
+
+    On a donc, on considérant le produit scalaire comme un produit matriciel, 
+    $(AX)^T Y = X^T A' Y$ et donc $X^T A^T Y = X^T A' Y$ 
+    et alors $X^T(A^T - A') Y = 0$ pour tout $X, Y$.
+
+    En prenant $i, j \in \ninter 1 n$, et en posant $X = E_{i, 1}$ et $Y = E_{j, 1}$, 
+    on trouve que $(A^T - A')_{i, j} = 0$ et donc $A^T = A'$.
+
+\end{proof}
+
+Voici une autre démonstration, non donnée en cours mais parfois plus intuitive.
+
+\begin{proof}
+    On pose $B = (e_1, \dots, e_n)$ base orthonormale de $E$.
+
+    Soit $i, j \in \ninter 1 n$. 
+
+    Alors $M_B(u^*)_{i, j} = \langle u^*(e_j), e_i \rangle = \langle e_j, u(e_i) \rangle = M_B(u)_{j, i}$.
+
+    D'où le résultat, puisque vrai pour tout $i, j$.
+\end{proof}
+
+\begin{theoreme}{stabilité orthogonal}{}
+    Soit $u \in \mathscr L(E)$ et $F$ un sous-espace vectoriel de $E$ stable par $u$. 
+    Alors $F^\perp$ est stable par $u^*$.
+\end{theoreme}
+
+\begin{proof}
+    Soit $x \in F^\perp$ et montrons que $u^*(x) \in F^\perp$. 
+
+    Soit $y \in F$, par hypothèse on a $u(y) \in F$, or $\langle \underbrace{x}_{\in F^\perp}, \underbrace{u(y)}_{\in F} \rangle = \langle u^*(x), y \rangle  = 0$.
+
+    Donc $u^*(x) \in F^\perp$. 
+\end{proof}
+
+\section{Isométries vectorielles}
+
+Soit $E$ un espace euclidien.
+
+\begin{definition}{Isométrie vectorielle}{}
+    \index{Isométrie vectorielle}
+    Soit $u \in \mathscr L(E)$. On dit que $u$ est une isométrie vectorielle (ou un automorphisme 
+    orthogonal) si $\forall x \in E$, $\| u(x) \| = \| x \|$ 
+\end{definition}
+
+\begin{remarque}
+    Une isométrie vectorielle est bijective. 
+
+    En effet, si $x \in \Ker u$, alors $\| x \| = \| u(x) \| = 0$ et $x = 0$. Donc $u$ est injective.
+
+    Or $u : E \to E$ et $E$ de dimension finie, donc $u$ est bijective. 
+\end{remarque}
+
+\subsection{Exemples fondamentaux}
+
+\begin{definition}{Symétrie orthogonale}{}
+    \index{Symétrie orthogonale}
+    Soit $F$ un sous-espace vectoriel de $E$. On a $E = F \oplus F^\perp$.
+    La symétrie par rapport à $F$ parallèlement à $F^\perp$ est appelée 
+    symétrie orthogonale par rapport à $F$. 
+\end{definition}
+
+
+Soit $x \in E$ tel que $x = \underbrace{f_1}_{\in F} + \underbrace{f_2}_{\in F^\perp}$
+et notons $s$ la symétrie orthogonale par rapport à $F$. 
+On a alors $s(x) = f_1 - f_2$.
+
+\begin{exemple}
+    $\R^3$ euclidien canonique. 
+    On pose $e_1 = \begin{pmatrix}
+        1 \\ 2 \\ 3 
+    \end{pmatrix}$ et $e_2 = \begin{pmatrix}
+        -1 \\ 1 \\ 1
+    \end{pmatrix}$, et on pose $F = \Vect(e_1, e_2)$.
+
+    $s$ symétrie orthogonale par rapport à $F$. 
+
+    On cherche la matrice de $s$ dans la base canonique, ainsi que $s(u)$ pour $u = \begin{pmatrix}
+        x \\ y \\z 
+    \end{pmatrix}$.
+
+    \avspace $F^\perp = \Vect(e_3)$ avec $e_3 = e_1 \wedge e_2 = \begin{pmatrix}
+        -1 \\ -4 \\ 3
+    \end{pmatrix}$.
+
+    $\langle e_3, e_1 \rangle = \langle e_3, e_2 \rangle = 0$ donc $e_3$ base de $F^\perp$. 
+
+    Posons $\varepsilon_3 = \frac{e_3}{\|e_3\|} = - \frac 1 {\sqrt {26}} \begin{pmatrix}
+        1 \\ 4 \\ -3
+    \end{pmatrix}$ base orthonormale de $F^\perp$.
+
+    $u = f_1 + f_2$ et donc $s(u) = f_1 - f_2$.
+
+    $f_2 = \langle u, \varepsilon_3 \rangle \varepsilon_3 = \frac{x + 4y - 3z}{26} \begin{pmatrix}
+        1 \\ 4 \\ -3
+    \end{pmatrix}$
+
+    Et donc $s(u) = u - 2 f_2 = \begin{pmatrix}
+        12x - 4y + 3z \\ -4x - 3 y + 12z \\ 3x + 12y + 4z
+    \end{pmatrix}$.
+
+    Et donc $M = \begin{pmatrix}
+        12 & -4 & 3 \\
+        -4 & -3 & 12 \\
+        3 & 12 & 4
+    \end{pmatrix}$ est la matrice de $s$ dans la base canonique.
+\end{exemple}
+
+\begin{proposition}{nature symétrie orthogonale}{}
+    Une symétrie orthogonale est une isométrie vectorielle.
+\end{proposition}
+
+\idee{
+    Pythagore. 
+}
+
+\begin{proof}
+    Soit $E = F \oplus F^\perp$ et $s$ symétrie orthogonale par rapport à $F$. 
+
+    Soit $u \in E$, alors $u = f_1 + f_2$ et $s(u) = f_1 - f_2$.
+
+    Donc $\| s(u) \|^2 = \| f_1 \|^2 + \| f_2 \|^2 = \| u \|^2$ et $s$ est une isométrie vectorielle 
+    (par Pythagore).
+\end{proof}
+
+\begin{definition}{Réflexion}{}
+    \index{Réflexion}
+    Une symétrie orthogonale par rapport à un hyperplan est appelée une réflexion. 
+\end{definition}
+
+\subsection{Caractérisations}
+\label{Caracterisation_isos}
+
+\begin{theoreme}{}{}
+    Soit $u \in \mathscr L(E)$, alors les assertions suivantes sont équivalentes :
+    \begin{enumerate}
+        \item $u$ est une isométrie vectorielle
+        \item $u$ conserve le produit scalaire, c'est à dire 
+        $\forall x, y \in E$, $\langle u(x), u(y) \rangle = \langle x, y \rangle$
+        \item $u$ bijective et $u^{-1} = u^*$
+        \item Si $B$ est une base orthonormale de $E$, alors $u(B)$ est une base orthonormale de $E$.
+        \item Si $B$ est une base orthonormale de $E$, alors $M_B(u) \in \mathcal O(n)$.
+    \end{enumerate}
+\end{theoreme}
+
+\idee{
+    $1 \implies 2$ : identité de polarisation. 
+
+    $2 \implies 3$ : injectivité, puis $u^{-1} = u^*$.
+
+    $3 \implies 4$ : Utiliser $M_B(u^*)$.
+
+    $4 \implies 5$ : les colonnes de $M_B(u)$ forment une base orthonormale.
+
+    $5 \implies 1$ : si $B$ base orthonormale, alors $\| x \|^2 = \sum x_i^2$ et $\| u(x) \|^2 = \sum x_i^2$.
+}
+
+\begin{proof}
+    $\blacktriangleright$ $1 \implies 2$, supposons donc 1. 
+
+    Soient $x, y \in E$, et alors par identité de polarisation, on a 
+    \begin{align}
+        \langle u(x), u(y) \rangle & = \frac 1 4 \left( \| u(x) + u(y) \|^2 - \| u(x) - u(y) \|^2 \right) \\
+        & = \frac 1 4 \left( \| u(x + y) \|^2 - \| u(x - y) \|^2 \right) \\
+        & = \frac 1 4 \left( \| x + y \|^2 - \| x - y \|^2 \right) \\
+        & = \langle x, y \rangle
+    \end{align}
+
+    \avspace $\blacktriangleright$ $2 \implies 3$, supposons donc 2.
+
+    Si $x \in \Ker u$, alors $u(x) = 0$ et donc $\langle u(x), u(x) \rangle = 0$ et donc 
+    $\langle x, x \rangle = 0$ et $x = 0$. Donc $u$ est injective.
+
+    $E$ de dimension finie, donc $u$ est bijective.
+
+    \avspace Soient $x, y \in E$, alors $\langle u(x), y \rangle = \langle u(x), u(u^{-1}(y)) \rangle = \langle x, u^{-1}(y) \rangle$ 
+    et donc $u^{-1} = u^*$.
+    
+    \avspace $\blacktriangleright$ $3 \implies 4$, supposons donc 3.
+
+    Soit $B$ une base orthonormale. On a $M_B(u^*) = M_B(u^{-1}) = (M_B(u))^{-1}$ 
+
+    Donc $M_B(u)^T = (M_B(u))^{-1}$ et $M_B(u) \in \mathcal O(n)$.
+
+    \avspace $\blacktriangleright$ $4 \implies 5$, supposons donc 4.
+
+    On a $M_B(u) \in \mathcal O(n)$ donc les colonnes de $M_B(u)$ forment une base orthonormale, 
+    donc $u(B)$ est une base orthonormale de $E$.
+
+    \avspace $\blacktriangleright$ $5 \implies 1$, supposons donc 5.
+
+    Soit $B = (e_1, \dots, e_n)$ une base orthonormale de $E$. Alors $u(B) = (u(e_1), \dots, u(e_n))$ est une base orthonormale de $E$.
+
+    Soit $x = \ds \sum_{i = 1}^{n } x_i e_i \in E$, donc $\|x\| = \ds \sqrt{\sum_{i = 1}^n x_i^2}$ 
+    et donc $u(x) = \ds \sum_{i = 1}^{n } x_i u(e_i)$ 
+
+    et donc $\| u(x) \| = \ds \sqrt{\sum_{i = 1}^n x_i^2} = \| x \|$ et $u$ est une isométrie vectorielle.
+\end{proof}
+
+\subsection{Structures}
+
+\begin{proposition}{}{}
+    L'ensemble $\mathcal O(E)$ des isométries vectorielles de $E$ est un groupe pour la composition, 
+    appelé groupe orthogonal de $E$.
+
+    De plus si $B$ est une base de $E$, $\fonction{}{\mathcal O(E)}{\mathcal O(n)}{u}{M_B(u)}$ est un isomorphisme de groupes.
+\end{proposition}
+
+\begin{proof}
+    On a $\mathcal O(E) \subset GL(E)$ car toute isométrie est bijective.
+
+    $Id \in \mathcal O(E)$ donc $\mathcal O(E)$ non vide.
+
+    Soient $f, g \in \mathcal O(E)$. 
+
+    Soit $u \in E$, alors $\| g^{-1} (f(u)) \| = \| g (g^{-1} (f(u))) \| = \| f(u) \| = \| u \|$ 
+    car $f$ et $g$ sont des isométries vectorielles. 
+
+    Donc $g^{-1} \circ f \in \mathcal O(E)$ donc sous-groupe de $GL(E)$.
+
+    Le reste découle du \ref{Caracterisation_isos}.
+\end{proof}
+
+\begin{definition}{Groupe spécial orthogonal}{}
+    \index{Groupe!special orthogonal@spécial orthogonal}
+    L'ensemble $SO(E)$ des isométries vectorielles de $E$ de déterminant $1$ est un groupe 
+    pour la composition, appelé groupe spécial orthogonal de $E$ car 
+    $SO(E) = \mathcal O(E) \cap SL(E)$.
+    On note parfois $SO(E) = \mathcal O^+(E)$. 
+
+    Un élément de $SO(E)$ est appelé une isométrie directe ou une rotation de $E$. 
+
+    \begin{itemize}
+        \item Si $B$ est une base orthonormale de $E$, $\fonction{}{SO(E)}{SO(n)}{u}{M_B(u)}$ est un isomorphisme de groupes.
+        \item Si $u \in \mathcal O(E)$, alors $\det u \in \{1, -1 \}$ car sa matrice dans une base orthonormale est orthogonale. 
+        \item Si $\det u = -1$, on dit que $u$ est une isométrie indirecte. 
+    \end{itemize}
+\end{definition}
+
+Soit $F$ sev de $E$ de dimension $p$, et $u$ symétrie orthogonale par rapport à $F$. 
+On a $E = F \oplus F^\perp$. 
+
+Soit $B_1$ base orthonormale de $F$, $B_2$ base orthonormale de $F^\perp$. 
+
+Alors $B = B_1 \sqcup B_2$ est une base orthonormale de $E$. 
+
+$M_B(u) = \begin{pmatrix}
+    I_p & 0 \\
+    0 & - I_{n - p}
+\end{pmatrix}$ et $\det u = (-1)^{n - p}$.
+
+\subsection{Cas n = 2}
+
+Soit $E$ un plan euclidien orienté. 
+
+\begin{theoreme}{rotation}{}
+    \index{Rotation}
+    Soit $u \in SO(E)$ c'est à dire une rotation vectorielle de $E$. 
+    Alors $\exists ! \theta \in ]- \pi, \pi]$ tel que pour toute base orthonormale directe
+    $B$ de $E$, 
+$$M_B(u) = \begin{pmatrix}
+    \cos \theta & -\sin \theta \\
+    \sin \theta & \cos \theta
+\end{pmatrix}$$
+    Alors $u$ est appelée la rotation d'angle de mesure $\theta$. 
+\end{theoreme}
+
+\idee{
+    Commutativité de $SO(2)$.
+}
+
+\begin{proof}
+    Soit $B_0$ une base orthonormale directe, alos 
+    $M_{B_0}(u) \in SO(2)$, et donc 
+    $\exists ! \theta \in ]- \pi, \pi], M_{B_0}(u) = \begin{pmatrix}
+    \cos \theta & -\sin \theta \\
+    \sin \theta & \cos \theta
+\end{pmatrix}$.
+
+    Soit $B$ une autre base orthonormale directe et $P = P_{B_0 \to B}$. Alors
+    $P \in SO(2)$ et $M_B(u) = P^{-1} M_{B_0}(u) P$. 
+    Or $SO(2)$ est commutatif, donc $P^{-1} M_{B_0}(u) P = M_{B_0}(u)$ et $M_B(u) = M_{B_0}(u)$.
+\end{proof}
+
+\begin{theoreme}{angle orienté de vecteurs}{}
+    Soient $x$ et $y$ deux vecteurs non nuls d'un plan euclidien $E$. Alors 
+    \begin{itemize}
+        \item Il existe une unique rotation $r_\theta$ telle que $r_\theta\left( \frac x {\| x \|} \right) = \frac y {\| y \|}$
+        \item L'angle de cette rotation est appelé angle orienté des vecteurs $x$ et $y$.
+    \end{itemize}
+\end{theoreme}
+
+\idee{Norme de $\frac y {||y||}$}
+
+\begin{proof}
+    Posons $e_1 = \frac x {\| x \|}$ et $e_2$ tel que $B = (e_1, e_2)$ base orthonormale directe de $E$.
+
+    Décomposons $\frac y {\| y \|}$ sur $(e_1, e_2)$ : 
+    $\frac y {\| y \|} = \alpha e_1 + \beta e_2$ avec $\alpha^2 + \beta^2 = 1$.
+
+    Donc il existe un unique $\theta \in ]- \pi, \pi]$ tel que $\frac y {\| y \|} = \cos \theta e_1 + \sin \theta e_2$, 
+    c'est à dire $\ds r_\theta\left( \frac x {\| x \|} \right) = \frac y {\| y \|}$.
+
+    Si un autre $\theta'$ convient, $\theta = \theta'$ par unicité des coordonnées. 
+\end{proof}
+
+On a donc $\langle x, y \rangle = \langle e_1 \| x \|, \| y \| \cos \theta e_1 + \| y \| \sin \theta e_2 \rangle$
+et donc 
+$$\langle x, y \rangle = \| x \| \| y \| \cos \theta$$
+
+Et on a églament : 
+\begin{align}
+    \Det(x, y) & = \Det(e_1 \| x \|, \| y \| \cos \theta e_1 + \| y \| \sin \theta e_2) \\
+    & = \Det(e_1 \| x \|, \| y \| \sin \theta e_2) \\
+    & = \| x \| \| y \| \sin \theta \Det(e_1, e_2) \\
+    & = \| x \| \| y \| \sin \theta
+\end{align}
+
+Donc 
+$$\Det(x, y) = \| x \| \| y \| \sin \theta$$
+
+\begin{exemple}
+    $x = \begin{pmatrix}
+        1 \\ 3
+    \end{pmatrix}$ et $y = \begin{pmatrix}
+        2 \\ -5
+    \end{pmatrix}$ dans $\R^2$ euclidien canonique.
+
+    $\langle x, y \rangle = -13 = \sqrt {10} \sqrt{27} \sin(\theta)$
+
+    $\ds \cos(\theta) = \frac{- 13}{\sqrt{290}}$ et $\ds \sin(\theta) = \frac{- 11}{3\sqrt{290}}$
+\end{exemple}
+
+\begin{proposition}{}{}
+    Soit $u \in \mathcal O(E)$. Alors 
+    \begin{enumerate}
+        \item Si $\Det(u) = 1$, alors $u \in SO(E)$, $u$ est une rotation 
+        et $\exists ! \theta \in ]- \pi, \pi]$, pour toute base orthonormée directe 
+        $B$, $M_B(u) = \begin{pmatrix}
+            \cos \theta & -\sin \theta \\
+            \sin \theta & \cos \theta
+        \end{pmatrix}$
+        \item Si $\Det(u) = -1$, alors $u$ est une réflexion. 
+        \begin{itemize}
+            \item Il existe $B$ une base orthonormée telle que $M_B(u) = \begin{pmatrix}
+                1 & 0 \\
+                0 & -1
+            \end{pmatrix}$
+            \item Dans toute base orthonormée $B'$, il existe $\theta \in \R$ tel que $M_{B'}(u) = \begin{pmatrix}
+                \cos \theta & \sin \theta \\
+                \sin \theta & -\cos \theta
+            \end{pmatrix}$
+        \end{itemize}
+    \end{enumerate}
+\end{proposition}
+
+\idee{2. Utiliser les vecteurs propres de $u$.}
+
+\begin{proof}
+    Soit $u \in \mathcal O(E)$. 
+    \begin{enumerate}
+        \item Si $\Det(u) = 1$, voir trucs précédents. 
+        \item Si $\Det(u) = -1$, alors pour toute base orthonormée $B'$
+    \end{enumerate}
+
+    $A = M_{B'}(u) \in \mathcal O(2)$ et $\det A = -1$.
+
+    Donc il existe $\theta \in \R$, $M_{B'}(u) = \begin{pmatrix}
+        \cos \theta & \sin \theta \\
+        \sin \theta & -\cos \theta
+    \end{pmatrix} = A$. 
+
+    $\chi_A = \begin{vmatrix}
+        X - \cos \theta & -\sin \theta \\
+        -\sin \theta & X + \cos \theta
+    \end{vmatrix} = (X- 1)(X + 1)$ scindé à racines simples. 
+
+    Soit $e_1$ vecteur propre pour $1$ et $e_2$ vecteur propre pour $-1$.
+
+    Posons $f_1 = \frac{e_1}{\| e_1 \|}$ et $f_2 = \frac{e_2}{\| e_2 \|}$. 
+
+    Alors 
+    \begin{align}
+        \langle f_1, f_2 \rangle & = \langle u (f_1), u (f_2) \rangle \\
+        & = \langle f_1, - f_2 \rangle \\
+        & = - \langle f_1, f_2 \rangle
+    \end{align}
+
+    Donc $\langle f_1, f_2 \rangle = 0$ et donc $B = (f_1, f_2)$ est une base orthonormée de $E$.
+\end{proof}
+
+\subsection{Réduction des isométries }
+
+\begin{proposition}{stabilité orthogonal endo orthogonal}{}
+    Soit $u \in \mathcal O(E)$ et $F$ sous-espace vectoriel de $E$ stable par $u$. Alors 
+    $F^\perp$ est stable par $u$. 
+\end{proposition}
+
+\begin{proof}
+    Soit $B_1$ base orthonormée de $F$, $B_2$ base orthonormée de $F^\perp$.
+    Alors $B = B_1 \cup B_2$ base orthonormée de $E$.
+
+    $A = M_B(u) = \begin{pmatrix}
+        A_1 & A_2 \\
+        0 & A_3
+        \end{pmatrix}$ avec $A_1$ matrice de l'endomorphisme dans $B_1$
+        de l'endomorphisme induit sur $F$. 
+
+    $u \in \mathcal O(E)$ donc $A \in \mathcal O(n)$, et donc 
+    $A^T A = \begin{pmatrix}
+        A_1^T A_1 & A_1^T A_2 \\
+        A_2^T A_1 & A_2^T A_2 + A_3^T A_3
+    \end{pmatrix} = I_n$.
+
+    Donc $A_1^T A_2 = 0$ et donc $A_1 A_1^T A_2 = 0$ et $A_2 = 0$ 
+
+    Donc $F^\perp$ est stable par $u$.
+\end{proof}
+
+\begin{proof}
+    Preuves alternatives non homologuées par Kiki (peut-être fausses). 
+
+    $E$ est euclidien, donc de dimension finie, donc $F$ également. 
+
+    Or $u$ est une isométrie vectorielle, donc $u$ est bijective. 
+
+    Donc $\dim (u(F)) = \dim F$, et $u(F) \subset F$ donc $u(F) = F$. 
+
+    Soient $x \in F$ et $y \in F^\perp$
+
+    On a alors, car isométrie vectorielle, $\langle u(x), u(y) \rangle = \langle x, y \rangle = 0$
+
+    Or c'est vrai pour tout $x$, et donc $\forall y \in F\perp, u(y) \in F^\perp$. 
+
+    \lvspace Autre idée : simplement un argument de dimension afin de dire que $E = F \oplus F^\perp$, 
+    et par le même argument que précédemment $u(F) = F$, or $u(E) = E$ et donc $u(F^\perp) = F^\perp$. 
+\end{proof}
+
+\begin{proposition}{spectre isométrie vectorielle}{}
+    Soit $u \in \mathcal O(E)$. Alors $\Sp (u) \subset \{ -1, 1 \}$
+\end{proposition}
+
+\begin{proof}
+    Soit $x$ vecteur propre de $u$ pour une valeur propre $\lambda$. 
+
+    Alors $\| u(x) \|  = \| x \|$ et donc $|\lambda| \| x \| = \| x \|$ et $\lambda \in \{ -1, 1 \}$.
+\end{proof}
+
+\begin{theoreme}{réduction des isométries vectorielles}{}
+    Soit $u \in \mathcal O(E)$. Alors il existe $p, q, r \in \N$, 
+    $\theta_1, \dots, \theta_r \in \R$ et $B$ base orthonormée de $E$ telle que $n = p + q + 2r$ et 
+    $$M_B(u) = \begin{pmatrix}
+        I_p & 0 & 0 \\
+        0 & - I_q & 0 \\
+        0 & 0 & R
+    \end{pmatrix}$$
+    avec $R = \begin{pmatrix}
+        \begin{pmatrix} \cos \theta_1 & -\sin \theta_1 \\
+        \sin \theta_1 & \cos \theta_1 \end{pmatrix}  & & 0\\
+        & \ddots & \\
+         0 & & \begin{pmatrix}
+            \cos \theta_r & -\sin \theta_r \\
+            \sin \theta_r & \cos \theta_r
+        \end{pmatrix}
+    \end{pmatrix}$.
+\end{theoreme}
+
+\idee{
+    Par récurrence sur la dimension de $E$, et utiliser vecteur / valeur propre. 
+}
+
+\begin{proof}
+    Par récurrence sur $n$ la dimension de $E$. 
+
+    $\blacktriangleright$ Si $n = 1$, $u \in \mathcal O(\R)$, et alors $u = Id$ ou $u = - Id$
+    Donc dans toute base orthonormée $B$, $M_B(u) = \begin{pmatrix}
+        1
+    \end{pmatrix}$ ou $M_B(u) = \begin{pmatrix}
+        -1
+    \end{pmatrix}$.
+
+    \avspace $\blacktriangleright$ Supposons le résultat vrai pour tout espace vectoriel $F$ de 
+    dimension inférieure à $n$. 
+
+    Soit $E$ de dimension $n + 1$ et $u \in \mathcal O(E)$.
+
+    \uindent{$\blacktriangleright$ Cas 1 } $u$ possède un vecteur propre $e_1$ de norme 1. 
+
+    \svspace Alors $e_1$ est associé à $-1$ ou $1$. 
+
+    Posons $F = \Vect(e_1)^\perp$ et $F$ est stable par $u$ par stabilité orthogonale.
+
+    Notons $\tilde u$ l'endomorphisme induit par $u$ sur $F$. 
+
+    $u$ conserve la norme donc $\tilde u$ aussi et donc $\tilde u \in \mathcal O(F)$.
+
+    Or $\dim F = n$ et donc par hypothèse de récurrence, 
+    il existe $B$ base orthonormée de $F$ telle que $M_B(\tilde u)$ a la forme désirée. 
+
+    En insérant $e_1$ dans la base $B$ à la $p + 1$-ième position, on obtient une base 
+    $B'$ telle que $B'$ base orthonormée et $M_{B'}(u)$ a la forme désirée.
+
+    \uindent{$\blacktriangleright$ Cas 2 } $u$ ne possède pas de vecteur propre.
+
+    Donc $n + 1$ pair car $\chi_u$ n'a pas de racine réelle. 
+
+    Soit $B$ une base orthonormée de $E$ et $A = M_B(u)$. 
+
+    Alors $A \in \mathcal O(n)$ et soit $\lambda$ une valeur propre complexe de $A$ et $X \in \C^{n + 1}$ vecteur 
+    propre associé. Alors $AX = \lambda X$ et $\overline{AX} = \overline{\lambda X}$
+    
+    Donc $\overline A \; \overline X = \overline \lambda \; \overline X$ par propriétés du conjugué. 
+    
+    Et puisque $A$ est à coefficients réels, $A \overline X = \overline \lambda \; \overline X$. 
+
+    Alors $A (X + \overline X) = \lambda X + \overline \lambda \overline X$ 
+    et $A (X - \overline X) = \lambda X - \overline \lambda \overline X$.
+
+    Posons $X_1 = X + \overline X \in \R^{n + 1}$ et $X = \ds \frac 1 2 (X_1 - iX_2)$
+
+    $X_2 = i(X - \overline X) \in \R^{n + 1}$ et $\overline X = \ds \frac 1 {2} (X_1 + i X_2)$.
+
+    $\ds A X_1 = \frac{\lambda + \overline \lambda}{2} X_1 + \frac{\lambda - \overline \lambda}{2i} X_2$ 
+
+    De même, $A X_2 \in \Vect(X_1, X_2)$. 
+
+    Soit $x_1 \in E$, $x_2 \in E$ associés dans $B$ à $X_1$ et $X_2$. Donc 
+    $P = \Vect(x_1, x_2)$ est stable par $u$. 
+
+    Notons $\tilde u$ l'endomorphisme induit par $u$ sur $P$. 
+
+    Par l'étude des isométries du plan, $\exists \theta \in \R$, $\exists B$ base orthonormée de 
+    $P$ telle que $M_B(\tilde u) = \begin{pmatrix}
+        \cos \theta & -\sin \theta \\
+        \sin \theta & \cos \theta
+    \end{pmatrix}$.
+
+    $P^\perp$ est stable par $u$ et de dimension $n - 1$. Par hypothèse de récurrence, 
+    il existe $B_2$ base de $P^\perp$ telle que 
+    $M_B(\hat u)$ a la forme désirée, avec $\hat u$ l'endomorphisme induit par $u$ sur $P^\perp$.
+
+    On pose $B_3 = B_2 \sqcup B_1$est donc une base orthonormée de $E$ telle que 
+    $M_{B_3}(u)$ a la forme désirée.
+\end{proof}
+
+\subsubsection{Cas n = 3}
+
+Soit $E$ un espace euclidien de dimension 3, $u \in \mathcal O(E)$. 
+Par le théorème de réduction, il existe $p, q, r \in \N$ tel que 
+$p + q +2r = 3$ et $B$ base orthonormée de $E$ telle que $M_B(u)$ a la forme 
+requise. 
+
+\uindent{Cas 1 } $r = 0$
+
+\svspace Alors il existe $B$ base orthonormale de $E$ telle que $M_B(u) = \begin{pmatrix}
+    \pm 1 & 0 & 0 \\
+    0 & \pm 1 & 0 \\
+    0 & 0 & \pm 1
+\end{pmatrix}$ 
+
+$\blacktriangleright$ Si $M_B(u) = \begin{pmatrix}
+    1 & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & 0 & -1
+\end{pmatrix}$ alors $u$ est la réflexion par rapport au plan $\Vect(e_1, e_2)$ parallèlement à $\Vect(e_3)$.
+
+\avspace $\blacktriangleright$ Si $M_B(u) = \begin{pmatrix}
+    1 & 0 & 0 \\
+    0 & -1 & 0 \\
+    0 & 0 & -1
+    \end{pmatrix}$ alors $u$ est la symétrie orthogonale par rapport à la droite 
+    $\Vect(e_1)$ c'est à dire le demi tour autour de cette droite. 
+
+\uindent{Cas 2 } $r = 1$, $p = 1$ et $q = 0$.
+
+\svspace Il existe $B$ une base orthonormée de $E$ telle que $M_B(u) = \begin{pmatrix}
+    1 & 0 & 0 \\
+    0 & \cos \theta & -\sin \theta \\
+    0 & \sin \theta & \cos \theta
+\end{pmatrix}$
+
+$u$ est la rotation dirigée par $e_1$ et d'angle $\theta$. 
+
+\uindent{Cas 3 } $r = 1$, $p = 0$ et $q = 1$
+
+\svspace Il existe $B$ une base orthonormée de $E$ et $\theta \in \R$ telle que 
+$$M_B(u) = \begin{pmatrix}
+    -1 & 0 & 0 \\
+    0 & \cos \theta & -\sin \theta \\
+    0 & \sin \theta & \cos \theta
+\end{pmatrix} = \begin{pmatrix}
+    -1 & 0 & 0 \\
+    0 & 1 & 0 \\
+    0 & 0 & 1
+\end{pmatrix} \begin{pmatrix}
+    1 & 0 & 0 \\
+    0 & \cos \theta & -\sin \theta \\
+    0 & \sin \theta & \cos \theta
+\end{pmatrix}$$
+
+$u$ est la composée de la réflexion par rapport à $\Vect(e_2, e_3)$ et de la rotation
+dirigée par $e_1$ et d'angle $\theta$.
+
+
+\lvspace 
+
+Comment trouve-t-on ces résultats ? 
+
+Pour montrer qu'on a des symétries, il suffit de calculer le carré de la matrice, qui doit 
+être l'identité.
+
+Pour montrer qu'on a des rotations, il suffit de montrer que celle-ci appartient à $SO(3)$, 
+c'est à dire que son déterminant est 1 et qu'elle est orthogonale.
+
+
+\begin{exemple}
+    $A = \begin{pmatrix}
+        2/3 & 1/\sqrt 2 & 1/3 \sqrt 2 \\
+        2 / 3 & - 1 / \sqrt 2 & 1/3 \sqrt 2\\
+        1 / 3 & 0 & -4 / 3 \sqrt 2 
+    \end{pmatrix} \in O(3)$. 
+
+    Soit $u \in O(\R^3)$ canoniquement associée à $A$. 
+
+    $\det A = \frac 1 {18} \left[ 2(-1)(-u) + 1 - 0(-1)1 - (-4)2\right] > 0$
+
+    donc $\det A = 1$ et donc $u \in So(\R^3)$ est une rotation. 
+
+    Il existe $B$ base orthonormée et $\theta \in \R$ telle que 
+    $$M_B(u) = \begin{pmatrix}
+        1 & 0 & 0 \\
+        0 & \cos \theta & -\sin \theta \\
+        0 & \sin \theta & \cos \theta
+        \end{pmatrix}$$
+
+    $B' = (e_1, e_2, e_3)$ 
+
+    On a $e_1 \begin{pmatrix}
+        x \\ y \\ z
+    \end{pmatrix}$ vérifie $u(e_1) = e_1$, c'est à dire 
+    $\begin{cases}
+        -\frac 1 3x + \frac 1 {\sqrt 2} y + \frac 1 {3 \sqrt 2} z = 0 \\
+        \frac 2 3 x -( 1 + \frac 1 {\sqrt 2}) y + \frac 1 {3 \sqrt 2} z = 0 \\
+        \frac 1 3x + (- 1 - \frac 4 {3 \sqrt 2}) z = 0
+    \end{cases}$
+
+    Posons $z = \sqrt 2$, $x = 3 \sqrt 2 + 4$ et $y = \sqrt 2 +1$ et 
+    donc $e_1$ est vecteur propre pour 1. 
+
+    Posons $f_1 = \frac{e_1}{\| e_1 \|}$ et $(f_2, f_3)$ base orthonormée de $\Vect(e_1)^\perp$.
+
+    $B = (f_1, f_2, f_3)$ convient. 
+
+    $\tr A = \frac 2 3 - \frac 7 {3 \sqrt 2} = 1 + 2 \cos \theta$
+
+    Donc $\cos \theta = - \frac 1 6 - \frac 7 {6 \sqrt 2}$
+\end{exemple}
+
+\begin{exemple}
+    $P$ plan d'équation $3x + y - z = 0$ et u symétrie orthogonale par rapport à $P$.
+
+    On cherche la matrice $A$ de $u$ dans la base canonique. 
+
+    Soit $v = \begin{pmatrix}
+        x \\ y \\ z
+    \end{pmatrix} \in \R^3$ et cherchons $u(v)$. 
+
+    $D = P^\perp = \Vect \begin{pmatrix}
+        3 \\ 1 \\ -1
+    \end{pmatrix}$ et $e_3 = \frac 1 {\sqrt 11} \begin{pmatrix}
+        3 \\ 1 \\ -1
+    \end{pmatrix}$
+
+    $\ds v_2 = \langle v, e_3 \rangle e_3 = \frac 1 {11} \begin{pmatrix}
+        9x + 3y - 3z \\ 3x + y - z \\ -3x - y + z
+    \end{pmatrix}$
+
+    est le projeté orthogonal de $v$ sur $D$. 
+
+    $v = v_1 + v_2$ et donc $u(v) = v_1 - v_2 = v - 2 v_2$.
+
+    $u(v) = \ds \frac 1 {11} \begin{pmatrix}
+        -7 x - 6y + 2z \\
+        -6x + 9y + 2z \\
+        6x + 2y + 9z
+    \end{pmatrix}$
+
+    $M_B (u) = \ds \frac 1 {11} \begin{pmatrix}
+        -7 & -6 & 6 \\
+        -6 & 9 & 2 \\
+        6 & 2 & 9
+    \end{pmatrix}$
+\end{exemple}
+
+\section{Endomorphismes autoadjoints}
+
+\begin{definition}{endomorphisme autoadjoint}{}
+    \index{Endomorphisme autoadjoint}
+    Soit $u \in \mathscr L(E)$. On dit que $u$ est autoadjoint ssi $u^* = u$.
+    On dit parfois que $u$ est symétrique. 
+\end{definition}
+
+\begin{theoreme}{nature ensemble des endomorphismes autoadjoints}{}
+    L'ensemble des endomorphismes autoadjoints de $E$ est un sous-espace vectoriel
+    de $\mathscr L(E)$ noté $\mathscr S(E)$. 
+\end{theoreme}
+
+\begin{proof}
+    $\mathscr S(E) \subset \mathscr L(E)$
+
+    $0 \in \mathscr S(E)$ 
+
+    Si $u, v \in \mathscr S(E)$ et $\alpha \in \R$, 
+
+    $(\alpha u + v)^* = \alpha u^* + v^* = \alpha u + v$ et donc $\alpha u + v \in \mathscr S(E)$.
+\end{proof}
+
+\subsection{Caractérisation matricielle}
+
+\begin{proposition}{caractérisation matricielle endomorphisme autoadjoint}{}
+    Soit $u \in \mathscr L(E)$ et $B$ une base orthonormée de $E$. 
+    Alors $u$ est autoadjoint ssi $M_B(u)$ est 
+    symétrique. 
+    
+    Ainsi, $\fonction{\phi}{\mathscr S(E)}{\mathscr S_n(\R)}{u}{M_B(u)}$ 
+    est bien définie et est une isométrie d'espaces vectoriels. 
+
+    En particulier, $\dim \mathscr S(E) = \dim \mathscr S_n(\R) = \frac{n(n + 1)}{2}$.
+\end{proposition}
+
+\begin{proof}
+    $B$ est une base orthonormée, donc pour $u \in \mathscr L(E)$, 
+    $M_B(u^*) = M_B(u)^T$.
+
+    Donc $u = u^*$ ssi $M_B(u) = M_B(u^*)$ ssi $M_B(u) = M_B(u)^T$ 
+\end{proof}
+
+\subsection{Cas des projecteurs }
+
+\begin{proposition}{projecteurs autoadjoints}{}
+    Soit $p \in \mathscr L(E)$ un projecteur. Alors $p = p^*$ ssi 
+    $\Ker p \perp \im p$, c'est à dire ssi $p$ est un projecteur orthogonal. 
+    Ainsi, un projecteur est autoadjoint ssi il est orthogonal.
+\end{proposition}
+
+\begin{proof}
+    Supposons que $p = p^*$, et soit $x \in \Ker p$, $y \in \im p$.
+
+    Il existe $z \in E$ et $y = p(z)$, donc 
+
+    \begin{align}
+        \langle x, y \rangle & = \langle x, p(z) \rangle \\
+        & = \langle p^*(x), z \rangle \\
+        & = \langle p(x), z \rangle \\
+        & = 0
+    \end{align}
+
+    Donc $\Ker p \perp \im p$. 
+
+    Supposons que $\Ker p \perp \im p$. 
+
+    Soient $x, y \in E$. 
+
+    \begin{align}
+        \langle p(x), y \rangle & = \langle p(x), p(y) + y - p(y) \rangle \\
+        & = \langle p(x), p(y) \rangle + \langle p(x), y - p(y) \rangle \\
+        & = \langle x, p(y) \rangle 
+    \end{align}
+
+    Donc $p^* = p$.
+\end{proof}
+
+\begin{corollaire}{}{}
+    La matrice dans une base orthonormale d'un projecteur orthogonal est donc symétrique.
+\end{corollaire}
+
+\begin{corollaire}{}{}
+    Soit $s \in \mathscr L(E)$ une symétrie. Alors 
+    $s$ est une symétrie orthogonale ssi elle est autoadjointe.
+    Ainsi la matrice dans une base orthonormale d'une symétrie orthogonale est donc symétrique.
+\end{corollaire}
+
+\begin{proof}
+    Posons $p = \frac 1 2 (s + 2 \id)$ la projection associée à $s$. 
+
+    Alors $p^* = \frac 1 2(s^* + \id)$ car $\id^* = \id$. 
+
+    Donc $p^* = p$ ssi $s^* = s$.
+
+    Donc $s$ autoadjoint ssi $p$ projection orthogonale ssi $s$ symétrie orthogonale. 
+\end{proof}
+
+\begin{exemple}
+    $A = \frac 1 3 \begin{pmatrix}
+        -2 & 2 & 1 \\
+        2 & 1 & 2 \\
+        1 & 2 & -2
+    \end{pmatrix}$ $u$ endomorphisme de $\R^3$ euclidien canoniquement associé ? 
+
+    $A \in O(3)$ donc $u$ est une isométrie vectorielle. 
+
+    $X = \begin{pmatrix}
+        x \\ y \\ z 
+    \end{pmatrix}$ et on a 
+
+    $AX = X$ ssi $\begin{cases}
+        5x - 2y - z = 0 \\
+        2x - 2y + 2z = 0 \\
+        x + 2y - 5z = 0
+    \end{cases}$ 
+
+    ssi $\begin{cases}
+        3x - 3z = 0 \\
+        6x - 6z = 0 \\
+        x - y + z = 0
+    \end{cases}$
+
+    ssi $\begin{cases}
+        z = x \\
+        y = 2x 
+    \end{cases}$
+
+    Donc $E_1(u) = \Vect \frac 1 {\sqrt 6} \begin{pmatrix}
+        1 \\ 2 \\ 1
+    \end{pmatrix}$
+
+    $AX = - X$ ssi $\begin{cases}
+        x + 2y + 2z = 0 \\
+        2x + 4y + 2z = 0 \\
+        x + 2y + z = 0
+    \end{cases}$ ssi $x + 2y + z = 0$
+
+    $E_{-1}(u) = (E_1(u))^\perp = \Vect \left( \begin{pmatrix}
+        1 \\ 0 \\ - 1
+    \end{pmatrix}, \begin{pmatrix}
+        2 \\ -1 \\ 0
+    \end{pmatrix} \right)$
+
+    Soit $(e_2, e_3)$ base orthonormale de $E_{-1}(u)$
+
+    $B = (e_1, e_2, e_3)$
+
+    $M_B(u) = \begin{pmatrix}
+        1 & 0 & 0 \\
+        0 & -1 & 0 \\
+        0 & 0 & -1
+    \end{pmatrix}$$u$ est la symétrie orthogonale parallèlement à $\Vect (e_1)$ et donc 
+    on avait bien $A$ symétrique. 
+\end{exemple}
+
+\begin{remarque}
+    Si $u \in \mathcal O(E) \cap \mathscr S(E)$ alors $u$ est une symétrie orthogonale. 
+\end{remarque}
+
+\begin{proof}
+    Par le théorème de réduction, il existe $B$ base orthonormé telle que 
+    $M_B(u) = \begin{pmatrix}
+        I_p & & & & \\
+        & - I_q & & & \\
+        & & \dots & & \\
+        & & & \begin{pmatrix}
+            \cos \theta & - \sin \theta \\
+            \sin \theta & \cos \theta 
+        \end{pmatrix} & \\
+        & & & & \dots 
+    \end{pmatrix}$
+
+    $u \in \mathscr S(E)$ donc $M_B(u)$ symétrique et donc 
+    $\forall i, \, \sin \theta_i = - \sin \theta_i$
+
+    Donc $M_B(u)$  diagonale avec une diagonale ne comportant que des 1 et -1. 
+\end{proof}
+
+\begin{proposition}{}{}
+    Soit $u \in \mathscr S(E)$ et soit $F$ sous-espace vectoriel de $E$ stable par $u$. 
+    Alors $F^\perp$ est stable par $u$. 
+\end{proposition}
+
+\begin{proof}
+    Supposons que $F$ est stable par $u$. Alors $F^\perp$ est stabe par $u^*$. 
+
+    Or $u^* = u$. 
+\end{proof}
+
+\subsection{Théorème spectral}
+
+\begin{theoreme}{spectral}{}
+    Soit $E$ un espace euclidien et $u \in \mathscr L(E)$. Alors $u$ est 
+    autoadjoint ssi $u$ est diagonalisble dans une base orthonormée. 
+    En particulier, en ce cas en notant $\Sp(u) = \{\lambda_1, \dots, \lambda_p\}$, on a 
+    $E = \ds \bigoplus E_{\lambda_i} (u)$, avec $\forall i \neq j$, $E_{\lambda_i}(u) \perp E_{\lambda_j}(u)$. 
+\end{theoreme}
+
+\uindent{Conséquence matricielle} 
+
+Toute matrice symétrique réelle est diagonalisable avec matrice de passage orthogonale. 
+
+Si $A \in S_n(\R)$, $\exists P \in \mathcal O(n)$, 
+$\exists D \in \mathscr M_n(\R)$ diagonale telle que $A = PDP\inv$ et 
+$A = PDP^\perp$. 
+
+\begin{proof}
+    $\Leftarrow$ Soit $u \in \mathscr L(E)$ tel qu'il existe $B$ base orthonormée 
+    telle que $M_B(u)$ est diagonale. 
+
+    Alors $M_B(u^*) = M_B(u)^\perp = M_B(u)$
+
+    Donc $u^* = u$ d'où le sens réciproque. 
+
+    \uindent{Lemme } Soit $u \in \mathscr L(E)$ autoadjoint. Alors 
+    $\Sp(u) \neq \emptyset$. 
+
+    \avspace 
+
+    \begin{proof}[Preuve du lemme]
+    Soit $u \in \mathscr S(E)$. 
+
+    Posons $S = \{x \in E, \| x \| = 1\}$ et 
+    $\fonction f S \R x {\langle u(x), x \rangle}$
+
+    $S$ est un compact (sphère unité en dimension finie), et $f$ est 
+    continue par composition d'applications linéaires et bilinéaires en dimension finie. 
+
+    Par le théorème des bornes atteintes, $f$ est bornée et donc atteint ses bornes. 
+
+    Soit $e_1$ vecteur de $S$ en lequel $f$ est maximale. 
+
+    $\| e_1 \| = 1$, complétons la en $B = (e_1, \dots, e_n)$ base orthonormée de $E$.
+
+    $u(e_1) = \ds \sum_{i = 1}^{n } \langle u(e_1), e_i \rangle e_i$ et 
+    montrons que $\forall i \geqslant 2, \, \langle u(e_1), e_i \rangle = 0$.
+
+    Soit $\theta \in \R$ et $x = \cos \theta e_1 + \sin \theta e_i$. 
+
+    \begin{align}
+        \| x \|^2 & = \cos^2 \theta \| e_1 \|^2 + \sin^2 \theta \| e_i \|^2 + 2 \cos \theta \sin \theta \langle e_1, e_i \rangle \\
+        & = 1
+    \end{align} 
+
+    Donc $x \in S$. 
+
+    Donc $f(x) \leqslant f(e_1)$, et donc $\forall \theta \in \R$, 
+    $$\langle u (x), x \rangle \leqslant \langle u(e_1), e_1 \rangle$$
+
+    On a donc $\forall \theta \in \R$, $F(\theta) \leqslant F(0)$ avec 
+    $F(\theta) = \cos^2 \theta \langle u(e_1), e_1 \rangle + \sin^2 \theta \langle u(e_i), e_i \rangle + \cos \theta \sin \theta \langle u(e_1), e_i \rangle + \sin \theta \cos \theta \langle u(e_i), e_1 \rangle$.
+
+    $F$ est de classe $\mathscr C^1$ sur $\R$, maximale en $0$ donc $F'(0) = 0$. 
+
+    Or $\langle u(e_i), e_1 \rangle = \langle e_i, u^*(e_1) \rangle = \langle e_i, u(e_1) \rangle $ 
+
+    Donc $\langle e_i, u(e_1) \rangle = 0$ et donc $u(e_1) = \langle u(e_1), e_1 \rangle e_1$ et 
+    $e_1$ est un vecteur propre de $u$. 
+
+    \end{proof}
+
+    \lvspace $\Rightarrow$ preuve par récurrence sur $n = \dim E$. 
+
+    \uindent{Si n = 1} $u$ est diagonalisable dans toute base. 
+
+    \svspace Hypothèse de récurence : Supposons le résultat vrai pour tout espace euclidien 
+    de dimension inférieure à $n$. 
+
+    Soit $E$ espace vectoriel euclidien de dimension $n + 1$ et $u \in \mathscr S(E)$. 
+
+    Alors par le lemme, $\Sp(u) \neq \emptyset$. 
+
+    Soit $\lambda$, une valeur propre de $u$ et $e_1$ un vecteur propre associé de norme 1. 
+
+    Alors $F = Vect (e_1)$ est stable par $u$. 
+
+    Donc $F^\perp$ est stable par $u$ car $u^* = u$. Notons $\tilde u$ l'endomorphisme induit par 
+    $u$ sur $F^\perp$.
+
+    $\forall x, y \in F^\perp$, 
+
+    \begin{align}
+        \langle \tilde u (x), y \rangle & = \langle u(x), y \rangle  \\
+        & = \langle x, u(y) \rangle \\
+        & = \langle x, \tilde u (y) \rangle
+    \end{align}
+
+    Donc $\tilde u \in \mathscr S(F^\perp)$. Or 
+    $\dim F^\perp = n$ et donc par HR il existe 
+    $(e_2, \dots, e_{n + 1})$ base orthonormée de $F^\perp$ formée de vecteurs propres de 
+    $\tilde u$ donc de $u$. 
+
+    Donc $(e_1, e_2, \dots, e_{n + 1})$ base orthonormée de $E$ formée de vecteurs propres de $u$
+    d'où la récurrence. 
+
+    Ainsi pour $u \in \mathscr S(E)$, $u$ est diagonalisable. 
+
+    Notons $\Sp(u) = \{\lambda_1, \dots, \lambda_p\}$ les valeurs propres de $u$.
+
+    On a donc $E = \ds \bigoplus_{i = 1}^p E_{\lambda_i}(u)$
+
+    Soit $i \neq j$, $y \in E_{\lambda_i}(u)$ et $z \in E_{\lambda_j}(u)$.
+
+    \begin{align}
+        \langle u(y), z \rangle & = \langle \lambda_i y, z \rangle \\
+        & = \lambda_i \langle y, z \rangle \\
+        \langle y, u(z) \rangle & = \langle y, \lambda_j z \rangle \\
+        & = \lambda_j \langle y, z \rangle
+    \end{align}
+
+    Or $\lambda_i \neq \lambda_j$ donc $\langle y, z \rangle = 0$. 
+
+    \lvspace Preuve de la conséquence 
+
+    Soit $E \in S_n(\R)$. 
+
+    Soit $u$ endomorphisme de $\R^n$ canoniquement associé, alors $u^* = u$ et donc $u$ diagonalisable 
+    dans une base orthonormée $B$.
+
+    $M_B(u) = D = PDP\inv$ avec $P \in \mathcal O(n)$ et $D$ diagonale.
+
+    Donc $P\inv = P^T$. 
+\end{proof}
+
+\begin{remarque}
+    La réciproque reste vraie. Si $A = PDP\inv$ avec $P \in \mathcal O(n)$, alors 
+    $A^T = (PDP\inv)^T = (P\inv)^T D^T P^T = PDP\inv = A$.
+\end{remarque}
+
+\subsection{Endomorphismes autoadjoints positifs}
+
+\begin{definition}{endomorphisme autoadjoint positif}{}
+    Soit $u \in \mathscr S(E)$ endomorphisme autoadjoint de $E$. On dit que 
+    $u$ est positif (resp défini positif) ssi $\forall x \in E$, 
+    $\langle u(x), x \rangle \geqslant 0$ (resp $\langle u(x), x \rangle  \geqslant 0$ et 
+    $\langle u(x), x \rangle = 0$ ssi $x = 0$).
+
+    L'ensemble des endomorphismes autoadjoints positifs est noté 
+    $\mathscr S^+(E)$ et l'ensemble des endomorphismes autoadjoints définis positifs est noté $\mathscr S^{++}(E)$.
+\end{definition}
+
+\begin{theorement}{caractérisation spectrale endomorphismes autoadjoints positifs}{}
+    Soit $u \in \mathscr S(E)$ endomorphisme autoadjoint 
+    alors $u \in \mathscr S^+(E)$ ssi $\Sp u \subset \R^+$ et 
+    $u \in \mathscr S^{++}(E)$ ssi $\Sp u \subset \R^{+*}$.
+\end{theorement}
+
+\begin{proof}
+    Soit $u \in \mathscr S(E)$ et supposons que $u \in \mathscr S^+(E)$.
+
+    Soit $\lambda \in \Sp u$ et $x \in E_\lambda(u) \setminus \{0\}$.
+
+    On a donc $u(x) = \lambda x$ et $u \in \mathscr S^+(E)$ donc $\langle u(x), x \rangle \geqslant 0$
+
+    Or $\langle u(x), x \rangle = \langle \lambda x, x \rangle = \lambda \| x \|^2$ et $\| x \|^2 > 0$.
+    Donc $\lambda \geqslant 0$ et donc $\Sp u \subset \R^+$.
+
+    \lvspace $\blacktriangleright$ Supposons maintenant que $\Sp u \subset \R^+$.
+
+    $u \in \mathscr S(E)$ et donc (théorème spectral) diagonalisable dans une base orthonormée 
+    $B = (e_1, \dots, e_n)$ avec $e_i$ vecteur propre pour un $\lambda_i \in \Sp u$. 
+
+    Soit $x \in E$ décomposé en $x = \ds \sum_{i = 1}^{n } x_i e_i$, alors 
+    $u(x) = \ds \sum_{i = 1}^{n} x_i u(e_i) = \ds \sum_{i = 1}^{n} x_i \lambda_i e_i$ 
+
+    Donc $\langle u(x), x \rangle = \left\langle \ds \sum_{i = 1}^{n} x_i \lambda_i e_i, \ds \sum_{i = 1}^{n} x_i e_i \right\rangle$ 
+    et comme $B$ est orthonormée
+
+    $\langle u(x), x \rangle = \ds \sum_{i=1}^{n} \lambda_i x_i^2$ 
+    or $\Sp u \subset \R^+$ donc $\lambda_i \geqslant 0$ et donc $\langle u(x), x \rangle \geqslant 0$.
+
+    Donc $u \in \mathscr S^+(E)$.
+
+    \lvspace $\blacktriangleright$ Supposons que $u \in \mathscr S^{++}(E)$, alors 
+    $u \in \mathscr S^+(E)$ donc $\Sp u \subset \R^+$. 
+
+    Soit $x \in \Ker u$, alors $u(x) = 0$ et donc $\langle u(x), x \rangle = 0$ 
+
+    Or $u$ défini positif donc $x = 0$ et donc $\Ker u = \{0\}$ et donc $0 \notin \Sp u$.
+
+    Donc $\Sp u \subset \R^{+*}$.
+
+    \lvspace $\blacktriangleright$ Supposons maintenant que $\Sp u \subset \R^{+*}$. 
+
+    Alors $\Sp u \subset \R^+$ et donc $u \in \mathscr S^+(E)$.
+
+    Soit $x \in E$ tel que $\langle u(x), x \rangle = 0$.
+
+    En notant $B = (e_1, \dots, e_n)$ base orthonormée de $E$ formée de vecteurs propres de $u$
+    et $x = \ds \sum_{i = 1}^{n} x_i e_i$, et on a donc $x = \ds \sum_{i = 1}^{n} \lambda_i x_i^2 = 0$
+
+    Donc $\forall i \in \{1, \dots, n\}$, $\lambda_i x_i^2 = 0$ or 
+    $\forall i \in \{1, \dots, n\}$, $\lambda_i > 0$ donc $\forall i \in \{1, \dots, n\}$, $x_i = 0$ et donc $x = 0$
+    et donc $u \in \mathscr S^{++}(E)$.
+\end{proof}
+
+
+\begin{exemple}
+    Soit $v \in \mathscr L(E)$, et posons $u = v^* \circ v$. 
+
+    Alors $u^* = (v^* \circ v)^* = v^* \circ v^{**} = v^* \circ v = u$ et donc $u \in \mathscr S(E)$.
+
+
+    Soit $x \in E$ et alors 
+
+    \begin{align}
+        \langle u(x), x \rangle & = \langle v^* \circ v (x), x \rangle \\
+        & = \langle v(x), v(x) \rangle \\
+        & = \| v(x) \|^2 \\
+        & \geqslant 0
+    \end{align}
+
+    Donc $u \in \mathscr S^+(E)$. 
+\end{exemple}
+
+\subsubsection{Lien avec les matrices}
+
+\begin{propositionnt}{caractérisation matricielle endomorphismes autoadjoints positifs}{}
+    Soit $A \in S_n(\R)$, $B$ base orthonormée d'un $\R$-espace vectoriel $E$ de dimension 
+    $n$ et $u \in \mathscr L(E)$ tel que $M_B(u) = A$. 
+    Alors $u \in \mathscr S(E)$ et donc $A \in \mathscr S_n^+(\R)$ ssi $u \in \mathscr S^+(E)$ et $A \in \mathscr S_n^{++}(\R)$ ssi $u \in \mathscr S^{++}(E)$.
+\end{propositionnt}
+
+\begin{proof}
+    $\Sp u = \Sp A$ 
+\end{proof}
+
+\begin{exemple}
+    Soit $B = \mathscr M_n(\R)$ et $A = B^T B$, alors 
+    $A \in S_n^+(\R)$. 
+
+    En effet, $A^T = (B^T B)^T = B^T B = A$ et $A$ est symétrique.
+
+    Soit $X$ vecteur propre de $A$ pour $\lambda$. 
+
+    $\langle AX, X \rangle = (AX)^T X$ 
+    
+    $\lambda \langle X, X \rangle = X^T A X$
+
+    $\lambda \| X \|^2 = X^T B^T B X = \| BX \|^2 \geqslant 0$
+
+    $\lambda = \frac{\|BX \|^2}{\| X \|^2} \geqslant 0$ car $X \neq 0$. 
+
+    Donc $A \in \mathscr S_n^+(\R)$. 
+\end{exemple}
+
+\subsection{Complément LHP}
+
+Soit $u \in \mathscr S(E)$ et pour $x, y \in E$, on pose 
+$\varphi(x, y) \in E$ on pose $\varphi(x, y) = \langle u(x), y \rangle$.
+
+Alors $\varphi$ est une forme bilinéaire symétrique. 
+
+En effet, 
+$\varphi(y, x) = \langle u(y), x \rangle = \langle y, u(x) \rangle = \varphi(x, y)$. 
+
+$\varphi$ est un produit scalaire ssi $u \in \mathscr S^{++}(E) $ 
+
+\begin{exemple}
+    CHP 
+
+    Recherche des axes principaux d'une ellipse.
+
+    Remarquons que $x^2 + 2xy + 3y^2 = \begin{pmatrix}
+        x & y
+    \end{pmatrix} \begin{pmatrix}
+        1 & 1 \\
+        1 & 3
+    \end{pmatrix} \begin{pmatrix}
+        x \\ y
+    \end{pmatrix}$
+
+    $A$ est symétrique réelle, donc diagonalisable dans une base orthonormale. 
+
+    $\chi_A = X^2 - 4X + 2$ et les valeurs propres de $A$ sont $\lambda_1 = 2 + \sqrt 2$ et $\lambda_2 = 2 - \sqrt 2$, 
+    strictement positives.
+
+    $A \in \mathscr S_2^{++}(\R)$ et posons $u_1 = \begin{pmatrix}
+        1 \\ 1 + \sqrt 2
+    \end{pmatrix}$ vecteur propre associé à $\lambda_1$. 
+
+    Posons maintenant $e_1 = \frac{u_1}{\| u_1 \|}$, qui est une base orthonormée de
+    $E_{\lambda_1}(A)$.
+
+    Par le théorème spectral, $\R^2 = E_{\lambda_1}(A) \oplus E_{\lambda_2}(A)$ avec 
+    $E_{\lambda_1}(A) \perp E_{\lambda_2}(A)$,
+
+    Donc $E_{\lambda_2}(A) = \Vect (e_1)^\perp = \Vect \begin{pmatrix}
+        1 + \sqrt 2 \\ -1
+    \end{pmatrix}$ et posons $e_2 = \frac 1 {\| u_2 \|} u_2$.
+
+    Soit $M = \begin{pmatrix}
+        x \\ y
+    \end{pmatrix}$ et 
+
+    $\begin{pmatrix}
+        x \\ y
+    \end{pmatrix} = X e_1 + Y e_2$ et $P = P_{BC \to \begin{pmatrix}
+        e_1 \\ e_2
+    \end{pmatrix}}$
+
+    $M \in E$ ssi $\begin{pmatrix}
+        x & y
+    \end{pmatrix} A \begin{pmatrix}
+        x \\ y
+    \end{pmatrix} = 1$ ssi $\begin{pmatrix}
+        X & Y
+    \end{pmatrix} P \begin{pmatrix}
+        \lambda_1 & 0 \\
+        0 & \lambda_2
+    \end{pmatrix} P^T \begin{pmatrix}
+        X \\ Y
+    \end{pmatrix} = 1$ ssi $\lambda_1 X^2 + \lambda_2 Y^2 = 1$ 
+
+    Donc les axes principaux de l'ellipse sont les droites engendrées par $e_1$ et $e_2$.
+ 
+\end{exemple}

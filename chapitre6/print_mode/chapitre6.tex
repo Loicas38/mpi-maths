@@ -1,0 +1,411 @@
+\documentclass{prepacours}
+\setlength{\headheight}{15.5pt}
+
+\usepackage{mathrsfs}
+\usepackage{raccourcis}
+
+
+\annee{2025-2026}
+\filiere{MPI / MPI*}
+\etablissement{Lycée Champollion}
+\auteur{Lucas Dehmas}
+
+\begin{document}
+
+\chapitre{6}{Fonctions vectorielles}
+
+\pagedegarde
+
+Soit $I$ un intervalle réel tel que $\mathring{I} \neq \emptyset$.
+
+$\K = \R$ ou $\C$, et $E$ est un $\K$-espace vectoriel normé
+ de dimension finie.
+
+
+\section{Dérivation }
+\subsection{Dérivée en un point}
+
+\begin{definition}{dérivable en un point}{}
+    Soit $a \in I$ et $f: I \to E$. On dit que $f$ est dérivable en $a$ ssi 
+    \[\fonction{\Delta_a}{I \setminus \{a\}}{E}{t}{\frac{f(t) - f(a)}{t-a}}\]
+    a une limite $\ell \in E$ en $a$. Cette limite est appelée dérivée (ou vecteur dérivé)
+    de $f$ en $a$ et se note $f'(a)$.
+
+    On a alors : $\displaystyle \frac{f(a + h ) - f(a)}{h} \xrightarrow[h \to 0]{N} f'(a)$.
+\end{definition}
+
+\begin{proposition}{caractérisation de la dérivabilité}{}
+    Soit $a \in I$ et $f: I \to E$. Alors $f$ est dérivable en $a$ ssi il existe $V \in E$
+    et $\varepsilon : I \to E$, avec $\varepsilon(t) \xrightarrow[t \to a]{} 0$ telle que
+    \[f(t) = f(a) + (t-a)V + (t-a)\varepsilon(t)\]
+
+    appelée développement limité de $f$ en $a$ à l'ordre 1, et alors $V = f'(a)$.
+\end{proposition}
+
+\begin{proof}
+    Si $f$ est dérivable en $a$, posons $V = f'(a)$ et $\varepsilon(t) = \frac{f(t) - f(a)}{t - a }$ si 
+    $t \neq a$ et $\varepsilon(a) = 0$. 
+
+    Alors $\varepsilon$ vérifie l'égalité et $\varepsilon$ continue en $a$ car 
+    $\displaystyle \frac{f(t) - f(a)}{t-a} \xrightarrow[t \to a]{} f'(a)$, c'est à dire 
+    $\varepsilon(t) \xrightarrow[t \to a]{} 0$.
+
+    \uindent{Réciproquement }
+
+    \svspace Si $\varepsilon$ et $V$ existent, $\displaystyle \frac{f(t) - f(a)}{t-a} = V + \varepsilon(t) \limit t a V$
+    Donc $f$ dérivable en $a$ et 
+    
+    $f'(a) = V$.
+\end{proof}
+
+
+\begin{corollaire}{dérivabilité implique continuité}{}
+    Si $f$ est dérivable en $a$, alors $f$ est continue en $a$.
+\end{corollaire}
+
+\begin{proof}
+    En ce cas $f(t) = f(a) + (t-a)f'(a) + (t-a)\varepsilon(t) \xrightarrow[t \to a]{} f(a)$.
+\end{proof}
+
+
+\begin{definition}{interprétation cinématique}{}
+    Soit $f : I \to E$ courbe paramétrée. 
+    
+    $t$ instant et $f(t)$ posittion d'un point matériel à l'instant 
+    $t$ $f'(a)$ vecteur vitesse à l'instant $a$. 
+
+    Si $f'(a) \neq 0$, $T = \{ f(a) + hf'(a), \, h \in \R\}$ tangeante à la courbe à l'instant 
+    $a$. 
+
+    $C = \{ f(t), \, t \in I\}$ support de la courbe paramétrée par $f$. 
+\end{definition}
+
+\begin{proposition}{lien avec une base }{}
+    Soit $B = (e_1, \ldots, e_n)$ une base de $E$, et soit 
+    $\displaystyle \fonction{f}{I}{E}{t}{\sum_{i=1}^n f_i(t)e_i}$, où $f_i : I \to \R$.
+
+    Soit $a \in I$. $f$ est dérivable en $a$ ssi $\forall i \in \ninter{1}{n}$, $f_i$
+    est dérivable en $a$, et alors 
+    $$f'(a) = \sum_{i=1}^n f_i'(a)e_i$$
+\end{proposition}
+
+\begin{proof}
+    $\Delta_a(t) = \displaystyle \frac{f(t) - f(a)}{t-a} = \sum_{i=1}^n \frac{f_i(t) - f_i(a)}{t-a}e_i$ a 
+    une limite quand $t \to a $ ssi toutes ses coordonnées ont une limite.
+\end{proof}
+
+\begin{exemple}
+    $\fonction f \R {\R^3} t {(\cos t, \sin t, t)}$ représente une hélice.
+\end{exemple}
+
+\begin{definition}{dérivabilité à droite et à gauche}{}
+    Soit $f : I \to E$ et $a \in \mathring I$. 
+
+    \avspace On définit $\fonction{f_g}{I \cap ]-\infty, a]}{E}{t}{f(t)}$ et 
+
+    \avspace $\fonction{f_d}{I \cap [a, +\infty[}{E}{t}{f(t)}$
+
+    Comme $a \in \mathring I$, $I \cap ]-\infty, a]$ et $I \cap [a, +\infty[$ 
+    sont d'intérieur non vide.
+
+    On dit que $f$ est dérivable à gauche (resp. à droite) en $a$ ssi $f_g$ 
+    (resp. $f_d$) est dérivable en $a$.
+
+    On définit alors le vecteur dérivé à gauche (resp. à droite) de $f$ en $a$ par 
+    $\displaystyle f'_g(a) = \lim_{t \to a} \frac{f_g(t) - f_g(a)}{t-a} = \lim_{t \to a^-} \frac{f(t) - f(a)}{t-a}$
+    (resp. à droite par $\displaystyle f'_d(a) = \lim_{t \to a^+} \frac{f(t) - f(a)}{t-a}$).                                                    
+\end{definition}
+
+\begin{proposition}{dérivabilité en un point avec dérivées à gauche et à droite}{}
+    $f$ est dérivable en $a$ ssi elle est dérivable à gauche et à droite en $a$ et
+    
+    $f'_g(a) = f'_d(a)$. 
+\end{proposition}
+
+\begin{proof}
+    Coordonnée par coordonnée.
+\end{proof}
+
+\begin{definition}{point anguleux, LHP}{}
+    Soit $f : I \to E$, et $a \in \mathring{I }$. 
+    On suppose que $f$ est dérivable à gauche et à droite en $a$ et que 
+    $f'_g(a) \neq f'_d(a)$.
+
+    On dit alors que la courbe paramétrée par $f$ possède en $a$ un point anguleux.
+\end{definition}
+
+\subsection{Dérivabilité sur un intervalle}
+
+\begin{definition}{dérivable sur un intervalle}{}
+    Soit $f : I \to E$. On dit que $f$ est dérivable sur $I$ ssi elle l'est en tout $a \in I$. 
+
+    On définit alors sa dérivée $\fonction{f'}{I}{E}{t}{f'(t)}$. 
+
+    L'ensemble des fonctions dérivables de $I$ dans $E$ est noté $\mathscr D(I, E)$.
+\end{definition}
+
+\begin{definition}{fonction de classe $\mathscr C^1$}{}
+    On dit que $f : I \to E$ est de classe $\mathscr C^1$ sur $I$ ssi 
+    elle y est dérivable et si $f'$ est continue. 
+
+    L'ensemble de ces fonctions est noté $\mathscr C^1(I, E)$.
+\end{definition}
+
+\begin{proposition}{Dérivabilité et classe $\mathscr C^1$ avec une base }{}
+    Soit $B = (e_1, \ldots, e_n)$ une base de $E$, et soit
+    $\displaystyle \fonction{f}{I}{E}{t}{\sum_{i=1}^n f_i(t)e_i}$, où $f_i : I \to \K$.
+
+    Alors $f$ est dérivable (resp. de classe $\mathscr C^1$) sur $I$ ssi
+    $\forall i \in \ninter{1}{n}$, $f_i$ est dérivable (resp. de classe $\mathscr C^1$).
+\end{proposition}
+
+\begin{exemple}
+    $\fonction{f}{\R}{\R^2}{t}{(x(t), y(t))}$ avec $x(t) = 2 \cos(t)$ et $y(t) = \sin(t)$.
+
+    Alors $f$ est $\mathscr C^1$ sur $\R$ car $x$ et $y$ le sont.
+\end{exemple}
+
+\begin{proposition}{Structure fonctions dérivables et $\mathscr C^1$}{}
+    $\mathscr D(I, E)$ et $\mathscr C^1(I, E)$ sont des $\K$-espaces vectoriels et 
+
+    $\fonction{}{\mathscr C^1(I, E)}{\mathscr C(I, E)}{f}{f'}$ est linéaire. 
+\end{proposition}
+
+\subsection{Composition }
+
+\begin{proposition}{Composition à droite}{}
+    Soit $f \in \mathscr C^1(I, E)$ et $\varphi \in \mathscr C^1(J, I)$, où $J$ est un intervalle de $\R$
+    tel que $\mathring{J } \neq \emptyset$. 
+
+    Considérons $\fonction{g = f \circ \varphi}{J}{E}{u}{f(\varphi(u))}$.
+
+    Alors $g \in \mathscr C^1(J, E)$ et $g' = \varphi' f' \circ \varphi$
+    
+\end{proposition}
+
+\begin{remarque}
+    (Hors programme)
+
+    La composition par $\varphi$ s'appelle un changement de paramétrage.
+
+    Si $\varphi$ est bijective et si $\varphi^{-1} \in \mathscr C^1(I, J)$, c'est à dire si 
+    $\varphi '$ ne s'annule pas (on dit alors que $\varphi$ est un $\mathscr C^1$-difféomorphisme). 
+
+    On dit que $\varphi$ est un changement de paramétrage admissible.
+\end{remarque}
+
+\idee{tester coordonnée par coordonnée}
+
+\begin{proof}
+    Soit $B = (e_1, \ldots, e_n)$ une base de $E$. 
+
+    Notons $\displaystyle \forall t \in I, \, f(t) = \sum_{i=1}^n f_i(t)e_i$. 
+
+    Alors $\displaystyle \forall u \in J, \, g(u ) \sum_{i=1}^n f_i(\varphi(u))e_i$. 
+
+    Donc $g \in \mathscr C^1(J, E)$ et $\displaystyle g'(u) = \sum_{i=1}^n \varphi'(u)f_i'(\varphi(u))e_i = \varphi'(u)f'(\varphi(u))$.
+\end{proof}
+
+\begin{theoreme}{composition par une application linéaire}{}
+    Soit $(F, N)$ un espace vectoriel normé de dimension finie, et $f$ dérivable en $a$
+    (resp. sur $I$, reps. de classe $\mathscr C^1$ sur $I$) et $u \in \mathscr{L }(E, F)$.
+
+    Alors $u \circ f$ est dérivalbe en $a$ (resp. sur $I$, resp. de classe $\mathscr C^1$ sur $I$) et
+    
+    $(u \circ f)'(a) = u \circ f'(a) $ (resp. $(u \circ f)' = u \circ f'$).
+
+\end{theoreme}
+
+\idee{Passer par le DL de $f$, et composer par $u$.}
+
+\begin{proof}
+    En $a$
+
+    Par hypothèse, pour $t \in I$, $f(t) = f(a) + (t-a)f'(a) + (t-a)\varepsilon(t)$
+
+    En composant par $u$, on obtient $u(f(t)) = u(f(a)) + (t-a)u(f'(a)) + (t-a)u(\varepsilon(t))$.
+
+    Et on a bien $u(\varepsilon(t)) \xrightarrow[t \to a]{} 0$, donc $u \circ f$ dérivable en $a$ et $(u \circ f)'(a) = u(f'(a))$.
+
+    Or ceci est vrai en tout point de $I$, donc $(u \circ f)' = u \circ f'$.
+
+    Si $f \in \mathscr C^1(I, E)$, $u$ étant linéaire entre espaces de dimension finie, elle est continue donc $(u \circ f)'$ 
+    est continue. 
+\end{proof}
+
+\begin{exemple}
+    Résolvons le système 
+    \[(S) = \begin{cases}
+        x'(t) = 2x(t) + y(t) \\
+        y'(t) = 4x(t) - y(t)
+    \end{cases}\]
+
+    Posons $X(t) = \begin{pmatrix} x(t) \\ y(t) \end{pmatrix}$ et $x, y$ sont $\mathscr C^1$ 
+    de $\R$ dans $\R$. De même, $X$ est $\mathscr C^1$ de $\R$ dans $\R^2$. Donc : 
+
+    $$(S) \Leftrightarrow \forall t \in \R, \, X'(t) = \begin{pmatrix} 2 & 1 \\ 4 & -1 \end{pmatrix} X(t)$$
+
+    Posons $P = \begin{pmatrix} 1 & 1 \\ 1 & -4 \end{pmatrix}$, $P$ est inversible car $\det(P) = -5 \neq 0$.
+
+    Posons $\forall t, \, Y(t) = P^{-1}X(t)$. Comme $\fonction u {\R^2}{\R^2}{M}{P^{-1}M}$ est linéaire, 
+    $Y$ est $\mathscr C^1$ et $Y'(t) = P^{-1}X'(t)$ car $Y = u \circ X$ donc $Y' = u \circ X'$.
+
+    Donc $(S) \Leftrightarrow \forall t \in \R, \, Y'(t) = P^{-1} \begin{pmatrix} 2 & 1 \\ 4 & -1 \end{pmatrix} P y(t)$
+
+    Posons $Y(t) = \begin{pmatrix} \varphi(t) \\ \psi(t) \end{pmatrix}$ où 
+    $\varphi, \psi$ sont $\mathscr C^1$ de $\R$ dans $\R$. Alors : 
+
+    \begin{align*}
+        (S) & \Leftrightarrow \forall t \in \R, \, \begin{pmatrix} \varphi'(t)  = 3\varphi(t) \\ \psi'(t) = -2\psi(t) \end{pmatrix}\\
+    & \Leftrightarrow \alpha, \beta \in \R \space \varphi(t) = \alpha e^{3t} \space \psi(t) = \beta e^{-2t}\\
+    & \Leftrightarrow \alpha, \beta \forall t, \, X(t) = P \begin{pmatrix} \alpha e^{3t} \\ \beta e^{-2t} \end{pmatrix} = \begin{pmatrix} \alpha e^{3t} + \beta e^{-2t} \\ \alpha e^{3t} - 4\beta e^{-2t} \end{pmatrix}
+    \end{align*}
+    
+\end{exemple}
+
+\begin{theoreme}{composition par une application bilinéaire}{}
+    Soient $f : I \to E$, $g : I \to F$ et $B : E \times F \to G$ une application bilinéaire où 
+    $G, N'')$ est un espace vectoriel normé de dimension finie.
+
+    Notons $\fonction{B(f, g)}{I}{G}{t}{B(f(t), g(t))}$.
+
+    Soit $a \in I$. Si $f$ et $g$ sont dérivables en $a$ (resp. sur $I$, resp. de classe $\mathscr C^1$ sur $I$),
+    alors $B(f, g)$ aussi et $(B(f, g))'(a) = B(f'(a), g(a)) + B(f(a), g'(a))$ (resp. $(B(f, g))' = B(f', g) + B(f, g')$).
+\end{theoreme}
+
+\begin{proof}
+    En $a$
+
+    Pour $t \in I$, $f(t) = f(a) + (t-a)f'(a) + (t-a)\varepsilon_1(t)$ et 
+    $g(t) = g(a) + (t-a)g'(a) + (t-a)\varepsilon_2(t)$.
+
+    Et alors par bilinéarité, 
+    
+    $B(f(t), g(t)) = B(f(a), g(a)) + (t-a)(B(f(a), g'(a)) + B(f'(a), g(a))) + (t-a)\varepsilon_3(t)$
+
+    où $\varepsilon_3(t) = B(f(a), \varepsilon_2(t)) + (t - a)(B(f'(a), g'(a)) + B(f'(a), \varepsilon_2(t)) + B(\varepsilon_1(t), g'(a)) + B(\varepsilon_1(t), \varepsilon_2(t))) + B(\varepsilon_1(t), g(a))$.
+
+    Or $B$ est continue car bilinéaire en dimention finie, donc 
+    $\varepsilon_3(t) \xrightarrow[t \to a]{} B(f(a), 0) + B(f'(a), g'(a)) + B(0, g(a)) + 0 (B(f'(a), 0) + B(0, g'(a)) + B(0, 0)) = 0$
+
+    Donc $B(f, g)$ dérivable en $a$ et $(B(f, g))'(a) = B(f'(a), g(a)) + B(f(a), g'(a))$.
+
+    Sur $I$ : ceci est vrai en tout point de $I$, donc $(B(f, g))' = B(f', g) + B(f, g')$.
+
+    Si $f, g \in \mathscr C^1(I, E)$, $B(f, g)'$ est continue car $B$ est bilinéaire entre espaces de dimension finie, donc continue. 
+\end{proof}
+
+\subsubsection{Conséquences }
+
+\begin{proposition}{}{}
+    \begin{itemize}
+        \item Le produit scalaire de deux applications dérivables est dérivable.
+        \item Le produit matriciel de deux applications dérivables est dérivable.
+        \item Si $(E, \langle \cdot, \cdot \rangle)$ est préhilbertien, et $f \in \mathscr{C }^1(I, E)$, alors $||f||^2 \in \mathscr C^1(I, \R)$ et
+        $(||f||^2)' = 2 \langle f, f' \rangle$.
+    \end{itemize}
+\end{proposition}
+
+\idee{Bilinéarité}
+
+\begin{proof}
+    Un produit scalaire est bilinéaire, et le produit matriciel également, et si 
+    $||f||^2 = \langle f, f \rangle$, donc $(||f||^2)' = \langle f', f \rangle + \langle f, f' \rangle = 2 \langle f, f' \rangle$.
+\end{proof}
+
+\begin{theoreme}{généralisation à une application n-linéaire}{}
+    Soient $(E_1, N_1), \ldots, (E_n, N_n), (F, N')$ des espaces vectoriels normés de dimension finie, et
+    $f_i : I \to E_i$, $M : E_1 \times \cdots \times E_n \to F$ une application $n$-linéaire.
+
+    Notons $\fonction{M(f_1, \ldots, f_n)}{I}{F}{t}{M(f_1(t), \ldots, f_n(t))}$.
+
+    Si $f_1, \ldots, f_n$ sont dérivables en $a$ (resp. sur $I$, resp. de classe $\mathscr C^1$ sur $I$),
+    alors $M(f_1, \ldots, f_n)$ aussi et 
+    $$(M(f_1, \ldots, f_n))'(a) = \sum_{i=1}^n M(f_1(a), \ldots, f_{i-1}(a), f_i'(a), f_{i+1}(a), \ldots, f_n(a))$$
+\end{theoreme}
+
+\begin{proof}
+    On généralise celle réalisée pour une application bilinéaire.
+\end{proof}
+
+\begin{corollaire}{}{}
+    Si $f \in \mathscr C^1(I, \mathscr M_n(\K))$ alors $\det \circ f \in \mathscr C^1(I, \K)$
+\end{corollaire}
+
+\begin{exemple}
+    Soit $f: t \to f(t) = \det(X_1(t), X_2(t))$ avec $X_1, X_2 \in \mathscr M_{2, 1}(\K)$. 
+
+    Alors si $X_1, X_2$ sont dérivables, $f$ aussi et 
+
+    $f' = \det(X_1', X_2) + \det(X_1, X_2')$.
+\end{exemple}
+
+\subsection{Rappels : prolongement }
+
+\begin{theoreme}{limite de la dérivée}{}
+    Soit $f : [a, b] \to \R$ continue sur $[a, b]$ et dérivable sur $]a, b]$. 
+
+    Si $f'(t)$ a une limite finie $\ell$ en $a$, alors $f$ est dérivable en $a$ et $f'(a) = \ell$.
+
+\end{theoreme}
+
+\begin{theoreme}{prolongement des fonctions de classe $\mathscr C^1$}{}
+    Soit $f \in \mathscr C^1(]a, b], \R)$ et $f$, $f'$f ont des limites finies 
+    $\ell_1$ et $\ell_2$ en $a$. 
+
+    Alors on peut prolonger $f$ par continuité en $a$ en posant $f(a) = \ell_1$.
+
+    Et alors $f$ est $\mathscr C^1$ sur $[a, b]$ et $f'(a) = \ell_2$.
+\end{theoreme}
+
+\begin{remarque}
+    Ce théorème se généralise aux fonctions de classe $\mathscr C^n$.
+\end{remarque}
+
+\begin{exemple}
+    \textbf{Exemple important !!}
+    Normalement il est juste, mais pas sûr à 100\%.
+
+    Soit $\fonction f \R \R x {\begin{cases}
+        0 & \text{si } x \leqslant 0\\
+        e^{-\frac{1}{x^2}} & \text{sinon}
+    \end{cases}}$
+
+    Alors $f$ est $\mathscr C^\infty$ sur $\R$ et on a $\forall n \in \N, \, f^{(n)}(0) = 0$.
+
+    Montrons par récurrence $\mathscr P(n) : \forall x \in \R_+^*, \, f^{(n)}(x) = \frac{P_n(x) }{x^{3n}} e^{-\frac{1}{x^2}}$ où $P_n \in \R [X]$. 
+
+    $f$ est $\mathscr C^\infty$ sur $\R_+^*$. 
+
+    Pour $x > 0$, $f^{(0)}(x) = \frac{P_0(x )}{x^0} e^{-\frac{1}{x^2}}$ avec $P_0 = 1$.
+    d'où $\mathscr P(0)$ vraie.
+
+    Récurrence : Supposons que $\exists P_n, \, \forall x > 0, \, f^{(n)}(x) = \frac{P_n(x)}{x^{3n}} e^{-\frac{1}{x^2}}$.
+
+    Alors $f^{(n+1)}(x) = \frac{P'_n(x)}{x^{3n}} e^{-\frac{1}{x^2}}  - \frac{3n P_n(x)}{x^{3n + 1}}e^{-\frac{1}{x^2}} - \frac 2 {x^3} \frac{P_n(x)}{x^{3n}}e^{-\frac{1}{x^2}}$
+
+    $f^{(n+1)}(x) = \frac{e^{\frac{-1}{x^2}}}{x^{3n + 3}} \underbrace{\left( x^3 P'_n(x) - 3nx^2 P_n(x) - 2P_n(x) \right)}_{P_{n+1}(x)}$
+
+    On a bien $\forall n, \, f^{(n)}(x) \limit x {0^-} 0 $ et $f^{(n)}(x) \limit x {0^+} 0$ par croissance comparée. 
+
+    Donc par le théorème de prolongement des fonctions de classe $\mathscr C^n$, $f$ est $\mathscr C^n$ sur $\R$ et $\forall n \in \N, \, f^{(n)}(0) = 0$.
+
+
+    Soit $[a, b] \subset \R$, et $\fonction g \R \R t {f(t-a)f(b-t)}$.
+
+    Alors $g$ est $\mathscr C^\infty$ sur $\R$, $g$ est strictement positive sur $]a, b[$ et nulle ailleurs.
+
+\end{exemple}
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}

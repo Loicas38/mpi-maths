@@ -1,0 +1,263 @@
+\section{Rappels de première année}
+\subsection{Définition}
+
+\begin{definition}{espace préhilbertien réel}{}
+    On appelle espace préhilbertien réel un espace vectoriel réel $E$
+    sur $\R$ muni d'un produit scalaire, c'est à dire d'une forme 
+    bilinéaire symétrique définie positive.
+\end{definition}
+
+\begin{proposition}{}{}
+    Soit $(E, \langle \cdot, \cdot \rangle)$ un espace préhilbertien réel. Alors
+    \begin{itemize}
+        \item Inégalité de Cauchy-Schwarz : $\forall x, y \in E, |\langle x, y \rangle| \leqslant \|x\|_2 \|y\|_2$ avec 
+        égalité ssi $x$ et $y$ sont liés.
+        \item La norme $\|x\|_2 = \sqrt{\langle x, x \rangle}$ est une norme appellée norme euclidienne.
+        \item $\forall u, v \in E$, $\|u + v\|_2^2 = \|u\|_2^2 + 2\langle u, v \rangle + \|v\|_2^2$.
+        \item $\forall u, v \in E$, $\|u - v\|_2^2 = \|u\|_2^2 - 2\langle u, v \rangle + \|v\|_2^2$.
+        \item Identité de polarisation : $\forall u, v \in E$, $\langle u, v \rangle = \frac{1}{4}(\|u + v\|_2^2 - \|u - v\|_2^2)$.
+        \item Identité du parallélogramme : $\forall u, v \in E$, $\|u + v\|_2^2 + \|u - v\|_2^2 = 2\|u\|_2^2 + 2\|v\|_2^2$.
+    \end{itemize}
+\end{proposition}
+
+\subsection{Orthogonalité}
+
+\begin{definition}{orthogonalité}{}
+    Dans $(E, \langle \cdot, \cdot \rangle)$ un esapce préhilbertien réel, on dit que 
+    $u$ et $v$ sont orthogonaux et on note $u \perp v$ ssi $\langle u, v \rangle = 0$.
+\end{definition}
+
+\begin{definition}{orthogonalité de deux ensembles}{}
+    Soient $A, B \subset E$. Alors $A \perp B$ ssi $\forall a \in A, \, \forall b \in B$,
+    $a \perp b$.
+\end{definition}
+
+\begin{definition}{orthogonal d'un ensemble}{}
+    Soit $A \subset E$. $A^\perp = \{x \in E | \forall a \in A, x \perp a\}$. 
+    Ainsi, $A \perp A^\perp$. 
+
+    Alors $A^\perp$ est un sev de $E$ et $ A \subset (A^\perp)^\perp$.
+\end{definition}
+
+\begin{theoreme}{projection orthogonale sur un sous-espace vectoriel}{}
+    Soit $(E, \langle \cdot, \cdot \rangle)$ un espace préhilbertien réel, 
+    et soit $F \subset E$ un sous-espace vectoriel de dimension finie. Alors 
+    $E = F \oplus F^\perp$. Alors $F^\perp$ est appelé le supplémentaire 
+    orthogonal de $F$. 
+
+    De plus en notant $p$ la projection sur $F$ parallèlement à $F^\perp$, $p$ est 
+    appelée projection orthogonale sur $F$ et on a : 
+    $\forall x \in E, \, x = p(x) + x - p(x)$ et $\| x - p(x) \|_2 = \min_{u \in F} \| x - u \|_2$.
+    $p(x)$ est l'unique vecteur de $F$ vérifiant l'égalité. 
+
+    Si $(e_i)$ forment une base orthonormale de $F$, on a : 
+    $$ p(x) = \sum_{i = 1}^k \langle x, e_i \rangle e_i$$
+\end{theoreme}
+
+\begin{proof}
+    $\blacktriangleright$ Soit $x \in F \cap F^\perp$, alors $\langle x, x \rangle = 0$ et donc $x = 0$. 
+    Donc la somme est directe. 
+
+    \avspace $\blacktriangleright$ Soit $x \in E$, soit $(e_i)$ une base de $F$. 
+
+    Posons $y = \ds \sum_{i = 1}^k \langle x, e_i \rangle e_i$ et $z = x - y$. 
+
+    On a $y \in F$, montrons que $z \in F^\perp$. 
+
+    Soit $j \in \ninter 1 k$. 
+
+    \begin{align}
+        \langle z, e_j \rangle & = \langle x - y, e_j \rangle \\
+        & = \langle x, e_j \rangle - \sum_{i = 1}^k \langle x, e_i \rangle \langle e_i, e_j \rangle \\
+        & = 0
+    \end{align}
+
+    Donc $z \perp e_j$ et ainsi $z \in F^\perp$.
+
+    Donc $E \subset F \oplus F^\perp$.
+
+    Donc $E = F \oplus F^\perp$ et $\forall x \in E$, $p(x) = y$. 
+
+    \avspace $\blacktriangleright$ Soit $u \in F$, alors :
+    \begin{align}
+        \| x - u \|_2^2 & = \| (x - p(x)) + (p(x) - u) \|_2^2 \\
+        & = \| x - p(x) \|_2^2 + 2\langle x - p(x), p(x) - u \rangle + \| p(x) - u \|_2^2 \\
+        & \geqslant || x - p(x) \|_2^2
+    \end{align}
+
+    avec égalité ssi $p(x) = u$. 
+
+    $p(x)$ est donc l'unique vecteur de $F$ minimisant la distance à $x$.
+
+    \avspace $\blacktriangleright$ On a $F \subset (F^\perp)^\perp$. Soit $x \in (F^\perp)^\perp$,
+    et décomposons le en $x = y + z$ avec $y \in F$ et $z \in F^\perp$.
+
+    On a donc $0 = \langle x, z \rangle$ or $\langle x, z \rangle = \langle y, z \rangle + \langle z, z \rangle = \|z\|_2^2$.
+    Donc $z = 0$ et $x = y \in F$. Donc $(F^\perp)^\perp \subset F$ et ainsi $F = (F^\perp)^\perp$.
+\end{proof}
+
+\begin{exemple}
+    Chercher un min ou délire du genre en utilisant projection orthogonale (sachant que possible
+    d'essayer avec calcul diff mais super long et pénible).
+
+    $E = \mathscr C([0, 1], \R)$ muni du produit scalaire $\langle f, g \rangle = \ds \int_0^1 f(t)g(t) dt$.
+
+    $F = \Vect (u_0, v_0)$ avec $u_0(t) = t$ et $v_0(t) = 1$ et $w_0(t) = e^t$. 
+
+    Alors 
+    \begin{align}
+        f(a, b) & = \int_0^1 (e^t -at - b)^2 dt \\
+        & = \| w_0 - au_0 - bv_0 \|_2^2 
+    \end{align}
+    distance au carré entre $a u_0 + b v_0 \in F$ quelconque. 
+
+    Donc $f(a, b)$ minimal ssi $au_0 + bv_0 = p(w_0)$ avec $p$ projection orthogonale sur 
+    $F$. 
+
+    On a $p(w_0) = a u_0 + b v_0 \in F$
+
+    $\begin{cases}
+        w_0 - p(w_0) \perp u_0 \\
+        w_0 - p(w_0) \perp v_0
+    \end{cases}$ 
+    car $w_0 - p(w_0) \in F^\perp$.
+
+    Donc $\begin{cases}
+        \langle w_0, u_0 \rangle = \langle p(w_0), u_0 \rangle \\
+        \langle w_0, v_0 \rangle = \langle p(w_0), v_0 \rangle
+    \end{cases}$
+    donc $\begin{cases}
+        a \|u_0\|_2^2 + b \langle v_0, u_0 \rangle = \langle w_0, u_0 \rangle \\
+        a \langle u_0, v_0 \rangle + b \|v_0\|_2^2 = \langle w_0, v_0 \rangle
+    \end{cases}$
+
+    Donc $\ds \| u_0 \|^2 = \int_0^1 t^2 dt = \frac{1}{3}$, $\| v_0 \|^2 = 1$, $\langle u_0, v_0 \rangle = \int_0^1 t dt = \frac{1}{2}$, $\langle w_0, u_0 \rangle = \int_0^1 t e^t dt$ et $\langle w_0, v_0 \rangle = \int_0^1 e^t dt$.
+    Donc $\ds a \frac{1}{3} + b \frac{1}{2} = \int_0^1 t e^t dt$ et $a \frac{1}{2} + b = \int_0^1 e^t dt$.
+
+\end{exemple}
+
+\begin{exemple}
+    On a $(x_i, y_i) \in \mathbb R^2$ et on cherche $a, b$ tels que 
+    $\ds \sum_{i = 1}^n (y_i - ax_i - b)^2$ soit minimal.
+
+    Posons $\fonction f {\R^2}{\R}{(a, b)}{\ds \sum_{i = 1}^n (y_i - ax_i - b)^2}$.
+
+    Posons $Y = \begin{pmatrix}
+y_1 \\
+\vdots \\
+y_n
+\end{pmatrix}$, $X = \begin{pmatrix}
+    x_1 \\
+    \vdots \\
+    x_n
+    \end{pmatrix}$ et $U = \begin{pmatrix}
+    1 \\
+    \vdots \\
+    1
+    \end{pmatrix}$ en munissant $\R^n$ du produit scalaire canonique, 
+    $f(a, b) = \| Y - (a X + bU) \|^2$ 
+
+    $Y \in \R^n$ et $(X, U)$ famille libre de $\R^n$ donc $F = \Vect(X, U)$ est un plan. 
+
+    Le minimum de $f$ est donc atteint en $(a, b)$ pour lequel $aX + bU$ est le projeté
+    orthogonal de $Y$ sur $F$. 
+
+    Il est caractérisé par $Y = \underbrace{aX + bU}_{\in F} + \underbrace{(Y - aX - bU)}_{\in F^\perp}$, 
+    c'est à dire que 
+    $\begin{cases}
+        \langle Y - (aX + bU), X \rangle = 0 \\
+        \langle Y - (aX + bU), U \rangle = 0
+    \end{cases}$
+    
+    c'est à dire que $\begin{cases}
+        a \|X\|^2 + b \langle U, X \rangle = \langle Y, X \rangle \\
+        a \langle X, U \rangle + b \|U\|^2 = \langle Y, U \rangle
+    \end{cases}$
+
+    Notons $m_X = \frac 1 n \ds \sum_{i = 1}^n x_i$ et $m_Y = \frac 1 n \ds \sum_{i = 1}^n y_i$.
+
+    $v_X = \frac 1 n \ds \sum_{i = 1 }^{n } x_i^2 - m_X^2$
+
+    Et donc $\operatorname{Cov} (X, Y) = \frac 1 n \ds \sum_{i = 1}^n x_i y_i - m_X m_Y$.
+
+    $\langle U, X \rangle = \ds \sum_{i = 1}^{n } x_i = n m_x$
+
+    $\| x \|^2 = \ds \sum_{i = 1}^{n } x_i^2 = nv_x + nm_x^2$
+
+    $\langle Y, X \rangle = \ds \sum_{i = 1}^n x_i y_i = n \operatorname{Cov}(X, Y) + nm_X m_Y$
+
+    $\langle Y, U \rangle = \ds \sum_{i = 1}^n y_i = n m_Y$
+
+    $(S) \Leftrightarrow \ds \begin{cases}
+a (nv_x + nm_x^2) + b n m_x = n \operatorname{Cov}(X, Y) + nm_X m_Y \\
+a n m_x + b n = n m_Y
+    \end{cases} \Leftrightarrow \begin{cases}
+        am_x + b = m_Y \\
+        a v_x = \operatorname{Cov}(X, Y)
+    \end{cases}$
+
+    $v_x \neq 0$ car les $x_i$ ne sont pas tous égaux.
+
+    Donc $(S) \Leftrightarrow \begin{cases}
+        a = \frac{\operatorname{Cov}(X, Y)}{v_x} \\
+        b = m_Y - a m_x
+    \end{cases}$
+\end{exemple}
+
+\begin{exemple}
+    $\ds E = \{ f : \R \to \R \text{ cpm }, 2 \pi \text{ périodique } | \forall x \in \R, f(x) = \frac 1 2 \left( \lim_{x^-} f + \lim_{x^+} f \right) \}$
+
+    On pose $\langle f, g \rangle = \frac{1}{\pi} \int_0^{2\pi} f(t) g(t) dt$.
+
+    Supposons que $\langle f, f \rangle = 0$, alors $\int_{0}^{2 \pi} f(t)^2 dt = 0$ 
+
+    Soit $(c_i)_{0 \leqslant i \leqslant n}$ subdivision de $[0, 2\pi]$ adaptée à $f$ qui est continue par morceaux. 
+
+    $\forall i \in \ninter 1 n$, $f_{|]c_{i - 1}, c_i[} $ est continue et prolongeable par continuité en 
+    $c_{i - 1}$ et $c_i$.
+
+    Notons $g_i$ ce prolongement par continuité. 
+
+    Par Chasles, on a $0 = \ds \int_{0}^{2 \pi} f^2 = \sum_{i = 1 }^{n } \int_{c_{i - 1}}^{c_i }f^2(t) \dt$.
+
+    Donc $\forall i \in \ninter 1 n$, on a : $\ds \int_{c_{i - 1}}^{c_i } f^2 (t) \ds = 0$
+
+    Donc $\ds \int_{c_{i - 1}}^{c_i } g_i^2 (t) \ds = 0$ car $f$ et $g_i$ coïncident sauf en deux points. 
+
+    Or $g_i^2 \geqslant 0$ continue, donc $\forall t \in [c_{i - 1}, c_i], g_i(t) = 0$ 
+
+    Donc $\forall t \in ]c_{i - 1}, c_i[, f(t) = 0$.
+
+    De plus par hypothèse, $f(c_i) = \frac 1 2 \left( \lim_{t \to c_i^-} f(t) + \lim_{t \to c_i^+} f(t) \right) = 0$.
+
+    Donc $\forall x \in [0, 2 \pi]$, $f(x) = 0$. Donc $f = 0$ par périodicité. 
+
+    Les autres propriétés sont vérifiées facilement.
+
+    Posons $c_0(t) = \frac 1 {\sqrt 2}$, alors $c_0 \in E$ 
+    et $\forall n \in \N^*$, on a $c_n(t) = \cos(nt)$ et $s_n(t) = \sin(nt)$ qui est une famille orthonormale de $E$.
+
+    Posons $E_n = \Vect(c_0, c_1, s_1, \dots, c_n, s_n)$ famille orthonormale de $E$ donc libre. 
+
+    Donc base orthonormale de $E$.
+
+    Soit $f \in E$. Posons $p_n(f) = $ projecteur orthogonal de $f$ sur $E_n$.
+
+    $p_n(f) = \langle c_0, f \rangle c_0 + \ds \sum_{k = 1}^n \langle c_k, f \rangle c_k + \langle s_k, f \rangle s_k$.
+
+    $\langle c_0, f \rangle = \left( \frac 1 \pi \int_{0}^{2 \pi} \frac{f(t)}{\sqrt 2} \dt \right) \frac 1 {\sqrt 2} = \frac{1}{2 \pi} \int_{0}^{2 \pi} f(t) dt$.
+
+    $\langle c_k, f \rangle = \frac 1 \pi \ds \int_{0}^{2 \pi} f(t) \cos(kt) \dt = a_k$ 
+
+    $\langle s_k, f \rangle = \frac 1 \pi \ds \int_{0}^{2 \pi} f(t) \sin(kt) \dt = b_k$. coefs de Fourrier trigonométriques de $f$. 
+
+    $p_n(f)$ est la somme partielle d'une série de fonctions appelée série de Fourier associée 
+    à $f$. On montre que $p_n(f) \xrightarrow[n \to + \infty]{\| \cdot \|_2} f$. 
+
+    Si $f$ est $\mc 1$ par morceaux et $f \in E$, $p_n(f) \xrightarrow[n \to + \infty]{CS} f$.
+
+    Si $f$ est continue et $\mc 1$ par morceaux, $p_n(f) \xrightarrow[n \to + \infty]{CU} f$.
+
+    Petits dessins pour la fin 
+\end{exemple}
+

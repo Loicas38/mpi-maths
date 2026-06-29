@@ -1,0 +1,154 @@
+
+\begin{definition}{}{}
+    Soit $(E, ||\cdot||)$ un evn. On appelle \emph{dual topologique} de $E$, 
+    et on note $E^*$ l'ensemble des formes linéaires continues de $E$ dans $\R$.
+    \[
+        E^* = \mathscr L_c(E, \R)
+    \]
+\end{definition}
+
+\begin{exemple}
+    Si $(E, <\cdot, \cdot>)$ est un espace préhilbertien, alors $\forall a \in E, \, x \mapsto <a, x>$ est une forme 
+    linéaire continue de $E$ dans $\R$.
+
+    \avspace Sur $\mathscr C([0, 1], \R)$, on pose $<f, g> = \int_0^1 f(t) g(t) dt$.
+
+    Alors $f \mapsto \int_0^{1/2} f(t) dt$ est une forme linéaire continue de $\mathscr C([0, 1], \R)$ dans $\R$.
+
+    $\displaystyle \left| \int_0^{1/2} f(t) dt \right| \leqslant \sqrt{\int_{0}^{1/2} f^2} \times \sqrt{\int_0^{1/2} 1^2} $ 
+    est continue mais pas de la forme $f \mapsto <g, f>$ pour un certain $g \in \mathscr C([0, 1], \R)$.
+\end{exemple}
+
+On peut déterminer $E^*$ dans deux situations (à notre niveau) : 
+\begin{itemize}
+    \item Cas d'un espace préhilbertien complet (= espace de Hilbert)
+    \item $E = \ell^p(\N)$ avec $p \geqslant 1$
+\end{itemize}
+
+\begin{theoreme}{}{}
+    Soit $H$ un sev fermé d'un espace de Hilbert $(E, <\cdot, \cdot>)$.
+
+    Alors $E = H \oplus^\perp H^\perp$
+\end{theoreme}
+
+\begin{proof}
+    Soit $x \in E$, et notons $d = d_H(x) \geqslant 0$. 
+
+    Alors $d + \frac 1 n$ n'est pas un minorant de $\{ ||y - x|| | y \in H \}$.
+
+    Donc $\exists y_n \in H$ tel que $d \leqslant ||x - y_n|| \leqslant d + \frac 1 n$.
+
+    Montrons que $(y_n)$ est de Cauchy.
+
+    \svspace La suite fonctionne car la norme est euclidienne. 
+
+    Soit $N$ fixé, et $n, m \geqslant N$.
+
+    \begin{align*}
+        ||y_n - y_m||^2 + ||y_n + y_m - 2x||^2 & = ||y_n - x - (y_m - x)||^2 + ||y_n - x + (y_m - x)||^2 \\
+        & = 2 (\underbrace{||y_n - x||^2}_{\leqslant (d + \frac 1 n)^2} +  \underbrace{||y_m - x||^2}_{\leqslant (d + \frac 1 m)^2}) 
+    \end{align*}
+
+    et donc $||y_n + y_m - 2x||^2  =  4 \left|\left| \frac{y_n + y_m}{2} - x \right|\right|^2$
+
+    Donc $||y_n - y_m||^2 + 4 d^2 \leqslant ||y_n - y_m||^2 + ||y_n + y_m - 2x||^2 $
+
+    Donc $||y_n - y_m||^2 \leqslant 2 \left( \frac{2d}{N} + \frac{1}{N^2}  + \frac{2d}{N} + \frac{1}{N^2} \right) \to 0$
+
+    Donc $\forall \varepsilon > 0, \exists N, \forall n, m \geqslant N, ||y_n - y_m|| < \varepsilon$, donc $(y_n)$ est de Cauchy.
+
+    Donc $y_n \to y \in H$ (car $H$ est fermé), et donc $d(x, H) = ||x - y||$.
+
+    \avspace On pose $z = x - y$. Montrons que $z \in H^\perp$.
+
+    Soit $y' \in H$ quelconque, alors $ty' + (1 - t) y \in H$.
+
+    Et donc $\forall t \in \R$, $||x - (ty' + (1 - t)y)||^2 \geqslant ||x - y||^2$.
+
+    Donc $\forall t \in \R$, $||x - y - t(y' - y)||^2 \geqslant ||x - y||^2$.
+
+    Donc $\forall t \in \R$, $\cancel{||x - y||^2} - 2t <x - y, y' - y> + t^2 ||y' - y||^2 \geqslant \cancel{||x - y||^2}$.
+
+    Or ceci est valable pour tout $t$. COnsidérons $t \to 0^+$. 
+
+    $-2<x - y, y' - y> + t||y' - y||^2 \geqslant 0$.
+
+    Donc $<x - y, y' - y> \leqslant 0$.
+
+    Et pour $t \to 0^-$, on trouve $<x - y, y' - y> \geqslant 0$.
+
+    Donc $\forall y' \in H, \, <x - y, y' - y> = 0$.
+
+    Donc $z = x - y \in H^\perp$.
+
+    Donc $E = H \oplus H^\perp$.
+
+
+\end{proof}
+
+
+\begin{theoreme}{de représentation de Riesz}{}
+    Soit $(E, <\cdot, \cdot>)$ un espace de Hilbert. Alors, $\forall \varphi \in \mathscr L_c(E, \R)$,
+    $\exists ! a \in E$ tel que $\forall x \in E, \, \varphi(x) = <a, x>$. De plus, $|||\varphi||| = ||a||$.
+\end{theoreme}
+
+
+
+\begin{proof} Exo 16 de la fiche 1 d TD 
+    
+    Soit $\varphi \in E^*$, et soit $H = \ker(\varphi)$. 
+
+    Alors $H$ est un sev fermé de $E$ car $\varphi$ est continue.
+
+    Si $H = E$, alors $\varphi = 0$, et on peut prendre $a = 0$.
+
+    Sinon, $H \neq E$, donc $H^\perp \neq \{0\}$.
+
+    Donc $\exists a \in H^\perp$, $a \neq 0$, et alors $E = H \oplus^\perp \text{Vect}(a)$.
+
+    Donc $x = (x - <x, a>a) + <x, a>a$.
+
+    Donc $\varphi(x - <x, a>a) = 0$, donc $\varphi(x) = <x, a> \varphi(a) = <x, \varphi(a)a>$.
+
+\end{proof}
+
+\begin{theoreme}{dualité de $\ell^1(\N)$ et $\ell^\infty(\N)$}{}
+    $\forall \varphi \in \mathscr L_c(\ell^1(\N), \R)$, il existe une unique suite $v \in \ell^\infty(\N)$ 
+    telle que $\displaystyle \forall u \in \ell^1(\N), \, \varphi(u) = \sum_{n=0}^{+\infty} u_n v_n$.
+
+    De plus, $|||\varphi||| = ||v||_\infty$.
+    
+\end{theoreme}
+
+\begin{theoreme}{dualité de $\ell^p(\N)$ et $\ell^q(\N)$}{}
+    Soit $p, q \geqslant 1$ tels que $\frac{1} {p} + \frac{1}{q} = 1$.
+
+    Pour toute $\varphi \in \mathscr L_c(\ell^p(\N), \R)$, il existe une unique suite $v \in \ell^q(\N)$ 
+    telle que $\displaystyle \forall u \in \ell^p(\N), \, \varphi(u) = \sum_{n=0}^{+\infty} u_n v_n$.
+
+    De plus, $|||\varphi||| = ||v||_q$.
+    
+    Bien défini par inégalité de Hölder.
+\end{theoreme}
+
+\begin{proof}
+    Soit $\varphi \in \mathscr L_c(\ell^1(\N), \R)$.
+
+    $\exists k, \forall u \in \ell^p, \, |\varphi(u)| \leqslant k ||u||_p$.
+
+    Soit $v$ la suite définie par $v_n = \varphi(e_n = (0, \ldots, 0, 1, 0, \ldots))$.
+
+    $\forall n, e_n \in \ell^p(\N)$, donc $|v_n| = |\varphi(e_n)| \leqslant k ||e_n||_p = k$.
+
+    Donc $v \in \ell^\infty(\N)$ et $||v||_\infty \leqslant |||\varphi|||$. 
+
+    Soit $u = (u_n)$, $u^N = (u_0, u_1, \ldots, u_N, 0, 0, \ldots)$.
+
+    $\varphi(u^N) = u_0 \varphi(e_0) + \cdots + u_N \varphi(e_N)$ 
+    et avec $N \to +\infty$, on a
+    $\displaystyle \varphi(u) = \sum_{n=0}^{+\infty} u_n v_n$.
+
+    Et donc $\varphi(u^N) \to \varphi(u)$.
+
+    De plus, $\displaystyle ||u^N - u||_1 = \sum_{n=N+1}^{+\infty} |u_n| \to 0$ (reste d'une série convergente).
+\end{proof}

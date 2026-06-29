@@ -1,0 +1,137 @@
+
+\begin{theoreme}{théorème de Baire}{}
+    Soit $(E, ||\cdot||)$ un evn complet, et soit $(U_n)$ une famille dénombrable d'ouverts denses de $E$.
+
+    Alors l'intersection $\displaystyle \bigcap_{n=0}^{+\infty} U_n$ est dense dans $E$.
+
+    Soit $F_n$ une famille dénombrable de fermés de $E$ dont l'intérieur est vide. 
+    Alors l'union $\displaystyle \bigcup_{n=0}^{+\infty} F_n$ est d'intérieur vide. 
+    
+\end{theoreme}
+
+\subsubsection{Applications de Baire }
+
+\begin{proposition}{}{}
+    $\Q$ ne peut pas s'écrire comme une intersection dénombrable d'ouverts de $\R$.
+\end{proposition}
+
+\begin{proof}
+    Par l'absurde.
+
+    Supposons que $\Q = \displaystyle \bigcap_{n=0}^{+\infty} U_n$ avec $U_n$ ouverts denses de $\R$.
+
+    Alors $\R \setminus \Q = \displaystyle \bigcup_{n=0}^{+\infty} \underbrace{(\R \setminus U_n)}_{F_n}$. 
+
+    Les $F_n$ sont fermés et $\mathring F_n = \emptyset$ car $U_n$ est dense.
+
+    $\R = (\R \setminus \Q) \cup \left( \bigcup_{n=0}^{+\infty} {q_n} \right)$ avec $q_n \in \Q$.
+
+    Donc $\R = \displaystyle \bigcup_{n=0}^{+\infty} F_n \cup \left( \bigcup_{n=0}^{+\infty} {q_n} \right)$.
+
+    Donc $\R$ est réunion dénombrable de fermés d'intérieur vide, ce qui contredit le théorème de Baire.
+
+\end{proof}
+
+\begin{proposition}{}{}
+    Soit $f, g : \R \to \R$, $\mathscr C(f) = \{ x \in \R | f \text{ est continue en } x \}$ est dense, 
+    de même pour $g$.
+
+    Alors $\mathscr C(f) \cap \mathscr C(g) \neq \emptyset$. 
+\end{proposition}
+
+\begin{proof}
+    Soit $f : \R \to \R$, et soit $x \in \R$. 
+
+    Posons $\omega_f(x) = \lim_{\eta \to 0} \sup_{y, z \in ]x - \eta, x + \eta[} |f(y) - f(z)|$.
+
+    Alors on peut montrer facilement que : 
+    \begin{itemize}
+        \item $x \in \mathscr C(f) \Leftrightarrow \omega_f(x) = 0$
+        \item $\varepsilon > 0$, $\{ x \in \R | \omega_f(x) < \varepsilon \}$ est ouvert
+    \end{itemize}
+
+    \begin{align*}
+        \mathscr C(f) & = \{ x \in \R | \forall \varepsilon > 0, \, \omega_f(x) < \varepsilon \}\\
+        & = \bigcap_{n=1}^{+\infty} \{ x \in \R | \omega_f(x) < \frac{1}{n} \}
+    \end{align*}
+
+    Donc $\mathscr C(f)$ est intersection dénombrable d'ouverts, donc dense par Baire.
+\end{proof}
+
+% \restaurergeometrie
+
+\begin{corollaire}{}{}
+    Il n'existe donc aucune fonction $f : \R \to \R$ qui soit continue uniquement sur $\Q$.
+\end{corollaire}
+
+En revenche, la fonction 
+$\fonction f \R \R x { \begin{cases} 0 & x \in \R \setminus \Q \\ \frac 1 q & x = \frac p q \in \Q \end{cases} }$ 
+est continue uniquement sur $\R \setminus \Q$.
+
+\begin{proposition}{}{}
+    Si $f \R \to \R$ est croissante, alors $\mathscr D(f)$ est au plus dénombrable.
+\end{proposition}
+
+\begin{proof}
+    Soit $f : \R \to \R$ croissante, et notons $f_g$ la fonction définie à gauche d'un point x, de même à droite.
+
+    $f_g(x) = \lim_{t \to x^-} f(t)$ et $f_d(x) = \lim_{t \to x^+} f(t)$.
+
+    Donc $f$ continue en $x$ si et seulement si $s_f(x) = f_g(x) - f_d(x) = 0$. Donc 
+
+    \begin{align*}
+        \mathscr D(f) & = \{ x \in \R | s_f(x) > 0 \} \\
+        & = \bigcup_{n=1}^{+\infty} \{ x \in \R | s_f(x) \geqslant \frac{1}{n} \}
+    \end{align*}
+
+    De plus, pour $m \in \R$, $\{ x \in [-m, m] | s_f(x) \geqslant \frac{1}{n} \}$ est fini car sinon,
+    \[
+        \sum_{x \in \{ s_f(x) \geqslant \frac{1}{n} \}} s_f(x) = +\infty
+    \]
+    ce qui contredit le fait que $f$ est bornée sur $[-m, m]$.
+
+    Donc $\mathscr D(f) = \underbrace{\bigcup_{n=1}^{+\infty} \underbrace{ \bigcup_{m=1}^{+\infty} \underbrace{\left\{x \in [-m, m], \, s_f(x) \geqslant \frac 1 n\right\}}_{\text{fini}}}_{\text{dénombrable}}}_{\text{dénombrable}}$ est dénombrable.
+\end{proof}
+
+\begin{proposition}{}{}
+    Soit $A$ une partie dénombrable de $\R$. Alors, $\exists f : \R \to \R$ croissante telle que 
+    $\mathscr C(f) = \R \setminus A$ et donc $\mathscr D(f) = A$.
+\end{proposition}
+
+\begin{proof}
+    Posons $A = \{ a_n | n \in \N \}$, et posons 
+    $f(x) = \sum_{n | a_n \leqslant x} \frac{1}{2^n} \leqslant \sum_{n = 0 }^{+\infty} \frac{1}{2^n} = 2$.
+
+    Si $x < y$, alors $\{n | a_n \leqslant x\} \subset \{ n | a_n \leqslant y \}$
+
+    Donc $f(x) \leqslant f(y)$, donc $f$ est croissante.
+
+    \uindent{Montrons que si $x \in A$, alors $f$ est discontinue en $x$ }
+
+    \svspace Si $y < x = a_N$, notons $\{ n | a_n \leqslant y \} = I_y \subset I_x = \{ n | a_n \leqslant x \}$
+    et alors $N \notin I_y$, et $N \in I_x$.
+
+    Alors $\displaystyle f(x) - f(y) = \sum_{n \in I_x \setminus I_y} \frac{1}{2^n} \geqslant \frac{1}{2^N}$.
+
+    Prenons maintenant $y \to x$, en gardant $y < x$. On a alors $f(x) - f_g(x) \geqslant \frac{1}{2^N} > 0$.
+
+    Donc $f$ est discontinue en $x$.
+
+    \uindent{Montrons que si $x \notin A$, alors $f$ est continue en $x$ }
+
+    \svspace Soit $\varepsilon > 0$, et soit $N \in \N$ tel que 
+    $\displaystyle \sum_{n \geqslant N } \frac{1 }{2^n } \leqslant \varepsilon$
+   
+    Soit $x \in \R$ et $y$ proche de $x$, avec $y < x$.
+
+    Alors $\displaystyle f(x) - f(y) = \sum_{n \in I_x \setminus I_y} \frac{1}{2^n}$.
+
+    Or les $a_n$, avec $n \leqslant N$ est fini, et tous sont différents de $x$ (car $x \notin A$). 
+
+    On peut donc prendre $\eta$, tel qu'il n'y ait aucun $a_n$ dans $]x - \eta, x + \eta[$. 
+
+    Or le $y$ pris précédemment est dans cet intervalle, donc $f(x) - f(y) \leqslant \varepsilon$. 
+
+    De même pour $y > x$.
+\end{proof}
+

@@ -1,0 +1,946 @@
+Soient $(E, N)$ et $(E', N')$ deux espaces vectoriels normés, avec 
+$A \subset E$.
+
+\section{Différents types de convergence}
+\subsection{Convergence simple }
+
+\begin{definition}{convergence simple}{}
+    Soit $(f_n)$ une suite de fonctions de $A$ dans $E'$ et $g$ fonction de $A$ dans $E'$. 
+    On dit que $(f_n)$ converge simplement vers $g$ et on note 
+    \[
+        f_n \xrightarrow[CS]{N'} g 
+    \]
+    ssi $\forall x \in A, \, f_n(x) \xrightarrow[n\to +\infty]{N'} g(x)$.
+\end{definition}
+
+\begin{exemple}
+    Pour $x \in \R$, $f_n(x) = \left( 1 + \frac x n \right)^n$.
+    Alors $f_n(x) \xrightarrow[n\to +\infty]{} g : x \mapsto e^x$.
+\end{exemple}
+
+\begin{definition}{série de fonctions, convergence simple}{}
+    Soit $(u_n)_{n \in \N}$ suite de fonctions de $A$ dans $E'$.
+
+    On dit que la série de fonctions $\displaystyle \sum_{n \geqslant 0} u_n$ converge simplement 
+    ssi pour tout $x \in A$, la série $\displaystyle \sum_{n \geqslant 0} u_n(x)$ converge.
+
+    On définit alors la fonction 
+    \[
+        \fonction{\sum_{n = 0 }^{ + \infty } u_n }{A}{E'}{x}{\sum_{n = 0}^{ + \infty } u_n(x)}
+    \]
+    et on a alors en notant $\forall N \in \N$, $$\fonction{S_N}{A}{E'}{x}{\sum_{n = 0}^N u_n(x)}$$
+
+    $\displaystyle \sum_{n \geqslant 0} u_n$ converge simplement ssi $(S_n)_{n \in \N}$ converge simplement.
+
+\end{definition}
+
+\begin{exemple}
+    $\displaystyle \fonction{u_n}{]-1; 1[}{\R}{x}{x^n}$.
+
+    Alors $\displaystyle \sum_{n \geqslant 0} u_n(x)$ converge simplement et $\displaystyle \sum_{n = 0}^{ + \infty } u_n(x) = \frac{1}{1-x}$.
+\end{exemple}
+
+
+\subsection{Convergence uniforme}
+
+\begin{definition}{Convergence uniforme}{}
+    Soit $(f_n)$ une suite de fonctions de $A$ dans $E'$ et $g$ une fonction de $A$ dans $E'$.
+
+    On dit que $(f_n)$ converge uniformément vers $g$ sur $A$ ssi 
+    
+    $$\forall \varepsilon >0, \, \exists n_0 \in \N, \, \forall n \geqslant n_0, \, \forall x \in A, \, N'(f_n(x) - g(x) ) \leqslant \varepsilon$$
+
+    On note alors $f_n \xrightarrow[CU]{} g$.
+\end{definition}
+
+\begin{proposition}{Caractérisation de la convergence uniforme}{}
+    Avec les mêmes notations, $f_n \xrightarrow[CU]{} g$ ssi 
+    
+    \begin{itemize}
+        \item pour $n$ assez grand $f_n - g$ est bornée 
+        \item $\displaystyle || f_n - g ||_{\infty} \xrightarrow[n\to +\infty]{} 0$
+    \end{itemize}
+
+    où $\displaystyle || f_n - g ||_{\infty} = \sup\{ N'(f_n(x) - g(x)), \, x \in A \}$
+    
+    ssi il existe une suite $(a_n)$ réelle telle que pour $n$ assez grand, 
+    $\forall x \in A, N'(f_n(x) - g(x)) \leqslant a_n$ et $a_n \xrightarrow[n\to +\infty]{} 0$.
+     
+\end{proposition}
+
+\idee{
+    $1 \Rightarrow 2$ : utiliser la def 
+
+    $2 \Rightarrow 3$ : poser $a_n = || f_n - g ||_{\infty}$
+
+    $3 \Rightarrow 1$ : Suffit d'écrire
+}
+
+\begin{proof}
+    Supposons $f_n \xrightarrow[CU]{} g$.
+
+    Posons $\varepsilon = 38$. Alors il existe $n_0 \in \N$ tel que $\forall n \geqslant n_0, \, \forall x \in A$ 
+    
+    $N'(f_n(x) - g(x)) \leqslant 38$.
+
+    Donc pour $n \geqslant n_0$, $f_n - g$ est bornée.
+
+    De plus pour tout $\varepsilon >0$, $\exists n_0 \in \N$ tel que $\forall n \geqslant n_0, \, \forall x \in A, \, N'(f_n(x) - g(x)) \leqslant \varepsilon$.
+
+    Donc $\forall n \geqslant n_0, \, || f_n - g ||_{\infty} \leqslant \varepsilon$.
+
+    Donc $\displaystyle || f_n - g ||_{\infty} \xrightarrow[n\to +\infty]{} 0$.
+
+    \lvspace Supposons maintenant que pour $n$ assez grand, $f_n - g$ est bornée et que 
+    
+    $\displaystyle || f_n - g ||_{\infty} \xrightarrow[n\to +\infty]{} 0$.
+
+    Il existe donc $n_1 \in \N$ tel que pour $n \geqslant n_1$, $f_n - g$ est bornée. 
+    
+    Posons 
+    $a_n = \left\{ \begin{array}{cc}
+        72 & \text{ si } n < n_1  - 1\\
+        || f_n - g ||_{\infty} & \text{ sinon }\\
+    \end{array} \right. $
+
+    Donc $a_n$ convient. 
+
+    \lvspace Supposons maintenant qu'il existe une suite $(a_n)$ réelle telle que pour $n$ assez grand, 
+    $\forall x \in A, N'(f_n(x) - g(x)) \leqslant a_n$ et $a_n \xrightarrow[n\to +\infty]{} 0$.
+
+    Soit $\varepsilon > 0$, et soit $n_1$ tel que $\forall n \geqslant n_1, \, \forall x, \, N'(f_n(x) - g(x)) \leqslant a_n$.
+
+    Soit $n_2$ tel que $\forall n \geqslant n_2, \, a_n \leqslant \varepsilon$.
+
+    Posons $n_0 = \max(n_1, n_2)$. On a bien $\forall n \geqslant n_0, \, \forall x \in A, \, N'(f_n(x) - g(x)) \leqslant \varepsilon$.
+
+    Donc $f_n \xrightarrow[CU]{} g$.
+\end{proof}
+
+\begin{proposition}{lien convergence uniforme et convergence simple}{}
+    La convergence uniforme implique la convergence simple.
+\end{proposition}
+
+\idee{
+    Prop précédente
+}
+
+\begin{proof}
+    Supposons que $f_n \xrightarrow[CU]{} g$.
+
+    Soit $x \in E$. Par la proposition précédente, pour $n$ assez grand,
+
+    $N'(f_n(x) - g(x)) \leqslant a_n$, or $a_n \xrightarrow[n\to +\infty]{} 0$.
+
+    Donc $f_n(x) \xrightarrow[n\to +\infty]{} g(x)$ et donc $f_n \xrightarrow[CS]{} g$.
+\end{proof}
+
+\begin{proposition}{Equivalence convergence uniforme et norme infinie}{}
+    Soient $(f_n)_{n \in \N}$ et $g$ des fonctions bornées de $A$ dans $E'$.
+    Alors $f_n \xrightarrow[CU]{n \to + \infty} g$ ssi $\displaystyle f_n \xrightarrow[n \to + \infty]{||\cdot ||_{\infty}} g$.
+\end{proposition}
+
+\begin{proof}
+    C'est l'une des propositions précédentes.
+\end{proof}
+
+\begin{exemple}
+    Pour $0 < a < 1$, posons $\displaystyle \fonction{f_n}{[0, a]}{\R}{x}{x^n}$.
+
+    \uindent{Fixons $x \in [0, a]$}
+
+    \avspace On a $0 \leqslant x \leqslant a < 1$ donc $x^n \xrightarrow[n\to +\infty]{} 0$, donc 
+    $f_n(x) \xrightarrow[n\to +\infty]{} 0$.
+
+    Posons $\forall x \in [0, a], \, g(x) = 0$. On a donc $f_n \xrightarrow[CS]{} g$.
+
+    \uindent{Fixons $n \in \N$} 
+
+    \avspace Soit $x \in [0, a]$. On a $\displaystyle |f_n(x) - g(x)| \leqslant x^n \leqslant a^n$.
+
+    Donc $f_n \xrightarrow[CU]{} g$.
+\end{exemple}
+
+
+\begin{definition}{Séries de fonctions, convergence uniforme}{}
+    Soit $ \sum_{n \geqslant 0} u_n$ une série de fonctions de $A$ dans $E'$. 
+
+    Posons $\displaystyle \forall n \in \N, \, f_n = \sum_{k = 0}^n u_k$. On dit que la série de fonctions converge 
+    uniformément ssi la suite de fonctions $(f_n)_{n \in \N}$ converge uniformément.
+\end{definition}
+
+\begin{propositionnt}{Caractérisation convergence uniforme des séries de fonctions}
+    Soit $\displaystyle \sum_{n \geqslant 0} u_n$ une série de fonctions. Alors 
+    cette série de fonctions converge uniformément ssi elle converge simplement et
+    la suite des restes converge uniformément vers $0$. 
+\end{propositionnt}
+
+\idee{
+    $\Rightarrow$ : écrire la définition des restes 
+
+    $\Leftarrow$ : écrire la définition de la convergence uniforme avec les restes
+}
+
+\begin{proof}
+    $\Rightarrow$ Si la série de fonctions converge uniformément, la suite des sommes partielles converge 
+    uniformément donc simplement. 
+
+    On peut ainsi considérer $\forall x \in A$, $\forall n \in \N, \, f_n(x) = \displaystyle \sum_{k = 0}^n u_k(x)$, 
+    $\displaystyle S(x) = \sum_{k = 0}^{ + \infty } u_k(x)$, et $\displaystyle R_n(x) = S(x) - f_n(x) = \sum_{k = n + 1}^{ + \infty } u_k(x)$.
+
+    Or on sait par hypothèse que $f_n \xrightarrow[CU]{} S$, donc $||f_n - S||_{\infty} \xrightarrow[n\to +\infty]{} 0$.
+
+    Donc $\displaystyle || R_n ||_{\infty} \xrightarrow[n\to +\infty]{} 0$, donc la suite des restes converge uniformément vers $0$.
+
+
+    \lvspace   $\Leftarrow$ Si $\displaystyle \sum u_n$ converge simplement et $R_n \xrightarrow[CU]{} 0$, alors avec les notations
+    précédents, $||R_n - 0 ||_{\infty} \xrightarrow[n\to +\infty]{} 0$. Or $R_n = S - f_n$, donc $|| S - f_n ||_{\infty} \xrightarrow[n\to +\infty]{} 0$.
+
+    Donc $f_n \xrightarrow[CU]{} S$ et la série converge uniformément.
+\end{proof}
+
+\begin{exemple}
+    $\forall n \in \N^*$, $\fonction{u_n}{[0, 1]}{\R}{x}{\frac{(-1)^n x^n}{n}}$.
+
+    \uindent{Fixons $x \in [0, 1]$ } 
+    
+    \avspace $\displaystyle \frac{x^n }{n } \xrightarrow[n\to +\infty]{} 0$ et décroit, 
+    donc par le critère de Leibniz, la série $\displaystyle \sum_{n = 1}^{ + \infty } u_n(x)$ converge.
+
+    Donc $\displaystyle \sum_{n \geqslant 0} u_n$ converge simplement et on peut considérer sa somme 
+
+    $$S = \sum_{n = 0}^{ + \infty } u_n \fonction{}{[0, 1]}{\R}{x}{\sum_{n = 0}^{ + \infty } \frac{(-1)^n x^n}{n}}$$
+
+    \uindent{Fixons $n \geqslant 1$} 
+
+    \avspace Pour $x \in [0, 1], \, \displaystyle |R_n(x)| = \left| \sum_{k = n + 1}^{ + \infty } \frac{(-1)^k x^k}{k} \right| \leqslant \frac{x^{n + 1}}{n + 1} \leqslant \frac 1 {n + 1}$ 
+    (suite de limite nulle indépendante de $x$)
+
+    Donc $\displaystyle R_n \xrightarrow[CU]{} 0$.
+
+    Donc $\displaystyle \sum_{n \geqslant 0} u_n$ converge uniformément sur $[0, 1]$.
+\end{exemple}
+
+
+\subsection{Convergence normale}
+
+\begin{definition}{Convergence normale}{}
+    Soit $\displaystyle \sum_{n \geqslant 0} u_n$ une série de fonctions bornées de $A$ dans $E'$.
+
+    On dit que cette série de fonctions converge normalement sur $A$ ssi la série numérique 
+    à termes positifs $\displaystyle \sum_{n \geqslant 0} || u_n ||_{\infty}$ converge où 
+
+    $$||u_n||_{\infty} = \sup\{ N'(u_n(x)), \, x \in A \}$$
+\end{definition}
+
+\begin{theoreme}{Convergence normale implique convergence uniforme}{}
+    La convergence normale d'une série de fonctions implique sa convergence uniforme et la convergence 
+    absolue en tout $x \in A$. 
+\end{theoreme}
+
+\idee{
+    absolue et simple : $N'(u_n(x)) \leqslant || u_n ||_{\infty}$
+
+    Uniforme : majorer les restes avec la norme infinie 
+}
+
+\begin{proof}
+    Supposons que $\displaystyle \sum_{n \geqslant 0} u_n$ converge normalement.
+
+    Soit $x \in A$ fixé. Pour $n \in \N, \, N'(u_n(x)) \leqslant || u_n ||_{\infty}$ terme général 
+    d'une série convergente car converge normalement. 
+
+    Donc $\sum_{n \geqslant 0} N'(u_n(x))$ converge. Donc $\sum_{n \geqslant 0} u_n(x)$
+    converge absolument donc converge (car $E'$ est de dimension finie (ou complet mais HP)). 
+
+    Donc $\displaystyle \sum_{n \geqslant 0} u_n$ converge simplement.
+
+    On peut ainsi définir pour $n \in \N$ et $x \in A$, $\displaystyle R_n(x) = \sum_{k = n + 1}^{ + \infty } u_k(x)$.
+
+    \uindent{Fixons $n \in \N$}
+
+    Soit $N_0 \geqslant n + 1$. Alors 
+
+    \begin{align}
+        N'\left( \sum_{k = n + 1}^{N_0} u_k(x) \right) & \leqslant \sum_{k = n + 1}^{N_0} N'(u_k(x)) \\
+        & \leqslant \sum_{k = n + 1}^{N_0} || u_k ||_{\infty} \\
+        & \leqslant \sum_{k = n + 1}^{ + \infty } || u_k ||_{\infty}
+    \end{align}
+
+    Avec $N_0 \to + \infty$, par continuité de $N'$ on a : 
+    \[
+        N'(R_n(x)) \leqslant \sum_{k = n + 1}^{ + \infty } || u_k ||_{\infty}
+    \]
+
+    Donc $\displaystyle R_n \xrightarrow[CU]{} 0$ et donc $\displaystyle \sum_{n \geqslant 0} u_n$ converge uniformément.
+\end{proof}
+
+\begin{proposition}{}{}
+    Soit $\sum_{n \geqslant 0} u_n$ une série de fonctions. S'il existe
+    $\sum_{n \geqslant 0} \alpha_n$ série à termes positifs convergente telle que 
+    pour $n$ assez grand, $\forall x \in A, \, N'(u_n(x)) \leqslant \alpha_n$, alors 
+    $\sum_{n \geqslant 0} u_n$ converge normalement.
+\end{proposition}
+
+\idee{comparaison}
+
+\begin{proof}
+    Avec l'hypothèse, on a $||u_n||_\infty \leqslant \alpha_n$ pour $n$ assez grand. 
+
+    Donc par comparaison, $\displaystyle \sum_{n \geqslant 0} || u_n ||_{\infty}$ converge.
+\end{proof}
+
+\begin{exemple}
+    $\displaystyle \sum_{n \geqslant 0 } \frac{x^n }{n!}$ pour $x \in [-a, a]$. 
+
+    Soit $n \in \N, \, x \in [-a, a]$, on a $\left| \frac{x^n }{n !} \right| \leqslant \frac{a^n }{n!}$ 
+    terme général d'une série convergente indépendante de $x$.
+
+    Donc la série converge normalement sur $[-a, a]$.
+
+    \lvspace $u_n(x) = \frac{x^n }{n^2}, \, x \in [-1, 1]$. $\forall n, \, \forall x \in [-1, 1], \, |u_n(x)| \leqslant \frac{1 }{n^2}$
+    terme général d'une série convergente indépendante de $x$.
+
+    Donc $\displaystyle \sum_{n \geqslant 0} u_n$ converge normalement donc converge uniformément sur $[-1, 1]$.
+
+    \lvspace $\displaystyle x \in [0, 1], \, n \geqslant 1, \, u_n(x) = \frac{(-1)^n x^n} n$. On sait que 
+    $\displaystyle \sum_{n \geqslant 1} u_n$ converge uniformément. 
+
+    Par contre  $u_n$ bornée, $||u_n||_{\infty} = \frac 1 n$, terme général d'une série divergente. Donc il 
+    n'y a pas convergence normale.
+\end{exemple}
+
+
+\section{Continuité et double limite}
+\subsection{Théorème de la double limite} 
+
+\begin{theoreme}{Théorème de la double limite}{}
+    Soit $(f_n)_{n \in \N}$ suite de fonctions de $A$ dans $E'$ et $g$ fonction de $A$ dans $E'$.
+
+    Soit $a \in \bar A$. On suppose que : 
+    \begin{itemize}
+        \item $f_n \xrightarrow[CU]{N'} g$ 
+        \item $\forall n \in \N, \, f_n \xrightarrow[x \to a]{N'} l_n \in E'$
+    \end{itemize}
+
+    Alors : 
+    \begin{itemize}
+        \item $g$ a une limite en $a$
+        \item $(l_n)_{n \in \N}$ converge dans $E'$
+        \item $\displaystyle \lim_{x \to a} g(x) = \lim_{n \to +\infty} l_n$
+    \end{itemize}
+
+    Donc $$\lim_{x \to a} \lim_{n \to +\infty} f_n(x) = \lim_{n \to +\infty} \lim_{x \to a} f_n(x)$$
+\end{theoreme}
+
+Si $E = \R$ et $a = \pm \infty$, le théorème s'applique aussi.
+
+\idee{
+    Principalement du découpage d'$\varepsilon$
+}
+
+\begin{proof}
+    Hors programme 
+
+    \uindent{Lemme } Avec ces hypothèses, $(l_n)_{n \in \N}$ est de Cauchy.
+
+    \begin{proof}
+        Soit $\varepsilon > 0$. On a $f_n \xrightarrow[CU]{} g$, donc $||f_n - g||_{\infty} \xrightarrow[n\to +\infty]{} 0$.
+
+        Donc $\exists n_0 \in \N$ tel que $\forall n \geqslant n_0, \, || f_n - g ||_{\infty} \leqslant \varepsilon$.
+
+        $\forall x \in A, \forall n \geqslant n_0, \, N'(f_n(x) - g(x)) \leqslant \varepsilon$.
+
+        Soient $n, p \geqslant n_0$. Alors $\exists \eta > 0, \, \forall x \in A, \, N(x - a) \leqslant \eta \Rightarrow N'(f_n(x) - l_n) \leqslant \frac \varepsilon 4$
+
+        $\exists \eta ', \, \forall x \in A, \, N(x - a) \leqslant \eta ' \Rightarrow N'(f_p(x) - l_p) \leqslant \frac \varepsilon 4$
+    
+        Donc pour $x \in A$ tel que $N(x - a) \leqslant \min(\eta, \eta ')$ (possible car $a \in \bar A$), on a :
+        $$ N'(l_n - l_p) \leqslant N'(l_n - f_n(x)) + N'(f_n(x) - g(x)) + N'(g(x) - f_p(x)) + N'(f_p(x) - l_p) \leqslant \varepsilon$$
+
+        Donc on a une suite de Cauchy. 
+
+        Comme $E'$ est de dimension finie, $(l_n)_{n \in \N}$ converge vers $L \in E'$.
+
+        
+    \end{proof}
+
+    Montrons que $g(x) \xrightarrow[x \to a]{} L$.
+
+        Soit $\varepsilon > 0$. 
+
+        $\exists n_0 \in \N, \, \forall n \geqslant n_0, \forall x \in A, \, N'(f_n(x) - g(x)) \leqslant \frac \varepsilon 3$. 
+
+        $\exists n_1 \in \N, \, \forall n \geqslant n_1, \, N'(l_n - L) \leqslant \frac \varepsilon 3$.
+
+        Soit $n_2 \geqslant \max(n_0, n_1)$. 
+
+        On a $f_{n_2}(x) \xrightarrow[x \to a]{} l_{n_2}$.
+
+        Donc $\exists \eta > 0, \, \forall x \in A, \, N(x - a) \leqslant \eta \Rightarrow N'(f_{n_2}(x) - l_{n_2}) \leqslant \frac \varepsilon 3$.
+
+        Soit $x \in A$ tel que $N(x - a) \leqslant \eta$. On a : 
+        $$N'(g(x) - L) \leqslant N'(g(x) - f_{n_2}(x)) + N'(f_{n_2}(x) - l_{n_2}) + N'(l_{n_2} - L) \leqslant \varepsilon$$
+
+        Donc $g(x) \xrightarrow[x \to a]{} L$.
+\end{proof}
+
+
+\begin{theoreme}{Théorème d'échange limite et somme}{}
+    Soit $\sum_{n \geqslant 0 } u_n$ une série de fonctions de $A$ dans $E'$. Soit $a \in \bar A$. 
+
+    Supposons que :
+    \begin{itemize}
+        \item $\forall n \in \N, \, u_n(x) \xrightarrow[x \to a]{} \alpha_n$
+        \item $\sum_{n \geqslant 0} u_n$ converge uniformément sur $A$
+    \end{itemize}
+    Alors : 
+    \begin{itemize}
+        \item $\displaystyle \sum_{n \geqslant 0} \alpha_n$ converge
+        \item $ \displaystyle \sum_{n = 0 }^{\infty    } u_n(x) \xrightarrow[x \to a]{} \sum_{n = 0}^{\infty} \alpha_n$
+    \end{itemize} 
+
+    C'est à dire que :
+    $$\lim_{x \to a} \sum_{n = 0}^{\infty} u_n(x) = \sum_{n = 0}^{\infty} \lim_{x \to a} u_n(x)$$
+\end{theoreme}
+
+\idee{théorème de la double limite}
+
+\begin{proof}
+    Posons $\forall n \in \N, \forall x \in A$, $\displaystyle f_n(x) = \sum_{k = 0}^n u_k(x)$ et par hypothèse 
+    $(f_n)_{n \in \N}$ converge uniformément sur $A$ vers $\displaystyle g : x \mapsto \sum_{n = 0}^{\infty} u_n(x)$.
+
+    De plus $\displaystyle \forall n \in \N$, $\displaystyle f_n(x) \xrightarrow[x \to a]{} \sum_{k = 0}^n \alpha_k$ par théorème d'opérations. 
+
+    Donc par le théorème de la double limite, $(l_n)_{n \in \N}$ converge donc $\displaystyle \sum_{n \geqslant 0} \alpha_n$ converge et 
+    $\displaystyle g(x) \xrightarrow[x \to a]{} \sum_{n = 0}^{\infty} \alpha_n$.
+\end{proof}
+
+\begin{exemple}
+    $\fonction \zeta{]1; +\infty[}{\R}{x}{\sum_{n = 1}^{\infty} \frac 1 {n^x}}$.
+
+    Posons $\forall n \geqslant 1, \, \forall x > 1, \, u_n(x) = \frac 1 {n^x}$.
+
+    Avec $a = + \infty$, on a $\forall n \geqslant 1, \, u_n(x) \xrightarrow[x \to +\infty]{} \alpha_n = \left\{\begin{array}{cc} 1 & \text{ si } n = 1 \\ 0 & \text{ sinon } \end{array} \right.$.
+        
+    Posons $A = [23, + \infty[$
+
+    On a $A$ voisinage de $+ \infty$ et $\forall x \in A, \, \forall n \in \N, \, \left| \frac{1}{n^x} \right| \leqslant \frac 1 {n^{23}}$ 
+    terme général d'une série convergente indépendante de $x$.
+
+    Donc $\displaystyle \sum_{n \geqslant 1} u_n$ converge normalement sur $A$. 
+
+    Donc $\displaystyle \sum_{n \geqslant 1} \alpha_n$ converge et donc $\zeta$ a une limite en $+ \infty$ et 
+    $\zeta(x) \xrightarrow[x \to +\infty]{} \sum_{n = 1 }^{\infty } \alpha_n = 1$.
+
+\end{exemple}
+
+\subsection{Continuité en un point }
+
+\begin{proposition}{Continuité de la limite d'une suite de fonctions}{}
+    Soit $a \in A$, $(f_n)_{n \in \N}$ suite de fonctions de $A$ dans $E'$. Supposons que : 
+    \begin{itemize}
+        \item Les $f_n$ sont continues en $a$
+        \item $(f_n)_{n \in \N}$ converge uniformément vers $g$ sur $A$
+    \end{itemize}
+    Alors $g$ est continue en $a$.
+\end{proposition}
+
+\idee{
+    Découpage d'$\varepsilon$, issus de la continuité et CU puis astuce 
+    du topin
+}
+
+\begin{proof}
+    Par hypothèse, $\forall \varepsilon > 0, \, \exists n_0 \in \N, \, \forall n \geqslant n_0, \, \forall x \in A, \, N'(f_n(x) - g(x)) \leqslant \frac \varepsilon 3$.
+
+    et $f_{n_0}$ est continue en $a$. Donc $\exists \eta > 0, \forall x \in A, \, N(x - a) \leqslant \eta \Rightarrow N'(f_{n_0}(x) - f_{n_0}(a)) \leqslant \frac \varepsilon 3$
+
+    Soit $x \in A$ tel que $N(x - a) \leqslant \eta$. On a :
+    \begin{align}
+        N'(g(x) - g(a)) & \leqslant N'(g(x) - f_{n_0}(x)) + N'(f_{n_0}(x) - f_{n_0}(a)) + N'(f_{n_0}(a) - g(a)) \\
+        & \leqslant \frac \varepsilon 3 + \frac \varepsilon 3 + \frac \varepsilon 3 = \varepsilon
+    \end{align}
+\end{proof}
+
+\begin{theoreme}{continuité série en un point}{}
+    Soit $a \in A$, et $\displaystyle \sum_{n \geqslant 0} u_n$ une série de fonctions. Supposons que : 
+    \begin{itemize}
+        \item $\forall n \in \N, \, u_n$ est continue en $a$
+        \item $\displaystyle \sum_{n \geqslant 0} u_n$ converge uniformément sur $A$ 
+    \end{itemize}
+    Alors $\displaystyle \sum_{n = 0}^{\infty} u_n$ est continue en $a$.
+\end{theoreme}
+
+\begin{proof}
+    On applique le théorème précédent à la suite des sommes partielles.
+\end{proof}
+
+\subsection{Continuité sur une partie }
+
+\begin{theoreme}{}{}
+    Soit $(f_n)_{n \in \N}$ suite de fonctions de $A$ dans $E'$ continues sur $A$. 
+    
+    1) On suppose que $(f_n)$ converge uniformément sur $A$ vers $g$. Alors $g$ est continue sur $A$.
+
+    \uindent{Variante locale }
+
+    2) On suppose que $(f_n)$ converge simplement sur $A$ vers $g$ et que pour tout $a \in A$,
+    il existe $A'$ ouvert tel que $a \in A', \, A' \subset A$ tel que $(f_n)$ converge uniformément sur $A'$ vers $g$.
+    Alors $g$ est continue sur $A$.
+
+    \uindent{Variante sur $\R$ }
+
+    3) Soit $(f_n)$ une suite de fonctions continues de $\R$ dans $E'$ qui converge simplement vers $g$. 
+    On suppose que pour tout $\alpha > 0, \, f_n$ converge uniformément sur $[-\alpha, \alpha]$ vers $g$.
+    Alors $g$ est continue sur $\R$.
+
+    \avspace 4) Soit $(f_n)$ suite de fonctions continues de $\R_+^*$ dans $E'$ qui converge simplement vers $g$. 
+    On suppose que pour tout $0<a<b, \, f_n$ converge uniformément sur $[a, b]$ vers $g$.
+    Alors $g$ est continue sur $\R_+^*$.
+\end{theoreme}
+
+\begin{theoreme}{}{}
+    Soit $\sum_{n \geqslant 0 } u_n$ série de fonctions continues sur $A$ qui converge 
+    simplement. 
+
+    \begin{enumerate}
+        \item Si la convergence est uniforme sur $A$, alors $\displaystyle \sum_{n = 0}^{\infty} u_n$ est continue sur $A$.
+        \item Si pour tout $a \in A$, il existe un ouvert relatif $A'$ tel que $a \in A', \, A' \subset A$ et
+        si la convergence est uniforme sur $A'$, alors $\displaystyle \sum_{n = 0}^{\infty} u_n$ est continue sur $A$.
+        \item Si $A = \R$ et si $\forall \alpha > 0$, la convergence est uniforme sur $[-\alpha, \alpha]$, 
+        alors $\displaystyle \sum_{n = 0}^{\infty} u_n$ est continue sur $\R$.
+        \item Si $A = \R_+^*$ et si $\forall 0 < a < b$, la convergence est uniforme sur $[a, b]$,
+        alors $\displaystyle \sum_{n = 0}^{\infty} u_n$ est continue sur $\R_+^*$.
+    \end{enumerate}
+\end{theoreme}
+
+\begin{exemple}
+    $\displaystyle \fonction \zeta{]1; +\infty[}{\R}{x}{\sum_{n = 1}^{\infty} \frac 1 {n^x}}$, et 
+    $\forall n \geqslant 1, \, \fonction{u_n}{]1; +\infty[}{\R}{x}{\frac 1 {n^x} = e^{-x \ln(x)}}$. 
+
+    On a $\forall n \geqslant 1, \, u_n$ est continue sur $]1; +\infty[$. L'utilisation du 1) échoue, car 
+    s'il y avait convergence uniforme sur $]1; +\infty[$, comme $\forall n, \, u_n(x) \xrightarrow[x \to 1^+]{} \ell_n = \frac 1 n$,
+    on aurait par le théorème de la double limite en $a = 1$, $\sum_{n \geqslant 1 } \frac 1 n $ converge ce qui est faux. 
+
+    \svspace Soit $x > 1$, $x \in \mathring A$ avec $A = \left[ \underbrace{\frac{x + 1}{2}}_{ a }, \underbrace{x + 1}_{ b} \right]$.
+
+    Soit $x \in [a, b]$, alors $\forall n \geqslant 1, \, \left| u_n(x) \right| = \frac 1 {n^x} \leqslant \frac 1 {n^a}$, terme 
+    général d'une série convergente indépendante de $x$, donc $\sum u_n$ converge normalement sur $[a, b]$ 
+    donc $\zeta$ continue en $x_0$ donc $\zeta$ est continue sur $]1; +\infty[$.
+\end{exemple}
+
+
+\begin{exemple}
+    $\fonction{f}{\U}{\C}{z}{\sum_{n = 0}^{\infty} \frac{z^n }{n^2}}$. 
+
+    Pour $z \in \U$, $\forall n \geqslant 1, \, \left| \frac{z^n }{n^2} \right| \leqslant \frac 1 {n^2}$ terme général
+    d'une série convergente indépendante de $z$. Donc $\sum_{n \geqslant 0} \frac{z^n }{n^2}$ converge simplement (normalement aussi mais on fait comme si 
+    on avait pas vu) sur $\U$ et $f$ existe. 
+
+    $\forall n \in \N, \, u_n : z \mapsto \frac{z^n }{n^2}$ est continue. De plus 
+    $\frac 1 {n^2}$ terme général d'une série convergente indépendante de $z$, donc convergence 
+    normale sur $\U$, donc $f$ continue sur $\U$.
+\end{exemple}
+
+\section{Intégration et dérivation}
+Dans cette partie, $E = \R$
+\subsection{Cas des suites de fonctions}
+
+\begin{theoreme}{Intégration}{}
+    Soit $(f_n)_{n \in \N}$ suite de fonctions de $\mathscr C (I, E')$ avec
+    $\mathring I \neq \emptyset$.
+
+    Soit $a \in I$, et posons $\fonction{F_n}{I}{E'}{x}{\int_a^x f_n(t) dt}$
+
+    On suppose que $(f_n)_{n \in \N}$ converge uniformément vers $g$ 
+    sur tout segment inclus dans $I$.
+
+    Alors : 
+    \begin{itemize}
+        \item $g$ est continue sur $I$
+        \item On peut définir $\fonction{G}{I}{E'}{x}{\int_a^x g(t) dt}$
+        \item $(F_n)_{n \in \N}$ converge uniformément vers $G$ sur tout segment inclus dans $I$
+    \end{itemize}
+\end{theoreme}
+
+\begin{corollaire}{Conséquence du théorème d'intégration}{}
+    Soit $(f_n)_{n \in \N}$ suite de fonctions continues sur 
+    $[a, b]$ qui converge uniformément vers $g$ sur $[a, b]$. 
+    
+    Alors $g$ est continue, et
+    $\displaystyle \int_a^b f_n(t) dt \xrightarrow[n\to +\infty]{} \int_a^b g(t) dt$, c'est à dire 
+    que $$\lim_{n \to +\infty} \int_a^b f_n(t) dt = \int_a^b \lim_{n \to +\infty} f_n(t) dt$$ 
+\end{corollaire}
+
+\idee{
+    1) Continuité de $g$ : voisinage de $\alpha$, convergence uniforme sur $S$ voisinage 
+
+    2) Inégalité triangulaire des intégrales, puis convergence uniforme sur $S'$
+
+    3) Conséquence : $g$ continue par le théorème, puis convergence uniforme 
+}
+
+\begin{proof}
+    Soit $\alpha \in I$, il existe $S$ segment inclus dans $I$ tel que $S$ soit un voisinage de $\alpha$. Or 
+    $(f_n)_{n \in \N}$ converge uniformément sur $S$ et est continue, donc $g$ continue en $\alpha$. 
+
+    Donc $g$ continue sur $I$.
+
+    \lvspace Soit $S = [c, d] \subset I$ et $a \in I$. 
+    
+    Posons $S' = [\min(a, c), \max(a, d)]$.
+
+    Soit $x \in S'$. On a :
+    \begin{align}
+        N'(F_n(x) - G(x)) & = N'\left( \int_a^x (f_n(t) - g(t)) dt \right) \\
+        & \leqslant \left| \int_{a}^x N'(f_n(t) - g(t)) dt \right|
+    \end{align}
+
+    Soit $t \in [a, x], \, t \in S'$ car $S'$ intervalle donc convexe et $a, x \in S'$. 
+
+    Or il y a convergence uniforme sur $S'$, donc $||f_n - g||_{\infty, S'} \xrightarrow[n\to +\infty]{} 0$.
+    et donc 
+
+    \begin{equation*}
+    \begin{aligned}
+        N'(F_n(x) - G(x)) & \leqslant \left| \int_{a}^{x} ||f_n - g||_{\infty, S'} \,\mathrm{d}t \right| \\
+        & \leqslant |x - a| \, ||f_n - g||_{\infty, S'} \\
+        & \leqslant (\max(a, d) - \min(a, c)) \, ||f_n - g||_{\infty, S'}
+    \end{aligned}
+    \end{equation*}
+
+    qui est une suite de limite nulle indépendante de $x$ donc $F_n \xrightarrow[CU]{} G$ sur tout segment. 
+
+    \uindent{Preuve de la conséquence }
+
+    \avspace Avec $I = [a, b]$, le théorème donne $g$ continue et $F_n \xrightarrow[CU]{} G$ sur $I$. 
+
+    En particuier il a convergence simple et $F_n(b) \to G(b)$.
+\end{proof}
+
+\begin{theoreme}{Dérivation}{th:derivation}
+    Soit $(f_n)_{n \in \N}$ suite de fonctions de classe $\mathscr{C}^1$ de $I$ dans $E'$.
+    On suppose que : 
+    \begin{itemize}
+        \item $(f_n)$ converge simplement vers $g$ sur $I$
+        \item $(f_n')$ converge uniformément sur tout segment vers $h : I \to E'$
+    \end{itemize}
+
+    alors $(f_n)$ converge uniformément sur tout segment vers $g$ et $g$ est de classe $\mathscr{C}^1$, 
+    avec $g' = h$.
+\end{theoreme}
+
+\idee{
+    1) Théorème précédent avec $f_n'$ et intégration
+
+    2) Inégalité triangulaire intégrale et unicité de la limite 
+}
+
+\begin{proof}
+    Fixons $a \in I$, et posons $\forall n \in \N, F_n(x) = \int_{a}^{x } f_n'(t) dt$.
+
+    $f'_n$ est continue, leur suite converge uniformément sur tout segment vers $h$. 
+
+    Donc $(F_n)$ converge uniformément sur tout segment vers $H : x \mapsto \int_a^x h(t) dt$.
+
+    \avspace Soit $S$ segment inclus dans $I$ et $x \in S$. 
+    
+    On a 
+    $f_n(x) - H(x) = F_n(x) + f_n(a) - H(x)$ et donc 
+
+    \begin{align}
+        N'(f_n(x) - \int_{a }^{x } h(t) dt - f_n(a)) & \leqslant N'(F_n(x) - H(x)) \\
+        & \leqslant ||F_n - H||_{\infty, S} \\
+        & \to 0 \text{ et indépendant de } x
+    \end{align}
+
+    Posons alors $J(x) = H(x) + f_n(a)$. On a $f_n$ converge uniformément sur tout segment vers 
+    $J$ car  
+    
+    \begin{align}
+        N'(f_n(x) - J(x)) & \leqslant N'(f_n(x) - H(x) - f_n(a)) + N'(f_n(a) - g(a)) \\
+        & \leqslant ||F_n - H||_{\infty, S} + N'(f_n(a) - g(a)) \\
+        & \to 0 \text{ et indépendant de } x
+    \end{align}
+
+    Donc convergence simple, donc $J = g$ par unicité de la limite. 
+
+    $H$ est $\mathscr {C}^1$ donc $g$ aussi et $g' = h = H'$.
+\end{proof}
+
+\begin{theoreme}{généralisation à la classe $\mathscr{C}^k$}{}
+    Soit $(f_n)_{n \in \N}$ suite de fonctions de classe $\mathscr{C}^k$ sur $I$. 
+
+    On suppose que  $\forall i \in \ninter{0}{k - 1}$, 
+    \begin{itemize}
+        \item $f_n^{(i)}$ converge simplement vers $g_i$ sur $I$
+        \item $f_n^{(k)}$ converge uniformément sur tout segment vers $g_k$
+    \end{itemize}
+
+    Alors $\forall i \in \ninter{0}{k - 1}, \, f_n^{(i)}$ converge uniformément sur tout segment vers $g_i$,
+    $g_0$ est de classe $\mathscr{C}^k$ et $\forall i \in \ninter{0}{k}, \, g_0^{(i)} = g_i$.
+\end{theoreme}
+
+\idee{Récurrence sur $k$}
+
+\begin{proof}
+    Par récurrence sur $k$, le cas $k = 1$ est le théorème précédent.
+
+    Hypothèse de récurrence : supposons cela vrai pour un certain $k \geqslant 1$, et toute 
+    suite de fonctions $\mathscr C^k$. 
+
+    Soit $(f_n)_{n \in \N}$ suite de fonctions de classe $\mathscr{C}^{k + 1}$ vérifiant les hypothèses du théorème pour $k + 1$.
+
+    Alors on peut appliquer l'hypothèse de récurrence à la suite $(f_n')_{n \in \N}$ qui est de classe $\mathscr{C}^k$.
+
+    Donc les convergences des $f_n^{(i)}$ pour $i \geqslant 1$ sont uniformes, donc 
+    par le théorème précédent, $(f_n)$ converge uniformément sur tout segment et 
+    $g_0$ est de classe $\mathscr{C}^1$ avec $g_0' = g_1$. 
+
+    Or par l'hypothèse, $g_1$ est de classe $\mathscr{C}^k$ et donc $g_0$ est de classe $\mathscr{C}^{k + 1}$ avec
+    $g_1^{(j)} = g_{j + 1}$ et $g_0^{(j)} = g_j$ 
+\end{proof}
+
+\subsection{Cas des séries de fonctions }
+
+Tous les théorèmes précédents s'appliquent en posant $\displaystyle f_n = \sum_{k = 0}^n u_k$ somme partielle des 
+séries de fonctions.
+
+\begin{theoreme}{intégration séries}{}
+    Soit $\sum_{n \geqslant 0} u_n$ une série de fonctions. Supposons que : 
+    \begin{itemize}
+        \item $\forall n \in \N, \, u_n$ est continue sur $I$
+        \item $\sum_{n \geqslant 0} u_n$ converge uniformément 
+    sur tout segment inclus dans $I$
+    \end{itemize}
+    Soit $a \in I$. Posons $\forall n \in \N, \, \fonction{U_n} I {E'}{x}{\int_a^x u_n(t) dt}$.
+
+    Alors $\sum_{n \geqslant 0} U_n$ converge uniformément sur tout segment inclus dans $I$, 
+    
+    et 
+    $\forall x \in I$, 
+    $$\sum_{n = 0 }^{ \infty } \int_{a }^{x } u_n(t) dt = \int_{a}^{x } \sum_{n = 0}^{\infty} u_n(t) dt$$
+\end{theoreme}
+
+\begin{corollaire}{}{}
+    Soit $\sum_{n \geqslant 0} u_n$ une série de fonctions continues qui converge uniformément sur 
+    $[a, b]$, alors 
+    $$\sum_{n = 0}^{\infty} \int_{a}^{b} u_n(t) dt = \int_{a}^{b} \sum_{n = 0}^{\infty} u_n(t) dt$$
+\end{corollaire}
+
+\begin{proof}
+    On pose $\displaystyle f_n = \sum_{k = 0}^n u_k$, alors $\displaystyle F_n = \sum_{k = 0 }^{n } U_k$ et on applique le 
+    théorème sur les suites. 
+\end{proof}
+
+\begin{theoreme}{dérivation série}{}
+    Soit $\sum_{n \geqslant 0} u_n$ une série de fonctions de classe $\mathscr{C}^1$ sur $I$ telle que
+    \begin{itemize}
+        \item $\sum_{n \geqslant 0} u_n$ converge simplement
+        \item $\sum_{n \geqslant 0} u'_n$ converge uniformément sur tout segment
+    \end{itemize}
+    Alors : 
+    \begin{itemize}
+        \item $\sum_{n \geqslant 0} u_n$ converge uniformément sur tout segment
+        \item $\displaystyle \sum_{n = 0 }^{\infty } u_n$ est de classe $\mathscr C^1$
+    \end{itemize}
+    Donc : 
+    $$\left(\sum_{n = 0}^{+ \infty} u_n\right)' = \sum_{n = 0 }^{+ \infty } u_n'$$
+\end{theoreme}
+
+\begin{theoreme}{généralisation}{}
+    Soit $\sum_{n \geqslant 0} u_n$ une série de fonctions de classe $\mathscr{C}^k$ sur $I$ tel que 
+    \begin{itemize}
+        \item $\forall i \in \ninter{0}{k - 1}, \, \sum_{n \geqslant 0} u_n^{(i)}$ converge simplement sur $I$ 
+        \item $\sum_{n \geqslant 0} u_n^{(k)}$ converge uniformément sur tout segment inclus dans $I$   
+    \end{itemize}
+
+    Alors $\forall i \in \ninter{0}{k - 1}, \, \sum_{n \geqslant 0} u_n^{(i)}$ converge uniformément sur tout segment
+    et $\displaystyle \sum_{n = 0}^{\infty} u_n$ est de classe $\mathscr{C}^k$ et 
+    $\forall i \geqslant k$, $\displaystyle \left( \sum_{n = 0}^{\infty} u_n \right)^{(i)} = \sum_{n = 0}^{\infty} u_n^{(i)}$.
+\end{theoreme}
+
+\begin{exemple}
+    $\fonction \zeta {]1, + \infty[}{\R} x {\sum_{n = 1}^{\infty} \frac 1 {n^x}}$.
+
+    Pososn $\forall n \geqslant 1, \, u_n(x) = \frac 1 {n^x} = e^{-x \ln(n)}$.
+
+    $u_n$ est de classe $\mathscr {C}^{\infty}$ et $\forall k \geqslant 1, \, u_n^{(k)}(x) = \frac{(- \ln(n))^k}{n^x}$. 
+
+    Soit $[a, b] \subset ]1, +\infty[$.
+    $$\left| u_n^{(k)}(x) \right| \leqslant \frac{(\ln n )^k}{n^a}$$
+
+    De plus, $\displaystyle \frac{(\ln n)^k}{n^a} = \circ \left( \frac 1 {n^{\frac{a + 1}{2}}} \right)$, terme 
+    général d'une série convergente, donc la série converge normalement. 
+
+    Donc $\zeta$ est de classe $\mathscr{C}^{k}$ pour tout $k$ donc $\mathscr{C}^{\infty}$ est 
+    $$\zeta^{(k)}(x) = \sum_{n = 0}^{\infty} \frac{(- \ln(n))^k}{n^x}$$
+\end{exemple}
+
+\subsection{Etude de fonctions définies comme somme de série }
+
+
+On considère $f : \displaystyle x \mapsto \sum_{n = 0}^{\infty} u_n(x)$. 
+
+\begin{enumerate}
+    \item On cherche les $x$ tels que la série converge. Cela donne $I$ un ensemble de définition 
+    de $f$ sur lequel la série converge simplement.
+    \item On étudie la convergence uniforme sur tout segment inclus dans $I$ de $\sum u_n$, on vérifie 
+    les $u_n$ continues, et on déduit $f$ continue sur $I$.
+    \item Si les $u_n$ sont $\mathscr C^k$ on étudie la convergence uniforme sur tout segment des 
+    $\sum u_n^{(k)}$ pour montrer que $f$ est de classe $\mathscr{C}^k$ 
+    \item On utilise le théorème de la double limite pour trouver les limites de $f$ aux bornes 
+    de $I$. 
+    \item Si cela échoue, on utilise une comparaison série intégrale. 
+\end{enumerate}
+
+\begin{exemple}
+    Limite de $\zeta$ en $1$.
+
+    $n \geqslant 1, \, t \in [n, n+ 1], \, \ln(n) \leqslant \ln t \leqslant \ln (n+ 1)$
+    
+    et $-\ln(n + 1) \leqslant - \ln t \leqslant - \ln n$.
+
+    $x > 0$ donne $- x \ln(n + 1) \leqslant \frac 1 {t^x} \leqslant \frac 1 {n^x}$.
+
+    \begin{align}
+        \int_n^{n + 1} \frac 1 {t^x} \,\mathrm{d}t & \leqslant \int_n^{n + 1} \frac 1 {n^x} \,\mathrm{d}t = \frac 1 {n^x} \\
+        \int_1^{n + 1} \frac 1 {t^x} \, \mathrm{d}t & \leqslant \sum_{k = 1 }^{n } \frac 1 {k^x} 
+    \end{align}
+
+    \begin{align}
+        \int_{1 }^{n + 1 } \frac 1 {t^x} \, \mathrm{d}t &  = \left[ \frac{t^{- x + 1}}{- x + 1} \right]_{1}^{n + 1} \\
+        & = \frac{1 }{x - 1} \left( 1 - \frac 1 {(n + 1)^{x - 1}} \right)\\
+        & \xrightarrow[n \to + \infty]{} \frac 1 {x - 1}
+    \end{align} 
+
+    Donc $\frac 1 {x - 1} \leqslant \zeta(x)$. et donc $\zeta(x) \xrightarrow[x \to 1^+]{} + \infty$.
+\end{exemple}
+
+\subsection{Complément pour montrer la non convergence uniforme}
+
+\begin{proposition}{}{}
+    Soit $(f_n)$ suite de fonctions de $I$ dans $E'$ tel que $f_n \xrightarrow{CS} g$. 
+
+    S'il existe $(x_n)_{n \in \N}$ suite de $I$ telle que 
+    $f_n(x_n) - g(x_n) \nrightarrow 0$, alors il n'y a pas convergence uniforme de $(f_n)$ vers $g$.
+
+    En effet, $$||f_n - g||_{\infty, I} \geqslant N'(f_n(x_n) - g(x_n))$$
+\end{proposition}
+
+\begin{exemple}
+    $\fonction{f_n}{[0, 1]}{\R} x {x^n}$ on a $f_n \xrightarrow{CS} 0$
+    car à $x$ fixé, $x^n \to 0$.
+
+    Posons $x_n = \sqrt[n]{\frac 1 2}$, on a $x_n \in [0, 1[$ et 
+    $x_n^n = \frac 1 2 \nrightarrow 0$. 
+
+    Donc il n'y a pas convergence uniforme sur $[0, 1[$. 
+\end{exemple}
+
+
+\begin{proposition}{}{}
+    Soit $\sum_{n \geqslant 0} u_n$ définie sur $I$ qui converge simplement. 
+
+    Si on exhibe une suite $(x_n)$ telle que $\displaystyle \sum_{k = n + 1 }^{\infty  } u_n(x_n) \nrightarrow 0$,
+    il n'y a pas de convergence uniforme. En particulier, si $u_k$ est à valeurs dans $\R^+$ il suffit 
+    d'exhiber $x_n$ telle que $\displaystyle \sum_{k = n + 1}^{2n} u_k(x_n) \nrightarrow 0$.
+\end{proposition}
+
+% fin anki 
+
+\section{Approximation uniforme }
+\subsection{Fonctions continues par morceaux }
+
+\begin{theorement}{Approximation uniforme par des fonctions en escalier}{}
+    Toute fonction continue par morceaux sur un segment est limite uniforme d'une suite 
+    de fonctions en escalier. 
+\end{theorement}
+
+\begin{proof}
+    Soit $f \in \mathscr C^{pm}([a, b], \R)$. 
+
+    On sait que $\forall \varepsilon > 0, \, \exists \varphi_\varepsilon, \psi_\varepsilon$ fonctions en escaliers 
+    de $[a, b]$ dans $\R$ telle que $\varphi_\varepsilon \leqslant f \leqslant \psi_\varepsilon$ et
+    $||\psi_\varepsilon - \varphi_\varepsilon||_{\infty, [a, b]} \leqslant \varepsilon$.
+
+    En particulier, pour $\varepsilon = \frac 1 n$, cela fournit $(\varphi_n)_{n \in \N}$ suite de 
+    fonctions en escaliers telle que $\forall x \in [a, b], \, | f(x) - \varphi_n(x) | \leqslant \frac 1 n$.
+
+    Donc $||f - \varphi_n||_\infty \leqslant \frac 1 n $ donc $\varphi_n \xrightarrow[CU]{} f$ sur $[a, b]$.
+\end{proof}
+
+
+\begin{proposition}{Lemme de Lebesgue, LHP}{}
+    Soit $f \in \mathscr C^{pm}([a, b], \R)$ alors 
+    $$\int_a^b f(t) \sin(nt) \mathrm d t \xrightarrow[n \to + \infty ]{} 0$$
+\end{proposition}
+
+\idee{
+    1) Étude pour $f$ fonction en escalier
+
+    2) Approximation uniforme par des fonctions en escalier 
+
+    3) Inégalité triangulaire des intégrales 
+}
+
+\begin{proof}
+    Soit $f$ fonction en escalier sur $[a, b]$ et soit $(c_i)_{0 \leqslant i \leqslant n}$ 
+    subdivision adaptée et $\lambda_i$ sa valeur sur $]c_i, c_{i + 1}[$ alors 
+    \begin{align}
+        \int_{a }^{b } f(t) \sin(nt) \,\mathrm{d}t & = \sum_{i = 0}^{p - 1} \int_{c_i}^{c_{i + 1}} f(t) \sin(nt) \,\mathrm{d}t \\
+        & = \sum_{i = 0}^{p - 1} \lambda_i \int_{c_i}^{c_{i + 1}} \sin(nt) \,\mathrm{d}t \\
+        & = \sum_{i = 0}^{p - 1} \lambda_i \left[ - \frac{\cos(nc_{i + 1}) + \cos(nc_i)}{n} \right] \\
+        \left| \int_{a }^{b } f(t) \sin(nt) \mathrm d t  \right| & \leqslant \sum_{i = 0 }^{p - 1} \frac{2 |\lambda_i|}{n} \\
+        & \xrightarrow[n \to + \infty ]{} 0
+    \end{align}
+
+    Soit $f \in \mathscr C^{pm}([a, b], \R)$ et $\varepsilon > 0$.
+
+    Par le théorème précédent, il existe $\varphi$ fonction en escalier telle que 
+    
+    $||f - \varphi||_{\infty, [a, b]} \leqslant \frac \varepsilon {2 (b - a)}$.
+
+    Par l'étude au dessus, $\int_{a }^{b } \varphi(t) \sin(nt) \,\mathrm{d}t \xrightarrow[n \to + \infty ]{} 0$.
+
+    Donc $\exists n_0 \in \N, \, \forall n \geqslant n_0, \, \left| \int_{a }^{b } \varphi(t) \sin(nt) \,\mathrm{d}t \right| \leqslant \frac \varepsilon 2$.
+
+    Soit $n \geqslant n_0$, on a :
+    \begin{align}
+        \left| \int_a^b f(t) \sin(nt) \mathrm d t  \right| & = \left| \int_a^b (f(t) - \varphi(t)) \sin(nt) \,\mathrm{d}t + \int_a^b \varphi(t) \sin(nt) \,\mathrm{d}t \right| \\
+        & \leqslant \left| \int_a^b \varphi(t) \sin(nt) \,\mathrm{d}t \right| + \left| \int_a^b ||f - \varphi||_{\infty, [a, b]} \,\mathrm{d}t \right| \\
+        & \leqslant \frac \varepsilon 2 + (b - a) \frac \varepsilon {2 (b - a)} = \varepsilon
+    \end{align}
+
+\end{proof}
+
+\begin{theoreme}{Théorème de Weierstrass}{}
+    Toute fonction continue \textbf{d'un segment} à valeurs dans $\K$ est limite uniforme sur ce segment 
+    d'une suite de fonctions polynomiales à coefficients dans $\K$.
+\end{theoreme}
+
+\begin{proof}
+    Non exigible 
+
+    Idée : Soit $f \in \mathscr C([a, b], \K)$. En posant $x = a + t (b - a)$, on a 
+    $x \in [a, b]$ ssi $t \in [0, 1]$ et posons $g(t) = f(a + t (b - a))$. 
+    Alors $g \in \mathscr C([0, 1], \K)$, si on obtient $P_n \xrightarrow[CU]{} g$ sur $[0, 1]$
+    en posant $Q_n(X) = P_n \left( \frac{X - a}{b - a} \right)$ on a $Q_n \xrightarrow[CU]{} f$ sur $[a, b]$.
+
+    On pourrait construire la suite $P_n$ de polynômes d'interpolation de Lagrange pour 
+    $g$ sur $[0, 1]$ et la subdivision à $2^{n} + 1$ points. Mais dans certains cas, on obtient 
+    le phénomène d'oscillation de Runge.
+
+    La suite de Bernstein permet d'éviter ce phénomène.
+
+    $$B_n(X) = \sum_{k = 0}^{n} \binom{n}{k} X^k (1 - X)^{n - k} f\left( \frac k n \right)$$
+
+    En remarquant que $\displaystyle f(x) = 1 \times f(x) = (x + 1 - x)^n f(x) = \sum_{k = 0}^{n} \binom{n}{k} x^k (1 - x)^{n - k} f(x)$,
+
+    $\displaystyle f(x) - B_n(x) = \sum_{k = 0}^{n} \binom{n}{k} x^k (1 - x)^{n - k} \left( f(x) - f\left( \frac k n \right) \right)$.
+
+    Puis utilisation de l'uniforme continuité de $f$ sur $[0, 1]$.
+\end{proof}
+
+

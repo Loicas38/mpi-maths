@@ -1,0 +1,165 @@
+\section*{Réduction simultanée 2}
+
+Si $\rg(AB - BA) \leqslant 1$, alors $A$ et $B$ sont simultanément trigonalisables.
+
+\begin{proof}
+    \uindent{Aff 1} $\ker A$ ou $\im A$ est $B$-stable.
+    
+    \uline{Dém} : Posons $C = AB - BA$. Supposons que $\ker A$ n'est pas $B$ stable.
+    Alors $\exists X_0 \in \ker A, \, B X_0 \notin \ker A$.
+    Donc $A X_0 = 0$ et $A B X_0 \neq 0$.
+    Donc $C X_0 = A B X_0 - B A X_0 = A B X_0 \neq 0$.
+    
+    $\im C = \Vect(C X_0) = \Vect(A B X_0) \subset \im A$ (car $\rg(C) = 1$).
+    
+    Soit $Y \in \im A$ et $Y = A X$.
+    $B Y = B A X = A B X - C X$.
+    Or $A B X = A(BX) \in \im A$ et $C X \in \im C \subset \im A$.
+    Donc $B Y \in \im A$.
+    Donc $\im A$ est $B$-stable.
+
+    \lvspace
+    \uindent{Aff 2} Soit $\lambda \in \text{Sp}(A)$. $(A - \lambda I) B - B (A - \lambda I) = AB - BA$.
+    Donc $\ker(A - \lambda I)$ stable ou $\im(A - \lambda I)$ est $B$-stable.
+    
+    non trivial : notons $F$ celui qui est stable.
+    $F$ est $A$-stable et $B$-stable, et $F \neq \{0\}$ et $F \neq E$.
+    $\beta$ base adaptée.
+    
+    \[ [\tilde A]_\beta = \left[ \begin{array}{c|c} A_1 & A_2 \\ \hline 0 & A_3 \end{array} \right] \quad [\tilde B]_\beta = \left[ \begin{array}{c|c} B_1 & B_2 \\ \hline 0 & B_3 \end{array} \right] \]
+    
+    \[ \tilde A \tilde B - \tilde B \tilde A = \left[ \begin{array}{c|c} A_1 B_1 - B_1 A_1 & * \\ \hline 0 & A_3 B_3 - B_3 A_3 \end{array} \right] \]
+    
+    Or $\rg \leqslant 1$.
+    Donc $\rg(A_3 B_3 - B_3 A_3) \leqslant 1$.
+    
+    Par H.R. (Hypothèse de Récurrence), $A_3$ et $B_3$ sont simultanément trigonalisables.
+    De même pour $A_1$ et $B_1$.
+    Donc $A$ et $B$ le sont.
+\end{proof}
+
+\uindent{Exo :} $A, B \in \mathcal{M}_n(\mathbb{C})$ et $C = AB - BA \implies \tr(C) = 0$.
+On suppose que $AC = CA$ et $BC = CB$.
+$\implies A, B, C$ sont simultanément trigonalisables.
+
+\begin{proof}
+    \[ C^2 = C(AB - BA) = CAB - CBA \]
+    \[ = ACB - CBA = [A, CB] \quad (\text{Commutateur}) \]
+    Donc $\tr(C^2) = 0$.
+    
+    \[ \forall k, C^k = [A, C^{k-1}B] \text{ et donc } \forall k \neq 0, \tr(C^k) = 0 \]
+    $\hookrightarrow$ nilpotente.
+    
+    \lvspace
+    \uindent{$\hookrightarrow$ démo machin nilpotent :}
+    $\lambda_1, \dots, \lambda_n$ valeurs propres de $C$.
+    \[
+        \begin{cases}
+            \lambda_1 + \dots + \lambda_n = 0 \\
+            \lambda_1^2 + \dots + \lambda_n^2 = 0 \\
+            \vdots \\
+            \lambda_1^n + \dots + \lambda_n^n = 0
+        \end{cases}
+    \]
+    
+    $P \in \C_n[X]$, $P(X) = \sum_{k=0}^n a_k X^k$.
+    \[ \sum_{i=1}^n P(\lambda_i) = \sum_{k=0}^n a_k \underbrace{\left( \sum_{i=1}^n \lambda_i^k \right)}_{=0 \text{ si } k \neq 0} = n a_0 = n P(0) \]
+    
+    \[ \left[ \sum P(\lambda_i) \right] = n P(0) \]
+    
+    Vrai pour $P = \prod_{\substack{j=1 \\ j \neq i}}^n (X - \lambda_j) \implies P(\lambda_i) = n P(0) \implies P(0) = 0$.
+    Donc $\lambda_i = 0$, et on itère.
+    
+    \lvspace
+    \uline{Conclusion} : $C = AB - BA$, $AC = CA$ et $BC = CB \implies C$ nilpotente.
+    $F = \ker C$ stable par $A$ et $B$.
+    $F \neq \{0\}$ car $C$ nilpotente.
+    $+$ argument par récurrence.
+\end{proof}
+
+\uindent{Applicat : Théorème (Schur)} Soit $V$ un sous-espace vectoriel de $\mathscr M_n(\C)$,
+supposons que $\forall M, N \in V, MN = NM$.
+Alors $\dim V \leqslant \left\lfloor \frac{n^2}{4} \right\rfloor + 1$. (optimal)
+
+\begin{proof}
+    Soit $n$ pair.
+    \[ \tilde V = \left\{ \begin{pmatrix} \lambda I_{n/2} & A \\ 0 & \lambda I_{n/2} \end{pmatrix} \;\middle|\; A \in \mathscr M_{n/2}(\C), \lambda \in \C \right\} \]
+    \[ \dim \tilde V = \left(\frac{n}{2}\right)^2 + 1 = \frac{n^2}{4} + 1 \]
+    
+    $\forall M, N \in \tilde V, \, MN = NM$ (vérification immédiate par calcul par blocs).
+    Donc $V = \tilde V$ fournit l'exemple optimal.
+    
+    \lvspace
+    \uindent{Étape 1} : Ici on peut trigonaliser tous les $M \in V$ simultanément.
+    Autrement dit, on peut supposer $V \subset \mathcal T_n(\C)$.
+    (et $\dim V \leqslant \frac{n(n+1)}{2}$).
+    
+    \uindent{Récurrence sur $\dim$ + absurde}.
+    Par l'absurde, supposons que $N = \dim V > \left\lfloor \frac{n^2}{4} \right\rfloor + 1$.
+    Soit $(A_1, \dots, A_N)$ une base de $V$.
+    
+    \[ A_i = \left( \begin{array}{c|ccc} \lambda_i & & L_i & \\ \hline 0 & & & \\ \vdots & & B_i & \\ 0 & & & \end{array} \right) \]
+    
+    et $A_i A_j = A_j A_i \implies B_i B_j = B_j B_i$.
+    
+    \[ \implies \dim \Vect(B_1, \dots, B_N) \leqslant \left\lfloor \frac{(n-1)^2}{4} \right\rfloor + 1 \]
+    
+    Quitte à renuméroter, $(B_1, \dots, B_k)$ est supposée libre (base de l'image).
+    $\forall j > k+1, \, B_j = \sum_{i=1}^k \alpha_j^i B_i$.
+\end{proof}
+
+\[ \forall j \geqslant k+1, \, A'_j = A_j - \sum_{i=1}^k \alpha_j^i A_i = \left[ \begin{array}{c|c} \dots & C'_j \\ \hline 0 & 0 \end{array} \right] \in V \]
+
+$(A'_{k+1}, \dots, A'_N)$ est libre.
+
+\[ \text{et } l = \dim(\Vect(B_i)) \leqslant \left\lfloor \frac{(n-1)^2}{4} \right\rfloor + 1 \]
+
+\[ A'_i = \left[ \begin{array}{c|c} \lambda'_i & C'_i \\ \hline 0 & 0 \end{array} \right] \]
+(Note : $A'_i$ a la forme d'une matrice avec des zéros partout sauf potentiellement sur la première ligne).
+
+\[ \implies \forall i, j \geqslant k+1, \quad A'_i A'_j = A'_j A'_i \implies L'_i C'_j = 0 \]
+(en notant $L'_i$ la partie "ligne" à gauche).
+
+\[ \text{donc } \forall i, j, \quad L'_i C'_j = 0. \]
+
+Considérons la matrice $M$ formée par les lignes $L'_j$ :
+\[ M = \begin{pmatrix} L'_{k+1} \\ \vdots \\ L'_N \end{pmatrix} \in \mathscr M_{N-k, n-1}(\C) \]
+
+$\hookrightarrow$ lignes libres (car les $A'_i$ le sont).
+
+\[ \text{Donc } \rg(M) \geqslant N-k. \]
+
+\[ \forall j \in \ninter{k+1}{N}, \, C'_j \in \ker M \quad \text{donc } \dim \ker M \geqslant \dim \Vect(C'_{k+1}, \dots, C'_N) = N-k-1 \]
+(car on a retiré un degré de liberté ou similaire, texte un peu dense ici).
+
+Théorème du rang sur $M$ : $m = \rg(M) + \dim \ker M \leqslant (n-1)$.
+\[ 2(N-k) \leqslant n \dots \]
+On aboutit à l'inégalité $N \leqslant \lfloor \frac{n^2}{4} \rfloor + 1$.
+
+\lvspace
+    \uindent{Exercice }
+    $f, g \in \mathscr L(E)$. $f \circ g - g \circ f = \lambda f$ avec $\lambda \neq 0$.
+    Montrer que $f$ est nilpotent.
+
+\begin{proof}
+    \uindent{Méthode 1 (Trace)}
+    On montre par récurrence que $\forall k \in \N^*, \, f^k \circ g - g \circ f^k = k \lambda f^k$.
+    En prenant la trace :
+    \[ \tr(f^k g - g f^k) = 0 = k \lambda \tr(f^k) \]
+    Comme $\lambda \neq 0$ et $k \neq 0$ (caractéristique 0), $\tr(f^k) = 0$.
+    Ceci étant vrai pour tout $k$, $f$ est nilpotent.
+
+    \uindent{Méthode 2 (Valeurs propres)}
+    Soit $v$ un vecteur propre de $g$ associé à la valeur propre $\mu$.
+    $g(v) = \mu v$.
+    Calculons $g(f(v))$ :
+    \[ f \circ g - g \circ f = \lambda f \implies g \circ f = f \circ g - \lambda f \]
+    \[ g(f(v)) = f(g(v)) - \lambda f(v) = f(\mu v) - \lambda f(v) = (\mu - \lambda) f(v) \]
+    
+    Donc si $f(v) \neq 0$, $f(v)$ est vecteur propre de $g$ pour la valeur propre $\mu - \lambda$.
+    Par récurrence, $f^k(v)$ est vecteur propre de $g$ pour la valeur propre $\mu - k \lambda$.
+    
+    On obtient une infinité de valeurs propres distinctes pour $g$ (car $\lambda \neq 0$), ce qui est impossible en dimension finie.
+    Donc il existe $k$ tel que $f^k(v) = 0$.
+    Ceci permet de conclure que $f$ est nilpotent.
+\end{proof}

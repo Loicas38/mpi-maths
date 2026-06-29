@@ -1,0 +1,1135 @@
+
+Dans tous le chapitre, $\K = \R$ ou $\C$.
+
+Soit $(E, N)$ un espace vectoriel normé sur $\K$.
+
+\section{Suites réelles ou complexes}
+\subsection{Convergence}
+\subsubsection{Théorème - définition}   
+
+\begin{definition}{Limite d'une suite}{}
+    Soit $(u_n)_{n\in\N}$ une suite de $\K$ et $\ell \in \K$. Alors on a équivalence entre : 
+
+    $$(i) \quad \forall \varepsilon > 0, \; \exists n_0 \in \N, \forall n \in \N, n \geqslant n_0, |u_n - \ell| \leqslant \varepsilon$$
+    et 
+    
+    \quad (ii) En notant pour $\varepsilon > 0$, $M_\varepsilon = \{n \in \N \mid |u_n - \ell| > \varepsilon\},$ 
+    $\; \forall \varepsilon > 0, \, M_\varepsilon$ est fini.
+
+    En ce cas $\ell$ est unique, et on dit que la suite $(u_n)$ converge vers $\ell$ et on note  :
+    $$ u_n \limit{n}{+\infty} \ell$$ 
+\end{definition}
+
+\idee{
+    Pour unicité de la limite : utiliser la def de limite deux fois, puis inégalité triangulaire.
+    
+    Pour l'équivalence : 
+    
+    (i) $\Rightarrow$ (ii) : si $M_\varepsilon$ n'est pas fini, il est non majoré.
+    
+    (ii) $\Rightarrow$ (i) : si $M_\varepsilon$ est fini, il est majoré.
+}
+
+\begin{proof}
+    \uline{Supposons (i)}
+
+    \vspace{0.2em}Soit $\varepsilon > 0$. On prend un $n_0$ tel que $\forall n \geqslant n_0$, $n$ n'appartient pas 
+    à $M_\varepsilon$. Donc $M_\varepsilon$ est majoré par $n_0$ et est donc fini. (ii) est donc vérifiée.
+
+    \vspace{0.5em}\qquad \uline{Supposons (ii)}
+
+    \vspace{0.2em}Soit $\varepsilon > 0$. 
+
+    Comme $M_\varepsilon$ est fini, il est majoré par un certain $N$. 
+
+    Posons $n_0 = N + 1$, si $n \geqslant n_0$, alors $n$ n'appartient pas à $M_\varepsilon$ et donc
+    $|u_n - \ell| \leqslant \varepsilon$. Donc (i) est vérifiée.
+
+
+    \vspace{0.5em}\qquad \uline{Unicité de la limite :}
+    \vspace{0.2em} Si $\ell_1$ et $\ell_2$ conviennet : 
+
+    Il existe $n_0$ tel que $\forall n \geqslant n_0$, $|u_n - \ell_1| \leqslant \varepsilon$ et $\forall n > n_1, |u_n - \ell_2| \leqslant \varepsilon$.
+
+    \vspace{0.2em} Soit $n_2 = n_0 + n_1$, on a :
+
+    $|u_{n_2} - \ell_1| \leqslant \varepsilon$ et $|u_{n_2} - \ell_2| \leqslant \varepsilon$.
+
+    Donc $0 \leqslant |\ell_1 - \ell_2| \leqslant |u_{n_2} - \ell_1| + |u_{n_2} - \ell_2| \leqslant 2\varepsilon$.
+
+    Vrai pour tout $\varepsilon > 0$, donc $\ell_1 = \ell_2$.
+\end{proof}
+
+\subsubsection{Caractérisation dans \texorpdfstring{$\C$}{C}}
+
+\begin{proposition}{}{}
+    Soit $(u_n)_{n \in \N} \in \C^\N$ et $\ell \in \C$. Alors : 
+
+    $$u_n \limit{n}{+\infty} \ell \iff \re(u_n) \limit{n}{+\infty} \re(\ell) \text{ et } \im(u_n) \limit{n}{+\infty} \im(\ell)$$
+\end{proposition}
+
+\subsubsection{Théorèmes d'opérations}
+
+\begin{theoreme}{}{}
+    Soit $\K = \R$ ou $\C$. 
+
+    Soient $(u_n)$ et $(v_n)$ deux suites de $\K$ et $\lambda, \mu \in \K$, $\ell_1, \ell_2 \in \K$ Alors : 
+
+    \begin{itemize}
+        \item Si $u_n \limit{n}{+\infty} \ell_1$ et $v_n \limit{n}{+\infty} \ell_2$, alors $(u_n + v_n) \limit{n}{+\infty} (\ell_1 + \ell_2)$
+        \item Si $u_n \limit{n}{+\infty} \ell_1$ et $v_n \limit{n}{+\infty} \ell_2$, alors $(u_n v_n) \limit{n}{+\infty} (\ell_1 \ell_2)$
+        \item Si $u_n \limit{n}{+\infty} \ell_1$, alors $(\lambda u_n + \mu v_n) \limit{n}{+\infty} (\lambda \ell_1 + \mu \ell_2)$
+        \item si $u_n \limit{n}{+\infty} 0$ et $v_n$ est bornée, alors $(u_n v_n) \limit{n}{+\infty} 0$
+    \end{itemize}
+\end{theoreme}
+
+\subsubsection{Théorème de Cesaro}
+
+\begin{theoreme}{}{}
+    Soit $(u_n)_{n \in \N} \in \K^\N$ et $\ell \in \K$, tel que $u_n \limit{n}{+\infty} \ell$.
+    
+    Si on pose $\displaystyle v_n = \frac 1 n \sum_{k=1}^n u_k$\,, alors :
+    $$v_n \limit{n}{+\infty} \ell$$
+\end{theoreme}
+
+\idee{
+    Utilisation de l'$\varepsilon$.
+}
+
+\begin{proof}
+    On sait que $\forall \varepsilon > 0, \exists n_0 \in \N, \forall n \geqslant n_0, |u_n - \ell| \leqslant \varepsilon$.
+
+    Soit $\varepsilon > 0$, et soit $n \in \N$. Alors : 
+
+    \begin{align*}
+         \mid v_n - \ell \mid &= \left| \left(\frac{1}{n} \sum_{k=1}^n u_k\right) - \ell \right| \\
+        &= \frac{1}{n} \left| \sum_{k=1}^n u_k - n \ell \right| \\
+        &= \frac{1}{n} \left| \sum_{k=1}^n (u_k - \ell) \right| \\
+        &\leqslant \frac{1}{n} \sum_{k=1}^n |u_k - \ell|
+    \end{align*}
+    
+
+    Supposons $n \geqslant n_0$, alors :
+
+    \begin{align*}
+        \mid v_n - \ell \mid & \leqslant  \frac 1 n \sum_{k=1}^{n_0 - 1} |u_k - \ell| + \frac 1 n \sum_{k=n_0}^n |u_k - \ell| \\
+        & \leqslant  \frac 1 n \sum_{k=1}^{n_0 - 1} |u_k - \ell| + \frac {n + n_0 - 1} n \varepsilon \\
+         & \leqslant  \frac 1 n \sum_{k=1}^{n_0 - 1} |u_k - \ell| + \varepsilon \\
+    \end{align*}
+
+    Or $\frac A n \limit{n}{+\infty} 0$ donc $\exists n_1 \in \N, \, \forall n > n_1, \, \left| \frac A n \right| \leqslant \varepsilon $
+
+    Donc en posant $n_2 = \max(n_0, n_1)$, on a : 
+
+    Pour $n \geqslant n_2$, $\mid v_n - \ell \mid \leqslant 2\varepsilon$. 
+
+    Donc $v_n \limit{n}{+\infty} \ell$.
+\end{proof}
+
+\subsection{Théorèmes liés à l'ordre dans \texorpdfstring{$\R$}{R} }
+
+\begin{theoreme}{}{}
+    Soit $(u_n)_{n \in \N} \in \K^\N$, $\ell \in \K$, et $(\alpha_n)_{n \in \N} \in \R^\N$ 
+    
+    Si $\left\{ \begin{array}{lcl}
+        \exists n_0 \in \N, & \forall n \geqslant n_0, & \mid u_n - \ell \mid \leqslant \alpha_n \\
+        \space & \alpha_n \limit{n}{+\infty} 0 & \space \\
+    \end{array} \right.
+    $
+
+    Alors $u_n \limit{n}{+\infty} \ell$
+\end{theoreme}
+
+\subsubsection{Passage à la limite dans une inégalité}
+
+\begin{theoreme}{Passage à la limite dans les inégalités}{}
+    Soient $(u_n)$ et $(v_n)$ deux suites réelles, et $\ell_1, \ell_2 \in \R$ telles que :
+
+    $ u_n \limit{n}{+\infty} \ell_1$ et $v_n \limit{n}{+\infty} \ell_2$
+
+    Si $\exists n_0 \in \N, \forall n \geqslant n_0, u_n \leqslant v_n$, alors $\ell_1 \leqslant \ell_2$
+\end{theoreme}
+
+\subsubsection{Théorème des gendarmes (des suites encadrées)}
+
+\begin{theoreme}{théorème des gendarmes}{}
+    Soient $(u_n)$, $(v_n)$ et $(w_n) \in \R^\N$ et $\ell \in \R$. 
+    
+    On suppose que : 
+    $$u_n \limit{n}{+\infty} \ell$$
+    $$w_n \limit{n}{+\infty} \ell$$
+
+    et $\exists n_0 \in \N, \forall n \geqslant n_0, u_n \leqslant v_n \leqslant w_n$. 
+
+    Alors $(v_n)_{n \in \N}$ converge et $v_n \limit{n}{+\infty} \ell$
+    
+\end{theoreme}
+
+\subsubsection{Théorème }
+
+\begin{theorement}{Signe suite à partir d'un rang avec la limite}{}
+    Soit $(u_n)_{n \in \N}, \, (v_n)_{n \in \N} \in \R^\N$ convergentes de limites 
+    respectives $\ell_1$ et $\ell_2$.
+
+    Si $\ell_1 < \ell_2$, alors $\exists n_0 \in \N, \forall n \geqslant n_0, u_n < v_n$
+\end{theorement}
+
+\idee{
+    Utilisation de l'$\varepsilon$, il suffit de bien le choisir.
+}
+
+\begin{proof}
+    On a $\forall \varepsilon > 0, \exists n_1 \in \N, \forall n \geqslant n_1, |u_n - \ell_1| < \varepsilon$ et
+
+    $\forall \varepsilon > 0, \exists n_2 \in \N, \forall n \geqslant n_2, |v_n - \ell_2| < \varepsilon$.
+
+    Posons $\displaystyle \varepsilon = \frac{\ell_2 - \ell_1} 3 > 0$. On prend alors 
+    $n_0 = \max(n_1, n_2)$.
+
+    Soit $n \geqslant n_0$, on a :
+
+    $$ u_n \leqslant \ell_1 + \varepsilon = \frac{2\ell_1 + \ell_2} 3 < \frac{\ell_1 + 2\ell_2}{3} = \ell_2 - \varepsilon \leqslant v_n$$
+
+\end{proof}
+
+\subsection{Théorèmes d'existence de limites}
+\subsubsection{Théorème de la limite monotone}
+
+\begin{theorement}{théorème de la limite monotone}{}
+    Toute suite réelle croissante et majorée converge vers la borne supérieure de ses valeurs. 
+    
+\end{theorement}
+
+\subsubsection{Suites adjacentes}
+
+\begin{theorement}{suites adjacentes}{}
+    Soient $(u_n)$ et $(v_n)$ deux suites réelles. 
+
+    Si $(u_n)$ est croissante, $(v_n)$ est décroissante et
+    $$\lim_{n \to +\infty} (v_n - u_n) = 0$$
+
+    Alors $(u_n)$ et $(v_n)$ convergent vers la même limite $\ell$ 
+    et $\forall n \in \N, u_n \leqslant \ell \leqslant v_n$
+\end{theorement}
+
+\begin{exemple}
+    Soient $a < b \in \R$. On pose $u_0 = a, v_0 = b$ 
+    et $\forall n \in \N, \, u_{n+1} = \sqrt{u_n v_n}$ et $v_{n+1} = \frac{u_n + v_n} 2$.
+
+    On a $\displaystyle \forall n \in \N, v_{n+1} - u_{n+1} = \frac{u_n + v_n -2 \sqrt{u_n v_n}} 2 = \frac{(\sqrt{v_n} - \sqrt{u_n})^2} 2 \geqslant 0$.
+
+    Donc $u_{n + 1} \leqslant v_{n + 1}$.
+
+    Comme $a < b, \forall n \in \N, u_n < v_n$.
+
+    De plus, $u_{n + 1} - u_n = \sqrt{u_n v_n} - u_n = \sqrt{u_n}(\sqrt{v_n} - \sqrt{u_n}) \geqslant 0$.
+
+    $v_{n + 1} - v_n = \frac{u_n + v_n} 2 - v_n = \frac{u_n - v_n} 2 \leqslant 0$.
+
+    Donc $(u_n)$ est croissante et $(v_n)$ est décroissante.
+
+    Il reste à montrer que $\lim_{n \to +\infty} (v_n - u_n) = 0$.
+
+    \begin{align}
+        0 & \leqslant  v_{n + 1} - u_{n + 1} \\
+        \space & = \frac{u_n + v_n} 2 - u_{n + 1} \\
+        \space &  \leqslant \frac{u_n + v_n} 2 - u_n \\
+        \space & \leqslant \frac{v_n - u_n} 2 \\
+    \end{align}
+    
+
+    Donc par rec, 
+    $$\forall n \in \N, 0 \leqslant v_n - u_n \leqslant \frac{b - a}{2^n} \limit{n}{+ \infty} 0$$
+
+    Donc ce sont des suites adjacentes.
+
+    Cette limite commune est appelée la moyenne arithmético-géométrique de $a$ et $b$.
+\end{exemple}
+
+\subsection{Etude de suites récurrentes}
+\subsubsection{Suites récurrentes linéaires d'ordre 2}
+
+\begin{propositionnt}{Nature ensemble des suites récurrentes linéaires d'ordre 2}{}
+    Soient $a, b \in \C$.  
+
+    $E = \{(u_n)_{n \in \N} \in \C^\N, \forall n \in \N, \, u_{n + 2} = a u_{n + 1} + bu_n\}$ est 
+    un $\C$-espace vectoriel de dimension 2. 
+\end{propositionnt}
+
+\idee{
+    On construit une base avec des suites géométriques, et utilisation d'un isomorphisme.
+}
+
+\begin{proof}
+    En effet, $\fonction{}{E}{\C^2}{(u_n)}{(u_0, u_1)}$ est un isomorphisme. 
+
+    Une suite géométrique $(r^n)_{n \in \N}$ où $r \neq 0$ est dans $E$ ssi elle vérifie
+    l'équation caractéristique $r^2 = ar + b$ (1).
+
+    Si (1) a deux racines distinctes $r_1$ et $r_2$, alors $(r_1^n)$ et $(r_2^n)$ est une base de $E$.
+
+    Si (1) a une racine double $r_0$, alors $(nr_0^n)$ et $(r_0^n)$ est une base de $E$.    
+\end{proof}
+
+\begin{exemple}
+    $u_0 = 1$, $u_1 = 1$, $\forall n \leqslant 0, \, u_{n + 2} = u_{n + 1} + u_n$ (fibonacci).
+
+    L'équation caractéristique est $r^2 = r + 1$, de racines $\frac{1 - \sqrt{5}} 2$ et $\frac{1 + \sqrt{5}} 2$.
+
+    \svspace Donc $\exists \alpha, \beta \in \R, \forall n \in \N, u_n = \alpha \left(\frac{1 - \sqrt{5}} 2\right)^n + \beta \left(\frac{1 + \sqrt{5}} 2\right)^n$.
+
+    Pour $n \in \{0, 1\}$, on a le système :
+    $$\left\{
+        \begin{array}{rcl}
+            \alpha + \beta & = & 1 \\
+            \alpha \frac{1 - \sqrt{5}} 2 + \beta \frac{1 + \sqrt{5}} 2 & = & 1 \\
+        \end{array}
+    \right.$$
+
+    Donc $\alpha = \frac{1 - \sqrt{5}}{2\sqrt{5}}$ et $\beta = \frac{1 + \sqrt{5}}{2\sqrt{5}}$.
+    
+    Donc $\displaystyle u_n = \frac{r_1^{n + 1} - r_2^{n + 1}}{\sqrt 5}$
+\end{exemple}
+
+\subsubsection{Suites données par une relation de récurrence dans R}
+
+\paragraph{Cadre de l'étude :}
+
+On donne $u_0 = a \in \R$ et $\forall n \in \N, u_{n + 1} = f(u_n)$ où $f$ est une fonction 
+d'une partie de $\R$ dans $\R$.
+
+\paragraph{Recherche d'un intervalle stable :}
+
+On cherche un intervalle $I$ réel sur lequel $f$ est définie
+telle que $\forall x \in I, f(x) \in I$.
+
+Alors si $a \in I$, $(u_n)$ est bien définie et $\forall n \in \N, u_n \in I$ par récurrence 
+sur $n$. 
+
+\paragraph{On étudie $f$ sur $I$}
+
+\begin{itemize}
+    \item Si $f$ est croissante sur $I$, alors $(u_n)$ est monotone.
+    \item Si $f$ est décroissante sur $I$, alors $(u_{2n})$ et $(u_{2n + 1})$ sont monotones, de 
+        monotonies opposées.
+    \item Sinon on étudie le signe de $f(x) - x$, et on tente d'en déduire $J \subset I$ stable
+        par $f$ sur lequel $g$ est de signe constant. 
+\end{itemize}
+
+\paragraph{Point fixe}
+
+Si $(u_n)$ converge vers $\ell$ et si $f$ continue alors $f(\ell) = \ell$. $\ell$ est un point fixe de $f$. 
+
+\begin{remarque}
+    Hors programme. 
+
+    Si $f$ est $\mathscr C^1$ sur $I$ et $f(l) = l$, alors il y a plusieurs cas : 
+
+    \qquad \uline{$|f'(l)| < 1$}
+    \avspace $l$ est un point fixe attractif et si $f'(l) = 0$, il est super attractif. 
+
+    \avspace \qquad \uline{$|f'(l)| = 1$}
+    \avspace $l$ est un point fixe indifférent. 
+
+    \avspace \qquad \uline{$|f'(l)| > 1$}
+    \avspace $l$ est un point fixe répulsif.
+\end{remarque}
+
+\begin{exemple}
+    $u_0 = a > 0$ et $\forall n \in \N, u_{n + 1} = \sqrt{2 + u_n}$. 
+
+    La suite est bien définie car $f(x) = \sqrt{2 + x}$ est stable sur $\R^+$. 
+
+    Etude de $f(x) = \sqrt{2 + x}$ et $g(x)= f(x) - x = \sqrt{2 + x} - x$.
+
+    $f$ et $g$ sont $\mathscr C^1$. 
+    
+    $\forall x  \geqslant 0,$
+
+    \begin{align*}
+        f'(x) & = \frac 1 {2\sqrt{2 + x}} \\
+        g'(x) & = \frac 1 {2\sqrt{2 + x}} - 1 \\
+        & = \frac{1 - 2 \sqrt{2 + x}}{2 \sqrt{2 + x}} \\
+        & = \frac{1 - 4(2 + x)}{2 \sqrt{2 + x}(1 + 2\sqrt{2 + x})} \\
+        & \leqslant 0 \\
+    \end{align*}
+    
+
+    Puis on dresse le tableau de variation :
+    \[\begin{array}{c|ccccc}
+        x & 0 & & 2 & & +\infty \\
+        \hline
+        g'(x) & & - & 0 & - & \\
+        \hline
+        g(x) & \sqrt 2 & \searrow & 0 & \searrow & -\infty \\
+        \hline
+        f'(x) & \space & + & \space & + & \space \\
+        \hline
+        f(x) & \sqrt 2 & \nearrow & 2 & \nearrow & +\infty \\
+    \end{array}\]
+
+    Donc $\inter{0}{2}$ et $\inter{2}{+\infty}$ sont stables par $f$.
+
+    \avspace \qquad \uline{Si $u_0 \in \inter{0}{2}$ :}
+
+    \avspace $\forall n, \, u_n \in \inter{0}{2}$ donc $g(u_n) \geqslant 0$ 
+
+    Donc $u_{n + 1} \geqslant u_n$ et $(u_n)$ est croissante. 
+
+    Or elle est majorée par 2, elle est donc convergente. 
+
+    Mais $f$ continue, donc la limite est un point fixe de $f$.
+
+    Même chose si $u_0 > 2$. 
+
+    \lvspace \lvspace
+    \uline{Exemple 2 :}
+    
+    \avspace $\alpha = e^{1/e} > 1$, et on prend $u_0 = 1$. $\forall n \in \N, u_{n + 1} = \alpha^{u_n}$.
+
+    Posons $\fonction{f}{\R^+}{\R^+}{x}{\alpha^x}$.
+
+    Or $\R^+$ est stable par $f$, donc $(u_n)$ est bien définie et $\forall n, u_n \in \R^+$.
+
+    Posons $g(x) = f(x) - x$. 
+
+    $f$ et $g$ sont $\mathscr C^1$, 
+
+    $$\begin{array}{rcl}
+        f'(x) & = & \frac 1 e e^{x/e} \\
+        g'(x) & = & \frac 1 e e^{x/e} - 1 \\
+        \space & = & \frac{e^{x / e} - e}{e} \\
+    \end{array}
+    $$
+
+    $$
+    \begin{array}{c|ccccc}
+        x & 0 \space & e \space & & & + \infty \\
+        \hline
+        g'(x) & \space & - & 0 & + & \space \\
+        \hline
+        g(x) & 1 & \searrow & 0 & \nearrow & +\infty \\
+        \hline
+        f'(x) & \space & + & \space & + & \space \\
+        \hline
+        f(x) & 1 & \nearrow &  e & \nearrow & +\infty \\
+    \end{array}
+    $$
+
+    $[0, e]$ est stable par $f$. $1 \in [0, e]$, donc $\forall n, u_n \in [0, e]$.
+
+    Donc $g(u_n) \geqslant 0$, donc $(u_n)$ est croissante et majorée donc convergente. 
+
+    $f$ est donc continue donc sa limite $\ell$ vérifie $f(\ell) = \ell$, c'est à dire 
+    $g(\ell) = 0$.
+
+    Donc $\ell = e$.
+\end{exemple}
+
+\subsection{Suites réelles divergentes}
+\subsubsection{Suites qui divergent vers $+\infty$}
+
+\begin{definitionnt}{Suite divergente vers $+\infty$}{}
+    Soit $(u_n)_{n \in \N} \in \R^\N$. On dit que $(u_n)$ diverge vers $+\infty$ ssi : 
+
+    $$\forall A \in \R, \exists n_0 \in \N, \forall n \geqslant n_0, \, u_n \geqslant A$$
+    
+\end{definitionnt}
+
+
+\subsubsection{Théorèmes d'opérations}
+
+\begin{theorement}{somme limites }{}
+    Soient $(u_n)_{n \in \N}$ et $(v_n)_{n \in \N} \in \R^\N$ telles que 
+    $u_n \limit{n}{+\infty} +\infty$ et $v_n$ minorée. Alors 
+
+    $$ (u_n + v_n) \limit{n}{+\infty} +\infty $$
+\end{theorement}
+
+\begin{theorement}{produit limites}{}
+    Soient $(u_n)_{n \in \N}$ et $(v_n)_{n \in \N} \in \R^\N$ telles que 
+    $u_n \limit{n}{+\infty} +\infty$ et $\exists m > 0, \forall n \in \N, \, v_n \geqslant m$. Alors 
+
+    $$ (u_n v_n) \limit{n}{+\infty} +\infty $$
+    
+\end{theorement}
+
+\subsubsection{Théorème de la limite monotone}
+
+\begin{theorement}{limite monotone}{}
+    Toute suite réelle croissante et non majorée diverge vers $+\infty$.
+\end{theorement}
+
+\subsubsection{Autres divergences}
+
+\begin{definitionnt}{Autres divergences}{}
+    Une suite réelle est également divergente dans les deux cas suivants : 
+    \begin{itemize}
+        \item Elle n'est pas bornée. 
+        \item Elle est bornée mais ne converge pas.
+    \end{itemize}
+\end{definitionnt}
+
+\section{Suites dans un espace vectoriel normé}
+$(E, N)$ est un espace vectoriel normé sur $\K$.
+\subsection{Convergence et divergence}
+
+\subsubsection{Définitions}
+
+\begin{definition}{}{}
+    Soit $(u_n)_{n \in \N} \in E^\N$ et $\ell \in E$. 
+
+    Alors les assertions suivantes sont équivalentes (LASSE) : 
+
+    \begin{enumerate}
+        \item $\forall \varepsilon > 0, \, \exists n_0 \in \N, \, \forall n \in \N, \, n \geqslant n_0 \, \Rightarrow N(u_n - \ell) \leqslant \varepsilon$
+        \item La suite réelle positive $(N(u_n - \ell))_{n \in \N}$ converge vers 0.
+        \item En notant pour $\varepsilon > 0, \, M_\varepsilon = \{n \in \N, \, N(u_n - l) > \varepsilon\}$ on a
+            $\forall \varepsilon > 0, \, M_\varepsilon$ est fini.
+    \end{enumerate}
+
+    On a (1) $\iff$ (2) par def de la limite de la suite réelle positive $(N(u_n - \ell))$.
+
+    (2) $\iff$ (3) par l'équivalence analogue pour les suites réelles.
+
+    Alors $\ell$ est unique et on dit que $(u_n)$ converge vers $\ell$ pour $N$ et on note :
+    $$ u_n \limit{n}{+\infty} \ell $$
+\end{definition}
+
+\begin{remarque}
+    $N(u_n - \ell) \leqslant \varepsilon \iff$ $u_n \in B'(\ell, \varepsilon) \iff$ $d(u_n, \ell) \leqslant \varepsilon$.
+\end{remarque}
+
+\idee{
+    Prendre deux limites différentes et utiliser les définitions. 
+}
+
+\begin{proof} \space
+
+    \qquad \uline{Unicité de la limite :}
+
+    \avspace Soient $u_n \limit{n}{+\infty} \ell_1$ et $u_n \limit{n}{+\infty} \ell_2$.
+
+    Soit $\varepsilon > 0$. 
+
+    $\exists n_0, \, \forall n \geqslant n_0, \, d(u_n, \ell_1) \leqslant \varepsilon$ et
+
+    $\exists n_1, \, \forall n \geqslant n_1, \, d(u_n, \ell_2) \leqslant \varepsilon$.
+
+    Soit $n_2 = \max(n_0, n_1)$, on a :
+
+    $$\begin{array}{rcl}
+        d(\ell_1, \ell_2) & \leqslant & d(\ell_1, u_{n_2}) + d(u_{n_2}, \ell_2) \\
+        \space & \leqslant & 2\varepsilon \\
+    \end{array}$$
+
+    Vrai pour tout $\varepsilon > 0$, donc $d(\ell_1, \ell_2) = 0$ et donc $\ell_1 = \ell_2$.
+\end{proof}
+
+\begin{definitionnt}{def convergence}{}
+    Soit $(u_n)_{n \in \N} \in E^\N$. On dit que $(u_n)$ est convergente ssi 
+    $\exists \ell \in E, \, u_n \limit{n}{+\infty} \ell$.
+
+    Dans le cas contraire, on dit que $(u_n)$ diverge.
+\end{definitionnt}
+
+\subsubsection{Caractère borné}
+
+\begin{definitionnt}{}{}
+    Soit $(u_n)_{n \in \N}$ une suite convergente de $E$. Alors $(u_n)$ est bornée.
+\end{definitionnt}
+
+\idee{
+    Utilisation de l'$\varepsilon$ avec une boule à partir d'un certain rang.
+}
+
+\begin{proof}
+    Avec cette hypothèse, notons $\ell$ la limite de la suite. 
+
+    Par définiton, pour $\varepsilon = 1$,
+    
+    $\exists n_0 \in \N, \, \forall n \geqslant n_0, \, N(u_n - \ell) \leqslant 1$.
+
+    Donc $\forall n \geqslant n_0, \, N(u_n) \leqslant N(\ell) + 1$.
+
+    Posons $K' = \max(K, N(u_0), \ldots, N(u_{n_0 - 1}))$, alors $\forall n \in \N, \, N(u_n) \leqslant K'$.
+\end{proof}
+
+\subsubsection{Invariance par changement de norme }
+
+\begin{theorement}{}{}
+    Soient $N_1$ et $N_2$ deux normes sur $E$. 
+
+    Si $N_1$ et $N_2$ sont équivalentes, alors pour toute suite $(u_n)_{n \in \N} \in E^\N$ 
+    et tout $\ell \in E$, on a :
+
+    $$ u_n \limit{n}{+\infty} \ell \text{ pour } N_1 \iff u_n \limit{n}{+\infty} \ell \text{ pour } N_2 $$
+\end{theorement}
+
+\idee{
+    utiliser la def des normes équivalentes. 
+}
+
+\begin{proof}
+    Supposons $N_1$ et $N_2$ équivalentes.
+
+    Soit $(u_n)_{n \in \N} \in E^\N$ et $\ell \in E$.
+
+    Supposons $u_n \limit{n}{+\infty} \ell$ pour $N_1$. 
+
+    Soit $n \in \N$. 
+
+    Or $\exists \alpha > 0, \forall x \in E, \, N_2(x) \leqslant \alpha N_1(x)$
+
+    Donc $0 \leqslant N_2(u_n - \ell) \leqslant \alpha N_1(u_n - \ell)$ 
+
+    Donc $N_2(u_n - \ell) \Longrightarrow 0$
+
+    Dnc $u_n \limit{n}{+\infty} l$ pour $N_2$
+
+    Réciproque similaire.
+\end{proof}
+
+\begin{theoreme}{Limite hors programme}{}
+    La réciproque du théorème précédent est vraie, c'est à dire si $N_1$ et $N_2$ ne sont pas 
+    équivalentes, il existe une suite $(u_n)_{n \in \N}$ qui converge pour l'une des deux normes 
+    et diverge pour l'autre. 
+\end{theoreme}
+
+\idee{
+    On en suppose une plus fine, et on pose une suite (complètement artificiel)
+    qui va bien. 
+}
+
+\begin{proof}
+    Supposons $N_1$ et $N_2$ non équivalentes, c'est à dire par exemple que $N_1$ n'est pas plus 
+    fine que $N_2$ c'est à dire : 
+
+    $\forall \alpha >0, \, \exists x \in E, \; N_2(x) > \alpha N_1(x)$
+
+    Soit $n \in \N^*$. Pour $\alpha = n$ cela fournit un $x_n$ tel que $N_2(x_n) > N_1(x_n)$
+
+    On a $N_1(x_n) \neq 0$ sinon c'est absurde.
+
+    Posons $\displaystyle u_n = \frac 1 {\sqrt n}\frac{x_n}{N_1(x_n)}$
+
+    $\displaystyle N_2(u_n) = \frac{N_2(x_n)}{\sqrt n N_1(x_n)} > \frac n {\sqrt n} = \sqrt n \to + \infty$
+
+    Donc $(u_n)$ non bornée pour $N_2$ donc divergente pour $N_2$. 
+
+    $N_1(u_n) =  \frac 1 {\sqrt n} \to 0$ donc $u_n \to 0$ pour $n_1$
+\end{proof}
+
+\subsubsection{Application à la dimension finie}
+
+\begin{theoreme}{}{}
+    Soit $(E, N)$ un espace vectoriel normé de dimension finie. La convergence d'une suite $(u_n)$ de $E$
+    vers $\ell \in E$ pour $N$ ne dépend pas du choix de la norme. 
+\end{theoreme}
+
+\begin{proof}
+    Toutes les normes sont équivalentes en dimension finie. 
+\end{proof}
+
+\paragraph{Conséquences :}
+
+Soit $B = (e_1, \dots, e_p)$ une base de $E$.
+
+Notons $\displaystyle  \forall n \in \N, \; u_n = \sum_{j = 1}^{p} x_{n, j} e_j$
+et $\displaystyle \ell = \sum_{j = 1}^{p} \ell_j e_j$
+
+Alors $u_n \limit{n}{+ \infty} l$ ssi $\forall j \in \ninter{1}{p}, \; x_{n, j} \limit{n}{+ \infty} \ell_j$
+
+Ainsi en dimension finie la convergence d'une suite de vecteurs s'obtien coordonnée par coordonnée. 
+
+
+\begin{proof}
+    Munissons $E$ de la norme $||\cdot||_1$ dans la base $B$. 
+
+    $\displaystyle || \sum_{j =  1}^{p} y_je_j||_1 = \sum_{j = 1}^{p }\mid y_j\mid$
+
+    On a $u_n \to \ell$ ssi $|| u_n - \ell|| \to 0$ ssi 
+    $\displaystyle \sum_{j = 1}^{p }|x_{n, j} - l_j| \to 0$ ssi 
+    $\forall j, |x_{n, j} - \ell_j| \to 0$ ssi $\forall j, \; x_{n, j} \ell_j$. 
+\end{proof}
+
+\subsubsection{Espace produit}
+
+\begin{definition}{}{}
+    Soient $(E_1, N_1), \dots, (E_p, N_p)$un espace produit muni de $N_\infty$ la norme produit. 
+
+    Soit $(u_n)_{n \in \N}$ suite de $E$ et $\ell \in E$. 
+
+    En notant $\forall n, \; u_n = (u_{n, 1}, \dots, u_{n, p})$ et $\ell = (\ell_1, \dots, \ell_p)$. 
+
+    Alors $u_n \to l$ pour $N_\infty$ ssi $\forall j \in \ninter 1 p$, 
+    $$u_{n, j} \to l_j$$
+\end{definition}
+
+
+\begin{proof}
+    $\displaystyle N_\infty(u_n - \ell) = \max_{j \in \ninter 1 p} N_j(u_{n, j} - l_j)$
+
+    Si $u_n \to \ell$ pour la norme infinie, $N_\infty(u_n - \ell) \to 0$
+
+    Or $\forall j, \, N_j(u_{n, j}- \ell_j) \leqslant N_\infty(u_n - \ell)$
+
+    Donc $N_j(u_{n, j} - \ell_j) \to 0$ 
+
+    Donc $u_{n, j} \to l_j$ pour $N_j$
+
+    Si $\forall j, u_{n, j} \to l_j$ pour $N_j$, $N_j(u_{n, j} - \ell_j) \to 0$
+
+    Or $\displaystyle N_\infty(u_b - \ell) \leqslant \sum_{j = 1}^{p } N_j(u_{n, j} - \ell_j) \to 0$
+
+    Donc $u_n \to \ell$ pour la norme infinie. 
+\end{proof}
+
+
+
+\subsection{Opérations algébriques}
+
+\begin{proposition}{Somme et produit par un scalaire}{}
+    Soient $(u_n)_{n \in \N}$, $(v_n)_{n \in \N}, (\lambda_n) _{n \in \N} \in E^\N$ 
+    et $\alpha, \beta \in \K$ avec $\ell_1, \ell_2 \in E$. 
+
+    \begin{enumerate}
+        \item Si $u_n \limit{n}{+\infty} \ell_1$ et $v_n \limit{n}{+\infty} \ell_2$, alors 
+            $u_n + v_n \limit{n}{+\infty} \ell_1 + \ell_2$ 
+        \item Si $u_n \limit{n}{+\infty} 0$ et $(\lambda_n)_{n \in \N} $ est bornée. 
+            Alors $\lambda_n u_n \limit{n}{+\infty} 0$
+        \item Si $\lambda_n \limit{n}{+\infty} 0$ et $(u_n)_{n \in \N}$ est bornée, 
+            alors $\lambda_n u_n \limit{n}{+\infty} 0$
+        \item Si $u_n \limit{n}{+\infty} \ell$ et $\lambda_n \limit{n}{+\infty} \alpha$, alors
+            $\lambda_n u_n \limit{n}{+\infty} \alpha \ell$
+        \item Si $u_n \limit{n}{+\infty} \ell_1$, $v_n \limit{n}{+\infty} \ell_2$ 
+            et $\lambda_n \limit{n}{+\infty} \alpha$, alors
+            $\lambda_n u_n + v_n \limit{n}{+\infty} \alpha \ell_1 + \ell_2$
+        \item Si $u_n \limit{n}{+\infty} \ell$ alors $N(u_n) \limit{n}{+\infty} N(\ell)$
+    \end{enumerate}
+
+\end{proposition}
+
+\idee{
+    1. : inégalité triangulaire
+
+    2. et 3. : facteur dans la norme 
+
+    4. : astuce du topin
+    
+    5. : par 1. et 4.
+
+    6. : inégalité triangulaire
+}
+
+
+\begin{proof}
+    Soit $n \in \N$ :
+
+    1. $N((u_n + v_n) - (\ell_1 + \ell_2)) \leqslant N(u_n - \ell_1) + N(v_n - \ell_2)$
+
+    \avspace 2. $N(\lambda_n u_n- 0) \leqslant \underbrace{|\lambda_n|}_{\text{bornée}} \underbrace{N(u_n - 0)}_{\rightarrow 0}$
+
+    \avspace 3. $N(\lambda_n u_n - 0) \leqslant \underbrace{|\lambda_n|}_{\rightarrow 0} \underbrace{N(u_n)}_{\text{suite bornée}}$
+
+    4. \begin{align*}
+        N(\lambda_n u_n - \alpha \ell) & = N(\lambda_n u_n - \lambda_n \ell + \lambda_n \ell - \alpha \ell) \\
+        & \leqslant N(\lambda_n (u_n - \ell)) + N((\lambda_n - \alpha) \ell) \\
+        & \leqslant \underbrace{|\lambda_n|}_{\text{bornée}} \underbrace{N(u_n - \ell)}_{\rightarrow 0} + \underbrace{|\lambda_n - \alpha|}_{\rightarrow 0} N(\ell) 
+    \end{align*}
+
+
+    5. Par 1. et 4.
+
+    6. $|N(u_n) - N(\ell)| \leqslant N(u_n - \ell)$ (seconde inégalité triangulaire)
+
+\end{proof}
+
+
+\subsection{Suites extraites}
+
+\begin{definition}{extracteur}{}
+    On appelle extracteur toute application $\varphi : \N \to \N$ strictement croissante.
+\end{definition}
+
+\begin{proposition}{relation d'ordre etracteur et identité}{}
+    Si $\varphi$ est un extracteur, alors $\forall n \in \N, \, \varphi(n) \geqslant n$.
+\end{proposition}
+
+
+\idee{
+    par récurrence
+}
+
+\begin{proof}
+    Par récurrence sur $n$. 
+
+    \qquad \uline{$n = 0$ :}
+
+    \avspace On a $\varphi(0) \in \N$ donc $\varphi(0) \geqslant 0$.
+
+    \avspace \qquad \uline{Hérédité :}
+
+    \avspace Supposons $\varphi(n) \geqslant n$.
+
+    Alors $\varphi(n + 1) > \varphi(n) \geqslant n$ 
+    Donc $\varphi(n + 1) \geqslant \varphi(n) + 1$, or $\varphi(n) \geqslant n$ donc
+    $\varphi(n + 1) \geqslant n + 1$.
+
+\end{proof}
+
+
+\begin{definition}{suite extraite}{}
+    Soit $(u_n)_{n \in \N} \in E^\N$. On appelle suite extraite de $(u_n)$ toute suite 
+    $(v_n)_{n \in \N}$ telle qu'il existe un extracteur $\varphi$ vérifiant 
+    $\forall n \in \N, \, v_n = u_{\varphi(n)}$.
+\end{definition}
+
+
+\subsubsection{Valeur d'adhérence}
+
+\begin{theorement}{}{}
+    Soit $(u_n)_{n \in \N} \in E^\N$ et $a \in E$.
+
+    Alors les assertions suivantes sont équivalentes :
+
+    \begin{enumerate}
+        \item Il existe une suite extraite $(u_{\varphi(n)})_{n \in \N}$ qui converge 
+            vers $a$.
+        \item Pour tout $\varepsilon > 0$, l'ensemble 
+            $G_\varepsilon\{n \in \N, N(u_n - a) \leqslant \varepsilon\}$ est infini.
+    \end{enumerate}
+
+    On dira alors que $a$ est une valeur d'adhérence de la suite $(u_n)$.
+\end{theorement}
+
+\idee{
+    (1) $\Rightarrow$ (2) : utiliser la def de la limite pour l'extractrice.
+
+    (2) $\Rightarrow$ (1) : construire par récurrence l'extractrice.
+}
+
+
+\begin{proof}
+    \qquad \uline{(1) $\Rightarrow$ (2) :}
+
+    \avspace Supposons 1, c'est à dire $u_{\varphi(n)} \limit{n}{+\infty} a$.
+
+    Soit $\varepsilon > 0$ et $G_\varepsilon = \{n \in \N, N(u_n - a) \leqslant \varepsilon\}$.
+    Par def de la limite, il existe $n_0 \in \N, \, \forall n \geqslant n_0, \, N(u_{\varphi(n)} - a) \leqslant \varepsilon$, 
+    c'est à dire $\varphi(n) \in G_\varepsilon$.
+
+    Donc $\{\varphi(n), n \geqslant n_0\} \subset G_\varepsilon$.
+
+    Or $\varphi$ strictement croissante donc injective et $\{\varphi(n), n \geqslant n_0\}$ est infini.
+    
+    Donc $\{\varphi(n), n \geqslant n_0\}$ infini donc $G_\varepsilon$ est infini.
+
+    \avspace \qquad \uline{(2) $\Rightarrow$ (1) :}
+
+    \svspace Supposons 2 et construisons par récurrence sur $n$ un entier $\varphi(n)$ tel que
+
+    $\mathscr P(n)$: "$\varphi(n) > \varphi(n - 1)$ et $N(u_{\varphi(n)} - a) \leqslant \frac 1 {n + 1}$".
+
+    On aura alors $(u_{\varphi(n)})_{n \in \N}$ extraite de $(u_n)$ et $u_{\varphi(n)} \limit{n}{+\infty} a$
+    d'où le 1. 
+
+    \quad \uline{Initialisation :}
+
+    \svspace Pour $\mathscr P(0)$ on doit trouver un entier $\varphi(0)$ tel que
+    $N(u_{\varphi(0)} - a) \leqslant 1$, c'est à dire $\varphi(0) \in G_1$.
+
+    Par hypothèse, $G_1$ est infini donc en particulier non vide, on peut donc 
+    choisir $\varphi(0)  = \min(G_1)$, qui convient. 
+
+    \quad \uline{Hérédité :}
+
+    \svspace Supposons $\mathscr P(n)$ vraie pour un certain $n \in \N$.
+
+    On doit trouver un entier $\varphi(n+1) > \varphi(n)$ et 
+    $N(u_{\varphi(n + 1)} - a) \leqslant \frac 1 {n + 2}$. 
+
+    Or $G_{\frac 1 {n + 2}}$ est infini par hypothèse, donc non majoré. Donc il existe
+    un entier $\varphi(n + 1) \in G_{\frac 1 {n + 2}}$ tel que $\varphi(n + 1) > \varphi(n)$.
+
+    Ce $\varphi(n + 1)$ convient.
+\end{proof}
+
+\begin{proposition}{}{}
+    Soit $(u_n)_{n \in \N} \in E^\N$. 
+
+    \begin{enumerate}
+        \item Si $(u_n)$ converge vers $\ell$, alors $\ell$ est son unique valeur d'adhérence. 
+        \item Si $(u_n)$ possède deux valeurs d'adhérence $\ell_1 \neq \ell_2$, alors $(u_n)$ diverge.
+    \end{enumerate}
+\end{proposition}
+
+\begin{remarque}
+    La notion de valeur d'adhérence dépend du choix de la norme mais est invariante 
+    quand on change N par une norme équivalente. En dimension finie, la notion de valeur d'adhérence
+    est donc indépendante du choix de la norme. 
+\end{remarque}
+
+
+\begin{proof}
+    Supposons que $(u_n)$ converge vers $\ell$.
+
+    $\varphi(n) =n$ étant un extracteur, $\ell$ est une valeur d'adhérence de $(u_n)$.
+
+    \svspace Soit $a$ une valeur d'adhérence de $(u_n)$.
+    
+    Soit $\varepsilon > 0$. Par hypothèse, $A = \{n \in \N, N(u_n - \ell) > \varepsilon\}$ est 
+    fini. 
+
+    $B = \{n \in \N, N(u_n - a) \leqslant \varepsilon \}$ est infini. 
+
+    Donc $B \not\subset A$, donc $\exists n_0 \in B$ tel que $n_0 \not\in A$.
+
+    Donc $N(u_{n_0} - a) \leqslant \varepsilon$ et $N(u_{n_0} - \ell) \leqslant \varepsilon$.
+
+    Donc $N(a - \ell) \leqslant N(a - u_{n_0} + u_{n_0} - \ell) \leqslant N(a - u_{n_0}) + N(u_{n_0} - \ell) \leqslant 2\varepsilon$.
+    vrai pour tout $\varepsilon > 0$, donc $a = \ell$.
+
+    Le deuxième point s'obtient par contraposée.
+\end{proof}
+
+
+\subsubsection{Cas particuliers}
+
+\begin{proposition}{}{}
+    Soit $(u_n)_{n \in \N} \in E^\N$ et $\ell \in E$.
+
+    Si $u_{2n} \limit{n}{+\infty} \ell$ et $u_{2n + 1} \limit{n}{+\infty} \ell$, alors
+    $u_n \limit{n}{+\infty} \ell$.
+\end{proposition}
+
+\begin{proof}
+    Posons $a_n = N(u_n - \ell) \in \R$ et on utilise le résultat analogue pour les suites réelles.
+\end{proof}
+
+
+\subsubsection{Théorème de Bolzano-Weierstrass}
+
+\begin{theorement}{Bolzano-Weierstrass}{}
+    Soit $E$ un $\K$-espace vectoriel normé de dimension finie. Alors de toute suite
+    \textbf{bornée} de $E$ on peut extraire une suite convergente, c'est à dire toute 
+    suite bornée de $E$ possède une valeur d'adhérence. 
+    
+\end{theorement}
+
+\idee{
+    Cas $E = \R$ : construction de la suite des bornes supérieures des 
+    queues de la suite. 
+
+    Autres cas : réduction au cas réel par extraction coordonnée par coordonnée.
+}
+
+\begin{proof}
+    \uline{Dans $E = \R$ :}
+
+    Soit $(u_n)_{n \N} \in \R^\N$ bornée, donc $\forall n \in \N, \, a \leqslant u_n \leqslant b$. 
+
+    Posons pour $n \in \N, \, x_n = \sup \underbrace{\{u_k, \, k \geqslant n\}}_{E_n}$.
+
+    $E_n$ est non vide et majoré par $b$ donc $x_n$ existe, et $x_n \in [a, b]$.
+
+    Or $E_{n + 1} \subset E_n$ donc $x_n$ qui est un majorant de $E_n$ est aussi un majorant de $E_{n + 1}$.
+
+    Donc $x_{n + 1} \leqslant x_n$ et $(x_n)$ est décroissante minorée, donc converge. 
+
+    Soit $\ell$ sa limite, $\varepsilon > 0$ et $G_\varepsilon = \{n \in \N \mid |u_n - \ell| \leqslant \varepsilon\}$.
+
+    Montrons que $G_\varepsilon$ est infini, pour cela montrons q'il n'est pas majoré. Soit $N \in \N$.
+
+    Or $x_n \limit{n}{+\infty} \ell$, donc $\exists n_0 \in \N, \, \forall n \geqslant n_0, \, |x_n - \ell| \leqslant \frac \varepsilon 2$.
+
+    Posons $n_1 = \max(N, n_0)$.
+
+    On a alors $\ell - \frac \varepsilon 2 \leqslant x_{n_1} \leqslant \ell + \frac \varepsilon 2$.
+
+    Or $x_{n_1} = \sup E_n$, donc $x_{n_1} $ est un majorant de $E_{n_1}$ et 
+    $x_{n_1} - \frac \varepsilon 2$ n'est pas un majorant de $E_{n_1}$.
+
+    Donc $\exists k \geqslant n_1$ tel que $x_{n_1} - \frac \varepsilon 2 \leqslant u_K \leqslant x_{n_1}$.
+
+    Donc $\ell - \varepsilon \leqslant u_k \leqslant \ell + \frac \varepsilon 2$.
+
+    Donc $| u_k - \ell| \leqslant \varepsilon$. 
+
+    Donc $k \in G_\varepsilon$ et $k \geqslant n_1 \geqslant N$.
+
+    Donc $G_\varepsilon$ n'est pas majoré, donc infini, donc $\ell$ est une valeur d'adhérence de $(u_n)$.
+
+    \qquad \svspace \uline{Dans $E = \C$ :}
+
+    Soit $(z_n)_{n \in \N} \in \C^\N$ bornée. 
+
+    Posons $\forall n \in \N$ $z_n = x_n + i y_n$ avec $x_n, y_n \in \R$.
+
+    Alors $(x_n)_{n \in \N}$ et $(y_n)_{n \in \N}$ sont bornées.
+
+    Donc par le cas réel, on peut extraire de $(x_n)$ une suite convergente $(x_{\varphi(n)})$
+    qui converge, et alors $(x_{\varphi(n)})$ est bornée. 
+
+    De même on peut extraire de $(y_{\varphi(n)})$ une suite convergente $(y_{\varphi \circ \psi(n)})$ 
+    qui converge. 
+
+    En efet, en notant $y_{\varphi(n)} = v_n$ une suite extraite est 
+    $$y_{\varphi \circ \psi(n)} = v_{\psi(n)}$$
+
+    Or $\varphi \circ \psi$ est un extracteur.
+
+    Donc $x_{\varphi \circ \psi(n)}$ est une suite extraite de $(x_{\varphi(n)})$ qui converge
+    donc $z_{\varphi \circ \psi(n)} = x_{\varphi \circ \psi(n)} + i y_{\varphi \circ \psi(n)}$ converge. 
+
+    \avspace \qquad \uline{Dans $E$ un $\K$ ev de dimension finie $p$ :}
+
+    \svspace $B = (b_1, \dots, b_p)$ une base de $E$.
+
+    $u_n = \sum_{j = 1}^{p } x_{n, j} b_j$ suite bornée. 
+
+    Alors $(x_{n, 1})$ est une suite bornée de $\K$.    
+
+    Donc on peut en extraire une suite convergente $(x_{\varphi_1(n), 1})$ 
+    qui converge vers $\ell_1 \in \K$.
+
+    $(x_{\varphi_1(n), 2})$ est extraite de $(x_{n, 2})$ et bornée.
+
+    Donc par Bolzano-Weierstrass dans $\K$, on peut en extraire une suite convergente
+
+    Blablabla par récurrence jusqu'à $p$.
+
+    On a alors $x_{\varphi_1 \circ \cdots \circ \varphi_p(n), p}$ converge 
+
+    Donc $u_{\varphi_1 \circ \cdots \circ \varphi_p(n)}$ converge. 
+\end{proof}
+
+
+\begin{remarque} (hors programme)
+
+    $\ell$ est appelée limite supérieure de la suite $(u_n)$.
+\end{remarque}
+
+\subsubsection{Conséquence }
+
+\begin{theoreme}{convergence avec valeur d'adhérence}{}
+    Une suite bornée d'un $\K$-espace vectoriel de dimension finie converge ssi elle possède
+    une unique valeur d'adhérence.
+\end{theoreme}
+
+\idee{
+    par l'absurde 
+}
+
+\begin{proof}
+    Sens direct traité précédement. 
+
+    $\Leftarrow$ : Soit $(u_n)$ une suite bornée de $E$ possédant une unique valeur d'adhérence $a$.
+
+    On veut montrer que $u_n \limit{n}{+\infty} a$.
+
+    Supposons par l'absurde que $u_n$ ne converge pas vers $a$.
+
+    Alors $\exists \varepsilon > 0, \, \forall n_0 \in \N, \, \exists n \geqslant n_0, \, N(u_n - a) > \varepsilon$.
+
+    Construisons par récurrence $u_{\varphi(n)}$ telle que $\forall n, \, N(u_{\varphi(n)} - a) > \varepsilon$.
+
+    C'est à dire $\varphi(n) $ vérifiant $\mathscr P(n)$ : "$\varphi(n) > \varphi(n - 1)$ et $N(u_{\varphi(n)} - a) > \varepsilon$".
+
+    Avec $n_0 = 0$, on choisit $\varphi(0)$.
+
+    Supposons $\mathscr P(n)$ vraie. Avec $n_0 = \varphi(n) + 1$, on obtient $\varphi(n + 1)$.
+
+    $(u_n)$ bornée donc $(u_{\varphi(n)})$ bornée.
+
+    Donc par Bolzano-Weierstrass, elle possède une valeur d'adhérence $b$.
+
+    Donc $u_{\varphi \circ \psi(n)} \limit{n}{+\infty} b$ pour un certain extracteur $\psi$.
+
+    Par hypothèse $b = a$. 
+
+    Or $\forall n, \, N(u_{\varphi \circ \psi(n)} - a) > \varepsilon$.
+
+    Donc $ 0 = N(b - a) \geqslant \varepsilon > 0$, absurde. 
+
+\end{proof}
+
+\subsection{Complément hors programme }
+
+\begin{definition}{suite de Cauchy}{}
+    Soit $(u_n)_{n \in \N} \in E^\N$. On dit que cette suite est de Cauchy ssi 
+    $\forall \varepsilon > 0, \, \exists n_0 \in \N, \, \forall n, p \in \N, \, n, p \geqslant n_0 \Rightarrow N(u_n - u_p) \leqslant \varepsilon$.
+\end{definition}
+
+\begin{proposition}{Lien suite convergente et de Cauchy}{}
+    Toute suite convergente est de Cauchy.
+\end{proposition}
+
+\begin{proof}
+    Soit $(u_n)$ une suite convergente de limite $\ell$.
+
+    Alors $\forall \varepsilon > 0, \, \exists n_0 \in \N, \, \forall n \geqslant n_0, \, N(u_n - \ell) \leqslant \frac \varepsilon 2$ (*)
+
+    Soit $\varepsilon > 0$. 
+
+    Considérons le $n_0$ donné par (*). 
+
+    Soient $n, p \in \N$ tels que $n \geqslant n_0$ et $p \geqslant n_0$.
+
+    On a alors : 
+    \begin{align*}
+        N(u_n - u_p) & = N(u_n - \ell + \ell - u_p) \\
+        & \leqslant N(u_n - \ell) + N(u_p - \ell) \\
+        & \leqslant \varepsilon
+    \end{align*}
+\end{proof}
+
+\begin{proposition}{caractère borné suite de Cauchy}{}
+    Toute suite de Cauchy est bornée. 
+\end{proposition}
+
+\begin{proof}
+    Soit $(u_n)$ une suite de Cauchy.
+
+    La définiton avec $\varepsilon = 4$ fournit un $n_0$ tel que $\forall n, p \geqslant n_0, \, N(u_n - u_p) \leqslant 4$.
+
+    Soit $n \geqslant n_0$. 
+
+    \begin{align*}
+        N(u_n) & = N(u_n - u_{n_0} + u_{n_0}) \\
+        & \leqslant N(u_n - u_{n_0}) + N(u_{n_0}) \\
+        & \leqslant  \underbrace{4 + N(u_{n_0})}_{\text{= M \text{constante}}}
+    \end{align*}
+
+    Donc $\forall n \in \N$, $N(u_n) \leqslant K$ où $K = \max( N(u_0), \ldots, N(u_{n_0 - 1}), M)$.
+\end{proof}
+
+\begin{theoreme}{convergence des suites de Cauchy avec la dimension}{}
+    Si $E$ est de dimension finie, toute suite de Cauchy est convergente. 
+\end{theoreme}
+
+\begin{proof}
+    Soit $(u_n)$ une suite de Cauchy de $E$. Alors elle est bornée. 
+    Comme $E$ est de dimension finie, par Bolzano-Weierstrass, on peut en extraire
+    une suite convergente $(u_{\varphi(n)})$ de limite $\ell \in E$.
+
+    Montrons que $u_n \limit{n}{+\infty} \ell$.
+
+    On sait que $\forall \varepsilon > 0, \, \exists n_0 \in \N, \, \forall n, p \geqslant n_0, \, N(u_n - u_p) \leqslant \varepsilon$. 
+
+    $\forall \varepsilon > 0, \, \exists n_1 \in \N, \, \forall n \geqslant n_1, \, N(u_{\varphi(n)} - \ell) \leqslant \varepsilon$.
+
+    Soit $\varepsilon > 0$ et $n_2 = \max(n_0, n_1)$.
+
+    Soit $n \in \N$ tel que $n \geqslant n_2$.
+
+    \begin{align*}
+        N(u_n - \ell) & = N(u_n - u_{\varphi(n)} + u_{\varphi(n)} - \ell) \\
+        & \leqslant N(u_n - u_{\varphi(n)}) + N(u_{\varphi(n)} - \ell) \\
+        & \leqslant \varepsilon + \varepsilon = 2 \varepsilon
+    \end{align*}
+
+    Donc $u_n \limit{n}{+\infty} \ell$.
+\end{proof}
+
+

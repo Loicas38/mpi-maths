@@ -1,0 +1,515 @@
+\section{Énoncés}
+\setcounter{numexo}{15}
+
+\subsection{Anneaux}
+
+% --- Exercice 16 ---
+\begin{exercice}
+(Exercice 16)
+On considère $A=\mathbb{R}^{\mathbb{N}}$ l'ensemble des suites réelles que l'on munit des lois $+$ et $*$ définies par : 
+$$ \forall u=(u_{n})_{n\in\mathbb{N}}, v=(v_{n})_{n\in\mathbb{N}}\in A, \quad u+v=w=(w_{n})_{n\in\mathbb{N}} \quad \text{et} \quad u*v=z=(z_{n})_{n\in\mathbb{N}} $$ 
+avec 
+$$ \forall n\in\mathbb{N}, \quad w_{n}=u_{n}+v_{n} \quad \text{et} \quad z_{n}=\sum_{k=0}^{n}u_{k}v_{n-k} $$ 
+Montrer que $(A,+,*)$ est un anneau intègre. 
+\end{exercice}
+
+% --- Exercice 17 ---
+\begin{exercice}
+(Exercice 17)
+Soit $A$ un anneau commutatif. On dit qu'un élément $a\in A$ est nilpotent s'il existe $n\in\mathbb{N}^{*}$ tel que $a^{n}=0$. 
+Montrer que l'ensemble $I$ des éléments nilpotents de $A$ est un idéal. 
+\end{exercice}
+
+% --- Exercice 18 ---
+\begin{exercice}
+(Exercice 18)
+On considère $I$ un intervalle réel et l'anneau $A=F(I,\mathbb{R})$. 
+Pour $a\in I$, on considère l'ensemble $I_{a}$ des fonctions $f\in A$ qui s'annulent en $a$. 
+\begin{enumerate}
+ \item[a)] Montrer que $I_{a}$ est un idéal de $A$. 
+ \item[b)] Pour $a\ne b\in I,$ montrer que $I_{a}+I_{b}=A$. 
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 19 ---
+\begin{exercice}
+(Exercice 19)
+Soit $A$ un anneau commutatif et $I$ un idéal de $A$. 
+On pose :
+$$ J=\{x\in A,\exists n\in\mathbb{N},x^{n}\in I\} $$ 
+\begin{enumerate}
+ \item Montrer que $J$ est un idéal de $A$. 
+ \item Lorsque $A=\mathbb{Z}$, identifier $J$ en fonction de $I$. 
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 20 ---
+\begin{exercice}
+(Exercice 20)
+On définit :
+$$ \mathbb{Z}[\sqrt{2}]=\{a+b\sqrt{2},a,b\in\mathbb{Z}\} $$ 
+Montrer que $\mathbb{Z}[\sqrt{2}]$ est un anneau intègre. 
+\end{exercice}
+
+\subsection{L'anneau Z}
+
+% --- Exercice 21 ---
+\begin{exercice}
+(Exercice 21)
+\begin{enumerate}
+ \item Soit $a$ un entier naturel non nul et $\lambda\in[1,a[$. Évaluer $\lfloor \lambda \rfloor + \lfloor -\lambda \rfloor$ selon que $\lambda$ est un entier ou non. 
+ \item Soient $a, b$ deux naturels non nuls, $d=\text{PGCD}(a,b)$. 
+ On note $a=da^{\prime}$ et $b=db^{\prime}$, si bien que $a'$ et $b'$ sont premiers entre eux. 
+ Pour $k\in\{1,..,b-1\}$, montrer que $k\frac{a}{b}$ est entier pour exactement $d-1$ valeurs de $k$. 
+ \item En déduire que :
+ $$ \sum_{k=1}^{b-1}\left(\lfloor k\frac{a}{b}\rfloor+\lfloor a-k\frac{a}{b}\rfloor\right)=(b-1)(a-1)+d-1 $$ 
+ \item Conclure en montrant le théorème de Marcelo Polezzi (publié en 1997) :
+ $$ \text{PGCD}(a,b)=a+b-ab+2\sum_{k=1}^{b-1}\lfloor k\frac{a}{b}\rfloor $$ 
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 22 ---
+\begin{exercice}
+(Exercice 22)
+On dit qu'un entier naturel $n$ est parfait s'il est égal à la moitié de la somme de ses diviseurs positifs. 
+Par exemple, $6$ est parfait car $6=\frac{1+2+3+6}{2}$. 
+Montrer que si l'entier $2^{n}-1$ est premier alors $2^{n-1}(2^{n}-1)$ est parfait (résultat démontré par Euclide). 
+\end{exercice}
+
+% --- Exercice 23 ---
+\begin{exercice}
+(Exercice 23)
+On considère deux naturels $a\ge2$ et $n\ge2$. 
+\begin{enumerate}
+ \item[a)] Montrer que si $a>2$ alors $a^{n}-1$ est divisible par $a-1$. Est-il premier ? 
+ \item[b)] Montrer que si $n$ n'est pas premier alors $2^{n}-1$ n'est pas premier. 
+ \item[c)] Si $n$ est premier, montrer qu'on ne peut pas conclure sur la primalité de $2^{n}-1$. 
+\end{enumerate}
+Un nombre premier de ce type est appelé nombre de Mersenne (du nom de Marin Mersenne (1588-1648)). 
+\end{exercice}
+
+\subsection{L'anneau Z/nZ}
+
+% --- Exercice 24 ---
+\begin{exercice}
+(Exercice 24)
+On cherche à résoudre le système :
+$$ \begin{cases}x\equiv3[13]\\ x\equiv5[17]\end{cases} $$ 
+\begin{enumerate}
+ \item[a)] Trouver deux entiers $u$ et $v$ tels que $13u+17v=1$. 
+ \item[b)] En déduire les solutions du système en utilisant le théorème chinois. 
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 25 ---
+\begin{exercice}
+(Exercice 25)
+Soit $p$ un entier naturel supérieur à 2. 
+\begin{enumerate}
+ \item[a)] On suppose que $p$ est premier. En utilisant le fait que $\mathbb{Z}/p\mathbb{Z}$ est un corps et que $\overline{1}$ et $-1$ sont les seules classes égales à leur inverse, montrer que $(p-1)!=\overline{-1}$. 
+ \item[b)] On suppose réciproquement que $(p-1)!\equiv-1[p]$. Montrer que tout diviseur de $p$ divise $-1$. 
+ \item[c)] Conclure : $(p-1)!\equiv-1[p]$ si et seulement si $p$ est premier. C'est le Théorème de Wilson. 
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 26 ---
+\begin{exercice}
+(Exercice 26)
+Soit $p\ge3$ un naturel premier, on note $p-1=2^{r}q$ avec $q$ impair. 
+On considère $a\in\{2,..,p-1\}$ et $A=\{s\in\mathbb{N}, a^{2^{s}q}\equiv1[p]\}$. 
+\begin{enumerate}
+ \item Montrer que $A$ possède un minimum $s_{0}$. 
+ \item Montrer que si $s_{0}\ge1$ alors $a^{2^{s_{0}-1}q}\equiv-1[p]$. 
+ \item En déduire que si $p$ est premier on a : soit $a^{q}\equiv1[p]$, soit il existe $t\in\{0,...,r-1\}$ tel que $a^{2^{t}q}\equiv-1[p]$. 
+\end{enumerate}
+Sa contraposée est le test de primalité de Rabin-Miller. 
+\end{exercice}
+
+% --- Exercice 27 ---
+\begin{exercice}
+(Exercice 27)
+Utiliser la mise sous forme canonique pour résoudre dans $\mathbb{Z}/37\mathbb{Z}$ l'équation :
+$$ x^{2}+x+17=0 $$ 
+\end{exercice}
+
+% --- Exercice 28 ---
+\begin{exercice}
+(Exercice 28)
+Résoudre dans $\mathbb{Z}/143\mathbb{Z}$ l'équation $x^{2}-4x+3=0$. 
+\end{exercice}
+
+% --- Exercice 29 ---
+\begin{exercice}
+(Exercice 29)
+Résoudre dans $\mathbb{Z}/20\mathbb{Z}$ le système :
+$$ \begin{cases}5x+2y=3\\ 2x+4y=6\end{cases} $$ 
+\end{exercice}
+
+% --- Exercice 30 ---
+\begin{exercice}
+(Exercice 30)
+Résoudre l'équation $x^{3}=x^{2}$ dans $\mathbb{Z}/13\mathbb{Z}$ puis dans $\mathbb{Z}/12\mathbb{Z}$. 
+\end{exercice}
+
+% --- Exercice 31 ---
+\begin{exercice}
+(Exercice 31)
+Soit $p$ un entier premier. Utiliser l'application :
+$$ (\mathbb{Z}/p\mathbb{Z})^{*}\rightarrow(\mathbb{Z}/p\mathbb{Z})^{*}, \quad x \mapsto x^2 $$ 
+pour déterminer le nombre de carrés dans $(\mathbb{Z}/p\mathbb{Z})^{*}$. 
+\end{exercice}
+
+\subsection{L'anneau K[X]}
+
+% --- Exercice 32 ---
+\begin{exercice}
+(Exercice 32)
+\begin{enumerate}
+ \item[a)] Soient $P, Q$ des polynômes premiers entre eux. Montrer qu'il existe deux polynômes $U$ et $V$ tels que $\deg(U)<\deg(Q)$, $\deg(V)<\deg(P)$ et $PU+QV=1$. 
+ \item[b)] Montrer qu'il existe deux polynômes $T$ et $S$ de degré inférieur à $n-1$ tels que :
+ $$ (X-1)^{n}S+(X+1)^{n}T=1 $$ 
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 33 ---
+\begin{exercice}
+(Exercice 33)
+Soit $n\in\mathbb{N}^{*}$. Déterminer le PGCD de :
+$$ nX^{n+1}-(n+1)X^{n}+1 \quad \text{et} \quad X^{n}-nX+n-1 $$ 
+\end{exercice}
+
+% --- Exercice 34 ---
+\begin{exercice}
+(Exercice 34)
+Décomposer le polynôme $X^{4}+1$ en produit de facteurs irréductibles dans $\mathbb{C}[X]$, puis dans $\mathbb{R}[X]$, puis dans $\mathbb{Q}[X]$. 
+\end{exercice}
+
+\subsection{Corps}
+
+% --- Exercice 35 ---
+\begin{exercice}
+(Exercice 35)
+On définit :
+$$ \mathbb{Q}(\sqrt{2})=\{a+b\sqrt{2},a,b\in\mathbb{Q}\} $$ 
+Montrer que $\mathbb{Q}(\sqrt{2})$ est un corps. 
+\end{exercice}
+
+% --- Exercice 36 ---
+\begin{exercice}
+(Exercice 36)
+Soit $(A,+,\cdot)$ un anneau commutatif intègre tel que $A$ est un ensemble fini. 
+Pour $x\in A\setminus\{0\}$ on considère l'application $\varphi_{x} : A\rightarrow A, \quad a\mapsto xa$. 
+Montrer que $\varphi_{x}$ est injective et en déduire que $(A,+,\cdot)$ est un corps. 
+\end{exercice}
+
+\vspace{1em}
+\hrule
+\vspace{1em}
+
+\section{Corrections}
+
+% --- Correction 16 ---
+\begin{correction}{16}
+Montrons d'abord que $(A,+,*)$ est un anneau commutatif. 
+\begin{itemize}
+ \item $(A,+)$ est un groupe abélien car c'est un produit direct de groupes additifs réels. 
+ \item La loi $*$ est commutative : pour tout $n$, $(u*v)_n = \sum_{k=0}^n u_k v_{n-k}$. Par le changement d'indice $p = n-k$, on a $\sum_{p=0}^n u_{n-p} v_p = (v*u)_n$. 
+ \item La loi $*$ est associative (le produit de Cauchy des suites conserve l'associativité). 
+ \item Élément neutre pour $*$ : posons $e = (e_n)_{n\in\mathbb{N}}$ avec $e_0=1$ et $e_n=0$ pour $n \ge 1$. On a $(u*e)_n = \sum_{k=0}^n u_k e_{n-k} = u_n e_0 = u_n$. 
+ \item La distributivité de $*$ par rapport à $+$ découle de la linéarité de la somme. 
+\end{itemize}
+Pour l'intégrité, soient $u \neq 0$ et $v \neq 0$. Il existe un premier entier où $u$ ne s'annule pas. Soit $n_0 = \min \{n \in \mathbb{N} \mid u_n \neq 0\}$ et $m_0 = \min \{m \in \mathbb{N} \mid v_m \neq 0\}$. 
+Regardons le terme d'indice $n_0+m_0$ du produit :
+$$ (u*v)_{n_0+m_0} = \sum_{p=0}^{n_0+m_0} u_p v_{n_0+m_0-p} $$
+Si $p < n_0$, $u_p = 0$. Si $p > n_0$, alors $n_0+m_0-p < m_0$, d'où $v_{n_0+m_0-p} = 0$. 
+Il ne reste donc que le terme pour $p=n_0$ : $(u*v)_{n_0+m_0} = u_{n_0} v_{m_0}$. 
+Comme $\mathbb{R}$ est intègre, $u_{n_0} \neq 0$ et $v_{m_0} \neq 0 \implies u_{n_0} v_{m_0} \neq 0$. Donc $u*v \neq 0$. L'anneau est intègre. 
+\end{correction}
+
+% --- Correction 17 ---
+\begin{correction}{17}
+L'ensemble $I$ est non vide car l'élément neutre additif $0$ est dans $I$ ($0^1=0$). 
+Soient $a, b \in I$. Il existe $n, m \in \mathbb{N}^*$ tels que $a^n = 0$ et $b^m = 0$. 
+Puisque $A$ est un anneau commutatif, on peut utiliser la formule du binôme de Newton :
+$$ (a-b)^{n+m} = \sum_{k=0}^{n+m} \binom{n+m}{k} a^k (-b)^{n+m-k} $$ 
+Pour tout indice $k$, soit $k \ge n$ (auquel cas $a^k = 0$), soit $k \le n$, ce qui implique $n+m-k \ge m$ (auquel cas $b^{n+m-k} = 0$). 
+Dans tous les cas, le terme de la somme est nul, donc $(a-b)^{n+m} = 0$. Ainsi, $a-b \in I$. 
+Soit $a \in I$ avec $a^n=0$ et $x \in A$. On a $(ax)^n = a^n x^n = 0 \cdot x^n = 0$ (car l'anneau est commutatif). Donc $ax \in I$. 
+En conclusion, $I$ est bien un idéal de $A$. 
+\end{correction}
+
+% --- Correction 18 ---
+\begin{correction}{18}
+\begin{enumerate}
+ \item[a)] L'application d'évaluation $\varphi_a : A \to \mathbb{R}$ définie par $f \mapsto f(a)$ est un morphisme d'anneaux. 
+ Son noyau est $\ker(\varphi_a) = \{f \in A \mid f(a) = 0\} = I_a$. 
+ Le noyau d'un morphisme d'anneaux étant toujours un idéal, $I_a$ est un idéal de $A$. 
+ 
+ \item[b)] Soient $a \neq b$ dans $I$. Posons les fonctions $u(x) = \frac{x-b}{a-b}$ et $v(x) = \frac{x-a}{b-a}$. 
+ On observe que $u(a)=1, u(b)=0$ et $v(a)=0, v(b)=1$. De plus, on a partout $u(x)+v(x)=1$. 
+ Pour une fonction $f \in A$ quelconque, on peut écrire $f = f \cdot (u + v) = f \cdot u + f \cdot v$. 
+ Posons $h = f \cdot u$ et $g = f \cdot v$. 
+ Puisque $v(a) = 0$, $g(a) = f(a)v(a) = 0$, donc $g \in I_a$. 
+ Puisque $u(b) = 0$, $h(b) = f(b)u(b) = 0$, donc $h \in I_b$. 
+ Par conséquent, tout élément $f \in A$ se décompose en $g+h$, ce qui prouve que $I_a + I_b = A$. 
+\end{enumerate}
+\end{correction}
+
+% --- Correction 19 ---
+\begin{correction}{19}
+\begin{enumerate}
+ \item $0 \in J$ car $0^1 = 0 \in I$ (car $I$ est un idéal). 
+ Soient $x, y \in J$. Il existe $n, m \in \mathbb{N}$ tels que $x^n \in I$ et $y^m \in I$. 
+ Par le binôme de Newton (l'anneau est commutatif) : $(x-y)^{n+m} = \sum_{k=0}^{n+m} \binom{n+m}{k} x^k (-y)^{n+m-k}$. 
+ Pour chaque terme, on a soit $k \ge n \implies x^k \in I$, soit $n+m-k \ge m \implies y^{n+m-k} \in I$. 
+ L'idéal absorbant les produits, chaque terme de la somme est dans $I$. Comme $I$ est stable par addition, la somme y est aussi : $(x-y)^{n+m} \in I$. Donc $x-y \in J$. 
+ Enfin, pour $a \in A$ et $x \in J$ (avec $x^n \in I$), on a $(ax)^n = a^n x^n \in I$, donc $ax \in J$. Ainsi $J$ est un idéal. 
+ 
+ \item Si $A = \mathbb{Z}$, l'idéal $I$ est de la forme $n\mathbb{Z}$. 
+ Si $n=0$, $I=\{0\}$, $J$ est l'ensemble des nilpotents de $\mathbb{Z}$, c'est-à-dire $\{0\}$. 
+ Si $n=1$, $I=\mathbb{Z}$, donc $J=\mathbb{Z}$. 
+ Si $n \ge 2$, on considère sa décomposition en facteurs premiers : $n = p_1^{\alpha_1} \dots p_k^{\alpha_k}$. 
+ Posons le produit de ses facteurs premiers distincts : $q = p_1 \dots p_k$. 
+ Si $x \in J$, il existe $m$ tel que $n \mid x^m$. Cela implique que pour chaque $i$, $p_i \mid x^m$, et donc (comme $p_i$ est premier) $p_i \mid x$. D'où $q \mid x$. 
+ Réciproquement, si $q \mid x$, en prenant $m = \max(\alpha_i)$, on a $n \mid x^m$. 
+ Donc $J = q\mathbb{Z}$. 
+\end{enumerate}
+\end{correction}
+
+% --- Correction 20 ---
+\begin{correction}{20}
+$\mathbb{Z}[\sqrt{2}]$ est une partie de $\mathbb{R}$. 
+\begin{itemize}
+ \item $1 = 1 + 0\sqrt{2} \in \mathbb{Z}[\sqrt{2}]$. 
+ \item Stabilité par différence : $(a+b\sqrt{2}) - (c+d\sqrt{2}) = (a-c) + (b-d)\sqrt{2} \in \mathbb{Z}[\sqrt{2}]$. 
+ \item Stabilité par produit : $(a+b\sqrt{2})(c+d\sqrt{2}) = ac + 2bd + (ad+bc)\sqrt{2} \in \mathbb{Z}[\sqrt{2}]$. 
+\end{itemize}
+C'est donc un sous-anneau de $(\mathbb{R}, +, \cdot)$. 
+Comme l'anneau des réels $\mathbb{R}$ est intègre, tout sous-anneau de $\mathbb{R}$ hérite de l'intégrité, donc $\mathbb{Z}[\sqrt{2}]$ est un anneau intègre. 
+\end{correction}
+
+% --- Correction 21 ---
+\begin{correction}{21}
+\begin{enumerate}
+ \item Soit $x \in \mathbb{R}$. La somme $\lfloor x \rfloor + \lfloor -x \rfloor$ vaut $0$ si $x \in \mathbb{Z}$, et $-1$ si $x \notin \mathbb{Z}$. 
+ \item L'élément $k\frac{a}{b} = k\frac{da'}{db'} = k\frac{a'}{b'}$. Cet élément est entier si et seulement si $b' \mid k a'$. 
+ Comme $\text{PGCD}(a',b')=1$, d'après le théorème de Gauss, cela équivaut à $b' \mid k$. 
+ Or $k \in \{1, \dots, b-1\} = \{1, \dots, db'-1\}$. Les multiples stricts de $b'$ dans cet intervalle sont $b', 2b', \dots, (d-1)b'$. 
+ Il y a donc très exactement $d-1$ valeurs de $k$ pour lesquelles $k\frac{a}{b}$ est entier. 
+ \item On somme $\lfloor k\frac{a}{b} \rfloor + \lfloor -k\frac{a}{b} \rfloor + a$.
+ Sur les $b-1$ termes de la somme, $d-1$ d'entre eux fournissent des nombres entiers à l'intérieur des parties entières, donc la somme des deux parties entières donne 0. Pour les $(b-1)-(d-1) = b-d$ autres, la somme des parties entières vaut $-1$. 
+ On obtient donc $\sum_{k=1}^{b-1} \left( \lfloor k\frac{a}{b} \rfloor + \lfloor -k\frac{a}{b} \rfloor \right) = - (b-d) = d-b$. 
+ En ajoutant le terme $a$ sommé $b-1$ fois, la somme totale est $a(b-1) + d - b = ab - a - b + d$. 
+ \item Par changement d'indice, on pose $k' = b-k$. Lorsque $k$ parcourt l'ensemble $\{1, \dots, b-1\}$, $k'$ le parcourt également. 
+ Ainsi, $\sum_{k=1}^{b-1} \lfloor (b-k)\frac{a}{b} \rfloor = \sum_{k'=1}^{b-1} \lfloor k'\frac{a}{b} \rfloor$. 
+ En remplaçant cela dans le résultat de la question 3, l'équation devient $2 \sum_{k=1}^{b-1} \lfloor k\frac{a}{b} \rfloor = ab - a - b + d$. 
+ Il s'ensuit que $d = a + b - ab + 2 \sum_{k=1}^{b-1} \lfloor k\frac{a}{b} \rfloor$. 
+\end{enumerate}
+\end{correction}
+
+% --- Correction 22 ---
+\begin{correction}{22}
+Posons $p = 2^n - 1$ supposé premier, et soit $N = 2^{n-1}p$.
+Les diviseurs positifs de $N$ proviennent de sa décomposition en facteurs premiers. Comme $p$ est un nombre premier distinct de 2 (car $p$ est impair pour $n\ge2$), ses diviseurs sont de la forme $2^k$ et $2^k p$ pour $k \in \{0, \dots, n-1\}$.
+Calculons la somme de ses diviseurs :
+$$ \sum_{d \mid N} d = \sum_{k=0}^{n-1} 2^k + \sum_{k=0}^{n-1} 2^k p = (1+p) \sum_{k=0}^{n-1} 2^k $$
+Or, $\sum_{k=0}^{n-1} 2^k = 2^n - 1 = p$.
+Donc la somme est $(1+p)p = (1 + 2^n - 1)(2^n - 1) = 2^n (2^n - 1)$.
+On a donc bien $\sum_{d \mid N} d = 2 \times 2^{n-1} (2^n - 1) = 2N$. Le nombre $N$ est parfait.
+\end{correction}
+
+% --- Correction 23 ---
+\begin{correction}{23}
+\begin{enumerate}
+ \item[a)] On utilise l'identité remarquable : $a^n - 1 = (a-1)(a^{n-1} + a^{n-2} + \dots + a + 1)$. 
+ Ceci démontre que $a^n-1$ est divisible par $a-1$. Si $a>2$, alors $a-1 > 1$. 
+ De plus, comme $n \ge 2$, le deuxième facteur est strictement supérieur à 1. Le nombre $a^n-1$ s'écrit comme produit de deux entiers strictement supérieurs à 1, donc il n'est pas premier. 
+ \item[b)] Si $n$ n'est pas premier, on peut écrire $n = p \times q$ avec $p \ge 2$ et $q \ge 2$. 
+ Ainsi $2^n - 1 = (2^p)^q - 1$. 
+ En appliquant le résultat de la question précédente avec $A = 2^p > 2$, on en déduit que $2^n - 1$ est divisible par $2^p - 1 > 1$, et n'est donc pas premier. 
+ \item[c)] La primalité de $n$ ne garantit pas la primalité de $2^n-1$. Par exemple, pour $n=11$ (qui est premier), $2^{11}-1 = 2047 = 23 \times 89$, ce qui montre qu'il n'est pas premier. 
+\end{enumerate}
+\end{correction}
+
+% --- Correction 24 ---
+\begin{correction}{24}
+\begin{enumerate}
+ \item[a)] En effectuant l'algorithme d'Euclide étendu : $17 = 13 \times 1 + 4 \implies 4 = 17 - 13$. 
+ Puis $13 = 4 \times 3 + 1 \implies 1 = 13 - 3 \times 4$. 
+ En substituant on a $1 = 13 - 3(17 - 13) = 4 \times 13 - 3 \times 17$. 
+ Une solution est donc $u = 4$ et $v = -3$. 
+ \item[b)] Une solution particulière du système est donnée par la formule associée au théorème des restes chinois :
+ $$ x_0 = \beta \cdot (13u) + \alpha \cdot (17v) = 5(4 \times 13) + 3(-3 \times 17) $$ 
+ On obtient $x_0 = 260 - 153 = 107$. 
+ Les nombres 13 et 17 étant premiers entre eux, l'ensemble des solutions s'écrit modulo $13 \times 17 = 221$. 
+ L'ensemble des solutions est donc $\{x \in \mathbb{Z} \mid x \equiv 107 \pmod{221}\}$. 
+\end{enumerate}
+\end{correction}
+
+% --- Correction 25 ---
+\begin{correction}{25}
+\begin{enumerate}
+ \item[a)] Comme $p$ est premier, $\mathbb{Z}/p\mathbb{Z}$ est un corps. 
+ Dans le groupe multiplicatif $(\mathbb{Z}/p\mathbb{Z})^*$, chaque élément possède un unique inverse. 
+ Le seul élément qui est son propre inverse vérifie $x^2 = \overline{1}$, c'est-à-dire $(x-\overline{1})(x+\overline{1}) = \overline{0}$. Comme c'est un corps intègre, $x = \overline{1}$ ou $x = \overline{-1}$. 
+ Dans le produit des éléments non nuls $(p-1)!$, tous les éléments se regroupent avec leur inverse et s'annulent (donnent $\overline{1}$), sauf $\overline{1}$ et $\overline{-1}$. 
+ Il reste donc le produit de $\overline{1}$ par $\overline{-1}$, ce qui donne $(p-1)! \equiv -1 [p]$. 
+ 
+ \item[b)] Supposons que $(p-1)! \equiv -1 [p]$. Il existe un entier $u$ tel que $(p-1)! = -1 + pu$, d'où $pu - (p-1)! = 1$. 
+ Soit $k$ un diviseur positif de $p$ différent de $1$ et $p$. S'il existe un tel $k$, alors $k \le p-1$, donc $k \mid (p-1)!$. 
+ De plus $k \mid p$, donc $k \mid pu$. Il s'ensuit que $k \mid (pu - (p-1)!)$, c'est-à-dire $k \mid 1$. 
+ L'unique diviseur positif de 1 est 1. Donc $p$ n'a pas de diviseur non trivial : $p$ est premier. 
+\end{enumerate}
+\end{correction}
+
+% --- Correction 26 ---
+\begin{correction}{26}
+\begin{enumerate}
+ \item D'après le petit théorème de Fermat, $a^{p-1} \equiv 1 \pmod{p}$. 
+ On en déduit que $a^{2^r q} \equiv 1 \pmod{p}$, ce qui prouve que $r \in A$. 
+ $A$ étant une partie non vide de $\mathbb{N}$, elle admet un plus petit élément $s_0$. 
+ 
+ \item Si $s_0 \ge 1$, considérons l'élément $b = a^{2^{s_0-1} q}$. 
+ On a $b^2 = a^{2^{s_0} q} \equiv 1 \pmod{p}$ par définition de $s_0 \in A$. 
+ Dans le corps $\mathbb{Z}/p\mathbb{Z}$, les seules solutions de l'équation $x^2 = 1$ sont $1$ et $-1$. 
+ Si $b \equiv 1 \pmod{p}$, cela signifierait que $s_0-1 \in A$, ce qui contredit la minimalité de $s_0$. 
+ Par conséquent, on a nécessairement $b \equiv -1 \pmod{p}$, ce qui donne $a^{2^{s_0-1} q} \equiv -1 \pmod{p}$. 
+ 
+ \item Par minimalité, il n'y a que deux cas de figure possibles :
+ Soit $s_0 = 0$, et dans ce cas $a^q \equiv 1 \pmod{p}$. 
+ Soit $s_0 \ge 1$. Dans ce cas on prend $t = s_0 - 1$. Comme $s_0 \le r$ (puisque $r \in A$), on a $t \in \{0, \dots, r-1\}$. 
+ D'après la question 2, on a bien $a^{2^t q} \equiv -1 \pmod{p}$. 
+\end{enumerate}
+\end{correction}
+
+% --- Correction 27 ---
+\begin{correction}{27}
+L'anneau $\mathbb{Z}/37\mathbb{Z}$ est un corps car 37 est premier. 
+On calcule le discriminant de l'équation : $\Delta = 1^2 - 4(17) = 1 - 68 = -67$. 
+Or $-67 \equiv 7 \pmod{37}$. 
+En remarquant que $7 \equiv 7+74 \equiv 81 \pmod{37}$, et que $81 = 9^2$, le discriminant admet une racine carrée dans $\mathbb{Z}/37\mathbb{Z}$.
+Les solutions sont donc :
+$$ x = \frac{-1 \pm 9}{2} $$
+On a $x_1 = \frac{8}{2} = 4$ et $x_2 = \frac{-10}{2} = -5 \equiv 32 \pmod{37}$. 
+L'ensemble des solutions est $S = \{\overline{4}, \overline{32}\}$. 
+\end{correction}
+
+% --- Correction 28 ---
+\begin{correction}{28}
+On a la factorisation $x^2 - 4x + 3 = (x-1)(x-3)$. 
+Dans $\mathbb{Z}/143\mathbb{Z}$, l'équation est donc équivalente à $(x-1)(x-3) \equiv 0 \pmod{143}$. 
+L'anneau $\mathbb{Z}/143\mathbb{Z}$ n'est pas intègre car $143 = 11 \times 13$. 
+D'après le théorème des restes chinois, $\mathbb{Z}/143\mathbb{Z} \simeq \mathbb{Z}/11\mathbb{Z} \times \mathbb{Z}/13\mathbb{Z}$. 
+L'équation équivaut à la réunion des deux systèmes modulo 11 et 13 :
+$$ \begin{cases} (x-1)(x-3) \equiv 0 \pmod{11} \\ (x-1)(x-3) \equiv 0 \pmod{13} \end{cases} $$ 
+Dans les corps $\mathbb{Z}/11\mathbb{Z}$ et $\mathbb{Z}/13\mathbb{Z}$ qui sont intègres, cela donne $x \in \{1, 3\}$ modulo 11 et $x \in \{1, 3\}$ modulo 13. 
+En reconstituant les solutions via les coefficients de Bézout, on obtient quatre valeurs pour $x$ :
+$S = \{1, 3, 12, 14\}$ modulo 143. 
+\end{correction}
+
+% --- Correction 29 ---
+\begin{correction}{29}
+Par le théorème des restes chinois, comme $20 = 4 \times 5$, on peut résoudre le système dans $\mathbb{Z}/4\mathbb{Z}$ et dans $\mathbb{Z}/5\mathbb{Z}$. 
+Dans $\mathbb{Z}/5\mathbb{Z}$ : 
+$$ \begin{cases}5x+2y \equiv 3 \implies 2y \equiv 3 \equiv 8 \implies y \equiv 4 \\ 2x+4y \equiv 6 \equiv 1 \implies 2x + 16 \equiv 1 \implies 2x \equiv -15 \equiv 0 \implies x \equiv 0\end{cases} $$ 
+Dans $\mathbb{Z}/4\mathbb{Z}$ : 
+$$ \begin{cases} x+2y \equiv 3 \\ 2x \equiv 2 \implies x \equiv 1 \text{ ou } x \equiv 3 \end{cases} $$ 
+Si $x \equiv 1$, $1+2y \equiv 3 \implies 2y \equiv 2 \implies y \equiv 1 \text{ ou } 3$.
+Si $x \equiv 3$, $3+2y \equiv 3 \implies 2y \equiv 0 \implies y \equiv 0 \text{ ou } 2$.
+En recombinant ces solutions par le théorème des restes chinois, on obtiendrait l'ensemble complet des solutions dans $\mathbb{Z}/20\mathbb{Z}$.
+\end{correction}
+
+% --- Correction 30 ---
+\begin{correction}{30}
+L'équation s'écrit $x^2(x-1) \equiv 0$.
+Dans $\mathbb{Z}/13\mathbb{Z}$, qui est un corps (car 13 est premier), l'anneau est intègre. Les seules solutions sont donc $x=0$ et $x=1$.
+Dans $\mathbb{Z}/12\mathbb{Z}$, l'anneau n'est pas intègre. $x=0$ et $x=1$ sont des solutions évidentes.
+Pour chercher d'autres racines (diviseurs de zéro), on teste les valeurs telles que $x^2(x-1)$ soit multiple de 12.
+Pour $x=4$, $4^2 \times 3 = 16 \times 3 = 48 \equiv 0 \pmod{12}$. Donc $x=4$ est solution.
+Pour $x=9$, $9^2 \times 8 = 81 \times 8 = 648 \equiv 0 \pmod{12}$. Donc $x=9$ est solution.
+Les solutions dans $\mathbb{Z}/12\mathbb{Z}$ sont $S = \{0, 1, 4, 9\}$.
+\end{correction}
+
+% --- Correction 31 ---
+\begin{correction}{31}
+Soit l'application $\varphi(x) = x^2$. Comme le groupe $(\mathbb{Z}/p\mathbb{Z})^*$ est abélien, $\varphi$ est un morphisme de groupes de $(\mathbb{Z}/p\mathbb{Z})^*$ dans lui-même. 
+Le noyau $\ker(\varphi)$ est l'ensemble des éléments vérifiant $x^2 = \overline{1}$, c'est-à-dire l'ensemble des solutions de l'équation $X^2 - 1 = 0$ sur le corps $\mathbb{Z}/p\mathbb{Z}$. 
+Cette équation a pour racines $1$ et $-1$. 
+Si $p=2$, $1 \equiv -1$, et $\ker(\varphi)$ possède 1 élément, le morphisme est bijectif. 
+Si $p>2$, $1 \neq -1$, et le noyau de $\varphi$ possède exactement 2 éléments. 
+D'après le premier théorème d'isomorphisme pour les groupes, l'ordre de l'image de $\varphi$ est :
+$$ \Card(\text{Im}(\varphi)) = \frac{\Card((\mathbb{Z}/p\mathbb{Z})*)}{\Card(\ker(\varphi))} = \frac{p-1}{2} $$ 
+Il y a donc exactement $\frac{p-1}{2}$ carrés non nuls dans $\mathbb{Z}/p\mathbb{Z}$. 
+\end{correction}
+
+% --- Correction 32 ---
+\begin{correction}{32}
+\begin{enumerate}
+ \item[a)] Par le théorème de Bézout, puisque $P$ et $Q$ sont premiers entre eux, il existe $U_0, V_0 \in \mathbb{K}[X]$ tels que $P U_0 + Q V_0 = 1$. 
+ On effectue la division euclidienne de $U_0$ par $Q$ : il existe des polynômes $D$ et $U$ tels que $U_0 = Q D + U$ avec $\deg(U) < \deg(Q)$. 
+ En injectant dans la relation de Bézout :
+ $$ P(QD + U) + Q V_0 = 1 \implies PU + Q(PD + V_0) = 1 $$ 
+ En posant $V = PD + V_0$, on obtient bien $PU + QV = 1$. 
+ Il reste à contrôler le degré de $V$. On a $QV = 1 - PU$. 
+ On prend les degrés : $\deg(QV) = \deg(1 - PU)$. Comme $\deg(U) < \deg(Q)$, on a $\deg(PU) = \deg(P) + \deg(U) < \deg(P) + \deg(Q)$. 
+ Ainsi, $\deg(QV) < \deg(P) + \deg(Q)$. Or, $\deg(QV) = \deg(Q) + \deg(V)$. 
+ On en déduit par soustraction que $\deg(V) < \deg(P)$. 
+ 
+ \item[b)] On applique le résultat du a) aux polynômes $P = (X-1)^n$ et $Q = (X+1)^n$ qui sont premiers entre eux. 
+ Il existe $S = U$ et $T = V$ tels que $(X-1)^n S + (X+1)^n T = 1$, avec $\deg(S) < \deg((X+1)^n) = n$ et $\deg(T) < \deg((X-1)^n) = n$. 
+ Leur degré est donc inférieur ou égal à $n-1$. 
+\end{enumerate}
+\end{correction}
+
+% --- Correction 33 ---
+\begin{correction}{33}
+Posons $P = nX^{n+1}-(n+1)X^{n}+1$ et $Q = X^{n}-nX+n-1$.
+On constate que $P(1) = 0$ et $Q(1) = 0$. Donc $X-1$ divise les deux polynômes.
+Examinons les racines multiples :
+On dérive $P$ : $P'(X) = n(n+1)X^n - n(n+1)X^{n-1} = n(n+1)X^{n-1}(X-1)$.
+Les racines de $P'$ sont $0$ et $1$. Or, $P(0) = 1 \neq 0$. La seule racine multiple de $P$ est donc $1$. Puisque $P'(1)=0$, $1$ est racine de multiplicité au moins $2$.
+On dérive $Q$ : $Q'(X) = nX^{n-1} - n = n(X^{n-1} - 1)$.
+On a $Q'(1) = 0$, donc $1$ est également racine de multiplicité au moins $2$ pour $Q$.
+Pour $Q$, la multiplicité de 1 est exactement $2$ car $Q''(X) = n(n-1)X^{n-2}$ et $Q''(1) = n(n-1) \neq 0$ (pour $n \ge 2$).
+On peut montrer que les autres racines de $Q$ (liées aux racines de l'unité) ne sont pas racines de $P$. 
+Le PGCD de $P$ et $Q$ est donc $(X-1)^2$.
+\end{correction}
+
+% --- Correction 34 ---
+\begin{correction}{34}
+\begin{itemize}
+ \item \textbf{Dans $\mathbb{C}[X]$ :} Les racines de $X^4+1$ sont les racines quatrièmes de $-1$, c'est-à-dire $e^{i\frac{\pi}{4}}, e^{i\frac{3\pi}{4}}, e^{i\frac{5\pi}{4}} = e^{-i\frac{3\pi}{4}}$ et $e^{i\frac{7\pi}{4}} = e^{-i\frac{\pi}{4}}$. 
+ La décomposition est :
+ $$ X^4+1 = (X - e^{i\frac{\pi}{4}})(X - e^{i\frac{3\pi}{4}})(X - e^{-i\frac{3\pi}{4}})(X - e^{-i\frac{\pi}{4}}) $$ 
+ \item \textbf{Dans $\mathbb{R}[X]$ :} On regroupe les polynômes associés aux racines conjuguées pour former des polynômes de degré 2 à coefficients réels. 
+ $(X-e^{i\frac{\pi}{4}})(X-e^{-i\frac{\pi}{4}}) = X^2 - 2\cos(\frac{\pi}{4})X + 1 = X^2 - \sqrt{2}X + 1$. 
+ $(X-e^{i\frac{3\pi}{4}})(X-e^{-i\frac{3\pi}{4}}) = X^2 - 2\cos(\frac{3\pi}{4})X + 1 = X^2 + \sqrt{2}X + 1$. 
+ D'où : $X^4+1 = (X^2-\sqrt{2}X+1)(X^2+\sqrt{2}X+1)$. 
+ \item \textbf{Dans $\mathbb{Q}[X]$ :} Le polynôme $X^4+1$ n'a aucune racine rationnelle. S'il pouvait se factoriser, ce serait en deux polynômes de degré 2 (les mêmes que dans $\mathbb{R}[X]$ par unicité). 
+ Or, $\sqrt{2} \notin \mathbb{Q}$, donc ces facteurs ne sont pas dans $\mathbb{Q}[X]$. 
+ Le polynôme $X^4+1$ est donc irréductible dans $\mathbb{Q}[X]$. 
+\end{itemize}
+\end{correction}
+
+% --- Correction 35 ---
+\begin{correction}{35}
+L'ensemble $\mathbb{Q}(\sqrt{2})$ est un sous-anneau de $\mathbb{R}$. Il suffit de montrer que tout élément non nul de cet anneau admet un inverse dans cet ensemble.
+Soit $x = a+b\sqrt{2} \in \mathbb{Q}(\sqrt{2}) \setminus \{0\}$. Les nombres rationnels $a$ et $b$ ne sont pas simultanément nuls.
+On cherche l'inverse dans $\mathbb{R}$ en utilisant la quantité conjuguée :
+$$ \frac{1}{a+b\sqrt{2}} = \frac{a-b\sqrt{2}}{(a+b\sqrt{2})(a-b\sqrt{2})} = \frac{a-b\sqrt{2}}{a^2-2b^2} $$
+Le dénominateur $a^2-2b^2$ ne peut pas s'annuler car sinon on aurait $\sqrt{2} = \left| \frac{a}{b} \right| \in \mathbb{Q}$, ce qui est impossible puisque $\sqrt{2}$ est irrationnel.
+On a donc :
+$$ x^{-1} = \frac{a}{a^2-2b^2} - \frac{b}{a^2-2b^2}\sqrt{2} $$
+Ce qui est de la forme $a' + b'\sqrt{2}$ avec $a',b' \in \mathbb{Q}$. L'inverse appartient donc bien à $\mathbb{Q}(\sqrt{2})$. Cet ensemble est un corps.
+\end{correction}
+
+% --- Correction 36 ---
+\begin{correction}{36}
+Pour prouver l'injectivité de $\varphi_x$, on suppose que $\varphi_x(a) = \varphi_x(b)$ pour deux éléments $a,b \in A$.
+Cela signifie que $xa = xb$, soit $x(a-b) = 0$.
+Comme l'anneau $A$ est intègre et que par hypothèse $x \neq 0$, on en déduit que $a-b=0$, soit $a=b$. L'application $\varphi_x$ est donc injective.
+Comme $A$ est un ensemble fini, toute application injective d'un ensemble fini dans lui-même est nécessairement surjective.
+L'élément neutre de la multiplication, notons-le $1$, appartient à $A$. Puisque $\varphi_x$ est surjective, il possède un antécédent $y \in A$, tel que $\varphi_x(y) = 1$.
+On a donc $xy = 1$.
+Ainsi, tout élément non nul de $A$ possède un inverse, ce qui prouve que l'anneau $(A, +, \cdot)$ est un corps.
+\end{correction}

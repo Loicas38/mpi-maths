@@ -1,0 +1,650 @@
+
+\section{Ensembles dénombrables}
+\subsection{Définitions }
+
+\begin{definition}{dénombrable}{}
+    Soit $I$ un ensemble. On dit que $I$ est \emph{dénombrable} 
+    s'il existe une bijection entre $\N$ et $I$. 
+
+    On dira (LHP) que $I$ est \emph{équipotent} à $\N$.
+\end{definition}
+
+\begin{exemple}
+    \begin{itemize}
+        \item L'ensemble $\N$ est dénombrable (la bijection est l'identité).
+        \item L'ensemble $N^*$ est dénombrable (la bijection est $f : n \mapsto n+1$).
+        \item $2 \N$ est dénombrable (la bijection est $f : n \mapsto 2n$).
+        \item $\Z$ est dénombrable (la bijection est $f : n \mapsto p \text{ ou } -p-1$ selon que $n$ est pair ou impair)
+    \end{itemize}
+\end{exemple}
+
+
+\begin{definition}{au plus dénombrable}{}
+    Soit $I$ un ensemble. On dit que $I$ est \emph{au plus dénombrable} si $I$ est 
+    fini ou dénombrable.
+\end{definition}
+
+\subsection{Cas des parties de \texorpdfstring{$\N$}{N}}
+
+\begin{theoreme}{nature des parties infinies de $\N$}{}
+    Toute partie infinie de $\N$ est dénombrable.
+\end{theoreme}
+
+\idee{
+    On numérote les éléments de $A$ par ordre croissant en construisant une 
+    bijection et des récurrences.
+}
+
+\begin{proof}
+    Soit $A \subset \N$ infinie. 
+
+    Construisons par récurrence $\varphi : \N \to A$ en posant : $\varphi(0) = \min(A)$ car $A \neq \emptyset$.
+
+    Et par récurrence, $\forall n \in \N, \, \varphi(n+1) = \min(\underbrace{A \setminus \underbrace{\{\varphi(0), \ldots, \varphi(n)\}}_{\text{est fini}}}_{\text{infini donc non vide}})$.
+
+    \uindent{Montrons que $\varphi$ est bijective }
+
+    \svspace On a $\varphi(n) = \min(\underbrace{A \setminus \{\varphi(0), \ldots, \varphi(n-1)\}}_{= B })$ 
+    et $\varphi(n + 1) = \min(B \setminus \{ \varphi(n) \})$ 
+
+    Donc $\forall k \in B, \, \varphi(n) \leqslant k$ et $\exists k_1 \in B \setminus \{\varphi(n)\}, \, \varphi(n + 1) = k_1$
+
+    Donc $\varphi(n) < \varphi(n + 1)$ et $\varphi (n) \neq \varphi(n + 1)$
+
+    Donc $\varphi(n) < \varphi(n + 1)$, donc $\varphi$ est injective.
+
+    Soit $a \in A$, alors $\{k \in A | k < a\}$ est fini et $(\varphi(n))_{n \in \N}$ est strictement croissante, donc
+    $\exists n_0 \in \N, \, \varphi(n_0) \geqslant a$.
+
+    Soit $n_0$ le plus petit entier tel que $\varphi(n_0) \geqslant a$.
+
+    On a donc $\varphi(n_0 - 1) < a \leqslant \varphi(n_0)$, donc $a \in B_{n_0}$. 
+
+    Si on avait $a < \varphi(n_0)$, on aurait $a \in B_{n_0 + 1}$ avec $a < \min (B_{n_0 + 1})$, absurde. 
+    
+    Donc $a = \varphi(n_0)$, donc $\varphi$ est surjective.
+\end{proof}
+
+
+\begin{proposition}{nature des parties de $\N$}{}
+    Dans $\N$, il y a deux types de parties : 
+    \begin{itemize}
+        \item Les parties majorées qui sont finies 
+        \item Les parties non majorées qui sont infinies et dénombrables.
+    \end{itemize}
+
+    Toute partie de $\N$ est donc au plus dénombrable. 
+\end{proposition}
+
+
+\begin{proposition}{caractérisation des ensembles au plus dénombrables}{}
+    Soit $E$ un ensemble non vide. Alors $E$ est au plus dénombrable ssi il est en 
+    bijection avec une partie de $\N$.
+\end{proposition}
+
+
+\begin{proof}
+    Si $E$ est en bijection avec $I \subset \N$, alors si $I$ est finie, 
+    $E$ l'est également, et si $I$ est infinie, alors $I$ est dénombrable donc $E$ aussi.
+
+    \lvspace Si $E$ est au plus dénombrable, alors si $E$ est fini, il est en bijection 
+    avec 
+    
+    $\ninter 1 {\text{Card}(E)} \subset \N$.
+
+    S'il est dénombrable, par def il est en bijection avec $\N$.
+\end{proof}
+
+
+\subsection{Opérations }
+
+\begin{theoreme}{nature de $\N^2$}{}
+    $\N^2$ est dénombrable.
+\end{theoreme}
+
+Non exigible. 
+
+\begin{proof}
+    Considérons $\fonction \varphi {\N^2} \N {(p, q)}{2^p (2q + 1) - 1}$.
+
+    $\varphi$ est bien définie, et si $a \in \N$, alors $a + 1 \in \N^*$, donc possède 
+    une unique décomposition en facteurs premiers qui fournit $p$ et $q$ en isolant 
+    la contribution de $2$ et le produit impair des autres premiers. 
+\end{proof}
+
+\begin{proposition}{opérations conservant le caractère dénombrable}{}
+    \begin{itemize}
+        \item $\forall p \in \N, \, \N^p$ est dénombrable.
+        \item Tout produit cartésien fini d'ensembles dénombrables est dénombrable
+    \end{itemize}
+
+\end{proposition}
+
+\idee{Par récurrence}
+
+\begin{proof}
+    Par récurrence : 
+    \begin{itemize}
+        \item $\N^1$ est dénombrable 
+        \item Supposons que $\N^p$ est dénombrable pour un certain $p$. Cela fournit $\varphi : \N \to \N^p$ bijective. 
+    \end{itemize}
+
+    Considérons $\psi : \N^2 \to \N$ bijective. Posons alors $\fonction f {\N^{p + 1}} \N {(n_1, \cdot, n_{p + 1})} {\psi(\varphi^{-1}(n_1, \ldots, n_p), n_{p + 1})}$.
+
+    Alors $f$ est bijective. 
+
+    \lvspace Soient $E_1, \ldots, E_n$ des ensembles dénombrables.
+
+    Posons pour tout $i, \varphi_i : E_i \to \N$ bijective et $f : \N^p \to \N$ bijective.
+
+    Alors $\fonction{}{E_1 \times \cdot \times E_p} \N {(e_1, \ldots, e_p)} {f(\varphi_1(e_1), \ldots, \varphi_p(e_p))}$ est bijective.
+\end{proof}
+
+
+\begin{theoreme}{Nature de $\Q$}{}
+    $\Q$ est dénombrable. 
+\end{theoreme}
+
+\idee{
+    Bijection qui associe à chaque rationnel le couple (numérateur, dénominateur)
+    irréductible.
+}
+
+\begin{proof}
+    Considérons $\fonction \varphi \Q {\Z \times \N^*}{\underbrace{ x = \frac p q}_{\text{irréductible}} } {(p, q)}$.
+
+    $\varphi$ est bien définie et injective, car si $\varphi(x) = (p, q)$, alors $x = \frac p q$
+
+    Mais $\Z \times \N^*$ est dénombrable, donc $\varphi(\Q) \subset \Z \times \N^*$ est 
+    au plus dénombrable. 
+
+    Or $\varphi(\Q)$ est en bijection avec $\Q$, donc $\Q$ est au plus dénombrable, or $\Q$ est 
+    infini, donc $\Q$ est dénombrable.
+\end{proof}
+
+\begin{theorement}{nature union au plus dénombrable d'ensemble au plus dénombrables}{}
+    Toute union \textbf{finie ou dénombrable} d'ensembles au plus dénombrables est au plus dénombrable. 
+\end{theorement}
+
+Non exigible. 
+
+\begin{proof}
+    Soit $I$ non vide et au plus dénombrable.
+    
+    Pour $i \in I, \, I \subset \N$, il existe $P_i \subset \N$ non vide et $\fonction {\varphi_i} {P_i} {E_i} n {\varphi_i(n) }$ bijective. 
+
+    Considérons $\fonction {\psi_i} {E_i} \N x {\varphi_i^{-1}(x)}$ alors $\psi_i$ n'est pas forcément 
+    surjective mais elle est injective. 
+
+    Considérons maitenant $\fonction {\psi} {\bigcup_{i \in I} E_i} {\N^2} x {(i, \psi_i(x))}$ où $i = \min \{ \alpha \in \N, \, x \in E_\alpha \}$.
+
+    $\psi$ est bin définie, et $\psi$ est injective, car si $x = y = (i, j)$, 
+    on a $x, y \in E_i$ et $j = \psi_i(x) = \psi_i(y)$, donc $x = y = \varphi_i(j)$.
+
+    Donc $\displaystyle \bigcup_{i \in I} E_i$ est en bijection avec son image par $\psi$
+    qui est une partie de $\N^2$, qui est donc au plus dénombrable.
+
+\end{proof}
+
+\subsection{Ensembles non dénombrables}
+
+\begin{theoreme}{nature de $\R$}{}
+    $\R$ est non dénombrable.
+\end{theoreme}
+
+Non exigible. 
+
+\begin{proof}
+    Par l'absurde, supposons que $\varphi : \N \to \R$ est bijective. 
+
+    Comme $\fonction{} \R {]0, 1[} x {\frac 1 {1 + e^{- x}}}$ est bijective, donc 
+    il existe une bijection de $\N$ dans $]0, 1[$.
+
+    Considérons pour $i \in \N^*$ la $i + 1^{\text{eme}}$ décimale du développement décimal 
+    propre de $\varphi(i)$. Notons la $a_i$. 
+
+    Posons $b_i = 4$ si $a_i \neq 4$ et $b_i = 5$ sinon, et posons $\displaystyle y = \sum_{i = 1}^\infty \frac{b_{i + 1}}{10^i} \in ]0, 1[$ 
+
+    Posons $j = \psi^{-1}(y)$ 
+    
+    La jème décimale de $y$ est $b_j$ par def de $y$ 
+    $a_j$ par de $\psi$ absurde. 
+\end{proof}
+
+\begin{theoreme}{non équipotence de $E$ et $\mathscr P(E)$}{}
+    Soit $E$ un ensemble non vide. Alors il n'existe pas de bijection entre $E$ et $\mathscr P(E)$
+\end{theoreme}
+
+\begin{proof}
+    Par l'absurde, si $\fonction \psi E {\mathscr P(E)} x {\psi(x)}$ est bijective,
+
+    Considérons $B = \{ x \in E | x \notin \psi(x) \} $ et $x_0 = \psi^{-1}(B)$.
+
+    Si $x_0 \in B, \, x_0 \notin \psi(x_0) = B$ absurde.
+
+    Si $x_0 \notin B, \, x_0 \in \psi(x_0)$ donc $x_0 \in B$ absurde. 
+\end{proof}
+
+
+\section{familles sommables}
+\subsection{Définition }
+
+\begin{definition}{famille sommable}{}
+    Soit $I$ un ensemble non vide et $(U_i)_{i \in I}$ famille de complexes. 
+    On dit que cette famille est sommable ssi l'ensemble 
+    $$\left\{\sum_{j \in J} \mid u_j \mid, \, J \subset I \text{ fini} \right\}$$
+    est majoré. 
+\end{definition}
+
+
+\subsection{Propriétés }
+
+\begin{proposition}{stabilité sommable par combinaison linéaire}{}
+    Soit $(U_i)_{i \in I}$ famille sommable de complexes et $I' \subset I$ non vide. 
+    Alors $(U_i)_{i \in I'}$ est sommable. 
+
+    Si $(v_i)$ est une autre famille sommable, et $\alpha, \beta \in \C$, alors 
+    $(\alpha u_i + \beta v_i)_{i \in I}$ est sommable.
+\end{proposition}
+
+\idee{Majorer les sommes partielles}
+
+\begin{proof}
+    Par hypothèse, $\exists M_1, M_2 > 0, \, \forall J \subset I$ fini, 
+
+    $\displaystyle \sum_{j \in J} |u_j| \leqslant M_1$ et $\displaystyle \sum_{j \in J} |v_j| \leqslant M_2$.
+
+    Soit $J \subset I'$ fini, alors $J \subset I$ donc $\sum_{i \in J } |u_i| \leqslant M_1$.
+
+    Donc $(u_i)_{i \in I'}$ est sommable.
+
+    Soit $J \subset I$ fini, alors
+    $$\sum_{j \in J} |\alpha u_j + \beta v_j | \leqslant \sum_{j \in J} (|\alpha| |u_j| + |\beta| |v_j|) \leqslant |\alpha| M_1 + |\beta| M_2$$
+\end{proof}
+
+
+\subsection{Somme d'une famille sommable }
+
+\begin{proposition}{inégalité de comparaison}{}
+    Soit $(u_i)_{i \in I}$ une famille sommable de complexes et $(v_i)_{i \in I}$
+    une autre famille telle que $\forall i \in I, \, |v_i| \leqslant |u_i|$.
+
+    Alors $(v_i)_{i \in I}$ est sommable.
+\end{proposition}
+
+\begin{proof}
+    Soit $J \subset I$ fini, alors
+    $$\sum_{j \in J} |v_j| \leqslant \sum_{j \in J} |u_j| \leqslant M$$
+\end{proof}
+
+
+\begin{definition}{somme d'une famille sommable}{}
+    Soit $(u_i)_{i \in I}$ une famille sommable de réels positifs. 
+
+    Alors $\displaystyle \left\{ \sum_{i \in J} u_i, \, J \subset I \text{ fini}  \right\}$ est une partie 
+    de $\R$. 
+
+    Sa borne supérieure est appellée \emph{somme} de la famille et notée $\displaystyle \sum_{i \in I} u_i$.
+    Ainsi $$\sum_{i \in I} u_i = \sup \left\{ \sum_{i \in J} u_i, \, J \subset I \text{ fini}  \right\}$$
+\end{definition}
+
+\begin{theoreme}{somme d'une famille sommable de réels quelconques}{}
+    Soit $(u_i)_{i \in I}$ une famille sommable de réels. 
+
+    Posons $\forall i \in I : $ 
+    \begin{align*}
+        u_i^+ = \frac 1 2 (\mid u_i \mid + u_i)\\
+        u_i^- = \frac 1 2 (\mid u_i \mid - u_i)
+    \end{align*}
+
+    Alors $0 \leqslant u_i^+, u_i^- \leqslant |u_i|$ et donc $(u_i^+)_{i \in I}$ et $(u_i^-)_{i \in I}$ sont sommables.
+
+    On définit la somme de la famille $(u_i)_{i \in I}$ par
+    $$\sum_{i \in I} u_i = \sum_{i \in I} u_i^+ - \sum_{i \in I} u_i^-$$
+\end{theoreme}
+
+\begin{theoreme}{somme d'une famille sommable de complexes}{}
+    Soit $(u_j)_{j \in I}$ une famille sommable de complexes. Alors
+    $\forall j \in I, \, \mid \re u_j \mid \leqslant \mid u_j \mid$ et $\mid \im u_j \mid \leqslant \mid u_j \mid$.
+
+    Donc les familles $(\re u_j)_{j \in I}$ et $(\im u_j)_{j \in I}$ sont réelles sommables.
+
+    On définit la somme de la famille $(u_j)_{j \in I}$ par
+    $$\sum_{j \in I} u_j = \sum_{j \in I} \re u_j + i \sum_{j \in I} \im u_j$$
+
+\end{theoreme}
+
+
+\begin{proposition}{linéarité de la somme famille sommable}{}
+    Soit $(u_i)_{i \in I}, (v_i)_{i \in I}$ deux familles sommables de complexes et $\alpha, \beta \in \C$.
+
+    Alors $(\alpha u_i + \beta v_i)_{i \in I}$ est sommable et
+    $$\sum_{i \in I} (\alpha u_i + \beta v_i) = \alpha \sum_{i \in I} u_i + \beta \sum_{i \in I} v_i$$
+\end{proposition}
+
+\begin{proof}
+    Le faire d'abord pour des réels positifs, puis des réels quelconques, puis des complexes.
+\end{proof}
+
+\begin{theoreme}{sommation par paquet}{}
+    Soient $I$ et $K$ des ensembles non vides et $\displaystyle I = \bigsqcup_{k \in K} I_k$ union
+    disjointe d'ensembles non vides.
+
+    Soit $(u_i)_{i \in I}$ une famille de complexes. Alors $(u_i)_{i \in I}$ est sommable ssi
+    
+    $\forall k \in K, \, (u_i)_{i \in I_k}$ est sommable et $\displaystyle \left( \sum_{i \in I_k} \mid u_i \mid \right)_{k \in K}$ est sommable
+    et en ce cas, 
+    $$ \sum_{i \in I} u_i = \sum_{k \in K} \left( \sum_{i \in I_k} u_i \right)$$
+\end{theoreme}
+
+\subsection{Conséquence : permutation des termes}
+
+\begin{theoreme}{invariance par bijection}{}
+    Soit $(u_i)_{i \in I}$ une famille sommable de complexes et $\sigma: I \to I$ une bijection 
+    alors $(u_{\sigma(i)})_{i \in I}$ est sommable et $\displaystyle \sum_{i \in I} u_i = \sum_{i \in I} u_{\sigma(i)}$.
+\end{theoreme}
+
+\begin{proof}
+    Posons $K = I$ et $\forall k \in K, \, I_k = \{\sigma(k)\}$.
+
+    $\sigma$ étant une bijection, $\displaystyle I = \bigsqcup_{k \in K} I_k$.
+
+    $(u_i)_{i \in I_k}$ étant sommable, par le théorème de sommation par paquet, 
+    $\forall k \in K, \, (u_i)_{i \in I_k}$ est sommable 
+    et comme $\displaystyle \sum_{i \in I_k} |u_i| = |u_{\sigma(k)}|$,
+    on a que $(u_{\sigma(k)})_{k \in K}$ est sommable, et 
+    $$\sum_{i \in I} u_i = \sum_{k \in K} \left( \sum_{i \in I_k} u_i \right) = \sum_{k \in K} u_{\sigma(k)} = \sum_{i \in I} u_{\sigma(i)}$$
+\end{proof}
+
+\subsection{Lien avec la dénombrabilité }
+
+\begin{definition}{support d'une famille}{}
+    Soit $(u_i)_{i \in I}$ une famille de complexes. On appelle support de cette 
+    famille l'ensemble $\{ i \in I | u_i \neq 0 \}$.
+\end{definition}
+
+\begin{proposition}{somme sur le support}{}
+    Soit $(u_i)_{i \in I}$ une famille sommable de complexes de support $S$. Alors 
+    $$\sum_{i \in I} u_i = \sum_{i \in S} u_i$$
+
+\end{proposition}
+
+
+\begin{proof}
+    Posons $K = \{1, 2\}$, et $I_1 = S, \, I_2 = I \setminus S$.
+
+    Par le théorème de sommation par paquet, $\displaystyle \sum_{i \in I} u_i = \sum_{i \in S} u_i + \sum_{i \in I \setminus S} u_i$.
+\end{proof}
+
+\begin{theoreme}{nature support d'une famille sommable}{}
+    Le support d'une famille sommable est au plus dénombrable. 
+\end{theoreme}
+
+\begin{proof}
+    Soit $(u_i)_{i \in I}$ une famille sommable de complexes. 
+
+    Posons $I_0 = \{ i \in I, \, 1 < \mid u_i \mid \}$, et pour $n \in \N^*$,
+    $I_n = \{ i \in I, \, \frac 1 {n + 1} < \mid u_i \mid \leqslant \frac 1 n \}$.
+
+    Montrons que $\displaystyle S = \bigsqcup_{n \in \N} I_n$. 
+
+    $\forall n \in \N, \, I_n \subset S$ car $\forall i \in I_n, \, u_i \neq 0$
+
+    Si $n \neq n', \, I_n \cap I_{n'} = \emptyset$ donc $\displaystyle \bigsqcup_{n \in \N} I_n \subset S$
+
+    Si $i \in S$, alors $\mid u_i \mid > 0$, on a donc $\displaystyle i \in I_{\left\lfloor \frac 1 {\mid u_i \mid} \right\rfloor}$, 
+    donc $S \subset \displaystyle \bigsqcup_{n \in \N} I_n$.
+
+    Soit $k \in \N$, alors $\forall i \in I_k, \, \frac 1 {k + 1} < \underbrace{\mid u_i \mid}_{\text{sommable}}$
+
+    Donc $\left( \frac 1 {k + 1} \right)_{i \in I_k}$ est sommable, or $\frac 1 {k + 1}$ est constant et positif, 
+
+    donc $I_k$ est fini, donc $S$ est au plus dénombrable.
+\end{proof}
+
+\section{Familles indexées par \texorpdfstring{$\N$}{N}}
+\subsection{Théorème}
+
+\begin{theoreme}{familles sommables indexées par $\N$}{}
+    Soit $(u_n)_{n \in N}$ une famille de complexes. Alors
+    cette famille est sommable ssi $\displaystyle \sum_{n \geqslant 0} u_n$ est 
+    absolument convergente et alors 
+    $$\sum_{n \in \N} u_n = \sum_{n = 0}^\infty u_n$$    
+\end{theoreme}
+
+\begin{proof}
+    $\Rightarrow$ Supposons que $(u_n)_{n \in \N}$ est sommable. 
+
+    Ainsi $\forall j \subset \N$ fini, $\displaystyle \sum_{n \in J} |u_n| \leqslant M$.
+
+    Soit $N \in \N$, alors $\displaystyle \sum_{j = 0 }^N |u_j|  = \sum_{n \in \{0, \ldots, N\}} |u_n| \leqslant M$.
+
+    Donc $\sum_{j \geqslant 0} \mid u_j \mid$ converge et la série est absolument convergente. 
+
+    \lvspace $\Leftarrow$ Supposons que $\sum_{n \geqslant 0} \mid u_n \mid $ converge. 
+
+    Soit $J \subset \N$ fini, et soit $N$ un majorant de $J$. 
+
+    $$\sum_{j \in J} |u_j| \leqslant \sum_{j = 0}^N |u_j| \leqslant \sum_{j = 0}^\infty |u_j|$$
+
+    Donc la famille est sommable. 
+
+    \uindent{Si $\forall n, \, u_n \in \R^+$ }
+
+    Pour $J \subset \N$ fini, soit $N$ un majorant de $J$. 
+    $$\sum_{j \in J} u_j \leqslant \sum_{j = 0}^N u_j \leqslant \sum_{j = 0}^\infty u_j$$
+
+    Par def du sup, 
+    $$\sum_{n \in \N} u_n \leqslant \sum_{j = 0 }^{\infty } u_j$$
+
+    Par ailleurs $\forall k, \, \displaystyle \sum_{i = 0}^k u_i  = \sum_{i \in \ninter 0 n} u_i \leqslant \sum_{i \in \N} u_i$.
+
+    Donc par passage à la limite, $\displaystyle \sum_{i = 0}^\infty u_i \leqslant \sum_{i \in \N} u_i$ et on a donc l'égalité. 
+
+    \uindent{Si $\forall n \in \N, \, u_n \in \R$ }
+
+    \svspace $a \leqslant u_n^+ \leqslant \mid u_n \mid$ et $0 \leqslant u_n^- \leqslant \mid u_n \mid$.
+
+    Donc par ce qui précède, 
+    $$\sum_{n = 0}^\infty u_n^+ = \sum_{n \in \N} u_n^+ \text{ et } \sum_{n = 0}^\infty u_n^- = \sum_{n \in \N} u_n^-$$
+
+    Et donc par défférence, $\displaystyle \sum_{n = 0}^\infty u_n = \sum_{n \in \N} u_n$.
+
+    Dans le cas général, on a l'égalité pour les parties réelles et imaginaires, d'où la conclusion 
+    par combinaison linéaire. 
+\end{proof}
+
+\subsection{Conséquence }
+
+\begin{proposition}{Sommation par paquets pairs et impairs, LHP}{}
+    Soit $\sum_{n \geqslant 0} u_n$ une série absolument convergente, alors 
+    $$\sum_{n  = 0 }^\infty u_n = \sum_{p = 0 }^\infty u_{2p} + \sum_{p = 0}^\infty u_{2p + 1}$$
+\end{proposition}
+
+\begin{proof}
+    La famille est sommable, et on applique le théorème de sommation par paquet. 
+\end{proof}
+
+\begin{exemple}
+    Calcul de $\displaystyle \sum_{n = 0 }^{\infty } \frac 1 {(2n + 1)^2}$. 
+
+    $\displaystyle \zeta(2) = \frac{\pi^2} 6 = \sum_{n = 1}^\infty \frac 1 {n^2}$ famille sommable 
+
+    $\displaystyle = \sum_{n = 0 }^{\infty } \frac 1 {(2n)^2} + \sum_{n = 0 }^{\infty } \frac 1 {(2n + 1)^2}$ par le th de sommation par paquets. 
+
+    $\displaystyle = S + \frac 1 4 + \frac{\pi^2} 6$
+
+    Donc $S = \frac {\pi^2} 8$.
+\end{exemple}
+
+\subsection{Commutative convergence }
+
+\begin{theoreme}{invariance par bijection de $\N$}{}
+    Soit $\displaystyle \sum_{n \geqslant 0} u_n$ une série absolument convergente et $\sigma : \N \to \N$ une bijection.
+    Alors $\displaystyle \sum_{n =\geqslant 0} u_{\sigma(n)}$ est absolument convergente et
+    $$\sum_{n = 0}^\infty u_n = \sum_{n = 0}^\infty u_{\sigma(n)}$$
+\end{theoreme}
+
+\begin{proof}
+    Vrai pour la famille $(u_n)_{n \in \N}$ sommable. 
+\end{proof}
+
+\begin{remarque}
+    Si la série est semi-convergente, c'est faux.
+\end{remarque}
+
+
+\section{Famillles indexées par \texorpdfstring{$\N^2$}{N²}}
+\subsection{Cas des familles réelles positives}
+
+\begin{theoreme}{}{}
+    Soit $(u_{n, p})_{(n, p) \in \N^2}$ une famille de réels positifs.
+    Alors les assertions suivantes sont équivalentes :
+    \begin{enumerate}
+        \item la famille $(u_{n, p})_{(n, p) \in \N^2}$ est sommable
+        \item $\displaystyle \forall n \in \N, \, \sum_{p \geqslant 0 } u_{n, p}$ converge et $\displaystyle \sum_{n \geqslant 0} \left( \sum_{p = 0}^\infty u_{n, p} \right)$ converge.
+        \item $\forall p \in \N, \, \displaystyle \sum_{n \geqslant 0 } u_{n, p}$ converge et $\displaystyle \sum_{p \geqslant 0} \left( \sum_{n = 0}^\infty u_{n, p} \right)$ converge.
+        \item En posant $\forall k \in \N, \, w_k = \displaystyle \sum_{n = 0 }^{k }u_{n, k - n} = \sum_{p = 0 }^{k } u_{k - p, p} = \sum_{\substack{((n, p) \in \N^2 \\ n + p = k}} u_{n, p}$, la série $\displaystyle \sum_{k = 0}^\infty w_k$ converge
+            et en ce cas $\displaystyle \sum_{(n, p) \in \N^2} = \sum_{n = 0 }^{\infty } \sum_{p = 0 }^{\infty }u_{n, p} = \sum_{p = 0 }^{\infty } \sum_{n = 0 }^{\infty }u_{n, p} = \sum_{k = 0 }^{\infty } w_k$ 
+    \end{enumerate}
+\end{theoreme}
+
+\begin{proof}
+    C'est le théorème de sommation par paquets appliqué aux partitions de
+    $\N^2 = \bigsqcup_{n \in \N} I_n = \bigsqcup_{p \in \N} J_p = \bigsqcup_{k \in \N} E_k$
+
+    où $I_n = \{ (n, p), \, p \in \N \}, \, J_p = \{ (n, p), \, n \in \N \}$ et
+    $E_k = \{ (n, p), \, n + p = k \}$.
+\end{proof}
+
+\subsection{Théorème de Fubini positif }
+
+\begin{theoreme}{théorème de Fubini positif}{}
+    Avec la convention qu'une somme infinie non convergente de réels positifs vaut 
+    $+ \infty$ on a pour toute famille de réels \textbf{positifs} $(u_{n, p})_{(n, p) \in \N^2}$ :
+    $$\sum_{n = 0}^\infty \left( \sum_{p = 0}^\infty u_{n, p} \right) = \sum_{p = 0}^\infty \left( \sum_{n = 0}^\infty u_{n, p} \right) $$
+\end{theoreme}
+
+\begin{proof}
+    Conséquence de 1)
+\end{proof}
+
+\subsection{Cas général}
+
+\begin{theoreme}{}{}
+    Soit $(u_{n, p})_{(n, p) \in \N^2}$ une famille de complexes. On suppose que 
+    cette famille est sommable.
+
+    \begin{enumerate}
+        \item $\displaystyle \forall n \in \N, \, \sum_{p \geqslant 0 } u_{n, p}$ converge et $\displaystyle \sum_{n \geqslant 0} \left( \sum_{p = 0}^\infty u_{n, p} \right)$ converge.
+        \item $\forall p \in \N, \, \displaystyle \sum_{n \geqslant 0 } u_{n, p}$ converge et $\displaystyle \sum_{p \geqslant 0} \left( \sum_{n = 0}^\infty u_{n, p} \right)$ converge.
+        \item En posant $\forall k \in \N, \, w_k = \displaystyle \sum_{n = 0 }^{k }u_{n, k - n} = \sum_{p = 0 }^{k } u_{k - p, p} = \sum_{\substack{((n, p) \in \N^2 \\ n + p = k}} u_{n, p}$, la série $\displaystyle \sum_{k = 0}^\infty w_k$ converge
+            et en ce cas $\displaystyle \sum_{(n, p) \in \N^2} = \sum_{n = 0 }^{\infty } \sum_{p = 0 }^{\infty }u_{n, p} = \sum_{p = 0 }^{\infty } \sum_{n = 0 }^{\infty }u_{n, p} = \sum_{k = 0 }^{\infty } w_k$ 
+    \end{enumerate}
+\end{theoreme}
+
+\subsection{Produit de Cauchy }
+
+\begin{theoreme}{produit de Cauchy}{}
+    Soient $ \sum_{n \geqslant 0} u_n$ et $ \sum_{n \geqslant 0} v_n$ deux séries 
+    numériques \textbf{absolument convergentes}.
+    
+    On définit la suite $(w_n)_{n \in \N}$ appelée produit de convolution des suites 
+    $(u_n)_{n \in \N}$ et $(v_n)_{n \in \N}$ par
+    $$\forall n \in \N, \, w_n = \sum_{\substack{(p, q) \in \N^2 \\ p + q = n}} u_p v_q = \sum_{k = 0}^n u_k v_{n - k}$$
+
+    On définit le produit de Cauchy des séries $ \sum_{n \geqslant 0} u_n$ et $ \sum_{n \geqslant 0} v_n$ 
+    comme étant la série $ \sum_{n \geqslant 0} w_n$. Alors cette série est
+    absolument convergente, et $$\sum_{n = 0 }^{\infty} w_n = \left( \sum_{n = 0 }^{\infty } u_n \right) \left( \sum_{n = 0 }^{\infty } v_n \right)$$
+\end{theoreme}
+
+\idee{
+    56 théorèmes de sommation par paquets
+}
+
+\begin{proof}
+    Considérons le complexe 
+
+    \begin{align*}
+        P & = \sum_{n = 0 }^{\infty } u_n \sum_{p = 0 }^{\infty } v_p \\
+            & = \sum_{p = 0 }^{\infty } \left( \left( \sum_{n = 0}^{\infty } u_n \right) v_p \right) \\
+            & = \sum_{p = 0 }^{\infty } \left( \sum_{n = 0}^{\infty } (u_n v_p) \right) \\ 
+    \end{align*}
+
+    Posons $\forall n, p \in \N, \, a_{n, p} = u_n v_p$.
+
+    Les séries étant absolument convergentes, on a l'existence de 
+    $P' = \displaystyle \sum_{n = 0 }^{\infty } |u_n| \cdot \sum_{p = 0 }^{\infty } |v_p|$.
+
+    et donc de $P' = \displaystyle \sum_{n = 0 }^{\infty } \sum_{p = 0 }^{\infty } |a_{n, p}|$.
+
+    Donc, par le théorème de sommation par paquets, $(a_{n, p})_{(n, p) \in \N^2}$ est sommable. 
+
+    Donc par le théorème de sommation par paquets, 
+    $$P' = \sum_{(n, p) \in \N^2} |a_{n, p}| = \sum_{n = 0 }^{\infty } z_n$$
+    où $\displaystyle z_n = \sum_{p = 0}^n |u_p| |v_{n - p}|$.
+
+    Or $\forall n \in \N, \, |w_n| \leqslant z_n$, donc $\displaystyle \sum_{n = 0 }^{\infty } w_n < A$. 
+
+    De plus, de nouveau par le théorème de sommation par paquets,
+    $$P = \sum_{(n, p) \in \N^2} a_{n, p} = \sum_{n = 0 }^{\infty } w_n$$
+\end{proof}
+
+\begin{exemple}
+    Soient $z_1, z_2 \in \C$. Alors 
+    $\displaystyle e^{z_1} = \sum_{n = 0 }^{\infty } \frac{z_1^n}{n!}$ et
+    $\displaystyle e^{z_2} = \sum_{n = 0 }^{\infty } \frac{z_2^n}{n!}$ sont absolument convergentes.
+
+    Et donc par produit de Cauchy, $\displaystyle e^{z_1} e^{z_2} = \sum_{n = 0 }^{\infty } w_n$ 
+    série absolument convergente où $\displaystyle w_n = \sum_{ p = 0}^n \frac{z_1^p}{p!} \frac{z_2^{n - p}}{(n - p)!}$.
+
+    Donc $w_n = \displaystyle \sum_{p = 0 }^{n } \frac{1}{n!} \binom n p z_1^p z_2^{n - p} = \frac{(z_1 + z_2)^n}{n!}$ 
+    par le binôme de Newton.
+
+    Donc $\displaystyle e^{z_1} e^{z_2} = e^{z_1 + z_2}$.
+
+\end{exemple}
+
+\begin{corollaire}{produit de matrices exponentielles}{}
+    Soient $A, B \in \mathscr M_p(\C)$ telles que $AB = BA$. 
+    Alors 
+    $$\displaystyle e^A e^B = e^{A + B}$$
+\end{corollaire}
+
+\begin{proof}
+    Munissons $\mathscr M_k(\C)$ d'une norme d'algèbre $||\cdot||$. 
+
+    Posons $\displaystyle \forall n \in \N, \, M_n = \sum_{k = 0 }^{n } \frac{A^k}{k!} \cdot \sum_{k = 0 }^{n } \frac{B^k}{k!} - \sum_{k = 0 }^{n }\frac{(A + B)^k}{k!}$.
+
+    Alors $M_n \limit n {+ \infty} e^A \cdot e^B - e^{A + B}$ car le produit matriciel est continu
+    car en dimension finie. 
+
+    Montrons que $M_n \limit n {+ \infty} 0$ et on pourra conclure par unicité de la limite. 
+
+    \begin{align*}
+        ||M_n|| & = \left|\left| \sum_{k = 0 }^{n } \sum_{p = 0 }^{n } \frac{A^k B^p}{k! p!} - \sum_{q = 0}^n \sum_{i = 0 }^{q } \binom q i \frac{A^i B^{q - i}}{q!} \right|\right| \\
+                & = \left|\left| \sum_{(k, p) \in \ninter 0 n^2} \frac{A^k B^p}{k! p!} - \sum_{q = 0}^n \sum_{k = 0}^q \frac{A^k B^{q - k}}{k! (q - k)!} \right|\right| \\
+                & = \left|\left| \sum_{(k, p) \in \ninter 0 n^2} \frac{A^k B^p}{k! p!} - \sum_{\substack{(k, p) \in \ninter 0 n^2 \\ k + p \leqslant n}} \frac{A^k B^p}{k! p!} \right|\right| \\
+    \end{align*}
+
+    En effet,
+
+    \begin{align*}
+        \sum_{q = 0}^n \sum_{k = 0}^q \frac{A^k B^{q - k}}{k! (q - k)!} & = \sum_{q= 0}^n \sum_{k = 0}^n \mathbb 1_{k \leqslant q} \frac{A^k B^{q - k}}{k! (q - k)!} \\
+         & = \sum_{k = 0}^n \sum_{q = 0}^n \mathbb 1_{k \leqslant q} \frac{A^k B^{q - k}}{k! (q - k)!} \\
+    \end{align*}
+
+    \begin{align*}
+        \sum_{q = 0}^n \sum_{k = 0}^q \frac{A^k B^{q - k}}{k! (q - k)!} & = \sum_{ k = 0}^n \sum_{p = -k}^{n - k} \mathbb 1_{0 \leqslant p} \frac{A^k B^p}{k! p!} \\
+         & = \sum_{ k = 0}^n \sum_{p = 0}^{n - k} \frac{A^k B^p}{k! p!} \\
+         & = \sum_{\substack{(k, p) \in \ninter 0 n^2 \\ k + p \leqslant n}} \frac{A^k B^p}{k! p!} \\
+    \end{align*}
+
+    \begin{align*}
+        ||M_n|| & = \left|\left| \sum_{\substack{(k, p) \in \ninter 0 n^2 \\ k + p > n}} \frac{A^k B^p}{k! p!} \right|\right| \\
+                & \leqslant \sum_{\substack{(k, p) \in \ninter 0 n^2 \\ k + p > n}} \frac{||A||^k ||B||^p}{k! p!} \\
+                & \leqslant \sum_{(k, p) \in \ninter 0 n^2} \frac{||A||^k ||B||^p}{k! p!} \text{ puis en inversant matrice et norme } \\
+                & \leqslant \sum_{k = 0 }^{n} \frac{||A||^k}{k!} \cdot \sum_{p = 0 }^{n } \frac{||B||^p}{p!} - \sum_{q = 0}^n  \frac{(||A || + ||B||)^q}{q!} \\
+                & \limit n {+ \infty} e^{||A||} e^{||B||} - e^{||A|| + ||B||} = 0
+    \end{align*}
+\end{proof}

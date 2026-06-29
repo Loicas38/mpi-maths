@@ -1,0 +1,638 @@
+\section{Énoncés des Exercices}
+
+% --- Exercice 1 ---
+\begin{exercice}
+Antoine Gombaud, chevalier de Méré (1607-1684) imagina le jeu suivant : le banquier confie une paire de dés à 6 faces à un joueur et lui demande d'effectuer $n$ lancers. Si à l'issue de ces $n$ lancers, il n'obtient jamais de double 6, le joueur aura gagné. Dans le cas contraire, le banquier remporte la partie. Déterminer la plus petite valeur de $n$ pour laquelle le jeu est favorable à la banque.
+On dit que c'est pour résoudre ce problème que Blaise Pascal inventa les probabilités.
+\end{exercice}
+
+% --- Exercice 2 ---
+\begin{exercice}
+Dans son tiroir, Raphaël a $2n$ chaussettes de sport. $n$ marquées "R" correspondent au pied droit, et $n$ marquées "L" au pied gauche.
+\begin{enumerate}
+    \item Le matin, il prend au hasard 2 chaussettes dans le tas des $2n$. Quelle est la probabilité qu'il pioche une paire correcte (avec une "L" et une "R") ? Même si la paire est incorrecte, il la met (et dans ce cas ses performances sportives s'en ressentent...).
+    \item Le lendemain, il reste $2n-2$ chaussettes dans le tiroir. Quelle est la probabilité qu'il pioche cette fois-ci une paire correcte (avec une "L" et une "R") ?
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 3 ---
+\begin{exercice}
+On joue une infinité de fois à pile ou face avec une pièce non truquée. L'univers est $\Omega = \{P,F\}^{\mathbb{N}}$, ensemble des suites à valeurs dans l'ensemble $\{P, F\}$.
+On appellera jeu une succession infinie de tirages. Par exemple le jeu $\omega=(P,P,P,\dots)$ dans lequel on tombe toujours sur pile est un élément de l'univers.
+On fixe un entier non nul $n$, un $n$-uplet d'entiers $t=(t_{1},\dots,t_{n})$ (qui vont correspondre à des numéros de tirage) et un $n$-uplet de valeurs $V=(V_{1},\dots,V_{n})\in\{P,F\}^{n}$.
+On définit alors le cylindre de longueur $n$ correspondant à ces valeurs pour ces tirages par :
+$$ C_{t,V} = \{\omega \in \Omega, \forall i\in\{1,\dots,n\}, \omega_{t_{i}}=V_{i}\} $$
+c'est-à-dire l'ensemble des jeux pour lesquels on a obtenu pour tout $i\in\{1,\dots,n\}$ la valeur $V_{i}$ au tirage $t_{i}$.
+Par exemple pour $n=2$, $t=(0,1)$ et $V=(P,F)$, $C_{t,V}$ est l'ensemble des jeux pour lesquels on a obtenu pile au tirage 0 et face au tirage 1, donc l'ensemble des jeux s'écrivant $(P,F,*,\dots)$ où $*$ désigne un résultat quelconque.
+On se place sur $\mathcal{A}$ la tribu engendrée par l'ensemble des cylindres. On démontre qu'il existe une unique probabilité $P$ sur $(\Omega, \mathcal{A})$ vérifiant pour tout cylindre $C_{t,V}$ de longueur $n$ :
+$$ P(C_{t,V})=\frac{1}{2^{n}} $$
+\begin{enumerate}
+    \item Soit $\alpha=(\alpha_{i})_{i\in\mathbb{N}}$ un jeu quelconque fixé.
+    \begin{enumerate}
+        \item On définit pour tout $i\in\mathbb{N}$ le cylindre de longueur 1 : $C_{i}=C_{(i),(\alpha_{i})}=\{\omega\in\Omega,\omega_{i}=\alpha_{i}\}$, l'ensemble de tous les jeux qui ont obtenu la même valeur que $\alpha$ au tirage $i$. Montrer que $\bigcap_{i\in\mathbb{N}}C_{i}=\{\alpha\}$ et en déduire que $\{\alpha\}\in\mathcal{A}$.
+        \item On définit pour tout $n\in\mathbb{N}$ le cylindre de longueur $n$ : $D_{n}=C_{(0,1,\dots,n),(\alpha_{0},\dots,\alpha_{n})}=\{\omega\in\Omega,\forall i\in\{0,\dots,n\}\omega_{i}=\alpha_{i}\}$, l'ensemble de tous les jeux qui ont obtenu la même valeur que $\alpha$ aux $n$ premiers tirages. Comparer $P(\{\alpha\})$ à $P(D_{n})$ et en déduire que $P(\{\alpha\})=0$.
+    \end{enumerate}
+    \item On considère $A$ l'évènement : "on est tombé sur pile à tous les tirages de numéro pair". Exprimer $A$ comme limite croissante d'une suite de cylindres et en déduire que $P(A)=0$.
+    \item On considère l'évènement $S_k$ "on est tombé sur la même face pour tous les tirages à partir du tirage $k$". Montrer que $P(S_{k})=0$.
+    \item On considère l'évènement $S$ : "on est tombé sur la même face pour tous les tirages à partir d'un certain rang". Montrer que $P(S)=0$.
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 4 ---
+\begin{exercice}
+Montrer que deux évènements non négligeables et disjoints ne sont jamais indépendants.
+\end{exercice}
+
+% --- Exercice 5 ---
+\begin{exercice}
+On considère un dé blanc équilibré et un dé noir pipé (pour ce dé le "6" sort une fois sur 3 et les autres faces avec la même probabilité $\frac{2}{15}$).
+Deux joueurs s'affrontent. Le premier choisit le dé qu'il veut et le lance. Le second prend le dé restant et le lance. Le gagnant est celui qui obtient le plus gros score ou, en cas d'égalité, le dé blanc.
+Quelle est la meilleure stratégie pour le premier joueur : choisir le dé blanc ou le dé noir ?
+On considèrera l'évènement $A$ : "noir gagne", les évènements $E_{i}$ : "Blanc sort le numéro $i$" et on déterminera $P(A|E_{i})$.
+\end{exercice}
+
+% --- Exercice 6 ---
+\begin{exercice}
+Une maladie qui touche $\frac{1}{1000}$ de la population est détectée par un test efficace à 99\% avec une fausse alarme de 5\% (c'est-à-dire que la probabilité que le test soit positif est de 99\% pour un malade et de 5\% pour une personne saine).
+Quelle est la probabilité qu'une personne ayant un test positif soit réellement malade ?
+\end{exercice}
+
+% --- Exercice 7 ---
+\begin{exercice}
+François et Nicolas jouent aux billes. Au début du jeu François a $n$ billes et Nicolas $N-n$ billes. A chaque partie celui qui perd donne une bille à l'autre. Les parties sont indépendantes. A chaque partie François a la même probabilité $p$ de gagner. Quand un joueur a gagné toutes les billes le jeu s'arrête et il est déclaré vainqueur. On note $a_{n}$ la probabilité que François soit finalement vainqueur dans cette configuration et $b_{n}$ celle que ce soit Nicolas.
+\begin{enumerate}
+    \item Relation entre $a_{n},a_{n-1},a_{n+1}$ ?
+    \item Trouver $a_{n}$.
+    \item En déduire la valeur de $b_{n}$.
+    \item Montrer que le jeu s'arrête presque surement.
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 8 ---
+\begin{exercice}
+On dispose de deux pièces A et B. La pièce A est équilibrée, mais la B est truquée : la probabilité d'obtenir pile avec B vaut seulement $\frac{1}{3}$. On commence par choisir une pièce et on la lance. Si on obtient face on rejoue avec la même pièce, sinon on change de pièce.
+Déterminer la probabilité d'obtenir face au $n$-ième lancer.
+On notera $A_{n}$ l'évènement "lancer la pièce A au $n$-ième lancer", $F_{n}$ l'évènement "obtenir face au $n$-ième lancer". On trouvera une relation de récurrence sur $P(A_{n})$, on en déduira $P(A_{n})$ puis on exprimera $P(F_{n})$ en fonction de $P(A_{n})$.
+\end{exercice}
+
+% --- Exercice 9 ---
+\begin{exercice}
+\textbf{Loi du zéro-un de Borel.}
+Soit un espace probabilisé $(\Omega, \mathcal{A}, P)$. On suppose que $(A_{n})_{n\in\mathbb{N}}$ est une suite d'évènements mutuellement indépendants de $\mathcal{A}$.
+\begin{enumerate}
+    \item On considère la propriété "Une infinité de ces évènements est réalisé". Expliquer pourquoi cette propriété vaut $B=\bigcap_{p\in\mathbb{N}}\bigcup_{n\ge p}A_{n}$. Justifier que $B\in\mathcal{A}$.
+    \item On suppose que la série $\sum_{n\ge0}P(A_{n})$ converge. Montrer qu'alors $P(B)=0$. On considèrera pour tout $p$ l'évènement $B_{p}=\bigcup_{n\ge p}A_{n}$.
+    \item On suppose que la série $\sum_{n\ge0}P(A_{n})$ diverge. Montrer qu'alors $P(B)=1$. On considèrera $\overline{B}$, et pour montrer que sa probabilité est nulle, on considèrera pour tout $p$ l'évènement $\bigcap_{n\ge p}\overline{A_{n}}$.
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 10 ---
+\begin{exercice}
+Le professeur de Mathématiques a un trousseau de $n$ clés indifférentiables dont une seule correspond à la serrure. Pour ouvrir la porte de sa salle, il dispose de 3 stratégies :
+\begin{itemize}
+    \item $S_{1}$ : il prend une clé au hasard, l'essaie et en cas d'échec remélange toutes les clés et recommence.
+    \item $S_{2}$ : il prend une clé au hasard, l'essaie et en cas d'échec recommence avec une autre clé.
+    \item $S_{3}$ : il prend une clé au hasard, l'essaie et en cas d'échec recommence avec une clé différente de toutes celles qu'il a déjà essayées.
+\end{itemize}
+On appelle $X_{i}$ le numéro de la tentative réussie d'ouverture de porte en adoptant la stratégie $S_{i}$. Déterminer la loi de $X_{1}$, $X_{2}$, $X_{3}$.
+\end{exercice}
+
+% --- Exercice 11 ---
+\begin{exercice}
+On suppose que $X$ suit une loi binomiale $\mathcal{B}(n,p)$. Calculer la probabilité pour que $X$ soit pair.
+\end{exercice}
+
+% --- Exercice 12 ---
+\begin{exercice}
+Un bureau de poste comporte 2 guichets. 3 clients arrivent, $C_{1}$ et $C_{2}$ se font servir et $C_{3}$ attend qu'un guichet se libère. On note $X_{i}$ le temps (en minutes) de l'opération de $C_{i}$. On suppose que $X_{i}\sim\mathcal{G}(p)$ et que les variables sont mutuellement indépendantes.
+\begin{enumerate}
+    \item Trouver la loi de $|X_{1}-X_{2}|$.
+    \item En déduire la probabilité que $C_{3}$ sorte le dernier de la poste.
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 13 ---
+\begin{exercice}
+On suppose que $X$ suit une loi de Poisson de paramètre $\lambda$.
+\begin{enumerate}
+    \item Quelle valeur de $j$ maximise $P(X=j)$ ?
+    \item Montrer que $P(X \text{ est impair}) < P(X \text{ est pair})$.
+    \item On suppose que $\lambda$ est entier. Montrer que $E(|X-\lambda|)=\frac{2\lambda^{\lambda}e^{-\lambda}}{(\lambda-1)!}$.
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 14 ---
+\begin{exercice}
+Soit $X$ une variable aléatoire à valeurs dans $\mathbb{N}$. Montrer que $E(X)=\sum_{n=0}^{\infty}P(X>n)$.
+\end{exercice}
+
+% --- Exercice 15 ---
+\begin{exercice}
+Un athlète saute une succession infinie de haies. On suppose que la probabilité pour qu'il saute la haie numéro $n$ est de $\frac{1}{n}$. On définit $X$ la variable aléatoire renvoyant le numéro de la dernière haie sautée avec succès et 1 s'il saute toutes les haies.
+\begin{enumerate}
+    \item Quelle est la loi de $X$ ? Montrer que l'athlète échouera presque surement au bout d'un temps fini.
+    \item Quelle est l'espérance de $X$ ?
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 16 ---
+\begin{exercice}
+On lance une pièce non équilibrée. La probabilité d'obtenir pile (P) est de $\frac{1}{3}$ et face (F) de $\frac{2}{3}$. On effectue une suite de lancers mutuellement indépendants. On appelle $X$ le nombre de lancers nécessaires pour obtenir 2 "pile" consécutifs.
+En considérant les évènements $E_{1}=$"Face au 1er tirage", $E_{2}=$"Pile-Face aux deux premiers tirages" et $E_{3}=$"Pile-Pile aux deux premiers tirages", déterminer la loi de $X$. Calculer son espérance.
+\end{exercice}
+
+% --- Exercice 17 ---
+\begin{exercice}
+On suppose que $n$ personnes montent dans un ascenseur d'un immeuble de $p$ étages et que chacune se rend à un étage quelconque. On note $X$ le nombre d'arrêts de l'ascenseur. Calculer $E(X)$.
+On notera pour tout entier $k$, $T_{k}$ la v.a. prenant comme valeur 1 si au moins une personne s'arrête à l'étage $k$ et 0 sinon. On montrera que $T_{k}$ suit une loi de Bernoulli de paramètre $1-(1-1/p)^{n}$.
+\end{exercice}
+
+% --- Exercice 18 ---
+\begin{exercice}
+Soient $X$ et $Y$ deux v.a. indépendantes de loi géométrique de paramètres $\lambda$ et $\mu$. On pose $Z=\min(X,Y)$. Montrer que $Z$ suit une loi géométrique.
+\end{exercice}
+
+% --- Exercice 19 ---
+\begin{exercice}
+Dans une loterie de fête foraine une roue est séparée en 4 quarts (rouge-bleu-vert-jaune dans cet ordre). Le joueur lance la roue, celle-ci va effectuer un certain nombre de quarts de tours et s'arrêter dans une des 4 zones.
+Pour tout entier $n$ la probabilité que la roue dépasse le $n$-ème quart de tour (sachant qu'elle a dépassé le quart précédent) est de $\frac{1}{n}$.
+Ainsi la probabilité que la roue s'arrête à son premier passage dans le rouge est de $1-\frac{1}{1}=0$, qu'elle s'arrête à son premier passage dans le bleu est $1-\frac{1}{2}=\frac{1}{2}$.
+On appelle $X$ la variable aléatoire donnant le numéro du quart de tour dans lequel la roue s'arrête.
+\begin{enumerate}
+    \item On note $S_{n}$ l'évènement "la roue a dépassé $n$ quarts de tours".
+    Ainsi le texte peut se traduire par $P(S_{n}|S_{n-1})=\frac{1}{n}$.
+    Et on a bien sur $P(S_{1})=1$ et $P(S_{n}|\overline{S_{n-1}})=0$ (si la roue s'est arrêtée avant $n-1$ tours elle ne pourra pas dépasser le $n$-ième...).
+    Déterminer la probabilité de $S_{n}$ et en déduire la loi de $X$.
+    \item Montrer que la roue s'arrête presque surement en un temps fini.
+    \item Calculer la probabilité pour que la roue s'arrête dans le bleu.
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 20 ---
+\begin{exercice}
+On considère une urne blanche contenant 2 boules blanches et une urne noire contenant 2 boules noires. On choisit au hasard une boule dans chaque urne, on les échange et on répète cette opération. On appelle $X_{k}$ le nombre de boules blanches dans l'urne blanche après le $k$-ième échange et on note $S_{k}=\begin{pmatrix} P(X_{k}=0) \\ P(X_{k}=1) \\ P(X_{k}=2) \end{pmatrix}$.
+\begin{enumerate}
+    \item Déterminer une relation entre $S_{k+1}$ et $S_{k}$.
+    \item En déduire la limite de $S_{k}$.
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 21 ---
+\begin{exercice}
+Pour $n\in\mathbb{N}^{*}$ on note $E=\{1,\dots,n\}$. On appelle partition de $E$ tout ensemble $\{A_{1},\dots,A_{k}\}$ de parties de $E$ deux à deux disjointes de réunion $E$.
+On note $u_{n}$ le nombre de telles partitions et on pose par convention $u_{0}=1$.
+\begin{enumerate}
+    \item Calculer $u_{1}$, $u_{2}$, $u_{3}$.
+    \item Montrer que pour tout naturel $n$, $u_{n+1}=\sum_{k=0}^{n}\binom{n}{k}u_{k}$.
+    \item Montrer que pour tout $n, u_{n}\le n!$.
+    \item On pose quand cela a un sens $f(x)=\sum_{k=0}^{\infty}\frac{u_{k}}{k!}x^{k}$.
+    \begin{enumerate}
+        \item Montrer que le rayon de convergence de cette série entière est non nul.
+        \item Montrer que pour tout $x$, $f^{\prime}(x)=f(x)e^{x}$ et en déduire $f(x)$.
+        \item Soit $Y$ une variable aléatoire suivant une loi de Poisson de paramètre 1. Montrer que $u_{k}=E(Y^{k})$.
+    \end{enumerate}
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 22 ---
+\begin{exercice}
+Soit $X$ une v.a. à valeurs dans $\mathbb{N}$ admettant un moment d'ordre 2. Montrer que $E(X^{2})=\sum_{n=0}^{\infty}(2n+1)P(X>n)$.
+\end{exercice}
+
+% --- Exercice 23 ---
+\begin{exercice}
+Soit $X$ une variable aléatoire à valeurs dans $\mathbb{N}$ et de fonction génératrice $G$. On pose $\forall t\in]-1,1[$, $H(t)=\sum_{n=0}^{\infty}P(X>n)t^{n}$.
+Montrer que $H$ est bien définie et que $\forall t\in]-1,1[$, $H(t)=\frac{1-G(t)}{1-t}$.
+\end{exercice}
+
+% --- Exercice 24 ---
+\begin{exercice}
+Soit $X$ une v.a. suivant une loi de Poisson de paramètre $\lambda>0$ et $G_{X}$ sa fonction génératrice.
+Montrer que pour tout $t\ge1$ et tout réel $a$ on a $P(X\ge a)\le\frac{G_{X}(t)}{t^{a}}$.
+En déduire que $P(X\ge2\lambda)\le(\frac{e}{4})^{\lambda}$.
+Comparer avec la majoration obtenue par l'inégalité de Bienaymé-Tchebychev.
+\end{exercice}
+
+% --- Exercice 25 ---
+\begin{exercice}
+On se place sur $(\Omega, \mathcal{A})$ un espace probabilisé. On considère une suite $(X_{n})_{n\in\mathbb{N}}$ de variables aléatoires à valeurs dans $\mathbb{N}$ de même loi ainsi que $N$ une variable aléatoire elle aussi à valeurs dans $\mathbb{N}$. On suppose que toutes ces variables aléatoires sont mutuellement indépendantes. On définit pour tout $\omega\in\Omega$, $S(\omega)=\sum_{k=1}^{N(\omega)}X_{k}(\omega)$.
+Déterminer l'espérance et la fonction génératrice de $S$.
+Application : on suppose que le nombre d'enfants par famille suit une loi $\mathcal{P}(\lambda)$. A chaque naissance (toutes indépendantes), il y a une probabilité $p$ d'avoir une fille. Déterminer la loi du nombre de filles.
+\end{exercice}
+
+% --- Exercice 26 ---
+\begin{exercice}
+On lance deux dés à 6 faces et on note $X$ la somme des faces sorties.
+\begin{enumerate}
+    \item On suppose les dés équilibrés. Donner la loi de $X$.
+    \item On veut piper les dés de manière à ce que $X$ suive une loi uniforme. On suppose que cela est réalisé.
+    \begin{enumerate}
+        \item Déterminer la fonction génératrice $G_{X}$.
+        \item En écrivant $G_{X}=G_{X_{1}}.G_{X_{2}}$ aboutir à une contradiction.
+    \end{enumerate}
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 27 ---
+\begin{exercice}
+On considère des variables aléatoires $(B_{n})_{n\in\mathbb{N}^{*}}$ mutuellement indépendantes suivant toutes une loi de Bernoulli de paramètre $p=\frac{1}{2}$. On pose pour tout naturel $n$, $X_{n}=2B_{n}-1$.
+\begin{enumerate}
+    \item Calculer $P(S_{n}=0)$ où $S_{n}=\sum_{k=1}^{n}X_{k}$ et en déduire que pour tout $x\in]-1,1[$ :
+    $$ \frac{1}{\sqrt{1-x^{2}}}=\sum_{n=0}^{\infty}P(S_{n}=0)x^{n} $$
+    \item On définit une nouvelle variable aléatoire par $T=\inf\{n\in\mathbb{N}^{*},S_{n}=0\}$ si cet ensemble est non vide et $+\infty$ sinon, et on note $G_{T}(x)=\sum_{n=1}^{+\infty}P(T=n)x^{n}.$
+    Montrer que pour tout $n\ge1$, $P(S_{n}=0)=\sum_{k=0}^{n}P(S_{n-k}=0)P(T=k)$.
+    En déduire $G_{T}$ et déterminer la loi de $T$.
+    \item Déterminer $P(T<+\infty)$.
+\end{enumerate}
+\end{exercice}
+
+\section{Corrections}
+% --- Correction Exercice 1 (Chevalier de Méré) ---
+\begin{correction}{1}
+On lance deux dés. La probabilité d'obtenir un double 6 est $p = \frac{1}{36}$.
+Soit $X$ la variable aléatoire comptant le nombre de double 6 obtenus en $n$ lancers.
+L'événement "le joueur gagne" correspond à $X=0$ (n'obtenir aucun double 6). Le banquier gagne si $X \ge 1$.
+Le jeu est favorable à la banque si $P(X \ge 1) > \frac{1}{2}$.
+Or $P(X \ge 1) = 1 - P(X=0)$.
+$$ P(X=0) = \left( \frac{35}{36} \right)^n $$
+On cherche donc $n$ tel que :
+$$ 1 - \left( \frac{35}{36} \right)^n > \frac{1}{2} \iff \left( \frac{35}{36} \right)^n < \frac{1}{2} $$
+En passant au logarithme (car la fonction $\ln$ est croissante) :
+$$ n \ln\left( \frac{35}{36} \right) < -\ln 2 $$
+Comme $\ln(35/36) < 0$, on change le sens de l'inégalité en divisant :
+$$ n > \frac{-\ln 2}{\ln 35 - \ln 36} $$
+Application numérique :
+$$ n > \frac{-0,693}{-0,028} \approx 24,6 $$
+Il faut donc au minimum \textbf{25 lancers}.
+\end{correction}
+
+% --- Correction Exercice 2 (Chaussettes) ---
+\begin{correction}{2}
+Raphaël a $2n$ chaussettes : $n$ chaussettes "L" (Gauche) et $n$ chaussettes "R" (Droite).
+Il tire 2 chaussettes au hasard.
+Notons $C_1$ la première chaussette tirée et $C_2$ la seconde.
+L'événement "Avoir une paire" correspond à tirer $\{L, R\}$ ou $\{R, L\}$.
+
+On calcule la probabilité d'obtenir une paire.
+\begin{itemize}
+    \item Au premier tirage, peu importe la chaussette, il reste $2n-1$ chaussettes dans le tiroir.
+    \item Si on a tiré une chaussette $L$ (probabilité $1/2$), il reste $n$ chaussettes $R$. La probabilité de tirer une $R$ ensuite est $\frac{n}{2n-1}$.
+    \item Si on a tiré une chaussette $R$ (probabilité $1/2$), il reste $n$ chaussettes $L$. La probabilité de tirer une $L$ ensuite est $\frac{n}{2n-1}$.
+\end{itemize}
+$$ P(\text{Paire}) = P(L_1 \cap R_2) + P(R_1 \cap L_2) = \frac{1}{2} \times \frac{n}{2n-1} + \frac{1}{2} \times \frac{n}{2n-1} = \frac{n}{2n-1} $$
+
+\textit{Note manuscrite (partie "Hier/Demain") :}
+Si Hier (H) il a pris une paire (proba $p = \frac{n}{2n-1}$), il reste $2n-2$ chaussettes ($n-1$ paires).
+Si Hier il a pris deux chaussettes dépareillées (proba $q = 1-p$), il a pris soit $LL$ soit $RR$. Il reste donc une configuration déséquilibrée pour Demain.
+\end{correction}
+
+% --- Correction Exercice 6 (Test médical) ---
+\begin{correction}{6}
+On définit les événements :
+\begin{itemize}
+    \item $M$ : "L'individu est malade".
+    \item $T$ : "Le test est positif".
+\end{itemize}
+D'après l'énoncé, on a les probabilités suivantes :
+$$ P(M) = 10^{-4} \quad ; \quad P(T | M) = 0,99 \quad ; \quad P(T | \overline{M}) = 0,05 $$
+On cherche $P(M | T)$. D'après la formule de Bayes :
+$$ P(M | T) = \frac{P(T | M) P(M)}{P(T)} $$
+Calculons $P(T)$ avec la formule des probabilités totales (le système $\{M, \overline{M}\}$ est complet) :
+\begin{align*}
+    P(T) &= P(T | M)P(M) + P(T | \overline{M})P(\overline{M}) \\
+    &= 0,99 \times 10^{-4} + 0,05 \times (1 - 10^{-4}) \\
+    &= 0,000099 + 0,05 \times 0,9999 \\
+    &= 0,000099 + 0,049995 \\
+    &\approx 0,05
+\end{align*}
+Ainsi :
+$$ P(M | T) = \frac{0,99 \times 0,0001}{P(T)} \approx \frac{0,0001}{0,05} = \frac{1}{500} = 0,002 $$
+\textit{Conclusion :} Même avec un test positif, la probabilité d'être malade reste très faible (environ 0,2\%).
+\end{correction}
+
+% --- Correction Exercice 17 (Loi de Poisson paire) ---
+\begin{correction}{17}
+Soit $X$ suivant une loi de Poisson $\mathcal{P}(\lambda)$. On cherche $P(X \text{ est pair})$.
+$$ P(X \in 2\mathbb{N}) = \sum_{k=0}^{+\infty} P(X=2k) = \sum_{k=0}^{+\infty} e^{-\lambda} \frac{\lambda^{2k}}{(2k)!} $$
+On reconnaît le développement en série entière de $\cosh(\lambda)$ :
+$$ \cosh(\lambda) = \sum_{k=0}^{+\infty} \frac{\lambda^{2k}}{(2k)!} = \frac{e^\lambda + e^{-\lambda}}{2} $$
+Donc :
+$$ P(X \text{ pair}) = e^{-\lambda} \cosh(\lambda) = e^{-\lambda} \frac{e^\lambda + e^{-\lambda}}{2} = \frac{1 + e^{-2\lambda}}{2} $$
+\end{correction}
+
+% --- Correction Exercice 18 (Minimum de lois géométriques) ---
+\begin{correction}{18}
+Soient $X \hookrightarrow \mathcal{G}(\lambda)$ et $Y \hookrightarrow \mathcal{G}(\mu)$ deux variables indépendantes.
+Soit $Z = \min(X, Y)$. On a $Z(\Omega) = \mathbb{N}^*$.
+Pour déterminer la loi de $Z$, calculons $P(Z > k)$ pour $k \in \mathbb{N}$ :
+$$ P(Z > k) = P(X > k \cap Y > k) $$
+Par indépendance de $X$ et $Y$ :
+$$ P(Z > k) = P(X > k) P(Y > k) $$
+Rappelons que pour une loi géométrique de paramètre $p$, $P(X > k) = (1-p)^k$. Ici :
+$$ P(X > k) = (1-\lambda)^k \quad \text{et} \quad P(Y > k) = (1-\mu)^k $$
+Donc :
+$$ P(Z > k) = (1-\lambda)^k (1-\mu)^k = \left[ (1-\lambda)(1-\mu) \right]^k $$
+On reconnaît la fonction de survie d'une loi géométrique. Posons $1 - p_{Z} = (1-\lambda)(1-\mu)$.
+Alors $p_Z = 1 - (1 - \lambda - \mu + \lambda\mu) = \lambda + \mu - \lambda\mu$.
+Ainsi, $Z$ suit une loi géométrique de paramètre $\lambda + \mu - \lambda\mu$.
+
+\textit{Calcul direct par la densité (note manuscrite) :}
+$$ P(Z=k) = P(Z > k-1) - P(Z > k) = [(1-\lambda)(1-\mu)]^{k-1} - [(1-\lambda)(1-\mu)]^k $$
+$$ P(Z=k) = [(1-\lambda)(1-\mu)]^{k-1} (1 - (1-\lambda)(1-\mu)) $$
+Ce qui confirme le résultat.
+\end{correction}
+
+% --- Correction Exercice 19 (Marche aléatoire - début) ---
+\begin{correction}{19}
+Soit $S_n$ une marche aléatoire (somme de variables de Bernoulli).
+L'ensemble des valeurs prises par le temps d'arrêt est $X(\Omega) = \mathbb{N}^* \cup \{+\infty\}$.
+On s'intéresse à la probabilité d'atteindre un état (probabilité de ruine ou retour à l'origine).
+\textit{(La suite de la correction manuscrite est tronquée sur le document fourni).}
+\end{correction}
+
+
+% --- Correction "Suite calculs" (Loi de Poisson et modulo) ---
+\begin{correction}{Calcul de sommes (Suite Ex 17 ?)}
+\textit{Note : Le début du fichier semble traiter du calcul de sommes de séries liées à des probabilités (type Poisson modulo 4).}
+
+On calcule les sommes suivantes :
+$$ A = \sum_{k=0}^\infty \frac{1}{(4k)!}, \quad B = \sum_{k=0}^\infty \frac{1}{(4k+1)!}, \quad C = \sum_{k=0}^\infty \frac{1}{(4k+2)!}, \quad D = \sum_{k=0}^\infty \frac{1}{(4k+3)!} $$
+On utilise les racines 4-ièmes de l'unité ($1, i, -1, -i$).
+On sait que $\cosh(1) = \sum \frac{1}{(2k)!}$ et $\cos(1) = \sum \frac{(-1)^k}{(2k)!}$.
+En combinant :
+$$ \frac{\cosh(1) + \cos(1)}{2} = \sum_{k=0}^\infty \frac{1}{(4k)!} + \sum_{k=0}^\infty \frac{1}{(4k+2)!}? \quad \text{(Non, c'est pour les pairs)} $$
+Exactement :
+$$ \sum_{n=0}^\infty \frac{x^n}{n!} = e^x $$
+$$ \sum_{n=0}^\infty \frac{(ix)^n}{n!} = e^{ix} $$
+$$ \sum_{n=0}^\infty \frac{(-x)^n}{n!} = e^{-x} $$
+$$ \sum_{n=0}^\infty \frac{(-ix)^n}{n!} = e^{-ix} $$
+En sommant ces quatre relations pour $x=1$ :
+$$ e + e^i + e^{-1} + e^{-i} = \sum_{n=0}^\infty \frac{1}{n!} (1 + i^n + (-1)^n + (-i)^n) $$
+Le terme parenthèse vaut 4 si $n \equiv 0 [4]$ et 0 sinon.
+Donc $4A = e + e^{-1} + 2\cos(1) = 2\cosh(1) + 2\cos(1)$.
+D'où $A = \frac{1}{2}(\cosh 1 + \cos 1)$.
+(Le manuscrit mentionne des formules similaires pour les autres sommes, par exemple avec $\sinh 1$ et $\sin 1$).
+\end{correction}
+
+% --- Correction Exercice 9 (Borel-Cantelli) ---
+\begin{correction}{9}
+On considère une suite d'événements $(A_n)$. On s'intéresse à l'événement :
+$$ \limsup A_n = \bigcap_{n \ge 0} \bigcup_{k \ge n} A_k $$
+C'est l'événement "une infinité des $A_n$ se réalisent".
+\textbf{1. Lemme de Borel-Cantelli (Sens facile) :}
+Si $\sum P(A_n)$ converge, alors $P(\limsup A_n) = 0$.
+Soit $C_n = \bigcup_{k \ge n} A_k$. La suite $(C_n)$ est décroissante pour l'inclusion.
+Donc $P(\limsup A_n) = \lim_{n \to \infty} P(C_n)$.
+Or $P(C_n) = P(\bigcup_{k \ge n} A_k) \le \sum_{k=n}^\infty P(A_k)$ (inégalité de Boole).
+Comme la série $\sum P(A_n)$ converge, le reste $\sum_{k=n}^\infty P(A_k)$ tend vers 0 quand $n \to \infty$.
+Donc $P(\limsup A_n) = 0$.
+
+\textbf{2. Second lemme de Borel-Cantelli (Indépendance) :}
+Si les $(A_n)$ sont mutuellement indépendants et si $\sum P(A_n)$ diverge, alors $P(\limsup A_n) = 1$.
+On passe au complémentaire : $\overline{\limsup A_n} = \bigcup_{n \ge 0} \bigcap_{k \ge n} \overline{A_k}$.
+Calculons $P(\bigcap_{k=n}^M \overline{A_k})$. Par indépendance :
+$$ P(\bigcap_{k=n}^M \overline{A_k}) = \prod_{k=n}^M (1 - P(A_k)) $$
+On utilise l'inégalité $1-x \le e^{-x}$.
+$$ \prod_{k=n}^M (1 - P(A_k)) \le \exp\left( - \sum_{k=n}^M P(A_k) \right) $$
+Comme la série diverge, la somme tend vers $+\infty$ quand $M \to \infty$. Donc l'exponentielle tend vers 0.
+Ainsi $P(\bigcap_{k=n}^\infty \overline{A_k}) = 0$.
+L'union dénombrable d'événements de probabilité nulle est de probabilité nulle.
+Donc $P(\text{"seulement un nombre fini de } A_n \text{ se réalisent"}) = 0$.
+D'où $P(\limsup A_n) = 1$.
+\end{correction}
+
+% --- Correction Exercice 26 (Dés pipés) ---
+\begin{correction}{26}
+Soient $D_1$ et $D_2$ deux variables aléatoires correspondant aux résultats des deux dés, à valeurs dans $\{1, \dots, 6\}$.
+Soit $X = D_1 + D_2$. $X(\Omega) = \{2, \dots, 12\}$.
+On note $G_Y(t) = E[t^Y]$ la fonction génératrice.
+
+\textbf{1. Cas équilibré :}
+$D_i \sim \mathcal{U}(\{1, \dots, 6\})$.
+$$ G_{D_i}(t) = \frac{1}{6}(t + t^2 + t^3 + t^4 + t^5 + t^6) = \frac{t(1-t^6)}{6(1-t)} $$
+Par indépendance, $G_X(t) = G_{D_1}(t) G_{D_2}(t) = \left( \frac{t(1-t^6)}{6(1-t)} \right)^2$.
+Les coefficients donnent la loi triangulaire bien connue (1/36, 2/36, ... 6/36, ... 1/36).
+
+\textbf{2. Dés pipés pour obtenir une somme uniforme ?}
+On suppose qu'on peut piper les dés pour que $X \sim \mathcal{U}(\{2, \dots, 12\})$.
+La loi uniforme sur $\{2, \dots, 12\}$ a pour fonction génératrice :
+$$ G_X(t) = \frac{1}{11} (t^2 + t^3 + \dots + t^{12}) = \frac{t^2(1-t^{11})}{11(1-t)} $$
+On doit avoir $G_{D_1}(t) G_{D_2}(t) = G_X(t)$.
+Chaque $G_{D_i}(t)$ est un polynôme de la forme $t P_i(t)$ où $P_i$ est de degré 5 à coefficients positifs.
+Donc $G_{D_1}(t) G_{D_2}(t) = t^2 P_1(t) P_2(t)$.
+L'égalité devient :
+$$ P_1(t) P_2(t) = \frac{1}{11} \frac{1-t^{11}}{1-t} = \frac{1}{11} (1 + t + \dots + t^{10}) $$
+Regardons les racines.
+Les racines de $1 + t + \dots + t^{10}$ sont les racines 11-ièmes de l'unité (sauf 1).
+Soit $\omega = e^{2i\pi/11}$. Les racines sont $\omega, \omega^2, \dots, \omega^{10}$.
+Donc les racines de $P_1$ et $P_2$ doivent être parmi ces complexes.
+Or $P_1(0) = P(D_1=1) > 0$ et $P_1(1) = 1$.
+$P_1$ est un polynôme à coefficients réels positifs.
+Si $\alpha$ est racine de $P_1$, alors $\overline{\alpha}$ est aussi racine.
+De plus, les $P_i$ sont de degré 5.
+Regardons les valeurs en réel.
+$G_X(1) = 1$. $G_{D_i}(1) = 1$. C'est cohérent.
+Mais regardons le comportement plus fin ou une évaluation en un point spécifique.
+Plus simplement, considérons la factorisation dans $\mathbb{R}[X]$.
+Le polynôme $Q(t) = \sum_{k=0}^{10} t^k$ n'a pas de racines réelles.
+Il se factorise en produits de polynômes de degré 2 du type $(t-\omega^k)(t-\overline{\omega^k})$.
+On doit répartir les 10 racines complexes conjuguées entre $P_1$ et $P_2$.
+Comme $\deg P_1 = \deg P_2 = 5$, chaque polynôme doit avoir 5 racines.
+Or les racines vont par paires conjuguées. Un polynôme réel de degré impair a forcément une racine réelle.
+Or $Q(t)$ n'a pas de racine réelle.
+C'est une contradiction.
+\textbf{Conclusion :} Il est impossible de piper deux dés à 6 faces pour obtenir une somme uniforme sur $\{2, \dots, 12\}$.
+\end{correction}
+
+% --- Correction Exercice (Moments de Poisson / Bell) ---
+\begin{correction}{Moments de la loi de Poisson}
+Soit $X \sim \mathcal{P}(1)$. On pose $u_k = E[X^k]$ (moment d'ordre $k$).
+$u_0 = 1$.
+On cherche une relation de récurrence.
+$$ u_k = \sum_{j=0}^\infty j^k P(X=j) = \sum_{j=0}^\infty j^k \frac{e^{-1}}{j!} = e^{-1} \sum_{j=1}^\infty \frac{j^k}{j!} $$
+$$ u_k = e^{-1} \sum_{j=1}^\infty \frac{j^{k-1}}{(j-1)!} $$
+Posons $i = j-1$ :
+$$ u_k = e^{-1} \sum_{i=0}^\infty \frac{(i+1)^{k-1}}{i!} \cdot \frac{e^1}{e^1} ? \text{ Non.} $$
+Reprenons la méthode de la fonction génératrice exponentielle des moments.
+Soit $f(t) = \sum_{k=0}^\infty \frac{u_k}{k!} t^k$.
+On sait que $u_k = E[X^k]$.
+Donc $f(t) = \sum_{k=0}^\infty \frac{E[X^k]}{k!} t^k = E\left[ \sum_{k=0}^\infty \frac{(tX)^k}{k!} \right] = E[e^{tX}]$.
+C'est la fonction génératrice des moments.
+Pour $X \sim \mathcal{P}(1)$ :
+$$ E[e^{tX}] = \sum_{j=0}^\infty e^{tj} \frac{e^{-1}}{j!} = e^{-1} \sum_{j=0}^\infty \frac{(e^t)^j}{j!} = e^{-1} e^{e^t} = e^{e^t - 1} $$
+Donc $f(t) = e^{e^t - 1}$.
+Dérivons cette fonction :
+$$ f'(t) = e^t e^{e^t - 1} = e^t f(t) $$
+Écrivons le développement en série :
+$$ f'(t) = \sum_{k=0}^\infty \frac{u_{k+1}}{k!} t^k $$
+$$ e^t f(t) = \left( \sum_{n=0}^\infty \frac{t^n}{n!} \right) \left( \sum_{j=0}^\infty \frac{u_j}{j!} t^j \right) $$
+Par produit de Cauchy, le coefficient de $t^k$ dans $e^t f(t)$ est :
+$$ c_k = \sum_{j=0}^k \frac{1}{(k-j)!} \frac{u_j}{j!} = \frac{1}{k!} \sum_{j=0}^k \binom{k}{j} u_j $$
+En identifiant les coefficients de $f'(t)$ et $e^t f(t)$ :
+$$ \frac{u_{k+1}}{k!} = \frac{1}{k!} \sum_{j=0}^k \binom{k}{j} u_j $$
+D'où la relation de récurrence (Nombres de Bell) :
+$$ u_{k+1} = \sum_{j=0}^k \binom{k}{j} u_j $$
+\end{correction}
+
+
+% --- Correction Exercice 101 (Matrice stochastique / Suite récurrente) ---
+\begin{correction}{101}
+\textbf{1. a)}
+On considère la suite définie par $a_{n+1} = \frac{1}{2}a_n$ et $b_{n+1} = \frac{1}{2}a_n + \frac{1}{2}b_n$.
+Soit $A = \begin{pmatrix} 1/2 & 0 & 0 \\ 1/2 & 1/2 & 0 \\ 0 & 1/2 & 1 \end{pmatrix}$.
+C'est une matrice stochastique (la somme des coefficients de chaque colonne vaut 1 ? Non, ici c'est $1/2+1/2=1$ et $1=1$, mais la première colonne semble être $1/2+1/2=1$ si $c_n$ existe).
+Supposons que $a_n+b_n+c_n=1$.
+$A \begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix}^T$ n'est pas le calcul standard.
+Regardons les valeurs propres.
+$A$ est triangulaire inférieure. Ses valeurs propres sont les coefficients diagonaux : $1/2$ (double) et $1$ (simple).
+Calculons les sous-espaces propres.
+Pour $\lambda = 1$ : $\begin{pmatrix} -1/2 & 0 & 0 \\ 1/2 & -1/2 & 0 \\ 0 & 1/2 & 0 \end{pmatrix} X = 0 \implies x=0, y=0$. $E_1 = \text{Vect}((0,0,1))$.
+Pour $\lambda = 1/2$ : $\begin{pmatrix} 0 & 0 & 0 \\ 1/2 & 0 & 0 \\ 0 & 1/2 & 1/2 \end{pmatrix} X = 0 \implies x=0, y+z=0$.
+$E_{1/2} = \text{Vect}((0, 1, -1))$.
+La matrice n'est pas diagonalisable car $\dim E_{1/2} = 1 \ne 2$.
+
+On cherche $A^k$. On décompose $X_0$ dans une base adaptée ou on utilise la réduction de Jordan ou la décomposition $A = D+N$.
+Ici, on peut calculer $A^k$ directement par récurrence ou polynôme annulateur.
+$(X-1)(X-1/2)^2$ est annulateur.
+On trouve $A^k \to \begin{pmatrix} 0 & 0 & 0 \\ 0 & 0 & 0 \\ 1 & 1 & 1 \end{pmatrix}$ quand $k \to \infty$.
+Les suites $a_n$ et $b_n$ tendent vers 0, et $c_n \to a_0+b_0+c_0 = 1$.
+\end{correction}
+
+% --- Correction Exercice 105 (Lancers de dés jusqu'à répétition) ---
+\begin{correction}{105}
+\textbf{2. a)} On lance un dé.
+$P(A_n)$ : probabilité d'obtenir un "6" pour la première fois au $n$-ième lancer.
+$P(A_n) = (5/6)^{n-1} \times (1/6)$.
+Ici l'énoncé semble traiter d'une suite de lancers avec une condition d'arrêt ou de succès différente.
+Si on cherche la probabilité d'obtenir une suite "Pile-Pile" (PP) ou "Pile-Face" (PF) avec une pièce.
+$P(P) = 1/2$.
+$P(PP) = 1/4$.
+Si on joue jusqu'à obtenir Pile puis Face.
+L'exercice semble traiter du paradoxe de Penney ou du temps d'attente de motifs.
+$E(T_{PF}) = ?$ et $E(T_{PP}) = ?$.
+On utilise des systèmes d'équations sur les espérances conditionnelles.
+Soit $E$ l'espérance cherchée.
+$E = 1 + \frac{1}{2} E_P + \frac{1}{2} E_F$.
+Si motif PF :
+$E_F = E$ (on recommence).
+$E_P = 1 + \frac{1}{2} E_{PP} + \frac{1}{2} (0)$ (fini).
+$E_{PP} = 1 + \frac{1}{2} E_{PP} + \frac{1}{2} (0)$.
+On résout le système.
+\end{correction}
+
+% --- Correction Exercice 107 (Urnes et boules) ---
+\begin{correction}{107}
+On considère des tirages dans une urne.
+$U_{n+1}$ dépend de $U_n$.
+Probabilités de transition : $p_{n+1} = \frac{1}{5} p_n + \frac{4}{7} (1-p_n)$.
+C'est une suite arithmético-géométrique $p_{n+1} = a p_n + b$.
+$a = 1/5 - 4/7 = (7-20)/35 = -13/35$.
+Point fixe $l = a l + b \implies l = b/(1-a)$.
+Ici $a = -6/35$ ? (Note manuscrite : $-6/35$).
+$l = \frac{4/7}{1+6/35} = \frac{4/7}{41/35} = \frac{20}{41}$.
+La suite converge vers $20/41$.
+\end{correction}
+
+% --- Correction Exercice 109 (Maximum de tirages) ---
+\begin{correction}{109}
+Soit $X$ le numéro du tirage où l'on obtient... ou le maximum de $n$ tirages ?
+L'énoncé manuscrit parle de $P(X=k)$ et $P(Y=k)$.
+On tire des boules numérotées $1, \dots, N$.
+$Y$ est le numéro du tirage où l'on obtient une boule supérieure à toutes les précédentes ? (Record).
+$P(Y=k) = \frac{1}{k(k+1)}$ ?
+Formule manuscrite : $P(Y=k) = \frac{k}{(n+1)(n+2)}$ pour un certain contexte.
+\end{correction}
+
+% --- Correction Exercice 102 (Loi géométrique et somme) ---
+\begin{correction}{102}
+Soient $X_1, \dots, X_n$ des variables i.i.d suivant une loi géométrique $\mathcal{G}(p)$.
+On cherche la loi de $Y = \min(X_i)$ ou $\sum X_i$.
+Ici le calcul $P(X_i > k) = q^k$.
+$P(\min(X_i) > k) = P(X_1 > k)^n = (q^n)^k$.
+Donc le minimum suit une loi géométrique de paramètre $1-q^n$.
+\end{correction}
+
+% --- Correction Exercice 17 (Ascenseur) ---
+\begin{correction}{17}
+$n$ personnes montent dans un ascenseur au rez-de-chaussée. Il y a $p$ étages.
+Chaque personne choisit son étage indépendamment et uniformément.
+Soit $X$ le nombre d'arrêts de l'ascenseur.
+On écrit $X = \sum_{k=1}^p T_k$ où $T_k$ est l'indicatrice de l'événement "l'ascenseur s'arrête à l'étage $k$".
+L'ascenseur s'arrête à l'étage $k$ si au moins une personne choisit l'étage $k$.
+$P(T_k = 1) = 1 - P(\text{personne ne choisit } k)$.
+Pour une personne, la probabilité de ne pas choisir $k$ est $1 - 1/p$.
+Pour $n$ personnes : $(1 - 1/p)^n$.
+Donc $P(T_k = 1) = 1 - (1 - 1/p)^n$.
+Par linéarité de l'espérance :
+$$ E[X] = \sum_{k=1}^p E[T_k] = p \left( 1 - \left(1 - \frac{1}{p}\right)^n \right) $$
+Comportement asymptotique : si $p \to \infty$ et $n$ fixe, $E[X] \sim n$.
+\end{correction}
+
+% --- Correction Exercice 13 (Loi de Poisson et somme) ---
+\begin{correction}{13}
+Calcul de sommes liées à la loi de Poisson.
+$E[\frac{1}{X+1}]$ où $X \sim \mathcal{P}(\lambda)$.
+$$ E\left[\frac{1}{X+1}\right] = \sum_{k=0}^\infty \frac{1}{k+1} e^{-\lambda} \frac{\lambda^k}{k!} = \frac{e^{-\lambda}}{\lambda} \sum_{k=0}^\infty \frac{\lambda^{k+1}}{(k+1)!} $$
+$$ = \frac{e^{-\lambda}}{\lambda} (e^\lambda - 1) = \frac{1 - e^{-\lambda}}{\lambda} $$
+\end{correction}
+
+% --- Correction Exercice (Suite récurrente probabiliste) ---
+\begin{correction}{Suite $u_k$}
+On a une relation $u_k = \frac{1}{3} u_{k-1} + \frac{2}{9} u_{k-2}$.
+Équation caractéristique : $x^2 - \frac{1}{3}x - \frac{2}{9} = 0 \iff 9x^2 - 3x - 2 = 0$.
+Discriminant $\Delta = 9 + 72 = 81 = 9^2$.
+Racines : $r_1 = \frac{3+9}{18} = \frac{12}{18} = \frac{2}{3}$ and $r_2 = \frac{3-9}{18} = -\frac{1}{3}$.
+Donc $u_k = \alpha (2/3)^k + \beta (-1/3)^k$.
+On détermine $\alpha, \beta$ avec les conditions initiales (probabilités totales).
+\end{correction}
+
+% --- Correction Exercice 25 (Somme aléatoire) ---
+\begin{correction}{25}
+Soit $(X_n)$ une suite i.i.d de variables aléatoires et $N$ une variable aléatoire indépendante des $X_n$, à valeurs dans $\mathbb{N}$.
+Soit $S = \sum_{k=1}^N X_k$.
+On utilise les fonctions génératrices.
+$$ G_S(t) = G_N(G_X(t)) $$
+Application avec $N \sim \mathcal{P}(\lambda)$ et $X_i \sim \mathcal{B}(p)$ (Bernoulli).
+$G_N(t) = e^{\lambda(t-1)}$. $G_X(t) = q + pt$.
+$$ G_S(t) = \exp(\lambda(q+pt-1)) = \exp(\lambda(pt - p)) = \exp(\lambda p (t-1)) $$
+On reconnaît la fonction génératrice d'une loi de Poisson de paramètre $\lambda p$.
+Donc $S \sim \mathcal{P}(\lambda p)$.
+\end{correction}
+
+% --- Correction Exercice 27 (Marche aléatoire et retour) ---
+\begin{correction}{27}
+Soit $S_n$ une marche aléatoire symétrique sur $\mathbb{Z}$ ($X_i = \pm 1$ avec proba 1/2).
+$P(S_n = 0)$ est non nul seulement si $n$ est pair, $n=2k$.
+$$ P(S_{2k} = 0) = \binom{2k}{k} \left(\frac{1}{2}\right)^{2k} $$
+On utilise la fonction génératrice de la suite $u_n = P(S_n=0)$.
+$U(x) = \sum_{n=0}^\infty u_{2n} x^{2n} = \sum_{k=0}^\infty \binom{2k}{k} \frac{x^{2k}}{4^k}$.
+On reconnaît le développement de $\frac{1}{\sqrt{1-x^2}}$.
+Soit $T$ le temps du premier retour à 0.
+On a la relation $U(x) = 1 + U(x) F(x)$ où $F(x)$ est la fonction génératrice de $T$.
+$$ F(x) = 1 - \frac{1}{U(x)} = 1 - \sqrt{1-x^2} $$
+Cela permet de calculer la distribution de $T$.
+$P(T < \infty) = F(1) = 1$. Le retour est presque sûr.
+Mais $E[T] = F'(1) = \infty$. L'espérance est infinie.
+\end{correction}
+
+% --- Correction Exercice 23 (Inégalité de Bienaymé-Tchebychev) ---
+\begin{correction}{23}
+Comparaison de majorants pour $P(|X-\lambda| \ge \lambda)$.
+Si $X \sim \mathcal{P}(\lambda)$.
+1. Bienaymé-Tchebychev : $P(|X-\lambda| \ge \lambda) \le \frac{V(X)}{\lambda^2} = \frac{\lambda}{\lambda^2} = \frac{1}{\lambda}$.
+2. Calcul direct ou majoration exponentielle (Chernoff).
+L'exercice demande de comparer l'efficacité des bornes.
+\end{correction}
+
+% --- Correction Exercice U (Nombres de Bell) ---
+\begin{correction}{U}
+Suite de l'exercice sur les moments de la loi de Poisson.
+On a établi la relation $u_{k+1} = \sum_{j=0}^k \binom{k}{j} u_j$.
+C'est la relation de récurrence des nombres de Bell $B_k$, qui comptent le nombre de partitions d'un ensemble à $k$ éléments.
+$u_0 = 1$ (par convention $E[X^0]=1$).
+$u_1 = 1$.
+$u_2 = 1 + 1 = 2$.
+$u_3 = 1 + 2\times 1 + 2 = 5$.
+La loi de Poisson de paramètre 1 a pour moments les nombres de Bell.
+\end{correction}
+

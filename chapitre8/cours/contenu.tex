@@ -1,0 +1,1605 @@
+\section{Généralités}
+\subsection{Anneaux}
+
+\begin{definition}{anneau}{}
+    \index{Anneau}
+    Soit $A$ un ensemble non vide muni de deux lois de composition interne notées $+$ et
+    $\cdot$ telles que : 
+    \begin{itemize}
+        \item $(A, +)$ est un groupe abélien de neutre noté $0_A$ ;
+        \item $\cdot$ est associative et munie un neutre noté $1_A$ ;
+        \item la loi $\cdot$ est distributive par rapport à la loi $+$.
+    \end{itemize}
+    Si de plus $\cdot$ est commutative, on dit que $(A, +, \cdot)$ est un \textbf{anneau commutatif}.
+\end{definition}
+
+\begin{remarque}
+    On a donc pour tous $a, b, c \in A$, $a \cdot (b + c) = a \cdot b + a \cdot c$ et 
+    $(a + b) \cdot c = a \cdot c + b \cdot c$.
+\end{remarque}
+
+\begin{remarque}
+    Si $A = \{0_A\}$, on dit que $A$ est l'\textbf{anneau nul}, et 
+    alors $0_A = 1_A$.
+
+    De plus, si $A$ n'est pas un singleton, alors $0_A \neq 1_A$. En effet, 
+    par contraposée supposons que $0_A = 1_A$. Soit $a \in A$, on a alors 
+    \[
+        a = a \cdot 1_A = a \cdot 0_A = 0_A,
+    \]
+    donc $A = \{0_A\}$.
+\end{remarque}
+
+\begin{exemple}
+    \begin{itemize}
+        \item L'ensemble $\mathbb{Z}$ muni des opérations usuelles est un anneau commutatif.
+        \item L'ensemble $\mathbb{Q}$ muni des opérations usuelles est un anneau commutatif.
+        \item L'ensemble $\mathbb{R}$ muni des opérations usuelles est un anneau commutatif.
+        \item L'ensemble $\mathbb{C}$ muni des opérations usuelles est un anneau commutatif.
+        \item Plus généralement, l'ensemble $\mathbb{K}$, où $\mathbb{K}$ est un corps, muni des opérations usuelles est un anneau commutatif.
+        \item $\K[X]$, l'ensemble des polynômes à coefficients dans un corps $\K$, muni des opérations usuelles est un anneau commutatif.
+        \item L'ensemble $\mathcal{M}_n(\K)$ des matrices carrées d'ordre $n$ à coefficients dans un corps $\K$, muni de l'addition et de la multiplication des matrices est un anneau, mais pas commutatif si $n \geq 2$.
+    \end{itemize}
+
+    Si $E$ est un ensemble non vide, $(\mathscr{P}(E), \Delta, \cap)$ est un anneau. Le neutre pour $\Delta$ est l'ensemble vide, 
+    et le neutre pour $\cap$ est l'ensemble $E$.
+
+    Si $E$ est un $K$-espace vectoriel, $(\mathscr{L}(E), +, \circ)$ est un anneau non commutatif en général. Le neutre pour $+$ est l'application nulle, et le neutre pour $\circ$ est l'application identité.
+\end{exemple}
+
+
+\begin{proposition}{anneau produit}{}
+    \index{Anneau!produit}
+    Soient $A_1, A_2, \ldots, A_n$ des anneaux et $A = A_1 \times A_2 \times \cdots \times A_n$.
+
+    Posons pour tous $a = (a_1, a_2, \ldots, a_n)$ et $b = (b_1, b_2, \ldots, b_n)$ dans $A$ :
+    \[
+        a + b = (a_1 + b_1, a_2 + b_2, \ldots, a_n + b_n)
+    \]
+    et
+    \[
+        a \cdot b = (a_1 \cdot b_1, a_2 \cdot b_2, \ldots, a_n \cdot b_n).
+    \]
+
+    On définit ainsi deux lois de composition interne $+$ et $\cdot$ sur $A$.
+    Alors $(A, +, \cdot)$ est un anneau, appelé \textbf{anneau produit} des anneaux $A_1, A_2, \ldots, A_n$, 
+    commutatif si et seulement si chacun des anneaux $A_i$ est commutatif.
+
+    Son neutre pour $+$ est $(0_{A_1}, 0_{A_2}, \ldots, 0_{A_n})$ et son neutre pour $\cdot$ est $(1_{A_1}, 1_{A_2}, \ldots, 1_{A_n})$.
+\end{proposition}
+
+\begin{proof}
+    $(A, +)$ est bien un groupe abélien car produit cartésien de tels groupes.
+
+    \svspace L'associativité est vraie pour chaque composante, donc pour les éléments de $A$, 
+    de même pour la distributivité et l'éventuelle commutativité.
+
+    \svspace On vérifie aussi facilement que 
+    $(1_{A_1}, 1_{A_2}, \ldots, 1_{A_n})$ est le neutre pour $\cdot$.
+\end{proof}
+
+
+\subsection{Sous-anneaux}
+
+\begin{definition}{sous-anneau}{}
+    \index{Sous-anneau}
+    Soit $(A, +, \cdot)$ un anneau et $B \subset A$ non vide. On dit que $B$ est un 
+    \textbf{sous-anneau} de $A$ ssi $(B, +, \cdot)$ est un anneau et $1_B = 1_A$.
+\end{definition}
+
+\begin{exemple}
+    $\Z$ est un sous-anneau de $\mathbb{Q}$, qui est lui-même un sous-anneau de $\mathbb{R}$.
+
+    Si $E$ ensemble non vide et $F \neq \emptyset$ une partie de $E$, alors
+    $(\mathscr{P}(F), \Delta, \cap)$ est un anneau inclus dans $(\mathscr{P}(E), \Delta, \cap)$,
+    mais n'en est pas un sous-anneau car les neutres pour $\cap$ sont différents.  
+\end{exemple}
+
+\begin{proposition}{caractérisation sous-anneau}{}
+    Soit $(A, +, \cdot)$ un anneau et $B \subset A$. Alors 
+    $B$ est un sous-anneau de $A$ ssi : 
+    \begin{itemize}
+        \item $\forall a, b \in B, a \cdot b \in B$ ;
+        \item $\forall a, b \in B, a - b \in B$ ;
+        \item $1_A \in B$.
+    \end{itemize}
+    
+\end{proposition}
+
+\idee{Définitioin d'un sous anneau}
+
+\begin{proof} $\Rightarrow$ Supposons que $B$ est un sous-anneau de $A$.
+    
+    Alors $1_B = 1_A$ donc $1_A \in B$.
+
+    De plus, $(B, +)$ est un groupe abélien, donc pour tous $a, b \in B$, $a - b \in B$.
+
+    Enfin, la loi $\cdot$ est interne à $B$, donc pour tous $a, b \in B$, $a \cdot b \in B$.
+
+    \avspace $\Leftarrow$ Supposons que les trois conditions sont vérifiées.
+
+    On a $B \neq \emptyset$ car $1_A \in B$, et $\forall a, b \in B$, $a - b \in B$ donc $(B, +)$ est un sous-groupe de $(A, +)$,
+    donc un groupe abélien.
+
+    $\forall a, b \in B$, $a \cdot b \in B$ donc la loi $\cdot$ est interne à $B$, et 
+    $1_A \in B$ donc $1_B = 1_A$.
+
+    $\cdot$ est associative et distributive par rapport à $+$ sur $A$, donc aussi sur $B$.
+
+    Donc $(B, +, \cdot)$ est un anneau, et $B$ est un sous-anneau de $A$.
+\end{proof}
+
+\begin{exemple}
+    Anneau des entiers de Gauss, $\Z[i] = \{a + bi , (a, b) \in \Z^2\}$ est un sous-anneau de $\C$.
+
+    Montrons le. 
+
+    $\Z[i] \subset \C$ qui est un anneau.
+
+    $1_C = 1 = 1 + 0i \in \Z[i]$.
+
+    Soient $x_1, x_2 \in \Z[i]$, avec $x_1 = a_1 + b_1 i$ et $x_2 = a_2 + b_2 i$,
+    où $(a_1, b_1), (a_2, b_2) \in \Z^2$.
+    Alors
+    \[
+        x_1 - x_2 = (a_1 - a_2) + (b_1 - b_2)i \in \Z[i],
+    \]
+    car $a_1 - a_2 \in \Z$ et $b_1 - b_2 \in \Z$.
+    De plus,
+    \[
+        x_1 \cdot x_2 = (a_1 a_2 - b_1 b_2) + (a_1 b_2 + a_2 b_1)i \in \Z[i],
+    \]
+    car $a_1 a_2 - b_1 b_2 \in \Z$ et $a_1 b_2 + a_2 b_1 \in \Z$.
+
+    Donc $\Z[i]$ est un sous-anneau de $\C$.
+\end{exemple}
+
+\subsection{Idéal d'un anneau commutatif }
+
+\marginenote{Remarque}{L'hypothèse de commutativité est là afin de se libérer de certaines contraintes. 
+Il faudrait sinon parler d'idéal à gauche / à droite.}
+
+\lvspace \avspace \begin{definition}{Idéal}{}
+    \index{Ideal@Idéal}
+    Soit $(A, +, \cdot)$ un anneau commutatif. Soit $I \subset A$. On dit que $I$ est un \textbf{idéal} de $A$ ssi :
+    \begin{itemize}
+        \item $(I, +)$ est un sous-groupe de $(A, +)$ 
+        \item $\forall a \in A, \forall x \in I, \, a \cdot x \in I$.
+    \end{itemize}
+\end{definition}
+
+\begin{exemple}
+    $A$ est un idéal de $A$.
+
+    $\{0_A\}$ est un idéal de $A$.
+\end{exemple}
+
+\begin{remarque}
+    Si $A$ est un corps, les seuls idéaux de $A$ sont $\{0_A\}$ et $A$.
+\end{remarque}
+
+\begin{proof}[Démonstration de la remarque]
+
+    Soit $(A, +, \cdot)$ un corps et $I$ un idéal de $A$. Supposons que $I \neq \{0_A\}$.
+
+    Soit $x \in I$ tel que $x \neq 0_A$. Comme $A$ est un corps, $x$ est inversible, donc
+    il existe $x^{-1} \in A$. Donc $x \cdot x^{-1} = 1_A \in I$.
+
+    Soit $a \in A$. On a alors $a = a \cdot 1_A \in I$, donc $I = A$.
+\end{proof}
+
+\begin{exemple}
+    $A = \Z$, et soit $n \in \N$, $n \geqslant 2$. Alors $I = n\Z$ est bien un sous groupe de $(\Z, +)$.
+
+    Si $a \in A$ et $x \in I$, alors $x = ny$ pour un certain $y \in \Z$, donc
+    \[
+        a \cdot x = a \cdot (ny) = n(ay) \in n\Z = I.
+    \]
+    Donc $I$ est un idéal de $\Z$.
+
+    \lvspace Posons $A \subset \R^\N$ les suites bornées, muni de l'addition et de la multiplication terme à terme
+    est un anneau.
+
+    Donc $I = \{(u_n)_{n \in \N} \in \R^\N \mid \lim\limits_{n \to +\infty} u_n = 0\}$ est un idéal de $A$.
+
+
+\end{exemple}
+
+\begin{theoreme}{idéal engendré par un élément}{}
+    \index{Ideal@Idéal!engendre par un element@engendré par un élément}
+    Soit $(A, +, \cdot)$ un anneau commutatif et $a \in A$. Alors
+    $aA = \{a \cdot x \mid x \in A\}$ est un idéal de $A$, appelé
+    \textbf{idéal principal} engendré par $a$.
+    
+\end{theoreme}
+
+\begin{proof}
+    \begin{itemize}
+        \item $aA \subset A$ 
+        \item $0_A = a \cdot 0_A \in aA$ donc $aA \neq \emptyset$.
+        \item Soient $x, y \in aA$. Alors il existe $u, v \in A$ tels que $x = a \cdot u$ et $y = a \cdot v$.
+        Donc $x - y = a \cdot (u - v) \in aA$ car $u - v \in A$.
+
+    \end{itemize}
+
+    Donc $(aA, +)$ est un sous-groupe de $(A, +)$.
+
+    Soient $x \in aA$ et $b \in A$. Alors il existe $u \in A$ tel que $x = a \cdot u$, donc 
+    \[
+        b \cdot x = b \cdot (a \cdot u) = a \cdot (b \cdot u) \in aA,   
+    \]
+    car $b \cdot u \in A$.
+    Donc $aA$ est un idéal de $A$.
+\end{proof}
+
+\begin{definition}{idéal principal}{}
+    \index{Ideal@Idéal!principal}
+    Soit $I \subset A$ un idéal. On dit que $I$ est 
+    est \textbf{principal} ssi $\exists a \in A$ tel que $I = aA$.
+
+    C'est à dire que $I$ est l'idéal engendré par un élément.
+\end{definition}
+
+\begin{definition}{anneau principal}{}
+    \index{Anneau!principal}
+    On dit que $A$ est un \textbf{anneau principal} ssi tout
+    idéal de $A$ est principal.
+\end{definition}
+
+\begin{proposition}{opérations sur les idéaux, LHP}{}
+    Soit $(A, +, \cdot)$ un anneau commutatif, et $I_1, I_2$ deux idéaux de $A$. Alors 
+    $I_1 \cap I_2$ et $I_1 + I_2 = \{x + y \mid x \in I_1, y \in I_2\}$ sont des idéaux de $A$.
+\end{proposition}
+
+\begin{proof}
+    $0_A \in I_1$ et $0_A \in I_2$ car ce sont des sous-groupes, donc $0_A  + 0_A = 0_A \in I_1 + I_2$
+    qui est donc non vide.
+
+    Soient $x, y \in I_1 + I_2$, $x = a_1 + a_2$ et $y = b_1 + b_2$ avec $a_1, b_1 \in I_1$ et $a_2, b_2 \in I_2$.
+
+    Donc \[
+        x - y = (a_1 - b_1) + (a_2 - b_2) \in I_1 + I_2,
+    \]
+    car $a_1 - b_1 \in I_1$ et $a_2 - b_2 \in I_2$.
+    Donc $(I_1 + I_2, +)$ est un sous-groupe de $(A, +)$.
+
+    Soit $x = a_1 + a_2 \in I_1 + I_2$ et $y \in A$. Alors 
+    $xy = y a_1 + y a_2 \in I_1 + I_2$ car $y a_1 \in I_1$ et $y a_2 \in I_2$.
+
+    Donc $I_1 + I_2$ est un idéal de $A$.
+
+    \svspace Montrons que $I_1 \cap I_2$ est un idéal de $A$.
+
+    $I_1 \cap I_2 \subset A$ et sous groupe de $(A, +)$ car intersection de sous-groupes.
+
+    Soit $x \in I_1 \cap I_2$ et $a \in A$. Alors $x \in I_1$ est un idéal, donc $a \cdot x \in I_1$, 
+    idem avec $I_2$. Donc $a \cdot x \in I_1 \cap I_2$.
+
+    Donc $I_1 \cap I_2$ est un idéal de $A$.
+\end{proof}
+
+\subsection{Divisibilité}
+
+\danger{Bien entendu, vous ne tomberez pas dans le piège classique fatal au topin lambda, 
+aka l'hypothèse d'intégrité (tips : une carte anki spécialement pour l'hypothèse).}
+
+\lvspace \avspace \begin{definition}{divisibilité}{}
+    \index{Divisibilité}
+    Soit $(A, +, \cdot)$ un \textbf{anneau commutatif intègre}. 
+
+    Soient $a, b \in A$. S'il existe $c \in A$ tel que $a = bc$, on dit que : 
+    \begin{itemize}
+        \item $b$ divise $a$ ;
+        \item $a$ est un multiple de $b$.
+        \item On note $b \mid a$.
+        \item $b$ est un diviseur de $a$.
+    \end{itemize}
+\end{definition}
+
+\begin{remarque}
+    Si $a = 0$, on a $\forall b \in A, \, a = b \cdot 0$, donc tout 
+    $b \in A$ divise $0$ (à ne pas confondre avec la notion de diviseur de zéro).
+\end{remarque}
+
+\begin{remarque}
+    Un anneau non intègre possède des diviseurs de zéro.
+\end{remarque}
+
+\begin{proposition}{propriétés divisibilité}{}
+    Soit $(A, +, \cdot)$ un \textbf{anneau commutatif intègre}. 
+
+    \begin{itemize}
+        \item $\mid$ est réflexive et transitive ;
+        \item Pour $a, b \in A$, LASSE : 
+        \begin{enumerate}
+            \item $a \mid b$ 
+            \item $b \in aA$
+            \item $bA \subset aA$
+        \end{enumerate}
+    \end{itemize}
+\end{proposition}
+
+\begin{proof}
+    Pour $a \in A$, $a = a \cdot 1_A$, donc $a \mid a$ (réflexivité).
+
+    Soient $a, b, c \in A$. Supposons que $a \mid b$ et $b \mid c$.
+    Alors il existe $u, v \in A$ tels que $b = a \cdot u$ et $c = b \cdot v$.
+    Donc $c = bua$ donc $a \mid c$ (transitivité).
+
+    \avspace $1 \Leftrightarrow \exists c \in A, \, b = a \cdot c \Leftrightarrow b = ac$.
+
+    Supposons $1$, $\exists c \in A, \, b = ac$. Soit $x \in bA$, $x = bu$. Donc $x = acu \in aA$,
+    d'où le 3.
+
+    Suppposons 3. $b = 1b$ donc $b \in bA \subset aA$, d'où le 2.
+\end{proof}
+
+\begin{theoreme}{éléments associés}{}
+    \index{Elements associes@Éléments associés}
+    Soit $(A, +, \cdot)$ un \textbf{anneau commutatif intègre}. 
+    Soient $a, b \in A$. Alors les assertions suivantes sont équivalentes : 
+    \avspace 
+    \marginenote{Remarque}{Comme d'habitude, $A^*$ désigne l'ensemble des éléments inversibles de $A$.}
+    
+    \begin{itemize}
+        \item $a \mid b$ et $b \mid a$
+        \item $aA = bA$
+        \item Il existe $u \in A^*$, tel que $a = bu$
+    \end{itemize}
+
+    On dit alors que $a$ et $b$ sont \textbf{associés}.
+\end{theoreme}
+
+\begin{proof}
+    Par la proposition, $a \mid b$ et $b \mid a$ ssi $bA \subset aA$ et $aA \subset bA$ ssi 
+    $aA = bA$.
+
+    Si $a \mid b$ et $b \mid a$, alors il existe $u, v \in A$ tels que
+    $b = au$ et $a = bv$. 
+
+    Donc $b = buv$, donc $b(1 - uv) = 0$. Or $A$ est intègre donc 
+    $b = 0$ donc $a = 0$ donc $u = 1$ convient ou $b \neq 0$ donc $1 - uv = 0$, donc $v \in A^*$ convient. 
+
+    Si $a = bu$ avec $u \in A^*$, alors $b \mid a $ et $b = au^{-1}$ donc $a \mid b$.
+\end{proof}
+
+\begin{exemple}
+    Dans l'anneau $\Z$, $a, b$ sont associés ssi $a = \pm b$.
+
+    Dans l'anneau $\K[X]$, où $\K$ est un corps, $P, Q$ sont associés ssi
+    il existe $\lambda \in \K^*$ tel que $P = \lambda Q$.
+\end{exemple}
+
+\subsection{Morphismes et anneaux}
+
+\begin{definition}{morphisme d'anneaux}{}
+    \index{Morphisme!anneaux@d'anneaux}
+    Soient $A, B$ deux anneaux et $\varphi : A \to B$. On dit que $\varphi$ est un
+    \textbf{morphisme d'anneaux} ssi pour tous $a, b \in A$ :
+    \begin{itemize}
+        \item $\varphi(a + b) = \varphi(a) + \varphi(b)$ ;
+        \item $\varphi(a \cdot b) = \varphi(a) \cdot \varphi(b)$ ;
+        \item $\varphi(1_A) = 1_B$.
+    \end{itemize}
+\end{definition}
+
+\begin{remarque}
+    Comme pour les groupes, on a $\varphi(0_A) = 0_B$.
+\end{remarque}
+
+\begin{exemple}
+    $\fonction {}{\mathscr F(X, A)} A f {f(x_0)}$ est un morphisme d'anneaux. 
+
+    \avspace 
+    $\fonction {}{\Q [X]} \C P {P(\alpha)}$ est un morphisme d'anneaux, où $\alpha \in \C$.
+
+    Soit $A \in \mathcal M_n(\K)$. Alors $\fonction {}{\K[X]}{\mathcal M_n(\K)} P {P(A)}$ est un morphisme d'anneaux.
+\end{exemple}
+
+
+
+\begin{proposition}{ itéré d'un élément par morphisme d'anneau }{}
+    Soient $A, B$ deux anneaux, $\varphi : A \to B$ un morphisme d'anneaux, 
+    et ${a \in A}, \, {n \in \Z}, \, {p \in \N^*}$. 
+
+    Alors $\varphi(na) = n \varphi(a)$ et $\varphi(a^p) = (\varphi(a))^p$.
+
+\end{proposition}
+
+\begin{proof}
+    Pour + parce que morphisme de groupes, et par récurrence pour $\cdot$.
+\end{proof}
+
+\begin{proposition}{image d'un morphisme d'anneaux}{}
+    Soit $\varphi : A \to B$ un morphisme d'anneaux. 
+
+    Alors son image $\varphi(A)$ est un sous-anneau de $B$.
+\end{proposition}
+
+\begin{proof}
+    $\varphi(A) \subset B$.
+
+    $1_B = \varphi(1_A) \in \varphi(A)$.
+
+    $\varphi$ est un morphisme de groupes, donc $\varphi(A)$ est un sous-groupe de $(B, +)$.
+
+    Pour $a, b \in \varphi(A)$, il existe $x, y \in A$ tels que $a = \varphi(x)$ et $b = \varphi(y)$.
+
+    Donc $a \cdot b = \varphi(x) \cdot \varphi(y) = \varphi(xy) \in \varphi(A)$.
+
+\end{proof}
+
+\begin{definition}{noyau d'un morphisme d'anneaux}{}
+    Soit $\varphi : A \to B$ un morphisme d'anneaux. 
+
+    On appelle \textbf{noyau} de $\varphi$ l'ensemble 
+    \[
+        \ker(\varphi) = \{a \in A \mid \varphi(a) = 0_B\}.
+    \]
+
+    C'est aussi le noyau de $\varphi$ en tant que morphisme de groupes. En particulier, 
+    $\ker(\varphi)$ est un sous-groupe de $(A, +)$.
+    
+\end{definition}
+
+\begin{proposition}{Noyau comme idéal}{}
+    Supposons que $A$ est un anneau commutatif, et $\varphi$ un morphisme d'anneau. 
+    Alors $\ker(\varphi)$ est un idéal de $A$.
+\end{proposition}
+
+\begin{proof}
+    $(\ker \varphi, +)$ est un sous-groupe de $(A, +)$.
+
+    Soit $x \in \ker(\varphi)$ et $a \in A$. Alors $\varphi(ax) = \varphi(a) \cdot \varphi(x) = \varphi(a) \cdot 0_B = 0_B$,
+
+    Donc $ax \in \ker(\varphi)$.
+
+    Donc $\ker(\varphi)$ est un idéal de $A$.
+\end{proof}
+
+\subsection{Eléments inversibles }
+
+Soit $(A, +, \cdot)$ un anneau.
+
+\begin{definition}{élément inversible}{}
+    Soit $a \in A$. On dit que $a$ est inversible ssi $\exists b \in A, \, ab = ba = 1_A$.
+
+    On note alors $b = a^{-1}$. L'ensemble des éléments inversibles de $A$ est noté $A^*$.
+\end{definition}
+
+\begin{exemple}
+    $2 \notin \Z^*$ et $-1 \in \Z^*$.
+\end{exemple}
+
+\begin{theoreme}{groupe des unités}{}
+    L'ensemble $A^*$ des éléments inversibles de $A$ est un groupe pour $\cdot$, appelé 
+    groupe des inversibles ou groupe des unités de $A$.
+\end{theoreme}
+
+\begin{exemple}
+    Dans l'anneau $\Z$, $\Z^* = \{-1, 1\}$.
+
+    Dans l'anneau $\K[X]$, où $\K$ est un corps, $\K[X]^* = \K^*$.
+\end{exemple}
+
+\begin{definition}{corps}{}
+    Soit $A$ un anneau commutatif. 
+    
+    On dit que $(A, +, \cdot)$ est un corps 
+    ssi $A^* = A \setminus \{0_A\}$, c'est à dire si tout élément non nul de $A$ est inversible.
+\end{definition}
+
+\begin{exemple}
+    $\Q$, $\R$, $\C$, $\K(X)$ sont des corps.
+\end{exemple}
+
+\begin{definition}{sous-corps}{}
+    Soit $\K$ un corps et $L \subset K$. On dit que $L$ est un sous-corps de $\K$ (ou 
+    que $\K$ est une extension de $L$) ssi $(L, +, \cdot)$ est un corps et 
+    $1_L = 1_K$.
+\end{definition}
+
+\marginenote{Remarque}{La stabilité par produit et par inverse peuvent se montrer l'une après l'autre plutôt 
+    que simultanément.}
+
+
+\lvspace \avspace \begin{proposition}{caractérisation sous-corps}{}
+    $L$ est un sous-corps de $\K$ ssi :
+    \begin{itemize}
+        \item $1_K \in L$
+        \item $\forall a, b \in L, \, a - b \in L$
+        \item $\forall x, y \in L\setminus \{0_K\}, \, xy^{-1} \in L$
+    \end{itemize}
+\end{proposition}
+
+\begin{remarque}
+    On notera $xy^{-1} = \frac x y$. 
+\end{remarque}
+
+\begin{exemple}
+    $\R$ est un sous-corps de $\C$.
+
+    $\Q[\sqrt 2] = \{a + b \sqrt 2 \mid (a, b) \in \Q^2\}$ est un sous-corps de $\R$.
+
+    En effet, $1 \in \Q[\sqrt 2]$.
+
+    Si $a, b, c, d \in \Q$, alors $(a + b \sqrt 2) - (c + d \sqrt 2) = (a - c) + (b - d) \sqrt 2 \in \Q[\sqrt 2]$.
+
+    Si $a, b, c, d \in \Q$ et $c + d \sqrt 2 \neq 0$, alors 
+    
+    $\displaystyle \frac {a + b \sqrt 2}{c + d \sqrt 2} = \frac{(a + b \sqrt 2)(c - d \sqrt 2)}{c^2 - 2d^2} = \frac{ac - 2bd}{c^2 - 2d^2} + \frac{bc - ad}{c^2 - 2d^2} \sqrt 2 \in \Q[\sqrt 2]$.
+\end{exemple}
+
+
+
+\begin{definition}{HP, caractéristique d'un corps}{}
+    Soit $(K, +, \cdot)$ un corps.
+
+    Considérons $1_K$ dans le groupe abélien $(K, +)$.
+
+    \uline{Cas 1} : si $\fonction{\varphi}{\Z}{\K}{n}{n \cdot 1_K}$ est injective, alors 
+    $K$ est d'ordre infini, et on dit que $K$ est de \textbf{caractéristique nulle}.
+
+    \uline{Cas 2} : Si $\fonction{\varphi}{\Z}{\K}{n}{n \cdot 1_K}$ n'est pas injective, alors 
+    $\ker(\varphi) = p \Z$ avec $p \geqslant 2$, et donc $1_K$ est d'ordre fini $p$. 
+    On dit que $K$ est de \textbf{caractéristique} $p$. 
+
+    On a alors $p$ un nombre premier.
+\end{definition}
+
+\begin{exemple}
+    $\Z / 2 \Z$ est de caractéristique $2$.
+\end{exemple}
+
+\idee{Supposer $p$ non premier}
+
+\begin{proof}
+    Montrons que $p$ est premier. 
+
+    Supposons que $p$ n'est pas premier. Alors il existe $m, n \in \N^*$ tels que 
+    $p = mn$. 
+
+    Donc $p1_K = 0_K = (mn)1_K = (m1_K)(n1_K)$.
+
+    Or $\K$ est un corps, donc $m1_K = 0_K$ ou $n1_K = 0_K$, 
+    donc $p \mid m$ ou $p \mid n$, donc $p = m$ ou $p = n$, donc $p$ est premier.
+\end{proof}
+
+\section{L'anneau \texorpdfstring{$\Z$}{Z}}
+\subsection{Idéaux de \texorpdfstring{$\Z$}{Z}}
+
+\begin{theoreme}{idéaux de $\Z$}{}
+    Les idéaux de $\Z$ sont les $a \Z$ où $a \in \Z$.
+
+    En particulier, tous les idéaux de $\Z$ sont principaux donc $\Z$ est un anneau principal.
+\end{theoreme}
+
+\begin{proof}
+    Les $a \Z$ sont les idéaux principaux engendrés par $a \in \Z$, donc des idéaux de $\Z$.
+
+    Réciproquement, Soit $I$ un idéal de $\Z$. Alors $I$ sous groupe de $(\Z, +)$, donc il existe 
+    $a \in \N$ tel que $I = a \Z$.
+\end{proof}
+
+\subsection{Arithmétique dans \texorpdfstring{$\Z$}{Z}}
+
+\begin{theoreme}{lien PGCD et idéaux dans $\Z$}{}
+    Soient $a, b \in \Z$. Il existe un unique $c \in \N$ tel que $a \Z + b \Z = c \Z$. 
+    De plus $c$ est l'unique naturel tel que $c \mid a $, $c \mid b$ et $\forall d \in \Z, $
+    $\left. \begin{aligned}
+        d \mid a \\
+        d \mid b
+    \end{aligned} \right\} \Rightarrow d \mid c$.
+
+    Donc $c = \pgcd(a, b)$.
+\end{theoreme}
+
+\begin{proof}
+    $a \Z$ et $b \Z$ sont des idéaux de $\Z$, donc $a \Z + b \Z$ est un idéal de $\Z$.
+
+    Donc par le théorème précédent, il existe un unique $c \in \Z$ tel que $a \Z + b \Z = c \Z$.
+
+    Par ailleurs $0 \in b \Z$ donc $a \Z \subset c \Z$ donc $c \mid a $ et de même $c \mid b$.
+
+    Si $d \in \Z$ vérifie $d \mid a$ et $d \mid b$, alors $b \Z \subset d \Z$ donc $c \Z \subset d \Z$. 
+
+    Donc $d \mid c$, donc $c $ convient. 
+
+    \svspace Supposons qu'il existe $c' \in \N$ vérifiant les mêmes propriétés que $c$. 
+
+    Alors (en utilisant le truc avec les divisions et l'accolade, avec c dans le rôle de d), 
+    $c \mid c'$ et de même, $c' \mid c$, donc $c$ et $c'$ sont associés, donc $c = c'$.
+\end{proof}
+
+
+\begin{proposition}{généralisation du PGCD avec idéaux}{}
+    Soient $c_1, \ldots, c_n \in \Z$. Alors $c_1 \Z + c_2 \Z + \cdots + c_n \Z$ est un 
+    idéal de $\Z$, et donc il existe un unique $d \in \N$ tel que 
+    \[
+        c_1 \Z + c_2 \Z + \cdots + c_n \Z = d \Z.
+    \]
+
+    $d$ est appelé le \textbf{plus grand commun diviseur} de $c_1, c_2, \ldots, c_n$, et 
+    on obtient l'associativité par def. 
+\end{proposition}
+
+\begin{proposition}{relation de Bézout}{}
+    Soient $a, b \in \Z$, alors $\exists u, v \in \Z$ tels que 
+    \[
+        \pgcd(a, b) = au + bv.
+    \]
+\end{proposition}
+
+\begin{proof}
+    Soit $d = \pgcd(a, b)$. Par le théorème précédent, $a \Z + b \Z = d \Z$.
+
+    Donc il existe $u, v \in \Z$ tels que $d = au + bv$.
+\end{proof}
+
+\begin{theoreme}{lien PPCM et idéaux dans $\Z$}{}
+    Soient $a, b \in \Z$. Alors $\exists ! m \in \N$ tel que $a \Z \cap b \Z = m \Z$.
+
+    De plus, $m$ est l'unique naturel tel que $a \mid m$, $b \mid m$ et 
+    $\forall n \in \Z,$
+    $\left. \begin{aligned}
+        a \mid n \\
+        b \mid n    
+    \end{aligned} \right\} \Rightarrow m \mid n$.
+
+    Donc $m = \ppcm(a, b)$.
+\end{theoreme}
+
+\begin{proof}
+    $a \Z$ et $b \Z$ sont des idéaux de $\Z$, donc $a \Z \cap b \Z$ est un idéal de $\Z$. 
+    Donc par le théorème précédent, il existe un unique $m \in \Z$ tel que $a \Z \cap b \Z = m \Z$.
+
+    Par ailleurs, $m \Z \subset a \Z$ donc $a \mid m$ et de même $b \mid m$.
+
+    Si $k \in \Z$ vérifie $a \mid k$ et $b \mid k$, alors $k \in a \Z$ et $k \in b \Z$, donc
+    $k \in a \Z \cap b \Z = m \Z$. Donc $m \mid k$, donc $m$ convient.
+\end{proof}
+
+\subsubsection{Algorithme d'Euclide étendu}
+
+Soient $a, b \in \Z$. On cherche $u, v \in \Z$ tels que $au + bv = \pgcd(a, b)$.
+
+\uindent{Méthode }
+
+\begin{align*}
+    a \times 1 + b \times 0 & = a (1)\\
+    a \times 0 + b \times 1 & = b (2)\\
+    u_1 a + v_1 b & = r_2 \\
+    u_2 a + v_2 b & = r_3 
+\end{align*}
+
+A chaque étape, on réalise la division euclidienne de $r_{i-1}$ par $r_i$
+
+\begin{exemple}
+    $a = 67$ et $b = 23$. 
+
+    $$\begin{array}{rccl}
+        67 \times 1 & + & 23 \times 0 & = 67 \\
+        67 \times 0 & + & 23 \times 1 & = 23 \\
+        67 \times 1 & + & 23 \times (-2) & = 21 \\
+        -67 & + & 23 \times 3 & = 2 \\
+        67 \times 11 & - & 23 \times 32 & = 1
+    \end{array}$$
+\end{exemple}
+
+\subsection{Nombres premiers}
+
+\begin{definition}{nombre premier}{}
+    Soit $p \in \N \setminus \{0, 1\}$. On dit que $p$ est un \textbf{nombre premier} ssi
+    les seuls diviseurs de $p$ sont $1$ et $p$.
+\end{definition}
+
+\begin{proposition}{infinité des nombres premiers}{}
+    L'ensemble $\mathbb{P}$ des nombres premiers est infini.
+\end{proposition}
+
+\begin{theoreme}{décomposition en facteurs premiers}{}
+    Tout $a \in \Z \setminus \{0, 1, -1\}$ se décompose de manière unique (à l'ordre des facteurs près) en un produit
+    de nombres premiers, sous la forme : 
+    \[
+        a = \varepsilon \prod_{i = 1}^k p_i^{\alpha_i} 
+    \]
+
+    où $\varepsilon \in \{-1, 1\}$, $k \geqslant 1$, $(p_1, p_2, \ldots, p_k)$ est une suite strictement croissante de nombres premiers
+    et $(\alpha_1, \alpha_2, \ldots, \alpha_k) \in (\N^*)^k$.
+    
+\end{theoreme}
+
+\marginenote{Mémo}{Il faut croiser : le PGCD utilsie le mini et le PPCM le maxi (Théotime ta gueule).}
+
+\lvspace \avspace \begin{proposition}{PGCD PPCM avec valuations p-adiques}{}
+    Soient $a, b \in \Z \setminus \{0, -1, 1\}$ décomposé en 
+    $\displaystyle a = \varepsilon_a \prod_{i = 1}^k p_i^{\alpha_i}$ et
+    $\displaystyle b = \varepsilon_b \prod_{i = 1}^k p_i^{\beta_i}$. 
+    Alors 
+    
+    \begin{itemize}
+        \item $\displaystyle \pgcd(a, b) = \prod_{i = 1}^k p_i^{\min(\alpha_i, \beta_i)}$
+        \item $\displaystyle \ppcm(a, b) = \prod_{i = 1}^k p_i^{\max(\alpha_i, \beta_i)}$
+    \end{itemize} 
+    
+    Et on a donc $\displaystyle \pgcd(a, b) \times \ppcm(a, b) = |ab|$.
+\end{proposition}
+
+\subsubsection{Compléments HP}
+
+\begin{proposition}{Hors programme}{}
+    Pour $x \in \R^+$, on note $\pi(x) = \text{card}(\{p \in \mathbb{P} \mid p \leqslant x\})$.
+
+    \begin{enumerate}
+        \item Théorème des nombres premiers (Hadamard et de la Vallée Poussin, 1896) :
+        $$\displaystyle \pi(x) \substack{\sim \\ x \to + \infty} \frac x {\ln(x)}$$
+        \item fonction logarithme intégral : 
+        $$\displaystyle \mathrm{Li}(x) = \alpha + \int_2^x \frac {dt}{\ln(t)}$$ 
+        où $\displaystyle \alpha = \gamma + \ln(\ln(2)) + \sum_{n = 1}^{+\infty} \frac{(\ln(2))^n}{n \cdot n!}$. 
+
+        Alors, en admettant l'hypothèse de Riemann, on a : 
+        $$\displaystyle \pi(x)  - \mathrm{Li}(x) = O(\sqrt x \ln(x))$$
+        \item Nombres premiers jumeaux : $p, q \in \mathbb P$ sont jumeaux ssi $|p - q| = 2$. 
+        Conjecture : il en existe une infinité. 
+        \item Conjecture de Goldbach : tout entier pair $> 2$ est la somme de deux nombres premiers.
+    
+        \item Théorème de Diriclet : Soient $a, b \in \N$ tels que $\pgcd(a, b) = 1$. Alors 
+        $\{a + nb, n \in \N\} \cap \mathbb P$ est infini.
+        \item Théorème de Green et Tao (2004) : $\forall k \geqslant 1$, il existe une suite de $k$ nombres premiers 
+        en progression arithmétique et la plupart est inférieur à beaucoup de puissances de 2.
+    \end{enumerate}
+     
+\end{proposition}
+
+\section{L'anneau \texorpdfstring{$\Z / n \Z$}{Z/nZ}}
+\subsection{Structure}
+
+Soit $n \geqslant 2$ un entier.
+
+\begin{theoreme}{structure de $\Z / n \Z$}{}
+    Soient $c, d, \in \Z/ n \Z$, $x \in c $ et $y \in d$. Alors 
+    $\widehat{x \cdot y}$ ne dépend pas des choix de $x$ et $y$.
+
+    on définit ainsi une lci $\cdot$ sur $\Z / n \Z$  en posant $c \cdot d = \widehat{x \cdot y}$.
+
+    Alors $(\Z / n \Z, +, \cdot)$ est un anneau commutatif et $\fonction{\varphi}{\Z}{\Z / n \Z}{x}{\widehat x}$ est un morphisme d'anneaux
+    surjectif de noyau $n \Z$.
+\end{theoreme}
+
+
+\begin{proof}
+    Soient $c, d \in \Z / n \Z$, $x, x' \in c$ et $y, y' \in d$. 
+
+    Alors il existe $k_1, k_2 \in \Z$ tels que $x = x' + k_1 n$ et $y = y' + k_2 n$.
+
+    Alors $xy = (x' + k_1 n)(y' + k_2 n) = x'y' + n(k_1 y' + k_2 x' + k_1 k_2 n)$.
+
+    Donc $\widehat{xy} = \widehat{x'y'}$. Donc la lci $\cdot$ est bien définie.
+
+    \avspace $(\Z / n \Z, +)$ est un groupe abélien.
+
+    \avspace Soient $c, d, f \in \Z / n \Z$ et $x \in c, y \in d, z \in f$.
+
+    Alors $(c \cdot d) = \widehat{x} \cdot \widehat{y} = \widehat{x \cdot y} = \widehat{y \cdot x} = \widehat{y} \cdot \widehat{x} = d \cdot c$.
+
+    $c \cdot (d \cdot f) = \widehat{x} \cdot (\widehat{y} \cdot \widehat{z}) = \widehat{x} \cdot \widehat{y \cdot z} = \widehat{x \cdot (y \cdot z)} = \widehat{(x \cdot y) \cdot z} = (\widehat{x} \cdot \widehat{y}) \cdot \widehat{z} = (c \cdot d) \cdot f$.
+
+    $c \cdot (d + f) = \widehat{x} \cdot (\widehat{y} + \widehat{z}) = \widehat{x} \cdot \widehat{y + z} = \widehat{x \cdot (y + z)} = \widehat{xy + xz} = \widehat{xy} + \widehat{xz} = (\widehat{x} \cdot \widehat{y}) + (\widehat{x} \cdot \widehat{z}) = (c \cdot d) + (c \cdot f)$.
+
+    $c \cdot \widehat{1} = \widehat{x} \cdot \widehat{1} = \widehat{x \cdot 1} = \widehat{x} = c$.
+
+    Donc $(\Z / n \Z, +, \cdot)$ est un anneau commutatif.
+
+    \avspace $\varphi$ est un morphisme d'anneaux car $\forall x, y \in \Z$, 
+    $\varphi(x + y) = \widehat{x + y} = \widehat{x} + \widehat{y} = \varphi(x) + \varphi(y)$ et 
+    $\varphi(xy) = \widehat{xy} = \widehat{x} \cdot \widehat{y} = \varphi(x) \cdot \varphi(y)$ et 
+    $\varphi(1) = \widehat{1}$.
+    
+    Unjectivité et noyau déjà vus.
+\end{proof}
+
+\begin{exemple}
+    $n = 4$ :
+    \[
+        \begin{array}{c|cccc}
+            \cdot & \widehat{0} & \widehat{1} & \widehat{2} & \widehat{3} \\
+            \hline
+            \widehat{0} & \widehat{0} & \widehat{0} & \widehat{0} & \widehat{0} \\
+            \widehat{1} & \widehat{0} & \widehat{1} & \widehat{2} & \widehat{3} \\
+            \widehat{2} & \widehat{0} & \widehat{2} & \widehat{0} & \widehat{2} \\
+            \widehat{3} & \widehat{0} & \widehat{3} & \widehat{2} & \widehat{1} 
+        \end{array}
+    \]
+
+\end{exemple}
+
+
+\begin{theoreme}{éléments inversibles de $\Z / n \Z$}{}
+    Soit $c \in \Z/n \Z$ et $x \in c$, avec $c \neq \hat 0$. 
+    Alors les assertions suivantes sont équivalentes : 
+    
+    \begin{itemize}
+        \item $c \in (\Z / n \Z)^*$
+        \item Ce n'est pas un diviseur de zéro
+        \item $\pgcd(x, n) = 1$ 
+    \end{itemize}
+\end{theoreme}
+
+\idee{Un Bézout magique }
+
+\begin{proof}
+    Si $c$ est inversible, alors $c$ n'est pas un diviseur de zéro (comme dans tout anneau).
+
+    Supposons que $\pgcd(x, n) = d > 1$. Alors $x = d x_1$ et $n = d n_1$. Alors 
+
+    $c \cdot \widehat{n_1} = \widehat{dx_1n_1} = \widehat{x_1n} = \widehat{0}$. 
+    Or $\widehat {n_1} \neq \widehat{0}$ car $d > 1$ donc $c$ est un diviseur de zéro.
+    Donc $2 \Rightarrow 3$.
+
+    \avspace Supposons que $\pgcd(x, n) = 1$ et $\exists u, v \in \Z$ tels que $ux + vn = 1$ (relation de Bézout).
+
+    Donc $\widehat x \cdot \widehat u = c \cdot \widehat u = \widehat{ux} = \widehat{1}$.
+
+    Donc $c \in \Z/n\Z^*$.
+\end{proof}
+
+\begin{exemple}
+    $\Z/6\Z^* = \{\widehat{1}, \widehat{5}\}$.
+\end{exemple}
+
+\begin{theoreme}{corps $\Z/n\Z$}{}
+    $\Z/n\Z$ est un corps ssi $n$ est premier. Pour $p \in \mathbb{P}$, ce corps est noté 
+    $$\Z/p\Z = \mathbb{F}_p$$
+\end{theoreme}
+
+\begin{proof}
+    $\Z \ n \Z$ est un corps ssi $\forall c \in \Z / n \Z \setminus \{\widehat{0}\}, \, c \in (\Z / n \Z)^*$
+
+    ssi $\forall x \in \ninter 1 {n - 1}, \, \pgcd(x, n) = 1$ par le théorème précédent
+
+    ssi $n$ est premier.
+\end{proof}
+
+\begin{exemple}
+    $p = 53$, $c = \widehat{18}$. : cherchons $c^{-1}$
+
+    $1\times 53 + 0 \times 18 = 53$
+    
+    $0 \times 53 + 1 \times 18 = 18$
+
+    $1 \times 53 + (-2) \times 18 = 17$
+
+    $- 53 + 3 \times 18 = 1$ 
+
+    Donc $c^{-1} = \widehat{3} $
+
+    \lvspace $p = 13$, résolvons $x^2 - 3x + \widehat 3 = 0$ dans $\zz 3$
+
+    $\widehat 2^{-1} = \widehat 7$. 
+
+    \begin{align*}
+        (E) & \Leftrightarrow x^2 - 3 *7*2x + 3 = 0 \\
+        & \Leftrightarrow x^2 - 8 * 2x + 3 = 0 \\
+        & \Leftrightarrow (x - 8)^2 + 1 + 3 = 0 \\
+        & \Leftrightarrow (x - 8)^2 + 4 = 0 \\
+        & \Leftrightarrow (x - 8)^2 - 3^2 = 0 \\
+        & \Leftrightarrow (x - 8^- 3)(x - 8 + 3) = 0 \\
+        & \Leftrightarrow x = \widehat {11} \text{ ou } x = \widehat {5}
+    \end{align*}
+
+\end{exemple}
+
+
+\begin{theoreme}{Structure de $\zz p ^*$ HP}{}
+    Soit $p$ un nombre premier. 
+
+    Alors $(\zz p)^* = \zz p \setminus \{\widehat 0\}$ est un groupe monogène. 
+
+    Un générateur de ce groupe est appelé élément primitif. 
+\end{theoreme}
+
+\begin{exemple}
+    Pour $p = 7$, on a 
+    \[
+        \begin{array}{c|cccccc}
+            \cdot & \widehat{1} & \widehat{2} & \widehat{3} & \widehat{4} & \widehat{5} & \widehat{6} \\
+            \hline
+            \widehat{1} & \widehat{1} & \widehat{2} & \widehat{3} & \widehat{4} & \widehat{5} & \widehat{6} \\
+            \widehat{2} & \widehat{2} & \widehat{4} & \widehat{6} & \widehat{1} & \widehat{3} & \widehat{5} \\
+            \widehat{3} & \widehat{3} & \widehat{6} & \widehat{2} & \widehat{5} & \widehat{1} & \widehat{4} \\
+            \widehat{4} & \widehat{4} & \widehat{1} & \widehat{5} & \widehat{2} & \widehat{6} & \widehat{3} \\
+            \widehat{5} & \widehat{5} & \widehat{3} & \widehat{1} & \widehat{6} & \widehat{4} & \widehat{2} \\
+            \widehat{6} & \widehat{6} & \widehat{5} & \widehat{4} & \widehat{3} & \widehat{2} & \widehat{1} 
+        \end{array}
+    \]
+
+    On vérifie que $\widehat 3$ et $\widehat 5$ sont des élément primitif.
+\end{exemple}
+
+
+\subsection{Théorème chinois }
+
+\begin{theoreme}{théorème chinois}{}
+    Soient $n, k \geqslant 2$ premiers entre eux. Notons $\overline{.} \space $ les 
+    classes dans $\Z / (n k) \Z$, $\widetilde{.}\space $ les classes dans $\Z / k \Z$ et 
+    $\space \widehat{.} \space $ les classes dans $\Z / n \Z$.
+    Alors l'application 
+    $$\fonction{\varphi}{\Z / (n k) \Z}{\Z / n \Z \times \Z / k \Z}{c = \overline x}{(\widehat x, \widetilde x)}$$
+
+    est bien définie et est un isomorphisme d'anneaux.
+\end{theoreme}
+
+\begin{proof}
+    Soient $x_1, x_2 \in c$, alors $x_1 \equiv x_2 [nk]$, donc $\exists u \in \Z$, 
+    $x_1 - x_2 = unk$ donc $x_1 \equiv x_2 [n]$ donc $\widehat{x_1} = \widehat{x_2}$ 
+    et $x_1 \equiv x_2 [k]$ donc $\widetilde{x_1} = \widetilde{x_2}$.
+
+    Donc $\varphi$ est bien définie.
+
+    \avspace Soient $c, d \in \zz {nk}$, $x \in c$ et $y \in d$. Alors 
+    \begin{align*}
+        \varphi(c + d) & = \varphi(\overline x + \overline y) \\
+        & = \varphi(\overline{x + y}) \\
+        & = (\widehat{x + y}, \widetilde{x + y}) \\
+        & = (\widehat x + \widehat y, \widetilde x + \widetilde y) \\
+        & = \varphi(c) + \varphi(d)
+    \end{align*}
+
+    De même, $\varphi(c \cdot d) = \varphi(c) \cdot \varphi(d)$.
+
+    $\varphi(\widehat 1) = (\widehat 1, \widetilde 1)$. qui est bien le neutre de l'anneau 
+    produit. Donc $\varphi$ est un morphisme d'anneaux.
+
+    \lvspace Soit $c \in \ker \varphi$ et $x \in c$. 
+    Alors $\varphi(c) = (\widehat x, \widetilde x) = (\widehat 0, \widetilde 0)$.
+
+    Donc $\widehat x = \widehat 0$ et $\widetilde x = \widetilde 0$, donc $n \mid x $ et $k \mid x$.
+
+    Or $n$ et $k$ sont premiers entre eux, donc $nk \mid x$, donc $\overline x = 0$ et 
+    $\varphi$ est injective.
+
+    $\operatorname{Card}(\Z / (nk) \Z) = nk = \operatorname{Card}(\Z / n \Z) \times \operatorname{Card}(\Z / k \Z)$, donc
+    $\varphi$ est surjective.
+
+    Donc $\varphi$ est un isomorphisme d'anneaux.
+
+
+\end{proof}
+
+\begin{proposition}{généralisation du théorème chinois}{}
+    Soient $n_1, n_2, \ldots, n_k \geqslant 2$ entiers deux à deux premiers entre eux. 
+    Alors $$\fonction{\varphi}{\Z / (n_1 n_2 \cdots n_k) \Z}{\Z / n_1 \Z \times \Z / n_2 \Z \times \cdots \times \Z / n_k \Z}{\overline x}{(\widehat x_1, \widehat x_2, \ldots, \widehat x_k)}$$
+
+    est bien définie et est un isomorphisme d'anneaux.
+\end{proposition}
+
+\begin{proof}
+    Par récurrence sur $k$, en utilisant le théorème précédent.
+\end{proof}
+
+\subsubsection{Systèmes de congruence }
+
+Soient $n_1, \ldots, n_k \geqslant 2$ entiers deux à deux premiers entre eux, et 
+$a_1, a_2, \ldots, a_k \in \Z$.
+
+Considérons le système d'inconnue $x \in \Z$ suivant :
+\[
+    (S) \left\{ 
+        \begin{aligned}
+            x & \equiv a_1 [n_1] \\
+            x & \equiv a_2 [n_2] \\
+            & \vdots \\
+            x & \equiv a_k [n_k]
+        \end{aligned}
+    \right.
+\] 
+
+Alors, $(S) \Leftrightarrow \left\{ 
+    \begin{aligned}
+        \widehat x & = \widehat{a_1} \text{ dans } \Z / n_1 \Z \\
+        \widehat x & = \widehat{a_2} \text{ dans } \Z / n_2 \Z \\
+        & \vdots \\
+        \widehat x & = \widehat{a_k} \text{ dans } \Z / n_k \Z
+    \end{aligned} \right. \quad \Leftrightarrow  \quad\varphi(\overline x) = (\widehat{a_1}, \widehat{a_2}, \ldots, \widehat{a_k})$.
+
+Donc $(S) \Leftrightarrow \overline x = \varphi^{-1}(\widehat{a_1}, \widehat{a_2}, \ldots, \widehat{a_k})$.
+
+Donc $\exists \alpha \in \Z$ tel que $(S) \Leftrightarrow x \equiv \alpha [n]$. Ainsi, si on détermine 
+une solution particulière $x_0$ de $(S)$, alors l'ensemble des solutions de $(S)$ est 
+$(S) \Leftrightarrow x \equiv x_0 [n]$.
+
+Par ailleurs, pour $i \in \ninter 1 k$, en posant $\displaystyle p_i = \prod_{\substack{j = 1 \\ j \neq i}}^k n_j = \frac n {n_i}$,
+
+On a $n_i \wedge p_i = 1$, donc (Bézout) $\exists u_i, v_i \in \Z$ tels que $u_i n_i + v_i p_i = 1$.
+
+Posons $x_0 = \displaystyle \sum_{i = 1}^k a_i v_i p_i$.
+
+Soit $j \in \ninter 1 k$. Alors pour $i \neq j$, $n_j \mid p_i$, donc $a_ip_iv_j \equiv 0 [n_j]$.
+
+Donc $a_j v_j p_j \equiv a_j [n_j]$.
+
+Donc $x_0 \equiv a_j [n_j]$.
+
+Donc $x_0$ est une solution particulière de $(S)$.
+
+\begin{exemple}
+    Résolvons le système suivant : 
+    \[
+        (S) \left\{ 
+            \begin{aligned}
+                x & \equiv 1 [7] \\
+                x & \equiv 3 [6] \\
+                x & \equiv 2 [5]
+            \end{aligned}
+        \right.
+    \]
+
+    Par le théorème chinois, comme $7, 6$ et $5$ sont deux à deux premiers entre eux, 
+    il existe $x_0 \in \Z$ tel que $(S) \Leftrightarrow x \equiv x_0 [210]$, car 
+    $n = 7 \times 6 \times 5 = 210$.
+
+    Pour les Bézout, on a :
+    \[
+        \begin{array}{rcl}
+            -2 \times 42 + 17 \times 5 = 1 \\
+            -3 \times 30 + 13 \times 7 = 1 \\
+            - 35 + 6 \times 6 = 1
+        \end{array}
+    \]
+
+    Posons $x_0 = -3 \times 30 + 3 \times (-35) + 2 \times (-2 \times 42) = -363 \equiv 57 [210] $
+
+    $x_0$ est bien une solution particulière de $(S)$.
+
+    Donc $(S) \Leftrightarrow x \equiv 57 [210]$.
+
+\end{exemple}
+
+
+\subsection{Indicatrice d'Euler }
+
+\begin{definition}{indicatrice d'Euler}{}
+    On appelle indicatrice d'Euler l'application suivante : 
+    $$\fonction{\varphi}{\N^* \setminus \{1 \}}{\N}{n}{\operatorname{card}((\zz n)^*)}$$
+
+    Donc $\varphi(n) = \operatorname{Card}\{ k \in \ninter{1}{n - 1} , \, k \wedge n = 1\}$.
+
+\end{definition}
+
+\begin{remarque}
+    On a : 
+    \begin{itemize}
+        \item $\varphi(p) = p - 1$ ssi $p$ est un nombre premier.
+        \item $\varphi(p) \leqslant p - 1$
+        \item $\varphi(p) \geqslant 2$ pour $p \geqslant 3$ (car $1$ et $p - 1$ sont premiers avec $p$)
+    \end{itemize}
+\end{remarque}
+
+\[
+    \begin{array}{c|c}
+        n & \varphi(n) \\
+        \hline
+        2 & 1 \\
+        3 & 2 \\
+        4 & 2 \\
+        5 & 4 \\
+        6 & 2 \\
+        7 & 6 \\
+        8 & 4 \\
+        9 & 6 \\
+        10 & 4 \\
+        11 & 10 \\
+        12 & 4 \\
+    \end{array}
+\]
+
+\begin{theoreme}{multiplicativité de $\varphi$}{}
+    $\varphi$ est un fonction multiplicative, c'est à dire que 
+    si $n \wedge k = 1$, avec $n, k \geqslant 2$, alors
+    $$\varphi(nk) = \varphi(n) \times \varphi(k)$$
+\end{theoreme}
+
+\begin{proof}
+    $n \wedge k = 1$ donc $\fonction f {\zz {nk}}{\zz n \times \zz k}{\overline x}{(\widehat x, \widetilde x)}$ est un isomorphisme d'anneaux.
+
+    Soit $c \in (\zz{nk})^*$ et $x \in c$. 
+
+    Alors $x_1(nk) = 1$, donc $x \wedge n = 1$ et $x \wedge k = 1$.
+
+    Donc $\widehat x  \in (\zz n)^*$ et $\widetilde x \in (\zz k)^*$.
+
+    On peut donc définir $\fonction g {(\zz {nk})^*}{(\zz n)^* \times (\zz k)^*}{c = \overline x}{g(c) = f(c) = (\widehat x, \widetilde x)}$.
+
+    Soient $c_1, c_2 \in (\zz{nk})^*$ tel que $g(c_1) = g(c_2)$. Alors 
+    $f(c_1) = f(c_2)$, or $f$ bijective donc injective, donc $c_1 = c_2$. Donc $g$ est injective.
+
+    Soit $(d, h) \in (\zz n)^* \times (\zz k)^*$, et posons $c = f^{-1}(d, h)$ existe car $f$ 
+    est bijective. Soit $x \in c$.
+
+    Alors $f(x) = (d, h)$ donc $\widehat x = d $ et $\widetilde x = h$ et 
+    $d \in (\zz n)^*$ donc $x \wedge n = 1$, de même $x \wedge k = 1$.
+
+    Donc $x \wedge nk = 1$, donc $c \in (\zz {nk})^*$. Donc $(d, h) = f(c) = g(c)$ donc 
+    $g$ est surjective, donc bijective.
+
+    Donc $\operatorname{Card}((\zz {nk})^*) = \operatorname{Card}((\zz n)^*) \times \operatorname{Card}((\zz k)^*)$.
+
+    Donc $\varphi(nk) = \varphi(n) \times \varphi(k)$.
+\end{proof}
+
+\subsubsection{Calcul de $\varphi(n)$}
+
+\uline{Lemme :} Soit $p$ nombre premier et $\alpha \geqslant 1$. Alors 
+\[
+    \varphi(p^\alpha) = p^\alpha - p^{\alpha - 1} 
+\]
+
+\begin{proof}
+    Notons 
+    \begin{align*}
+        B & = \{k \in \ninter 1 {p^\alpha}, k \wedge p^\alpha \neq 1\} \\
+        & = \{k \in \ninter 1 {p^\alpha}, p \mid k\} \\
+        & = \{p, 2p, 3p, \ldots, p^{\alpha - 1} p\} \\
+    \end{align*} 
+
+    Donc $\operatorname{Card}(B) = p^{\alpha - 1}$, or $\ninter 1 {p^\alpha} = B = \bigsqcup \{k \in \ninter 1 {p^\alpha - 1}, k \wedge p^\alpha = 1\}$
+    
+    Donc $p^\alpha = p^{\alpha - 1} + \varphi(p^\alpha)$
+\end{proof}
+
+
+\begin{theoreme}{formule de $\varphi$}{}
+    Soit $n \geqslant 2$. Décomposons $\displaystyle n = \prod_{i = 1}^k p_i^{\alpha_i}$, où 
+    $k \geqslant 1$, $(p_1, p_2, \ldots, p_k)$ est une suite strictement croissante de nombres premiers. 
+    Alors $$\varphi(n) = n \prod_{i = 1}^k \left(1 - \frac 1 {p_i}\right)$$
+\end{theoreme}
+
+\begin{proof}
+    Par multiplicativité de $\varphi$, on a
+    \begin{align*}
+        \varphi(n) & = \prod_{i = 1}^k \varphi(p_i^{\alpha_i}) \\
+        & = \prod_{i = 1}^k \left(p_i^{\alpha_i} - p_i^{\alpha_i - 1}\right) \\
+        & = \prod_{i = 1}^k p_i^{\alpha_i} \left( 1 - \frac 1 {p_i} \right) \\
+        & = n \prod_{i = 1}^k \left(1 - \frac 1 {p_i}\right)
+    \end{align*}
+\end{proof}
+
+\begin{theoreme}{théorème d'Euler}{}
+    Soit $n \geqslant 2$ et $a \in \Z$ tel que $a \wedge n = 1$.
+    Alors $$a^{\varphi(n)} \equiv 1 [n]$$
+\end{theoreme}
+
+\begin{proof}
+    Notons $\overline a $ sa classe dans $\zz n$. $\overline a \in (\zz n)^*$ car 
+    $a \wedge n = 1$.
+
+    Donc l'ordre de $\overline a$ dans le groupe $(\zz n)^*$ divise $\varphi(n)$ qui 
+    est l'ordre de ce groupe.
+
+    Donc $\overline a^{\varphi(n)} = \overline 1$.
+\end{proof}
+
+\begin{corollaire}{petit théorème de Fermat}{}
+    Soit $p$ un nombre premier et $a \in \Z$ tel que $p \nmid a$.
+    Alors $$a^{p - 1} \equiv 1 [p]$$
+\end{corollaire}
+
+\begin{proof}
+    $a \wedge p = 1$ et $\varphi(p) = p - 1$.
+    Donc par le théorème d'Euler, $a^{p - 1} \equiv 1 [p]$.
+\end{proof}
+
+\subsubsection{Applications }
+
+Si $n \geqslant 2$ et $a \in \Z$ tel que $a \wedge n = 1$ vérifie $a^{n -1} \equiv 1 [n]$,
+on dit que $n$ est $a$-pseudopremier.
+
+Un nombre non premier qui est $a$-pseudopremier est appelé nombre de Carmichael. 
+$561$ l'est par exemple, et il en existe une infinité. 
+
+\subsubsection{RSA }
+
+Bob choisit deux grands nombres premiers $p$ et $q$ distincts et calcul $n = pq$. 
+
+Donc $\varphi(n) = (p- 1)(q-1)$. Il choisit $c \in \N$ tel que $c \wedge \varphi(n) = 1$ et 
+calcule $d = c^{-1}$ dans $(\zz {\varphi(n)})^*$. Il publie $n$ et $c$. 
+
+Alice veut transmettre son message $M \in \N$. Elle calcule $M' = M^c [n]$ et le transmet à Bob.
+
+Bob calcul $M'^d \equiv (M^c)^d [n] \equiv M^{cd} \equiv M^{1 + k \varphi(n)} \equiv M[n]$
+
+Donc la sécurité de l'algo repose sur la difficulté à décomposer $n$ en facteurs premiers. 
+
+
+\section{L'anneau \texorpdfstring{$\K [X]$}{K[X]}}
+\subsection{Idéaux de \texorpdfstring{$\K [X]$}{K[X]}}
+
+Soit $\K$ un sous-corps de $\C$.
+
+\begin{theoreme}{idéaux de $\K[X]$}{}
+    Tout idéal de $\K[X]$ se met sous la forme $I = P_0 \K[X]$, où $P_0$ est un polynôme
+    unitaire ou nul, et $P_0$ est alors unique.
+
+    Ainsi, $\K[X]$ est un anneau principal, et $P_0$ est appelé unique générateur unitaire 
+    ou nul de l'idéal $I$.
+\end{theoreme}
+
+\idee{Division euclidienne et minimalité }
+
+\begin{proof}
+    Soit $I$ un idéal de $A$. 
+
+    \uindent{Cas 1 } $I = \{0\}$. Alors $I = 0 \K[X]$.
+
+    \uindent{Cas 2 } $I \neq \{0\}$. Donc $D = \{\deg(P), P \in I \setminus \{0\}\}$ 
+    est un sous-ensemble non vide de $\N$. Donc $D$ admet un plus petit élément, noté $d_0$.
+
+    Soit $P_1 \in I$ tel que $P_1 \neq 0 $ et $\deg P_1 = d_0$. Notons $\alpha$ le coef dominant 
+    de $P_1$, et posons $P_0 = \frac{P_1} \alpha$. 
+
+    $P_0$ est unitaire, et $P_0 \in I$ donc $P_0 \K[X] \subset I$.
+
+    \avspace Soit $P \in I$. Par division euclidienne de $P$, $P = P_0 Q + R$, avec 
+    $\deg R < \deg P_0$. Donc $R = P - P_0 Q \in I$. Mais alors, par minimalté de $d_0$,
+    $R = 0$, donc $P \in P_0 \K[X]$. Donc $I \subset P_0 \K[X]$.
+
+    \lvspace Supposons qu'un autre polynôme unitaire $Q_0$ vérifie $I = Q_0 \K[X]$.
+
+    $Q_0 \in I = P_0 \K[X]$, donc $P_0 \mid Q_0$. De même, $P_0 \in I = Q_0 \K[X]$, donc $Q_0 \mid P_0$.
+
+    Donc $P_0$ et $Q_0$ sont associés, et comme ils sont unitaires, $P_0 = Q_0$, d'où l'unicité.
+\end{proof}
+
+\begin{exemple}
+    $\alpha = j$, $\fonction f {\Q[X]}\R P {P(\alpha)}$ est un morphisme d'anneaux.
+
+    Donc $I = \ker f$ est un idéal de $\Q[X]$.
+
+    De plus, $I \neq 0$ car $X^3 - 1 \in \ker f$ donc il existe un unique $P_0$ unitaire
+    tel que $$I = P_0 \Q[X]$$
+
+    On dit que $j$ est algébrique et que $P_0$ est son polynôme minimal sur $\Q$.
+
+    On sait que $X^3 - 1 \in I$, donc $P_0 \mid X^3 - 1$, et 
+    $X^3 - 1 = (X - 1)(X^2 + X + 1)$. 
+
+    Donc les diviseurs unitaires de $X^3 - 1$ sont $1, X - 1, X^2 + X + 1$ et $X^3 - 1$, et 
+    $P_0$ ne peut pas être $1$ ou $X - 1$ car $j$ n'est pas rationnel. 
+    Donc $P_0 = X^2 + X + 1$ est le polynôme minimal de $j$ sur $\Q$.
+
+
+\end{exemple}
+
+\begin{exemple}
+    $\alpha = \sqrt 2 + \sqrt 3$, et $\fonction f {\Q[X]} \R P {P(\alpha)}$ est un morhpisme d'anneaux.
+
+    Donc $I = \ker f$ est un idéal de $\Q[X]$. Mais $\alpha \notin \Q$, donc aucun 
+    polynôme de degré $1$ n'est dans $I$.
+
+    $\alpha^2 = 5 + 2 \sqrt 6$. 
+
+    S'il existait $P$ de degré 2 qui annule $\alpha$, alors cela voudrait dire que 
+    $(\sqrt 6, \sqrt 3, \sqrt 2, 1)$ serait lié dans $\Q$, ce qui est absurde. 
+
+    $(\alpha^2 - 5)^2 = 24$, donc $\alpha$ annule $X^4 - 10 X^2 + 1$. Donc $\alpha$ est algébrique, 
+    $I$ n'est pas l'idéal nul, et donc il existe un unique polynôme unitaire $P_0$ tel que
+    $I = P_0 \Q[X]$.
+    Donc $$P_0 \mid X^4 - 10 X^2 + 1$$
+
+    On a : $X^4 - 10 X^2 + 1 = (X - \sqrt 2 + \sqrt 3)(X + \sqrt 2 - \sqrt 3)$ dans $\R[X]$.
+
+    Les divisuers non triviaux dans $\R$ de $X^4 - 10 X^2 + 1$ ne sont pas dans $\Q[X]$.
+
+    Donc $P_0 = X^4 - 10 X^2 + 1$ est irréductible dans $\Q[X]$ et est donc le polynôme minimal de
+    $\alpha$ sur $\Q$.
+\end{exemple}
+
+\begin{exemple}
+    On verra que pour $A \in \mathcal M_n{\K}$, l'application $\fonction f {\K[X]}{\mathcal M_n(\K)}{P}{P(A)}$ est un morphisme d'anneaux.
+
+    Donc son noyau est un idéal de $\K[X]$.
+
+    Puisque $\K[X]$ est de dimension infinie, et $\mathcal M_n(\K)$ de dimension finie,
+    $f$ n'est pas injective, donc son noyau n'est pas nul.
+
+    Donc il existe un unique polynôme unitaire $P_0$ tel que $I = P_0 \K[X]$ appelé polynôme
+    minimal de $A$.
+
+    \avspace $A = \begin{pmatrix}
+        1 & 3 \\
+        7 & 8
+    \end{pmatrix}$
+
+    $P = X - \alpha$, $P(A) = \begin{pmatrix}
+        1 - \alpha & 3 \\
+        7 & 8 - \alpha
+    \end{pmatrix} \neq 0 $
+
+    Donc $\deg P_0 \geqslant 2$.
+
+    $A^2 = \begin{pmatrix}
+        22 & 27 \\
+        63 & 85
+    \end{pmatrix} = 9A + 13 I_2$, donc $X^2 - 9X - 13$ annule $A$ et est unitaire de degré minimal, 
+    donc $P_0 = X^2 - 9X - 13$.
+
+
+\end{exemple}
+
+
+\subsection{Arithmétique dans \texorpdfstring{$\K [X]$}{K[X]}}
+
+\begin{theoreme}{pgcd dans $\K[X]$}{}
+    Soient $P, Q \in \K[X]$, alors $P\K[X] + Q \K[X] $ est un idéal de $\K[X]$, 
+    donc il existe un unique polynôme $D \in \K[X]$ unitaire ou nul tel que
+    $$P \K[X] + Q \K[X] = D \K[X]$$
+
+    De plus, $D$ est l'unique polynôme unitaire ou nul tel que 
+    $D \mid P$, $D \mid Q$ et si $\forall E \in \K[X], E \mid P$ et $E \mid Q$ $\Rightarrow E \mid D$.
+
+    $D$ est appelé le pgcd de $P$ et $Q$, noté $\pgcd(P, Q)$.
+\end{theoreme}
+
+\begin{remarque}
+    $D = 0$ si et seulement si $P = Q = 0$.
+
+    De plus, on dispose de la relation de Bézout :
+    $$\exists U, V \in \K[X], \, PU + QV = D$$
+
+    On a également l'algorithme d'Euclide étendu pour calculer le pgcd de $P$ et $Q$.
+\end{remarque}
+
+\begin{proof}
+    Identique à celle dans $\Z$. 
+\end{proof}
+
+\begin{theoreme}{ppcm dans $\K[X]$}{}
+    Soient $P, Q \in \K[X]$. Alors $P\K[X] \cap Q \K[X]$ est un idéal de 
+    $\K[X]$, donc il existe un unique polynôme $M \in \K[X]$ unitaire ou nul tel que
+    $$P \K[X] \cap Q \K[X] = M \K[X]$$
+
+    De plus, $M$ est l'unique polynôme unitaire ou nul tel que
+    $P \mid M$, $Q \mid M$ et si $\forall N \in \K[X], P \mid N$ et $Q \mid N$ $\Rightarrow M \mid N$.
+
+    $M$ est appelé le PPCM de $P$ et $Q$. 
+\end{theoreme}
+
+\begin{remarque}
+    $M = 0$ ssi $P = 0$ ou $Q = 0$.
+\end{remarque}
+
+\begin{proof}
+    Identique à celle dans $\Z$.
+\end{proof}
+
+\subsection{Irréductibles de \texorpdfstring{$\K[X]$}{K[X]}}
+
+\begin{definition}{irréductibles de $\K[X]$}{}
+    Soit $P \in \K[X]$ tel que $\deg P \geqslant 1$. On dit que $P$ est irréductible 
+    dans $\K[X]$ ssi $\forall A, B \in \K[X], \, P = AB \Rightarrow \deg A = 0$ ou $\deg B = 0$.
+
+    Donc $P = AB$ $\Rightarrow$ $\deg A = \deg P$ ou $\deg B = \deg P$.
+
+    Ainsi, les seuls diviseurs unitaires d'un polynôme $P$ irréductible unitaire sont 
+    $1$ et $P$.
+\end{definition}
+
+\begin{exemple}
+    Tous les polynômes de degré $1$ sont irréductibles.
+\end{exemple}
+
+
+\begin{proposition}{caractérisation des irréductibles par les racines}{}
+    Un polynôme de degré $\geqslant 2$ irréductible n'a pas de racine dans $\K$.
+\end{proposition}
+
+\begin{proof}
+    Si $\deg P \geqslant 2$ et $P(a) = 0$ avec $a \in \K$, alors
+    $P = (X - a) Q$ avec $\deg Q \geqslant 1$, donc $P$ n'est pas irréductible.
+\end{proof}
+
+\begin{remarque}
+    Attention, la réciproque est fausse :
+    $X^4 + 1 \in \R[X]$, qui n'a pas de racine dans $\R$, mais n'est pas irréductible car 
+    $X^4 + 1 = (X^2 - \sqrt 2 X + 1)(X^2 + \sqrt 2 X + 1)$.
+\end{remarque}
+
+\uindent{Astuce } 
+
+\avspace $X^4 + 1 = (X^2 + 1)^2 - 2X^2$
+
+$\displaystyle a^n - b^n = \prod_{k = 0}^{n - 1} (a - b e^{\frac{2i\pi k} n})$
+
+\begin{theoreme}{décomposition en irréductibles dans $\K[X]$}{}
+    Tout polynôme de degré $\geqslant 1$ se décompose de manière unique comme produit d'une constante 
+    non nulle et de puissances de polynômes unitaires irréductibles. 
+
+    Si $ P \in \K[X]$, $\deg P \geqslant 1$. 
+
+    $\exists ! \alpha \in \K, \, \exists ! k \in \N^*, \, \exists (P_1, \ldots, P_k)$ irréductibles et unitaires, 
+    $\exists (\beta_1, \beta_2, \ldots, \beta_k) \in (\N^*)^k$ tels que
+    $$P = \alpha \prod_{i = 1}^k P_i^{\beta_i}$$
+\end{theoreme}
+
+\idee{
+    Récurrence sur le degré de $P$ pour l'existence.
+
+    Lemme sur les diviseurs d'un irréductible.
+
+    Utilisation du théorème de Gauss pour l'unicité.
+}
+
+\begin{proof}
+    \uline{Lemme } Soit $P_0$ irréductible, et $Q \in \K[X]$. Soit $D = \pgcd(P_0, Q)$.
+    Alors $D \mid P_0$
+
+    \avspace Preuve : Or $P_0$ est irréductible, donc $D = 1$ ou $D = \frac {P_0} \alpha$.
+
+    Si $D = \frac {P_0} \alpha$, alors $D \mid Q$ donc $P_0 \mid Q$.
+
+    Si $D = 1$, alors $P_0$ et $Q$ sont premiers entre eux.
+
+    \lvspace \uindent{Unicité de la décomposition }
+
+    Supposons que $\displaystyle P = \alpha \prod_{i = 1}^k P_i^{\beta_i} = \alpha' \prod_{j = 1}^{k'} P_j'^{\beta_j'}$.
+
+    Le coef dominant est unique, donc $\alpha = \alpha'$.
+
+    Soit $i \in \ninter 1 k$. Alors $P_i \mid P$, donc $\displaystyle P_i \mid \prod_{j = 1}^{k'} P_j'^{\beta_j'}$.
+
+    Comme $P_i$ est irréductible, $\exists j, \, P_i \mid P_j'$ donc $P_i = P_j'$. (lemme + th de Gauss)
+
+    Donc $\{P_i, \, i \in \ninter 1 k \} \subset \{P_j', \, j \in \ninter 1 {k'}\}$.
+
+    Et par symétrie on obtient l'égalité. Donc par cardinalité, $k = k'$.
+
+    Et quitte à renuméroter les $P_j'$, $\forall i \in \ninter 1 k, \, P_i = P_i'$.
+
+    De plus si on avait pour un certain $i$, $\beta_i \neq \beta_i'$, quitte à les échanger supposons 
+    que l'on ait $\beta_i < \beta_i'$, et alors en simplifiant par $P_i^{\beta_i}$, on obient
+    
+    $$P_i \mid \prod_{\substack{j = 1 \\ j \neq i}}^k P_j'^{\beta_j'}$$
+
+    ce qui est absurde, donc $\beta_i = \beta_i'$.
+
+    \uindent{Existence de la décomposition }
+
+    Par récurrence sur $\deg P$. 
+
+    Si $\deg P = 1$, $P = \alpha \frac P \alpha$. 
+
+    Supposons avoir la décomposition pour tout polynôme de degré $< n$. 
+
+    Soit $P$ de degré $n + 1$ et $\alpha$ son coef dominant.
+
+    Si $P$ est irréductible, on a la décomposition.
+
+    Si $P$ non irréductible, $\exists A, B \in \K[X]$ tels que $P = AB$, avec $\deg A, \deg B \leqslant n$.
+    et donc par hypothèse de récurrence, on a la décomposition pour $A$ et $B$, et donc pour $P$.
+\end{proof}
+
+\begin{remarque}
+    Analogies entre $\Z$ et $\K[X]$ :
+    $$\begin{array}{|c|c|}
+        \hline
+        \Z & \K[X] \\
+        \hline
+        \text{valeur absolue} & \text{degré} \\
+        \hline 
+        \{-1, 1\} & \K^* \\
+        \hline
+        \text{entier premier} & \text{polynôme irréductible} \\
+        \hline
+        \text{signe} & \text{coef dominant} \\
+        \hline
+    \end{array}$$
+\end{remarque}
+
+\begin{theoreme}{irréductibles de $\C[X]$}{}
+    Les irréductibles de $\C[X]$ sont les polynômes de degré $1$.
+\end{theoreme}
+
+\begin{proof}
+    Si $P$ de degré $1$ alors $P$ est irréductible.
+
+    Si $\deg P \geqslant 2$, alors par le théorème de d'Alembert Gauss, 
+    $P$ possède une racine $\alpha$, donc $P = (X - \alpha) Q$ avec $\deg Q \geqslant 1$, donc
+    $P$ n'est pas irréductible.
+\end{proof}
+
+\begin{theoreme}{}{}
+    Les irréductibles de $\R[X]$ sont les polynômes de degré $1$ et les polynômes
+    de degré $2$ à disciminant strictement négatif.
+\end{theoreme}
+
+\begin{proof}
+    Si $P$ de degré $1$, alors $P$ est irréductible.
+
+    \avspace Si $P$ de degré $2$ avec $\Delta < 0$, alors $P$ n'a pas de racine dans $\R$, donc 
+    $P$ est irréductible.
+
+    \avspace Si $\deg P \geqslant 3$, alors par le théorème de d'Alembert Gauss, 
+    $P$ possède une racine $\alpha \in \C$. Si $\alpha \in \R$, alors $P = (X - \alpha) Q$ avec $\deg Q \geqslant 2$, donc
+    $P$ n'est pas irréductible.
+
+    Si $\alpha \notin \R$, alors $\exists Q \in \C[X]$ tel que $P = (X - \alpha)(X - \overline \alpha) Q$, 
+    or $(X - \alpha)(X - \overline \alpha) = X^2 - 2 \re(\alpha) X + |\alpha|^2 \in \R[X]$.
+
+    Donc $Q \in \R[X]$ et $\deg Q \geqslant 1$, donc $P$ n'est pas irréductible.
+\end{proof}
+
+\begin{exemple}
+    $\K = \mathbb F_2$. Polynômes de degré $1$ dans $\mathbb F_2[X]$ : $X$ et $X + 1$, irréductibles.
+
+    Polynômes de degré $2$ dans $\mathbb F_2[X]$ : $X^2, X^2 + 1, X^2 + X, X^2 + X + 1$.
+
+    $X^2 + 1 = (X + 1)^2$, $X^2 + X = X(X + 1)$, donc seul $X^2 + X + 1$ est irréductible.
+\end{exemple}
+
+\section{Algèbres} 
+\subsection{Définitions}
+
+\begin{definition}{algèbre}{}
+    Soit $\K$ un corps, $A \neq \emptyset$ muni de 3 lois, avec $+$ et $\times$ des lci, 
+    et $\cdot$ externe à opérateurs dans $\K$.
+
+    On dit que $(A, +, \times, \cdot)$ est une $\K$-algèbre ssi :
+    \begin{itemize}
+        \item $(A, +, \times)$ est un anneau.
+        \item $(A, +, \cdot)$ est un espace vectoriel sur $\K$.
+        \item $\forall \lambda \in \K, \, \forall x, y \in A, \, \lambda (x \times y) = (\lambda x) \times y = x \times (\lambda y)$.
+    \end{itemize}
+
+\end{definition}
+
+\begin{exemple}
+    Si $B$ est non vide, alors $\mathscr F(B, \K)$ l'ensemble des fonctions de $B$ dans $\K$ est une $\K$-algèbre
+    pour les lois usuelles.
+
+    $\mathcal M_n(\K)$, $\K[X]$, et si $E$ est un $\K$-ev, $(\mathcal L(E), +, \circ, \cdot)$ sont des $\K$-algèbres.
+\end{exemple}
+
+\subsection{Sous-algèbre}
+
+\begin{definition}{sous-algèbre}{}
+    Soit $(A, +, \times, \cdot)$ une $\K$-algèbre, et $B \subset A$ non vide. 
+
+    On dit que $B$ est une sous algèbre de $A$ ssi $(B, +, \times, \cdot)$ est une $\K$-algèbre 
+    et $1_B = 1_A$, c'est à dire ssi $B$ est un sous-anneau et un sous-ev de $A$.
+\end{definition}
+
+\begin{proposition}{caractérisation des sous-algèbres}{}
+    Soit $(A, +, \times, \cdot)$ une $\K$-algèbre, et $B \subset A$ non vide. 
+
+    Alors $B$ est une sous-algèbre de $A$ ssi 
+    \begin{itemize}
+        \item $1_A \in B$
+        \item $\forall x, y \in B, \, \forall \lambda \in \K, \, \lambda x + y \in B$ et $x \times y \in B$.
+    \end{itemize}
+\end{proposition}
+
+\subsection{Morphismes d'algèbres}
+
+\begin{definition}{morphisme d'algèbres}{}
+    Soient $A$ et $B$ deux $\K$-algèbres, et $\varphi : A \to B$.
+
+    On dit que $\varphi$ est un morphisme d'algèbres ssi $\varphi$ est un 
+    morphisme d'anneaux et une application linéaire.
+
+    C'est à dire ssi 
+    \begin{itemize}
+        \item $\varphi(1_A) = 1_B$
+        \item $\forall x, y \in A, \, \forall \lambda \in \K, \, \varphi(\lambda x + y) = \lambda \varphi(x) + \varphi(y)$
+        et $\varphi(x \times y) = \varphi(x) \times \varphi(y)$.
+    \end{itemize}
+\end{definition}
+
+\begin{remarque}
+    $\operatorname{Im} \varphi$ est alors une sous-algèbre de $B$.
+
+    $\ker \varphi$ est alors un idéal et un sous-ev de $A$.
+\end{remarque}
+
+\begin{exemple}
+    $\alpha \in \C$, et $\fonction f {\Q[X]} \C P {P(\alpha)}$ est un morphisme d'algèbres.
+\end{exemple}

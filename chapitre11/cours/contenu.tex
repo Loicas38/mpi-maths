@@ -1,0 +1,936 @@
+$\K = \R$ ou $\K = \C$ (ou éventuellement un sous corps de $\C$, et la plupart du temps 
+les résultats restent valables avec $\K$ quelconque). 
+
+Soit $E$ un $\K$-espace vectoriel. 
+
+\section{Familles de vecteurs}
+\subsection{Bases }
+
+\begin{definition}{base}{}
+    Soit $I \neq \emptyset$ et $B = (e_i)_{i \in I}$ une famille de vecteurs de $E$. 
+    On dit que $B$ est une \emph{base} de $E$ ssi elle est libre et génératrice, c'est-à-dire : 
+    \begin{itemize}
+        \item Pour tout ensemble $J \subset I$ \emph{fini} la famille $(e_i)_{i \in J}$ est libre, c'est-à-dire que
+            pour toute famille $(x_j)_{j \in J} $ de scalaires si $\sum_{j \in J} x_j e_j = 0$ alors $x_j = 0$ pour tout $j \in J$.
+        \item Pour tout vecteur $x$ de $E$, il existe $J \subset I$ \emph{fini} et $(x_j)_{j \in J}$ famille 
+        de scalaires tels que $x = \displaystyle \sum_{j \in J} x_j e_j$.
+        En notant pour $i \in I \setminus J$, $x_i = 0$ on a alors une famille de scalaires 
+        $(x_i)_{i \in I}$ presque nulle et on autorisera la notation 
+        
+        $x = \sum_{i \in I} x_i e_i$ qui 
+        est bien une somme finie.
+    \end{itemize}
+\end{definition}
+
+\begin{remarque}
+    Avec l'axiome du choix, on peut montrer que tout espace vectoriel possède une base.
+\end{remarque}
+
+\subsection{Exemple 1, \texorpdfstring{$\K[X]$}{K[X]}}
+
+\begin{theoreme}{des degrés étagés}{}
+    Toute famille de polynômes non nuls de degrés deux à deux distincts est libre.
+\end{theoreme}
+
+\begin{theoreme}{des degrés echelonnés}{}
+    Soit $(P_i)_{i \in \N}$ famille de polynômes de $\K[X]$ tels que pour tout $i \in \N$,
+
+    $\deg(P_i) = i$. Alors $(P_i)_{i \in \N}$ est une base de $\K[X]$.
+\end{theoreme}
+
+
+
+\begin{exemple}
+    Si $a \in \K$, $((X - a)^n)_{n \in \N}$ est une base de $\K[X]$.
+
+    Si $P \in \K[X]$, ses coordonnées dans cette base sont les $\frac{P^{(n)}(a)}{n!}$ 
+    car par la formule de Taylor, $\displaystyle P(X) = \sum_{n=0}^{\deg(P)} \frac{P^{(n)}(a)}{n!} (X - a)^n$. 
+\end{exemple}
+
+\subsection{Exemple 2 : \texorpdfstring{$\mathscr M_n(\K)$}{Mn(K)}}
+
+Les matrices élémentaires $(E_{i,j})_{\substack{1 \leqslant i \leqslant n \\ 1 \leqslant j \leqslant p}}$ 
+définies par : 
+
+\begin{itemize}
+    \item $\forall i_0 \in \ninter 1 n,$
+    \item $\forall j_0 \in \ninter 1 p $ 
+    \item $\forall i \in \ninter 1 n $ 
+    \item $\forall j \in \ninter 1 n$  
+\end{itemize}
+
+$(E_{i_0, j_0})_{i,j} = \delta_i^{i_0} \delta_j^{j_0} = \begin{cases}
+    1 & \text{si } (i,j) = (i_0, j_0) \\
+    0 & \text{sinon}
+\end{cases}$
+
+forment une base de $\mathscr M_{n, p}(\K)$. Si $A = (a_{i, j})_{\substack{1 \leqslant i \leqslant n \\ 1 \leqslant j \leqslant p}} \in \mathscr M_{n, p}(\K)$, 
+ses coordonnées dans cette base sont les $a_{i, j}$ et 
+$$A = \sum_{i=1}^n \sum_{j=1}^p a_{i, j} E_{i, j}.$$
+
+
+\subsection{Exemple 3 : ev des polynômes trigonométriques (LHP)}
+
+On pose $\forall k \in \Z$, $\fonction{e_k}{\R}{\C}{x}{e^{ikx}}$ 
+et $\forall n \in \N^*$, $\fonction{\gamma_n}{\R}{\R}{x}{\cos(nx)}$ 
+
+et 
+$\fonction{s_n}{\R}{\R}{x}{\sin(nx)}$.
+
+
+Notons $\forall N \in \N$, $E_N = \Vect\left( (e_k)_{-N \leqslant k \leqslant N} \right)$ et 
+$E = \bigcup_{N \in \N} E_N = \Vect(e_k)_{k \in \Z}$.
+
+Alors $E$ est appelé espace vectoriel des polynômes trigonométriques, et 
+$E_N$ ceux de degré au plus $N$.
+
+La famille des $(e_k)_{k \in \Z}$ est libre donc $\dim(E_n) = 2N + 1$ 
+
+\begin{proof}
+    Soit $J \subset \Z$ fini et $(\lambda_k)_{k \in J}$ une famille de complexes, et supposons que 
+     $\sum_{j \in J} \lambda_j e_j = 0$. 
+
+     Alors $\forall x \in \R$, $\sum_{k \in J} \lambda_k e^{ikx} = 0$ 
+    donc $\sum_{k \in J} \lambda_k (e^{ix}) ^k = 0$.
+
+    Donc $P = \sum_{k \in J} \lambda_k X^k$ s'annule sur $\U$, donc a une 
+    infinité de racines et donc $P = 0$, donc pour tout $k \in J$, $\lambda_k = 0$
+    d'où la liberté de la famille $(e_k)_{k \in \Z}$.
+\end{proof}
+
+Si $f \in E_N$, ses coordonnées dans cette base sont notées $c_k$ ou $c_k(f)$ et 
+$\displaystyle f = \sum_{k=-N}^N c_k(f) e_k$ et appelés coefs de Fourrier exponentiels 
+de $f$.
+
+De plus $\forall k \in \Z, \, \frac 1 {2 \pi} \int_{- \pi }^\pi f(x) e^{-ikx} \mathrm{d}x = c_k(f)$.
+
+\begin{proof}
+    \begin{align}
+        \frac 1 {2 \pi} \int_{- \pi }^\pi f(x) e^{-ikx} \mathrm{d}x & = \frac 1 {2 \pi} \int_{- \pi }^\pi \left( \sum_{j=-N}^N c_j(f) e^{ijx} \right) e^{-ikx} \mathrm{d}x \\
+        & = \frac 1 {2 \pi} \sum_{j=-N}^N c_j(f) \int_{- \pi }^\pi e^{i(j-k)x} \mathrm{d}x 
+    \end{align}
+
+    Or si $j \neq k$, $\int_{- \pi }^\pi e^{i(j-k)x} \mathrm{d}x = \left[ \frac{e^{i(j-k)x}}{i(j-k)} \right]_{- \pi }^\pi = 0$
+\end{proof}
+
+La famille formée de $(e_0) \cup (\gamma_n)_{n \in \N} \cup (s_n)_{n \in \N}$ forme une base de $E$ et 
+$\forall N \in \N$ la famille formée de $(e_0) \cup (\gamma_k)_{1 \leqslant k \leqslant N} \cup (s_k)_{1 \leqslant k \leqslant N}$
+forme une base de $E_N$.
+
+De plus, si $\displaystyle f = \sum_{k = -N }^{N } c_k(f) e_k = c_0(f)e_0 + \sum_{k=1}^N a_n(f) \gamma_n + b_n(f) s_n$
+
+Les $a_n(f)$ et $b_n(f)$ sont appelés coefs de Fourrier trigonométriques de $f$ et on a 
+$\forall n \in \N^*$,
+\begin{align}
+    a_n(f) & = c_n(f) + c_{-n}(f) \\
+    b_n(f) & = i \frac{c_n(f) - c_{-n}(f)} i
+\end{align}
+
+et $\forall k \in \Z$, $c_k(f) = \left\{ \begin{matrix}
+    \frac{a_k(f) - ib_k(f)}{2} & \text{si } k > 0 \\
+    i \frac{a_k(f) + ib_k(f) }{2 } & \text{si } k < 0 \\
+\end{matrix} \right.$
+
+et $\forall n \in \N^*$, $a_n(f) = \frac 1 \pi \int_{- \pi }^\pi f(x) \cos(nx) \mathrm{d}x$ et
+$b_n(f) = \frac 1 \pi \int_{- \pi }^\pi f(x) \sin(nx) \mathrm{d}x$.
+
+\begin{proof}
+    Notons $B_n = (e_0) \cup (\gamma_k)_{1 \leqslant k \leqslant N} \cup (s_k)_{1 \leqslant k \leqslant N}$.
+
+    On a par les formules d'Euler $B_N$ famille de $E_N$
+
+    Si $f \in E_N$, $f = \sum_{k=-N}^N c_k(f) e_k$ et 
+
+    $\forall x , $
+    \begin{align}
+            f(x) & = c_0(f) + \sum_{k=1}^N c_k(f) e^{ikx} + c_{-k}(f) e^{-ikx} \\
+            & = c_0(f) + \sum_{k=1}^N \left( c_k(f) (\cos(kx) + i \sin(kx)) + c_{-k}(f) (\cos(kx) - i \sin(kx)) \right) \\
+            & = c_0(f) + \sum_{k=1}^N \left( (c_k(f) + c_{-k}(f)) \cos(kx) + i (c_k(f) - c_{-k}(f)) \sin(kx) \right)
+    \end{align}
+
+    Donc $f \in \Vect (B_N)$ donc $B_N$ est génératrice de $E_N$.
+
+    Or $\Card (B_N) = \dim E_N = 2N + 1$ donc $B_N$ base de $E_N$.
+
+    Donc $B = \bigcup_{N \in \N} B_N$ libre et génératrice donc base de $E$.\\
+    De plus si $f \in E_N$, 
+    \begin{align}
+        f(x) & = c_0(f) + \sum_{k=1}^N a_n(f) \cos(nx) + b_n(f) \sin(nx) \\
+        & = c_0(f) + \sum_{k=1}^N \left( \frac{a_n(f)}{2} (e^{inx} + e^{-inx}) + \frac{b_n(f)}{2i} (e^{inx} - e^{-inx}) \right) \\
+        & = c_0(f) + \sum_{k=1}^N \left( \frac{a_n(f) - i b_n(f)}{2 } e^{inx} + \frac{a_n(f) + i b_n(f)}{2 } e^{-inx} \right)
+    \end{align}
+\end{proof}
+
+\section{Somme de sous-espaces vectoriels}
+\subsection{Somme et somme directe}
+
+\begin{definition}{Somme de sous espaces vectoriels}{}
+    Soient $F_1, \dots, F_p$ des sous-espaces vectoriels de $E$. On définit la somme $S$ de ces sous espaces par : 
+    $S = F_1 + F_2 + \dots + F_p = \sum_{j = 1 }^{p } F_j = \Vect \left( \bigcup_{j=1}^p F_j \right)$.
+
+    On a alors :
+    \[
+        S = \left\{ y \in E \mid \exists (x_1, \dots, x_p) \in F_1 \times \dots \times F_p, y = \sum_{j=1}^p x_j \right\}
+    \]
+
+\end{definition}
+
+\begin{definition}
+    {Somme directe}{}
+    On dit que la somme $S = F_1 + F_2 + \dots + F_p$ est directe et on note 
+    $$S = F_1 \oplus F_2 \oplus \dots \oplus F_p = \bigoplus_{j=1}^p F_j$$
+    ssi $\forall y \in S, \, \exists ! (u_1, \dots, u_p) \in F_1 \times \dots \times F_p$ tel que 
+    $y = \sum_{j=1}^p u_j$.
+
+    Cela équivaut à $$\forall (u_1, \dots, u_p) \in F_1 \times \dots \times F_p, \, \sum_{j=1}^p u_j = 0 \implies \forall j \in \ninter 1 p, u_j = 0$$
+\end{definition}
+
+\begin{definition}{supplémentaire}{}
+    On dit que $(F_1, \dots, F_p)$ sont des supplémentaires dans $E$ ssi leur somme 
+    est directe et 
+    $$E = \bigoplus_{j=1}^p F_j.$$
+    
+\end{definition}
+
+\begin{proposition}{}{}
+    Soient $F$ et $G$ deux sous espaces vectoriels de $E$, alors $$E = F \oplus G \iff
+    \begin{cases}
+        E = F + G \\
+        F \cap G = \{0_E\}
+    \end{cases}$$
+\end{proposition}
+
+\begin{exemple}
+    $E = \K[X]$ et $A \in \K[X]$ tel que $\deg A \geqslant 1$.
+
+    Notons $n = \deg A - 1 \geqslant 0$, alors $E = AK[X] \oplus \K_{n}[X]$ par division 
+    euclidienne. 
+\end{exemple}
+
+\begin{theoreme}{}{}
+    Soient $F_1, \dots, F_p$ des sous espaces vectoriels supplémentaires dans $E$.
+    Alors si $\forall j \in \ninter{1}{p}$ $\displaystyle G_j = \bigoplus_{\substack{k = 1 \\ k \neq j}} F_k$,
+    on a $E = F_i \oplus G_j$. 
+
+    Le projecteur $\pi_j$ sur $F_j$ parallèlement à $G_j$ est appelé $j^{\text{eme}}$ projecteur associé à la somme directe. 
+
+    On a alors $\forall x \in E$, $\displaystyle x = \sum_{j=1} ^p \pi_j(x)$.
+\end{theoreme}
+
+\begin{proof}
+    $\forall x \in E, \, \exists (x_1, \dots, x_p) \in F_1 \times \dots \times F_p$ tel que
+
+    $\displaystyle x = \sum_{j=1}^p x_j = x_j + \sum_{\substack{k=1 \\ k \neq j}}^p x_k$.
+
+    Donc $E = F_j + G_j$.
+
+    Si $x \in F_j \cap G_j$, alors il existe pour $i \neq j$ $x_i \in G_j$ tel que 
+    $\displaystyle x = \sum_{\substack{i = 1 \\ i \neq j}}^{p } x_i$.
+
+    Par unicité de la décomposition, on en déduit que $x = 0_E$.
+
+    Donc $F_j \cap G_j = \{0_E\}$ et donc $E = F_j \oplus G_j$, d'où l'existence 
+    du projecteur $\pi_j$.
+
+    En décomposant $x$ selon la somme directe, 
+
+    \begin{align}
+        x & = \sum_{j=1}^p x_j \\
+        & = x_j + \sum_{\substack{k=1 \\ k \neq j}}^p x_k 
+    \end{align}
+
+    Donc $\pi_j(x) = x_j$ 
+\end{proof}
+
+\subsection{Cas de la dimension finie }
+
+Soit $E$ un $\K$-espace vectoriel de dimension finie $n \geqslant 1$. 
+
+\begin{theoreme}{base adaptée}{}
+    Soient $F_1, \dots, F_p$ des sous-espaces vectoriels de $E$ tels que $\displaystyle E = \bigoplus_{j=1}^p F_j$.
+    Soit pour tout $j \in \ninter{1}{p}$, $B_j$ une base de $F_j$.
+
+    Alors la famille $\displaystyle B = \bigcup_{j=1}^p B_j$ concaténation de ces bases est une base de $E$
+    que l'on appelle \emph{base adaptée} à la somme directe.
+\end{theoreme}
+
+\begin{theoreme}{}{}
+    Réciproquement, soient $F_1, \dots, F_p$ des sous-espaces vectoriels de $E$, et soit 
+    $B_j$ une base de $F_j$ pour tout $j \in \ninter{1}{p}$. 
+
+    Si $\displaystyle B = \bigcup_{j=1}^p B_j$ la concaténation des bases est une base de $E$, alors
+    $\displaystyle E = \bigoplus_{j=1}^p F_j$ et $B$ est adaptée à cette somme directe.
+\end{theoreme}
+
+\idee{
+    $\Rightarrow$ : décomposer $x \in E$ selon la somme directe.
+
+    $\Leftarrow$ : décomposer $x \in E$ selon la base adaptée.
+}
+
+\begin{proof}
+    $\Rightarrow$ $E = \bigoplus_{j=1}^p F_j$ et $B_j$ base de $F_j$, $B = \bigcup_{j=1}^p B_j$. 
+
+    Notons $B_1 = (e_1, e_2, \dots, e_{n_1})$, $B_2 = (e_{n_1 + 1}, \dots, e_{n_1 + n_2})$,
+    $\dots$, $B_p = (e_{n_1 + \dots + n_{p-1} + 1}, \dots, e_n)$. Donc $B = (e_1, \dots, e_k)$ 
+    avec $k = n_1 + \dots + n_p$ et $\forall j \in \ninter{1}{p}, n_j = \dim F_j$.
+
+    Soit $x \in E$. Comme $E = \bigoplus_{j=1}^p F_j$, il existe $(x_1, \dots, x_p) \in F_1 \times \dots \times F_p$ tel que
+    $x = \sum_{j=1}^p x_j$. \\
+    Or $\forall i, \, x_i \in \Vect (B_i)$ car $B_i$ est une base de $F_i$ donc
+    $x_i \in \Vect (B)$ donc $x \in \Vect (B)$ et donc $B$ est génératrice de $E$.
+
+    \svspace Montrons que $B$ est libre. 
+
+    Soient $(\lambda_1, \dots, \lambda_k) \in \K^k$ tels que
+    $\displaystyle \sum_{i=1}^k \lambda_i e_i = 0_E$.
+
+    Alors en notant $\displaystyle x_1 = \sum_{i=1}^{n_1} \lambda_i e_i$,
+    $\displaystyle x_2 = \sum_{i=n_1 + 1}^{n_1 + n_2} \lambda_i e_i$,
+    $\dots$, $\displaystyle x_p = \sum_{i=n_1 + \dots + n_{p-1} + 1}^{n_1 + \dots + n_p} \lambda_i e_i$,
+    on a $x = \sum_{j=1}^p x_j$, et $x_j \in F_j$ pour tout $j \in \ninter{1}{p}$.
+
+    Par somme directe, tous les $x_j$ sont nuls, or $B_i$ libre, donc toutes les coordonnées de $x_i$ sont nulles, donc
+    $\lambda_i = 0$ pour tout $i \in \ninter{1}{k}$.
+
+    \lvspace $\Leftarrow$ Reprenons les mêmes notations. 
+
+    Soit $x \in E$, comme $B$ génératrice, $x$ s'écrit comme combinaison linéaire 
+    des vecteurs de $B$, donc comme somme de combinaisons linéaires de chacune 
+    des $B_i$, donc $x \in F_1 + \dots + F_p$ donc $E = F_1 + \dots + F_p$.
+
+    Supposons que $x_1 \in F_1, \dots, x_p \in F_p$ vérifient $\sum_{i = 1 }^{ p } x_i = 0_E$.
+
+    Décomposons chacun des $x_i$ dans la base $B_i$, donc
+
+    Comme $B$ est libre, aucun vecteur de $B$ n'est commun à deux $B_i$ différents. 
+
+    On obtient une combinaison linéaire nulle de vecteurs de $B$, donc chacun des coefs est nul, 
+    donc tous les $x_i$ sont nuls, et donc la somme est directe. 
+\end{proof}
+
+\begin{proposition}{dimension somme espaces vectoriels}{}
+    Soient $E_1, \dots E_p$ des sous espaces vectoriels de $E$ et $\displaystyle S = \sum_{j=1}^p E_j$.
+
+    Alors $\displaystyle \dim S \leqslant \sum_{j=1}^p \dim E_j$ avec égalité ssi la 
+    somme est directe.
+\end{proposition}
+
+\begin{proof}
+    Notons pour tout $i \in \ninter{1}{p}$, $n_i = \dim E_i$ et soit $B_i$ une base de $E_i$.
+
+    Par def, $B = \bigcup_{j=1}^p B_j$ est génératrice de $S$ donc $\dim S \leqslant \Card(B) \leqslant \sum_{j=1}^p n_j$.
+
+    Si la somme est directe, $B$ est adaptée à cette somme et $\dim S = \Card(B) = \sum_{j=1}^p n_j$.
+
+    S'il y a égalité, on a $\Card B = \dim S$ or $B$ génératrice, donc 
+    c'est une base de $S$ donc la somme est directe.
+\end{proof}
+
+\begin{propositionnt}{caractérisation somme directe par props équivalentes}{}
+    Soient $F$ et $G$ deux sous espaces vectoriels de $E$. Alors $2$ des propositions 
+    suivantes impliquent toutes les autres : 
+    \begin{itemize}
+        \item $E = F \oplus G$
+        \item $E = F + G$
+        \item $\dim E = \dim F + \dim G$
+        \item $F \cap G = \{0_E\}$
+    \end{itemize}
+\end{propositionnt}
+
+\section{Applications linéaires}
+\begin{theorement}{caractérisation application linéaire par image d'une base}{}
+    Soient $E$ et $F$ deux $\K$-espaces vectoriels, et soit $B = (e_i)_{i \in I}$ une base
+    de $E$, et $C = (f_i)_{i \in I}$ une famille de vecteurs de $F$ indexée par le même ensemble $I$.
+
+    Alors il existe une unique application linéaire $u \in \mathscr L(E, F)$ telle que
+    $\forall i \in I, \, u(e_i) = f_i$. Une application linéaire est donc caractérisée par la 
+    donnée des images des vecteurs d'une base. 
+    De plus, 
+
+    \svspace \begin{itemize}
+        \item $u$ est injective ssi $C$ est libre
+        \item $u$ est surjective ssi $C$ est génératrice de $F$
+        \item $u$ est bijective ssi $C$ est une base de $F$
+    \end{itemize}
+\end{theorement}
+
+\subsection{Théorème du rang }
+
+\begin{theoreme}{du rang, dimension infinie}{}
+    Soient $E$ et $F$ deux $\K$-espaces vectoriels de dimension quelconque et $u \in \mathscr L(E, F)$.
+    On suppose qu'il existe $S$ un supplémentaire de $\ker(u)$ dans $E$, c'est-à-dire
+    $E = \ker(u) \oplus S$.
+
+    Alors l'application $\fonction{\tilde u}{S}{\im(u)}{x}{u(x)}$ est bien définie et est une 
+    application bijective c'est-à-dire un isomorphisme d'espaces vectoriels.
+\end{theoreme}
+
+\begin{proof}
+    Soit $x \in S$, alors $u(x) \in \im (u)$ donc $\tilde u$ est bien définie.
+
+    Soient $x, y \in S$, $\alpha \in \K$ et donc 
+    \begin{align}
+        \tilde u (\alpha x + y) & = u(\alpha x + y) \\
+        & = \alpha u(x) + u(y) \\
+        & = \alpha \tilde u (x) + \tilde u (y)
+    \end{align}
+
+    Soit $x \in \ker (\tilde u)$, alors $\tilde u(x) = 0$ donc $u(x) = 0$ 
+    donc $x \in \ker (u) $ or $x \in S$ et $S \cap \ker (u) = \{0_E\}$ car 
+    somme directe, donc $x = 0_E$ et donc $\tilde u$ est injective.
+
+    \lvspace Soit $y \in \im (u)$, alors $\exists x \in E$ tel que $u(x) = y$.
+    Or $E = \ker (u) \oplus S$, donc $\exists ! (k, s) \in \ker (u) \times S$ tel que
+    $x = k + s$. 
+
+    Donc $y = u(x) = u(k + s) = u(k) + u(s) = u(s)$ car $k \in \ker (u)$.
+    Donc $y = \tilde u (s)$ et donc $\tilde u$ est surjective.
+\end{proof}
+
+\begin{theoreme}{du rang, dimension finie}{}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie $n$, $F$ un $\K$-espace vectoriel, 
+    et soit $u \in \mathscr L(E, F)$. Alors $\im u $ est de dimension finie appelée 
+    rang de $u$ et notée $\rg(u)$ et on a :
+    \[
+        \rg(u) + \dim(\ker(u)) = \dim E
+    \]
+\end{theoreme}
+
+\idee{
+    Théorème précédent
+}
+
+\begin{proof}
+    On applique le théorème précédent. $S$ existe car on est en dimension finie,
+    et $\dim S = \dim \im (u)$ car isomorphisme.
+\end{proof}
+
+\begin{proposition}{polynômes d'interpolation de Lagrange}{}
+    Soient $\alpha_0, \dots, \alpha_n \in \K$ deux à deux distincts. 
+    
+    Alors $\fonction{f}{\K_n[X]}{\K^{n+1}}{P}{\left( P(\alpha_0), \dots, P(\alpha_n) \right)}$
+    est un isomorphisme d'espaces vectoriels, c'est-à-dire que 
+    $\forall (\beta_0, \dots, \beta_n) \in \K^{n+1}, \exists ! P \in \K_n[X]$ tel que
+    $\forall i \in \ninter{0}{n}, \, P(\alpha_i) = \beta_i$.
+
+    De plus l'image réciproque par $f$ de la base canonique de $\K^{n+1}$ est une base de 
+    $\K_n[X]$ notée $(L_0, \dots, L_n)$ appelée base des polynômes d'interpolation de Lagrange.
+    Elle vérifie $\forall i, j \in \ninter{0}{n}, \, L_i(\alpha_j) = \delta_{i}^{j}$ et
+    $$L_i = \prod_{\substack{j=0 \\ j \neq i}}^n \frac{X - \alpha_j}{\alpha_i - \alpha_j}$$
+
+    Ainsi, pour $\beta_0, \dots, \beta_n \in \K^{n + 1}$, le polynôme $P = \sum_{i=0}^n \beta_i L_i$ est
+    l'unique polynôme tel que $\forall i, \, P(\alpha_i) = \beta_i$.
+
+\end{proposition}
+
+\begin{proof}
+    $f$ est linéaire 
+
+    Si $P \in \ker f, \, \forall i \in \ninter{0}{n}, \, P(\alpha_i) = 0$.
+    Or $\deg P \leqslant n$ donc $P = 0 $ donc $\ker f = \{0\}$. 
+    Or par le théorème du rang, $\rg(f) + \dim(\ker f) = \dim \K_n[X] = n + 1$ donc
+    $\rg(f) = n + 1$ donc $\im f = \K^{n + 1}$ et donc $f$ est un isomorphisme.
+
+    \avspace Par définition, pour $i \in \ninter 0 n$, $f(L_i) = (0, \dots, 0, 1, 0, \dots, 0)$ où le $1$ est en position $i$.
+
+    Donc $L_i(\alpha_j) = \delta_i^j$.
+
+    Donc les $\alpha_j$ pour $j \neq i$ sont racines de $L_i$, or $\deg L_i \leqslant n$ donc
+    $$L_i = \lambda \prod_{\substack{j=0 \\ j \neq i}}^n (X - \alpha_j)$$
+
+    En évaluant en $\alpha_i$, on obtient $\lambda$. 
+
+    Ainsi $\displaystyle f \left( \sum_{i = 0 }^{n } \beta_i L_i \right) = \sum_{i = 0 }^{n } f(L_i) \beta_i = (\beta_0, \dots, \beta_n)$
+\end{proof}
+
+\subsection{Formes linéaires}
+
+\begin{definition}{dual, LHP}{}
+    L'espace vectoriel $\mathscr L(E, \K)$ des applications linéaires de $E$ dans $\K$ est appelé 
+    espace dual de $E$ et noté $E^*$.
+
+    Un élément de $E^*$ est appelé forme linéaire sur $E$.
+\end{definition}
+
+\begin{remarque}
+    Le terme dual est LHP. 
+\end{remarque}
+
+\begin{definition}{}{}
+    Soit $H$ un sous espace vectoriel de $E$. On dit que $H$ est un hyperplan de $E$ ssi
+    il existe une forme linéaire non nulle $f \in E^*$ telle que $H = \ker(f)$.
+\end{definition}
+
+\begin{proposition}{caractérisation hyperplan}{}
+    Soit $H$ un sous-espace vectoriel de $E$. $H$ est un hyperplan de $E$ ssi il existe $D$ droite de $E$ telle que 
+    $E = H \oplus D$, c'est à dire ssi $\exists a \in E \setminus \{0_E\}, \, E = H \oplus \Vect a$ 
+    et alors $\forall a \in E \setminus H, \, E = H \oplus \Vect a$.
+\end{proposition}
+
+\idee{
+    $\Rightarrow$ : poser $\frac{\varphi(x)}{\varphi(a)} a$.
+}
+
+\begin{proof}
+    $\Rightarrow$ Supposons que $H = \ker \varphi$ avec $\varphi \in E^* \setminus \{0\}$.
+
+    Soit $a \in E \setminus H$. Montrons que $E = H \oplus \Vect a$. 
+
+    Soit $x \in E$, comme $\varphi(a) \neq 0$ car $a \notin H$, on peut écrire 
+    $x = \underbrace{ x - \frac{\varphi(x)}{\varphi(a)} a}_{\in H} + \underbrace{\frac{\varphi(x)}{\varphi(a)} a}_{\in \Vect a}$.
+
+    car $\varphi(x - \frac{\varphi(x) }{\varphi(a)} a) = \varphi(x) - \frac{\varphi(x)}{\varphi(a)} \varphi(a) = 0$.
+
+    Donc $E = H + \Vect a$.
+
+    Soit $x \in H \cap \Vect a$, alors $x = \lambda a$ avec $\lambda \in \K$.
+
+    Donc $0 = \varphi(x) = \lambda \varphi(a)$ donc $\lambda = 0 $ et donc $x = 0_E$.
+    Donc $H \cap \Vect a = \{0_E\}$ et donc $E = H \oplus \Vect a$.
+
+    \lvspace $\Leftarrow$ Supposons que $E = H \oplus \Vect a$ avec $a \neq 0$. Pour $x \in E$, on a donc 
+    $x = h_x + \lambda_x a$ avec $h_x \in H$ et $\lambda_x \in \K$.
+
+    Comme la somme est directe et que $a \neq 0_E$, $\lambda_x$ est unique. 
+
+    Posons $\fonction \varphi E \K x {\lambda_x}$. $\varphi$ est clairement linéaire et non nulle, 
+    car $\varphi(a) = 1$ et $\forall x \in E, \, x \in \ker \varphi$ ssi $\lambda_x = 0$ ssi $x \in H$. 
+
+    Donc $H = \ker \varphi$ et donc $H$ est un hyperplan de $E$.
+\end{proof}
+
+\begin{corollaire}{hyperplans et dim}{}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie $n \geqslant 1$. 
+
+    Alors les hyperplans de $E$ sont exactement les sous espaces vectoriels de dimension $n - 1$.
+
+    Si $B = (e_1, \dots, e_n)$ est une base de $E$ et $\varphi$ une forme linéaire non nulle, en posant 
+    $\forall i \in \ninter 1 n$, $\varphi(e_i) = a_i \in \K$, on a 
+    $\forall x \in E, $ si $x = \sum_{i=1}^n x_i e_i$,
+    $$\varphi(x) = \sum_{i=1}^n a_i x_i$$
+
+    Une forme linéaire est une combinaison linéaire des coordonnées. 
+
+    Ainsi, en posant $H = \ker \varphi$, on a $x \in H$ ssi $\sum_{i=1}^n a_i x_i = 0$.
+\end{corollaire}
+
+\subsubsection{Complément HP en dimension finie}
+
+\begin{definition}{}{}
+
+    Soit $B = (e_1, \dots, e_n)$ une base de $E$, $\K$-espace vectoriel de dimension finie $n$. 
+
+    Pour $x\in E$, $x$ se décompose en $x = \sum_{i=1}^n x_i e_i$ et l'application $i^{\text{eme}}$ coordonnée
+    $\fonction{} E \K x {x_i}$ est une forme linéaire. 
+
+    On la note $e_i^*$ et alors la famille $B^* = (e_1^*, \dots, e_n^*)$ de $E^*$ est une base de $E^*$
+    appelée base duale de la base $B$.
+
+    De plus $\forall i, j \in \ninter 1 n$, $e_i^*(e_j) = \delta_i^j$.
+\end{definition}
+
+\begin{proof}
+    $\dim E^* = \dim \mathscr L (E, K) = \dim E = n$. 
+
+    Donc $B^*$ a le bon caridnal. Soient $(\lambda_1, \dots, \lambda_n) \in K^n$ tels que
+    $\sum_{i=1}^n \lambda_i e_i^* = 0$.
+
+    Alors $\forall j \in \ninter 1 n$, $\left( \sum_{i=1}^n \lambda_i e_i^*(e_j) \right) = 0$ donc
+    $\lambda_j = 0$ et la famille est libre. 
+    
+\end{proof}
+
+\begin{exemple}
+    Dans $\R^3$, posons $e_1 = (1, 2, 1), e_2 = (1, 0, 0) , e_3 = (1, -1, 0)$.
+
+    $B = (e_1, e_2, e_3)$ est une base de $\R^3$.
+
+    Comme $(x, y, z ) = z e_1 + (x + y - 3z) e_2 + (2z - y) e_3$, on a
+    $e_1^*(x, y, z) = z$, $e_2^*(x, y, z) = x + y - 3z$, $e_3^*(x, y, z) = 2z - y$.
+
+    Donc la base duale est $B^* = (e_1^*, e_2^*, e_3^*)$ avec
+\end{exemple}
+
+\begin{theoreme}{base antéduale}{}
+    Soit $C = (\varphi_1, \dots, \varphi_n)$ une base de $E^*$. Alors il existe une unique base $B$ de $E$ dont $C$
+    est la base duale, c'est à dire telle que $C = B^*$. 
+    $B$ est appelée base antéduale de $C$.
+    
+\end{theoreme}
+
+\begin{proof}
+    On cherche à construire des vecteurs $e_1, \dots, e_n$ tels que 
+    $B = (e_1, \dots, e_n)$ et $B^* = (\varphi_1, \dots, \varphi_n)$
+
+    Considérons $(B^*)^* = (u_1, \dots, u_n) = (\varphi_1^*, \dots, \varphi_n^*)$ base de $(E^*)^*$
+
+    et $\fonction s E {(E^*)^*} x {\left( \fonction{\hat x}{E^*}{K}{\varphi}{\varphi(x)} \right)}$ qui est un isomorphisme 
+    car linéaire, injective et même dimensions. 
+
+    $(e_1, \dots, e_n)$ convient ssi $\forall i, j \in \ninter 1 n$, $\varphi_i(e_j) = \delta_i^j$.
+    ssi $\forall i, j \in \ninter 1 n$, $s(e_j)(\varphi_i) = \delta_i^j$ 
+    en posant $\forall j \in \ninter 1 n$, $\fonction{u_j}{E^*}{K}{\varphi_i}{\delta_i^j}$ 
+    application linéaire définie sur la base $(\varphi_1, \dots, \varphi_n)$ de $E^*$.
+
+    Donc $(e_1, \dots, e_n)$ convient ssi $\forall j \in \ninter 1 n$, $s(e_j) = u_j$
+    ssi $\forall j \in \ninter 1 n$, $e_j = s^{-1}(u_j)$.
+
+    Donc $(e_1, \dots, e_n)$ existe et est unique.
+\end{proof}
+
+\begin{exemple}
+    $\alpha_0, \dots, \alpha_n$ scalaires deux à deux distincts et $\fonction{Q_i}{\K_n[X]}{\K}{P}{P(\alpha_i)}$.
+    $\varphi_i$ est une forme linéaire sur $\K_n[X]$. Montrons que $(\varphi_0, \dots, \varphi_n)$ est libre. 
+
+    Suppososn que $\sum_{i=0}^n \lambda_i \varphi_i = 0$. 
+    Soit $j \in \ninter 0 n$, et évaluons en $P = \prod_{\substack{k=0 \\ k \neq j}}^n (X - \alpha_k)$ on en 
+    déduit $\lambda_j = 0$ donc famille libre.
+
+    $(\varphi_0, \dots, \varphi_n)$ est donc une base de $(\K_n[X])^*$ car espace de dimension $n + 1$.
+
+    Sa base antéduale est la base de Lagrange $(L_0, \dots, L_n)$ car $\forall i, j \in \ninter 0 n$, $\varphi_i(L_j) = L_j(\alpha_i) = \delta_i^j$.
+\end{exemple}
+
+\begin{exemple}
+    Formule des 3 niveaux 
+
+    Posons $E = \R_3[X]$ et considérons $0 < 1 \in \R$, ainsi que les formes linéaires 
+
+    $\varphi_1 : P \mapsto P(0)$, $\varphi_2 : P \mapsto P\left( \frac{1}{2 } \right)$, $\varphi_3 : P \mapsto P(1)$
+    et $\psi : P \mapsto \int_0^1 P(x) \mathrm d x$.
+
+    Alors $\varphi_1, \varphi_2, \varphi_3$ et $\psi \in E^*$. Montrons que $\varphi_1, \varphi_2, \varphi_3, \psi$ est liée. 
+
+    Posons $\fonction u {E^*} \R \ell {\ell\left( (X - a)(X - b) \left(X - \frac{1} 2 \right) \right)}$.
+
+    $u$ est une forme linéaire. Si $\ell : P \mapsto P\left( \frac 1 4 \right)$, on a $u(\ell) \neq 0$
+    donc $\ker u$ est un hyperplan de $E^*$ donc est de dimension $3$.
+
+    $(\varphi_1, \varphi_2, \varphi_3)$ libre donc base de $\ker u$.
+
+    \begin{align}
+        u(\psi) & = \psi\left( X(X - 1) \left( X - \frac{1} 2 \right) \right) \\
+        & = \int_0^1 t(t - 1) \left( t - \frac{1} 2 \right) \mathrm d t 
+    \end{align}
+    Poosons alors le changement de variable $t = 1 - x$ et donc $\mathrm d t = - \mathrm d x$.
+
+    \begin{align}
+        u(\psi) & = \int_1^0 (1 - x)(-x) \left( \frac 1 2 - x \right) (- \mathrm d x) \\
+        & = - \int_0^1 (x - 1)x \left( x - \frac 1 2 \right) \mathrm d x \\
+        & = - u(\psi) 
+    \end{align}
+
+    Donc $u(\psi) = 0$ et donc $\psi \in \ker u$ donc $\psi \in \Vect(\varphi_1, \varphi_2, \varphi_3)$.
+
+    Il existe donc $\alpha, \beta, \gamma$ tels que $\forall P \in E$, 
+    $$\int_0^1 P(x) \mathrm d x = \alpha P(0) + \beta P\left( \frac 1 2 \right) + \gamma P(1)$$
+
+    avec $P = X(X - 1)$ : 
+    $\int_0^1 t^2 - t \mathrm d t = \beta \frac 1 2 \left( - \frac 1 2 \right)$ donc $\beta = \frac 2 3$.
+
+    $P = X\left( X - \frac 1 2 \right)$ : 
+    $\int_0^1 t^2 - \frac t 2 \mathrm d t = \gamma 1 (1 - \frac 1 2 )$ donc $\gamma = \frac 1 6$.
+
+    $P = (X - 1) \left( X - \frac 1 2 \right)$ : 
+    $\int_0^1 t^2 - \frac 3 2 t + \frac 1 2 \mathrm d t = \alpha (-1)(- \frac 1 2 )$ donc $\alpha = \frac 1 6$.
+\end{exemple}
+
+
+
+\subsection{Lien avec les sommes directes}
+
+\begin{theoreme}{application linéaire définie par morceaux}{}
+    Soit $E$ un $\K$ espace vectoriel et $E_1, \dots, E_p$ des sous espaces vectoriels de $E$ tels que 
+    $E = \bigoplus_{j=1}^p E_j$. Soit $F$ un $\K$ espace vectoriel et pour tout $j \in \ninter{1}{p}$,
+    $u_j \in \mathscr L(E_j, F)$.
+
+    Alors il existe une unique $u \in \mathscr L(E, F)$ telle que 
+    $u|_{E_j} = u_j$ pour tout $j \in \ninter{1}{p}$.
+
+    Ainsi une application linéaire est entièrement déterminée par ses restrictions à 
+    des sous espaces supplémentaires.
+\end{theoreme}
+
+\begin{proof}
+    Soit $B = B_1 \cup \dots \cup B_p$ une base adaptée de $E$ à la somme directe.
+
+    $u$ convient ssi pour tout $j \in \ninter{1}{p}$, $\forall e \in B_j$, $u(e) = u_j(e)$ 
+    ssi pour tout vecteur $e_k$ de $B$, $u(e_k) = $ cette valeur. 
+
+    Donc $u$ existe et est unique. 
+
+    Peut aussi se faire par analyse synthèse pour être plus rigoureux, mais vraiment 
+    big flemme. 
+\end{proof}
+
+
+\section{Matrices }
+\subsection{Matrices de Vandermonde}
+
+\begin{definition}{matrice de Vandermonde et son déterminant}{}
+    \index{Vandermonde!Déterminant}
+    Soient $a_1, \dots, a_n \in \K$. On définit 
+    $$ V (a_1, \dots, a_n) = \begin{pmatrix}
+        1 & a_1 & a_1^2 & \dots & a_1^{n-1} \\
+        1 & a_2 & a_2^2 & \dots & a_2^{n-1} \\
+        \vdots & \vdots & \vdots & & \vdots \\
+        1 & a_n & a_n^2 & \dots & a_n^{n-1}
+    \end{pmatrix}$$ et alors 
+    $$ \det V(a_1, \dots, a_n) = \prod_{1 \leqslant i < j \leqslant n} (a_j - a_i) $$
+\end{definition}
+
+\idee{
+    Récurrence et développement par rapport à une ligne et racines.
+}
+
+\begin{proof}
+    Par récurrence sur $n \geqslant 2$, $\det V(a_1, a_2) = \begin{vmatrix}
+        1 & a_1 \\
+        1 & a_2
+    \end{vmatrix} = a_2 - a_1$.
+
+    Hypothèse de récurrence : supposons cela vrai pour tout $n$-uplet de scalaires. 
+
+    Soient $a_1, \dots, a_{n+1} \in \K$.
+
+    \uindent{Cas 1 } Si deux des $a_i$ sont égaux. 
+
+    \svspace La matrice a 2 lignes égales donc son déterminent est nul et le produit est aussi nul, d'où l'égalité. 
+
+    \uindent{Cas 2 } Si tous les $a_i$ sont deux à deux distincts.
+
+    Posons $\forall x \in \K$, $P(x) = \det V(a_1, \dots, a_n, x) = \begin{vmatrix}
+        1 & a_1 & a_1^2 & \dots & a_1^{n-1} & a_1^n \\
+        1 & a_2 & a_2^2 & \dots & a_2^{n-1} & a_2^n \\
+        \vdots & \vdots & \vdots & & \vdots & \vdots \\
+        1 & a_n & a_n^2 & \dots & a_n^{n-1} & a_n^n \\
+        1 & x & x^2 & \dots & x^{n-1} & x^n
+    \end{vmatrix}$
+
+    En développant par rapport à la dernière ligne, 
+    
+    $P(x) = \displaystyle \sum_{k=0}^n \beta_k x^k$ avec 
+    $\beta_n = \det V(a_1, \dots, a_n) = \prod_{1 \leqslant i < j \leqslant n} (a_j - a_i) \neq 0$ par 
+    hypothèse de récurrence.
+
+    $\beta_n \neq 0$ donc $P$ est un polynôme de degré $n$ et $\forall i \in \ninter 1 n$, $P(a_i) = 0$ car deux lignes égales.
+
+    Donc $a_1, \dots, a_n$ sont racines de $P$ donc
+    $P(x) = \beta_n (X - a_1)(X - a_2) \dots (X - a_n)$ et 
+    en évaluant en $a_{n+1}$, on a le résultat. 
+\end{proof}
+
+\subsection{Déterminant d'une matrice carrée}
+
+\begin{proposition}{formule du déterminant (taille 2 et 3)}{}
+    Pour $A = (a_{i,j})_{1 \leqslant i, j \leqslant n} \in M_n(\K)$, on a
+    $\displaystyle \det A = \sum_{\sigma \in S_n} \epsilon(\sigma) \prod_{i=1}^n a_{\sigma(i), i}$
+
+    En particulier, $\det \begin{pmatrix}
+        a & b \\
+        c & d
+    \end{pmatrix} = ad - bc$.
+
+    $\det \begin{pmatrix}
+        a & b & c \\
+        d & e & f \\
+        g & h & i
+    \end{pmatrix} = aei + bfg + cdh - ceg - bdi - afh$.
+\end{proposition}
+
+Pour le déterminant 3*3, règle de Sarus :
+\begin{center}
+\includegraphics[height=15em]{images/sarrus.png}
+\end{center}
+
+\subsection{Matrices définies par blocs}
+
+\begin{definition}{matrice par blocs}{}
+    Soient $n, p \in \N^*$ et $N, P \geqslant 1$, $n_1, \dots, n_N, p_1, \dots, p_P \in \N^*$ tels que
+    $n = \sum_{i=1}^N n_i$ et $p = \sum_{j=1}^P p_j$.
+
+    Soit $A = (a_{i,j})_{\substack{1 \leqslant i \leqslant n \\ 1 \leqslant j \leqslant p}}$,
+    soit $I \in \ninter 1 N$ et $J \in \ninter 1 P$. On définit le bloc 
+    $(I, J)$ extrait de la matrice $A$ comme étant la matrice notée $A^{I, J} \in \mathscr M_{n_I, p_J} (\K) $ définie 
+    par $\forall a \in \ninter 1 {n_I}, \, \forall b \in \ninter 1 {p_J}, \, A^{I, J}_{a, b} = a$
+
+    et on note $A$ par blocs 
+    $$ A = \begin{pmatrix}
+        A^{1, 1} & \dots & A^{1, P} \\
+        \vdots & & \vdots \\
+        A^{N, 1} & \dots & A^{N, P}
+    \end{pmatrix} $$
+\end{definition}
+
+\begin{proposition}{interprétation des blocs par des applications linéaires}{}
+    On conserve les notations précédentes. Soit $E$ un $\K$-espace vectoriel de dimension $p$ et de base $B = (e_1, \dots, e_p)$,
+    $F$ un $\K$-espace vectoriel de dimension $n$ et de base $C = (f_1, \dots, f_n)$.
+
+    Soit $u \in \mathscr L(E, F)$ tel que $\mathscr M_{B, C}(u) = A$.
+
+    Pour $I \in \ninter 1 N$ et $J \in \ninter 1 P$, 
+    
+    considérons 
+    $F_I = \Vect (f_i)_{i \in \{n_1 + \dots + n_{I - 1} + 1, \dots , n_1 + \dots + n_I\}}$ 
+
+    et $E_J = \Vect (e_j)_{j \in \{p_1 + \dots + p_{J - 1} + 1, \dots , p_1 + \dots + p_J\}}$.
+
+    $E = \bigoplus_{J=1}^P E_J$, $\dim E_J = p_j$ et $F = \bigoplus_{I=1}^P F_I$ 
+    $\dim F_I = n_I$.
+
+    Notons $\Pi_i$ la projection sur $F_I$ associée à la somme directe $\bigoplus_{I=1}^N F_I = F$.
+
+    Alors $A^{I, J} = \mathscr M_{B_J, C_I}(\Pi_I \circ u|_{E_J})$.
+\end{proposition}
+
+\subsubsection{Opérations par blocs de taille compatible }
+
+\begin{proposition}{combinaison linéaire de matrices par blocs}{}
+    Soient $A, B \in \mathscr M_{n, p}(\K)$ décomposées par blocs selon les mêmes partitions des entiers 
+    $n = n_1 + \dots + n_N$ et $p = p_1 + \dots + p_P$.
+
+    Soient $\alpha, \beta \in \K$ et $C = \alpha A + \beta B$. Alors le calcul de $C$ peut s'effectuer 
+    blocs par blocs, c'est-à-dire que 
+    $\forall I \in \ninter{1}{N}, \, \forall J \in \ninter{1}{P}, \, C^{I, J} = \alpha A^{I, J} + \beta B^{I, J}$.
+\end{proposition}
+
+\begin{proof}
+    Ces matrices ont même taille et même coefs. 
+\end{proof}
+
+\begin{proposition}{produit de matrices par blocs}{}
+    Soient $A \in \mathscr M_{n, p}(\K)$ et $B \in \mathscr M_{p, q}(\K)$ décomposées par blocs selon la même 
+    partition pour $p$ avec $p = p_1 + \dots + p_P$, $n = n_1 + \dots + n_N$ et $q = q_1 + \dots + q_Q$.
+    
+    Considérons $C = AB \in \mathscr M_{n, q}(\K)$. Alors le calcul de $C$ peut s'effectuer blocs par blocs, c'est-à-dire que 
+    $\forall I \in \ninter{1}{N}, \, \forall K \in \ninter{1}{Q}, \, C^{I, K} = \sum_{J=1}^P A^{I, J} B^{J, K}$.
+\end{proposition}
+
+\begin{proof}
+    Par calcul, non exigible.
+\end{proof}
+
+\begin{proposition}{transposition}{}
+    Soit $A \in \mathscr M_{n, p}(\K)$ décomposée par blocs selon les partitions $n = n_1 + \dots + n_N$
+    et $p = p_1 + \dots + p_P$. Alors les blocs de la matrice transposée $A^T \in \mathscr M_{p, n}(\K)$ selon 
+    les partitions $p = p_1 + \dots + p_P$ et $n = n_1 + \dots + n_N$ s'obtiennent 
+    par transposition des blocs de $A$, c'est-à-dire que
+    $\forall I \in \ninter{1}{N}, \, \forall J \in \ninter{1}{P}, \, (A^T)^{J, I} = (A^{I, J})^T$.
+\end{proposition}
+
+\begin{proof}
+    Par calcul.
+\end{proof}
+
+\subsubsection{Déterminant}
+
+\begin{proposition}{transvection par blocs}{}
+    Soit $A \in \mathscr M_{2n, p}(\K)$, avec $p = 2n$
+    décomposée selon les partitions $2n = n + n$ et $p = p$, 
+    c'est à dire $A = \begin{pmatrix}
+        B\\
+        C
+    \end{pmatrix}$ avec $B, C \in \mathscr M_{n, p}(\K)$.
+
+    On appelle transvection par blocs de lignes l'opération qui transforme 
+    $A$ en $A' = \begin{pmatrix}
+        B  \\
+        C + \lambda B
+    \end{pmatrix}$ avec $\lambda \in \K$.
+
+    Alors $\det A' = \det A$.
+    
+\end{proposition}
+
+\begin{remarque}
+    Ce résultat reste valable si $A$ possède des lignes supplémentaires, c'est à dire 
+    $A \in \mathscr M_{2n + q, 2n + q}(\K)$ décomposée en 
+    $A = \begin{pmatrix}
+        B \\
+        C \\
+        D
+        \end{pmatrix}$ transformée en $A' = \begin{pmatrix}
+        B \\
+        C + \lambda B \\
+        D
+    \end{pmatrix}$.
+\end{remarque}
+
+\begin{proof}
+    On effectue $n$ opérations élémentaires de transvection ligne par ligne.
+\end{proof}
+
+\begin{remarque}
+    On a le même résultat pour les transvections par blocs de colonnes.
+\end{remarque}
+
+\begin{definition}{matrices triangulaires par blocs}{}
+    Soit $A \in \mathscr M_{n}(\K)$ décomposée par blocs selon la partition $n = n_1 + \dots + n_N$
+
+    $$A = \left( \begin{array}{c|c|c|c}
+        A^{1, 1} & & & A^{1, N} \\
+        \hline
+        A^{2, 1} & A^{2, 2} & & \\
+        \hline
+        \vdots & & \ddots &  \\
+        \hline
+        A^{N, 1} & & \dots & A^{N, N} 
+    \end{array}  \right) $$
+
+    on dit que $A$ est triangulaire supérieure par blocs selon cette partition ssi 
+    $\forall I > J, \, A^{I, J} = 0$
+
+    Même chose pour triangulaire inférieur. 
+    
+\end{definition}
+
+\begin{theoreme}{déterminant matrice triangulaire par blocs }{}
+    Le déterminant d'une matrice triangulaire par blocs est égal au produit 
+    des déterminants des blocs diagonaux. 
+\end{theoreme}
+
+\idee{
+    Par récurrence, avec disjonction de cas en fonction de l'inversibilité, et 
+    développement par rapport à une ligne / colonne. 
+}
+
+\begin{proof}
+    Par récurrence sur $N$. 
+
+    \uindent{Pour $N = 2$ } 
+
+    $A = \begin{pmatrix}
+        B & C \\
+        0 & D 
+    \end{pmatrix}$ avec $B \in \mathscr M_{n_1}(\K), \, D \in \mathscr M_{n_2}(\K)$ avec $ n = n_1 + n_2$. 
+
+    Si $B$ n'est pas inversible, ses colonnes forment une famille liéee de vecteurs de $K^{n + 1}$. Donc les 
+    $n_1$ premiers vecteurs colonne de $A$ forment une famille liée par la même combinaison linéaire. 
+
+    Donc $A$ non inversible, donc $\det A = 0 = 0 \times \det D = \det B \times \det D$. 
+
+    \avspace Si $B \in GL_{n_1}(\K)$, considérons $M = \begin{pmatrix}
+        B^{-1} & 0 \\
+        0 & I_{n_2}
+    \end{pmatrix}$
+
+    Posons $N = MA = \begin{pmatrix}
+        I & B^{-1}C \\
+        0 & D 
+    \end{pmatrix}$ et alors $\det N = \det D$ en développant $n_1$ fois de suite par rapport à la première colonne. 
+
+    De même, $\det M = \det B^{-1}$ en développant $n_2$ fois de suite par rapport à la dernière ligne, or 
+    $\det MA = \det N$ donc $\det M \det A = \det N$ et donc $\det B^{-1} \det A = \det D$ 
+    et donc $\det A = \det B \det D$. 
+
+    Supposons le résultat pour toute matrice triangulaire supérieure décomposée selon une partition de $n$ en $N$ entiers. 
+
+    Soit $A \in \mathscr M_n(\K)$ avec $n$ décomposé en $n = n_1 + \dots + n_{N + 1}$, mais en 
+    peut refaire le découpage pour obtenir une matrice triangulaire avec 4 blocs, comme dans le cas de base. 
+
+    Donc par l'initialisation, on a $\det A = \det B \det A^{N + 1, N + 1}$ or par hypothèse de récurrence, 
+    $\det B = \det A^{1, 1} \dots \det A^{N, N}$
+
+    Donc $\det A = \det A^{1, 1} \dots \det A^{N + 1, N + 1}$
+\end{proof}

@@ -1,0 +1,526 @@
+\section{Énoncés des Exercices}
+
+% --- Exercice 1 ---
+\begin{exercice}
+Montrer que $\mathbb{Z}$ est fermé dans $\mathbb{R}$ de 4 manières différentes :
+\begin{enumerate}
+    \item En revenant à la définition (complémentaire ouvert).
+    \item Par la caractérisation séquentielle.
+    \item En voyant le complémentaire comme union d'ouverts.
+    \item En considérant $x \mapsto \sin(\pi x)$.
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 2 (Source: EXERCICE 34 analyse) ---
+\begin{exercice}
+Soit $A$ une partie non vide d'un espace vectoriel normé $E$.
+\begin{enumerate}
+    \item Rappeler la définition d'un point adhérent à $A$, en termes de voisinages ou de boules.
+    \item Démontrer que : $x \in \overline{A} \iff \exists (x_{n})_{n \in \mathbb{N}}$ telle que, $\forall n \in \mathbb{N}, x_{n} \in A$ et $\lim_{n \rightarrow +\infty} x_{n} = x$.
+    \item Démontrer que si $A$ est un sous-espace vectoriel de $E$, alors $\overline{A}$ est un sous-espace vectoriel de $E$.
+    \item Démontrer que si $A$ est convexe alors $\overline{A}$ est convexe.
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 3 (Source: EXERCICE 44 analyse) ---
+\begin{exercice}
+Soit $E$ un espace vectoriel normé. Soient $A$ et $B$ deux parties non vides de $E$.
+\begin{enumerate}
+    \item 
+    \begin{enumerate}
+        \item Rappeler la caractérisation de l'adhérence d'un ensemble à l'aide des suites.
+        \item Montrer que $A \subset B \Rightarrow \overline{A} \subset \overline{B}$.
+    \end{enumerate}
+    \item Montrer que $\overline{A \cup B} = \overline{A} \cup \overline{B}$.
+    \item 
+    \begin{enumerate}
+        \item Montrer que $\overline{A \cap B} \subset \overline{A} \cap \overline{B}$.
+        \item Montrer à l'aide d'un exemple que l'autre inclusion n'est pas forcément vérifiée (on pourra prendre $E=\mathbb{R}$).
+    \end{enumerate}
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 4 (Source: EXERCICE 45 analyse) ---
+\begin{exercice}
+Les questions 1 et 2 sont indépendantes. Soit $E$ un espace vectoriel normé. Soit $A$ une partie non vide de $E$. On note $\overline{A}$ l'adhérence de $A$.
+\begin{enumerate}
+    \item 
+    \begin{enumerate}
+        \item Donner la caractérisation séquentielle de $\overline{A}$.
+        \item Prouver que, si $A$ est convexe, alors $\overline{A}$ est convexe.
+    \end{enumerate}
+    \item On pose $\forall x \in E, d_{A}(x) = \inf_{a \in A} \|x-a\|$.
+    \begin{enumerate}
+        \item Soit $x \in E$. Prouver que $d_{A}(x) = 0 \Rightarrow x \in \overline{A}$.
+        \item On suppose que $A$ est fermée et que, $\forall (x,y) \in E^{2}, \forall t \in [0,1], d_{A}(tx+(1-t)y) \le t d_{A}(x) + (1-t) d_{A}(y)$. Prouver que $A$ est convexe.
+    \end{enumerate}
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 5 (Source: Exercice 2) ---
+\begin{exercice}
+Soit $A$ une partie non vide de $E$ un evn. On note pour $x \in E$, $d_{A}(x)$ la distance de $x$ à $A$.
+\begin{enumerate}
+    \item Montrer que la partie formée des éléments de $E$ dont la distance à $A$ est nulle est l'adhérence de $A$.
+    \item En déduire que si $A$ et $B$ sont deux parties de $E$, on a $d_{A} = d_{B}$ si et seulement si $A$ et $B$ ont même adhérence.
+    \item On note $\mathcal{F}$ l'ensemble des fermés non vides de $E$. Montrer que l'application $A \mapsto d_{A}$ de $\mathcal{F}$ vers $\mathcal{F}(E, \mathbb{R})$ est injective.
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 6 (Source: EXERCICE 35 analyse) ---
+\begin{exercice}
+$E$ et $F$ désignent deux espaces vectoriels normés.
+\begin{enumerate}
+    \item Soient $f$ une application de $E$ dans $F$ et $a$ un point de $E$. On considère les propositions suivantes :
+    \begin{itemize}
+        \item P1. $f$ est continue en $a$.
+        \item P2. Pour toute suite $(x_{n})$ d'éléments de $E$ telle que $\lim_{n \rightarrow +\infty} x_{n} = a$, alors $\lim_{n \rightarrow +\infty} f(x_{n}) = f(a)$.
+    \end{itemize}
+    Prouver que les propositions P1 et P2 sont équivalentes.
+    \item Soit $A$ une partie dense d'un sous-espace vectoriel normé $E$, et soient $f$ et $g$ deux applications continues de $E$ dans $F$. Démontrer que si, pour tout $x \in A$, $f(x)=g(x)$, alors $f=g$.
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 7 (Source: EXERCICE 41 analyse) ---
+\begin{exercice}
+Énoncer quatre théorèmes différents ou méthodes permettant de prouver qu'une partie d'un espace vectoriel normé est fermée et pour chacun d'eux, donner un exemple concret d'utilisation dans $\mathbb{R}^{2}$.
+\textit{Remarques :}
+1. On utilisera au moins une fois des suites.
+2. On pourra utiliser au plus une fois le passage au complémentaire.
+3. Ne pas utiliser le fait que $\mathbb{R}^{2}$ et l'ensemble vide sont des parties ouvertes et fermées.
+\end{exercice}
+
+% --- Exercice 8 (Source: Exercice 3) ---
+\begin{exercice}
+Étudier la continuité en $(0,0)$ de l'application de $\mathbb{R}^{2}$ dans $\mathbb{R}$ définie par :
+$$ f(x,y) = \begin{cases} \frac{xy}{x^{2}+y^{2}} & \text{si } (x,y) \neq (0,0) \\ 0 & \text{si } (x,y) = (0,0) \end{cases} $$
+\end{exercice}
+
+% --- Exercice 9 (Source: Exercice 4) ---
+\begin{exercice}
+Étudier la continuité en $(0,0)$ de l'application de $\mathbb{R}^{2}$ dans $\mathbb{R}$ définie par :
+$$ f(x,y) = \begin{cases} \frac{\sqrt{|xy|}}{\sqrt{|x|+|y|}} & \text{si } (x,y) \neq (0,0) \\ 0 & \text{si } (x,y) = (0,0) \end{cases} $$
+\end{exercice}
+
+% --- Exercice 10 (Source: Exercice 5) ---
+\begin{exercice}
+On considère $E=\mathbb{R}^{2}$. Justifier la continuité sur $\mathbb{R}^{2}$ des applications de $\mathbb{R}^{2}$ dans $\mathbb{R}$ définies par :
+\begin{itemize}
+    \item $f(x,y) = \begin{cases} \frac{x^{3}+y^{3}}{x^{2}+y^{2}} & \text{si } (x,y) \neq (0,0) \\ 0 & \text{si } (x,y) = (0,0) \end{cases}$
+    \item $g(x,y) = \begin{cases} \frac{x^{2}y^{2}}{x^{2}+y^{2}} & \text{si } (x,y) \neq (0,0) \\ 0 & \text{si } (x,y) = (0,0) \end{cases}$
+    \item $h(x,y) = \begin{cases} \frac{\sin(x)-\sin(y)}{x-y} & \text{si } x \neq y \\ \cos(x) & \text{sinon} \end{cases}$
+\end{itemize}
+\textit{Indication :} On commencera par remarquer que $h(x,y) = \int_{0}^{1} \cos((x-y)t+y) dt$ et on en déduira que $h$ est lipschitzienne.
+\end{exercice}
+
+% --- Exercice 11 (Source: Exercice 6) ---
+\begin{exercice}
+Soit $(E, \| \cdot \|)$ un evn et $f: E \rightarrow E$ définie par $f(x) = \frac{1}{1+\|x\|}x$.
+Montrer que $f$ est un homéomorphisme de $E$ sur la boule unité ouverte $B(0,1)$, c'est-à-dire réalise une bijection de $E$ sur $B(0,1)$, continue ainsi que sa réciproque $f^{-1}$.
+Résoudre pour cela l'équation $f(x)=y$ pour expliciter $f^{-1}$.
+\end{exercice}
+
+% --- Exercice 12 (Source: Exercice 7) ---
+\begin{exercice}
+Déterminer les applications $f: \mathbb{R}^{+} \rightarrow \mathbb{R}$ continues vérifiant pour tout $x \in \mathbb{R}^{+}$, $f(x^{2})=f(x)$.
+On utilisera le fait que pour tout naturel $n$ et tout $x \in \mathbb{R}^{+}$, $f(x) = f(x^{\frac{1}{n}})$. (Attention, l'énoncé suggère $x^{1/2^n}$ plutôt).
+\end{exercice}
+
+% --- Exercice 13 (Source: Exercice 8) ---
+\begin{exercice}
+Dans $E=\mathbb{R}^{n}$ euclidien pour le produit scalaire usuel, justifier la continuité de l'application $E \times E \rightarrow \mathbb{R}$ définie par $(x,y) \mapsto \|x\| \cdot \|y\| - |\langle x | y \rangle|$.
+En déduire que l'ensemble $\{(x,y) \in E \times E, (x,y) \text{ libre}\}$ est un ouvert de $E \times E$.
+\end{exercice}
+
+% --- Exercice 14 (Source: Exercice 9) ---
+\begin{exercice}
+On munit $M_{n}(\mathbb{R})$ de la norme $N(A) = \max \{|a_{ij}|, i,j \in \{1,\dots,n\}\}$.
+\begin{enumerate}
+    \item En identifiant $M_{n}(\mathbb{R})$ à $\mathbb{K}^{n^{2}}$, justifier que $N$ est bien une norme.
+    \item On fixe une matrice $A$ de $M_{n}(\mathbb{R})$. Montrer que les applications suivantes sont continues :
+    $$ M \mapsto A+M, \quad M \mapsto AM, \quad M \mapsto MA $$
+    \item Montrer que $GL_{n}(\mathbb{R})$ est un ouvert dense de $M_{n}(\mathbb{R})$.
+    \item Montrer que $SL_{n}(\mathbb{R})$ est un fermé d'intérieur vide de $M_{n}(\mathbb{R})$.
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 15 (Source: EXERCICE 36 analyse) ---
+\begin{exercice}
+Soient $E, F$ deux espaces vectoriels normés sur le corps $\mathbb{R}$.
+\begin{enumerate}
+    \item Démontrer que si $f$ est une application linéaire de $E$ dans $F$, alors les propriétés suivantes sont deux à deux équivalentes :
+    \begin{itemize}
+        \item P1. $f$ est continue sur $E$.
+        \item P2. $f$ est continue en $0_{E}$.
+        \item P3. $\exists k > 0$ tel que $\forall x \in E, \|f(x)\|_{F} \le k \|x\|_{E}$.
+    \end{itemize}
+    \item Soit $E$ l'espace vectoriel des applications continues de $[0,1]$ dans $\mathbb{R}$ muni de la norme définie par $\|f\|_{\infty} = \sup_{x \in [0,1]} |f(x)|$. On considère l'application $\varphi$ de $E$ dans $\mathbb{R}$ définie par $\varphi(f) = \int_{0}^{1} f(t) dt$. Démontrer que $\varphi$ est linéaire et continue.
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 16 (Source: Exercice 10) ---
+\begin{exercice}
+On pose $E=C^{0}([0,1], \mathbb{R})$ muni de la norme $\|\cdot\|_{\infty}$.
+Montrer que l'application qui à une fonction $f$ de $E$ associe son unique primitive s'annulant en 0 est linéaire et continue. Déterminer sa norme d'opérateur.
+\end{exercice}
+
+% --- Exercice 17 (Source: EXERCICE 54 analyse) ---
+\begin{exercice}
+Soit $E$ l'ensemble des suites à valeurs réelles qui convergent vers 0.
+\begin{enumerate}
+    \item Prouver que $E$ est un sous-espace vectoriel de l'espace vectoriel des suites à valeurs réelles.
+    \item On pose : $\forall u=(u_{n})_{n \in \mathbb{N}} \in E, \|u\| = \sup_{n \in \mathbb{N}} |u_{n}|$.
+    \begin{enumerate}
+        \item Prouver que $\|\cdot\|$ est une norme sur $E$.
+        \item Prouver que $\forall u=(u_{n})_{n \in \mathbb{N}} \in E, \sum \frac{u_{n}}{2^{n+1}}$ converge.
+        \item On pose alors $f(u) = \sum_{n=0}^{+\infty} \frac{u_{n}}{2^{n+1}}$. Prouver que $f$ est continue sur $E$.
+    \end{enumerate}
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 18 (Source: Exercice 11) ---
+\begin{exercice}
+On considère $E=\mathbb{R}[X]$ muni de la norme $\|P\| = \max \{|a_{i}|, i \in \{0,\dots,n\}\}$ pour $P = \sum_{i=0}^{n} a_{i} X^{i}$.
+Les formes linéaires suivantes sont-elles continues ? Si oui déterminer leur norme d'opérateur.
+$$ P \mapsto P(0), \quad P \mapsto \int_{0}^{1} P(t) dt, \quad P \mapsto P(1) $$
+\end{exercice}
+
+% --- Exercice 19 (Source: Exercice 12) ---
+\begin{exercice}
+On munit $\mathbb{R}^{2}$ de la norme $\|\cdot\|_{\infty}$.
+\begin{enumerate}
+    \item Montrer que pour toute matrice $A \in M_{2}(\mathbb{R})$ on peut définir $|||A||| = \sup \left\{ \frac{\|AX\|_{\infty}}{\|X\|_{\infty}}, X \in \mathbb{R}^{2} \setminus \{0\} \right\}$.
+    \item Expliciter sa valeur en fonction des coefficients de $A$.
+    \item Montrer qu'il s'agit d'une norme d'algèbre.
+    \item Mêmes questions en remplaçant $\|\cdot\|_{\infty}$ par $\|\cdot\|_{1}$.
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 20 (Source: Exercice 13) ---
+\begin{exercice}
+Soit $f \in L(E,F)$ où $E$ et $F$ sont deux evns sur $\mathbb{K}$.
+Montrer que $f$ est continue ssi $\{x \in E, \|f(x)\| = 1\}$ est un fermé.
+\end{exercice}
+
+% --- Exercice 21 (Source: Exercice 14) ---
+\begin{exercice}
+Soient $(E, N)$ un evn, $\varphi$ une forme linéaire non nulle et $H = \ker(\varphi)$.
+\begin{enumerate}
+    \item Justifier l'existence d'un vecteur $a$ tel que $\varphi(a)=1$ et montrer que $E = H \oplus \text{Vect}(a)$.
+    \item On suppose que $\varphi$ est continue. Montrer que $H$ est fermé.
+    \item On suppose que $\varphi$ n'est pas continue.
+    \begin{enumerate}
+        \item Montrer qu'il existe une suite $u_{n}$ de vecteurs de norme 1 telle que pour tout $n$, $|\varphi(u_{n})| \ge n$.
+        \item Construire à l'aide de $u_{n}$ et $a$ une suite de vecteurs de $H$ qui converge vers $a$.
+        \item En déduire que $H$ n'est pas fermé.
+    \end{enumerate}
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 22 (Source: Exercice 15) ---
+\begin{exercice}
+Vérifier que $O(2)$, l'ensemble des matrices orthogonales, est un compact de $GL_{2}(\mathbb{R})$.
+\end{exercice}
+
+% --- Exercice 23 (Source: Exercice 16) ---
+\begin{exercice}
+Soit $A$ un compact et $B$ un fermé de l'evn $E$.
+Montrer que $A+B$ est un fermé de $E$.
+\end{exercice}
+
+% --- Exercice 24 (Source: Exercice 17) ---
+\begin{exercice}
+Soit $E$ un evn. On rappelle que le diamètre d'une partie $A$ bornée non vide de $E$ est le réel $\text{diam}(A) = \sup \{ \|x-y\|, (x,y) \in A^{2} \}$.
+Soit $A$ une partie compacte de $E$. Montrer qu'il existe un couple $(a,b)$ de points de $A$ tels que $\text{diam}(A) = \|a-b\|$.
+\end{exercice}
+
+% --- Exercice 25 (Source: Exercice 18) ---
+\begin{exercice}
+Soit $(E, N)$ un evn et $(u_{n})_{n \in \mathbb{N}}$ une suite convergente de limite $\ell$.
+Montrer que $A = \{u_{n}, n \in \mathbb{N}\} \cup \{\ell\}$ est un compact.
+\end{exercice}
+
+% --- Exercice 26 (Source: Exercice 19) ---
+\begin{exercice}
+Soit $A$ un compact de $E$ et $f$ une application de $A$ dans $A$ lipschitzienne de rapport $k \in [0,1[$.
+\begin{enumerate}
+    \item En utilisant $g : x \mapsto \|x-f(x)\|$, montrer que $f$ possède un point fixe. Montrer que ce point fixe est unique.
+    \item Montrer que toute suite $(u_{n})_{n \in \mathbb{N}}$ définie par $u_{0} \in A$ et pour tout $n$, $u_{n+1}=f(u_{n})$ converge vers ce point fixe.
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 27 (Source: Exercice 20) ---
+\begin{exercice}
+Montrer qu'une application continue périodique de $\mathbb{R}$ dans $\mathbb{R}$ est uniformément continue sur $\mathbb{R}$.
+\end{exercice}
+
+% --- Exercice 28 (Source: Exercice 21) ---
+\begin{exercice}
+Montrer que $x \mapsto \sqrt{x}$ est uniformément continue sur $\mathbb{R}^{+}$.
+\end{exercice}
+
+% --- Exercice 29 (Source: Exercice 22) ---
+\begin{exercice}
+Montrer que dans un evn de dimension finie supérieure à 2, la sphère unité est connexe par arcs.
+\end{exercice}
+
+% --- Exercice 30 (Source: Exercice 23) ---
+\begin{exercice}
+Soit $A \neq E$ un fermé dont la frontière est connexe par arcs.
+\begin{enumerate}
+    \item Soit $a \in A, c \notin A$. Montrer qu'il existe $d \in [a,c]$ tel que $d \in \text{Fr}(A)$.
+    \item En déduire que $A$ est connexe par arcs.
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 31 (Source: Exercice 24) ---
+\begin{exercice}
+Utiliser la fonction déterminant pour montrer que ni $GL_{n}(\mathbb{R})$ ni le groupe orthogonal $O(n)$ ne sont connexes par arcs.
+\end{exercice}
+
+\newpage
+\section{Corrections}
+
+% --- Correction 1 ---
+\begin{correction}{1}
+\textbf{1. Par le complémentaire :}
+$\mathbb{R} \setminus \mathbb{Z} = \bigcup_{k \in \mathbb{Z}} ]k, k+1[$.
+Chaque intervalle $]k, k+1[ = B(k+\frac{1}{2}, \frac{1}{2})$ est une boule ouverte, donc un ouvert.
+Une réunion d'ouverts étant ouverte, le complémentaire de $\mathbb{Z}$ est ouvert, donc $\mathbb{Z}$ est fermé.
+
+\textbf{2. Par l'image réciproque :}
+Considérons $f : x \mapsto \sin(\pi x)$.
+$f$ est continue sur $\mathbb{R}$.
+$\mathbb{Z} = \{ x \in \mathbb{R}, f(x)=0 \} = f^{-1}(\{0\})$.
+$\{0\}$ est un fermé (singleton dans un espace séparé). L'image réciproque d'un fermé par une application continue est un fermé. Donc $\mathbb{Z}$ est fermé.
+
+\textbf{3. Par caractérisation séquentielle :}
+Soit $(u_{n})$ une suite d'éléments de $\mathbb{Z}$ qui converge vers $\ell \in \mathbb{R}$.
+Une suite convergente de Cauchy : $\exists N, \forall p,q \ge N, |u_{p} - u_{q}| < \epsilon$.
+Prenons $\epsilon = \frac{1}{2}$.
+Si $u_{p}, u_{q} \in \mathbb{Z}$ et $|u_{p} - u_{q}| < \frac{1}{2}$, alors $u_{p} = u_{q}$.
+La suite est donc stationnaire à partir d'un certain rang : $\exists N, \forall n \ge N, u_{n} = C \in \mathbb{Z}$.
+Donc $\ell = C \in \mathbb{Z}$. $\mathbb{Z}$ est séquentiellement fermé.
+
+\textbf{4. Autre méthode (voisinage) :}
+Montrons que le complémentaire $A = \mathbb{R} \setminus \mathbb{Z}$ est ouvert.
+Soit $a \in A$. $a \notin \mathbb{Z}$, donc $\lfloor a \rfloor < a < \lfloor a \rfloor + 1$.
+Posons $R = \min(a - \lfloor a \rfloor, \lfloor a \rfloor + 1 - a)$.
+Alors $B(a, R) \subset ]\lfloor a \rfloor, \lfloor a \rfloor + 1[ \subset \mathbb{R} \setminus \mathbb{Z}$.
+Donc $A$ est ouvert.
+\end{correction}
+
+% --- Correction 5 (Exercice 2 dans le PDF) ---
+\begin{correction}{5}
+ \textbf{a) Distance nulle et adhérence :}
+On note $W = \{x \in E, d_{A}(x) = 0\}$.
+Soit $x \in E$.
+$x \in W \iff \inf_{a \in A} \|x-a\| = 0$
+$\iff \forall \epsilon > 0, \exists a \in A, \|x-a\| \le \epsilon$ (caractérisation de l'inf)
+$\iff \forall \epsilon > 0, A \cap B(x, \epsilon) \neq \emptyset$
+$\iff x \in \overline{A}$.
+Donc $W = \overline{A}$.
+
+\textbf{b) Égalité des distances :}
+Supposons $d_{A} = d_{B}$.
+Alors $\forall x, d_{A}(x)=0 \iff d_{B}(x)=0$.
+D'après a), cela signifie $x \in \overline{A} \iff x \in \overline{B}$. Donc $\overline{A} = \overline{B}$.
+
+Réciproquement, montrons le lemme : $\forall A \subset E, d_{A} = d_{\overline{A}}$.
+Puisque $A \subset \overline{A}$, $\inf_{y \in \overline{A}} \|x-y\| \le \inf_{y \in A} \|x-y\|$, donc $d_{\overline{A}}(x) \le d_{A}(x)$.
+Inversement, soit $y \in \overline{A}$. Il existe une suite $(a_{n}) \in A$ telle que $a_{n} \to y$.
+On a $\|x-a_{n}\| \to \|x-y\|$.
+Or $\|x-a_{n}\| \ge d_{A}(x)$. À la limite, $\|x-y\| \ge d_{A}(x)$.
+En passant à l'infimum sur $y \in \overline{A}$, on a $d_{\overline{A}}(x) \ge d_{A}(x)$.
+D'où l'égalité.
+Si $\overline{A} = \overline{B}$, alors $d_{A} = d_{\overline{A}} = d_{\overline{B}} = d_{B}$.
+
+\textbf{c) Injectivité :}
+Soient $A, B \in \mathcal{F}$ (fermés non vides).
+Si $d_{A} = d_{B}$, alors d'après b), $\overline{A} = \overline{B}$.
+Comme $A$ et $B$ sont fermés, $A = \overline{A}$ et $B = \overline{B}$.
+Donc $A = B$. L'application est injective.
+\end{correction}
+
+% --- Correction 9 (Exercice 4 du PDF) ---
+\begin{correction}{9}
+ On s'intéresse à la continuité en $(0,0)$.
+On sait que $\forall a,b \in \mathbb{R}, (|a|-|b|)^{2} \ge 0 \implies a^{2}+b^{2} \ge 2|ab|$.
+Donc $|ab| \le \frac{1}{2}(a^{2}+b^{2})$.
+Et $\sqrt{|xy|} \le \frac{1}{\sqrt{2}} \sqrt{x^{2}+y^{2}}$.
+Cependant, l'inégalité utile ici est plutôt : $\sqrt{|x|} \le \sqrt{|x|+|y|}$ et $\sqrt{|y|} \le \sqrt{|x|+|y|}$.
+Donc $\frac{\sqrt{|x|}}{\sqrt{|x|+|y|}} \le 1$.
+Ainsi $|f(x,y)| = \sqrt{|y|} \frac{\sqrt{|x|}}{\sqrt{|x|+|y|}} \le \sqrt{|y|}$.
+Quand $(x,y) \to (0,0)$, $\sqrt{|y|} \to 0$.
+Donc $\lim_{(x,y) \to (0,0)} f(x,y) = 0 = f(0,0)$.
+La fonction est continue en $(0,0)$.
+\end{correction}
+
+% --- Correction 18 (Exercice 11 du PDF) ---
+\begin{correction}{18}
+ Soit $E = \mathbb{R}[X]$ muni de $\|P\| = \max |a_{i}|$.
+1. $\varphi_{1}(P) = P(0) = a_{0}$.
+$|\varphi_{1}(P)| = |a_{0}| \le \|P\|$. Donc $\varphi_{1}$ est continue et $\|\varphi_{1}\| \le 1$.
+Pour $P=1$, $\varphi_{1}(1)=1$ et $\|1\|=1$, donc $|\varphi_{1}(1)| = 1 \cdot \|1\|$.
+La norme est atteinte, $\|\varphi_{1}\| = 1$.
+
+2. $\varphi_{2}(P) = \int_{0}^{1} P(t) dt = \sum_{i=0}^{n} \frac{a_{i}}{i+1}$.
+Considérons $P_{n} = \sum_{k=0}^{n} X^{k}$. $\|P_{n}\| = 1$.
+$\varphi_{2}(P_{n}) = \sum_{k=0}^{n} \frac{1}{k+1} \to +\infty$ quand $n \to \infty$.
+Le rapport $\frac{|\varphi_{2}(P_{n})|}{\|P_{n}\|}$ n'est pas borné.
+$\varphi_{2}$ n'est pas continue.
+
+3. $\varphi_{3}(P) = P(1) = \sum a_{i}$.
+De même avec $P_{n} = \sum_{k=0}^{n} X^{k}$, $\varphi_{3}(P_{n}) = n+1$.
+$\|P_{n}\| = 1$. Non borné. $\varphi_{3}$ non continue.
+\end{correction}
+
+% --- Correction 20 (Exercice 13 du PDF) ---
+\begin{correction}{20}
+ Soit $B = \{x \in E, \|f(x)\| = 1\}$.
+Supposons $f$ continue. $x \mapsto \|f(x)\|$ est continue (composition).
+$B$ est l'image réciproque du fermé $\{1\}$ par une application continue, donc $B$ est fermé.
+
+Réciproquement, supposons $B$ fermé. Supposons par l'absurde que $f$ n'est pas continue.
+Alors $f$ n'est pas bornée sur la boule unité.
+$\forall n \in \mathbb{N}, \exists x_{n} \in E, \|f(x_{n})\| > n \|x_{n}\|$.
+On peut supposer $f(x_{n}) \neq 0$.
+Posons $u_{n} = \frac{x_{n}}{\|f(x_{n})\|}$.
+Par linéarité, $\|f(u_{n})\| = \frac{\|f(x_{n})\|}{\|f(x_{n})\|} = 1$. Donc $u_{n} \in B$.
+Mais $\|u_{n}\| = \frac{\|x_{n}\|}{\|f(x_{n})\|} < \frac{1}{n}$.
+Donc $u_{n} \to 0_{E}$.
+Puisque $B$ est fermé, la limite $0_{E}$ devrait appartenir à $B$.
+Or $\|f(0_{E})\| = 0 \neq 1$. Contradiction.
+Donc $f$ est continue.
+\end{correction}
+
+% --- Correction 23 (Exercice 16 du PDF) ---
+\begin{correction}{23}
+Soit $A$ compact et $B$ fermé. Montrons que $A+B$ est fermé.
+Soit $(c_{n})$ une suite de $A+B$ convergeant vers $\ell$.
+$c_{n} = a_{n} + b_{n}$ avec $a_{n} \in A, b_{n} \in B$.
+Comme $A$ est compact, on peut extraire une sous-suite $(a_{\phi(n)})$ qui converge vers $a \in A$.
+On a $b_{\phi(n)} = c_{\phi(n)} - a_{\phi(n)}$.
+$c_{\phi(n)} \to \ell$ (suite extraite convergente) et $a_{\phi(n)} \to a$.
+Donc $b_{\phi(n)} \to \ell - a$.
+Or $B$ est fermé, donc la limite $\ell - a$ appartient à $B$.
+Ainsi $\ell = a + (\ell - a) \in A + B$.
+$A+B$ est fermé.
+\end{correction}
+
+% --- Correction 24 (Exercice 17 du PDF) ---
+\begin{correction}{24}
+$A$ est compact donc borné. L'ensemble des distances est borné, la borne sup existe.
+Considérons l'application $\Phi : A \times A \rightarrow \mathbb{R}$ définie par $\Phi(x,y) = \|x-y\|$.
+$\Phi$ est continue car la norme est continue (lipschitzienne).
+$A \times A$ est compact car produit de deux compacts.
+L'image d'un compact par une application continue est un compact (donc borné et atteint ses bornes).
+Donc le sup est atteint : $\exists (a,b) \in A^{2}, \text{diam}(A) = \|a-b\|$.
+\end{correction}
+
+% --- Correction 25 (Exercice 18 du PDF) ---
+\begin{correction}{25}
+Soit $(a_{p})$ une suite d'éléments de $K = \{u_{n}\} \cup \{\ell\}$.
+Cas 1 : La suite prend une infinité de fois la valeur $\ell$ ou une valeur $u_{n_0}$. Alors on peut extraire une sous-suite constante, qui converge dans $K$.
+Cas 2 : La suite $(a_{p})$ prend une infinité de valeurs distinctes de la suite $(u_{n})$.
+On peut extraire une sous-suite $(u_{\phi(n)})$.
+Comme $u_{n} \to \ell$, toute sous-suite converge vers $\ell$.
+$\ell \in K$.
+Dans tous les cas, on peut extraire une sous-suite convergente dans $K$.
+Donc $K$ est compact.
+\end{correction}
+
+% --- Correction 26 (Exercice 19 du PDF) ---
+\begin{correction}{26}
+
+1. Soit $g : x \mapsto \|x-f(x)\|$. $g$ est continue sur le compact $A$, donc elle atteint son minimum en un point $x_{0}$.
+Supposons $g(x_{0}) > 0$.
+$g(f(x_{0})) = \|f(x_{0}) - f(f(x_{0}))\| \le k \|x_{0} - f(x_{0})\|$ (car $f$ $k$-lipschitzienne).
+Donc $g(f(x_{0})) \le k g(x_{0}) < g(x_{0})$ (car $k < 1$).
+Cela contredit le fait que $g(x_{0})$ est le minimum.
+Donc $g(x_{0}) = 0$, soit $f(x_{0}) = x_{0}$. Existence du point fixe.
+Unicité : Si $x, y$ sont points fixes, $\|x-y\| = \|f(x)-f(y)\| \le k \|x-y\|$.
+$(1-k)\|x-y\| \le 0 \implies \|x-y\| = 0 \implies x=y$.
+
+2. $\|u_{n+1} - x_{0}\| = \|f(u_{n}) - f(x_{0})\| \le k \|u_{n} - x_{0}\|$.
+Par récurrence, $\|u_{n} - x_{0}\| \le k^{n} \|u_{0} - x_{0}\|$.
+Comme $k \in [0,1[$, $k^{n} \to 0$. Donc $u_{n} \to x_{0}$.
+\end{correction}
+
+% --- Correction 27 (Exercice 20 du PDF) ---
+\begin{correction}{27}
+Soit $f$ continue et $T$-périodique.
+Sur le segment $[0, 2T]$, $f$ est continue, donc uniformément continue (Théorème de Heine).
+$\forall \epsilon > 0, \exists \delta > 0, \forall x,y \in [0, 2T], |x-y| \le \delta \implies |f(x)-f(y)| \le \epsilon$.
+Prenons $\delta' = \min(\delta, T)$.
+Soient $x, y \in \mathbb{R}$ tels que $|x-y| \le \delta'$.
+Il existe $n \in \mathbb{Z}$ tel que $x' = x - nT \in [0, T]$.
+Posons $y' = y - nT$. Alors $|x'-y'| = |x-y| \le \delta' \le T$.
+Donc $y' \in [-T, 2T]$.
+En fait, on peut toujours se ramener à un intervalle de longueur $2T$ centré ou décalé.
+Si $x' \in [0, T]$, alors $y' \in [-\delta, T+\delta] \subset [-T, 2T]$.
+La fonction étant périodique, elle prend les mêmes valeurs sur des intervalles décalés.
+La restriction de $f$ à tout intervalle de longueur $2T$ est uniformément continue avec le même module de continuité.
+Donc $f$ est uniformément continue sur $\mathbb{R}$.
+\end{correction}
+
+% --- Correction 28 (Exercice 21 du PDF) ---
+\begin{correction}{28}
+
+Sur $[1, +\infty[$, $f(x) = \sqrt{x}$ a pour dérivée $f'(x) = \frac{1}{2\sqrt{x}} \le \frac{1}{2}$.
+La dérivée est bornée, donc $f$ est lipschitzienne, donc uniformément continue sur $[1, +\infty[$.
+Sur $[0, 1]$, $f$ est continue sur un compact, donc uniformément continue (Heine).
+L'union de deux intervalles sur lesquels $f$ est uniformément continue (avec recouvrement) conserve l'uniforme continuité.
+Donc $f$ est uniformément continue sur $\mathbb{R}^{+}$.
+\end{correction}
+
+% --- Correction 29 (Exercice 22 du PDF) ---
+\begin{correction}{29}
+Soient $a, b$ deux points de la sphère unité $S$.
+Si $b \neq -a$ :
+Considérons le segment $[a,b]$. Il ne passe pas par 0.
+On projette ce segment sur la sphère : $f(t) = \frac{(1-t)a + tb}{\|(1-t)a + tb\|}$.
+C'est bien défini car le dénominateur ne s'annule pas (0 n'est pas sur le segment car $a, b$ non antipodaux de même norme et $a \neq -b$).
+$f$ est un chemin continu reliant $a$ à $b$ sur la sphère.
+Si $b = -a$ :
+Comme la dimension est $\ge 2$, il existe un vecteur $c$ sur la sphère tel que $c \neq a$ et $c \neq -a$.
+On peut relier $a$ à $c$ (car non antipodaux) et $c$ à $b$ (car non antipodaux).
+La concaténation des chemins relie $a$ à $b$.
+La sphère est connexe par arcs.
+\end{correction}
+
+% --- Correction 30 (Exercice 23 du PDF) ---
+\begin{correction}{30}
+
+1. Soit $\phi(t) = (1-t)a + tc$ le segment reliant $a \in A$ à $c \notin A$.
+Soit $E = \{ t \in [0,1], \phi(t) \in A \}$. $0 \in E$, donc $E$ non vide.
+Soit $t_{0} = \sup E$.
+Comme $A$ est fermé, $\phi(t_{0}) \in A$.
+Comme $c \notin A$, $t_{0} < 1$.
+Pour tout $\epsilon > 0$, il existe $t > t_{0}$ tel que $\phi(t) \notin A$ (sinon $t_{0}$ ne serait pas le sup).
+Donc $\phi(t_{0})$ est limite de points hors de $A$ et est dans $A$.
+C'est un point frontière. Donc $d = \phi(t_{0}) \in \text{Fr}(A)$.
+
+2. Soient $x, y \in A$.
+Si le segment $[x,y] \subset A$, c'est fini.
+Sinon, il sort de $A$. Mais l'énoncé suggère d'utiliser la frontière.
+On peut relier tout point de $A$ à la frontière ? Non, pas forcément (ex : boule ouverte).
+Mais si $A$ est fermé et connexe par arcs... l'énoncé dit "dont la frontière est connexe par arcs".
+Si $A \neq E$ et $A \neq \emptyset$.
+Pour tout $a \in A$, peut-on le relier à la frontière ?
+Si $A$ est borné, on prend une demi-droite partant de $a$. Elle finit par sortir. Le point de sortie est sur la frontière.
+On relie $a$ à un point $d_{a} \in \text{Fr}(A)$ par un segment.
+On relie $b$ à un point $d_{b} \in \text{Fr}(A)$ par un segment.
+Comme $\text{Fr}(A)$ est connexe par arcs, on relie $d_{a}$ à $d_{b}$ par un chemin dans la frontière (donc dans $A$).
+Le chemin total relie $a$ à $b$ dans $A$.
+\end{correction}
+
+% --- Correction 31 (Exercice 24 du PDF) ---
+\begin{correction}{31}
+L'application déterminant est continue.
+L'image de $GL_{n}(\mathbb{R})$ par $\det$ est $\mathbb{R}^{*}$.
+$\mathbb{R}^{*}$ n'est pas connexe (deux composantes connexes $\mathbb{R}_{-}^{*}$ et $\mathbb{R}_{+}^{*}$).
+L'image d'un connexe par une application continue doit être connexe.
+Donc $GL_{n}(\mathbb{R})$ n'est pas connexe (et donc pas connexe par arcs).
+De même, $\det(O(n)) = \{-1, 1\}$, qui n'est pas connexe.
+\end{correction}

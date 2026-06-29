@@ -1,0 +1,2710 @@
+Soit $\K$ un sous-corps de $\C$ et $E$ un $\K$-espace vectoriel.
+ 
+\section{Sous-espaces stables}
+
+\begin{definition}{endomorphisme induit}{}
+    \index{Endomorphisme!induit}
+    Soit $u \in \mathscr L(E)$ et $F$ un sous-espace vectoriel de $E$. On dit que 
+    $F$ est stable par $u$ ssi $\forall x \in F, u(x) \in F$.
+
+    En ce cas on peut définir $\fonction{\tilde u}{F}{F}{x}{u(x)}$ qui est une application 
+    linéaire, appelée endomorphisme induit par $u$ sur $F$.
+\end{definition}
+
+\subsection{Cas de la dimension finie}
+
+\begin{proposition}{supplémentaire et base adaptée}{}
+    \index{Supplementaire@Supplémentaire}
+    \index{Base adaptée}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie $n$, $F$ un sous-espace vectoriel de $E$
+    de dimension $p$, avec $1 \leqslant p \leqslant n - 1$. 
+
+    Soit $B_1$ une base de $F$, et complétons la en $B = B_1 \sqcup B_2$ une base de $E$. Alors 
+    $\Vect (B_2) = G$ est un supplémentaire de $F$ dans $E$ et 
+    $B$ est adaptée à la décomposition $E = F \oplus G$.
+
+\end{proposition}
+
+\begin{proposition}{caractérisation matricielle de la stabilité}{}
+    En reprenant les notations précédentes, soit $u \in \mathscr L(E)$ et $A = M_B(u) \in \mathscr M_n(\K)$. 
+    Alors $F$ est stable par $u$ ssi 
+    $\exists A' \in \mathscr M_{p}(\K), C \in \mathscr M_{p, n - p}(\K)$ et $D \in \mathscr M_{n - p}(\K)$ tels que
+    \[
+        A = \begin{pmatrix}
+            A' & C \\
+            0 & D
+        \end{pmatrix}
+    \]
+
+    En ce cas en notant $\tilde u$ l'endomorphisme induit par $u$ sur $F$, on a $A' = M_{B_1}(\tilde u)$.
+\end{proposition}
+
+\begin{proof}
+    Supposons que $F$ est stable par $u$. Alors pour tout $j \in \ninter 1 p $ en notant 
+    $B_1 = (e_1, \ldots, e_p)$ on a $e_i \in F$ donc $u(e_j) \in F$. 
+
+    Donc les coordonnées de $u(e_j)$ selon les $e_i$ pour $i > p$ sont toutes nulles, donc 
+    $A$ a la forme voulue.
+
+    \lvspace Réciproquement, si $A$ a la forme voulue, pour tout $j \in \ninter 1 p$ on a
+    $u(e_j) \in F$ donc pour tout $x = \sum_{i = 1}^p x_i e_i \in F$ on a
+    \[
+        u(x) = \sum_{i = 1}^p x_i u(e_i) \in F
+    \]
+    donc $F$ est stable par $u$ et donc les colonnes de $A'$ sont bien les coordonnées dans $B_1$ 
+    des vecteurs de $u(B_1)$.
+\end{proof}
+
+% \restaurergeometrie
+
+\section{\'Eléments propres d'un endomorphisme ou d'une matrice carrée }
+\subsection{Vecteur propre, valeur propre, sous-espace propre }
+
+Soit $E$ un $\K$-espace vectoriel non nul et $u \in \mathscr L(E)$.
+
+\begin{definition}{valeur propre}{}
+    \index{Valeur propre!d'un endomorphisme}
+    Soit $\lambda \in \K$. On dit que $\lambda$ est une valeur propre de $u$ ssi
+    $\exists x \in E$ tel que $\begin{cases} x \neq 0 \\ u(x) = \lambda x \end{cases}$.
+\end{definition}
+
+\begin{definition}{vecteur propre}{}
+    \index{Vecteur propre!d'un endomorphisme}
+    Soit $x \in E$. On dit que $x$ est un vecteur propre de $u$ ssi
+    $\exists \lambda \in \K$ tel que $\begin{cases} x \neq 0 \\ u(x) = \lambda x \end{cases}$.
+\end{definition}
+
+\begin{remarque}
+    Soient $\lambda \in \K$ et $x \in E$. Si $x \neq 0$ et $u(x) = \lambda x$, alors 
+    on dit que $\lambda$ est \emph{la} valeur propre associée au vecteur propre $x$ et 
+    que $x$ est \emph{un} vecteur propre associé à la valeur propre $\lambda$.
+
+    Si $x$ est un vecteur propre pour la valeur propre $\lambda$, il n'est pas unique 
+    car $2x$ l'est aussi par exemple.
+\end{remarque}
+
+\begin{definition}{espace propre}{}
+    \index{Espace propre!d'un endomorphisme}
+    Soit $\lambda \in \K$ une valeur propre de $u$. On appelle \emph{espace propre} 
+    associé l'espace vectoriel 
+    \begin{align} E_\lambda(u) & = \{ x \in E \mid u(x) = \lambda x \} \\
+                        & = \Ker (u - \lambda \Id_E) 
+    \end{align}
+    Il est donc formé des vecteurs propres de $u$ associés à la valeur propre $\lambda$,
+    ainsi que du vecteur nul.
+\end{definition}
+
+\begin{remarque}
+    Si $\lambda$ n'est pas une valeur propre de $u$, alors $E_\lambda(u) = \{0\}$.
+\end{remarque}
+
+\begin{definition}{spectre}{}
+    \index{Spectre!d'un endomorphisme}
+    Si $E$ est de dimension finie, l'ensemble des valeurs propres de $u$ est appelé spectre de $u$ 
+    et noté $\Sp(u)$.
+\end{definition}
+
+\begin{definition}{équation aux éléments propres}{}
+    \index{Equation aux elements propres@\'Equation aux éléments propres!d'un endomorphisme}
+    Soit $u \in \mathscr L(E)$. On appelle \emph{équation aux éléments propres} de $u$
+    l'équation \\ 
+    $u(x) = \lambda x$ où $x \in E \setminus \{0\}$ et $\lambda \in \K$ sont 
+    les inconnues. $(\lambda, x)$ est une solution de cette équation ssi $\lambda$ est une valeur propre 
+    de $u$ et $x$ un vecteur propre associé.
+\end{definition}
+
+\subsection{Exemples}
+\subsubsection{Homothéties}
+
+\begin{exemple}
+    Soit $\lambda \in \K$ et $u = \lambda \Id_E$ l'homothétie de rapport $\lambda$. 
+    Alors tout vecteur de $E$ est vecteur propre pour la valeur propre $\lambda$.
+    Donc $E_\lambda(u) = E$.
+
+    \avspace Réciproquement, si tout vecteur non nul de $E$ est propre pour un endomorphisme $u$, 
+    alors $u$ est une homothétie (fais dans un exo du TD du chapitre 11).
+\end{exemple}
+
+\subsubsection{Projections et symétries}
+
+\begin{exemple}
+    soient $F$ et $G$ deux sous-espaces vectoriels de $E$ tels que $E = F \oplus G$.
+    Soit $\pi$ la projection sur $F$ parallèlement à $G$ et $s = 2 \pi - \Id_E$ la symétrie associée. 
+
+    Ainsi si $x = x_F + x_G \in E$, alors $\pi(x) = x_F$ et $s(x) = x_F - x_G$.
+
+    On suppose que $F$ et $G$ sont non nuls. Alors les valeurs propres de $\pi$ sont $0$ et $1$ 
+    et les espaces propres associés sont $E_0(\pi) = G$ et $E_1(\pi) = F$.
+
+    Les valeurs propres de $s$ sont $-1$ et $1$ et les espaces propres associés sont 
+    $E_{-1}(s) = G$ et $E_1(s) = F$.
+
+    \uindent{Preuve }
+
+    \begin{proof} 
+        Pour trouver vecteurs et valeurs propres on écrit l'équation aux éléments propres.
+
+        Soit $\lambda \in \K, x \in E \setminus \{0\}$ tels que $\pi(x) = \lambda x$.
+        En écrivant $x = x_F + x_G$ avec $x_F \in F$ et $x_G \in G$, on a
+        
+        $\pi(x) = \lambda x $ ssi $x_F = \lambda (x_F + x_G)$ ssi $\begin{cases}
+        x_F = \lambda x_F \\
+        0 = \lambda x_G
+        \end{cases}$ ssi $\begin{cases}
+        (1 - \lambda) x_F = 0 \\
+        \lambda x_G = 0
+        \end{cases}$ ssi $\begin{cases}
+            \lambda = 1 \text{ ou } x_F = 0 \\
+            \lambda = 0 \text{ ou } x_G = 0
+        \end{cases}$.
+
+        Donc $\pi(x) = \lambda x$ ssi $\begin{cases}
+            \lambda = 1 &\text{ et } x_G = 0 \\
+            & \text{ ou } \\
+            \lambda = 0 &\text{ et } x_F = 0
+        \end{cases}$
+
+        \avspace De même, $s(x) = \lambda x$ ssi $(2 \pi - \Id_E)(x) = \lambda x$ ssi
+        $2 \pi(x) = (\lambda + 1) x$ ssi $\pi(x) = \frac{\lambda + 1}{2} x$ 
+        ssi $\begin{cases}
+            \frac{\lambda + 1}{2} = 1 &\text{ et } x_G = 0 \\
+            & \text{ ou } \\
+            \frac{\lambda + 1}{2} = 0 &\text{ et } x_F = 0
+        \end{cases}$ ssi $\begin{cases}
+            \lambda = 1 &\text{ et } x_G = 0 \\
+            & \text{ ou } \\
+            \lambda = -1 &\text{ et } x_F = 0
+        \end{cases}$.
+    \end{proof}
+\end{exemple}
+
+\subsubsection{Autres exemples }
+
+\marginenote{Important !}{Ce point peut s'avérer utile en exercice.}
+
+\avspace
+
+\begin{exemple}
+    Soit $u \in \mathscr L(E)$. Alors $0$ est valeur propre de $u$ ssi $u$ n'est pas injectif.
+    En effet, $0$ est valeur propre ssi $\exists x \in E \setminus \{0\}$ tel que $u(x) = 0$ 
+    ssi $\Ker(u) \neq \{0\}$ ssi $u$ n'est pas injectif.
+
+    Dans ce cas, l'espace propre associé est $E_0(u) = \Ker(u)$.
+\end{exemple}
+
+Un endomorphisme peut ne posséder aucune valeur propre.
+
+\begin{exemple}
+    Par exemple, $u = $ rotation d'angle $\frac \pi 2$ dans le plan euclidien orienté. 
+    $u$ est alors associé dans la base canonique à la matrice
+    \[
+        J = \begin{pmatrix}
+            0 & -1 \\
+            1 & 0
+        \end{pmatrix}
+    \]
+
+    en ce cas pour tout $\lambda \in \R$, $\det(u - \lambda \Id_E) = \det \begin{pmatrix}
+        -\lambda & -1 \\
+        1 & -\lambda
+    \end{pmatrix} = \lambda^2 + 1 \neq 0$ donc $u - \lambda \Id_E$ est bijectif, donc 
+    $\Ker(u - \lambda \Id_E) = \{0\}$ donc pas de vecteur propre. 
+\end{exemple}
+
+Un endomorphisme peut avoir une infinité de valeurs propres :
+
+\marginenote{Détail}{Cela ne fonctionne que parce qu'il s'agit d'un espace vectoriel de dimension infinie.}
+
+\begin{exemple}
+    Posons $E = \mathscr C^\infty(\R, \R)$ l'espace vectoriel des fonctions 
+    infiniment dérivables de $\R$ dans $\R$ et $\fonction u E E f {f'}$ la dérivation. 
+
+    $\forall \lambda \in \R$, $\lambda$ est valeur propre pour les vecteurs propres 
+    $$\fonction{f_\lambda}{\R}{\R}{x}{e^{\lambda x}}$$ car
+    $u(f_\lambda) = f_\lambda' = \lambda f_\lambda$.
+\end{exemple}
+
+\begin{exemple}
+    $E = \R^\N$ et $\fonction s E E {(a_n)_{n \in \N}}{(a_{n + 1})_{n \in \N}}$ l'application de décalage à gauche.
+
+    Tout $\lambda \in \R$ est valeur propre pour le vecteur propre du terme général $a_n = \lambda^n$.
+\end{exemple}
+
+\subsection{Droites stables }
+
+\begin{proposition}{droite stable et vecteur propre}{}
+    Soit $u \in \mathscr L(E)$, $a \in E \setminus \{0\}$ et $D = \Vect(a)$ une droite de $E$. 
+
+    Alors $D$ est stable par $u$ ssi $a$ est vecteur propre de $u$.
+
+    Ainsi les vecteurs non nuls d'une droite stable sont tous des vecteurs propres. 
+\end{proposition}
+
+\begin{proof}
+    $\Rightarrow$ Supposons que $D$ est stable par $u$. Alors $u(a) \in D$ donc 
+    $\exists \lambda \in \K$ tel que $u(a) = \lambda a$, donc $a$ est vecteur propre de $u$.
+    Or $a \neq 0$ donc $a$ est bien un vecteur propre de $u$.
+
+    \lvspace $\Leftarrow$ Réciproquement, si $a$ est vecteur propre de $u$, alors 
+    $\exists \lambda \in \K$ tel que $u(a) = \lambda a$. 
+
+    Donc pour tout $x \in D$, $\exists \mu \in \K$ tel que $x = \mu a$ et donc 
+    $u(x) = u(\mu a) = \mu u(a) = \mu \lambda a \in D$. Donc $D$ est stable par $u$.
+\end{proof}
+
+\subsection{Lien entre sous-espaces propres }
+
+\begin{theorement}{Nature famille de vecteurs propres associée à des valeurs propres distinctes}{}
+    Toute famille de vecteurs propres pour un même endomorphisme 
+    associés à des valeurs propres deux à deux distinctes est libre. 
+\end{theorement}
+
+\idee{
+    Par récurrence sur le cardinal de la famille.
+}
+
+\begin{proof}
+    On peut ramener la preuve au cas d'une famille finie car une famille est libre 
+    ssi toute sous famille finie est libre. 
+
+    Raisonnons par récurrence sur $k$ le cardinal de la famille. 
+
+    \uindent{Initialisation } $k = 1$
+
+    \svspace soit $x$ un vecteur propre pour $u$ alors $x \neq 0$ donc la famille $(x)$ est libre.
+
+    \uindent{Hérédité } Supposons le résultat pour toute famille de $k$ vecteurs. 
+
+    \svspace Soient $x_1, \ldots, x_{k + 1} \in E$ des vecteurs propres de $u$ pour les 
+    valeurs propres $\lambda_1, \ldots, \lambda_{k + 1}$.
+
+    Soient $\alpha_1, \ldots, \alpha_{k + 1} \in \K$ et supposons que 
+    $\displaystyle \sum_{i = 1}^{k + 1} \alpha_i x_i = 0$.
+
+    Appliquons $u$ à cette relation :
+    \[
+        \sum_{i = 1}^{k + 1} \alpha_i u(x_i) = \sum_{i = 1}^{k + 1} \alpha_i \lambda_i x_i = 0
+    \]
+    et alors en combinant ces deux relations (en prenant $- \lambda_{k+1}$ fois la première), on obtient :
+    \[
+        \sum_{i = 1}^{k} \alpha_i (\lambda_i - \lambda_{k + 1}) x_i = 0
+    \]
+
+    Or par hypothèse de récurrence, la famille $(x_1, \ldots, x_k)$ est libre et 
+    les $\lambda_i$ sont deux à deux distincts donc $\forall i \in \ninter 1 k, \lambda_i - \lambda_{k + 1} \neq 0$.
+
+    Donc $\forall i \in \ninter 1 k, \alpha_i = 0$ et donc $\alpha_{k + 1} = 0$. 
+    Ainsi la famille $(x_1, \ldots, x_{k + 1})$ est libre.
+\end{proof}
+
+\begin{exemple}
+    Pour $\alpha \in \C$ notons $\fonction{f_\alpha}{\R}{\C}{x}{e^{\alpha x}}$.
+\end{exemple}
+
+\begin{theoreme}{somme de sous-espaces propres}{}
+    Une somme de sous-espaces propres associés à des valeurs propres deux à deux distinctes 
+    d'un même endomorphisme est directe. 
+\end{theoreme}
+
+\idee{
+    Ne pas oublier que les espaces propres contiennent le vecteur nul.
+}
+
+\begin{proof}
+    Soit $u \in \mathscr L(E)$ et $\lambda_1, \ldots, \lambda_k$ des valeurs propres deux à deux distinctes de $u$
+    et $S = E_{\lambda_1}(u) + \cdots + E_{\lambda_k}(u)$.
+
+    Soient $x_1 \in E_{\lambda_1}(u), \ldots, x_k \in E_{\lambda_k}(u)$ tels que
+    $\displaystyle \sum_{i = 1}^k x_i = 0$.
+
+    Supposons que certains des $x_i$ sont non nuls, par exemple (quitte à renuméroter les indices)
+    $x_1, \dots, x_p$ où $p \leqslant k$ alors $\displaystyle \sum_{i = 1}^p x_i = 0$.
+
+    Donc la famille $(x_1, \ldots, x_p)$ est liée, ce qui contredit le théorème précédent. 
+
+    Donc $\forall i \in \ninter 1 k, x_i = 0$ et la somme est directe.
+\end{proof}
+
+\begin{theoreme}{nombre de valeurs propres d'un endomorphisme}{}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie $n$ et soit $u \in \mathscr L(E)$.
+
+    Alors $u$ possède au plus $n$ valeurs propres c'est-à-dire que $\Sp(u)$ est fini et 
+    $\card(\Sp(u)) \leqslant n$.
+\end{theoreme}
+
+\idee{
+    Dimension.
+}
+
+\begin{proof}
+    Supposons par l'absurde que $u$ possède $n + 1$ valeurs propres deux à deux distinctes
+    notées $\lambda_1, \ldots, \lambda_{n + 1}$.
+
+    Alors $S = E_{\lambda_1}(u) + \cdots + E_{\lambda_{n + 1}}(u)$ est une somme directe
+    donc 
+    
+    $\displaystyle \dim(S) = \sum_{i = 1}^{n + 1} \dim(E_{\lambda_i}(u)) \geqslant n + 1$ car
+    chaque espace propre contient au moins un vecteur non nul.
+
+    Absurde car $S$ est un sous-espace de $E$ donc $\dim(S) \leqslant \dim(E) = n$.
+\end{proof}
+
+\subsection{Stabilité de sous-espaces }
+
+\begin{proposition}{commutation et stabilité des sous-espaces propres}{}
+    Soient $u, v \in \mathscr L(E)$ tel que $u \circ v = v \circ u$.
+
+    Alors tout sous-espace propre de $u$ est stable par $v$.
+\end{proposition}
+
+\begin{proof}
+    Soit $F$ un sous-espace propre de $u$. 
+
+    Soit $\lambda \in \K$ valeur propre de $u$ telle que $F = E_\lambda(u)$.
+
+    Soit $x \in F$, montrons que $v(x) \in F$.
+
+    \begin{align}
+        u(v(x)) & = (u \circ v)(x) \\
+                & = (v \circ u)(x) \\
+                & = v(u(x)) \\
+                & = v(\lambda x) \\
+                & = \lambda v(x)
+    \end{align}
+
+    Donc $v(x) \in F$.
+\end{proof}
+
+\begin{proposition}{commutation et stabilité du noyau et de l'image}{}
+    Soient $u, v \in \mathscr L(E)$ tel que $u \circ v = v \circ u$. Alors $\Ker(u)$ et
+    $\im(u)$ sont stables par $v$.
+\end{proposition}
+
+\begin{proof}
+    $\Ker u = E_0(u)$ donc stable par $v$ d'après la proposition précédente.
+
+    Soit $y \in \im(u)$ alors $\exists x \in E$ tel que $y = u(x)$. Alors 
+    $v(y) = v(u(x)) = u(v(x)) \in \im(u)$ donc $\im(u)$ est stable par $v$.
+\end{proof}
+
+\begin{proposition}{cas des sous-espaces propres}{}
+    Soit $u \in \mathscr L(E)$ et $\lambda \in \K$ une valeur propre de $u$. 
+    Alors l'espace propre $E_\lambda(u)$ est stable par $u$ et l'endomorphisme induit par $u$ 
+    sur $E_\lambda(u)$ est l'homothétie de rapport $\lambda$.
+\end{proposition}
+
+\begin{proof}
+    Immédiate par la proposition précédente. 
+\end{proof}
+
+\subsection{Eléments propres d'une matrice carrée }
+
+\begin{definition}{}{}
+    Soit $A \in \mathscr M_n(\K)$. On définit l'endomorphisme de $\mathscr M_{n, 1}(\K)$
+    identifié à $\K^n$ canoniquement associé à $A$ par 
+    $$\fonction{u_A}{\K^n = \mathscr M_{n, 1}(\K)}{\K^n}{X}{AX}$$
+\end{definition}
+
+\begin{definition}{valeur propre d'une matrice}{}
+    \index{Valeur propre!d'une matrice}
+    Soit $\lambda \in \K$. On dit que $\lambda$ est une valeur propre de $A$ ssi
+    c'est une valeur propre de l'endomorphisme $u_A$, c'est à dire s'il existe 
+    $X \in \K^n \setminus \{0\}$ tel que $AX = \lambda X$.
+\end{definition}
+
+\begin{definition}{vecteur propre d'une matrice}{}
+    \index{Vecteur propre!d'une matrice}
+    Soit $X \in \K^n$. On dit que $X$ est un vecteur propre de $A$ ssi
+    c'est un vecteur propre de l'endomorphisme $u_A$, c'est à dire s'il existe 
+    $\lambda \in \K$ tel que $AX = \lambda X$ et $X \neq 0$.
+\end{definition}
+
+\begin{definition}{espace propre d'une matrice}{}
+    \index{Espace propre!d'une matrice}
+    Soit $\lambda \in \K$ une valeur propre de $A$. On appelle \emph{espace propre} 
+    associé l'espace vectoriel 
+    \begin{align} E_\lambda(A) & = E_\lambda(u_A) \\
+                        & = \{ X \in \K^n \mid AX = \lambda X \} \\
+                        & = \Ker (u_A - \lambda \Id_{\K^n}) 
+    \end{align}
+\end{definition}
+
+\begin{definition}{spectre d'une matrice}{}
+    \index{Spectre!d'une matrice}
+    L'ensemble des valeurs propres de $A$ est appelé spectre de $A$ 
+    et noté $\Sp(A)$.
+    
+\end{definition}
+
+\begin{definition}{équation aux éléments propres d'une matrice}{}
+    \index{Equation aux elements propres@\'Equation aux éléments propres!d'une matrice}
+    On appelle \emph{équation aux éléments propres} pour $A$ l'équation 
+    $$AX = \lambda X$$
+
+    \begin{itemize}
+        \item $\lambda \in K$
+        \item $X \in \K^n \setminus \{0\}$
+    \end{itemize}
+    
+\end{definition}
+
+\begin{propositionnt}{lien entre éléments propres d'un endomorphisme et de sa matrice dans une base}{}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie $n$, 
+    $B = (e_1, \ldots, e_n)$ une base de $E$ et $u \in \mathscr L(E)$, 
+    $A = M_B(u) \in \mathscr M_n(\K)$. 
+    Pour $x \in E$, on note $X = M_B(x)$ le vecteur colonne de ses coordonnées dans la base $B$, et alors 
+    $\fonction{\varphi}{E}{\K^n}{x}{X}$ est un isomorphisme. 
+    
+    On a donc : 
+    \begin{itemize}
+        \item $\forall \lambda \in \K$, $u(x) = \lambda x$ ssi $AX = \lambda X$ donc $\lambda$ est une valeur propre de $u$
+        ssi $\lambda$ est une valeur propre de $A$
+        \item $x$ est un vecteur propre de $u$
+        ssi $X$ est un vecteur propre de $A$.
+    \end{itemize}
+    Donc en particulier, $\Sp(u) = \Sp(A)$.
+\end{propositionnt}
+
+
+\begin{proposition}{matrices semblables et spectre}{}
+    Deux matrices semblables ont le même spectre.
+\end{proposition}
+
+\idee{
+    Changement de base.
+}
+
+\begin{proof}
+    Soient $A, A' \in \mathscr M_n(\K)$ deux matrices semblables, et 
+    soit $u \in \mathscr L(\K^n)$ canoniquement associée à $A$. 
+
+    Or $A' = P^{-1} A P$ pour une certaine matrice inversible $P \in \mathscr M_n(\K)$, 
+    donc $A'$ est la matrice de $u$ dans une autre base de $\K^n$.
+
+    Par ce qui précède, $A$ et $A'$ ont le même spectre.
+\end{proof}
+
+\begin{proposition}{spectre selon un sous-corps}{}
+    Soit $\K \subset \K'$ sous-corps de $\K'$. 
+    Soit $A \in \mathscr M_n(\K)$. Alors on peut voir $A$ comme une matrice de 
+    $\mathscr M_n(\K')$ et les endomorphismes 
+    $\fonction{u_A}{\K^n}{\K^n}{X}{AX}$ et
+    $\fonction{u'_A}{\K'^n}{\K'^n}{X}{AX}$ peut avoir 2 spectres différents 
+    $\Sp_\K (A)$ et $\Sp_{\K'}(A)$.
+
+    Alors $\Sp_\K (A) \subset \Sp_{\K'}(A) \cap \K$.
+\end{proposition}
+
+\begin{proof}
+    Soit $\lambda \in \Sp_\K (A)$ alors il existe $X \in \K^n \setminus \{0\}$ tel que
+    $AX = \lambda X$.
+
+    Or $\K \subset \K'$ donc $\lambda \in \K'$ et $X \in \K'^n \setminus \{0\}$ donc
+    $\lambda \in \Sp_{\K'}(A)$.
+\end{proof}
+
+\begin{exemple}
+    $A = \begin{pmatrix}
+        0 & -1 \\
+        1 & 0
+    \end{pmatrix}$ alors $\Sp_\R(A) = \varnothing$ 
+
+    Mais $\Sp_\C(A) = \{i, -i\}$.
+\end{exemple}
+
+
+\section{Polynôme caractéristique }
+\subsection{Polynôme caractéristique d'une matrice carrée}
+
+\begin{definition}{polynôme caractéristique d'une matrice}{}
+    \index{Polynôme caractéristique!d'une matrice}
+    Soit $A \in \mathscr M_n (\K)$. On définit son polynôme caractéristique par : 
+    \[
+        \chi_A(X) = \sum_{\sigma \in S_n} \varepsilon(\sigma) \prod_{i = 1 }^{ n } (X \delta_{\sigma(i)}^i - a_{\sigma(i), i})
+    \]
+
+    Alors $\forall x \in \K$, $\chi_A(x) = \det (x I_n - A)$.
+
+    On utilisera donc l'abus de notation $\chi_A(X) = \det (X I_n - A)$.
+\end{definition}
+
+\begin{theoreme}{propriétés du polynôme caractéristique}{}
+    Soit $A \in \mathscr M_n (\K)$, alors $\deg \chi_A = n$, $\chi_A$ est unitaire et en notant $\displaystyle \chi_A = \sum_{k = 0 }^{n } a_kX^k$ on a : 
+
+    \begin{itemize}
+        \item $a_n = 1$
+        \item $a_{n - 1} = - \tr(A)$
+        \item $a_0 = (-1)^n \det(A)$
+    \end{itemize}
+\end{theoreme}
+
+\begin{exemple}
+    $A = \begin{pmatrix}
+        1 & 2 \\
+        3 & 4
+    \end{pmatrix}$ et donc $\chi_A = \begin{vmatrix}
+        X - 1 & -2 \\
+        -3 & X - 4
+    \end{vmatrix} (X - 1)(X - 4) - 6 = X^2 - 5X - 2$.
+\end{exemple}
+
+\idee{
+    Séparer le polynôme en deux parties : la partie diagonale avec $\sigma = \Id$ et le reste.
+}
+
+\begin{proof}
+    Par le formule, $\chi_A$ est un polynôme de degré au plus $n$.
+
+    $a_0 = \chi_A(0) = \det(-A) = (-1)^n \det(A)$.
+
+    \avspace Posons : 
+    
+    $\displaystyle P_A = \prod_{i = 1 }^{ n } (X - a_{i, i})$ est un polynôme unitaire de degré $n$ scindé.
+
+    $\displaystyle Q_A = \sum_{\sigma \in S_n \setminus \{\Id\}} \varepsilon(\sigma) \prod_{i = 1 }^{ n } (X \delta_{\sigma(i)}^i - a_{\sigma(i), i})$ 
+
+    Soit $\sigma \in S_n$ tel que $\sigma \neq \Id$, et 
+    $\displaystyle Z_{A, \sigma} = \varepsilon(\sigma) \prod_{i = 1 }^{ n } (X \delta_{\sigma(i)}^i - a_{\sigma(i), i})$.
+
+    Or $\sigma \neq \Id$ donc $\exists i_0 \in \ninter 1 n$ tel que $\sigma(i_0) \neq i_0$ donc $\delta_{\sigma(i_0)}^{i_0} = 0$.
+
+    Posons $i_1 = \sigma(i_0)$. On a déjà $i_1 \neq i_0$ et $\sigma$ injective, donc $\sigma(i_1) \neq \sigma(i_0)$
+    donc $\sigma(i_1) \neq i_1$. 
+
+    Donc dans le produit, il y a au moins deux indices $i_0$ et $i_1$ tels que 
+    $\delta_{\sigma(i)}^i = 0$ donc le degré de $Z_{A, \sigma}$ est au plus $n - 2$.
+
+    Donc $\deg Q_A \leqslant n - 2$, donc les coefficients de $X^n$ et $X^{n - 1}$ dans $\chi_A$ 
+    sont ceux de $P_A$ donc valent $1$ et $\displaystyle - \sum_{i = 1 }^{n } a_{i, i} = - \tr(A)$.
+\end{proof}
+
+\begin{proposition}{}{}
+    Soit $A \in \mathscr M_n (\K)$ matrice triangulaire, $A = (a_{i, j})$. Alors 
+    $\displaystyle \chi_A(X) = \prod_{i = 1 }^{ n } (X - a_{i, i})$.
+\end{proposition}
+
+\begin{proof}
+    Si $A$ est triangulaire supérieure, alors 
+    $$\chi_A = \begin{vmatrix}
+        X - a_{1, 1} & -a_{1, 2} & \cdots & -a_{1, n} \\
+        0 & X - a_{2, 2} & \cdots & -a_{2, n} \\
+        \vdots & \vdots & \ddots & \vdots \\
+        0 & 0 & \cdots & X - a_{n, n}
+    \end{vmatrix} = \prod_{i = 1 }^{ n } (X - a_{i, i})$$
+\end{proof}
+
+\begin{definition}{matrice compagnon, HP}{}
+    Soit $P$ polynôme unitaire de degré $n$. Notons 
+    $\displaystyle P = X^n - \sum_{k = 0 }^{n - 1} a_k X^k$.
+
+    Notons $A = \begin{pmatrix}
+        0 & 0 & \cdots & 0 & a_0 \\
+        1 & 0 & \cdots & 0 & a_1 \\
+        0 & 1 & \cdots & 0 & a_2 \\
+        \vdots & \vdots & \ddots & \vdots & \vdots \\
+        0 & 0 & \cdots & 1 & a_{n - 1}
+    \end{pmatrix} \in \mathscr M_n(\K)$ la matrice compagnon de $P$. On a donc une matrice par blocs, 
+    et on a alors $\chi_A = P$
+
+\end{definition}
+
+\idee{
+    Développement par rapport à la dernière colonne.
+}
+
+\begin{proof}
+    $\chi_A = \det(X I_n - A ) = \begin{vmatrix}
+        X & 0 & 0 & \dots & -a_0\\
+        -1 & 0 & 0 & & -a_1 \\
+        0 & \ddots & & \ddots &  \\
+        \vdots & & \ddots & & \vdots \\
+        0 & \dots & 0 & -1 & X - a_{n - 1}
+    \end{vmatrix}$
+
+    Développons par rapport à la dernière colonne : 
+
+    $\chi_A = (-1)^{n + 1} (- a_0) \begin{vmatrix}
+        -1 & \dots & \star \\
+        \vdots & \ddots & \vdots \\
+        0 & \dots & -1
+    \end{vmatrix} + \displaystyle \sum_{i = 1 }^{ n - 1 } (-1)^{n + i} (-a_{i - 1}) 
+    \begin{vmatrix}
+        X & & 0 &  & & \\
+         & \ddots & &  & 0 &  \\
+        * & & X &  & & \\
+         &  & & -1 & & *\\
+         & 0 & & & \ddots & \\
+         &  &  & 0 & & -1
+    \end{vmatrix} + (-1)^{2n} (X - a_{n - 1}) 
+    \begin{vmatrix}
+        X &  &  & 0 \\
+         & X &  &  \\
+         & & \ddots & \\
+        * & &  & X
+    \end{vmatrix}$
+
+    $\displaystyle \chi_A = (-1)^n a_0 (-1)^{n - 1} + \sum_{i = 2 }^{ n -1} (-1)^{n + i + 1} X^{i - 1} (-1)^{n - i} a_{i - 1} + (X - a_{n - 1}) X^{n - 1}$
+
+    $\displaystyle \chi_A = - a_0 + \sum_{i = 2 }^{ n -1} (-a_{i - 1}) X^{i - 1} - a_{n - 1} X^{n - 1} + X^n = P$
+    
+\end{proof}
+
+\begin{exemple}
+    $A = \begin{pmatrix}
+        0 & 0 & 1 \\
+        1 & 0 & 2 \\
+        0 & 1 & 3
+    \end{pmatrix}$ et donc $\chi_A = \begin{vmatrix}
+        X & 0 & -1 \\
+        -1 & X & -2 \\
+        0 & -1 & X - 3
+    \end{vmatrix} = X^3 - 3X^2 + 2X - 1$.
+\end{exemple}
+
+\subsection{Polynôme caractéristique d'un endomorphisme}
+
+\begin{theoreme}{polynôme caractéristique d'un endomorphisme}{}
+    \index{Polynôme caractéristique!d'un endomorphisme}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie $n$ et $u \in \mathscr L(E)$.
+
+    Soit $B$ une base de $E$ et $A = M_B(u) \in \mathscr M_n(\K)$. 
+
+    Alors $\chi_A$ ne dépend pas du choix de la base $B$.
+
+    On l'appelle \emph{polynôme caractéristique} de $u$ et on le note $\chi_u = \chi_A$.
+
+    On notera de même $\chi_u(X) = \det(X \Id_E - u)$.
+\end{theoreme}
+
+\idee{
+    Astuce du topin.
+}
+
+\begin{proof}
+    Soit $B'$ une autre base, et $A' = M_{B'}(u)$.
+
+    Alors $\exists P \in GL_n(\K)$ tel que $A = P A' P^{-1}$.
+
+    Pour $x \in \K$, 
+    \begin{align}
+        \chi_A(x) & = \det(x I_n - A) \\
+                        & = \det(x PP^{-1} - P A' P^{-1}) \\
+                        & = \det(P(x I_n - A') P^{-1}) \\
+                        & = \det(P) \det(x I_n - A') \det(P^{-1}) \\
+                        & = \chi_{A'}(x)
+    \end{align}
+
+    Donc $\chi_A = \chi_{A'}$.
+\end{proof}
+
+\begin{corollaire}{matrices semblables et polynôme caractéristique}{}
+    Deux matrices semblables ont le même polynôme caractéristique.
+\end{corollaire}
+
+\begin{proof}
+    Résulte directement de la preuve du théorème précédent.
+\end{proof}
+
+
+\subsection{Lien avec les valeurs propres }
+
+\begin{theoreme}{valeurs propres et polynôme caractéristique}{}
+    Les valeurs propres d'un endomorphisme en dimension finie (respectivement d'une matrice carrée) 
+    sont les racines de son polynôme caractéristique.
+\end{theoreme}
+
+\begin{proof}
+    Soit $u \in \mathscr L(E)$ et $\lambda$ valeur propre de $u$ 
+    ssi $\ker(u - \lambda \Id_E) \neq \{0\}$
+    ssi $u - \lambda \Id_E \notin GL(E)$
+    ssi $\det(u - \lambda \Id_E) = 0$
+    ssi $\chi_u(\lambda) = 0$.
+\end{proof}
+
+\begin{exemple}
+    $E = \{f \in \mathscr C^\infty(\R, \R), f'' - 3 f' + 2f = 0\}$ $E$ est un 
+    $\R$-espace vectoriel de dimension $2$.
+
+    Considérons $u : f \mapsto f'$ endomorphisme de $E$ car linéaire. 
+
+    Si $f \in E$, $f'$ est $\mathscr C^\infty$ et $f'' - 3 f' + 2f = 0$ donc $f''' - 3 f'' + 2 f' = 0$ donc $f' \in E$.
+
+    Remarquons que $f_1(x) = e^{2x} - e^x$ et $f_2(x) = e^{2x} + e^x$ sont dans $E$. 
+
+    $u(f_1) = f_1 + f_2 - \frac{f_2 - f_1}{2} = \frac{3}{2} f_1 + \frac{1}{2} f_2$ et
+    $u(f_2) = f_2 + f_1 + \frac{f_2 - f_1}{2} = \frac{1}{2} f_1 + \frac{3}{2} f_2$.
+
+    $M_{f_1, f_2}(u) = \begin{pmatrix}
+        \frac{3}{2} & \frac{1}{2} \\
+        \frac{1}{2} & \frac{3}{2}
+    \end{pmatrix}$.
+
+    Donc $\chi_u = \begin{vmatrix}
+        X - \frac{3}{2} & -\frac{1}{2} \\
+        -\frac{1}{2} & X - \frac{3}{2}
+    \end{vmatrix} = X^2 - 3X + 2 = (X - 1)(X - 2)$.
+
+    Donc $\Sp(u) = \{1, 2\}$.
+
+    $g_1 : x \mapsto e^x$ est vecteur propre associé à la valeur propre $1$ car $g_1' = g_1$.
+
+    $g_2 : x \mapsto e^{2x}$ est vecteur propre associé à la valeur propre $2$ car $g_2' = 2 g_2$.
+
+    Donc $g_1, g_2$ est libre donc base de $E$.
+\end{exemple}
+
+\begin{exemple}
+    $E = \{(u_n)_{n \in \N} \in \C^\N\}$ $\forall n \in \N u_{n + 2} = 4 u_{n + 1} - 3 u_n$.
+
+    $E$ est un $\C$-espace vectoriel. 
+
+    $\fonction \varphi E {\C^2} {(u_n)_{n \in \N}} {(u_0, u_1)}$ est un isomorphisme.
+
+    $b_1 = (1, 0)$ et $b_2 = (0, 1)$ est une base de $\C^2$.
+
+    Donc $v = \varphi^{-1} (b_1) $ et $w = \varphi^{-1} (b_2)$ est une base de $E$.
+
+    Considérons $s : (u_n)_{n \in \N} \mapsto (u_{n + 1})_{n \in \N}$ endomorphisme de $E$.
+
+    Cherchons sa matrice dans la base $(v, w)$ avec $\varphi(v) = (1, 0)$ donc 
+    $v_0 = 1$ et $v_1 = 0$    
+    et $\varphi(w) = (0, 1)$ donc $w_0 = 0$ et $w_1 = 1$.
+
+    Posons $v' = s(v) = (v_{n + 1})_{n \in \N}$ et $w' = s(w) = (w_{n + 1})_{n \in \N}$.
+
+    On a alors $v' = -3w$ et $w' = v + 4w$.
+
+    Donc $M_{(v, w)}(s) = \begin{pmatrix}
+        0 & 1 \\
+        -3 & 4
+    \end{pmatrix}$.
+
+    Donc $\chi_s = \begin{vmatrix}
+        X & -1 \\
+        3 & X - 4
+    \end{vmatrix} = X^2 - 4X + 3 = (X - 1)(X - 3)$.
+
+    Donc $\Sp(s) = \{1, 3\}$.
+
+
+    $u = (u_n)_{n \in \N}$ est vecteur propre associé à la valeur propre $1$ ssi 
+    $s(u) = u$ ssi $\forall n \in \N, u_{n + 1} = u_n$ ssi $\forall n, u_n = \alpha$. 
+
+    $u$ est vecteur propre pour $3$ ssi $\forall n, u_{n + 1} = 3 u_n$ ssi $\forall n, u_n = \beta 3^n$
+
+    $((1), (3^n))$ sont deux vecteurs propres pour des valeurs propres différentes donc famille libre donc base de 
+    $E$. 
+\end{exemple}
+
+
+\begin{proposition}{}{}
+    Soit $u \in \mathscr L(E)$ et $F$ sous-espace vectoriel de $E$ stable par $u$, et $\tilde u$
+    l'endomorphisme induit par $u$ sur $F$. 
+
+    Alors 
+    $\chi_{\tilde u} \mid \chi_u$ et en particulier, $\Sp(\tilde u) \subset \Sp (u)$
+\end{proposition}
+
+\idee{Par blocs}
+
+\begin{proof}
+    Soit $B$ une base de $F$ de dimension $p$ et $B = B_1 \sqcup B_2$ base de $E$, alors 
+    $M_B(u) = \begin{pmatrix}
+        M_{B_1}(\tilde u) & C \\
+        0 & D
+    \end{pmatrix}$.
+
+    \begin{align}
+        \chi_u(X) & = \det(X I_n - M_B(u)) \\
+                    & = \begin{vmatrix}
+                        X I_p - M_{B_1}(\tilde u) & -C \\
+                        0 & X I_{n - p} - D
+                    \end{vmatrix} \\
+                    & = \det(X I_p - M_{B_1}(\tilde u)) \det(X I_{n - p} - D) \\
+                    & = \chi_{\tilde u}(X) Q (X)
+    \end{align}
+\end{proof}
+
+\begin{definition}{multiplicité d'une valeur propre}{}
+    \index{Multiplicité!d'une valeur propre}
+    Soit $u \in \mathscr L(E)$ et $\lambda \in \Sp(u)$,
+    alors $\lambda $ est racine de $\chi_u$.
+
+    On appelle ordre de multiplicité de la valeur propre $\lambda$ son ordre de multiplicité en tant que racine de $\chi_u$.
+\end{definition}
+
+\begin{exemple}
+    Une valeur propre de multiplicité 1 sera dite valeur propre simple, double pour multiplicité 2, etc.
+
+    On note souvent l'ordre $m_\lambda$. On a la même notion pour les matrices carrées. 
+\end{exemple}
+
+\begin{proposition}{Dimension sous-espace propre}{}
+    Soit $u \in \mathscr L(E), \, E$ de dimension finie et $\lambda \in \Sp(u)$. 
+
+    Alors en notant $m_\lambda$ son ordre de multiplicité et $E_\lambda(u)$ son espace propre associé, on a :
+    $$1 \leqslant \dim(E_\lambda(u)) \leqslant m_\lambda$$
+
+    En particulier si $\lambda$ est une valeur propre simple, $\dim E_\lambda (u) = 1$.
+\end{proposition}
+
+\begin{proof}
+    $E_\lambda(u)$ est stable par $u$. L'endomorphisme induit est $\tilde u = \lambda \Id_{E_\lambda(u)}$
+    or $\chi_{\tilde u} \mid \chi_u$ et 
+    $\chi_{\tilde u} = \begin{vmatrix}
+        X - \lambda & 0 & \cdots & 0 \\
+        0 & X - \lambda & \cdots & 0 \\
+        \vdots & \vdots & \ddots & \vdots \\
+        0 & 0 & \cdots & X - \lambda
+    \end{vmatrix} = (X - \lambda)^p$
+
+    Donc $(X - \lambda)^p \mid \chi_u$ donc $p \leqslant m_\lambda$.
+\end{proof}
+
+\begin{remarque}
+    Pour calculer $\dim E_\lambda(u)$ on peut utiliser le théorème du rang. 
+
+    $\dim E_\lambda(u) = \dim \Ker (u - \lambda \Id_E) = \dim E - \rg(u - \lambda \Id_E)$.
+\end{remarque}
+
+
+
+\begin{exemple}
+    $A = \begin{pmatrix}
+        8 & 2 & 2 \\
+        2 & 8 & 2 \\
+        2 & 2 & 8
+    \end{pmatrix}$.
+
+    Alors $A \cdot \begin{pmatrix}
+        1 \\
+        1 \\
+        1
+    \end{pmatrix} = 12 \cdot \begin{pmatrix}
+        1 \\
+        1 \\
+        1
+    \end{pmatrix}$ donc $12$ est valeur propre, et $\begin{pmatrix}
+        1 \\
+        1 \\
+        1
+    \end{pmatrix}$ vecteur propre de $A$. Donc $\dim E_{12}(A) \geqslant 1$.
+
+    De plus $A - 6 I_3 = \begin{pmatrix}
+        2 & 2 & 2 \\
+        2 & 2 & 2 \\
+        2 & 2 & 2
+    \end{pmatrix}$ donc $\rg(A - 6 I_3) = 1$ donc $\dim E_6(A) = \dim \ker (A - 6 I_3) = 3 - 1 = 2$.
+
+    Donc $6$ est valeur propre de multiplicité au moins $2$. Or $E_{12}(A) + E_6(A)$ est directe, donc 
+    $\dim E_{12}(A) + \dim E_6(A) \leqslant 3$ donc $E = E_{12}(A) \oplus E_6(A)$ et $\dim E_{12}(A) = 1$.
+
+    De plus $m_{12} \geqslant 1$ et $m_6 \geqslant 2$ et $\deg \chi_A = 3$ donc $m_{12} = 1$ et $m_6 = 2$
+    et $\chi_A = (X - 12)(X - 6)^2$.
+
+\end{exemple}
+
+
+\begin{proposition}{polynôme caractéristique scindé}{}
+    Comme $\K \subset \C$, on pourra toujours se ramener au cas de $\chi_A$ complexe, en 
+    considérant les valeurs propres complexes.
+
+    Soit $A \in \mathscr M_n(\K)$, alors $\Sp(A) \neq \emptyset$ car $\chi_A$ admet au moins une racine dans $\K$
+    et en notant $\Sp(A) = \{\lambda_1, \ldots, \lambda_p \}$, $\chi_A$ est scindé et on a :
+    $$\chi_A(X) = \prod_{i = 1 }^{ p } (X - \lambda_i)^{m_{\lambda_i}}$$
+
+    Donc par les relations coefficients racines, 
+    \begin{itemize}
+        \item $\displaystyle \tr(A) = \sum_{i = 1 }^{ p } m_{\lambda_i} \lambda_i$ 
+        \item $\displaystyle \det A = \prod_{i = 1 }^{ p } \lambda_i^{m_{i}}$
+    \end{itemize}
+\end{proposition}
+
+\begin{exemple}
+    $A = \begin{pmatrix}
+        1 & 7 & 3 \\
+        -1 & 4 & 8 \\
+        3 & 10 & -2
+    \end{pmatrix}$. On cherche le polynôme caractéristique, valeurs propres et vecteurs propres. 
+
+    \uindent{Solution 1 } 
+
+    \svspace On calcul $\chi_A = \begin{vmatrix}
+        X - 1 & -7 & -3 \\
+        1 & X - 4 & -8 \\
+        -3 & -10 & X + 2
+    \end{vmatrix}$ et on cherche ses racines. Puis pour chaque racine $\lambda$, on cherche le rang de 
+    $(A - \lambda I_3)$.
+
+    \uindent{Solution 2 }
+
+    \svspace On remarque que $L_2 + L_3 = 2 L_1$ donc $A$ non inversible, donc $0$ est valeur propre de $A$. 
+
+    $A \cdot \begin{pmatrix}
+        1 \\
+        1 \\
+        1
+    \end{pmatrix} = 11 \cdot \begin{pmatrix}
+        1 \\
+        1 \\
+        1
+    \end{pmatrix}$ donc $11$ est valeur propre de $A$.
+
+    Donc $\chi_A$ est divisble par $X(X - 11)$.
+
+    Donc il vient $\chi_A(X) = X(X - 11)(X - a)$ avec $a \in \R$.
+
+    $\tr A = 3 = 11 + a$ donc $a = -8$.
+
+    Donc $\chi_A(X) = X(X - 11)(X + 8)$, donc $\Sp(A) = \{0, 11, -8\}$ sont valeurs propres simples.
+
+    Les espaces propres sont donc de dimension 1. Cherchons leurs bases. 
+
+    Soit $U = \begin{pmatrix}
+        x \\
+        y \\
+        z   
+    \end{pmatrix}$ alors $U \in E_{-8}(A)$ ssi $(A + 8I) U = 0$ ssi $\begin{cases}
+        (1) 9x + 7y + 3z = 0 \\
+        (2) -x + 12y + 8z = 0 \\
+        (3) 3x + 10y + 6z = 0
+    \end{cases}$ ssi $\begin{cases}
+        -x +  & 12y + 8z = 0 (2)\\
+        & 115y + 75 z = 0 (1) + 9*(2) \\
+        & 46 y + 30 z = 0 (3) - 3*(2)
+    \end{cases}$ 
+    
+    Et les dernières équations sont proportionnelles. 
+
+    Posons $e_{-8} = \begin{pmatrix}
+        4 \\ 
+        -15 \\
+        23
+    \end{pmatrix}$ Or $\dim E_{-8}(A) = 1$ donc $E_{-8}(A) = \Vect(e_{-8})$.
+
+    De même pour les deux autres. 
+\end{exemple}
+
+\section{Endomorphismes et matrices carrées diagonalisables}
+
+\begin{definition}{endomorphisme diagonalisable}{}
+    \index{Endomorphisme!diagonalisable}
+    Soit $u \in \mathscr L(E)$ où $E$ est de dimension finie. On dit que $u$ est diagonalisable ssi il existe 
+    $B$ une base de $E$ telle que $M_B(u)$ est une matrice diagonale ssi il existe 
+    $B$ base de $E$ formée de vecteurs propres de $u$.
+
+    En ce cas, $M_B(u) = \begin{pmatrix}
+        \lambda_1 & 0 & \cdots & 0 \\
+        0 & \lambda_2 & \cdots & 0 \\
+        \vdots & \vdots & \ddots & \vdots \\
+        0 & 0 & \cdots & \lambda_n
+    \end{pmatrix}$ et les éléments diagonaux sont les valeurs propres de $u$, répétées avec multiplicité car 
+    $\displaystyle \chi_u = \prod_{i = 1 }^{ n } (X - \lambda_i)$.
+\end{definition}
+
+\begin{exemple}
+    Prenons $u$ une projection. Supposons que $E = F \oplus G$ avec $F = \im(u)$ et $G = \Ker(u)$.
+
+    Soit $B = (e_1, \dots, e_p, e_{p + 1}, \dots, e_n)$ une base de $E$ telle que 
+    $(e_1, \dots, e_p)$ base de $F$ et $(e_{p + 1}, \dots, e_n)$ base de $G$.
+
+    $M_B(u) = \begin{pmatrix}
+        I_p & 0 \\
+        0 & 0
+    \end{pmatrix}$ donc $u$ est diagonalisable.
+
+    Donc $\chi_u(X) = (X - 1)^p X^{n - p}$. $1$ est valeur propre de multiplicité $p$, espace propre 
+    $F$ et $0$ de multiplicité $n - p$, espace propre $G$.
+
+    \lvspace Pour $u$ une symétrie, $M_B(u) = \begin{pmatrix}
+        I_p & 0 \\
+        0 & -I_{n - p}
+    \end{pmatrix}$ donc $u$ est diagonalisable.
+\end{exemple}
+
+\subsection{Caractérisation}
+
+\begin{theoreme}{caractérisation d'un endomorphisme diagonalisable}{}
+    Soit $u \in \mathscr L(E)$ et $\Sp(u) = \{\lambda_1, \ldots, \lambda_p\}$.
+
+    Alors $u$ est diagonalisable ssi $E$ est la somme des sous-espaces propres de $u$ :
+    $$E = \bigoplus_{j = 1 }^{ p } E_{\lambda_j}(u)$$
+\end{theoreme}
+
+\idee{
+    Choisir la bonne base.
+}
+
+\begin{proof}
+    $\Rightarrow$ Soit $B = (e_1, \ldots, e_n)$ base de $E$ telle que $M_B(u)$ est diagonale.
+
+    Pour $i \in \ninter 1 n$, $e_i$ est un vecteur propre de $u$, donc $\exists j \in \ninter 1 p$
+    tel que $e_i \in E_{\lambda_j}(u)$, donc $e_i \in \bigoplus_{j = 1 }^{ p } E_{\lambda_j}(u)$.
+
+    Donc $E = \Vect(e_1, \ldots, e_n) \subset \bigoplus_{j = 1 }^{ p } E_{\lambda_j}(u)$.
+
+    \lvspace $\Leftarrow$ Supposons que $\displaystyle E = \bigoplus_{j = 1 }^{ p } E_{\lambda_j}(u)$.
+
+    Soit $B$ base de $E$ adaptée à cette somme directe. Chaque vecteur de $B$ est propre donc 
+    $u$ est diagonalisable.
+\end{proof}
+
+\begin{corollairent}{caractérisation dimensionnelle d'un endomorphisme diagonalisable}{}
+    Soit $u \in \mathscr L(E)$ de spectre $\Sp(u) = \{\lambda_1, \ldots, \lambda_p\}$.
+    Alors $u$ est diagonalisable ssi $\displaystyle \sum_{j = 1 }^{p } \dim E_{\lambda_j}(u) = \dim E$.
+\end{corollairent}
+
+\begin{proof}
+    $u$ diagonalisable ssi $\displaystyle E = \bigoplus_{j = 1 }^{ p } E_{\lambda_j}(u)$
+    
+    ssi $\displaystyle n = \dim E = \sum_{j = 1 }^{ p } \dim E_{\lambda_j}(u)$.
+
+    ssi $\displaystyle \sum_{j = 1 }^{ p } \dim E_{\lambda_j}(u) = n$.
+\end{proof}
+
+
+\begin{theoreme}{caractérisation par les multiplicités}{}
+    Soit $u \in \mathscr L(E)$ tel que $\Sp(u) = \{\lambda_1, \ldots, \lambda_p\}$.
+
+    $u$ est diagonalisable ssi $\chi_u$ est scindé et $\forall \lambda \in \Sp(u), \, m_\lambda = \dim E_\lambda(u)$.
+\end{theoreme}
+
+\begin{proof}
+    $\Rightarrow$ Supposons que $u$ est diagonalisable.
+
+    Alors il existe $B$ base telle que $M_B(u) = \operatorname{Diag}(\lambda_1, \ldots, \lambda_p)$
+    et $\displaystyle \chi_u(X) = \prod_{i = 1 }^{ p } (X - \lambda_i)^{m_j}$ est scindé. 
+
+    Par ailleurs pour tout $j$, les $m_j$ vecteurs de la base associés à la valeur propre $\lambda_j$
+    forment une base de $E_{\lambda_j}(u)$ donc $\dim E_{\lambda_j}(u) = m_j$. 
+
+    \lvspace $\Leftarrow$ Supposons que $\chi_u$ est scindé et que $\forall j, \dim E_\lambda(u) = m_j$.
+
+    Alors $\displaystyle \sum_{j = 1 }^{ p } m_j = n$ donc $\displaystyle \sum_{j = 1 }^{ p } \dim E_{\lambda_j}(u) = n$, 
+
+    donc $u$ est diagonalisable.
+\end{proof}
+
+
+\begin{proposition}{diagonalisabilité et polynôme caractéristique}{}
+    Soit $u \in \mathscr L(E)$. Si $\chi_u$ est scindé à racines simples, alors $u$ est diagonalisable.
+\end{proposition}
+
+\begin{proof}
+    En ce cas $\chi_u$ scindé et pour toute valeur propre $\lambda$, $1 \leqslant \dim E_\lambda(u) \leqslant m_\lambda = 1$
+\end{proof}
+
+\begin{remarque}
+    Attention, la réciproque est fausse. Par exemple, $u = 0$ alors $M_B(u) = 0$ diagonalisable, pourtant 
+    $\chi_u = X^n$ n'est pas scindé à racines simples.
+\end{remarque}
+
+\subsection{Diagonalisation d'une matrice carrée }
+
+\begin{definition}{matrice diagonalisable}{}
+    \index{Matrice!diagonalisable}
+    Soit $A \in \mathscr M_n(\K)$. On dit que $A$ est diagonalisable ssi $A$ est semblable à une matrice diagonale
+    ssi $\exists P \in GL_n(\K), \, \exists D \in \mathscr M_n(\K)$ diagonale, telle que $A = P D P^{-1}$.
+\end{definition}
+
+\begin{proposition}{lien diagonalisabilité matrice et endomorphisme}{}
+    Soit $u \in \mathscr L(E)$, $B$ base de $E$ et $A = M_B(u)$. Alors $u$ est diagonalisable ssi $A$ est diagonalisable.
+\end{proposition}
+
+\begin{proof}
+    $u$ est diagonalisable ssi il existe $B'$ base telle que $M_{B'}(u) = D$ est diagonale
+    ssi $\exists P \in GL_n(\K)$ telle que $A = P D P^{-1}$ ($P$ matrice de passage de $B$ à $B'$).
+\end{proof}
+
+\begin{theoreme}{théorème spectral}{}
+    Toute matrice symétrique réelle $A$ est diagonalisable avec matrice de passage $P$ orthogonale
+    c'est à dire telle que $P^{-1} = P^\top$.    
+\end{theoreme}
+
+\begin{proof}
+    Plus tard dans l'année. 
+\end{proof}
+
+\begin{exemple}
+    $A = \begin{pmatrix}
+        3 & 2 & 2 \\
+        2 & 3 & 2 \\
+        2 & 2 & 3
+    \end{pmatrix}$.
+
+    1. \textbf{Valeur propre 7 :}
+    On remarque que $V_1 = \begin{pmatrix} 1 \\ 1 \\ 1 \end{pmatrix}$ vérifie $AV_1 = 7V_1$.
+    Donc $7$ est valeur propre et $\dim E_7(A) \geqslant 1$.
+
+    2. \textbf{Valeur propre 1 :}
+    Calculons $A - I = \begin{pmatrix}
+        2 & 2 & 2 \\
+        2 & 2 & 2 \\
+        2 & 2 & 2
+    \end{pmatrix}$.
+    Cette matrice est de rang $1$ (toutes les colonnes sont colinéaires).
+    D'après le théorème du rang, $\dim \ker(A - I) = 3 - \text{rang}(A-I) = 2$.
+    Donc $\dim E_1(A) = 2$.
+
+    3. \textbf{Conclusion :}
+    La somme des dimensions des espaces propres est $1 + 2 = 3$, ce qui correspond à la taille de la matrice.
+    On en déduit que $\dim E_7(A)$ est exactement $1$.
+    Ainsi, la famille $(V_1)$ est bien une base de $E_7(A)$.
+
+    \avspace Le polynôme caractéristique est donc $\chi_A(X) = (X - 7)(X - 1)^2$.
+
+    $\begin{pmatrix}
+        x \\
+        y \\
+        z
+    \end{pmatrix} \in E_1(A)$ ssi $2x + 2y + 2z = 0$ ssi $x + y + z = 0$.
+
+    Une base est $\begin{pmatrix}
+        1 \\
+        -1 \\
+        0
+    \end{pmatrix}, \begin{pmatrix}
+        0 \\
+        1 \\
+        -1
+    \end{pmatrix}$. Posons $D = \begin{pmatrix}
+        7 & 0 & 0 \\
+        0 & 1 & 0 \\
+        0 & 0 & 1
+    \end{pmatrix}$ et $P = \begin{pmatrix}
+        1 & 1 & 0 \\
+        1 & -1 & 1 \\
+        1 & 0 & -1
+    \end{pmatrix}$.
+
+    Alors $A = P D P^{-1}$ et $P$ est inversible.
+\end{exemple}
+
+
+
+\subsection{Applications }
+
+\begin{proposition}{puissance d'une matrice diagonalisable}{}
+    Soit $A \in \mathscr M_n(\K)$ diagonalisable. Notons $A = PDP^{-1}$ avec $P \in GL_n(\K)$ et $D$ diagonale.
+    Alors par récurrence, $$\forall k \in \N, \, A^k = P D^k P^{-1}$$
+\end{proposition}
+
+\begin{proposition}{suites récurrentes et matrices}{}
+    Soient $(u_n)_{n \in \N}, (v_n)_{n \in \N}$ et $(w_n)_{n \in \N}$ définies par leur 
+    premier terme et une relation de récurrence du type 
+    $$\forall n \in \N : \begin{cases}
+        u_{n + 1} = \alpha u_n + \beta v_n + \gamma w_n \\
+        v_{n + 1} = \alpha' u_n + \beta' v_n + \gamma' w_n \\
+        w_{n + 1} = \alpha'' u_n + \beta'' v_n + \gamma'' w_n
+    \end{cases}$$
+
+    Alors en posant $A = \begin{pmatrix}
+        \alpha & \beta & \gamma \\
+        \alpha' & \beta' & \gamma' \\
+        \alpha'' & \beta'' & \gamma''
+    \end{pmatrix}$ et $X_n = \begin{pmatrix}
+        u_n \\
+        v_n \\
+        w_n
+    \end{pmatrix}$, on a $X_{n + 1} = A X_n$ et donc $X_n = A^n X_0$.
+\end{proposition}
+
+
+\begin{exemple}
+    \begin{tikzpicture}[scale=1.5, >=stealth]
+
+        % --- Fond (Facultatif, pour simuler le tableau si désiré, ici blanc pour clarté) ---
+        % \fill[black!80] (-4,-3) rectangle (4,4); 
+        
+        % --- Axes (Dessinés finement en gris comme sur le tableau) ---
+        \draw[gray!50, thin] (-3.5,0) -- (3.5,0); % Axe X
+        \draw[gray!50, thin] (0,-2.5) -- (0,3.5); % Axe Y
+
+        % --- Définition des points (Coordonnées approximatives basées sur l'image) ---
+        \coordinate (A) at (-2.5, 0.8);  % M0 = A
+        \coordinate (B) at (1.8, 2.8);   % B = M1
+        \coordinate (C) at (2.2, -1.8);  % C = M2
+
+        % --- Calcul des points suivants (Barycentres) ---
+        % M3 est le barycentre de (M0, M1, M2) aka (A, B, C)
+        \coordinate (M3) at (barycentric cs:A=1,B=1,C=1);
+        
+        % M4 est le barycentre de (M1, M2, M3)
+        \coordinate (M4) at (barycentric cs:B=1,C=1,M3=1);
+
+        % --- Tracé du Triangle Principal (M0-M1-M2) ---
+        \draw[thick] (A) -- (B) -- (C) -- cycle;
+
+        % --- Tracé des lignes intérieures (Suite récursive) ---
+        % Lignes vers M3
+        \draw[thin] (A) -- (M3);
+        \draw[thin] (B) -- (M3);
+        \draw[thin] (C) -- (M3);
+
+        % --- Tracé de l'étape suivante (M4) en Rouge ---
+        % Sur la photo, on voit un triangle formé à droite et une croix rouge
+        \draw[red, thin] (B) -- (M4) -- (C);
+        \draw[red, thin] (M3) -- (M4);
+        
+        % Croix rouge pour M4
+        \node[red] at (M4) {$\times$};
+
+        % --- Étiquettes (Labels) ---
+        \node[left] at (A) {$M_0=A$};
+        \node[above right] at (B) {$B=M_1$};
+        \node[right] at (C) {$C=M_2$};
+        
+        % M3 (placé légèrement à gauche du point pour lisibilité)
+        \node[left, font=\small, yshift=2pt] at (M3) {$M_3$};
+        
+        % M4 (en rouge et petit)
+        \node[right, red, font=\small, xshift=2pt] at (M4) {$M_4$};
+
+    \end{tikzpicture}
+
+
+    $\forall n, z_{n + 3} = \frac 1 3 (z_n + z_{n + 1} + z_{n + 2})$, quelle est la limite 
+    de $z_n$ si elle existe ?
+
+    Posons $\forall n, \, X_n = \begin{pmatrix}
+        z_n \\
+        z_{n + 1} \\
+        z_{n + 2}
+    \end{pmatrix}$ donc $X_{n + 1} = \begin{pmatrix}
+        0 & 1 & 0 \\
+        0 & 0 & 1 \\
+        \frac{1}{3} & \frac{1}{3} & \frac{1}{3}
+    \end{pmatrix} X_n$.
+
+
+    $\forall n, X_n = A^n X_0$ par récurrence. 
+
+    $\chi_A = \begin{vmatrix}
+        X & -1 & 0 \\
+        0 & X & -1 \\
+        -\frac{1}{3} & -\frac{1}{3} & X - \frac{1}{3}
+    \end{vmatrix} = (X - 1)(X^2 + \frac{2}{3} X + \frac{1}{3})$.
+
+    Racines complexes conjuguées pour le second polynôme, 
+    
+    donc $\ds \Sp(A) = \{1, \frac{-1 + i \sqrt{2}}{3}, \frac{-1 - i \sqrt{2}}{3}\}$.
+
+    $D = \begin{pmatrix}
+        1 & 0 & 0 \\
+        0 & \frac{-1 + i \sqrt{2}}{3} & 0 \\
+        0 & 0 & \frac{-1 - i \sqrt{2}}{3}
+    \end{pmatrix}$, et posons $\ds \alpha = \frac{-1 + i \sqrt{2}}{3}$ et $\ds \bar \alpha = \frac{-1 - i \sqrt{2}}{3}$.
+
+    $A = PDP^{-1}$ et $U = \begin{pmatrix}
+        x \\
+        y \\
+        z
+    \end{pmatrix}$ valeur propre pour $\alpha$ ssi 
+    $\begin{cases}
+        y = \alpha x \\
+        z = \alpha z 
+        \frac 1 3 (x + y + z) = \alpha z
+    \end{cases}$ 
+
+    et donc $U = \begin{pmatrix}
+        1 \\
+        \alpha \\
+        \alpha^2
+    \end{pmatrix}$ convient. 
+
+    $P = \begin{pmatrix}
+        1 & 1 & 1 \\
+        1 & \alpha & \bar \alpha \\
+        1 & \alpha^2 & \bar \alpha^2
+    \end{pmatrix}
+    $ matrice de Vandermonde inversible.
+
+    $X_n = P \begin{pmatrix}
+        1 & 0 & 0 \\
+        0 & \alpha^n & 0 \\
+        0 & 0 & \bar \alpha^n
+    \end{pmatrix} P^{-1} X_0$.
+
+    $|\alpha| = |\bar \alpha| < 1$ donc $\alpha^n \to 0$.
+
+    et après calcul on trouve $\ds L = \begin{pmatrix}
+        \frac{z_0 + 2 Z_1 + 3 Z_2}{6} \\
+        \frac{z_0 + 2 Z_1 + 3 Z_2}{6} \\
+        \frac{z_0 + 2 Z_1 + 3 Z_2}{6}
+    \end{pmatrix}$.
+\end{exemple}
+
+\subsubsection{Résolution de systèmes différentiels croisés }
+
+On s'intéresse à $X \in \mathscr C^1(\R, \R^n)$ telle que $\forall t \in \R, \, X'(t) = A X(t)$ 
+avec $A \in \mathscr M_n(\R)$, c'est-à-dire qu'en notant $X(t) = \begin{pmatrix}
+x_1(t) \\
+\vdots \\
+x_n(t)
+\end{pmatrix}$, on a $$\forall t \in \R, \,(S) \begin{cases}
+\ds x_1'(t) & = \sum_{j = 1 }^{n } a_{1j} x_j(t) \\
+& \vdots \\
+\ds x_n'(t) & = \sum_{j = 1 }^{ n } a_{nj} x_j(t)
+\end{cases}$$
+
+et donc si on arrive à diagonaliser $A$, on peut écrire $A = PDP^{-1}$ avec $D$ diagonale
+et alors en posant $Y(t) = P^{-1} X(t)$, on a $Y \in \mathscr C^1(\R, \R^n)$ et
+$$\forall t \in \R, \, Y'(t) = P^{-1} X'(t) $$ car $U \mapsto P^{-1} U$ est linéaire et donc dérivable en chaque point.
+
+Donc $(S) \iff Y'(t) = D Y(t)$ que l'on résout facilement. 
+
+On en déduit $X(t) = P Y(t)$.
+
+\subsubsection{Recherche du commutant d'une matrice }
+
+Pour $A \in \mathscr M_n(\K)$, on s'intéresse à l'ensemble $\mathscr C(A) = \{M \in \mathscr M_n(\K), AM = MA\}$.
+
+Si $A = PDP^{-1}$ avec $D$ diagonale, on a 
+$\fonction{}{\mathscr C (A)}{\mathscr C(D)}{M}{P^{-1} M P}$ est un isomorphisme d'algèbres.
+
+Il suffit donc de chercher $\mathscr C(D)$ en utilisant le fait que si 
+$ND = DN$, les espaces propres de $D$ sont stables par $N$. Ainsi en rengeant dans l'ordre les valeurs propres
+de $D$, $N \in \mathscr C(D)$ ssi $N$ est diagonale par blocs, avec des blocs de la dimension des espaces propres. 
+
+\begin{exemple}
+    $\begin{pmatrix}
+        2 & 0 & 0 \\
+        0 & 2 & 0 \\
+        0 & 0 & 3
+    \end{pmatrix}$ alors $ND = DN$ ssi $N = \begin{pmatrix}
+        a & b & 0 \\
+        c & d & 0 \\
+        0 & 0 & e
+    \end{pmatrix}$.
+\end{exemple}
+
+\subsubsection{Recherche des racines carrées d'une matrice }
+
+Soit $A \in \mathscr M_n(\K)$. On cherche $B \in \mathscr M_n(\K)$ tel que $B^2 = A$.
+
+Remarquons que si $B^2 = A$, alors $AB = B^2B = BB^2 = BA$, donc $B \in \mathscr C(A)$.
+
+On cherche $B$ avec des coefficients dans $\mathscr C(A)$.
+
+\section{Endomorphismes et matrices carrées trigonalisables}
+\subsection{Définitions}
+
+\begin{definition}{endomorphisme trigonalisable}{}
+    \index{Endomorphisme!trigonalisable}
+    Un endomorphisme d'un $\K$-espace vectoriel est dit trigonalisble ssi il existe 
+    $B$ une base de $E$ dans laquelle sa matrice est triangulaire supérieure.
+\end{definition}
+
+\begin{exemple}
+    Tout endomorphisme diagonalisable est trigonalisable.
+
+    Soit $u$ canoniquement associé à $A = \begin{pmatrix}
+        1 & 1 \\
+        0 & 1
+    \end{pmatrix}$. Alors $u$ n'est pas diagonalisable car
+    $\chi_u = (X - 1)^2$ et $\dim E_1(u) = 1 < 2$.
+\end{exemple}
+
+\begin{propositionnt}{drapeau complet stable par un endomorphisme trigonalisable}{}
+    Soit $u \in \mathscr L(E)$ triagonalisable dans une base $B = (e_1, \ldots, e_n)$.
+
+    Alors $e_1$ est vecteur propre de $u$, et plus généralement 
+    $\forall k \in \ninter 1 n$, $F_k = \Vect(e_1, \ldots, e_k)$ est stable par $u$.
+
+    On dit (HP) que $(F_1, \dots, F_n)$ forment un drapeau complet de sous-espaces vectoriels stables par $u$.
+\end{propositionnt}
+
+\begin{definition}{matrice trigonalisable}{}
+    \index{Matrice!trigonalisable}
+    Une matrice carrée est trigonalisable ssi elle est semblable à une matrice triangulaire supérieure.
+\end{definition}
+
+\begin{proposition}{lien trigonalisabilité matrice et endomorphisme}{}
+    Soit $u \in \mathscr L(E)$, $B$ une base de $E$, et $A = M_B(u)$.
+
+    Alors $u$ est trigonalisable ssi $A$ est trigonalisable.
+\end{proposition}
+
+\begin{proof}
+    Identique à la preuve de la proposition sur la diagonalisabilité.
+\end{proof}
+
+\begin{theorement}{caractérisation trigonalisable par le polynôme caractéristique}{}
+    Un endomorphisme est trigonalisable ssi son polynôme caractéristique est scindé. 
+
+    Il en est de même pour les matrices carrées.
+\end{theorement}
+
+\idee{Par récurrence.}
+
+\begin{proof}
+    Avec le point de vu matriciel par récurrence sur la taille de la matrice.
+
+    Soit $A \in \mathscr M_1(\K)$. Alors $A = (a)$ est triangulaire supérieure donc trigonalisable.
+
+    HR : supposons le résultat vrai pour toute matrice de taille $\leqslant n$. 
+
+    Soit $A \in \mathscr M_{n + 1}(\K)$ telle que $\chi_A$ soit scindé.
+
+    Soit $\lambda$ une racine de $\chi_A$, et $e_1$ un vecteur propre associé à $\lambda$.
+
+    Complétons $E_1$ en une base $B$. Alors dans $B$, l'endomorphisme associé à $A$ a pour matrice 
+    $A' = \begin{pmatrix}
+        \lambda & * & \cdots & * \\
+        0 & & & \\
+        \vdots & & A_1 & \\
+        0 & & &
+    \end{pmatrix}$ avec $A_1 \in \mathscr M_n(\K)$ qui est donc semblable à $A$. 
+
+    $\chi_A = \chi_{A'} = (X - \lambda) \chi_{A_1}$ donc $\chi_{A_1}$ est scindé.
+
+    Donc par hypothèse de récurrence, $A_1$ est trigonalisable, donc
+    $A_1 = P T P^{-1}$ avec $P \in GL_n(\K)$ et $T$ triangulaire supérieure.
+
+    Donc $A' = \begin{pmatrix}
+        \lambda & * & \cdots & * \\
+        0 & & & \\
+        \vdots & & P T P^{-1} & \\
+        0 & & &
+    \end{pmatrix}$.
+
+    Posons $Q = \begin{pmatrix}
+        1 & 0 & \cdots & 0 \\
+        0 & & & \\
+        \vdots & & P & \\
+        0 & & &
+    \end{pmatrix} \in GL_{n + 1}(\K)$ car $P$ inversible, et 
+    $Q^{-1} = \begin{pmatrix}
+        1 & 0 & \cdots & 0 \\
+        0 & & & \\
+        \vdots & & P^{-1} & \\
+        0 & & &
+    \end{pmatrix}$.
+
+    Donc $A$ est semblable à $Q^{-1} A' Q = \begin{pmatrix}
+        \lambda & * & \cdots & * \\
+        0 & & & \\
+        \vdots & & T & \\
+        0 & & &
+    \end{pmatrix}$ qui est triangulaire supérieure.
+\end{proof}
+
+\begin{corollaire}{trigonalisabilité sur $\C$}{}
+    Dans un $\C$-espace vectoriel de dimension finie, tout endomorphisme est trigonalisable.
+
+    Toute matrice de $\mathscr M_n(\C)$ est trigonalisable.
+\end{corollaire}
+
+
+\begin{corollaire}{polynôme caractéristique d'une matrice trigonalisable}{}
+    Si $A$ est trigonalisable, alors $A = P \begin{pmatrix}
+        \lambda_1 & * & \cdots & * \\
+        0 & \lambda_2 & \cdots & * \\
+        \vdots & \vdots & \ddots & \vdots \\
+        0 & 0 & \cdots & \lambda_n
+    \end{pmatrix} P^{-1}$.
+
+    Donc $\displaystyle \chi_A(X) = \prod_{i = 1 }^{ n } (X - \lambda_i)$ est scindé.
+\end{corollaire}
+
+
+\begin{exemple}
+    $A = \begin{pmatrix}
+        2 & -2 & -3 \\
+        2 & -1 & -6 \\
+        -1 & 2 & 4
+    \end{pmatrix}$, et alors $A - I$ est de rang $1$. Donc $\dim \ker (A - I) = 2$, donc 
+    $1$ est valeur propre de multiplicité $\leqslant 2$.
+
+    Donc $\chi_A(X) = (X - 1)^2 (X - a)$ avec $a \in \R$.
+
+    Or $\tr A = 3 = 2 + a$ donc $a = 1$ et donc $\chi_A(X) = (X - 1)^3$.
+
+    Donc $1$ est valeur propre de multiplicité $3$, $A$ non diagonalisable
+    mais $\chi_A$ est scindé donc $A$ est trigonalisable.
+
+    \avspace Cherchons les vecteurs propres de $A$. 
+
+    $\begin{pmatrix}
+        x \\
+        y \\
+        z
+    \end{pmatrix} \in E_1(A)$ ssi $x - 2y - 3z = 0$, donc $e_1 = \begin{pmatrix}
+        2 \\
+        1 \\
+        0
+    \end{pmatrix}, e_2 = \begin{pmatrix}
+        3 \\
+        0 \\
+        1
+    \end{pmatrix}$ forment une base de $E_1(A)$.
+
+    Pour trigonaliser $A$, complétons en une base de $\R^3$ avec $e_3 = \begin{pmatrix}
+        1 \\
+        0 \\
+        0
+    \end{pmatrix}$.
+
+    Alors $Ar_3 = \begin{pmatrix}
+        2 \\
+        2 \\
+        -1
+    \end{pmatrix} = 2 e_1 - e_2 + e_3$ 
+    et donc dans la base $B = (e_1, e_2, e_3)$, l'endomorphisme associé à $A$ a pour matrice 
+    $A' = \begin{pmatrix}
+        1 & 0 & 2 \\
+        0 & 1 & -1 \\
+        0 & 0 & 1
+    \end{pmatrix}$ triangulaire supérieure.
+\end{exemple}
+
+
+\subsection{Trace et déterminant }
+
+\begin{proposition}{trace et déterminant d'un endomorphisme trigonalisable}{}
+    Soit $u \in \mathscr L(E)$ (resp $A \in \mathscr M_n(\K)$) tel que $\chi_u$ (resp $\chi_A$) soit scindé, 
+    c'est-à-dire que $u$ (resp $A$) est trigonalisable.
+
+    Notons $\displaystyle \chi_u = \prod_{i = 1 }^{ p } (X - \lambda_i)^{m_i}$ avec $\lambda_1, \ldots, \lambda_p$ 
+    deux à deux distincts. Alors 
+    \begin{itemize}
+        \item $\tr(u) = \displaystyle \sum_{i = 1 }^{ p } m_i \lambda_i$
+        \item $\det(u) = \displaystyle \prod_{i = 1 }^{ p } \lambda_i^{m_i}$
+    \end{itemize}
+\end{proposition}
+
+\begin{proof}
+    Par trigonalisation, il existe $B$ base de $E$ telle que 
+
+    $M_B(u) = \begin{pmatrix}
+        \lambda_1 & * & \cdots & * \\
+        0 & \lambda_2 & \cdots & * \\
+        \vdots & \vdots & \ddots & \vdots \\
+        0 & 0 & \cdots & \lambda_n
+    \end{pmatrix}$, d'où le résultat par calcul. 
+\end{proof}
+
+\begin{corollaire}{LHP}{}
+    Soit $A \in \mathscr M_n(\K)$ trigonalisable, alors 
+
+    $A = PTP^{-1}$ avec $T = \begin{pmatrix}
+        \lambda_1 & * & \cdots & * \\
+        0 & \lambda_2 & \cdots & * \\
+        \vdots & \vdots & \ddots & \vdots \\
+        0 & 0 & \cdots & \lambda_n
+    \end{pmatrix}$ et $P \in GL_n(\K)$
+    donc pour $k \in \N$, 
+    $$A^k = P T^k P^{-1} \text{ avec } T^k = \begin{pmatrix}
+        \lambda_1^k & * & \cdots & * \\
+        0 & \lambda_2^k & \cdots & * \\
+        \vdots & \vdots & \ddots & \vdots \\
+        0 & 0 & \cdots & \lambda_n^k
+    \end{pmatrix}$$
+
+    Donc $\tr(A^k) = \displaystyle \sum_{i = 1 }^{ p } m_i\lambda_i^k$.
+\end{corollaire}
+
+\begin{remarque}
+    Dans les propositions précédentes, les valeurs propres dont l'ordre de multiplicité est 
+    supérieur à 1 ont cette valeur propre répétée avec multiplicité sur la 
+    diagonale les unes à la suite des autres.
+\end{remarque}
+
+
+\begin{exemple}
+    $A = \begin{pmatrix}
+        1 & & & & & \\
+        & -1 & & & 1 & \\
+        & & 1 & & & \\
+        & & & \ddots & & \\
+        & 1 & & & 1 & \\
+        & & & & & -1
+        \end{pmatrix} \in \mathscr M_2n(\R)$.
+
+        On cherche les valeurs propres et la dimension des espaces propres. 
+
+        $A + 2I = \begin{pmatrix}
+            3 & & & & & \\
+            & 1 & & & 1 & \\
+            & & 3 & & & \\
+            & & & \ddots & & \\
+            & 1 & & & 1 & \\
+            & & & & & 1
+        \end{pmatrix}$ a $n$ colonnes identiques, 
+        
+        donc est de rang $\leqslant n + 1$.
+
+        Donc (théorme du rang), $\dim \ker(A + 2I) \geqslant 2n - (n + 1) = n - 1$.
+
+        Donc $-2$ valeur propre de multiplicité $\geqslant n - 1$.
+
+        Par le même raisonnement, $A$ possède $n$ colonnes identiques, donc est 
+        de rang $\leqslant n + 1$.
+
+        Donc (théorème du rang), $\dim \ker(A - I) \geqslant 2n - (n + 1) = n - 1$.
+
+        Donc $0$ valeur propre de multiplicité $\geqslant n - 1$.
+
+        $A$ est symétrique réelle donc diagonalisable, donc $\chi_A$ est scindé. 
+
+        et $\chi_A = X^{n -1} (X + 2)^{n - 1} (X - a)(X - b)$ avec $a, b \in \R$.
+
+        Or $\tr A = 0 = (n - 1) \cdot 0 + (n - 1)(-2) + a + b$ donc $a + b = 2(n - 1)$.
+
+        $\tr A^2 = (n - 1) 0^2 + (n - 1)(-2)^2 + a^2 + b^2$ 
+        or les coefs diagonaux de $A^2$ sont tous égaux à $2n$ donc 
+        $(2n)^2 = 4(n - 1) + a^2 + b^2$.
+
+        $\begin{cases}
+            a + b = 2(n - 1) \\
+            a^2 + b^2 = 4n^2 - 4n + 4
+        \end{cases}$ donc $2ab = 4n^2 - 8n + 4 - (4n^2 - 4n + 4)$ et 
+        donc $ab = -2n$. 
+
+        Donc $\begin{cases}
+            a + b = 2(n - 1) \\
+            ab = -2n
+        \end{cases}$ donc $a$ et $b$ sont les racines de $P = X^2 - 2(n - 1)X - 2n$.
+
+        $\Delta = 4(n - 1)^2 + 8 n = 4n^2 + 4$ donc 
+        $\{a, b\} = \{n - 1 - \sqrt{n^2 + 1}, n - 1 + \sqrt{n^2 + 1}\}$.
+
+        Donc $\chi_A = X^{n -1} (X + 2)^{n - 1} (X - (n - 1 - \sqrt{n^2 + 1}))(X - (n - 1 + \sqrt{n^2 + 1}))$.
+\end{exemple}
+
+\section{Polynômes d'endomorphismes et de matrices carrées}
+\subsection{Morphisme d'algèbre }
+
+\begin{theoreme}{morphisme d'algèbre polynôme}{}
+    Soit $E$ un $\K$-espace vectoriel, $u \in \mathscr L(E)$ et 
+    $P = \displaystyle \sum_{k = 0 }^{ N } a_k X^k \in \K[X]$.
+
+    On notera $P(u) = \displaystyle \sum_{k = 0 }^{ N } a_k u^k \in \mathscr L(E)$.
+
+    Alors l'application $\fonction{\varphi_u}{\K[X]}{\mathscr L(E)}{P}{P(u)}$ est un morphisme d'algèbres.
+
+    Son image est notée $\K[u]$, c'est une sous algèbre commutative de $\mathscr L(E)$
+    appelée algèbre des polynômes en $u$.
+
+    Son noyau est un idéal de $\K[X]$ appelé idéal des polynômes annulateurs de $u$.
+
+    \lvspace Soit $A \in \mathscr M_n(\K)$ et $P = \displaystyle \sum_{k = 0 }^{ N } a_k X^k \in \K[X]$.
+
+    On notera $P(A) = \displaystyle \sum_{k = 0 }^{ N } a_k A^k \in \mathscr M_n(\K)$.
+
+    Alors l'application $\fonction{\varphi_A}{\K[X]}{\mathscr M_n(\K)}{P}{P(A)}$ est un morphisme d'algèbres.
+
+    Son image notée $\K[A]$ est une sous algèbre commutative de $\mathscr M_n(\K)$ appelée 
+    sous algèbre des polynômes en $A$.
+
+    Son noyau est un idéal de $\K[X]$ appelé idéal des polynômes annulateurs de $A$.
+
+    De plus, si $E$ est de dimension finie $n$, $B$ base de $E$ et $A = M_B(u)$, alors
+    $\forall P \in \K[X], \, P(A) = M_B(P(u))$ et donc $\ker \varphi_u = \ker \varphi_A$.
+\end{theoreme}
+
+\begin{proof}
+    $\varphi_u(1) = \id$ car $\displaystyle 1 = \sum_{k = 0 }^{ 0 } a_k X^k$ avec $a_0 = 1$.
+
+    Soient $P, Q \in \K[X]$, $\displaystyle P = \sum_{k = 0 }^{ N } a_k X^k$ et $\displaystyle Q = \sum_{k = 0 }^{ N} b_k X^k$
+    avec $N = \max(\deg P, \deg Q)$ 
+
+    $\alpha, \beta \in \K$ alors $\displaystyle\alpha P + \beta Q = \sum_{k = 0 }^{n } (\alpha a_k + \beta b_k) X^k$.
+
+    Donc 
+    \begin{align}
+        \varphi_u(\alpha P + \beta Q) & = (\alpha P + \beta Q)(u) \\
+        & = \sum_{k = 0 }^{ N } (\alpha a_k + \beta b_k) u^k \\
+        & = \alpha \sum_{k = 0 }^{ N } a_k u^k + \beta \sum_{k = 0 }^{ N } b_k u^k \\
+        & = \alpha P(u) + \beta Q(u) \\
+    \end{align}
+
+    $\displaystyle PQ = \sum_{k = 0 }^{ 2N } c_k X^k$ avec $\displaystyle c_k = \sum_{i = 0 }^{ k } a_i b_{k - i}$.
+
+    Donc $\displaystyle (PQ)(u) = \sum_{k = 0 }^{ 2N } c_k u^k$ c'est à dire 
+
+    $\displaystyle (PQ)(u) = \sum_{k = 0 }^{ N} \sum_{i = 0 }^{k } a_i b_{k - i} u^k$.
+
+    Or $\displaystyle P(u) \circ Q(u) = (\sum_{i = 0 }^{ N } a_i u^i)\circ( \sum_{j = 0 }^{ N } b_j u^j)
+    = \sum_{i = 0 }^{ 2N} \sum_{j = 0 }^{2N } a_i b_j u^{i + j}$.
+\end{proof}
+
+
+
+\begin{exemple}
+    Soit $A \in \mathscr M_n(\K)$ telle que $A^2 = 3A - 2 I_n$. 
+
+    Posons $P = X^2 - 3X + 2 = (X - 1)(X - 2)$.
+
+    Alors $P(A) = 0$ et donc $P$ est annulateur de $A$ : $P \in \ker \varphi_A$.
+
+    Effectuons la division euclidienne de $X^k$ par $P$. $X^k = PQ_k + R_k$ avec 
+    $\deg R_k < \deg P = 2$.
+
+    Donc $R_k = a_k(X - 1) + b_k (X - 2)$ car $(X - 1)$ et $(X - 2)$ forment une base de $\R_1[X]$.
+
+    Donc $X^k = P Q_k + a_k (X - 1) + b_k (X - 2)$ sont égaux dans $\R[X]$. 
+
+    Appliquons $\varphi_A$ qui est un morphisme d'algèbre : $A^k = P(A) Q_k(A) + a_k (A - I_n) + b_k (A - 2 I_n)$.
+
+    Or $P(A) = 0$ donc $A^k = a_k (A - I_n) + b_k (A - 2 I_n)$.
+
+    Evaluons maintenant la relation en $1$ et $2$ les racines de $P$ : 
+    \begin{align}
+        1^k & = a_k (1 - 1) + b_k (1 - 2) = -b_k \\
+        2^k & = a_k (2 - 1) + b_k (2 - 2) = a_k
+    \end{align}
+
+    Donc $A^k = 2^k (A - I_n) - A + 2 I_n$.
+\end{exemple}
+
+
+\subsection{Polynôme minimal }
+
+\begin{theoreme}{polynôme minimal d'endomorphismes}{}
+    \index{Polynôme!minimal}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie et $u \in \mathscr L(E)$.\\
+    Alors $\ker \varphi_u  = \{P \in \K[X], P(u) = 0\} \neq \{0\}$ donc il existe un unique 
+    polynôme unitaire appelé polynôme minimal de $u$ et noté $\mu_u$ tel que 
+    $$\ker \varphi_u = \mu_u \K[X]$$
+    Cet idéal est appelé idéal des polynômes annulateurs de $u$.
+\end{theoreme}
+
+\idee{
+    Dimension
+}
+
+\begin{proof}
+    $\varphi_u: \K[X] \to \mathscr L(E)$ est un morphisme d'algèbres.
+
+    $\im \varphi_u \subset \mathscr L(E)$ donc est de dimension finie.
+
+    Si on avait $\ker \varphi_u = \{0\}$, alors $\K[X]$ en serait un supp, 
+    donc (lemme du th du rang), il serait isomorphe à $\im \varphi_u$.
+
+    Or $\K[X]$ de dimension infinie, et $\im \varphi_u$ de dimension finie : absurde. 
+
+    Donc $\ker \varphi_u \neq \{0\}$.
+
+    $\K[X]$ est un anneau principal, donc $\ker \varphi_u$ est engendré par un unique polynôme unitaire
+\end{proof}
+
+\begin{theoreme}{polynôme minimal matriciel}{}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie et $A \in \mathscr M_n(\K)$. \\
+    Alors $\ker \varphi_A = \{P \in \K[X], P(A) = 0\} \neq \{0\}$ donc il existe un unique
+    polynôme unitaire appelé polynôme minimal de $A$ et noté $\mu_A$ tel que
+    $$\ker \varphi_A = \mu_A \K[X]$$
+    Cet idéal est appelé idéal des polynômes annulateurs de $A$.
+\end{theoreme}
+
+\begin{proof}
+    Identique à la preuve précédente.
+\end{proof}
+
+\begin{theoreme}{lien polynôme minimal endomorphisme et matrice}{}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie, $u \in \mathscr L(E)$, $B$ une base de $E$ et $A = M_B(u)$.
+    Alors $\mu_u = \mu_A$.
+\end{theoreme}
+
+\begin{proof}
+    $\ker \varphi_u = \ker \varphi_A$ donc les polynômes minimaux sont égaux.
+\end{proof}
+
+\begin{remarque}
+    $\deg \mu_A \geqslant 1$ car sinon $\mu_A$ serait constant égal à $1$ et donc
+    $\ker \varphi_A = \K[X]$ ce qui est absurde.
+
+    \avspace Si $\deg \mu_A = 1$ alors $\mu_A = X - \alpha$ et en ce cas 
+    $\mu_A(A) = 0$ donc $A = \alpha I_n$.
+
+    Ainsi $\deg \mu_A = 1$ ssi $A$ est la matrice d'une homothétie.
+
+    \avspace Pour trouver $\mu_A$ on peut utiliser l'algo suivant : 
+    \begin{itemize}
+        \item Si $A$ est ma matrice d'une homothétie, alors $\deg \mu_A = 1$ et $\mu_A = X - \alpha$.
+        \item Sinon, si $(\id, A, A^2)$ est liée alors $\deg \mu_A = 2$. Si elle est libre on itère 
+            le procédé en considérant $(\id, A, A^2, A^3)$ etc.
+    \end{itemize}
+\end{remarque}
+
+\begin{exemple}
+    $A = \begin{pmatrix}
+        1 & 2 \\
+        4 & 7
+    \end{pmatrix}$
+
+    $A$ n'est pas une homothétie.
+
+    $A^2 = \begin{pmatrix}
+        9 & 16 \\
+        32 & 57
+    \end{pmatrix} = 8 A + I_2$ donc $P = X^2 - 8X - 1$ est annulateur de $A$ et 
+    donc $\mu_A = X^2 - 8X - 1$.
+
+    \lvspace $A = \begin{pmatrix}
+        1 & 0 & 1 \\
+        -1& 2 & 1 \\
+        0 & 1 & -1
+    \end{pmatrix}$. 
+
+    $A$ n'est pas une homothétie.
+
+    $A^2 = \begin{pmatrix}
+        1 & 1 & 0 \\
+        -3 & 5 & 1 \\
+        -1 & 1 & 2
+    \end{pmatrix}$ et $(I_3, A, A^2)$ est libre donc $\deg \mu_A \geqslant 3$.
+
+    $A^3 = \begin{pmatrix}
+        0 & 2 & 2 \\
+        -8 & 10 & 2 \\
+        -2 & 4 & -2
+    \end{pmatrix} = 2 A^2 + 2A - 4 I_3$, et donc $P = X^3 - 2X^2 - 2X + 4$ est annulateur de $A$.
+
+    De plus il est de degré minimal, donc $\mu_A = X^3 - 2X^2 - 2X + 4$.
+\end{exemple}
+
+\begin{theorement}{dimension de l'algèbre des polynômes d'un endomorphisme}{}
+    Soit $u \in \mathscr L(E)$ un $\K$-espace vectoriel de dimension finie, 
+    de polynôme minimal $\mu_u$. 
+
+    Alors $\dim \K[u] = \deg \mu_u$ et $(\id, u, \ldots, u^{\deg \mu_u - 1})$ est une base de $\K[u]$.
+\end{theorement}
+
+\begin{theorement}{dimension de l'algèbre des polynômes d'une matrice}{}
+    Soit $A \in \mathscr M_n(\K)$ de polynôme minimal $\mu_A$.
+
+    Alors $\dim \K[A] = \deg \mu_A$ et $(I_n, A, \ldots, A^{\deg \mu_A - 1})$ est une base de $\K[A]$.
+\end{theorement}
+
+\begin{proof}
+    Considérons $d = \deg \mu_A$ et $\fonction{\tilde \varphi_A}{\K_{d - 1}[X]}{\mathbb K[A]}{P}{P(A)}$.
+
+    $\tilde \varphi_A$ est une application linéaire. 
+
+    Si $P \in \ker \tilde \varphi_A$, alors $P(A) = 0$ et donc $\mu_A | P$.
+
+    Or $\deg \mu_A > \deg P$ et donc $P = 0$.
+
+    Donc $\tilde \varphi_A$ est injective.
+
+    \avspace Soit $B \in \K [A]$, alors $\exists P \in \K[X]$ tel que $B = P(A)$.
+
+    Par division euclidienne, $P = \mu_A Q + R$ avec $\deg R \leqslant d - 1$, donc 
+    (par morphisme d'algèbre) $P(A) = R(A)$.
+
+    Donc $B = R(A) = \tilde \varphi(R)$ donc $B \in \im \tilde \varphi_A$ et donc 
+    $\tilde \varphi_A$ est surjective.
+\end{proof}
+
+\begin{exemple}
+    Si $p$ est un projecteur de $E$, alors $p^2 = p$ donc $X^2 - X$ est annulateur de $p$.
+
+    Donc $\mu_P \in \{X^2 - X, X - 1, X\}$. 3 cas : 
+    \begin{itemize}
+        \item $p = 0$
+        \item $p = \id$
+        \item $\mu_P$ = $X^2 - X$ 
+    \end{itemize}
+
+    Dans le cas où $p \notin \{0, \id\}$, on a $\K[p]$ de dimension $2$ qui a pour base $(\id, p)$.
+
+    \lvspace Soit $A \in \mathscr M_2(\K)$ telle que $A = \begin{pmatrix}
+        a & b \\
+        c & d
+    \end{pmatrix}$ et donc $A^2 = \begin{pmatrix}
+        a^2 + bc & ab + bd \\
+        ac + cd & bc + d^2
+    \end{pmatrix} = (a + d) A  + (b c - ad) I_2 = \tr(A) A + \det(A) I_2$.
+
+    Donc $X^2 - \tr(A) X + \det(A)$ est annulateur de $A$.
+
+    $2$ cas possibles : 
+    \begin{itemize}
+        \item $A$ est la matrice d'une homothétie, $A = \lambda I_2$ et $\mu_A = X - \lambda$ donc 
+        $\K[A] = \Vect(I_2)$ de dimension $1$.
+        \item $A$ n'est pas la matrice d'une homothétie, donc $\mu_A = X^2 - \tr(A) X + \det(A)$ et 
+        $\K[A] = \Vect(I_2, A)$ de dimension $2$.
+    \end{itemize}
+\end{exemple}
+
+\subsection{Lien avec le polynôme caractéristique}
+
+\begin{proposition}{polynôme minimal et polynôme caractéristique}{}
+    Soient $E$ un $\K$-espace vectoriel, $u \in \mathscr L(E)$, $x \in E$ et 
+    $\lambda \in \K$. Supposons que $u(x) = \lambda x$. Alors $(P(u))(x) = P(\lambda)\cdot x$.
+\end{proposition}
+
+\begin{proof}
+    $\forall n \in \N, \, X^n(u)(x) = u^n(x) = \lambda^n x$.
+
+    Par récurrence sur $n$ : $n = 0$ : $\id(x) = x = \lambda^0 x$.
+
+    HR : Supposons que $u^n(x) = \lambda^n x$. Alors $u^{n + 1}(x) = u(u^n(x)) = u(\lambda^n x) = \lambda^n u(x) = \lambda^{n + 1} x$.
+
+    Soit $P = \displaystyle \sum_{k = 0 }^{ N } a_k X^k \in \K[X]$.
+
+    Alors $(P(u))(x) = \sum_{k = 0 }^{ N } a_k u^k(x) = \sum_{k = 0 }^{ N } a_k \lambda^k x = P(\lambda) \cdot x$.
+\end{proof}
+
+\begin{proposition}{polynôme minimal et valeurs propres}{}
+    Soit $P \in \K[X], \, u \in \mathscr L(E)$. Si $P$ annule $u$, alors toute valeur propre de 
+    $u$ est racine de $P$.
+\end{proposition}
+
+\begin{proof}
+    Supposons que $P(u) = 0$, et soit $\lambda $ une valeur propre de $u$. Alors 
+    $\exists x \in E$ tel que $x \neq 0$ et $u(x) = \lambda x$.
+
+    Donc $(P(u))(x) = P(\lambda) \cdot x$.
+
+    Donc $P(\lambda)x = 0$, or $x \neq 0$ donc $P(\lambda) = 0$.
+\end{proof}
+
+\begin{exemple}
+    Si $p$ est un projecteur non trivial, alors $P = X^2 -X$ annule $p$. Les valeurs propres de 
+    $p$ qui sont $0$ et $1$ sont bien racines de $P$.
+\end{exemple}
+
+\begin{proposition}{polynôme minimal et valeurs propres}{}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie, et $u \in \mathscr L(E)$ de polynôme minimal $\mu_u$.
+
+    Alors les racines de $\mu_u$ dans $\K$ sont les valeurs propres de $u$.
+\end{proposition}
+
+\begin{proof}
+    $\mu_u$ annule $u$ donc les valeurs propres de $u$ sont racines de $\mu_u$ (par proposition précédente).
+
+    Soit $\lambda \in \K$ tel que $\lambda$ n'est pas valeur propre de $u$. 
+
+    Alors $\det(u - \lambda \id) \neq 0$ donc $u - \lambda \id$ est inversible.
+
+    Si on avait $\lambda $ racine de $\mu_u$ on aurait $\mu_u = (X - \lambda)^k \cdot P$ avec $k \geqslant 1$ et 
+    $\deg P < \deg \mu_u$
+
+    Donc $(u - \lambda \id)^k \circ P(u) = 0$. 
+
+    Donc $P(u) = 0$, absurde car $\mu_u$ est de degré minimal.
+
+    Donc $\lambda$ n'est pas racine de $\mu_u$.
+\end{proof}
+
+\begin{theoreme}{Cayley Hamilton}{}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie et $u \in \mathscr L(E)$.
+
+    Alors $\mu_u | \chi_u$, c'est à dire que $\chi_u(u) = 0$. 
+
+    Le polynôme caractéristique est un polynôme annulateur de $u$, et de même 
+    pour une matrice $A \in \mathscr M_n(\K)$, $\chi_A(A) = 0$.
+\end{theoreme}
+
+\idee{Construire une base avec des vecteurs de la forme $x, u(x), \ldots, u^k(x)$.}
+
+\begin{proof}
+    Non exigible.
+
+    Soit $u \in \mathscr L(E)$, $E$ de dimension finie. On veur montrer que 
+    $\forall x \in E, \, (\chi_u(u))(x) = 0$.
+
+    Si $x = 0$, c'est vrai. 
+
+    Sinon considérons les vecteurs $e_0 = x$, $e_1 = u(x)$, $\ldots$, $e_k = u^k(x)$ 
+    et $A = \{k \in \N \mid (x, u(x) \cdots, u^k(x)) \text{ est libre }\}$
+
+    $A \subset \N, \, A \neq \emptyset$ car $0 \in A$.
+
+    $A$ est majorée car $E$ de dimension finie. Posons $N = \max A$, alors $(e_0, e_1, \ldots, e_N)$ est libre et
+    $(e_0, e_1, \ldots, e_{N + 1})$ est liée.
+
+    Donc $\exists \alpha_0, \ldots, \alpha_N \in \K$ tels que
+    $e_{N + 1} = \sum_{k = 0 }^{ N } \alpha_k e_k$.
+
+    Posons $F = \Vect(e_0, e_1, \ldots, e_N)$ espace de dimension $N + 1$. 
+
+    $\forall i \in \ninter 0 N$, $u(e_i) \in F$ donc $F$ stable par $u$.
+
+    Considérons l'endomorphisme $\tilde u $ induit par $u$ sur $F$.
+
+    $M_B(u) = \begin{pmatrix}
+        0 & 0 & \cdots & 0 & \alpha_0 \\
+        1 & 0 & \cdots & 0 & \alpha_1 \\
+        0 & 1 & \cdots & 0 & \alpha_2 \\
+        \vdots & \vdots & \ddots & \vdots & \vdots \\
+        0 & 0 & \cdots & 1 & \alpha_N
+    \end{pmatrix}$ matrice compagnon de 
+    
+    $\displaystyle Q(X) = X^{N + 1} - \sum_{k = 0 }^{ N } \alpha_k X^k$.
+
+    Or $\chi_{\tilde u} \mid \chi_u$ donc $\exists P \in \K[X], \, \chi_u = P \cdot \chi_{\tilde u}$.
+
+    Donc 
+
+    \begin{align}
+        (\chi_u(u))(x) & = ((P \cdot \chi_{\tilde u})(u))(x) \\
+        & = (P(u) \circ \chi_{\tilde u}(u))(x) \\
+        & = P(u)(\chi_{\tilde u}(u)(x)) \\
+    \end{align}
+
+    Or $\displaystyle (\chi_{\tilde u}(\tilde u))(x) = (u^{N + 1} - \sum_{k = 0 }^{ N } \alpha_k u^k)(x) = e_{N + 1} - \sum_{k = 0 }^{ N } \alpha_k e_k = 0$.
+\end{proof}
+
+\begin{corollaire}{polynôme minimal et polynôme caractéristique}{}
+    Soit $u \in \mathscr L(E)$ un $\K$-espace vectoriel de dimension finie $n$.
+
+    Dans le cas où $\chi_u$ est scindé (ce qui est toujours le cas si $\K = \C$), 
+    notons $\Sp(u) = \{\lambda_1, \ldots, \lambda_p\}$. On a alors : 
+    $$\chi_u = \displaystyle \prod_{j = 1 }^{ p } (X - \lambda_j)^{m_j}$$
+
+    Avec $\ds \sum_{j = 1 }^{p } m_j = n$.
+    Alors : 
+    $$\mu_u = \displaystyle \prod_{j = 1 }^{ p } (X - \lambda_j)^{k_j}$$
+
+    De plus on a : 
+    \begin{itemize}
+        \item $\forall j \in \ninter{1}{p}, \, 1 \leqslant k_j \leqslant m_j$
+        \item $1 \leqslant \dim E_{\lambda_j}(u) \leqslant m_j$ 
+    \end{itemize}
+\end{corollaire}
+
+\subsection{Lien avec la réduction}
+
+\begin{theoreme}{Lemme de décomposition des noyaux}{}
+    Soient $P_1, \dots, P_k \in \K[X]$ deux à deux premiers entre eux et 
+    $$P = \displaystyle \prod_{j = 1 }^{ k } P_j$$   
+    
+    Soit $u \in \mathscr L(E)$ alors 
+    $$\displaystyle \ker P(u) = \bigoplus_{j = 1 }^{ k } \ker P_j(u)$$
+\end{theoreme}
+
+\idee{Bézout}
+
+\begin{proof}
+    Par récurrence sur $k$. 
+
+    Si $k = 1$, sans intérêt. 
+
+    Si $k = 2$, soit $P_1, P_2 \in \K[X]$ premiers entre eux et $P = P_1 P_2$.
+
+    Soit $x \in \ker P(u)$. 
+
+    Par le théorème de Bézout, il existe $U, V \in \K[X]$ tels que $U P_1 + V P_2 = 1$.
+
+    Par le morphisme d'algèbre $P \mapsto P(u)$, on a 
+    $\id_E = P_1(u) \circ U(u) + P_2(u) \circ V(u)$ donc 
+
+    $$x = \underbrace{(P_1(u))((U(u))(x))}_{= x_1} + \underbrace{(P_2(u))((V(u))(x))}_{= x_2}$$
+
+    \begin{align}
+        (P_1(u))(x_2) & = (P_1(u) \circ P_2(u) \circ V(u))(x) \\
+        & = ((P_1 P_2V)(u))(x) \\
+        & = ((PV)(u))(x) \\
+        & = 0
+    \end{align}
+
+    Donc $x_2 \in \ker P_1(u)$. De même, $x_1 \in \ker P_2(u)$.
+
+    Donc $\ker P(u) \subset \ker P_1(u) + \ker P_2(u)$.
+
+
+    \lvspace Soit $x \in \ker P_1(u) + \ker P_2(u)$, alors $\exists y \in \ker P_1 (u), 
+    \exists z \in \ker P_2(u)$ tels que $x = y + z$.
+
+    $P(u)(x) = (P(u))(y) + (P(u))(z) = P_2(u)(P_1(u)(y)) + P_1(u)(P_2(u)(z)) = 0$. 
+
+    Donc $\ker P_1 (u) + \ker P_2(u) \subset \ker P(u)$ d'où l'égalité. 
+
+    Soit $x \in \ker P_1(u) \cap \ker P_2(u)$. Par bézout, 
+
+    $x = U(u)(P_1(u)(x)) + V(u)(P_2(u)(x)) = 0$ donc l'intersection est réduite à $\{0\}$.
+
+    \uindent{Hypthèse de récurrence } Supposons le résultat vrai pour $k$ polynômes. 
+
+    Soient $P_1, \dots, P_{k + 1} \in \K[X]$ deux à deux premiers entre eux et posons 
+    $P = \displaystyle \prod_{i = 1}^{ k + 1 } P_i$ et $Q = \displaystyle \prod_{i = 1 }^{ k } P_i$.
+
+    Alors $P = Q \cdot P_{k + 1}$ et $Q \wedge P_{k + 1} = 1$ avec le résultat pour $k = 2$.
+
+    $\ker P(u) = \ker Q(u) \oplus \ker P_{k + 1}(u)$. Or (HR), 
+    $\ker(Q(u)) = \bigoplus_{i = 1 }^{ k } \ker P_i(u)$ et la conclusion par associativité de 
+    la somme directe.
+\end{proof}
+
+
+\begin{corollaire}{}{}
+    Soit $u \in \mathscr L(E)$ et $P$ polynôme annulateur de $u$. Supposons que 
+    $P = \displaystyle \prod_{i = 1}^{ k } P_i$ avec $P_1, \ldots, P_k$ deux à deux premiers entre eux.
+
+    Alors par le lemme des noyaux, $\ker P(u) = \bigoplus_{i = 1 }^{ k } \ker P_i(u)$.
+
+    Or $P(u) = 0$ donc $\ker P(u) = E$. Donc 
+    $$E = \bigoplus_{i = 1 }^{ k } \ker P_i(u)$$
+\end{corollaire}
+
+\begin{theoreme}{caractérisation de la diagonalisabilité}{}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie et $u \in \mathscr L(E)$. 
+    Alors les assertions suivantes sont équivalentes :
+    \begin{enumerate}
+        \item $u$ est diagonalisable
+        \item Le polynôme minimal de $u$ est scindé à racines simples.
+        \item $u$ annule un polynôme scindé à racines simples.
+    \end{enumerate}
+\end{theoreme}
+
+\begin{proof}
+    $(2) \implies (3)$ : car $\mu_u$ annule $u$.
+
+    \lvspace Montrons que $3 \implies 2$.
+    
+    Supposons (3). Soit $P$ un polynôme scindé à racines simples annulant $u$. Alors $\mu_u \mid P$ donc 
+    $\mu_u$ est scindé à racines simples et donc (2).
+
+    \lvspace Montrons que $1 \implies 3$. 
+    
+    Supposons (1). 
+    Alors $E = \displaystyle \bigoplus_{i = 1 }^{ p } E_{\lambda_i}(u)$ avec $\Sp(u) = \{\lambda_1, \ldots, \lambda_p\}$.
+
+    Posons $P = \displaystyle \prod_{i = 1 }^{ p } (X - \lambda_i)$.
+
+    Soit $x \in E$ décomposé en $x = \displaystyle \sum_{i = 1 }^{ p } x_i$ avec $x_i \in E_{\lambda_i}(u)$.
+
+    Alors $P(u)(x) = \displaystyle \sum_{i = 1 }^{ p } P(u)(x_i)$, or $P(u)(x_i) = (Q_i(u) \circ (u - \lambda_i \id))(x_i)$
+    en notant $P = Q_i \times (X - \lambda_i)$.
+
+    Donc $P(u)(x_i) = 0$, donc $P(u) = 0$ et donc (3).
+
+    \lvspace Montrons que $3 \implies 1$. 
+    
+    Supposons (3). 
+
+    Soit $P$ scindé à racines simples telles que $P = \displaystyle \prod_{i = 1 }^{ k } (X - \lambda_i)$
+    et $P(u) = 0$.
+
+    Les $(X - \lambda_i)$ sont des polynômes deux à deux premiers entre eux. Donc 
+    (lemme des noyaux) $E = \displaystyle \bigoplus_{i = 1 }^{ k } \ker (u - \lambda_i \id)$.
+
+    Notons $\lambda_1, \dots, \lambda_p$ les $\lambda_i$ pour lesquels ce noyau est non trivial.
+
+    Donc $E = \displaystyle \bigoplus_{i = 1 }^{ p } \ker (u - \lambda_i \id) $ d'où le (1).
+\end{proof}
+
+\begin{exemple}
+    $A = \begin{pmatrix}
+        1 & 2 & 4 \\
+        -1 & 3 & 5 \\
+        3 & 1 & 3 
+    \end{pmatrix}$ eet $L_3 + L_2 = 2L_1$. $A$ n'est pas inversible, donc $0$ est valeur propre de $A$.
+
+    $\begin{pmatrix}
+        1 \\ 1 \\ 1
+    \end{pmatrix}$ est valeur propre pour $7$. 
+
+    Donc $\chi_A(X) = X(X - 7)(X - \alpha)$ et $0 + 7 + \alpha = \tr(A) = 7$ donc $\alpha = 0$.
+
+    Donc $\chi_A(X) = X^2 (X - 7)$ et $\dim E_7(A) = 1$ car valeur propre simple.
+
+    $\dim \ker A \geqslant 1$ et $\rg A \leqslant 2$, or $\rg A \notin \{0, 1\}$ (car $L_1$ et $L_2$
+    sont libres) donc $\rg A = 2$ et donc $\dim \ker A = 1$.
+
+    $A$ non diagonalisable or $\mu_A \mid \chi_A$ et a les mêmes racines et unitaire donc 
+    $\mu_A \in \{X(X - 7), X^2(X - 7)\}$ or $A$ non diagonalisable sonc $\mu_A$ n'est pas scindé à racines simples donc 
+    $\mu_A = X^2 (X - 7)$.
+\end{exemple}
+
+\begin{proposition}{polynôme minimal et sous-espace stable}{}
+    Soit $u \in \mathscr L(E)$ avec $E$ un $\K$-espace vectoriel de dimension finie. 
+
+    Soit $F$ sous-espace vectoriel de $E$ stable par $u$, et $\tilde u$ l'endomorphisme induit. 
+
+    Alors $\mu_{\tilde u} \mid \mu_u$.
+\end{proposition}
+
+
+\begin{proof}
+    Soit $x \in F$.
+
+    $(\mu_u(\tilde u))(x) = (\mu_u(u))(x) = 0$ donc $\mu_u(\tilde u) = 0$.
+
+    Donc $\mu_{\tilde u} \mid \mu_u$.
+\end{proof}
+
+\begin{corollaire}{endomorphisme induit et diagonalisabilité}{}
+    Un endomorphisme induit par un endomorphisme diagonalisable est lui aussi diagonalisable.
+\end{corollaire}
+
+\begin{proof}
+    Avec les notations précédentes : $u$ est diagonalisable donc $\mu_u$
+    scindé à racines simples, or $\mu_{\tilde u} \mid \mu_u$ donc $\mu_{\tilde u}$ 
+    scindé à racines simples donc $\tilde u$ est diagonalisable.
+\end{proof}
+
+\begin{corollaire}{LHP}{}
+    \index{Codiagonalisable}
+    Soient $u, v \in \mathscr L(E)$ tels que $u \circ v = v \circ u$ et 
+    $u$ et $v$ diagonalisables. Alors il existe $B$ une base de $E$ telle que 
+    $M_B(u)$ et $M_B(v)$ sont diagonales.
+
+    On dit que $u$ et $v$ sont codiagonalisables.
+\end{corollaire}
+
+\begin{proof}
+    Notons $\lambda_1, \dots, \lambda_p$ les valeurs propres de $u$. 
+
+    $u \circ v = v \circ u$ donc $\forall j \in \ninter{1}{p}, \, E_{\lambda_j}(u)$ est stable par $v$.
+
+    Notons $v_j$ l'endomorphisme induit par $v$ sur $E_{\lambda_j}(u)$.
+
+    $v$ étant diagonalisable, $v_j$ l'est aussi. 
+
+    Notons $B_j$ une base de $E_{\lambda_j}(u)$ formée de vecteurs propres de $v_j$.
+
+    Les vecteurs de $B_j$ sont propres pour $u$ et $v$, or $u$ diagonalisable donc 
+    $E = \displaystyle \bigoplus_{j = 1 }^{ p } E_{\lambda_j}(u)$, donc 
+    $B = B_1 \cup \dots \cup B_p$ base de $E$ donc $M_B(u)$ et $M_B(v)$ sont diagonales.
+\end{proof}
+
+\begin{theoreme}{caractérisation de la trigonalisabilité}{}
+    Soit $u \in \mathscr L(E)$, alors les assertions suivantes sont équivalentes :  
+    \begin{enumerate}
+        \item $u$ est trigonalisable
+        \item $\mu_u$ est scindé
+        \item $u$ annule un polynôme scindé
+    \end{enumerate}
+\end{theoreme}
+
+\begin{proof}
+    Montrons que $1 \implies 3$.
+    
+    Si $u$ est trigonalisable alors $\chi_u$ scindé, or $\chi_u$ annule $u$ d'où (3).
+
+    \lvspace Montrons que $3 \implies 2$.
+    
+    Supposons (3). Soit $P$ scindé tel que $P(u) = 0$, or $\mu_u \mid P$ donc $\mu_u$ est scindé d'où (2).
+
+    \lvspace Montrons que $2 \implies 1$.
+    
+    Supposons le (2). $\mu_u$ est scindé, donc $\mu_u$ a les mêmes racines dans $\K$ et $\C$, 
+    $\mu_u$ et $\chi_u$ ont les mêmes racines, donc $\chi_u$ a les mêmes racines dans $\K$ et $\C$.
+
+    Donc $\chi_u$ scindé. Donc $u$ trigonalisable. 
+\end{proof}
+
+\subsection{Nilpotence}
+
+\begin{definition}{endomorphisme et matrice nilpotent}{}
+    \index{Endomorphisme!nilpotent}
+    \index{Matrice!nilpotente}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie et $u \in \mathscr L(E)$. 
+
+    On dit que $u$ est nilpotent s'il existe $k \geqslant 1$ tel que $u^k = 0$.
+
+    Le plus petit entier vérifiant $u^k = 0$ est appelé indice de nilpotence de $u$.
+    
+    De même pour les matrices. 
+\end{definition}
+
+
+\begin{proposition}{polynôme minimal et nilpotence}{}
+    Soit $u \in \mathscr L(E)$, alors $u$ est nilpotent d'ordre $k$ ssi $\mu_u = X^k$.
+    De même pour les matrices.
+\end{proposition}
+
+\begin{proof}
+    Si $u$ nilpotent d'ordre $k$ alors $u^k = 0$, donc $X^k$ annule $u$, 
+    donc $\mu_u \mid X^k$, donc $\mu_u \in \{X, X^2, \ldots, X^k\}$.
+
+    Or $u^{k - 1} \neq 0$ donc $\mu_u \notin \{X, X^2, \ldots, X^{k - 1}\}$, donc $\mu_u = X^k$.
+
+    Réciproquement, si $\mu_u = X^k$ alors $u^k = 0$ et $u^{k - 1} \neq 0$ donc $u$ est nilpotent d'ordre $k$.
+\end{proof}
+
+\begin{corollaire}{indice de nilpotence et dimension}{}
+    Soit $u \in \mathscr L(E)$ nilpotent d'indice $k$ alors $k \leqslant n$.
+\end{corollaire}
+
+\begin{proof}
+    $\mu_u = X^k \mid \chi_u$ or $\deg \chi_u = n$ donc $k \leqslant n$. 
+\end{proof}
+
+\begin{corollaire}{caractérisation de la nilpotence}{}
+    Soit $u \in \mathscr L(E)$, alors $u$ est nilpotent ssi $u$ est trigonalisable et $0$ est son unique valeur
+    propre. 
+\end{corollaire}
+
+\begin{proof}
+    Si $u$ est nilpotent, alors $\exists k, \, \mu_u = X^k$ qui est scindé, donc $u$ est trigonalisable.
+    De plus les valeurs propres de $u$ sont les racines de $\mu_u$, donc $0$ est l'unique valeur propre.
+
+    Réciproquement, si $u$ est trigonalisable et $0$ unique valeur propre, alors $\mu_u$ est scindé avec 
+    $0$ comme unique racine. 
+
+    Donc $\exists k, \, \mu_u = X^k$ donc $u$ est nilpotent.
+\end{proof}
+
+\begin{corollaire}{}{}
+    Soit $u \in \mathscr L(E)$, $n = \dim E$. $u$ est nilpotent ssi $\chi_u = X^n$.
+\end{corollaire}
+
+\begin{proof}
+    Si $u$ est nilpotent, $u$ trigonalisable et $\Sp(u) = \{0\}$ donc $\chi_u$ scindé avec $0$ pour unique 
+    racine donc $\chi_u = X^n$.
+
+    Si $\chi_u = X^n$ comme $\mu_u \mid \chi_u$, $\exists k, \, \mu_u = X^k$ donc $u$ nilpotente. 
+\end{proof}
+
+\begin{remarque}
+    Tous ces résultats s'appliquent aux matrices. 
+\end{remarque}
+
+\begin{exemple}
+    $\begin{pmatrix}
+        -2 & 4 \\ 
+        -1 & 2
+    \end{pmatrix}$ et $\chi_A = \begin{vmatrix}
+        X + 2 & -4 \\
+        1 & X - 2
+    \end{vmatrix} = X^2$ donc $\mu_A \in \{X, X^2\}$.
+
+    $A \neq 0$ donc $\mu_A = X^2$ et $A$ est nilpotente d'indice $2$.
+
+    Donc $A$ non diagonalisable (car la seule matrice nilpotente diagonalisable 
+    est la matrice nulle dont le pynôme minimal est $X$).
+
+    $\chi_A$ est scindé, donc $A$ est trigonalisable. 
+
+    $\begin{pmatrix}
+        x \\ y
+    \end{pmatrix} \in \ker A$ ssi $-2x + 4y = 0$
+
+    $\ker A = \Vect e_1$ avec $e_1 = \begin{pmatrix}
+        2 \\ 1
+    \end{pmatrix}$.
+
+    Posons $e_2 = A \begin{pmatrix}
+        -1 \\ 0
+    \end{pmatrix}$ et alors $A = PTP^{-1}$ avec $P = (e_1, e_2)$ et 
+    $T = \begin{pmatrix}
+        0 & 1 \\
+        0 & 0
+    \end{pmatrix}$.
+\end{exemple}
+
+
+\subsection{Sous-espaces caractéristiques}
+
+Dans toute cette partie, on suppose que le polynôme caractéristique est scindé.
+
+\begin{definition}{sous-espace caractéristique}{}
+    \index{Sous-espace!caractéristique}
+    Soit $u \in \mathscr L(E)$, $\K$-espace vectoriel de dimension finie. Supposons
+    que $\chi_u$ est scindé, $\displaystyle \chi_u = \prod_{i = 1 }^{ p } (X - \lambda_i)^{m_i}$.
+
+    \marginenote{Remarque}{$\ker (u - \lambda_i \id )^{m_i}$ désigne le noyau d'une composition, et non pas d'un produit.}
+    \lvspace \avspace 
+
+    Pour $i \in \ninter{1}{p}$, on définit le sous-espace caractéristique associé à $\lambda_i$ par 
+    $$C_{\lambda_i} = \ker (u - \lambda_i \id )^{m_i}$$
+
+    On a en particulier $E_{\lambda_i}(u) \subset C_{\lambda_i} $
+\end{definition}
+
+\begin{theoreme}{somme directe des sous-espaces caractéristiques}{}
+    Soit $u \in \mathscr L(E)$ tel que $\chi_u$ est scindé. Notons 
+    $\chi_u = \displaystyle \prod_{i = 1 }^{ p } (X - \lambda_i)^{m_i}$ avec 
+    $\lambda_1, \ldots, \lambda_p$ valeurs propres distinctes de $u$
+    et pour tout $i$, $C_{\lambda_i}(u) = \ker (u - \lambda_i \id)^{m_i}$.
+    Alors $$E = \displaystyle \bigoplus_{i = 1 }^{ p } C_{\lambda_i}(u)$$
+
+    L'espace est donc somme directe des sous-espaces caractéristiques.
+\end{theoreme}
+
+\idee{
+    On applique le lemme des noyaux au polynôme caractéristique.
+}
+
+\begin{proof}
+    Posons pour $i \in \ninter 1 k $, $P_i = (X - \lambda_i)^{m_i}$, et
+    pour $i \neq j$, $\lambda_i \neq \lambda_j$ donc $P_i$ et $P_j$ sont premiers entre eux.
+
+    Donc par le lemme des noyaux, $\displaystyle \ker \left(\prod_{i = 1 }^{ p } P_i(u) \right) = \bigoplus_{i = 1 }^{ p } \ker P_i(u)$.
+    
+    Donc $\ds \ker \chi_u(u) = \bigoplus_{i = 1 }^{ p } C_{\lambda_i}(u)$, or $\chi_u$ annule $u$ donc 
+    $\ker \chi_u(u) = E$ d'où le résultat.
+
+\end{proof}
+
+\begin{corollaire}{dimension des sous-espaces caractéristiques}{}
+    Avec les notations du théorème précédent, $$\forall i \in \ninter{1}{p}, 
+    \dim C_{\lambda_i}(u) = m_i$$
+\end{corollaire}
+
+\begin{proof}
+    On a $E = \displaystyle \bigoplus_{i = 1 }^{ p } C_{\lambda_i}(u)$ qui sont 
+    des sous-espaces stables. 
+
+    Dans une base adaptée à cette somme directe, en notant pour tout $i$ 
+    $\tilde u_i$ l'endomorphisme induite par $u$ sur $C_{\lambda_i}(u)$, la 
+    matrice de $u$ est de la forme
+
+    $M_B(u) = \begin{pmatrix}
+        M_1 & 0 & \cdots & 0 \\
+        0 & M_2 & \cdots & 0 \\
+        \vdots & \vdots & \ddots & \vdots \\
+        0 & 0 & \cdots & M_p
+    \end{pmatrix}$ avec $M_i = M_{\mathcal B_i}(\tilde u_i)$.
+
+    Donc $M_B(u)$ est diagonale par blocs, et donc 
+
+    \begin{align}
+        \chi_u & = \det (X I_n - M_B(u)) \\
+        & = \prod_{i = 1 }^{ p } \det (X I_{\dim C_{\lambda_i}} - M_{B_i}(\tilde u_i)) \\
+        & = \prod_{i = 1 }^{ p } \chi_{\tilde u_i}
+    \end{align}
+
+    On a pour $i \in \ninter 1 p$ et $x \in C_{\lambda_i}(u)$,
+    $(\tilde u_i - \lambda_i \id)^{m_i}(x) = 0$ et notons $n_i = \tilde u_i - \lambda_i \id_{C_{\lambda_i}(u)} \in \mathscr L(C_{\lambda_i}(u))$.
+
+    On a alors $n_i^{m_i} = 0$ donc $n_i$ est nilpotent, et on a 
+    $P = (X - \lambda_i)^{m_i}$ annulateur de $\tilde u_i$.
+
+    Donc le polynôme minimal de $\tilde u_i$ est de la forme $(X - \lambda_i)^{\alpha_i}$.
+
+    Donc $\lambda_i$ est l'unique valeur propre de $\tilde u_i$, donc $\chi_{\tilde u_i}$ 
+    est scindé car $\chi_u$ l'est. 
+
+    Donc $\chi_{\tilde u_i} = (X - \lambda_i)^{\dim C_{\lambda_i}(u)}$, donc 
+    $\displaystyle \chi_u = \prod_{i = 1 }^{ p } (X - \lambda_i)^{\dim C_{\lambda_i}(u)}$, 
+    et donc par unicité de la décomposition en facteurs premiers,
+    $\forall i \in \ninter{1}{p}, \, \dim C_{\lambda_i}(u) = m_i$.
+\end{proof}
+
+\begin{corollaire}{sous-espaces caractéristiques et diagonalisabilité}{}
+    Soit $u \in \mathscr L(E)$ diagonalisable et $\Sp (u) = \{\lambda_1, \ldots, \lambda_p\}$
+    alors 
+    
+    $$\forall i \in \ninter{1}{p}, \, E_{\lambda_i}(u) = C_{\lambda_i}(u)$$
+\end{corollaire}
+
+\begin{proof}
+    Comme $u$ est diagonalisable, $\chi_u$ est scindé et 
+    
+    $\forall i \in \ninter{1}{p}, \, \dim E_{\lambda_i}(u) = m_i$.
+
+    Or $\dim C_{\lambda_i}(u) = m_i$ et $E_{\lambda_i}(u) \subset C_{\lambda_i}(u)$ donc 
+    $E_{\lambda_i}(u) = C_{\lambda_i}(u)$.
+\end{proof}
+
+
+\subsubsection{Matrices diagonales par blocs}
+
+Voir quoi faire de ce pavé, si c'est une proposition ou pas et si le titre de la partie a un sens 
+
+Soit $A \in \mathscr M_n(\K)$ associée à $u \in \mathscr L(E)$ dans une base. On suppose 
+$\chi_A$ scindé.
+
+Notons $\Sp (A) = \Sp(u) = \{\lambda_1, \ldots, \lambda_p\}$ et 
+$\chi_A = \chi_u = \displaystyle \prod_{i = 1 }^{ p } (X - \lambda_i)^{m_i}$.
+
+Notons pour tout $i$ : 
+\begin{itemize}
+    \item $C_{\lambda_i}(u) = \ker (u - \lambda_i \id)^{m_i}$
+    \item $\tilde u_i$ l'endomorphisme induit par $u$ sur $C_{\lambda_i}(u)$
+    \item $n_i = \tilde u_i - \lambda_i \id_{C_{\lambda_i}(u)}$
+\end{itemize}
+
+Pour tout $i$, $n_i$ est nilpotent d'indice $\leqslant m_i$, 
+$n_i$ est donc trigonalisable (car de polynôme caractéristique $(X)^{m_i}$ scindé).
+
+Considérons $B_i$ base de $C_{\lambda_i}(u)$ dans laquelle la matrice de $n_i$ est 
+$$N_i = \begin{pmatrix}
+    0 & * & \cdots & * \\
+    0 & 0 & \cdots & * \\
+    \vdots & \vdots & \ddots & \vdots \\
+    0 & 0 & \cdots & 0
+\end{pmatrix}$$ matrice triangulaire stricte. 
+
+La matrice de $\tilde u_i$ dans cette base est donc 
+
+$$M_i = \begin{pmatrix}
+    \lambda_i & * & \cdots & * \\
+    0 & \lambda_i & \cdots & * \\
+    \vdots & \vdots & \ddots & \vdots \\
+    0 & 0 & \cdots & \lambda_i
+\end{pmatrix}$$ matrice triangulaire de diagonale $\lambda_i$.
+
+Donc la matrice de $u$ dans la base $B = B_1 \cup \cdots \cup B_p$ est 
+
+$$A' = M_B(u) = \begin{pmatrix}
+    M_1 & 0 & \cdots & 0 \\
+    0 & M_2 & \cdots & 0 \\
+    \vdots & \vdots & \ddots & \vdots \\
+    0 & 0 & \cdots & M_p
+\end{pmatrix}$$ matrice triangulaire de diagonale constituée des valeurs propres de $u$
+et donc $A$ est semblable à $A'$. 
+
+\begin{exemple}
+    $A = \begin{pmatrix}
+        3 & 9 & 3 \\
+        -3 & 6 & 12 \\
+        1 & 8 & 6
+    \end{pmatrix}$.
+
+    On a $A \cdot \begin{pmatrix}
+        1 \\ 1 \\ 1
+    \end{pmatrix} = 15 \cdot \begin{pmatrix}
+        1 \\ 1 \\ 1
+    \end{pmatrix}$ donc $15$ est valeur propre.
+
+    De plus $3 L_3 = 2 L_1 + L_2$ donc $\det(A) = 0$ et $0$ est valeur propre.
+
+    $\chi_A = X(X - 15)(X - \alpha)$ et $\tr(A) = 15$ donc $\alpha = 0$.
+
+    Donc $\chi_A = X^2 (X - 15)$. 
+
+    $0$ est valeur propre double mais $\dim \ker A = 3 - \rg A = 1$ donc non diagonalisable.
+
+    $\ker A = E_0(A) \subsetneq C_0(A) = \ker (A^2)$.
+
+    $E_{15}(A) = C_{15}(A)$ de dimension 1 et base $\begin{pmatrix}
+        1 \\ 1 \\ 1
+    \end{pmatrix}$.
+
+    $\begin{pmatrix}
+        x \\ y \\ z
+    \end{pmatrix} \in E_0(A)$ ssi $\begin{cases}
+        3x + 9y + 3z = 0 \\
+        -3x + 6y + 12z = 0 \\
+        x + 8y + 6z = 0
+    \end{cases}$ ssi $\begin{cases}
+        y + z = 0 \\
+        x + 2y = 0
+    \end{cases}$
+
+    $E_0(A) = \Vect \begin{pmatrix}
+        2 \\ -1 \\ 1
+    \end{pmatrix}$.
+
+    Posons $e_1 = \begin{pmatrix}
+        1 \\ 1 \\ 1
+    \end{pmatrix}$, $e_2 = \begin{pmatrix}
+        2 \\ -1 \\ 1
+    \end{pmatrix}$ et cherchons $e_3$ dans $\ker A^2$ non colinéaire à $e_2$.
+
+    \avspace Solution 1 : Calculer $A^2$ 
+
+    \avspace Solution 2 : remarquons que $A(e_3) \in \ker A$ donc $A(e_3) $ est colinéaire à $e_2$.
+
+    Cherchons par exemple $e_3$ tel que $A(e_3) = e_2$ donc en notant $e_3 = \begin{pmatrix}
+        x \\ y \\ z
+    \end{pmatrix}$, on a le système
+    $\begin{cases}
+        3x + 9y + 3z = 2 \\
+        -3x + 6y + 12z = -1 \\
+        x + 8y + 6z = 1
+    \end{cases}$ donc $\begin{cases}
+        3x + 9y + 3z = 2 \\
+        15 y + 15 z = 1 
+        30 y + 30 z = 2
+    \end{cases}$. 
+    
+    Choisisson $z = 0$, alors $y = \frac{1}{15}$ et $x = \frac{7}{15}$
+
+    Posons $e_3 = \begin{pmatrix}
+        \frac{7}{15} \\ \frac{1}{15} \\ 0
+    \end{pmatrix}$.
+
+    Et alors $A e_3 = e_2$.
+
+    $B = (e_1, e_2, e_3)$ est libre et $M_B(u) = \begin{pmatrix}
+        15 & 0 & 0 \\
+        0 & 0 & 1 \\
+        0 & 0 & 0
+    \end{pmatrix}$. On a donc bien une matrice triangulaire par blocs. 
+\end{exemple}
+
+\subsubsection{Complément HP : décomposition de Dunford }
+
+
+Soit $u \in \mathscr L(E)$ tel que $\chi_u$ est scindé, 
+
+$\chi_u = \displaystyle \prod_{i = 1 }^{ p } (X - \lambda_i)^{m_i}$ et 
+$\forall i \in \ninter{1}{p}, \, C_{\lambda_i}(u) = \ker (u - \lambda_i \id)^{m_i}$.
+
+Alors $E = \displaystyle \bigoplus_{i = 1 }^{ p } C_{\lambda_i}(u)$ et
+en notant $\pi_1, \ldots, \pi_p$ les projecteurs associés, il existe un base adaptée $B = B_1 \cup \cdots \cup B_p$
+telle que 
+$$M_B(u) = \begin{pmatrix}
+    M_1 & 0 & \cdots & 0 \\
+    0 & M_2 & \cdots & 0 \\
+    \vdots & \vdots & \ddots & \vdots \\
+    0 & 0 & \cdots & M_p
+\end{pmatrix}$$ avec $M_i = \begin{pmatrix}
+    \lambda_i & * & \cdots & * \\
+    0 & \lambda_i & \cdots & * \\
+    \vdots & \vdots & \ddots & \vdots \\
+    0 & 0 & \cdots & \lambda_i
+\end{pmatrix}$
+
+Notons $d \in \mathscr L(E)$ tel que $M_B(d) = \begin{pmatrix}
+    \lambda_1 & 0 & \cdots & \cdots & \cdots & \cdots & 0 \\
+    0 & \ddots & \ddots & & & & \vdots \\
+    \vdots & \ddots & \lambda_1 & \ddots & & & \vdots \\
+    \vdots & & \ddots & \ddots & \ddots &  & \vdots \\
+    \vdots &  & & \ddots & \lambda_p &\ddots  & \vdots \\
+    \vdots & &  & & & \ddots & 0 \\
+    0 & \cdots & \cdots & \cdots & \cdots & 0 & \lambda_p        
+\end{pmatrix}$ 
+
+et $n \in \mathscr L(E)$ tel que $n_0 = n - d$. 
+
+Alors $M_B(n_0) = \begin{pmatrix}
+    N_1 & 0 & \cdots & 0 \\
+    0 & N_2 & \cdots & 0 \\
+    \vdots & \vdots & \ddots & \vdots \\
+    0 & 0 & \cdots & N_p
+\end{pmatrix}$ avec $N_i = \begin{pmatrix}
+    0 & * & \cdots & * \\
+    0 & 0 & \cdots & * \\
+    \vdots & \vdots & \ddots & \vdots \\
+    0 & 0 & \cdots & 0
+\end{pmatrix}$
+
+alors $\chi_{n_0} = X^n$ donc $n_0$ nilpotent et pour $i \in \ninter 1 p$, 
+$\C_{\lambda_i}(u)$ est stable par $n$ et l'endomorphisme induit est 
+$n_i$. 
+
+$d$ est diagonalisable, de plus par produit par blocs, 
+$n_0 \circ d = d \circ n_0$. 
+
+
+
+\begin{theoreme}{décomposition de Dunford}{}
+    Pour $u \in \mathscr L(E)$ tel que $\chi_u$ scindé, alors il existe des endomorphismes 
+    $d, n_0 \in \mathscr L(E)$ uniques tels que 
+    \begin{itemize}
+        \item $d$ diagonalisable
+        \item $n_0$ nilpotent
+        \item $d \circ n_0 = n_0 \circ d$
+        \item $u = d + n_0$
+        \item $n_0 \in \K[u]$
+        \item $d \in \K[u]$
+    \end{itemize}
+\end{theoreme}
+
+\begin{proof}
+    Existence faite avant 
+
+    Reste donc à démontrer que $n_0$ et $d$ dont des polynômes en $u$.
+
+    Pour cela on montre que $\forall i, $ $\pi_i$ est un polynôme en $u$ 
+    (par Bézout). 
+
+    \avspace Unicité : si $d'$ et $n_0'$ conviennent dans $\K[u]$, alors 
+    $d + n_0 = d' + n_0'$ donc $d - d' = n_0' - n_0$.
+
+    $d$ et $d' \in \K[u]$ donc comutent. Ils sont diagonalisables donc $d - d'$ aussi.
+    $n_0$ et $n_0'$ sont nilpotents donc $n_0' - n_0$ aussi.
+
+    Donc $d - d'$ est diagonalisable et nilpotent donc $d - d' = 0$ et donc $n_0 - n_0' = 0$.
+    d'où l'unicité.
+\end{proof}
+

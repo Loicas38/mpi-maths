@@ -1,0 +1,375 @@
+\section{Topologie matricielle et réduites}
+
+\begin{definitionnt}{}
+    On note $D_n(\C) = \left\{ M \in \mathcal{M}_n(\C) \mid M \text{ est diagonalisable} \right\}$.
+    
+    \svspace
+    \textit{Remarque : On définit de la même manière $D_n(\R)$ sur $\R$.}
+\end{definitionnt}
+
+\avspace
+Dans cette section, nous nous posons deux questions fondamentales sur la topologie de cet ensemble :
+\begin{itemize}
+    \item A-t-on $\overline{D_n(\C)} = \mathcal{M}_n(\C)$ ? (Densité)
+    \item L'intérieur est-il donné par $\mathring{D_n}(\C) = \left\{ M \in D_n(\C) \mid M \text{ a des valeurs propres simples} \right\}$ ?
+\end{itemize}
+
+
+\subsection{Densité de \texorpdfstring{$D_n(\C)$}{Dn(C)}}
+
+\begin{propositionnt}{}
+    L'ensemble $D_n(\C)$ est dense dans $\mathcal{M}_n(\C)$.
+\end{propositionnt}
+
+\begin{proof}
+    Soit $M \in \mathcal{M}_n(\C)$. Le corps $\C$ étant algébriquement clos, la matrice $M$ est trigonalisable. Il existe donc une matrice inversible $P \in \operatorname{GL}_n(\C)$ et une matrice triangulaire supérieure $T$ telles que :
+    \[ M = P T P\inv = P \begin{pmatrix} 
+        t_1 & & * \\ 
+        & \ddots & \\ 
+        0 & & t_n 
+    \end{pmatrix} P\inv \]
+    
+    On approche alors $M$ par une suite de matrices $(M_k)_{k \in \N^*}$ définies par :
+    \[ M_k = P \begin{pmatrix} 
+        t_1 + \frac{1}{k} & & * \\ 
+        & \ddots & \\ 
+        0 & & t_n + \frac{n}{k} 
+    \end{pmatrix} P\inv \]
+    
+    Pour $k$ assez grand, les coefficients diagonaux $\left(t_i + \frac{i}{k}\right)_{1 \leqslant i \leqslant n}$ sont deux à deux distincts. La matrice triangulaire contenue dans l'expression de $M_k$ possède donc $n$ valeurs propres distinctes, ce qui implique qu'elle est diagonalisable. 
+    Par suite, $M_k \in D_n(\C)$ pour tout $k$ assez grand.
+    
+    De plus, par continuité du produit matriciel, on a de manière évidente $M_k \tend{k}{+\infty} M$. Cela prouve bien que $\overline{D_n(\C)} = \mathcal{M}_n(\C)$.
+\end{proof}
+
+
+\subsection{Intérieur de \texorpdfstring{$D_n(\C)$}{Dn(C)}}
+
+\begin{theoreme}{Caractérisation de l'intérieur de $D_n(\C)$}{}
+    L'intérieur de l'ensemble des matrices diagonalisables est l'ensemble des matrices à valeurs propres simples :
+    \[ \mathring{D_n}(\C) = \left\{ M \in \mathcal{M}_n(\C) \mid M \text{ a des valeurs propres simples} \right\} \]
+\end{theoreme}
+
+Pour démontrer ce résultat de topologie, nous allons utiliser un outil d'analyse complexe (le principe de l'argument). Rappelons le résultat suivant :
+
+\begin{propositionnt}{}{}
+    Soit $P \in \C[X]$ un polynôme non nul. Soit $a \in \C$ et $r > 0$ tels que $P(z) \neq 0$ sur le cercle $\mathcal{C}(a, r)$. Alors l'intégrale suivante compte le nombre de racines de $P$ (avec multiplicité) contenues dans le disque ouvert $\mathcal{D}(a, r)$ :
+    \[ \frac{1}{2i\pi} \int_{\mathcal{C}(a,r)} \frac{P'(z)}{P(z)} \mathrm{d}z = \text{nb de racines de } P \text{ dans } \mathcal{D}(a,r) \]
+    
+    En paramétrant le cercle par $z = a + r e^{i\theta}$, on a $\mathrm{d}z = i r e^{i\theta} \mathrm{d}\theta$, ce qui donne la formule pratique :
+    \[ \text{nb de racines} = \frac{r}{2\pi} \int_{0}^{2\pi} \frac{P'(a + r e^{i\theta})}{P(a + r e^{i\theta})} e^{i\theta} \mathrm{d}\theta \]
+\end{propositionnt}
+
+\idee{L'idée est de tracer un petit cercle autour de chaque valeur propre de $M$. Pour une matrice $N$ proche de $M$, ses valeurs propres vont rester « piégées » dans ces cercles. Les cercles étant disjoints, $N$ aura $n$ valeurs propres distinctes.}
+
+\begin{proof}
+    Montrons que si $M$ est à valeurs propres simples, alors $M \in \mathring{D_n}(\C)$. 
+    Soit $M$ une matrice ayant $n$ valeurs propres simples $\lambda_1, \dots, \lambda_n$. 
+    
+    Comme les valeurs propres sont distinctes, on peut choisir un rayon $r > 0$ suffisamment petit pour que les disques fermés $\overline{\mathcal{D}}(\lambda_j, r)$ soient deux à deux disjoints.
+    
+    \begin{center}
+    \begin{tikzpicture}[scale=1.2]
+        % Dessin des valeurs propres de M (croix bleues)
+        \coordinate (L1) at (0, 0);
+        \coordinate (L2) at (3, 1);
+        \coordinate (L3) at (1.5, 2.5);
+        
+        \node[blue] at (L1) {$\times$}; \node[blue, below] at (L1) {$\lambda_1$};
+        \node[blue] at (L2) {$\times$}; \node[blue, below] at (L2) {$\lambda_2$};
+        \node[blue] at (L3) {$\times$}; \node[blue, right] at (L3) {$\lambda_3$};
+        
+        % Cercles disjoints
+        \draw[blue, dashed, thick] (L1) circle (0.7);
+        \draw[blue, dashed, thick] (L2) circle (0.7);
+        \draw[blue, dashed, thick] (L3) circle (0.7);
+        
+        % Valeurs propres de N (points rouges)
+        \coordinate (N1) at (0.2, -0.2);
+        \coordinate (N2) at (2.7, 1.3);
+        \coordinate (N3) at (1.2, 2.7);
+        
+        \fill[red] (N1) circle (1.5pt) node[below right] {$\mu_1$};
+        \fill[red] (N2) circle (1.5pt) node[below right] {$\mu_2$};
+        \fill[red] (N3) circle (1.5pt) node[above right] {$\mu_3$};
+        
+        %\node[gray, italic, text width=6cm] at (5, 0) {
+        %    Les vp de $N$ ($\mu_j$) restent confinées \\
+        %    dans les voisinages des vp de $M$ ($\lambda_j$).
+        %};
+    \end{tikzpicture}
+    \end{center}
+
+    Soit $N \in \mathcal{M}_n(\C)$ une matrice proche de $M$. On étudie les racines de son polynôme caractéristique $\chi_N$.
+    D'après la formule rappelée ci-dessus, le nombre de valeurs propres de $N$ dans le disque $\mathcal{D}(\lambda_j, r)$ est donné par :
+    \[ c_j(N) = \frac{1}{2i\pi} \int_{\mathcal{C}(\lambda_j, r)} \frac{\chi_N'(z)}{\chi_N(z)} \mathrm{d}z \]
+    
+    L'application $N \mapsto \chi_N$ est continue (les coefficients du polynôme caractéristique sont des polynômes en les coefficients de la matrice). Donc l'application $N \mapsto c_j(N)$ est continue en $M$. 
+    
+    Ainsi, quand $N \to M$, on a :
+    \[ c_j(N) \xrightarrow[N \to M]{} \frac{1}{2i\pi} \int_{\mathcal{C}(\lambda_j, r)} \frac{\chi_M'(z)}{\chi_M(z)} \mathrm{d}z = 1 \]
+    La limite vaut $1$ car $\lambda_j$ est une racine simple de $\chi_M$ et est la seule racine de $\chi_M$ dans ce disque.
+    
+    Or, l'application $c_j$ est à valeurs entières. Une fonction continue à valeurs entières est localement constante. Par conséquent, pour $N$ dans un voisinage suffisamment petit de $M$, on a exactement $c_j(N) = 1$.
+    
+    La matrice $N$ possède donc exactement une racine de son polynôme caractéristique dans chacun des $n$ disques disjoints $\mathcal{D}(\lambda_j, r)$. Elle admet ainsi $n$ valeurs propres distinctes, ce qui prouve qu'elle est diagonalisable. $M$ est donc bien dans l'intérieur de $D_n(\C)$.
+\end{proof}
+
+\begin{proof}[Preuve de la Propriété (Principe de l'argument pour les polynômes)]
+    Soit $P = \alpha \prod_{j} (X - a_j)^{m_j}$ un polynôme scindé sur $\C$. 
+    En utilisant la dérivée logarithmique, on a :
+    \[ \frac{P'}{P} = \sum_{k} \frac{m_k}{X - a_k} \]
+    
+    L'intégrale que l'on souhaite calculer est (après paramétrage du cercle par $z = a + r e^{i\theta}$) :
+    \[ \frac{r}{2i\pi} \int_{0}^{2\pi} \frac{P'(a+r e^{i\theta})}{P(a+r e^{i\theta})} i e^{i\theta} \mathrm{d}\theta = \frac{r}{2\pi} \sum_{k} m_k \int_{0}^{2\pi} \frac{e^{i\theta}}{a + r e^{i\theta} - a_k} \mathrm{d}\theta \]
+    
+    Pour chaque racine $a_k$, on étudie l'intégrale $I_k = \int_{0}^{2\pi} \frac{e^{i\theta}}{a + r e^{i\theta} - a_k} \mathrm{d}\theta$ en distinguant deux cas :
+
+    \begin{center}
+    \begin{tikzpicture}[scale=1.2]
+        % Cercle
+        \draw[thick, bluebox] (0,0) circle (1.5);
+        \fill (0,0) circle (1.5pt) node[below left] {$a$};
+        \draw[->, >=latex] (0,0) -- (1.06, 1.06) node[midway, above left] {$r$};
+        
+        % Point à l'intérieur
+        \fill[redbox] (0.6, -0.4) circle (1.5pt) node[below right] {$a_k$};
+        \node[redbox, right] at (2.2, 0.5) {Cas 1 : $|a - a_k| < r$};
+        \draw[->, redbox, bend right=20] (2.2, 0.5) to (0.8, -0.3);
+        
+        % Point à l'extérieur
+        \fill[greenbox] (-2.2, -0.8) circle (1.5pt) node[below] {$a_j$};
+        \node[greenbox, left] at (-2.5, 0.5) {Cas 2 : $|a - a_j| > r$};
+        \draw[->, greenbox, bend left=20] (-2.5, 0.5) to (-2.2, -0.6);
+    \end{tikzpicture}
+    \end{center}
+
+    \uindent{Cas 1 : $|a - a_k| < r$ (la racine est à l'intérieur du disque)}
+    
+    \svspace
+    On factorise par le terme dominant au dénominateur, c'est-à-dire $r e^{i\theta}$ :
+    \begin{align*}
+        I_k &= \int_{0}^{2\pi} \frac{e^{i\theta}}{r e^{i\theta} \left(1 + \frac{a - a_k}{r} e^{-i\theta}\right)} \mathrm{d}\theta \\
+            &= \frac{1}{r} \int_{0}^{2\pi} \sum_{n \geqslant 0} (-1)^n \left(\frac{a - a_k}{r}\right)^n e^{-in\theta} \mathrm{d}\theta
+    \end{align*}
+    Comme $\left| \frac{a - a_k}{r} \right| < 1$, la série converge normalement. On peut intervertir la somme et l'intégrale :
+    \[ I_k = \frac{1}{r} \sum_{n \geqslant 0} \left(\frac{a - a_k}{r}\right)^n \int_{0}^{2\pi} e^{-in\theta} \mathrm{d}\theta \]
+    Or, $\int_{0}^{2\pi} e^{-in\theta} \mathrm{d}\theta = 0$ pour tout $n \neq 0$, et vaut $2\pi$ pour $n = 0$.
+    Donc $I_k = \frac{2\pi}{r}$. 
+    
+    En réinjectant dans la somme initiale, le terme correspondant vaut : $\frac{r}{2\pi} m_k \frac{2\pi}{r} = m_k$.
+
+    \uindent{Cas 2 : $|a - a_k| > r$ (la racine est à l'extérieur du disque)}
+    
+    \svspace
+    Cette fois, on factorise par $a - a_k$ au dénominateur :
+    \begin{align*}
+        I_k &= \int_{0}^{2\pi} \frac{e^{i\theta}}{(a - a_k) \left(1 + \frac{r}{a - a_k} e^{i\theta}\right)} \mathrm{d}\theta \\
+            &= \sum_{n \geqslant 0} \frac{1}{a - a_k} \frac{(-1)^n r^n}{(a - a_k)^n} \int_{0}^{2\pi} e^{i\theta} e^{in\theta} \mathrm{d}\theta \\
+            &= \sum_{n \geqslant 0} \frac{(-1)^n r^n}{(a - a_k)^{n+1}} \int_{0}^{2\pi} e^{i(n+1)\theta} \mathrm{d}\theta
+    \end{align*}
+    Ici, pour tout $n \geqslant 0$, on a $\int_{0}^{2\pi} e^{i(n+1)\theta} \mathrm{d}\theta = 0$. Donc $I_k = 0$.
+
+    \avspace
+    \textbf{Conclusion :} L'intégrale somme exactement les multiplicités $m_k$ des racines situées strictement à l'intérieur du disque de rayon $r$.
+\end{proof}
+
+
+\begin{proof}[Suite de la preuve du Théorème (Réciproque pour l'intérieur de $D_n(\C)$)]
+    Il reste à montrer que si $M \in D_n(\C)$ possède une valeur propre au moins double, alors $M \notin \mathring{D_n}(\C)$.
+    
+    Soit $M$ une matrice diagonalisable ayant une valeur propre multiple (par exemple $\lambda_1$). On peut l'écrire sous la forme :
+    \[ M = P \begin{pmatrix} 
+        \lambda_1 & 0 & \dots & 0 \\ 
+        0 & \lambda_1 & & \vdots \\ 
+        \vdots & & \ddots & * \\
+        0 & \dots & & \lambda_p 
+    \end{pmatrix} P^{-1} \]
+    
+    On approche alors $M$ par la suite de matrices $(M_\varepsilon)$ définies pour $\varepsilon > 0$ par :
+    \[ M_\varepsilon = P \begin{pmatrix} 
+        \lambda_1 & \varepsilon & \dots & 0 \\ 
+        0 & \lambda_1 & & \vdots \\ 
+        \vdots & & \ddots & * \\
+        0 & \dots & & \lambda_p 
+    \end{pmatrix} P^{-1} \]
+    
+    La matrice $M_\varepsilon$ possède un bloc de Jordan de taille au moins $2$ associé à la valeur propre $\lambda_1$. Par conséquent, pour tout $\varepsilon \neq 0$, la matrice $M_\varepsilon$ n'est \textbf{pas} diagonalisable ($M_\varepsilon \notin D_n(\C)$).
+    
+    Or, on a clairement $M_\varepsilon \xrightarrow[\varepsilon \to 0]{} M$. Cela signifie que tout voisinage de $M$ contient des matrices non diagonalisables. 
+    Donc $M$ n'est pas dans l'intérieur de $D_n(\C)$.
+\end{proof}
+
+
+\subsection{Étude topologique sur le corps des réels}
+
+\begin{theorement}{}
+    Sur le corps des réels, les propriétés topologiques diffèrent de celles sur $\C$ :
+    \begin{itemize}
+        \item L'adhérence de $D_n(\R)$ est l'ensemble des matrices trigonalisables sur $\R$ :
+        \[ \overline{D_n(\R)} = \mathcal{T}_n(\R) = \left\{ M \in \mathcal{M}_n(\R) \mid \chi_M \text{ est scindé sur } \R \right\} \]
+        \item L'intérieur de $D_n(\R)$ reste l'ensemble des matrices à valeurs propres simples :
+        \[ \mathring{D_n}(\R) = \left\{ M \in \mathcal{M}_n(\R) \mid M \text{ a } n \text{ valeurs propres réelles distinctes} \right\} \]
+    \end{itemize}
+\end{theorement}
+
+\begin{proof}[Démonstration pour l'adhérence]
+    \uindent{Inclusion $\mathcal{T}_n(\R) \subset \overline{D_n(\R)}$}
+    
+    \svspace
+    Soit $M \in \mathcal{T}_n(\R)$. Puisque $M$ est trigonalisable sur $\R$, il existe une matrice inversible $P \in \operatorname{GL}_n(\R)$ et une matrice triangulaire supérieure $T$ telles que $M = P T P\inv$. 
+    
+    On construit la suite de matrices $(M_k)_{k \in \N^*}$ définie par :
+    \[ M_k = P \left( T + \frac{1}{k} \begin{pmatrix} 
+        1 & & 0 \\ 
+        & \ddots & \\ 
+        0 & & n 
+    \end{pmatrix} \right) P\inv \]
+    
+    Pour $k$ assez grand, les coefficients sur la diagonale de la matrice triangulaire sont deux à deux distincts. La matrice $M_k$ possède donc $n$ valeurs propres réelles distinctes, ce qui implique qu'elle est diagonalisable sur $\R$ ($M_k \in D_n(\R)$).
+    
+    De plus, il est clair que $M_k \tend{k}{+\infty} M$. Cela montre bien que $M$ est dans l'adhérence de $D_n(\R)$.
+
+    \avspace
+    \uindent{Inclusion $\overline{D_n(\R)} \subset \mathcal{T}_n(\R)$}
+
+    \svspace
+    Pour démontrer cette seconde inclusion, nous allons utiliser une caractérisation des polynômes scindés sur $\R$ énoncée sous forme de lemme ci-dessous.
+\end{proof}
+
+\begin{proposition}{Caractérisation des polynômes scindés sur $\R$}{}
+    Soit $P \in \R_n[X]$ un polynôme unitaire de degré $n$.
+    \[ P \text{ est scindé sur } \R \iff \forall z \in \C, \, \abs{P(z)} \geqslant \abs{\im(z)}^n \]
+\end{proposition}
+
+\begin{proof}
+    Nous démontrons ici l'implication directe, qui est celle dont nous aurons besoin.
+    
+    Si $P$ est scindé sur $\R$, on peut l'écrire sous la forme factorisée :
+    \[ P(z) = \prod_{j=1}^k (z - \alpha_j)^{m_j} \]
+    où les $\alpha_j \in \R$ sont les racines de $P$, de multiplicité $m_j$ (avec $\sum m_j = n$).
+    
+    Soit $z \in \C$. On écrit $z = x + iy$ avec $x, y \in \R$. Evaluons le module de $P(z)$ :
+    \begin{align*}
+        \abs{P(z)} &= \prod_{j=1}^k \abs{z - \alpha_j}^{m_j} \\
+                   &= \prod_{j=1}^k \abs{(x - \alpha_j) + iy}^{m_j} \\
+                   &= \prod_{j=1}^k \left( \sqrt{(x - \alpha_j)^2 + y^2} \right)^{m_j}
+    \end{align*}
+    
+    Or, pour tout réel $x$ et tout $\alpha_j$, on a $(x - \alpha_j)^2 \geqslant 0$. On peut donc minorer :
+    \[ \sqrt{(x - \alpha_j)^2 + y^2} \geqslant \sqrt{y^2} = \abs{y} = \abs{\im(z)} \]
+    
+    En injectant cette minoration dans le produit, on obtient :
+    \[ \abs{P(z)} \geqslant \prod_{j=1}^k \abs{\im(z)}^{m_j} = \abs{\im(z)}^{\sum m_j} = \abs{\im(z)}^n \]
+    Ce qui prouve le résultat.
+\end{proof}
+
+\begin{proof}[Fin de la démonstration de l'adhérence]
+    Soit $M \in \overline{D_n(\R)}$. Par caractérisation séquentielle de l'adhérence, il existe une suite de matrices $(M_k)_{k \in \N}$ à valeurs dans $D_n(\R)$ telle que $M_k \tend{k}{+\infty} M$.
+    
+    Pour tout $k \in \N$, $M_k \in D_n(\R)$, donc son polynôme caractéristique $\chi_{M_k}$ est scindé sur $\R$. D'après la proposition précédente, on a :
+    \[ \forall z \in \C, \quad \abs{\chi_{M_k}(z)} \geqslant \abs{\im(z)}^n \]
+    
+    L'application qui à une matrice associe son polynôme caractéristique évalué en un point $z$ est continue. On peut donc passer à la limite quand $k \to +\infty$ dans l'inégalité :
+    \[ \forall z \in \C, \quad \abs{\chi_M(z)} \geqslant \abs{\im(z)}^n \]
+    
+    En utilisant l'implication réciproque de la proposition, on en déduit que le polynôme caractéristique $\chi_M$ est scindé sur $\R$.
+    Ainsi, la matrice $M$ est trigonalisable sur $\R$, ce qui conclut la preuve : $\overline{D_n(\R)} \subset \mathcal{T}_n(\R)$.
+\end{proof}
+
+\begin{proof}[Démonstration pour l'intérieur de $D_n(\R)$]
+    Il reste à prouver que $\mathring{D_n}(\R) = \{ M \in D_n(\R) \mid M \text{ a } n \text{ valeurs propres réelles distinctes} \}$.
+
+    \uindent{Cas des valeurs propres simples}
+    
+    \svspace
+    Si $M$ possède $n$ valeurs propres réelles simples, le résultant de son polynôme caractéristique et de sa dérivée est non nul : $\operatorname{Res}(\chi_M, \chi_M') \neq 0$.
+    L'application $N \mapsto \operatorname{Res}(\chi_N, \chi_N')$ étant continue, ce résultant reste non nul sur un voisinage de $M$. Par continuité des racines d'un polynôme vis-à-vis de ses coefficients, toute matrice $N$ suffisamment proche de $M$ aura également $n$ racines réelles distinctes, et sera donc diagonalisable sur $\R$.
+    
+    \uindent{Cas d'une valeur propre multiple}
+    
+    \svspace
+    Si $M$ possède une valeur propre double (ou de multiplicité supérieure) réelle $\lambda$, on peut l'écrire sous la forme (quitte à trigonaliser par blocs) :
+    \[ M = P \begin{pmatrix} 
+        \lambda & * & \dots \\ 
+        0 & \lambda & \\ 
+        \vdots & & \ddots 
+    \end{pmatrix} P^{-1} \]
+    
+    On approche $M$ par la suite de matrices $(M_\varepsilon)_{\varepsilon > 0}$ :
+    \[ M_\varepsilon = P \begin{pmatrix} 
+        \lambda & \varepsilon & \dots \\ 
+        -\varepsilon & \lambda & \\ 
+        \vdots & & \ddots 
+    \end{pmatrix} P^{-1} \]
+    
+    Le bloc diagonal $\begin{pmatrix} \lambda & \varepsilon \\ -\varepsilon & \lambda \end{pmatrix}$ a pour polynôme caractéristique $(X - \lambda)^2 + \varepsilon^2$, dont les racines sont $\lambda \pm i\varepsilon$. 
+    Pour tout $\varepsilon > 0$, la matrice $M_\varepsilon$ admet donc des valeurs propres complexes non réelles. Elle n'est par conséquent pas diagonalisable sur $\R$ (elle n'est même pas trigonalisable sur $\R$).
+    
+    Puisque $M_\varepsilon \tend{\varepsilon}{0} M$, tout voisinage de $M$ contient des matrices non diagonalisables. $M$ n'est donc pas dans l'intérieur.
+\end{proof}
+
+\section{Topologie des classes de similitude}
+
+\begin{definitionnt}{}
+    Soit $A \in \mathcal{M}_n(\K)$ avec $\K = \R$ ou $\C$. On définit la classe de similitude de $A$ par :
+    \[ \operatorname{Sim}(A) = \{ P A P^{-1} \mid P \in \operatorname{GL}_n(\K) \} \]
+\end{definitionnt}
+
+Nous allons étudier le lien entre la topologie de $\operatorname{Sim}(A)$ et les propriétés spectrales de la matrice $A$.
+
+\begin{proposition}{Convergence vers la diagonale}{}
+    Soit $T \in \mathcal{M}_n(\K)$ une matrice triangulaire supérieure :
+    \[ T = \begin{pmatrix} 
+        \lambda_1 & & * \\ 
+        & \ddots & \\ 
+        0 & & \lambda_n 
+    \end{pmatrix} \]
+    Soit $D_\varepsilon = \operatorname{Diag}(1, \varepsilon, \varepsilon^2, \dots, \varepsilon^{n-1})$ pour $\varepsilon \neq 0$. 
+    En conjuguant $T$ par $D_\varepsilon$, on obtient :
+    \[ D_\varepsilon^{-1} T D_\varepsilon = \begin{pmatrix} 
+        \lambda_1 & \varepsilon t_{1,2} & \varepsilon^2 t_{1,3} & \dots & \varepsilon^{n-1} t_{1,n} \\ 
+        0 & \lambda_2 & \varepsilon t_{2,3} & \dots & \vdots \\ 
+        \vdots & \ddots & \ddots & \ddots & \vdots \\
+        0 & \dots & 0 & \dots & \lambda_n 
+    \end{pmatrix} \xrightarrow[\varepsilon \to 0]{} \begin{pmatrix} 
+        \lambda_1 & & 0 \\ 
+        & \ddots & \\ 
+        0 & & \lambda_n 
+    \end{pmatrix} \]
+\end{proposition}
+
+\idee{L'idée est d'utiliser une matrice diagonale de passage dont les coefficients décroissent très rapidement vers 0 afin "d'écraser" toute la partie strictement supérieure de la matrice triangulaire.}
+
+\begin{remarque}
+    Conséquence immédiate : si $A$ est trigonalisable, on peut écrire $A = P T P^{-1}$. En posant $A_\varepsilon = P (D_\varepsilon^{-1} T D_\varepsilon) P^{-1}$, on a bien $A_\varepsilon \in \operatorname{Sim}(A)$ pour tout $\varepsilon \neq 0$, et $A_\varepsilon \xrightarrow[\varepsilon \to 0]{} P D P^{-1}$ où $D$ est la partie diagonale de $T$.
+\end{remarque}
+
+\begin{proposition}{Caractérisation topologique des matrices nilpotentes}{}
+    Soit $A \in \mathcal{M}_n(\K)$.
+    \[ 0 \in \overline{\operatorname{Sim}(A)} \iff A \text{ est nilpotente} \]
+\end{proposition}
+
+\begin{proof}
+    \uindent{Sens retour ($\impliedby$)}
+    
+    \svspace
+    Si $A$ est nilpotente, elle est trigonalisable (sur $\R$ comme sur $\C$) avec uniquement des zéros sur sa diagonale. On peut donc écrire $A = P T P^{-1}$ avec $T = \begin{pmatrix} 0 & & * \\ & \ddots & \\ 0 & & 0 \end{pmatrix}$.
+    
+    En utilisant la propriété précédente, on construit la suite de matrices $A_\varepsilon = P (D_\varepsilon^{-1} T D_\varepsilon) P^{-1} \in \operatorname{Sim}(A)$. 
+    Lorsque $\varepsilon \to 0$, le bloc central converge vers la diagonale de $T$, qui est nulle :
+    \[ A_\varepsilon \xrightarrow[\varepsilon \to 0]{} P \begin{pmatrix} 0 & & 0 \\ & \ddots & \\ 0 & & 0 \end{pmatrix} P^{-1} = 0 \]
+    Donc la matrice nulle est bien dans l'adhérence de la classe de similitude de $A$.
+
+    \uindent{Sens direct ($\implies$)}
+    
+    \svspace
+    Supposons que $0 \in \overline{\operatorname{Sim}(A)}$. Il existe alors une suite de matrices $(M_k)_{k\in\N}$ telle que pour tout $k \in \N, \, M_k \in \operatorname{Sim}(A)$ et $M_k \tend{k}{+\infty} 0$.
+    
+    Deux matrices semblables ont le même polynôme caractéristique, donc pour tout entier $k$, on a $\chi_{M_k} = \chi_A$.
+    Or, l'application $M \mapsto \chi_M$ (qui à une matrice associe les coefficients de son polynôme caractéristique) est continue. On peut donc passer à la limite :
+    \[ \chi_{M_k} \xrightarrow[k \to +\infty]{} \chi_0 = X^n \]
+    
+    Comme la suite $(\chi_{M_k})$ est constante égale à $\chi_A$, on en déduit que $\chi_A = X^n$.
+    Par le théorème de Cayley-Hamilton, on conclut que $\chi_A(A) = A^n = 0$, et donc que $A$ est nilpotente.
+\end{proof}

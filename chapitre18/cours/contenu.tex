@@ -1,0 +1,1764 @@
+Soit $E$ un $\K$-espace vectoriel de dimension finie $n$.
+
+\section{Définitions et notations}
+
+\marginenote{Vigilance !}{$a$ est une application continue ayant pour valeur un endomorphisme, donc 
+$a(t) \in \mathscr L(E)$ !}
+
+\lvspace \begin{definition}{Équation différentielle linéaire}{}
+    \index{Equation differentielle@\'Equation différentielle!Lineaire@Linéaire}
+    On appelle équation différentielle linéaire toute équation $(E)$ du type 
+    $$\forall t \in I, x'(t) = a(t)(x(t)) + b(t)$$ parfois notée 
+    $x' = a(t) \cdot x + b(t)$ où : 
+    \begin{itemize}
+        \item $b \in \mathscr C(I, E)$
+        \item $a \in \mathscr C(I, \mathscr L(E))$
+        \item $x \in \mathscr C^1(I, E)$ inconnue
+    \end{itemize}
+\end{definition}
+
+\subsection{Forme matricielle}
+
+\begin{proposition}{Forme matricielle d'une équation différentielle linéaire}{}
+    \index{Equation differentielle@\'Equation différentielle!Forme matricielle}
+    Soit $B_0$ une base de $E$. Notons 
+    
+    \begin{itemize}
+        \item $\fonction{X}{I}{\K^n}{t}{X(t) = M_{B_0}(x(t))}$
+        \item \avspace $\fonction{B}{I}{\K^n}{t}{B(t) = M_{B_0}(b(t))}$ 
+        \item \avspace $\fonction{A}{I}{\mathcal M_n(\K)}{t}{A(t) = M_{B_0}(a(t))}$
+    \end{itemize}
+
+    Alors (E) est équivalente à sa forme matricielle. 
+
+    $$\forall t \in I, X'(t) = A(t)X(t) + B(t)$$
+
+    avec 
+    \begin{itemize}
+        \item $A \in \mathscr C(I, \mathscr M_n(\K))$
+        \item $B \in \mathscr C(I, \mathscr M_{n,1}(\K))$
+        \item $X \in \mathscr C^1(I, \mathscr M_{n,1}(\K))$ inconnue
+    \end{itemize}
+\end{proposition}
+
+\subsection{Système différentiel équivalent}
+
+\begin{propositionnt}{Système différentiel équivalent à une équation différentielle linéaire}{}
+    \index{Equation differentielle@\'Equation différentielle!Systeme differentiel@Système différentiel}
+    Soient $b_1, \dots, b_n \in \mathscr C(I, \K)$, 
+    $\forall i, j \in \ninter{1}{n}, a_{i,j} \in \mathscr C(I, \K)$
+    et $x_1, \dots, x_n \in \mathscr C^1(I, \K)$ inconnues. Alors (E) est équivalente au système différentiel suivant :
+    
+    $$\forall i \in \ninter{1}{n}, x_i'(t) = \sum_{j=1}^n a_{i,j}(t)x_j(t) + b_i(t)$$
+
+    En posant $\forall t \in I$, $X(t) = \begin{pmatrix}
+        x_1(t) \\ \vdots \\ x_n(t)
+    \end{pmatrix}$, $A(t) = (a_{i, j}(t))_{1 \leq i, j \leq n}$ et $B(t) = \begin{pmatrix}
+        b_1(t) \\ \vdots \\ b_n(t)
+    \end{pmatrix}$
+\end{propositionnt}
+
+\begin{exemple}
+    $(S) \begin{cases}
+        x'(t) & = t^3 x(t) - 3y(t) + t^2 \\
+        y'(t) & = \cos(t) x(t) + t y(t) - \sin t 
+    \end{cases}$
+
+    $(S) \Leftrightarrow X'(t) = \begin{pmatrix}
+        t^3 & -3 \\
+        \cos t & t 
+     \end{pmatrix} X(t) + \begin{pmatrix}
+        t^2 \\ -\sin t
+     \end{pmatrix}$
+     en notant $X(t) = \begin{pmatrix}
+        x(t) \\ y(t)
+    \end{pmatrix}$
+\end{exemple}
+
+\subsection{\'Equations différentielles linéaires scalaires d'ordre n}
+
+\begin{definition}{\'Equations différentielles linéaires scalaires d'ordre n}{}
+    \index{Equation differentielle@\'Equation différentielle!Lineaire scalaire d'ordre n@Linéaire scalaire d'ordre n}
+    Soient $\alpha_0, \dots, \alpha_{n-1}, \beta \in \mathscr C(I, \K)$ et 
+    $x \in \mc{n} (I, \K)$ inconnue. 
+
+    L'équation $(E) : \forall t \in I, \, x^n(t) = \ds \sum_{i = 0}^{n - 1} \alpha_i(t) x^{(i)}(t) + \beta(t)$ est 
+    appelée équation différentielle linéaire scalaire d'ordre $n$.
+\end{definition}
+
+\begin{proposition}{}{}
+    Avec les notations précédentes, en posant $\forall t \in I$, 
+    $X(t) = \begin{pmatrix}
+        x(t) \\ x'(t) \\ \vdots \\ x^{(n-1)}(t)
+    \end{pmatrix}$, on a 
+
+    $(E) \Leftrightarrow \left\{ \begin{array}{lccccc}
+        x'(t) & = & x'(t) & & & + 0 \\
+        x''(t) & = & & x''(t) & & + 0 \\
+        \vdots & & & & & \\
+        x^{(n-1)}(t) & = &  & & x^{(n-1)}(t) & + 0 \\
+        x^{(n)}(t) & = & \ds \sum_{i = 0}^{n - 1} \alpha_i(t) x^{(i)}(t) & & & + \beta(t) 
+    \end{array} \right.$
+
+    $\Leftrightarrow X'(t) = \begin{pmatrix}
+        0 & 1 & 0 & \cdots & 0 \\
+        0 & 0 & 1 & \cdots & 0 \\
+        \vdots & \vdots & \vdots & \ddots & \vdots \\
+        0 & 0 & 0 & \cdots & 1 \\
+        \alpha_0(t) & \alpha_1(t) & \alpha_2(t) & \cdots & \alpha_{n-1}(t)
+     \end{pmatrix} X(t) + \begin{pmatrix}
+        0 \\ 0 \\ \vdots \\ 0 \\ \beta(t)
+    \end{pmatrix}$
+
+    \svspace Donc toute équation différentielle linéaire scalaire d'ordre $n$ équivaut à une équation différentielle 
+    linéaire d'ordre 1 à valeurs dans $\K^n$.
+\end{proposition}
+
+\begin{exemple}
+    $(E) : x''(t) = t^3 x'(t) + \cos t x(t) - \sin t$
+    est une équation différentielle linéaire scalaire d'ordre 2. 
+
+    En posant $X(t) = \begin{pmatrix}
+        x(t) \\ x'(t)
+     \end{pmatrix}$, on a 
+
+     $(E) \Leftrightarrow \begin{cases}
+        x'(t) & = x'(t) \\
+        x''(t) & = t^3 x'(t) + \cos t x(t) - \sin t
+     \end{cases}$
+
+     $\Leftrightarrow X'(t) = \begin{pmatrix}
+        0 & 1 \\
+        \cos t & t^3
+        \end{pmatrix} X(t) + \begin{pmatrix}
+        0 \\ -\sin t
+     \end{pmatrix}$
+
+    Et donc $X(t) = \begin{pmatrix}
+        x(t) \\ x'(t)
+     \end{pmatrix}$ 
+
+     et $(E) \Leftrightarrow X'(t) = \begin{pmatrix}
+        0 & 1 \\
+        1 & 0 \end{pmatrix} X(t) $
+\end{exemple}
+
+\subsection{Problème de Cauchy}
+
+\begin{definition}{Problème de Cauchy}{}
+    \index{Probleme de Cauchy@Problème de Cauchy}
+    On appelle problème de Cauchy la donnée d'une équation différentielle linéaire d'ordre $n$ et 
+    d'une condition initiale à un instant $t_0 \in I$. 
+\end{definition}
+
+\uindent{Problème de Cauchy sous forme vectorielle}
+
+\svspace $$\begin{cases}
+    \forall t \in I, x'(t) = a(t)(x(t)) + b(t) \\
+    x(t_0) = x_0
+\end{cases}$$
+où $a \in \mathscr C(I, \mathscr L(E))$, $b \in \mathscr C(I, E)$, $x_0 \in E$
+et $t_0 \in I$ sont donnés. $x \in \mc 1 (I, E)$ est inconnue.
+
+\uindent{Problème de Cauchy sous forme matricielle}
+
+\svspace $$\begin{cases}
+    \forall t \in I, X'(t) = A(t) X(t) + B(t) \\
+    X(t_0) = X_0
+\end{cases}$$
+
+où $A \in \mathscr C(I, \mathscr M_n(\K))$, $B \in \mathscr C(I, \mathscr M_{n,1}(\K))$,
+$X_0 \in \mathscr M_{n,1}(\K)$ et $t_0 \in I$ sont donnés. $X \in \mathscr C^1(I, \mathscr M_{n,1}(\K))$ est inconnue.
+
+\uindent{Sous forme de système différentiel}
+
+\svspace $\forall t \in I, \left\{ \begin{array}{lccccc}
+    x_1'(t) & = & a_{1,1}(t)x_1(t) & + & \cdots & + a_{1,n}(t)x_n(t) + b_1(t) \\
+    x_2'(t) & = & a_{2,1}(t)x_1(t) & + & \cdots & + a_{2,n}(t)x_n(t) + b_2(t) \\
+    \vdots & & \vdots & & & \vdots \\
+    x_n'(t) & = & a_{n,1}(t)x_1(t) & + & \cdots & + a_{n,n}(t)x_n(t) + b_n(t)
+\end{array} \right.$
+
+$\begin{cases}
+    x_1(t_0) = y_1 \\
+    x_2(t_0) = y_2 \\
+    \vdots \\
+    x_n(t_0) = y_n
+\end{cases}$
+
+où $\forall i, j \in \ninter{1}{n}, a_{i,j} \in \mathscr C(I, \K)$, $\forall i \in \ninter{1}{n}, b_i \in \mathscr C(I, \K)$,
+$t_0 \in I$ et $y_1, \dots, y_n \in \K$ sont donnés. $x_1, \dots, x_n \in \mathscr C^1(I, \K)$ sont inconnues.
+
+\uindent{Pour une équation différentielle scalaire d'ordre n}
+
+\svspace $\forall t \in I$, 
+$\ds x^{(n)}(t) = \sum_{i = 0}^{n - 1} \alpha_i(t) x^{(i)}(t) + \beta(t)$
+
+et $\forall i \in \ninter {0}{n - 1}, x^{(i)}(t_0) = y_i$ avec 
+$\alpha_0, \dots, \alpha_{n-1}, \beta \in \mathscr C(I, \K)$, $t_0 \in I$ et $y_0, \dots, y_{n-1} \in \K$ sont donnés. $x \in \mc n (I, \K)$ est inconnue.
+
+\begin{exemple}
+    $\begin{cases}
+        x''(t) = x'(t) + t^2 x(t) + t^3\\
+        x(0) = 1 \\
+        x'(0) = 12
+    \end{cases}$ est un problème de Cauchy. 
+
+    En posant $X(t) = \begin{pmatrix}
+        x(t) \\ x'(t)
+    \end{pmatrix}$, on a $(E) \Leftrightarrow \begin{cases} 
+        X'(t) = \begin{pmatrix}
+            0 & 1 \\ 
+            t^2 & 1
+        \end{pmatrix} X(t) + \begin{pmatrix}
+            0 \\ t^3
+        \end{pmatrix} \\ 
+        X(0) = \begin{pmatrix}
+            1 \\ 12
+        \end{pmatrix}
+    \end{cases}$
+\end{exemple}
+
+\subsubsection{Mise sous forme intégrale}
+
+\begin{proposition}{Forme intégrale d'un problème de Cauchy}{}
+    \index{Probleme de Cauchy@Problème de Cauchy!Forme integrale@Forme intégrale}
+    Considérons le problème de Cauchy suivant :
+    $$(E) \begin{cases}
+        \forall t \in I, x'(t) = a(t)(x(t)) + b(t) \\
+        x(t_0) = x_0
+    \end{cases}$$
+
+    où 
+    \begin{itemize}
+        \item $a \in \mathscr C(I, \mathscr L(E))$
+        \item $b \in \mathscr C(I, E)$
+        \item $t_0 \in I$ et $x_0 \in E$
+        \item $x \in \mathscr C^1(I, E)$ est inconnue
+    \end{itemize}
+
+    Alors, 
+    $$(E) \Leftrightarrow \forall t \in I, \, x(t) = x_0 + \int_{t_0}^{t} a(u)(x(u)) + b(u) \, \mathrm d u$$
+\end{proposition}
+
+\begin{proof}
+    Si $x$ satisfait au problème de Cauchy, $\forall u \in I$, 
+    $x'(u) = a(u)(x(u)) + b(u)$ fonction continue de $u$. 
+
+    Donc $\ds \int_{t_0}^{t } x'(u) \, \mathrm d u = \int_{t_0}^{t} a(u)x(u) + b(u) \, \mathrm d u$.
+
+    Donc $\ds x(t) - x(t_0) = \int_{t_0}^{t} a(u)(x(u)) + b(u) \, \mathrm d u$.
+
+    Donc $\ds x(t) = x_0 + \int_{t_0}^{t} a(u)(x(u)) + b(u) \, \mathrm d u$.
+
+    \avspace $\blacktriangleright$ Réciproquement, supposons que $x$ est solution de l'équation intégrale.
+
+    Les deux membres sont $\mathscr C^1$ et en dérivant on obtient l'équa diff, puis en 
+    calculant en $t_0$, $x(t_0) = x_0$.
+\end{proof}
+
+\subsection{\'Equation homogène}
+
+\begin{definition}{\'Equation différentielle linéaire homogène}{}
+    \index{Equation differentielle@\'Equation différentielle!Lineaire homogene@Linéaire homogène}
+    On dit qu'une équation différentielle linéaire du premier ordre est homogène (ou sans second membre)
+    ssi elle s'écrit $\forall t \in I, x'(t) = a(t)(x(t))$ avec 
+
+    \begin{itemize}
+        \item $a \in \mathscr C(I, \mathscr L(E))$
+        \item $x \in \mathscr C^1(I, E)$ inconnue
+    \end{itemize}
+
+    c'est à dire que $b = 0$. 
+\end{definition}
+
+
+\begin{definition}{\'Equation différentielle linéaire associée}{}
+    Soit $x'(t) = a(t)(x(t)) + b(t)$ une équation différentielle linéaire d'ordre 1. 
+
+    On appelle équation homogène associée l'équation 
+    $(E_0) : x'(t) = a(t)(x(t))$ et on l'appelle aussi équation associée sans second membre.
+\end{definition}
+
+\begin{exemple}
+    L'ESSM associée à 
+    $X'(t) = \begin{pmatrix}
+        t^2 & 1 \\
+        t^3 & t
+     \end{pmatrix} X(t) + \begin{pmatrix}
+        \cos t \\ t
+    \end{pmatrix}$ est $X'(t) = \begin{pmatrix}
+        t^2 & 1 \\
+        t^3 & t
+     \end{pmatrix} X(t)$ l'ESSM 
+     associée à $x''(t) = \cos t x'(t) - t^3 x(t) + t^4$ est 
+     $x''(t) = \cos t x'(t) - t^3 x(t)$ avec $x \in \mc 2 (\R, \R)$. 
+\end{exemple}
+
+\begin{proposition}{prinicipe de superposition}{}
+    \index{Principe de!superposition}
+    Soit $(E_0)$ une équation différentielle linéaire homogène telle que 
+    $\forall t \in I$, $x'(t) = a(t)(x(t))$ et on considère 
+    $b_1, b_2 \in \mathscr C(I, E)$. 
+
+    Si : 
+    \begin{itemize}
+        \item $x_1$ est solution de $x'(t) = a(t)(x(t)) + b_1(t)$
+        \item $x_2$ est solution de $x'(t) = a(t)(x(t)) + b_2(t)$
+    \end{itemize}
+    Alors $x_1 + x_2$ est solution de $x'(t) = a(t)(x(t)) + b_1(t) + b_2(t)$
+\end{proposition}
+
+\begin{proof}
+    Par hypothèse, on a 
+    $\forall t \in I, 
+\begin{cases}
+    x_1'(t) & = a(t)(x_1(t)) + b_1(t) \\
+    x_2'(t) & = a(t)(x_2(t)) + b_2(t)
+\end{cases}$
+
+    Posons $x_3(t) = x_1(t) + x_2(t)$, alors $\forall t \in I$, 
+
+    \begin{align}
+        x'_3(t) & = x_1'(t) + x_2'(t) \\
+        & = a(t)(x_1(t)) + b_1(t) + a(t)(x_2(t)) + b_2(t) \\
+        & = a(t)(x_1(t) + x_2(t)) + b_1(t) + b_2(t) 
+    \end{align}
+
+    car $a(t)$ est linéaire.
+\end{proof}
+
+\section{Structure de l'ensemble des solutions}
+
+\begin{theoreme}{théorème de Cauchy linéaire}{}
+    Soit $I$ un intervalle d'intérieur non vide et : 
+    \begin{itemize}
+        \item $a \in \mathscr C(I, \mathscr L(E))$
+        \item $b \in \mathscr C(I, E)$
+        \item $t_0 \in I$
+        \item $x_0 \in E$
+    \end{itemize}
+
+    Alors $\exists ! x \in \mathscr C^1(I, E)$ telle que 
+    $$\begin{cases}
+        \forall t \in I, \, x'(t) = a(t)(x(t)) + b(t) \\
+        x(t_0) = x_0
+    \end{cases}$$
+
+    Ainsi, tout problème de Cauchy admet une unique solution. 
+\end{theoreme}
+
+\idee{
+    Existence : forme intégrale, somme infinie de fonctions continues, convergence uniforme.
+}
+
+\begin{proof} Non exigible 
+
+    \uindent{Existence d'une solution}
+
+    Le problème de Cauchy est équivalent à l'équation intégrale suivante :
+    $$\forall t \in I, \, x(t) = x_0 + \int_{t_0}^{t} a(u)(x(u)) + b(u) \, \mathrm d u$$
+
+    Posons
+    \begin{itemize}
+        \item $\forall t \in I, \, \varphi_0(t) = x_0 + \int_{t_0}^{t} b(u) \mathrm d u$
+        \item Puis $\varphi_1(t) = \int_{t_0}^{t} a(u)(\varphi_0(u)) \mathrm d u$ pour compléter la construction de la solution.
+        \item De même, on ajoute alors $\varphi_2(t) = \int_{t_0}^{t} a(u)(\varphi_1(u)) \mathrm d u$
+        \item Et ainsi de suite, on répète le procédé pour construire une suite de fonctions continues $\varphi_n$.
+    \end{itemize} 
+    Posons donc $\forall n \in \N$, $$\varphi_{n + 1}(t) = \int_{t_0}^{t} a(u)(\varphi_n(u)) \mathrm d u$$
+
+    Soit $[\alpha, \beta]$ un segment inclus dans $I$, $\| \cdot \|$ une norme sur $E$, et 
+    $||| \cdot |||$ la norme subordonnée de $\mathscr L(E)$.
+
+    Soit $t \in [\alpha, \beta]$ et $u \in [t_0, t]$. 
+
+    \begin{align}
+        \| a(u)(\varphi_n(u)) \| & \leqslant ||| a(u) ||| \cdot \| \varphi_n(u) \| \\
+        & \leqslant M \| \varphi_n(u) \|
+    \end{align}
+
+    $a$ est continue sur $[\alpha, \beta]$ donc $\exists M \in \R$, $\forall u \in [\alpha, \beta]$, 
+    $||| a(u) ||| \leqslant M$.
+
+    Montrons pas récurrence que $\forall t \in [\alpha, \beta]$ et $\forall n \in \N$, 
+
+    $$\ds \| \varphi_n(t) \| \leqslant \frac{(t - t_0)^n}{n!} K M^n$$
+    où $K = \| \varphi_0 \|_{\infty, [\alpha, \beta]} = \max \{ \| \varphi_0(t) \|, t \in [\alpha, \beta] \}$ qui
+    est bien défini car $\varphi_0$ est continue sur $[\alpha, \beta]$.
+
+    Supposons le résultat vrai pour un certain $n \in \N$. Alors 
+    $\forall u \in [t_0, t]$, 
+
+    \begin{align}
+        \| a(u)(\varphi_n(u)) \| & \leqslant M \| \varphi_n(u) \| \\
+        & \leqslant \frac{M^{n + 1} K}{n!}(u - t_0)^n
+    \end{align}
+
+    Donc 
+    \begin{align}
+        \| \varphi_{n + 1}(t) \| & \leqslant \int_{t_0}^{t} \| a(u)(\varphi_n(u)) \| \mathrm d u \\
+        & \leqslant \left| \int_{t_0}^{t} \frac{M^{n + 1}K}{n!} (u - t_0)^n \mathrm d u \right| \\
+        & \leqslant \left| \frac{M^{n + 1} K }{n!} \left[ \frac{(u - t_0)^{n + 1}}{n + 1} \right]_{t_0}^{t} \right| \\
+        & \leqslant \frac{(t - t_0)^{n + 1}}{(n + 1)!} K M^{n + 1}
+    \end{align}
+
+    d'où la récurrence. 
+
+    Donc en notant $P = \max (|\beta - t_0|, |t_0 - \alpha|)$ 
+    $\forall t \in [\alpha, \beta]$ donne 
+    $$\| \varphi_n(t) \| \leqslant \frac{(PM)^n K }{n!}$$
+
+    terme général d'une série convergente indépendante de $t$. 
+
+    Donc $\sum \varphi_n$ converge normalement sur $[\alpha, \beta]$, or 
+    les $\varphi_n$ sont continues, donc on peut définir 
+    $\forall t \in [\alpha, \beta]$, $\ds x(t) = \sum_{n = 0}^{+ \infty} \varphi_n(t)$ et 
+    $x$ est continue sur $[\alpha, \beta]$.
+
+    Or c'est vrai pour tout $[\alpha, \beta]$ donc $x$ est bien définie et continue sur $I$. 
+
+    Pour $u \in I$, $a(u)(x(u)) + b(u) = \ds a(u) \left( \sum_{n = 0}^{+ \infty} \varphi_n(u) \right) + b(u) = \sum_{n = 0}^{+ \infty} a(u)(\varphi_n(u)) + b(u)$
+
+    car $a(u)$ est continue car $E$ de dimension finie. 
+
+    Soit $t \in I$, on a donc 
+    \begin{align}
+        \int_{t_0}^{t} a(u)(x(u)) + b(u) \mathrm d u & = \int_{t_0}^{t} \sum_{n = 0}^{+ \infty} a(u)(\varphi_n(u)) + b(u) \mathrm d u \\
+        & = \int_{t_0}^{t} \sum_{n = 0}^{\infty} a(u)(\varphi_n(u)) \mathrm d u + \int_{t_0}^{t} b(u) \mathrm d u \\
+    \end{align}
+
+    Or pour $u \in [t_0, t]$, $\| a(u)(\varphi_n(u)) \| \leqslant M \frac{(PM)^nK}{n}$ terme général d'une 
+    série convergente, d'où la convergence normale. 
+
+    Donc 
+    \begin{align}
+        \int_{t_0}^{t} a(u)(x(u)) + b(u) \mathrm d u & = \sum_{n = 0}^{+ \infty} \int_{t_0}^{t} a(u)(\varphi_n(u)) \mathrm d u + \int_{t_0}^{t} b(u) \mathrm d u \\
+        & = \sum_{n = 0}^{+ \infty} \varphi_{n + 1}(t) + \varphi_0(t) - x_0 \\
+        & = x(t) - x_0
+    \end{align}
+
+    Donc $x(t) = x_0 + \int_{t_0}^{t} a(u)(x(u)) + b(u) \mathrm d u$ donc $x$ est continue et donc 
+    solution. 
+
+    \idee{
+        Poser $z = x - y$ et réutiliser les majorations précédentes. 
+    }
+
+    \lvspace \uindent{Unicité de la solution}
+
+    \svspace Supposons que $x$ et $y$ sont deux solutions $\mc 1$ du problème de Cauchy.
+
+    Alors en posant $z = x - y$, on a $\forall t \in I$, $z(t) = \ds \int_{t_0}^{t} a(u)(z(u)) \mathrm d u$.
+
+    Par linéartié de l'intégrale et de $a(u)$. 
+
+    On a la même relation entre $\varphi_{n + 1}(t)$ et $\varphi_n(t)$ donc pour tout 
+    segment $[\alpha, \beta] \subset I$ et 
+    $\forall t \in [\alpha, \beta]$ on a 
+    
+    $$\| z(t) \| \leqslant \frac{(t - t_0)^n}{n!}M^nK \xrightarrow[n \to + \infty]{} 0$$
+
+    Donc $z = 0$ et l'unicité. 
+\end{proof}
+
+\begin{remarque}
+    Une démonstration analogue permet de démontrer le théorème de Cauchy-Lipschitz (HP), dont voici l'énoncé :
+
+    Soit $U$ ouvert de $E \times \R$ et $f : U \to E$ de classe $\mc 1$. On cherche 
+    $I$ intervalle réel, $x \in \mc 1 (I, E)$ tel que $\forall t \in I$, 
+    $x'(t) = f(x(t), t)$ et $x(t_0) = x_0$ où $t_0 \in \R$. 
+
+    Alors le théorème de Cauchy-Lipschitz affirme qu'il existe un intervalle $I$ contenant 
+    $t_0$ maximal 
+    et $x \in \mc 1 (I, E)$ unique solution du problème de Cauchy.
+\end{remarque}
+
+\begin{corollairent}{Existence et unicité d'une solution à un problème de Cauchy sous forme matricielle}{}
+    Soit 
+    \begin{itemize}
+        \item $A \in \mathscr C(I, \mathscr M_n(\K))$
+        \item $B \in \mathscr C(I, \mathscr M_{n,1}(\K))$
+        \item $X_0 \in \mathscr M_{n,1}(\K)$ et $t_0 \in I$
+    \end{itemize}
+
+    Alors le théorème de Cauchy linéaire montre que :  
+    $\exists ! X \in \mc 1(I, \mathscr M_{n,1}(\K))$ tel que 
+    $$\begin{cases}
+        \forall t \in I, \, X'(t) = A(t) X(t) + B(t) \\
+        X(t_0) = X_0
+    \end{cases}$$
+\end{corollairent}
+
+\begin{theorement}{Existence et unicité d'une solution à un problème de Cauchy pour une équation différentielle linéaire scalaire d'ordre n}{}
+    Soient $\alpha_0, \dots, \alpha_{n-1}, \beta \in \mathscr C(I, \K)$, $t_0 \in I$ et $y_0, \dots, y_{n-1} \in \K$.
+
+    Alors le théorème de Cauchy linéaire montre que $\exists ! x \in \mc n (I, \K)$ 
+    tel que 
+    
+    \begin{itemize}
+        \item $\forall t \in I$, $x^{(n)}(t) = \ds \sum_{i = 0}^{n - 1} \alpha_i(t) x^{(i)}(t) + \beta(t)$
+        \item $\forall i \in \ninter{0}{n - 1}, x^{(i)}(t_0) = y_i$
+    \end{itemize} 
+\end{theorement}
+
+\subsection{Cas des équations homogènes}
+
+\marginenote{Vigilance !}{Ce sont ici des fonctions $x$ différentes, que l'on évalue en un même $t_0$. }    
+
+\lvspace \avspace \begin{theorement}{Structure de l'ensemble des solutions d'une équation différentielle linéaire homogène}{}
+    Soit $a \in \mathscr C(I, \mathscr L(E))$ et $\mathscr S = \{ x \in \mathscr C^1(I, E), \forall t \in I, x'(t) = a(t)(x(t)) \}$ 
+    l'ensemble des solutions de l'équation différentielle linéaire homogène.
+
+    Alors $\mathscr S$ est un $\K$-espace vectoriel de dimension $n$ avec $n = \dim E$. 
+
+    De plus si on fixe $t_0 \in I$, $\fonction{\varphi_{t_0}}{\mathscr S}{E}{x}{x(t_0)}$ est un isomorphisme. 
+\end{theorement}
+
+\begin{proof}
+    $\mathscr S$ est un $\K$ espace vectoriel car $\mathscr S \subset \mc 1(I, E)$ 
+    qui est un espace vectoriel, $0 \in \mathscr S$ car l'équation est homogène, et $a(t)(0) = 0$ car 
+    $a(t)$ linéaire. 
+
+    Si $x_1, x_2 \in \mathscr S$, $\lambda \in \K$ alors pour $t \in I$ on a 
+    \begin{align}
+        (\lambda x_1 + x_2)'(t) & = \lambda a(t)(x_1(t)) + a(t)(x_2(t)) \\
+        & = a(t)(\lambda x_1(t) + x_2(t))
+    \end{align}
+
+    Donc $\lambda x_1 + x_2 \in \mathscr S$.
+
+    $\varphi_{t_0}$ est linéaire car si $x_1, x_2 \in \mathscr S$ et $\lambda \in \K$, on a 
+    \begin{align}
+        \varphi_{t_0}(\lambda x_1 + x_2) & = (\lambda x_1 + x_2)(t_0) \\
+        & = \lambda x_1(t_0) + x_2(t_0) \\
+        & = \lambda \varphi_{t_0}(x_1) + \varphi_{t_0}(x_2)
+    \end{align}
+
+    $\varphi_{t_0}$ est bijective grâce au théorème de Cauchy linéaire, et donc tout $x_0 \in E$
+    possède un unique antécédent pour $\varphi_{t_0}$. Donc $\varphi_{t_0}$ est un isomorphisme, or 
+    $E$ est de dimension $n$, donc $\mathscr S$ est de dimension $n$.
+\end{proof}
+
+\subsubsection{Complément LHP}
+
+\begin{definitionnt}{Système fondamental de solutions d'une équation différentielle linéaire homogène}{}
+    Soit $a \in \mathscr C(I, \mathscr L(E))$ et 
+    $(E_0) : x'(t) = a(t)(x(t))$ une équation différentielle linéaire homogène.
+
+    Soit $\mathscr S_0$ l'ensemble des solutions de $(E_0)$. Une base de 
+    $(y_1, \dots, y_n)$ de $\mathscr S_0$ est appelée système fondamental de solutions de $\mathscr S_0$.
+\end{definitionnt}
+
+\begin{exemple}
+    $(E_0) : X'(t) = \begin{pmatrix}
+        1 & 2 \\ 
+        3 & 0
+    \end{pmatrix} X(t)$ équation différentielle d'ordre 1 à coefficients à valeurs dans $\R^2$. 
+
+    Posons $X(t) = \begin{pmatrix}
+        x_1(t) \\ x_2(t)
+    \end{pmatrix}$ et alors 
+
+    $(E_0) \Leftrightarrow \begin{cases}
+        x_1'(t) & = x_1(t) + 2x_2(t) \\
+        x_2'(t) & = 3x_1(t)
+    \end{cases}$
+
+    $\Leftrightarrow \begin{cases}
+        (x'_1 - x'_2)(t) = -2 (x_1 - x_2)(t) \\
+        x'_2(t) = 3 x_1(t)
+    \end{cases}$
+
+    \svspace $\Leftrightarrow \begin{cases}
+        (x_1 - x_2)(t) = \lambda e^{-2t} \\
+        x'_2(t) = 3x_2(t) + 3 \lambda e^{-2t}
+    \end{cases}$
+
+    \svspace $\Leftrightarrow \begin{cases}
+        x_1(t) = \frac 2 5 \lambda e^{-2t} + \mu e^{3t} \\
+        x_2(t) = -\frac 3 5 \lambda e^{-2t} + \mu e^{3t}
+    \end{cases}$
+
+    \svspace $X(t) = \lambda \underbrace{\begin{pmatrix}
+        \frac 2 5 e^{-2t} \\ -\frac 3 5 e^{-2t}
+    \end{pmatrix}}_{Y_1(t)} + \mu \underbrace{\begin{pmatrix}
+        e^{3t} \\ e^{3t}
+    \end{pmatrix}}_{Y_2(t)}$
+
+    $\mathscr S_0 = \Vect (Y_1, Y_2)$ et $(Y_1, Y_2)$ est un système fondamental de solutions.
+\end{exemple}
+
+\begin{definitionnt}{Wronskien d'une famille de solutions d'une équation différentielle linéaire homogène}{}
+    \index{Wronskien}
+    Soit $B$ une base de $E$ et $y_1, \dots, y_n$ des solutions de $(E_0)$. 
+    On définit $$\fonction{w_B} I \K t {\det_B (y_1(t), \dots, y_n(t))}$$
+    le wronskien de $y_1, \dots, y_n$ dans la base $B$.
+
+    En général, on écrit $(E_0)$ sous forme matricielle et $\forall t \in I$, 
+    $X'(t) = A(t) X(t)$ et 
+    $y_1, \dots, y_n$ sont à valeurs dans $\mathscr M_{n, 1}(\K)$, et $B$ est la base canonique. 
+\end{definitionnt}
+
+\begin{exemple}
+    Posons $y_1(t) = \begin{pmatrix}
+        2/5 e^{-2t} \\ -3/5 e^{-2t}
+    \end{pmatrix}$ et $y_2(t) = \begin{pmatrix}
+        e^{3t} \\ e^{3t}
+    \end{pmatrix}$, alors 
+    $$w_B(t) = \det \begin{pmatrix}
+        2/5 e^{-2t} & e^{3t} \\
+        -3/5 e^{-2t} & e^{3t}
+    \end{pmatrix} = e^{t} \neq 0$$
+\end{exemple}
+
+\begin{theoreme}{nullité du wronskien}{}
+    Soient $y_1, \dots, y_n \in \mathscr S_0$ et $w_B$ leur wronskien dans la base $B$. Alors 
+    $w_B$ est constant nul ou ne s'annule jamais. 
+
+    Plus précisément : 
+    \begin{itemize}
+        \item Si $(y_1, \dots, y_n)$ système fondamental de solution, $w_B$ ne s'annule jamais. 
+        \item Sinon $w_B = 0$
+    \end{itemize}
+\end{theoreme}
+
+\idee{Cauchy linéaire, def de famille liée}
+
+\begin{proof}
+    Supposons que $(y_1, \dots, y_n)$ système fondamental de solutions. Soit $t \in I$, 
+    et $w_B(t) = \det_B (y_1(t), \dots, y_n(t))$.
+
+    Supposons que $\exists t_0, w_B(t_0) = 0$ alors la famille est liée. 
+
+    Donc $\exists \lambda_1, \dots, \lambda_n \in \K$ non tous nuls tels que
+    $\ds\underbrace{ \left( \sum_{i = 1}^{n} \lambda_i y_i \right)}_{y \in \mathscr S_0} (t_0) = 0$
+
+    Or par le théorème de Cauchy linéaire, $0$ est l'unique solution au problème de Cauchy
+    qui vaut $0$ en $t_0$. 
+
+    Donc $y = 0$ et donc $(y_1, \dots, y_n)$ liée. Donc $w_B$ ne s'annule jamais.
+
+    Sinon, $(y_1, \dots, y_n)$ est liée et donc $w_B = 0$.
+\end{proof}
+
+
+\subsubsection{Cas des équas diffs scalaires linéaires d'ordre n}
+
+\begin{proposition}{}{}
+    Soient $\alpha_0, \dots, \alpha_{n - 1} \in \mathscr C(I, \K)$ et l'équation homogène
+    $(E_0) : \, \forall t \in I, \, \ds x^{(n)}(t) = \sum_{i = 0}^{n - 1} \alpha_i(t) x^{(i)}(t)$
+    d'inconnue $x \in \mc n (I, \K)$.
+
+    \marginenote{Vigilance !}{On a de nouveau des fonctions $x$ différentes que l'on évalue en un même $t_0$.}
+    
+    \lvspace \avspace Notons $\mathscr S_0$ l'ensemble de ses solutions. Alors pour $t_0 \in I$ 
+    $$\fonction{\varphi_{t_0}}{\mathscr S_0}{\K^n}{x}{(x(t_0), x'(t_0), \dots, x^{(n - 1)}(t_0))}$$ est un isomorphisme. 
+    En particulier, $\mathscr S_0$ est un $\K$-espace vectoriel de dimension $n$.
+\end{proposition}
+
+\begin{proof}
+    $\varphi_{t_0}$ est une bijection grâce au théorème de Cauchy linéaire, et est 
+    bien linéaire. 
+\end{proof}
+
+\begin{exemple}
+    $x'' + x = 0$ alors l'ensemble des solutions de $\R$ dans $\R$ est un 
+    $\R$-espace vectoriel de dimension $2$, et 
+    $\fonction{\varphi_0}{\mathscr S_0}{\R^2}{x}{(x(0), x'(0))}$ est un isomorphisme.
+
+    $\varphi\inv \begin{pmatrix}
+    1 \\ 0
+    \end{pmatrix} = \cos$ et $\varphi\inv \begin{pmatrix}
+    0 \\ 1
+    \end{pmatrix} = \sin$ et donc $\left( \begin{pmatrix}
+        1 \\ 0
+    \end{pmatrix}, 
+    \begin{pmatrix}
+        0 \\ 1
+    \end{pmatrix} \right)$ est une base de $\R^2$ et $\varphi$ est un isomorphisme. 
+
+    Donc $(\cos, \sin)$ est une base de $\mathscr S_0$. 
+\end{exemple}
+
+\marginenote{Remarque}{Ici $a$ est une fonction à valeurs dans $\K$ et pas dans $\mathscr L(E)$, d'où la dimension 1.}
+
+\begin{theoreme}{equa diff linéaire scalaire homogène d'ordre 1}{}
+    Soit $a \in \mathscr C (I, \K)$, alors l'ensemble $\mathscr S_0$ des solutions de l'équation différentielle  
+    ${x'(t) = a(t) \cdot x(t)}$ est un $\K$-espace vectoriel de dimension 1 et de 
+    base $x_0 \ds : t \mapsto e^{\int_{t_0}^{t} a(u) \mathrm d u}$ où 
+    $t_0 \in I$ est fixé. Donc $\mathscr S_0 = \{ \lambda x_0, \lambda \in \K \}$.
+\end{theoreme}
+
+\begin{proof}
+    On sait par le théorème général que $\mathscr S_0$ est un $\K$-espace vectoriel de dimension 1. 
+
+    Par simple calcul, $x_0 \in \mathscr S_0$.
+\end{proof}
+
+\subsubsection{\'Equa diff linéaire scalaire homogène d'ordre 2 à coefs constants}
+
+\index{Equation differentielle@\'Equation différentielle!Lineaire homogene d'ordre 2 a coefficients constants@Linéaire homogène d'ordre 2 à coefs constants}
+Rappels de première année. 
+
+Soient $a, b \in \K$, alors l'ensemble des solutions de $x''(t) + ax'(t) +bx(t) = 0$ est 
+un $\K$-espace vectoriel de dimension 2. De plus en notant son polynôme 
+caractéristique $r^2 + ar + b$ d'inconnue $r \in \K$, on a : 
+
+\uindent{Si $\K = \C$ }
+
+\svspace $\blacktriangleright$ Si $\Delta = a^2 - 4b \neq 0$ alors en notant $r_1$ et $r_2$ les racines 
+du polynôme caractéristique, $(e^{r_1 t}, e^{r_2 t})$ forme une base de $\mathscr S_0$.
+
+$\blacktriangleright$ Si $\Delta = 0$ alors $r_0$ est la racine double du polynôme caractéristique et $(e^{r_0 t}, te^{r_0 t})$ forme une base de $\mathscr S_0$.
+
+\uindent{Si $\K = \R$ }
+
+\svspace $\blacktriangleright$ Si $\Delta > 0$ alors en notant $r_1$ et $r_2$ les racines du polynôme caractéristique, $(e^{r_1 t}, e^{r_2 t})$ forme une base de $\mathscr S_0$.
+
+$\blacktriangleright$ Si $\Delta = 0$ alors $r_0$ est la racine double du polynôme caractéristique et $(e^{r_0 t}, te^{r_0 t})$ forme une base de $\mathscr S_0$.
+
+$\blacktriangleright$ Si $\Delta < 0$ alors en notant $r_1 = \alpha + i \beta$ et $r_2 = \alpha - i \beta$ les racines du polynôme caractéristique, $(e^{\alpha t} \cos (\beta t), e^{\alpha t} \sin (\beta t))$ forme une base de $\mathscr S_0$.
+
+
+\begin{proof}
+    Dans tous les cas $\mathscr S_0$ est un $\K$-espace vectoriel de dimension 2. 
+    Par simple calcul, les solutions proposées sont dans $\mathscr S_0$. 
+
+    Considérons dans les différents cas $\fonction{\varphi_0}{\mathscr S_0}{\K}{x}{(x(0), x'(0))}$ 
+    
+    $\blacktriangleright$ Si $\K = \C$ et $\Delta \neq 0$, alors $\varphi_0(e^{r_1 t}) = \begin{pmatrix}
+        1 \\ r_1
+    \end{pmatrix}$ et $\varphi_0(e^{r_2 t}) = \begin{pmatrix}
+        1 \\ r_2
+    \end{pmatrix}$ qui sont linéairement indépendants, donc $(e^{r_1 t}, e^{r_2 t})$ est une base de $\mathscr S_0$.
+
+    \avspace $\blacktriangleright$ Si $\Delta = 0$ alors $\varphi_0(e^{r_0 t}) = \begin{pmatrix}
+        1 \\ r_0
+    \end{pmatrix}$ et $\varphi_0(te^{r_0 t}) = \begin{pmatrix}
+        0 \\ 1
+    \end{pmatrix}$ qui sont linéairement indépendants, donc $(e^{r_0 t}, te^{r_0 t})$ est une base de $\mathscr S_0$.
+
+    \avspace $\blacktriangleright$ Si $\K = \R$ et $\Delta < 0$ alors $\varphi_0(e^{\alpha t} \cos (\beta t)) = \begin{pmatrix}
+        1 \\ \alpha
+    \end{pmatrix}$ et $\varphi_0(e^{\alpha t} \sin (\beta t)) = \begin{pmatrix}
+        0 \\ \beta
+    \end{pmatrix}$ qui sont linéairement indépendants, donc $(e^{\alpha t} \cos (\beta t), e^{\alpha t} \sin (\beta t))$ est une base de $\mathscr S_0$.
+\end{proof}
+
+Pour dire que les machins sont linéairement indépendants, on calcul le déterminant 
+de la matrice 2*2 formée par les vecteurs $\varphi_0(x_0)$ et $\varphi_0(x_1)$.
+
+
+\subsection{Cas des équations avec second membre}
+
+\begin{theoreme}{Structure de l'ensemble des solutions}{}
+    Soit $a \in \mathscr C(I, \mathscr L(E))$, $b \in \mathscr C(I, E)$, et l'équa diff 
+    $\forall t \in I, x'(t) = a(t)(x(t)) + b(t)$. Alors l'ensemble $\mathscr S$ de solutions 
+    de $(E)$ est un espace affine de dimension $n$ dirigé par $\mathscr S_0$ espace 
+    vectoriel des solutions de $(E_0)$. 
+
+    Donc avec $x_p$ une solution particulière, on a 
+    $$\mathscr S = x_p + \mathscr S_0$$
+\end{theoreme}
+
+\begin{proof}
+    Par Cauchy linéaire, $\mathscr S \neq \emptyset$ donc on peut 
+    choisir $x_p$. 
+    
+    De plus, pour $y \in \mathscr C^1(I, E)$, 
+    $y \in \mathscr S$ si et seulement si $\forall t \in I$, $y'(t) = a(t)(y(t)) + b(t)$. 
+
+    Or on sait que $x_p$ est solution de $(E)$, donc $\forall t \in I$, $x_p'(t) = a(t)(x_p(t)) + b(t)$
+    et donc $y \in \mathscr S$ si et seulement si $\forall t \in I$, 
+    $(y - x_p)'(t) = a(t)(y(t) - x_p(t))$ 
+
+    ssi $\forall t \in I$, $y(t) - x_p(t) \in \mathscr S_0$ 
+
+    ssi $y \in x_p + \mathscr S_0$.
+\end{proof}
+
+\subsection{Extension aux équations différentielles linéaires scalaires non résolues}
+
+\danger{Les résultats précédents tels que Cauchy linéaire ne sont plus valables dans ce cas.}
+
+\lvspace \avspace \begin{definitionnt}{\'Equations différentielles linéaires scalaires d'ordre n non résolues}{}
+    \index{Equation differentielle@\'Equation différentielle!Lineaire scalaire d'ordre n non resolue@Linéaire scalaire d'ordre n non résolue}
+    On appelle équation différentielle linéaire scalaire d'ordre $n$ non résolue toute
+    équation de la forme
+    $$\sum_{i=0}^{n} \alpha_i(t) x^{(i)}(t) = \beta(t)$$
+    où 
+    \begin{itemize}
+        \item $n \in \N$
+        \item $\alpha_0, \dots, \alpha_n, \beta \in \mathscr C(I, \K)$
+        \item $x \in \mathscr C^n(I, \K)$ est l'inconnue
+    \end{itemize}
+
+    On dira aussi que cette équation est non normalisée. 
+
+    On définit l'équation homogène associée $(E_0) : \sum_{i = 0}^{n} \alpha_i(t) x^{(i)}(t) = 0$.
+    Donc il est clair que l'ensemble des solutions de $(E_0)$ est un $\K$-espace vectoriel.
+\end{definitionnt}
+
+Méthode : on résout cette équation sur les intervalles où $\alpha_n(t)$ ne s'annule pas, car 
+Cauchy linéaire s'y applique. 
+
+Pour trouver des solutions sur $I$, il faut choisir le ou les prolongements de ces solutions 
+en les points où $\alpha_n$ s'annule de manière à ce que $x$ soit de classe $\mc n$.
+
+\begin{exemple}
+    $(t^2 + t) x''(t) - (t + 3) x'(t) - 3x(t) = 0$ où $x$ est de classe 
+    $\mc 2$ sur un intervalle réel, à valeurs dans $\R$.
+
+    On dit que c'est une équation linéaire scalaire homogène d'ordre 2 non normalisée. 
+
+    Sur tout intervalle $I$ qui ne contient ni $0$ ni $-1$, celle-ci peut se mettre sous 
+    la forme normalisée, et donc l'ensemble des solutions est un $\R$-espace vectoriel
+    de dimension 2.
+
+    Sur un intervalle réel autre, l'ensemble des solutions est un $\R$ espace vectoriel, mais 
+    on ne sait rien d'autre. 
+
+    \avspace $\blacktriangleright$ Commençons par chercher des solutions sous forme de 
+    développement en série entière. 
+
+    \uindent{Analyse }
+
+    \svspace Supposons que $x(t) = \ds \sum_{n = 0}^{+ \infty} a_n t^n$ série entière de rayon 
+    $R > 0$ solution de l'équation différentielle sur $]-R, R[$.
+
+    Alors $x'(t) = \ds \sum_{n = 1}^{+ \infty} n a_n t^{n - 1}$ et $x''(t) = \ds \sum_{n = 2}^{+ \infty} n (n - 1) a_n t^{n - 2}$.
+
+    On a alors : 
+    $$\sum_{n = 2}^{+ \infty} n(n - 1) a_n t^n + \sum_{n = 2}^{+ \infty} n(n - 1) a_n t^{n - 1} - \sum_{n = 1}^{+ \infty} n a_n t^n - 3 \sum_{n = 1}^{+ \infty} n a_n t^{n - 1} - 3 \sum_{n = 0}^{+ \infty} a_n t^n = 0$$
+
+    On fait un changement d'indice pour faire apparaître des puissances de $t$ identiques :
+
+    $$\sum_{p = 0}^{+ \infty} p(p - 1) a_p t^p + \sum_{p = 0}^{+ \infty} (p + 1) p a_{p + 1} t^p - \sum_{p = 0}^{+ \infty} p a_p t^p - 3 \sum_{p = 0}^{+ \infty} (p + 1) a_{p + 1} t^p - 3 \sum_{p = 0}^{+ \infty} a_p t^p = 0$$
+
+    Ce qui donne donc en regroupant : 
+    $$\sum_{p = 0}^{+ \infty} \left( p(p - 1) a_p + (p + 1) p a_{p + 1} - p a_p - 3 (p + 1) a_{p + 1} - 3 a_p \right) t^p = 0$$
+
+    Or $R > 0$, et égalité de deux séries entières, donc $\forall p \in \N$, 
+    $$p(p - 1) a_p + (p + 1) p a_{p + 1} - p a_p - 3 (p + 1) a_{p + 1} - 3 a_p = 0$$
+
+    Et donc en factorisant : 
+
+    $(p + 1)(p - 3) a_{p + 1} + (p^2 -2p - 3) a_p = 0$ puis 
+    $(p + 1)(p - 3) a_{p + 1} + (p + 1)(p - 3) a_p = 0$
+
+    $\forall p \in \N$, on a donc $(p - 3)(a_{p + 1} + a_p) = 0$.
+
+    Donc $\forall p \in \N \setminus \{ 3 \}$, $a_{p + 1} = - a_p$. 
+
+    Or on a : 
+    \begin{itemize}
+        \item $a_1 = -a_0$
+        \item $a_2 = a_0$
+        \item $a_3 = -a_0$
+        \item $a_5 = -a_4$
+    \end{itemize}
+
+    $\forall p \leqslant 4$, $a_p = (-1)^p a_4$. 
+
+    Donc $x(t) = a_0 (1 -t + t^2 - t^3) + a_4 \ds \sum_{p = 4}^{+ \infty} (-1)^p t^p$.
+
+    Et donc $x(t) = \ds (a_0 - a_4)(1 - t + t^2 - t^3) + a_4 \sum_{p = 0}^{\infty} (-1)^p t^p$
+
+    $x(t) = \alpha (1 - t + t^2 - t^3) + \frac \beta {1 + t}$
+
+    Soit $I = ] - \infty, -1[$ ou $ ]-1, 0[$ ou $] 0, + \infty[$, et posons 
+    $\forall t \in I$, $x_1(t) = 1 - t + t^2 - t^3$ et $x_2(t) = \frac 1 {1 + t}$. 
+
+    Par calcul évident, en réinjectant dans l'équa diff, $x_1$ et $x_2$ sont solutions
+    sur $I$.
+
+    \avspace $\blacktriangleright$ Calculons maintenant le wronskien de $x_1$ et $x_2$ :
+
+    $$w = \begin{vmatrix}
+        x_1(t) & x_2(t) \\
+        x_1'(t) & x_2'(t)
+    \end{vmatrix} = \begin{vmatrix}
+        1 - t + t^2 - t^3 & \frac 1 {1 + t} \\
+        -1 + 2t - 3t^2 & -\frac 1 {(1 + t)^2}
+    \end{vmatrix} = \frac {4t^3} {(1 + t)^2} \neq 0$$
+
+    Et donc le wronskien ne s'annule jamais sur $I$. 
+
+    Donc $(x_1, x_2)$ est un système fondamental de solutions de l'équation différentielle sur $I$.
+
+    \lvspace \avspace \idee{On utilise l'unicité des coefficients du DL pour faire du recollement}
+
+    \lvspace $\blacktriangleright$ Résolution sur $]-1, +\infty[ = J_1$
+
+    Si $x$ est nul sur $J$, alors $x_{|\,]-1, 0[}$ et $x_{|\,]0, +\infty[}$ sont solutions. 
+
+    Donc $\exists \alpha_1, \beta_1, \alpha_2, \beta_2 \in \R$ tels que
+
+    $\forall t \in ]-1, 0[$, $x(t) = \alpha_1 x_1(t) + \beta_1 x_2(t)$ et
+    $\forall t \in ]0, +\infty[$, $x(t) = \alpha_2 x_1(t) + \beta_2 x_2(t)$.
+
+    $x$ est solution sur $J_1$ ssi $x$ est $\mc 2$ en $0$.
+
+    Or pour $t \in ] -1, 0[$, $x(t) = (\alpha_1 + \beta_1)(1 - t + t^2 - t^3) + o(t^3)$ 
+
+    et pour $t \in ]0, +\infty[$, $x(t) = (\alpha_2 + \beta_2)(1 - t + t^2 - t^3) + o(t^3)$.
+
+    $x$ est continue en $0$ ssi $\alpha_1 + \beta_1 = \alpha_2 + \beta_2$, et alors 
+    $x(0) = \alpha_1 + \beta_1$.
+
+    Mais en ce cas, $x$ est aussi de classe $\mc 2$ en $0$ avec $x'(0) = -(\alpha_1 + \beta_1)$ et \\
+    $x''(0) = -2(\alpha_2 + \beta_2)$.
+
+    L'ensemble des solutions de classe $\mc 2$ sur $J_1$ est donc
+
+    $$x(t) = \begin{cases}
+        \alpha_1 (1 - t + t^2 - t^3) + \frac{\gamma - \alpha_1} {1 + t} & \text{si } t \in ]-1, 0[ \\
+        \alpha_2 (1 - t + t^2 - t^3) + \frac{\gamma - \alpha_2} {1 + t} & \text{si } t \in ]0, +\infty[
+    \end{cases}$$ avec 
+    $\alpha_1, \alpha_2, \gamma \in \R$.
+
+    En posant $y_1(t) = \begin{cases}
+        1 - t + t^2 - t^3 - \frac 1 {1 + t} & \text{si } t \in ]-1, 0[ \\
+        0 & \text{si } t \in ]0, +\infty[
+    \end{cases}$, $y_2(t) = \frac 1 {1 + t}$ si $t \in J_1$ et 
+    $y_3 = \begin{cases}
+        0 & \text{si } t \in ]-1, 0[ \\
+        1 - t + t^2 - t^3 - \frac 1 {1 + t} & \text{si } t \in ]0, +\infty[
+    \end{cases}$
+
+    Et donc $(y_1, y_2, y_3)$ est une base de l'espace des solutions sur 
+    $J_1$.
+
+    \lvspace $\blacktriangleright$ Résolution sur $\R$. 
+
+    $x \in \mc 2 (\R, \R)$ est solution ssi 
+    $\begin{cases}
+        x_{|\,]-\infty, -1[} \text{ est solution sur } ]-\infty, -1[ \\
+        x_{|\,]-1, + \infty[} \text{ est solution sur } ]-1, +\infty[ \\
+        x \in \mc 2 \text{ en } -1
+    \end{cases}$
+
+    On a alors sur les différents intervalles :
+    \begin{itemize}
+        \item $\forall t \in ]-\infty, -1[$, $\ds x(t) = \alpha_3 (1 - t + t^2 - t^3) + \frac{\beta_3} {1 + t}$
+        \item $\forall t \in ]-1, 0[$, $\ds x(t) = \alpha_1 (1 - t + t^2 - t^3) + \frac{\gamma - \alpha_1} {1 + t}$
+        \item $\forall t \in [0, + \infty[$, $\ds x(t) = \alpha_2 (1 - t + t^2 - t^3) + \frac{\gamma - \alpha_2} {1 + t}$
+    \end{itemize}
+    
+    La condition en $-1$ impose que $\beta_3 = \gamma - \alpha_1 = 0$ et 
+    $\alpha_3 = \alpha_1$.
+
+    Donc 
+    \begin{itemize}
+        \item $\forall t \in ] - \infty, -1[$, \, $\ds x(t) = \alpha_3 ( 1 - t + t^2 - t^3)$
+        \item $\forall t \in ]-1, 0[$, \, $\ds x(t) = \alpha_3 (1 - t + t^2 - t^3)$
+        \item $\forall t \in [0, +\infty[$, \, $\ds x(t) = \alpha_2 (1 - t + t^2 - t^3) + \frac{\alpha_3 - \alpha_2} {1 + t}$
+        qui est $\mc 2$ en -1 et 0. 
+    \end{itemize}
+
+    Donc l'ensemble des solutions sur $\R$ est $$x : t \mapsto \begin{cases}
+        \alpha_3 (1 - t + t^2 - t^3) & \text{si } t \leqslant 0 \\
+        \alpha_2 (1 - t + t^2 - t^3) + \frac{\alpha_3 - \alpha_2} {1 + t} & \text{si } t > 0
+    \end{cases}$$
+
+    Donc il s'agit d'un $\R$-espace vectoriel de dimension 2. 
+\end{exemple}
+
+\section{Résolution d'un système différentiel linéaire homogène à coefficients constants}
+\subsection{Notations}
+
+On s'intéresse à l'équations différentielle : $\forall t \in I$, $x'(t) = a(x(t))$
+où $a$ est désormais un endomorphisme fixé, donc $a \in \mathscr L(E)$.
+
+En choisissant $B$ une base de $E$ et en notant $A = M_B(a)$, 
+alors $X(t) = M_B(x(t))$ est solution de $X'(t) = A X(t)$.
+
+En notant $\forall t \in I$, $X(t) = \begin{pmatrix}
+    x_1(t) \\ \vdots \\ x_n(t)
+\end{pmatrix}$ et $A = (a_{i, j})_{1 \leqslant i, j \leqslant n}$, alors elle est équivalente 
+à $\forall t \in I$, $\forall i \in \ninter 1 n$, $\ds x'_i(t) = \sum_{j = 1}^{n} a_{i, j} x_j(t)$.
+
+\begin{remarque}
+    Une équation linéaire homogène scalaire d'ordre $n$, 
+
+    $\forall t \in \R$, $x^{(n)}(t) = \sum_{i = 0}^{n - 1} \alpha_i x^{(i)}(t)$ 
+    où $\alpha_0, \dots, \alpha_{n - 1} \in \K$ pourra s'écrire 
+    $X'(t) = AX(t)$ avec 
+    
+    $X(t) = \begin{pmatrix}
+    x(t) \\ x'(t) \\ \vdots \\ x^{(n - 1)}(t)
+    \end{pmatrix}$ et $A = \begin{pmatrix}
+    0 & 1 & 0 & \dots & 0 \\
+    0 & 0 & 1 & \dots & 0 \\
+    \vdots & \vdots & \vdots & \ddots & \vdots \\
+    0 & 0 & 0 & \dots & 1 \\
+    \alpha_0 & \alpha_1 & \alpha_2 & \dots & \alpha_{n - 1}
+    \end{pmatrix}$.
+\end{remarque}
+
+\begin{remarque}
+    Une condition initiale pour l'équation différentielle $X'(t) = A X(t)$ est 
+    la donnée pour $t_0 \in \R$ de $X(t_0) = X_0$. 
+
+    Comme $I = \R$, en général on imposera la condition initiale en $t_0 = 0$
+\end{remarque}
+
+\subsection{Rappels et compléments sur l'exponentielle}
+
+\begin{definition}{Exponentielle d'un endomorphisme ou d'une matrice}{}
+    \index{Exponentielle!d'un endomorphisme}
+    \index{Exponentielle!d'une matrice}
+    Pour $u \in \mathscr L(E)$, on définit $\ds e^u = \sum_{n = 0}^{+ \infty} \frac{u^n}{n!}$
+
+    Pour $U \in \mathscr M_n(\K)$, on définit de même $\ds e^U = \sum_{n = 0}^{+ \infty} \frac{U^n}{n!}$
+    
+    Ces séries sont absolument convergentes. 
+\end{definition}
+
+\begin{propositionnt}{Propriétés de l'exponentielle d'une matrice ou d'un endomorphisme}{}
+    \begin{itemize}
+        \item  Si $A = \Diag (\lambda_1, \dots, \lambda_n)$, alors $e^A = \Diag (e^{\lambda_1}, \dots, e^{\lambda_n})$.
+        \item Si $A, B \in \mathscr M_n(\K)$ vérifient $A = PBP\inv$ avec $P \in GL_n(\K)$, alors $e^A = P e^B P\inv$.
+        \item Si $A \in \mathscr M_n(\K)$ telle que $\chi_A$ est scindé, alors 
+        $\Sp(e^A) = \{e^\lambda, \lambda \in \Sp(A)\}$. 
+    \end{itemize}
+\end{propositionnt}
+
+\begin{proof}
+    Soit $A = \Diag(\lambda_1, \dots, \lambda_n)$, alors $A^n = \Diag (\lambda_1^n, \dots, \lambda_n^n)$ et donc
+
+    \begin{align}
+        e^A & = \lim_{N \to + \infty} \sum_{p = 0}^{N} \frac{A^p}{p!} \\
+        & = \lim_{N \to + \infty} \sum_{p = 0}^{N} \frac{1}{p!} \Diag (\lambda_1^p, \dots, \lambda_n^p) \\
+        & = \Diag \left( \lim_{N \to + \infty} \sum_{p = 0}^{N} \frac{\lambda_1^p}{p!}, \dots, \lim_{N \to + \infty} \sum_{p = 0}^{N} \frac{\lambda_n^p}{p!} \right) \\
+        & = \Diag (e^{\lambda_1}, \dots, e^{\lambda_n})
+    \end{align}
+
+    \lvspace $\blacktriangleright$ Supposons que $A = PBP\inv$, alors par récurrence, 
+    $\forall k \in \N$, $A^k = P B^k P\inv$ et donc
+    \begin{align}
+        \sum_{k = 0}^N \frac{A^k}{k!} & = \sum_{k = 0}^{N} \frac{PB^KP\inv}{k!} \\
+        & = P \left( \sum_{k = 0}^{N} \frac{B^k}{k!} \right) P\inv
+    \end{align}
+
+    Et par passage à la limite et continuité de $M \mapsto PMP\inv$ (car linéaire en 
+    dimension finie), $e^A = P e^B P\inv$.
+
+    \lvspace $\blacktriangleright$ Supposons que $\chi_A$ est scindé, alors 
+    $A$ est trigonalisable, et donc $A = PTP\inv$ avec $T$ triangulaire supérieure et $P \in GL_n(\K)$.
+
+    Par récurrence, $\forall p \in \N$, $T^p = \begin{pmatrix}
+    \lambda_1^p & * & \dots & * \\
+    0 & \lambda_2^p & \dots & * \\
+    \vdots & \vdots & \ddots & \vdots \\
+    0 & 0 & \dots & \lambda_n^p
+    \end{pmatrix}$ et donc $e^T = \begin{pmatrix}
+    e^{\lambda_1} & * & \dots & * \\
+    0 & e^{\lambda_2} & \dots & * \\
+    \vdots & \vdots & \ddots & \vdots \\
+    0 & 0 & \dots & e^{\lambda_n}
+    \end{pmatrix}$.
+
+    Donc $\Sp(e^A) = \Sp(e^T) = \{e^{\lambda_1}, \dots, e^{\lambda_n}\}$.
+\end{proof}
+
+\danger{Si $\chi_A$ n'est pas scindé, cela peut être faux}
+
+\begin{exemple}
+    Plaçons nous sur $\K = \R$ et $A = \begin{pmatrix}
+    0 & -\pi \\
+    \pi & 0
+    \end{pmatrix}$, alors $\chi_A(X) = X^2 + \pi^2$ qui n'a pas de racines réelles. 
+
+    $\chi_A$ annule $A$ et donc $A^2 = -\pi^2 I$. 
+
+    Donc par récurrence, $\forall n \in \N$, $A^{2n} = (-1)^n \pi^{2n} I$ et $A^{2n + 1} = (-1)^n \pi^{2n} A$.
+
+    Donc $\ds \sum_{k = 0}^{2n + 1} \frac{A^k}{k!} \to e^A = \begin{pmatrix}
+    \cos \pi & -\sin \pi \\
+    \sin \pi & \cos \pi
+    \end{pmatrix} = -I$.
+
+    Donc $\Sp(e^A) = \{-1\}$. 
+\end{exemple}
+
+
+\begin{theorement}{Exponentielle d'une somme de matrices ou d'endomorphismes qui commutent}{}
+    Soient $A, B \in \mathscr M_n(\K)$ qui commutent. Alors $e^{A + B} = e^A e^B$ = $e^B e^A$.
+    
+    Soient $a, b \in \mathscr L(E)$ qui commutent. Alors $e^{a + b} = e^a e^b$ = $e^b e^a$.
+\end{theorement}
+
+\danger{On ne peut pas utiliser le produit de Cauchy avec les matrices !!}
+
+\begin{proof}
+    Choisissons $\| \cdot \|$ une norme matricielle sur $\mathscr M_n(\K)$. 
+
+    Posons $\ds c_n = \sum_{k = 0}^{n} \frac{A^k}{k!} \sum_{i = 0}^{n } \frac{B^i}{i!} - \sum_{p = 0}^{n} \frac{(A + B)^p}{p!}$
+
+    par théorème d'opérations, $c_n \to e^A e^B - e^{A + B}$.
+
+    Montrons que $c_n \to 0$.  
+
+    \begin{align}
+        \| c_n \| & = \left\| \sum_{k = 0}^{n} \sum_{i = 0}^{n} \frac{A^k B^i}{k! i!} - \sum_{p = 0}^{n} \sum_{k = 0}^{n } \binom p k \frac{A^k B^{p - k}}{p!} \right\| \\
+        & = \left\| \sum_{k = 0}^n \sum_{i = 0}^{n} \frac{A^k B^i}{k! i!} - \sum_{p = 0}^{n} \sum_{k = 0}^{n} \mathbb 1_{k \leqslant p} \frac{A^k}{k!} \frac{B^{p - k}}{(p - k)!} \right\| \\
+        & = \left\| \sum_{k = 0}^{n} \sum_{i = 0}^{n} \frac{A^k B^i}{k! i!} - \sum_{k = 0}^{n} \sum_{p = k}^n \frac{A^k}{k!} \frac{B^{p - k}}{(p - k)!} \right\| \\
+        & = \left\| \sum_{k = 0}^{n} \sum_{i = 0}^{n} \frac{A^k B^i}{k! i!} - \sum_{k = 0}^{n} \sum_{i = 0}^{n - k} \frac{A^k}{k!} \frac{B^{i}}{i!} \right\| \\
+        & = \left\| \sum_{k = 1}^n \sum_{i = n - k + 1}^{n} \frac{A^k B^i}{k! i!} \right\| \\
+        & \leqslant \sum_{k = 1}^{n } \sum_{i = n - k + 1}^{n} \frac{\| A \|^k \| B \|^i}{k! i!} \\
+        & \leqslant \sum_{k = 0}^{n} \frac{\| A \|^k}{k!} \sum_{i = 0}^n \frac{\| B \|^i}{i!} - \sum_{p = 0}^{n} \frac{(\| A \| + \| B \|)^p}{p!} \\
+        & \to e^{\| A \|} e^{\| B \|} - e^{\| A \| + \| B \|} = 0
+    \end{align}
+\end{proof}
+
+\begin{corollairent}{Invertibilité de l'exponentielle d'une matrice ou d'un endomorphisme}{}
+    Pour $A \in \mathscr M_n(\K)$, $e^A \in GL_n(\K)$ et $(e^A)\inv = e^{-A}$.
+
+    Pour $a \in \mathscr L(E)$, $e^a \in GL(E)$ et $(e^a)\inv = e^{-a}$.
+\end{corollairent}
+
+\begin{proof}
+    $A(-A) = (-A)A$, donc : 
+
+    \begin{align}
+        e^A e^{-A} & = e^{A - A} \\
+        & = e^0 \\
+        & = I
+    \end{align}
+\end{proof}
+
+\begin{proposition}{continuité exponentielle matrices et endos}{}
+    $\exp : \mathscr M_n(\R) \to \mathscr M_n(\R)$ et 
+    $\exp : \mathscr L(E) \to \mathscr L(E)$ sont continues. 
+\end{proposition}
+
+\idee{
+    Convergence normale de la série.
+}
+
+\begin{proof}
+    Pour $k \in \N$, on a 
+    $\fonction{}{\mathscr M_n(\K)}{\mathscr M_n(\K)}{A}{\frac{A^k}{k!}}$ est continue par 
+    théorème d'opérations. 
+
+    La série de fonctions $\sum_{k \geqslant 0} u_k$ converge simplement 
+    vers $\exp$. 
+
+    Fixons $R > 0$, et munisson $\mathscr M_n(\K)$ de $\| \cdot \|$ norme matricielle. 
+
+    Si $A \in B(0, R)$, pour $k \geqslant 1$, $\left\| \frac{A^k}{k!} \right\| \leqslant \frac{\|A\|^k}{k!} \leqslant \frac{R^k}{k!}$
+
+    Donc $\|u_k\|_{\infty, B'(0, R)} \leqslant \frac{R^k}{k!}$ terme général d'une série convergente. 
+
+    Donc $\sum u_k$ converge normalement sur $B'(0, R)$. 
+
+    Donc $\exp$ qui est sa somme est continue sur $B'(0, R)$, or ceci est vrai pour tout $R$
+    donc $\exp$ est continue sur $\mathscr M_n(\K)$.
+\end{proof}
+
+
+\begin{proposition}{}{}
+    Soit $A \in \mathscr M_n(\K)$, alors $\fonction{f_A}{\R}{\mathscr M_n(\K)}{t}{e^{tA}}$ est de classe $\mc 1$ 
+    et $f_A'(t) = A e^{tA}$.
+\end{proposition}
+
+\begin{proof}
+    Posons $\forall k \in \N$, $u_k: t \mapsto \frac{t^k A^k}{k!}$, alors 
+    $\sum u_k$ converge simplement et a pour somme $f_A : t \mapsto e^{tA}$.
+
+    Pour tout $k$, $u_k$ est $\mc 1$ de dérivée $u_k'(t) = \frac{t^{k - 1} A^k}{(k - 1)!}$.
+
+    Soit $a > 0$, et soit $t \in [-a, a]$ et $k \geqslant 1$. 
+
+    \begin{align}
+        \| u'_k(t) \| & = \left\| \frac{t^{k - 1} A^k}{(k - 1)!} \right\| \\
+        & \leqslant \frac{a^{k - 1} \| A \|^k}{(k - 1)!}
+    \end{align}
+    terme général d'une série convergente indépendante de $t$. 
+
+    Donc $\sum u'_k$ converge normalement sur $[-a, a]$.
+
+    Donc $f_A$ est de classe $\mc 1$ sur $[-a, a]$ et $\forall t \in [-a, a]$, $f_A'(t) = \sum_{k = 1}^\infty \frac{t^{k - 1} A^k}{(k - 1)!}$
+
+    Ceci est vrai pour tout $a$ donc $f_A$ est de classe $\mc 1$ sur $\R$ et $\forall t \in \R$, 
+    $f_A'(t) = A e^{tA}$ car le produit matriciel est linéaire en dimension finie donc continu. 
+
+    De même, $e^{tA} A = A e^{tA}$, donc $f_A'(t) = e^{tA} A$.
+\end{proof}
+
+\begin{theoreme}{}{}
+    La solution au problème de Cauchy $\begin{cases}
+    X'(t) = A X(t) \\
+    X(t_0) = X_0
+    \end{cases}$ où $A \in \mathscr M_n(\K)$, $t_0 \in \R$ et $X_0 \in \K^n$ avec $X \in \mc 1 (\R, \mathscr M_{n, 1}(\K))$ inconnue
+    est $$\fonction{X}{\R}{\mathscr M_{n, 1}(\K)}{t}{e^{(t - t_0) A} X_0}$$
+\end{theoreme}
+
+\begin{proof}
+    Par Cauchy linéaire, la solution existe et est unique. 
+
+    Vérifions que ce $X$ convient. 
+
+    On a bien $X(t_0) = e^0 X_0 = X_0$.
+
+    $X$ est $\mc 1$ car $X(t) = f_A(t - t_0) X_0$ et $X'(t) = f_A'(t - t_0) X_0 = A e^{(t - t_0) A} X_0 = A X(t)$.
+\end{proof}
+
+\begin{theoreme}{base de solutions}{}
+    Soit $(E_1, \dots, E_n)$ base de $\mathscr M_{n, 1}(\K)$.
+    L'espace des solutions de $X'(t) = A X(t)$ a pour base 
+    $(X_1, \dots, X_n)$ où $\forall i \in \ninter{1}{n}$, $$\fonction{X_i}{\R}{\mathscr M_{n, 1}(\K)}{t}{e^{tA} E_i}$$
+\end{theoreme}
+
+\idee{Isomorphisme associé à Cauchy linéaire.}
+
+\begin{proof}
+    Fixons $t_0 = 0$, alors on sait que $\fonction{\varphi_0}{\mathscr S}{\mathscr M_{n, 1}(\K)}{X}{X(0)}$ 
+    est un isomorphisme. De plus, $(E_1, \dots, E_n)$ est une base de $\mathscr M_{n, 1}(\K)$. 
+
+    Remarquons que les $(e^{tA} E_1, \dots, e^{tA}E_n) = (X_1, \dots, X_n)$ sont solutions de l'équation différentielle.
+
+    De plus, $\forall i \in \ninter 1 n$, $\varphi_0(X_i) = E_i$.
+
+    Donc $(\varphi_0\inv(E_1), \dots, \varphi_0\inv(E_n))$ est une base de $\mathscr S$ car 
+    $\varphi_0$ est un isomorphisme.
+\end{proof}
+
+\begin{corollaire}{}{}
+    Soit $A \in \mathscr M_n(\K)$ diagonalisable, et $E_1, \dots, E_n$ base de $\mathscr M_{n, 1}(\K)$
+    composée de vecteurs propres de $A$,
+    associés à $\lambda_1, \dots, \lambda_n$. Alors $X_1, \dots, X_n$ définis par 
+    $$\fonction{X_i}{\R}{\mathscr M_{n, 1}(\K)}{t}{e^{\lambda_i t} X_i}$$ forment une base 
+    de $\mathscr S$ espace propre des solutions de $X'(t) = A X(t)$.
+\end{corollaire}
+
+\idee{Théorème précédent.}
+
+\begin{proof}
+    On applique le théorème précédent à la base de vecteurs propres $E_1, \dots, E_n$, en 
+    remarquant que $\forall k \in \N^*$, $A^k E_i = \lambda_i^k E_i$.
+
+    Pour $i \in \ninter 1 n$, $t \in \R$, on a : 
+
+    \begin{align}
+        X_i(t) & = e^{tA} E_i \\
+        & = \sum_{k = 0}^{+ \infty} \frac{t^k A^k}{k!} E_i \\
+        & = \sum_{k = 0}^{+ \infty} \frac{t^k \lambda_i^k}{k!} E_i \\
+        & = e^{\lambda_i t} E_i
+    \end{align}
+\end{proof}
+
+
+\begin{exemple}
+    Résoudre $\begin{cases}
+        x' = 3x + y - z \\
+        y' = x + y + z \\
+        z' = 5x + y - 3z
+    \end{cases}$ avec $x, y, z \in \mc 1 (\R, \R)$ inconnues. 
+
+    Posons $X(t) = \begin{pmatrix}
+    x(t) \\ y(t) \\ z(t)
+    \end{pmatrix}$
+
+    Alors $(S) \Leftrightarrow X' = AX$ avec $A = \begin{pmatrix}
+    3 & 1 & -1 \\
+    1 & 1 & 1 \\
+    5 & 1 & -3
+    \end{pmatrix}$.
+
+    On a $A \begin{pmatrix}
+    1 \\ 1 \\ 1
+    \end{pmatrix} = \begin{pmatrix}
+    3 \\ 3 \\ 3
+    \end{pmatrix} = 3 \begin{pmatrix}
+    1 \\ 1 \\ 1
+    \end{pmatrix}$, donc $3$ est valeur propre de $A$ de vecteur propre associé $E_1 = \begin{pmatrix}
+    1 \\ 1 \\ 1
+    \end{pmatrix}$.
+
+    $0$ est également valeur propre et $X (X - 3) \mid \chi_A$ donc 
+    $\chi_A$ est scindé, et $\chi_A = X (X - 3)(X - \lambda)$
+
+    Or $0 + 3 + \lambda = \tr A$ et donc $\lambda = -2$. 
+
+    $\begin{pmatrix}
+        x \\ y \\ z
+    \end{pmatrix} \in \Ker A$ ssi $\begin{cases}
+        3x + y - z = 0 \\
+        x + y + z = 0 \\
+        5x + y - 3z = 0
+    \end{cases}$
+
+    ssi $\begin{cases}
+        y = -2x \\
+        z = x 
+    \end{cases}$
+
+    Donc $E_2 = \begin{pmatrix}
+    1 \\ -2 \\ 1
+    \end{pmatrix}$ est un vecteur propre associé à $0$.
+
+    $\begin{pmatrix}
+        x \\ y \\ z
+        \end{pmatrix} \in E_{-2}(A)$ ssi $\begin{cases}
+        5x + y - z = 0 \\
+        3x + 3y + z = 0 \\
+        5x + y - z = 0
+    \end{cases}$
+
+    ssi $\begin{cases}
+        3x + 2y = 0 \\
+        z = 5x + y 
+    \end{cases}$
+
+    Donc $E_3 = \begin{pmatrix}
+        -2 \\ 3 \\ -7
+    \end{pmatrix}$ est un vecteur propre associé à $-2$.
+
+    Donc $A$ est diagonalisable, et $(E_1, E_2, E_3)$ est une base de vecteurs propres de $A$.
+
+    Donc $X_1 : t \mapsto e^{3t} E_1$, $X_2 : t \mapsto E_2$ et $X_3 : t \mapsto e^{-2t} E_3$ forment une base de l'espace des solutions de $X' = AX$.
+
+    Donc $\begin{cases}
+        x(t) = \alpha e^{3t} - 2 \beta - 2 \gamma e^{-2t} \\
+        y(t) = \alpha e^{3t} - 2 \beta + 3 \gamma e^{-2t} \\
+        z(t) = \alpha e^{3t} + \beta - 7 \gamma e^{-2t}
+    \end{cases}$
+\end{exemple}
+
+
+\begin{exemple}
+    Résolvons $\begin{cases}
+        x' = 2x +y + z \\
+        y' = y + 3z \\
+        z' = -x - y + 6z
+    \end{cases}$
+
+    Alors $X' = AX$ et $X = \begin{pmatrix}
+    x \\ y \\ z
+    \end{pmatrix}$ avec $A = \begin{pmatrix}
+    2 & 1 & 1 \\
+    0 & 1 & 3 \\
+    -1 & -1 & 6
+    \end{pmatrix}$.
+
+    Après calcul, on trouve que $\chi_A(X) = (X - 1)(X - 4)^2$ donc 1 valeur propre 
+    simple et 4 valeur propre double. 
+
+    Or $\rg (A - 4I) = 2$ et donc $\dim E_4(A) = 1$ (th du rang). 
+
+    Donc $A$ n'est pas diagonalisable. 
+
+    Donc $\mu_A = (X - 1)(X - 4)^2$.
+
+    Reste de la division euclidienne de $X^n$ par $\mu_A$ : 
+
+    $X^n = (X - 1)(X - 4)^2 Q_n + a_n(X - 1)(X - 4) + b_n(X - 1) + c_n(X - 4)$
+    car $(X - 1)(X - 4)$, $(X - 1)$ et $(X - 4)$ forment une base de $\R_{2}[X]$.
+
+    On a donc  $\begin{cases}
+        1 = -3c_n \\
+        4^n = 3 b_n
+    \end{cases}$
+
+    Pour trouver la dernière équation, dérivons et évaluons en 4 qui est racine double.
+    On a donc $n 4^{n - 1} = 3 a_n + b_n + c_n$.
+
+    On en déduit donc $\ds a_n = \frac{n 4^{n - 1}}{3} - \frac{4^n}{3} - \frac 1 3$, 
+    $\ds b_n = \frac{4^n}{3}$ et $\ds c_n = -\frac 1 3$.
+
+    Evaluons en $A$. 
+
+    $\ds A^n = \frac 1 3 \left[ (n 4^{n - 1} - 4^n - 1)(A - I)(A - 4I) + 4^n (A - I) - (A - 4I) \right]$
+
+    Pour $B = \frac{(A - I)(A - 4I)}{3}$, $C = \frac{A - I} 3$ et $D = -\frac{A - 4I}{3}$, alors
+    $A^n = (n 4^{n - 1} - 4^n - 1) B + 4^n C + D$.
+
+    \begin{align}
+        \exp (tA) & = \sum_{n = 0}^{+ \infty} \frac{t^n A^n}{n!} \\
+        & = \sum_{n = 0}^{+ \infty} \frac{n (4t)^n}{n!} \frac{B}{4} - \sum_{n = 0}^{+ \infty} \frac{(4t)^n}{n!} B - \sum_{n = 0}^{+ \infty} \frac{t^n}{n!} B + \sum_{n = 0}^{+ \infty} \frac{(4t)^n}{n!} C + \sum_{n = 0}^{+ \infty} \frac{t^n}{n!} D \\
+        & = t e^{4t} B + e^{4t} (C - B) + e^t (D - B)
+    \end{align}
+
+    Donc $\left( \exp (tA) \begin{pmatrix}
+    1 \\ 0 \\ 0
+    \end{pmatrix}, \exp (tA) \begin{pmatrix}
+    0 \\ 1 \\ 0
+    \end{pmatrix}, \exp (tA) \begin{pmatrix}
+    0 \\ 0 \\ 1
+    \end{pmatrix} \right)$ est une base de l'espace des solutions de $X' = AX$.
+
+    Ce sont donc les 3 colonnes de $\exp (tA)$. 
+\end{exemple}
+
+\begin{exemple}
+    $\begin{cases}
+        x' = x + y + z \\
+        y' = -2x + 4y + z \\
+        z' = -2x + y + 4z
+    \end{cases}$
+
+    $X' = AX$ et $X = \begin{pmatrix}
+        x \\ y \\ z 
+    \end{pmatrix}$ avec $A = \begin{pmatrix}
+    1 & 1 & 1 \\
+    -2 & 4 & 1 \\
+    -2 & 1 & 4
+    \end{pmatrix}$ et on a donc $\chi_A = (X - 3)^3$
+
+    Donc 3 valeur propre triple. 
+
+    $A \neq 3I$ donc non diagonalisable. 
+
+    \begin{align}
+        \exp(tA) & = \exp(3t I + t(A - 3I)) \\
+        & = \exp(3t I) \cdot \exp(t(A - 3I)) \\
+        & = e^{3t} (I + t(A - 3I) + \frac{t^2}{2} (A - 3I)^2)
+    \end{align}
+
+    car $\chi_A(A) = 0$ donc pour $n \geqslant 3$, $(A - 3I)^n = 0$.
+
+    On calcule $(A - 3I)^2 = 0$ donc $\exp(tA) = e^{3t} (I + t(A - 3I))$ et les 3 colonnes 
+    forment une base de $\mathscr S$. 
+\end{exemple}
+
+\begin{exemple}
+    Soit $x \in \mc 3 (\R, \R)$ tel que $x^{(3)}(t) = 4x''(t) - 5x'(t) + 2x(t)$.
+
+    Donc $X(t) = \begin{pmatrix}
+    x(t) \\ x'(t) \\ x''(t)
+    \end{pmatrix}$ et 
+    $(E) \Leftrightarrow \begin{cases}
+    x'(t) = x'(t) \\
+    x''(t) = x''(t) \\
+    x^{(3)}(t) = 2x(t) - 5x'(t) + 4x''(t)
+    \end{cases}$
+
+    $\Leftrightarrow X'(t) = AX(t)$ avec $A = \begin{pmatrix}
+    0 & 1 & 0 \\
+    0 & 0 & 1 \\
+    2 & -5 & 4
+    \end{pmatrix}$.
+
+    Donc $\chi_A = (X - 1)^2 (X - 2)$. On sait que l'ensemble des solutions de E est un $\R$
+    espace vectoriel de dimension 3. 
+
+    Remarquons que $x_1 : t \mapsto e^t$, $x_2 : t \mapsto e^{2t}$, $x_3 : t \mapsto t e^t$ sont des solutions de E, 
+    et que $(x_1, x_2, x_3)$ est une famille libre de solutions de E.  
+\end{exemple}
+
+\section{Résolution d'une équation avec second membre}
+\subsection{Cas général}
+
+On s'intéresse à l'équation différentielle 
+$x'(t) = a(x(t)) + b(t)$ équivalente à $X'(t) = A X(t) + B(t)$ 
+avec 
+\begin{itemize}
+    \item $a \in \mathscr C (I, \mathscr L(E))$
+    \item $b \in \mathscr C (I, \mathscr M_{n, 1}(\K))$
+    \item $x \in \mc 1 (I, \mathscr M_{n, 1}(\K))$ inconnue
+    \item $A, B, X$ matrices associées dans une base $B$
+\end{itemize}
+
+\begin{remarque}
+    Pour trouver une solution particulière de $(E)$, une bonne idée est de la rechercher sous 
+    une forme analogue à $b$. 
+\end{remarque}
+
+\begin{exemple}
+    Dans une équation scalaire, si $b(t) = P(t)e^{\alpha t}$ on cherche une solution 
+    particulière de la forme $x(t) = Q(t)e^{\alpha t}$ avec : 
+    \begin{itemize}
+        \item $\deg Q = \deg P$ si $t \mapsto e^{\alpha t}$ n'est pas solution de l'équation homogène associée
+        \item $\deg Q = \deg P + 1$ ou $\deg Q = \deg P + 2$ sinon
+    \end{itemize}
+
+    Si $b(t) = P(t) \cos (\alpha t)$, on peut chercher $x(t)$ de la forme 
+    $x(t) = Q(t) \cos (\alpha t) + R(t) \sin (\alpha t)$
+\end{exemple}
+
+\begin{theoreme}{HP, variation des constantes}{}
+    Soit $X_1, \dots, X_n$ base de $\mathscr S$ espace vectoriel des solutions de 
+    l'équation sans second membre $X' = AX$.
+
+    Alors il existe $\lambda_1, \dots, \lambda_n \in \mc 1(I, \K)$ tels que 
+    $\fonction{X}{I}{\mathscr M_{n, 1}(\K)}{t}{\sum_{i = 1}^n \lambda_i(t) X_i(t)}$ est une solution 
+    particulière de l'équation $X' = AX + B$. Cette méthode s'apelle la variation des constantes. 
+\end{theoreme}
+
+\idee{Calcul et wronskien.}
+
+\begin{proof}
+    Soient $\lambda_1, \dots, \lambda_n \in \mc 1$ et $X(t) = \ds \sum_{i = 1}^{n} \lambda_i(t) X_i(t)$, alors
+    $\ds X'(t) = \sum_{i = 1}^{n} \lambda_i'(t) X_i(t) + \lambda_i(t) X_i'(t)$
+
+    Et donc $X'(t) - A(t) X(t) = \ds \sum_{i = 1}^{n} \lambda_i'(t) X_i(t) + \sum_{i = 1}^{n} \lambda_i(t) \underbrace{(X_i'(t) - A(t) X_i(t))}_{ = 0 \text{ car sol de l'ESSM}}$
+
+    Donc $X$ solution ssi $\ds \sum_{i = 1}^{n} \lambda_i'(t) X_i(t) = B(t)$.
+
+    Posons $\omega(t) = \begin{pmatrix}
+    X_1(t) & X_2(t) & \dots & X_n(t)
+    \end{pmatrix}$
+
+    Donc $X$ solution ssi $\omega(t) \begin{pmatrix}
+    \lambda_1'(t) \\ \lambda_2'(t) \\ \vdots \\ \lambda_n'(t)
+    \end{pmatrix} = B(t)$
+
+    Or $X_1, \dots, X_n$ forment une base et donc $w(t) = \det \omega(t) \neq 0$.
+
+    Donc $\omega(t)$ inversible donc $X$ solution ssi $\begin{pmatrix}
+    \lambda_1'(t) \\ \lambda_2'(t) \\ \vdots \\ \lambda_n'(t)
+    \end{pmatrix} = \omega(t)\inv B(t)$ fonction continue. 
+
+    Donc on peut trouver $\lambda_1, \dots, \lambda_n$ qui conviennent. 
+\end{proof}
+
+
+\subsection{Cas de l'équation linéaire scalaire d'ordre 1}
+
+\begin{theoreme}{variation de la constante}{}
+    Soit $x'(t) = a(t) x(t) + b(t)$ équation différentielle scalaire d'ordre 1 avec 
+    $a, b \in \mathscr C (I, \K)$ et $x \in \mc 1(I, \K)$ inconnue. 
+
+    Notons $x_H$ une solution non nulle de l'équation homogène, 
+    $$\fonction{x_H}{I}{\K}{t}{e^{\int_{t_0}^t a(s) ds}}$$ où $t_0 \in I$ est fixé.
+
+    Alors il existe $\lambda \in \mc 1(I, \K)$ telle que 
+    $x_p : t \mapsto \lambda(t) x_H(t)$ est une solution particulière de $(E)$. 
+
+    C'est la méthode de variation de la constante. 
+\end{theoreme}
+
+\begin{proof}
+    Posons $x_p(t) = \lambda(t) x_H(t)$, alors $x_p'(t) = \lambda'(t) x_H(t) + \lambda(t) x_H'(t)$
+
+    Donc $x'_p - ax_p = \lambda'(t) x_H(t) + \underbrace{\lambda(t) x_H'(t) - a(t) \lambda(t) x_H(t)}_{ = 0 \text{ car } c_H \text{ sol de l'ESSM}}$
+
+    Donc $x_p$ solution ssi 
+    $\forall t \in I$, $\lambda'(t) = \frac{b(t)}{x_H(t)}$ fonction continue qui possède 
+    donc des primitives. 
+\end{proof}
+
+\subsection{Cas de l'équation différentielle linéaire scalaire d'ordre 2}
+
+\begin{definition}{}{}
+    Soit $x''(t) = p(t) x(t) + q(t) x'(t)$ équation différentielle linéaire scalaire homogène
+    d'ordre 2 avec $p, q \in \mathscr C(I, \K)$ et $x \in \mc 1 (I, \K)$ inconnue. 
+
+    Une base $(x_1, x_2)$ de $\mathscr S_0$ est appelée système fondamental de solutions. 
+
+    Si $x_1$ et $x_2$ sont 2 solutions de l'équations on définit leur wronskien 
+    $$\fonction{w}{I}{\K}{t}{\begin{vmatrix}
+        x_1(t) & x_2(t) \\
+        x_1'(t) & x_2'(t)
+    \end{vmatrix}}$$
+\end{definition}
+
+\begin{remarque}
+    On sait de plus par le théorème de Cauchy linéaire que $\mathscr S_0$ l'ensemble des solutions est 
+    un $\K$-espace vectoriel de dimension 2.
+\end{remarque}
+
+\begin{remarque}
+    En posant $X(t) = \begin{pmatrix}
+    x(t) \\ x'(t)
+    \end{pmatrix}$ et $A(t) = \begin{pmatrix}
+    0 & 1 \\
+    p(t) & q(t)
+    \end{pmatrix}$, on a $(E) \Leftrightarrow \forall t \in I, \, X'(t) = A(t) X(t)$
+
+    De plus $x_1$ et $x_2$ sont solutions de $(E)$ ssi $X_1 : t \mapsto \begin{pmatrix}
+    x_1(t) \\ x_1'(t)
+    \end{pmatrix}$ et $X_2 : t \mapsto \begin{pmatrix}
+    x_2(t) \\ x_2'(t)
+    \end{pmatrix}$ sont solutions de $X' = AX$.
+
+    Le wronskien $w$ est bien égal au wronskien de $X_1$ et $X_2$ HP définit précédemment. 
+\end{remarque}
+
+\begin{theoreme}{}{}
+    Soient $x_1$ et $x_2$ deux solutions de $(E)$ et $w$ leur wronskien. Alors $w$ est constant nul 
+    et $(x_1, x_2)$ est liée ou $w$ ne s'annule jamais et en ce cas $(x_1, x_2)$ est un système fondamental de solutions de $(E)$.
+\end{theoreme}
+
+\idee{
+    Cauchy linéaire.
+}
+
+\begin{proof}
+    Supposons que $(x_1, x_2)$ base de l'espace des solutions et q'il existe $t_0 \in I$
+    tel que $w(t_0) = 0$ alors 
+    $(X_1(t_0), X_2(t_0))$ est liée. Alors il existe $\alpha_1, \alpha_2$ non tous nuls 
+    tels que $\alpha_1 X_1(t_0) + \alpha_2 X_2(t_0) = 0$.
+
+    Donc $\alpha_1 X_1 + \alpha_2 X_2$ est solution du problème de Cauchy avec la condition 
+    initiale $X(t_0) = 0$, or $0$ est également une telle solution, et donc par 
+    Cauchy linéaire, $\alpha_1 X_1 + \alpha_2 X_2 = 0$ et 
+    donc $\alpha_1 x_1 + \alpha_2 x_2 = 0$, or c'est absurde car $x_1$ et $x_2$ sont supposés linéairement indépendants.
+
+    Donc $w$ ne s'annule jamais. 
+
+    \lvspace $\blacktriangleright$ Si $(x_1, x_2)$ est liée. 
+
+    Alors $\exists \alpha, \beta $ non tous nuls tels que $\alpha x_1 + \beta x_2 = 0$
+    et donc $\alpha x'_1 + \beta x'_2 = 0$ et donc $w = 0$.
+\end{proof}
+
+\begin{exemple}
+    $x''(t) + x = 0$ et 
+    $\begin{cases}
+        x_(t) = \cos (t) \\
+        x_2(t) = \sin (t)
+    \end{cases}$ sont 2 solutions. 
+
+    On a donc $w(t) = \begin{vmatrix}
+    \cos (t) & \sin (t) \\
+    -\sin (t) & \cos (t)
+    \end{vmatrix} = 1$ 
+
+    Le wronskien ne s'annule jamais donc $(x_1, x_2)$ base de l'espace des solutions. 
+\end{exemple}
+
+\begin{theorement}{Méthode de variation des constantes pour l'équation différentielle linéaire scalaire d'ordre 2}{}
+    On considère $(E) : x''(t) = p(t) x(t) + q(t) x'(t) + b(t)$ avec $p, q, b \in \mathscr C(I, \K)$ et $x \in \mc 2(I, \K)$ inconnue.
+
+    \svspace
+    
+    Soit $(x_1, x_2)$ base de $\mathscr S_0$. Alors il existe 
+    $\lambda_1, \lambda_2 \in \mc 1(I, \K)$ telles que :
+    \begin{itemize}
+        \item $x : t \mapsto \lambda_1(t) x_1(t) + \lambda_2(t) x_2(t)$ est une solution particulière de $(E)$
+        \item Qui vérifie de plus $\forall t \in I$, $\lambda_1'(t) x_1(t) + \lambda_2'(t) x_2(t) = 0$
+    \end{itemize}
+
+    \svspace
+
+    On a alors $\lambda_1'$ et $\lambda_2'$ solutions du système 
+    $\begin{cases}
+    \lambda_1'(t) x_1(t) + \lambda_2'(t) x_2(t) = 0 \\
+    \lambda_1'(t) x_1'(t) + \lambda_2'(t) x_2'(t) = b(t)
+    \end{cases}$
+\end{theorement}
+
+\begin{remarque}
+    Le système a toujours des solutions car son déterminant est le wronskien de $x_1$ et $x_2$ qui ne s'annule jamais.
+\end{remarque}
+
+\marginenote{Nul ?}{Pour retenir que la combinaison en $\lambda_1'$ et $\lambda_2'$ est nulle, on peut se souvenir que les $\lambda_i$ sont $\mc 1$ alors que $x$ est $\mc 2$}
+
+\begin{proof}
+    Soient $\lambda_1, \lambda_2 \in \mc 1(I, \K)$ et supposons que 
+    $\lambda_1' x_1 + \lambda_2' x_2 = 0$. 
+
+    Posons $x = \lambda_1 x_1 + \lambda_2 x_2$, alors $x$ est de classe $\mc 1$ et 
+    $$x' = \underbrace{\lambda_1' x_1 + \lambda_2' x_2}_{ = 0} + \lambda_1 x_1' + \lambda_2 x_2' = \lambda_1 x_1' + \lambda_2 x_2'$$
+
+    Donc $x$ est de classe $\mc 2$ et $x'' = \lambda_1' x_1' + \lambda_2' x_2' + \lambda_1 x_1'' + \lambda_2 x_2''$
+
+    Donc $x'' - px - qx' = \lambda_1' x_1' + \lambda_2' x_2' + \lambda_1 [x''_1 - px_1 - qx'_1] + \lambda_2[x''_2 - px_2 - qx'_2] = \lambda_1' x_1' + \lambda_2' x_2' $
+
+    Donc $x$ est solution ssi $(S) \leftrightarrow \begin{cases}
+        \lambda_1' x_1 + \lambda_2' x_2 = 0 \\
+        \lambda_1' x_1' + \lambda_2' x_2' = b
+    \end{cases}$
+
+    Pour $t \in I$, le det de $(S)$ est $w(t) \neq 0$, et donc $(S)$ a une solution unique 
+    $\lambda_1'(t)$, $\lambda_2'(t)$ qui s'expriment comme fonction continue de $t$. 
+
+    Donc on peut trouver $\lambda_1$ et $\lambda_2$ $\mc 1$ qui convienent.
+\end{proof}
+
+\begin{exemple}
+    Résolution de $x''(t) - 4x(t) = t$
+
+    \uindent{\'Equation homogène } $x''(t) - 4x = 0$
+
+    \svspace \'Equation caractéristique $r^2 - 4 = 0$ de racines $r_1 = 2$ et $r_2 = -2$.
+
+    Donc $w(t) = \begin{vmatrix}
+    e^{2t} & e^{-2t} \\
+    2e^{2t} & -2e^{-2t}
+    \end{vmatrix} = -4$ et $(e^{2t}, e^{-2t})$ est une base de l'espace des solutions de l'équation homogène.
+
+    \uindent{Recherche d'une solution particulière } 
+
+    \svspace $\blacktriangleright$ Méthode 1 (à privilégier) : 
+
+    On cherche une solution particulière analogue au second membre, et on remarque que $t \mapsto - \frac t 4$ convient. 
+
+    Donc les solutions générales sont de la forme $\fonction{}\R \R t {\lambda_1 e^{2t} + \lambda_2 e^{-2t} - \frac t 4}$ avec $\lambda_1, \lambda_2 \in \R$.
+
+    \lvspace $\blacktriangleright$ Méthode 2 (variation des constantes) :
+
+    On cherche une solution particulière de la forme $x : t \mapsto \lambda_1(t) e^{2t} + \lambda_2(t) e^{-2t}$ 
+    avec $\lambda_1, \lambda_2 \in \mc 1(\R, \R)$ et $\lambda_1' e^{2t} + \lambda_2' e^{-2t} = 0$.
+
+    Donc $(\lambda_1, \lambda_2)$ conviennent ssi 
+    $\begin{cases}
+        \lambda_1' e^{2t} + \lambda_2' e^{-2t} = 0 \\
+        2 \lambda_1' e^{2t} - 2 \lambda_2' e^{-2t} = t
+    \end{cases}$ 
+
+    $\Leftrightarrow \begin{cases}
+    \lambda_1' e^{2t} + \lambda_2' e^{-2t} = 0 \\
+    \lambda_1' e^{2t} - \lambda_2' e^{-2t} = \frac t 2
+    \end{cases}$
+
+    $\Leftrightarrow \begin{cases}
+    \lambda_1'(t) = \frac t 4 e^{-2t} \\
+    \lambda_2'(t) = -\frac t 4 e^{2t}
+    \end{cases}$
+
+    Posons $\lambda_1(t) = (at + b) e^{-2t}$, alors $\lambda_1'(t) = (-2a t + a - 2b) e^{-2t}$,
+    on veut $-2a = \frac 1 4$ et $a - 2b = 0$.
+
+    Posons $\lambda_1(t) = \ds \left( - \frac t 8 - \frac 1 {16} \right) e^{-2t}$
+    et $\lambda_2(t) = \ds \left( - \frac t 8 + \frac 1 {16} \right) e^{2t}$. 
+
+    Par la méthode de variation des constantes, on trouve $x_p(t) = - \frac t 4$. 
+\end{exemple}
+
+\subsection{Complément LHP sur l'équation différentielle linéaire scalaire homogène d'ordre 2}
+
+\begin{propositionnt}{méthode LHP de variation de la constante pour la recherche d'une 2eme solution de l'équation homogène}{}
+    On considère $x''(t) = p(t) x(t) + q(t) x'(t)$ avec $p, q \in \mathscr C(I, \K)$ et $x \in \mc 2(I, \K)$ inconnue.
+    
+    On suppose que l'on connait $x_1$ solution de l'équation et que $x_1$ ne s'annule pas sur $I$. 
+
+    Alors il existe $\lambda \in \mc 1(I, \K)$ telle que en posant $x_2(t) = \lambda(t) x_1(t)$
+    alors $(x_1, x_2)$ est un système fondamental de solutions. 
+\end{propositionnt}
+
+\begin{proof}
+    Avec cette définition on a $x_2' = \lambda' x_1 + \lambda x_1'$ et 
+    $x_2'' = \lambda'' x_1 + 2 \lambda' x_1' + \lambda x_1''$.
+
+    On a donc 
+    \begin{align}
+        x_2'' - qx_2' - px_2 & = \lambda'' x_1 + 2 \lambda' x_1' + \lambda x_1'' - q (\lambda' x_1 + \lambda x_1') - p \lambda x_1 \\
+        & = \lambda'' x_1 + \lambda'(2 x_1' - q x_1) + \lambda (x_1'' - q x_1' - p x_1) 
+    \end{align}
+
+    et $x_2$ est solution ssi $\lambda'' + \lambda' \left( \frac{2x'_1 - qx_1}{x_1} \right) = 0$
+    équation différentielle linéaire d'ordre 1 que l'on sait résoudre pour obtenir $\lambda'$ puis 
+    $\lambda$ que l'on choisit non constante alors $(x_1, x_2)$ libre donc base de l'espace des solutions. 
+\end{proof}
+
+\begin{proposition}{méthode du wronskien, LHP}{}
+    On considère l'équation $x''(t) = p(t) x(t) + q(t) x'(t)$  et on suppose que 
+    l'on connait $x_1$ solution de l'équation qui ne s'annule pas. On sait qu'il existe $x_2$
+    tel que $(x_1, x_2)$ est un système fondamental de solutions de l'équation.
+
+    Posons $w(t) = \begin{vmatrix}
+    x_1(t) & x_2(t) \\
+    x_1'(t) & x_2'(t)
+    \end{vmatrix} = x_1(t) x_2'(t) - x_1'(t) x_2(t)$ le wronskien de $x_1$ et $x_2$.
+
+    Alors $w' = q w$ et donc $\exists \lambda \in \K$ tel que $\forall t \in I$, 
+    on ait $w(t) = \lambda e^{\int_{t_0}^t q(s) ds}$ où $t_0 \in I$ est fixé.
+
+    De plus, $\left( \frac{x_2}{x_1} \right)' = \frac{w}{x_1^2}$ et puisque 
+    $W$ et $x_1$ sont connus, on en déduit $x_2$. 
+\end{proposition}

@@ -1,0 +1,318 @@
+\section{Énoncés}
+\subsection{Séries entières}
+
+\setcounter{numexo}{9}
+
+% --- Exercice 10 ---
+\begin{exercice}
+Déterminer le rayon de convergence de la série entière $\sum a_{n}z^{n}$ avec $a_{n}$ prenant comme valeur : 
+$$ \sqrt{n}, \quad \frac{n^{2}+1}{n^{2}+4}, \quad \frac{1}{n^n}, \quad (\ln(n))^{n}, \quad e^{-\mathrm{sh}(n)} $$ 
+$$ \left(1+\frac{1}{\sqrt{n}}\right)^{-n\sqrt{n}}, \quad \left(1+\frac{a}{n}\right)^{bn^{c}} \quad \text{avec } a,b,c \in \R^{+*} $$ 
+\end{exercice}
+
+% --- Exercice 11 ---
+\begin{exercice}
+Formule de Cauchy. 
+On considère une série entière $\sum_{n\ge 0}a_{n}z^{n}$. 
+On pose $b_{n}=|a_{n}|^{\frac{1}{n}}$. 
+On appelle limite supérieure de la suite $b_{n}$ et on note $L$ : 
+\begin{itemize}
+ \item $L=+\infty$ si cette suite n'est pas majorée 
+ \item la plus grande des valeurs d'adhérence de la suite sinon. 
+\end{itemize}
+Montrer qu'alors le rayon de convergence de la série entière vaut $R=\frac{1}{L}$. 
+\end{exercice}
+
+% --- Exercice 12 ---
+\begin{exercice}
+On pose $\forall x\in\R$, $f(x)=\sum_{n=0}^{\infty}\frac{x^{3n}}{(3n)!}$. 
+Montrer que $f$ est solution d'une équation différentielle linéaire à coefficients constants non homogène simple. 
+Résoudre cette équation et en déduire une expression simple de $f$. 
+\end{exercice}
+
+% --- Exercice 13 ---
+\begin{exercice}
+On pose $\forall x\in\R$, $f(x)=\sum_{n=0}^{\infty}(-1)^{n}\frac{x^{4n}}{(4n)!}$ et $g(x)=\cos\left(\frac{x}{\sqrt{2}}\right)\mathrm{ch}\left(\frac{x}{\sqrt{2}}\right)$. 
+a) Montrer que $f$ est bien définie. 
+b) Montrer que $g$ est développable en série entière. 
+c) Montrer que $f$ et $g$ sont solutions de l'équation différentielle $y^{(4)}+y=0$. 
+d) On pose $h=f-g$. Montrer par récurrence que toutes les dérivées de $h$ en 0 sont nulles. Que conclure ? 
+\end{exercice}
+
+% --- Exercice 14 ---
+\begin{exercice}
+Soit $\sum_{n\ge 0}a_{n}z^{n}$ une série entière de rayon de convergence $R$. 
+Pour $n\in\N$, on note $b_{2n}=a_{n}$, $b_{2n+1}=0$. 
+Quel est le rayon de convergence de $\sum_{n\ge 0}b_{n}z^{n}$ ? 
+\end{exercice}
+
+% --- Exercice 15 ---
+\begin{exercice}
+Convergence et somme des séries de terme général : 
+$$ \frac{n^{3}-n^{2}-n+3}{n!}, \quad \frac{n^{3}+2n^{2}-n+1}{2^{n}} $$ 
+\end{exercice}
+
+% --- Exercice 16 ---
+\begin{exercice}
+On considère $f:x\mapsto e^{x^{2}}\int_{0}^{x}e^{-t^{2}}\dt$. 
+Montrer que $f$ est développable en série entière, déterminer son rayon de convergence et son développement. 
+\end{exercice}
+
+% --- Exercice 17 ---
+\begin{exercice}
+On considère deux suites réelles positives $(a_{n})$ et $(b_{n})$ telles que $a_{0}=0$, $\sum_{n=1}^{\infty}a_{n}=1$ et $b_{n}=\sum_{k=1}^{n}a_{k}b_{n-k}$. 
+Montrer que les séries entières $\sum a_{n}z^{n}$ et $\sum b_{n}z^{n}$ ont un rayon de convergence supérieur à 1. (on étudiera les suites de terme général $a_{n}$ et $b_{n}$) 
+Pour $|z|<1$ on note respectivement $f(z)$ et $g(z)$ les sommes de ces deux séries entières. 
+Montrer que $g(z)=\frac{b_{0}}{1-f(z)}$. 
+En déduire que la série $\sum b_{n}$ diverge. 
+\end{exercice}
+
+% --- Exercice 18 ---
+\begin{exercice}
+Déterminer le développement en série entière en 0 des fonctions suivantes et leur rayon de convergence respectif : 
+$$ \ln(1+x+x^2), \quad \frac{x^2-x+2}{x^4-5x^2+4}, \quad \sqrt{\frac{1+x}{1-x}} $$ 
+\end{exercice}
+
+% --- Exercice 19 ---
+\begin{exercice}
+Soit $\sum a_{n}z^{n}$ une série entière de rayon de convergence égal à $R$. 
+On suppose qu'il existe $z_{0}\in\C$ tel que la série $\sum a_{n}z_{0}^{n}$ est semi-convergente. Montrer qu'alors $R=|z_{0}|$. 
+\end{exercice}
+
+% --- Exercice 20 ---
+\begin{exercice}
+On définit une suite $(a_{n})_{n\in\N}$ par $a_{0}=1$, $a_{1}=0$, $\forall n\in\N$, $(n+1)a_{n+1}-na_{n}-a_{n-1}=0$. 
+a) Montrer que pour tout $n$, $a_{n}\in\inter{0}{1}$. 
+b) On pose pour $x\in\interoo{-1}{1}$, $f(x)=\sum_{n=0}^{\infty}a_{n}x^{n}$. 
+Montrer que $f$ est bien définie, de classe $\mc{1}$ et vérifie l'équation différentielle $(1-x)y'=xy$. 
+c) En déduire la valeur explicite de $a_{n}$. 
+\end{exercice}
+
+% --- Exercice 21 ---
+\begin{exercice}
+Soit $\sum a_{n}z^{n}$ une série entière de rayon de convergence égal à $R$ et $\alpha>0$. 
+Déterminer le rayon de convergence de la série entière $\sum|a_{n}|^{\alpha}z^{n}$. 
+\end{exercice}
+
+% --- Exercice 22 ---
+\begin{exercice}
+Déterminer les solutions développables en série entière de l'équation différentielle :
+$$ (x^{2}-x)y''+(x+4)y'-y=0 $$ 
+\end{exercice}
+
+% --- Exercice 23 ---
+\begin{exercice}
+a) Déterminer les solutions développables en série entière de $4xy''+2y'-y=0$. 
+b) Résoudre cette équation sur $\R^{+*}$ en posant $x=t^{2}$. 
+\end{exercice}
+
+% --- Exercice 24 ---
+\begin{exercice}
+1) Montrer qu'il existe un polynôme $P_{n}$ de degré $n+1$ à coefficients positifs tel que $\forall x\in\interoo{-\frac{\pi}{2}}{\frac{\pi}{2}}$, $\tan^{(n)}(x)=P_{n}(\tan x)$. 
+2) Montrer la convergence absolue sur $\interoo{-\frac{\pi}{2}}{\frac{\pi}{2}}$ de la série de Taylor de $\tan$ : $\forall x\in\interoo{-\frac{\pi}{2}}{\frac{\pi}{2}}$, $g(x)=\sum_{n=0}^{\infty}a_{n}x^{n}$. 
+Trouver une relation de récurrence entre les $(a_{n})_{n\in\N}$. 
+3) En déduire que $\tan$ est développable en série entière sur $\interoo{-\frac{\pi}{2}}{\frac{\pi}{2}}$. 
+\end{exercice}
+
+% --- Exercice 25 ---
+\begin{exercice}
+Soit $\sum a_{n}x^{n}$ une série entière de rayon de convergence égal à 1. 
+On suppose que la série $\sum a_{n}$ est convergente. 
+On note pour tout $n$, $r_{n}=\sum_{k=n}^{\infty}a_{k}$ et pour tout $x\in\inter{0}{1}$, $R_{n}(x)=\sum_{k=n}^{+\infty}a_{k}x^{k}$. 
+En remarquant que $a_{n}=r_{n}-r_{n+1}$, montrer qu'alors la série de fonctions $\sum a_{n}x^{n}$ converge uniformément sur $\inter{0}{1}$. 
+Que peut-on en déduire pour la somme de la série entière ? 
+\end{exercice}
+
+
+\section{Corrections}
+
+% --- Correction 10 ---
+\begin{correction}{10}
+Déterminons les rayons de convergence pour chaque cas :
+\begin{itemize}
+ \item Pour $a_n = \sqrt{n}$ : On a $a_n^{1/n} = n^{1/(2n)} \tend{n}{+\infty} 1$, donc le rayon est $R=1$. 
+ \item Pour $a_n = \frac{n^2+1}{n^2+4}$ : On a $a_n \tend{n}{+\infty} 1$, donc le rayon est $R=1$. 
+ \item Pour $a_n = \frac{1}{n^n}$ : En appliquant la règle de d'Alembert ou la racine $n$-ième, $a_n^{1/n} = 1/n \tend{n}{+\infty} 0$, donc $R=+\infty$. 
+ \item Pour $a_n = (\ln n)^n$ : On a $a_n^{1/n} = \ln n \tend{n}{+\infty} +\infty$, la suite diverge, donc $R=0$. 
+ \item Pour $a_n = e^{-\mathrm{sh}(n)}$ : Soit $\rho>0$. $a_n \rho^n = \exp(n\ln \rho - \mathrm{sh}(n)) \tend{n}{+\infty} 0$ car $\mathrm{sh}(n)$ croît beaucoup plus vite que $n\ln \rho$. Ainsi $(a_n \rho^n)$ est bornée pour tout $\rho>0$, donc $R=+\infty$. 
+ \item Pour $a_n = \left(1+\frac{1}{\sqrt{n}}\right)^{-n\sqrt{n}}$ : Soit $\rho>0$. $a_n \rho^n = \exp\left(n\ln \rho - n\sqrt{n}\ln\left(1+\frac{1}{\sqrt{n}}\right)\right)$. Or $n\sqrt{n}\ln\left(1+\frac{1}{\sqrt{n}}\right) = n\sqrt{n}\left(\frac{1}{\sqrt{n}} + o\left(\frac{1}{\sqrt{n}}\right)\right) = n + o(n)$. Ainsi $a_n \rho^n \approx \exp(n(\ln \rho - 1))$, ce qui est borné si $\ln \rho \le 1$, c'est-à-dire $\rho \le e$. Donc $R=e$. 
+ \item Pour $v_n = \left(1+\frac{a}{n}\right)^{bn^c}$ : 
+ On utilise le développement limité de $\ln(1+u)$ : 
+ $$ v_n = \exp\left( b n^c \left( \frac{a}{n} + o\left(\frac{1}{n}\right) \right) \right) = \exp\left( ab n^{c-1} + o(n^{c-1}) \right) $$ 
+ Si $c > 2$, l'exposant tend vers $\pm \infty$. Si $ab > 0$, $|v_n|^{1/n} \to +\infty$, donc $R=0$. Si $ab < 0$, $|v_n|^{1/n} \to 0$, donc $R=+\infty$. 
+ Si $c < 2$, l'exposant tend vers $\pm\infty$ ou une constante plus lentement que $n$, donc $|v_n|^{1/n} \to 1$. Ainsi $R=1$. 
+ Si $c = 2$, $v_n^{1/n} = \exp(ab + o(1)) \to e^{ab}$, donc $R = e^{-ab}$. 
+\end{itemize}
+\end{correction}
+
+% --- Correction 11 ---
+\begin{correction}{11}
+On distingue deux cas pour la limite supérieure $L$ : 
+\begin{itemize}
+ \item \textbf{Cas 1 : $L = +\infty$.} La suite $(b_n)$ n'est pas bornée. On peut extraire une sous-suite telle que $b_{\varphi(n)} \tend{n}{+\infty} +\infty$. 
+ Pour tout $\rho > 0$, $a_{\varphi(n)}\rho^{\varphi(n)} = (b_{\varphi(n)}\rho)^{\varphi(n)} \tend{n}{+\infty} +\infty$. La suite $(a_n\rho^n)$ n'est donc pas bornée, d'où $R=0$. 
+ \item \textbf{Cas 2 : $L < +\infty$.} La suite $(b_n)$ est bornée et positive. 
+ Si on prend $\rho > \frac{1}{L}$ (c'est-à-dire $L\rho > 1$), par définition de la limite supérieure, il existe une sous-suite $b_{\varphi(n)}$ qui converge vers $L$. Alors pour $n$ assez grand, $b_{\varphi(n)}\rho > 1$. Donc $(b_{\varphi(n)}\rho)^{\varphi(n)}$ diverge, et la série ne peut pas converger. 
+ Si on prend $\rho < \frac{1}{L}$ (c'est-à-dire $L\rho < 1$), alors pour $n$ assez grand, $b_n \rho \le L\rho + \epsilon < 1$. La série de terme général $(b_n \rho)^n$ converge, donc $R \ge \frac{1}{L}$. 
+ D'où $R = \frac{1}{L}$. 
+\end{itemize}
+\end{correction}
+
+% --- Correction 12 ---
+\begin{correction}{12}
+On pose $f(x) = \sum_{n=0}^\infty \frac{x^{3n}}{(3n)!}$. 
+En dérivant termes à termes, on obtient $f'(x) = \sum_{n=1}^\infty \frac{x^{3n-1}}{(3n-1)!}$ et $f''(x) = \sum_{n=1}^\infty \frac{x^{3n-2}}{(3n-2)!}$. 
+En sommant, on remarque que $f(x) + f'(x) + f''(x) = \sum_{k=0}^\infty \frac{x^k}{k!} = \exp(x)$. 
+L'équation caractéristique de l'équation homogène est $r^2+r+1=0$, de racines $\frac{-1 \pm i\sqrt{3}}{2}$. 
+La solution homogène est donc de la forme $y_H(x) = \exp\left(-\frac{x}{2}\right) \left(A \cos\left(\frac{\sqrt{3}}{2}x\right) + B \sin\left(\frac{\sqrt{3}}{2}x\right)\right)$. 
+Une solution particulière évidente est $y_P(x) = \frac{\exp(x)}{3}$. 
+Avec les conditions initiales $f(0)=1$ et $f'(0)=0$, on trouve $A = \frac{2}{3}$ et $B = 0$. 
+D'où $f(x) = \frac{e^x}{3} + \frac{2}{3}\exp\left(-\frac{x}{2}\right)\cos\left(\frac{\sqrt{3}}{2}x\right)$. 
+\end{correction}
+
+% --- Correction 15 ---
+\begin{correction}{15}
+On a $a_n = \frac{n^3-n^2-n+3}{n!}$. 
+On décompose le numérateur dans la base des polynômes factoriels : 
+$n^3-n^2-n+3 = n(n-1)(n-2) + 2n(n-1) - n + 3$. 
+On a donc la somme :
+$$ S = \sum_{n=3}^\infty \frac{n(n-1)(n-2)}{n!} + \sum_{n=2}^\infty \frac{2n(n-1)}{n!} - \sum_{n=1}^\infty \frac{n}{n!} + 3\sum_{n=0}^\infty \frac{1}{n!} $$ 
+Ce qui donne $S = \sum_{n=3}^\infty \frac{1}{(n-3)!} + 2\sum_{n=2}^\infty \frac{1}{(n-2)!} - \sum_{n=1}^\infty \frac{1}{(n-1)!} + 3\sum_{n=0}^\infty \frac{1}{n!} = e + 2e - e + 3e = 5e$. 
+
+De plus, l'équivalent est $a_n \sim_{n \to +\infty} \frac{n^3}{n!}$. 
+Par la règle de d'Alembert, la limite est 0, le rayon de convergence de la série entière est $R = +\infty$. 
+\end{correction}
+
+% --- Correction 16 ---
+\begin{correction}{16}
+Soit $f(x) = e^{x^2} \int_0^x e^{-t^2} \dt$. 
+En dérivant, on obtient $f'(x) = 2x e^{x^2} \int_0^x e^{-t^2} \dt + e^{x^2}e^{-x^2} = 2x f(x) + 1$. 
+On sait que $\int_0^x e^{-t^2} \dt = \sum_{n=0}^\infty \frac{(-1)^n x^{2n+1}}{n!(2n+1)}$. 
+Par produit de Cauchy avec le DSE de $e^{x^2}$, la série entière de $f$ est de rayon infini. 
+Soit $f(x) = \sum_{n=0}^\infty a_n x^n$. On injecte dans l'équation différentielle : 
+$$ \sum_{n=1}^\infty n a_n x^{n-1} = 2 \sum_{n=0}^\infty a_n x^{n+1} + 1 $$ 
+Par identification des coefficients, on a $a_1 = 1$, et $(n+1)a_{n+1} = 2a_{n-1}$ pour $n \ge 1$. 
+Comme $f(0)=0$, on a $a_0 = 0$, et par récurrence $a_{2n}=0$. 
+Pour les coefficients d'indice impair, $a_{2n+1} = \frac{2}{2n+1} a_{2n-1}$, d'où on déduit $a_{2n+1} = \frac{2^{2n} n!}{(2n+1)!}$. 
+\end{correction}
+
+% --- Correction 18 ---
+\begin{correction}{18}
+Développements en série entière :
+\begin{itemize}
+ \item $f(x) = \frac{x^2-x+2}{x^4-5x^2+4}$. Par factorisation du dénominateur et décomposition en éléments simples : 
+ $$ f(x) = \frac{-1/3}{x-1} + \frac{2/3}{x+1} + \frac{1/3}{x-2} - \frac{2/3}{x+2} $$ 
+ En utilisant le DSE de $\frac{1}{1-u}$, on obtient pour $|x|<1$ : 
+ $$ f(x) = \frac{1}{3} \sum_{n=0}^\infty x^n + \frac{2}{3} \sum_{n=0}^\infty (-1)^n x^n - \frac{1}{6} \sum_{n=0}^\infty \frac{x^n}{2^n} - \frac{1}{3} \sum_{n=0}^\infty \frac{(-1)^n x^n}{2^n} $$ 
+ Le rayon de convergence est $R=1$. 
+ \item $g(x) = \sqrt{\frac{1+x}{1-x}} = (1+x)(1-x^2)^{-1/2}$. 
+ On utilise le DSE de $(1+u)^{-1/2}$ : $(1-x^2)^{-1/2} = \sum_{n=0}^\infty \frac{(2n)!}{4^n (n!)^2} x^{2n}$. 
+ D'où $g(x) = \sum_{n=0}^\infty \frac{(2n)!}{4^n (n!)^2} x^{2n} + \sum_{n=0}^\infty \frac{(2n)!}{4^n (n!)^2} x^{2n+1}$, avec $R=1$. 
+ \item $h(x) = \ln(1+x+x^2) = \ln\left(\frac{1-x^3}{1-x}\right) = \ln(1-x^3) - \ln(1-x)$. 
+ En développant chaque terme usuel, on obtient le DSE valable pour $x \in \interoo{-1}{1}$. 
+\end{itemize}
+\end{correction}
+
+% --- Correction 20 ---
+\begin{correction}{20}
+a) Montrons par récurrence que $a_n \in \inter{0}{1}$. C'est vrai pour $a_0=1$ et $a_1=0$. 
+On a $a_{n+1} = \frac{n}{n+1}a_n + \frac{1}{n+1}a_{n-1}$. Comme $a_{n+1}$ est un barycentre à coefficients positifs de $a_n$ et $a_{n-1}$, on conserve l'encadrement dans $\inter{0}{1}$. 
+b) La suite $(a_n)$ étant bornée, $R \ge 1$. $f(x) = \sum_{n=0}^\infty a_n x^n$ est donc bien définie et de classe $\mc{1}$ sur $\interoo{-1}{1}$. 
+On vérifie l'équation différentielle en calculant $(1-x)f'(x) - xf(x)$ : 
+$$ (1-x)f'(x) - xf(x) = a_1 + \sum_{n=1}^\infty \left( (n+1)a_{n+1} - na_n - a_{n-1} \right) x^n = a_1 = 0 $$ 
+Ainsi $(1-x)y' = xy \implies y' = \left(\frac{1}{1-x} - 1\right)y$. 
+En intégrant, on trouve $y = K \frac{e^{-x}}{1-x}$. Avec $f(0)=a_0=1$, on trouve $K=1$. 
+c) On a $f(x) = \frac{e^{-x}}{1-x} = \left(\sum_{n=0}^\infty \frac{(-1)^n x^n}{n!}\right) \left(\sum_{n=0}^\infty x^n\right)$. 
+Par produit de Cauchy, on identifie les coefficients : $a_n = \sum_{k=0}^n \frac{(-1)^k}{k!}$. 
+\end{correction}
+
+% --- Correction 21 ---
+\begin{correction}{21}
+Soit $R$ le rayon de la série $\sum a_n z^n$. 
+D'après la formule d'Hadamard :
+$$ \frac{1}{R} = \limsup_{n \to \infty} |a_n|^{1/n} $$ 
+Notons $R'$ le rayon de la série $\sum |a_n|^\alpha z^n$. 
+$$ \frac{1}{R'} = \limsup_{n \to \infty} (|a_n|^\alpha)^{1/n} = \limsup_{n \to \infty} (|a_n|^{1/n})^\alpha = \left( \limsup_{n \to \infty} |a_n|^{1/n} \right)^\alpha $$ 
+(La fonction $x \mapsto x^\alpha$ est continue croissante sur $\mathbb{R}^+$). 
+Donc :
+$$ \frac{1}{R'} = \left(\frac{1}{R}\right)^\alpha = \frac{1}{R^\alpha} $$ 
+D'où $R' = R^\alpha$. 
+\end{correction}
+
+% --- Correction 22 ---
+\begin{correction}{22}
+On cherche $y(x) = \sum_{n=0}^\infty a_n x^n$. 
+En injectant dans l'équation différentielle $(x^2-x)y''+(x+4)y'-y=0$ : 
+$$ \sum_{n=0}^\infty \left( n(n-1)a_n - (n+1)na_{n+1} + na_n + 4(n+1)a_{n+1} - a_n \right) x^n = 0 $$ 
+On obtient la relation : $(n+1)(4-n)a_{n+1} + (n+1)(n-1)a_n = 0$. 
+Pour $n \neq 4$, $(n-4)a_{n+1} = (n-1)a_n$. 
+Pour $n=0, 1, 2, 3$, on trouve $a_1 = \frac{a_0}{4}$, et $a_2 = a_3 = a_4 = 0$. 
+Pour $n=4$, on a $0 \times a_5 = 3a_4 = 0$, donc $a_5$ est quelconque. 
+Pour $n \ge 5$, $a_{n+1} = \frac{n-1}{n-4}a_n \implies a_n = \frac{(n-2)(n-3)(n-4)}{6} a_5$. 
+La solution générale est $y(x) = a_0 \left(1 + \frac{x}{4}\right) + a_5 \sum_{n=5}^\infty \frac{(n-2)(n-3)(n-4)}{6} x^n$. 
+\end{correction}
+
+% --- Correction 23 ---
+\begin{correction}{23}
+\textbf{b)} Résolution sur $\mathbb{R}^{+*}$ avec $x=t^2$. 
+On pose $z(t) = y(t^2) = y(x)$. 
+On a $y'(x) = z'(t) \frac{dt}{dx} = z'(t) \frac{1}{2t}$. 
+$y''(x) = \frac{d}{dt}\left(\frac{z'(t)}{2t}\right) \frac{1}{2t} = \frac{t z''(t) - z'(t)}{4t^3}$. 
+On injecte dans l'équation $4xy'' + 2y' - y = 0$ avec $x=t^2$ : 
+$$ 4t^2 \left( \frac{t z'' - z'}{4t^3} \right) + 2 \left( \frac{z'}{2t} \right) - z = 0 $$ 
+$$ \frac{t z'' - z'}{t} + \frac{z'}{t} - z = 0 \implies z'' - z = 0 $$ 
+Les solutions sont de la forme $z(t) = A e^t + B e^{-t}$. 
+En revenant à $x$ (avec $t = \sqrt{x}$ car $x \in \mathbb{R}^{+*}$), on obtient : 
+$$ y(x) = A e^{\sqrt{x}} + B e^{-\sqrt{x}} $$ 
+\textbf{a)} Solutions développables en série entière (DSE). 
+On cherche les solutions définies en 0. 
+$e^{\sqrt{x}}$ n'est pas DSE (puissances non entières). Cependant, regardons les combinaisons linéaires. 
+$\cosh(\sqrt{x}) = \sum_{n=0}^\infty \frac{(\sqrt{x})^{2n}}{(2n)!} = \sum_{n=0}^\infty \frac{x^n}{(2n)!}$. C'est une série entière. 
+$\frac{\sinh(\sqrt{x})}{\sqrt{x}} = \frac{1}{\sqrt{x}} \sum_{n=0}^\infty \frac{(\sqrt{x})^{2n+1}}{(2n+1)!} = \sum_{n=0}^\infty \frac{x^n}{(2n+1)!}$. C'est une série entière. 
+Les solutions DSE sont les combinaisons linéaires de : 
+$$ y_1(x) = \sum_{n=0}^\infty \frac{x^n}{(2n)!} \quad \text{et} \quad y_2(x) = \sum_{n=0}^\infty \frac{x^n}{(2n+1)!} $$ 
+\end{correction}
+
+% --- Correction 24 ---
+\begin{correction}{24}
+\textbf{1.} Montrons par récurrence que $\tan^{(n)}(x) = P_n(\tan x)$ avec $P_n$ polynôme à coefficients positifs de degré $n+1$. 
+\begin{itemize}
+ \item Pour $n=0$, $\tan^{(0)}(x) = \tan x$. $P_0(X) = X$. Degré 1, coeff positif. 
+ \item Pour $n=1$, $\tan'(x) = 1 + \tan^2 x$. $P_1(X) = 1+X^2$. Degré 2, coeffs positifs. 
+ \item Hérédité : Supposons $\tan^{(n)}(x) = P_n(\tan x)$. 
+ $\tan^{(n+1)}(x) = (P_n(\tan x))' = P_n'(\tan x) \times \tan'(x) = P_n'(\tan x) (1+\tan^2 x)$. 
+ Posons $P_{n+1}(X) = P_n'(X)(1+X^2)$. 
+ Si $P_n$ est de degré $n+1$ à coefficients positifs, alors $P_n'$ est de degré $n$ à coefficients positifs. 
+ Le produit par $(1+X^2)$ (coeffs positifs) donne un polynôme à coefficients positifs de degré $n+2$. 
+\end{itemize}
+L'hypothèse est vérifiée. 
+\textbf{2.} Convergence de la série de Taylor. 
+Les coefficients de Taylor sont $a_n = \frac{\tan^{(n)}(0)}{n!} = \frac{P_n(0)}{n!}$. 
+Comme $P_n$ a des coefficients positifs, $P_n(0) \ge 0$, donc $a_n \ge 0$. 
+Relation de récurrence : On sait que $\tan' = 1 + \tan^2$. 
+Soit $y = \tan x = \sum a_n x^n$. $y' = \sum (n+1)a_{n+1} x^n$. 
+$y^2 = \left( \sum a_k x^k \right) \left( \sum a_j x^j \right) = \sum_{n=0}^\infty c_n x^n$ avec $c_n = \sum_{k=0}^n a_k a_{n-k}$. 
+On identifie :
+$$ (n+1)a_{n+1} = \delta_{n,0} + \sum_{k=0}^n a_k a_{n-k} $$ 
+(avec $\delta_{0,0}=1$ et 0 sinon, car le terme constant de $1+\tan^2$ est 1). 
+Cette relation permet de calculer les $a_n$ de proche en proche. 
+\textbf{3.} DSE de $\tan$. 
+La série $\sum a_n x^n$ a un rayon de convergence $R$. 
+Comme $\tan$ est singulière en $\pi/2$, on s'attend à $R = \pi/2$. 
+Ici on peut déduire le DSE de la relation différentielle et de l'unicité, validée sur l'intervalle de convergence. 
+\end{correction}
+
+% --- Correction 25 ---
+\begin{correction}{25}
+On utilise la transformation d'Abel. 
+On a $a_n = r_n - r_{n+1}$ où $r_n = \sum_{k=n}^\infty a_k \tend{n}{+\infty} 0$ car la série converge. 
+Pour tout $x \in \inter{0}{1}$, le reste partiel s'écrit par sommation par parties : 
+$$ \sum_{k=n}^N a_k x^k = r_n x^n - r_{N+1}x^N + \sum_{k=n+1}^N r_k (x^k - x^{k-1}) $$
+Comme $x \in \inter{0}{1}$ et $(r_n)$ tend vers 0, on peut faire tendre $N \to \infty$ :
+$$ R_n(x) = \sum_{k=n}^\infty a_k x^k = r_n x^n + \sum_{k=n+1}^\infty r_k (x^k - x^{k-1}) $$ 
+On majore uniformément : soit $\epsilon > 0$. Il existe $N_0$ tel que pour tout $k \ge N_0$, $|r_k| \le \epsilon$. 
+Pour $n \ge N_0$ et $x \in \inter{0}{1}$ : 
+$$ |R_n(x)| \le \epsilon x^n + \epsilon \sum_{k=n+1}^\infty (x^{k-1} - x^k) = 2\epsilon x^n \le 2\epsilon $$ 
+Cela prouve que la série de fonctions $\sum a_n x^n$ converge uniformément sur $\inter{0}{1}$. 
+On en déduit par le théorème de la double limite (théorème d'Abel) que la somme $S(x) = \sum_{n=0}^\infty a_n x^n$ est continue sur $\inter{0}{1}$. 
+\end{correction}

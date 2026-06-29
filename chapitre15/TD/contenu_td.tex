@@ -1,0 +1,468 @@
+\section{Énoncés}
+
+\subsection{Intégration sur \texorpdfstring{$[a,+\infty[$}{[a, +infini[}}
+
+% --- Exercice 1 ---
+\begin{exercice}
+Pour une fonction $f\in \mc{0}(\R^{+},\R^{+})$ on considère les 3 propriétés :
+\begin{enumerate}
+    \item[(1)] $f$ a pour limite 0 en $+\infty$
+    \item[(2)] $f$ est intégrable sur $\R^{+}$
+    \item[(3)] $f$ est décroissante
+\end{enumerate}
+a) Trouver une fonction vérifiant (1) mais pas (2). \\
+b) Trouver une fonction vérifiant (2) mais pas (1). \\
+c) Montrer que si $f$ vérifie (2) et (3) elle vérifie (1). \\
+d) Si $f$ vérifie (1) et (3) vérifie-t-elle (2) ? \\
+e) Si $f$ vérifie (1) et (2) vérifie-t-elle (3) ?
+\end{exercice}
+
+% --- Exercice 2 ---
+\begin{exercice}
+Etudier l'intégrabilité des fonctions suivantes : \\
+$x\mapsto x^{2}\cos(x)2^{-x}$ sur $\R^{+}$ \\
+$x\mapsto \frac{\ln(1+4x)}{1+x\sqrt{x}}$ sur $\R^{+}$ \\
+$x\mapsto \frac{1}{(a+t)\sqrt{1+t}}$ sur $\R^{+}$ avec $a\in\C\setminus\R$
+\end{exercice}
+
+% --- Exercice 3 ---
+\begin{exercice}
+Montrer l'existence et calculer la valeur des intégrales suivantes :
+$$ \int_{0}^{+\infty}\frac{\dx}{x^{3}+1}, \quad \int_{3}^{\infty}\frac{x}{(x^{2}-1)(x^{2}-4)}\dx $$
+\end{exercice}
+
+% --- Exercice 4 ---
+\begin{exercice}
+On considère $\alpha\in\interoc{1/2}{1}$. Montrer la convergence de
+$$ \int_{1}^{+\infty}\frac{\sin(\pi\sqrt{t})}{t^{\alpha}}\dt $$
+\end{exercice}
+
+% --- Exercice 5 ---
+\begin{exercice}
+On pose
+$$ f(x)=\frac{\sqrt{x}}{1+x^{4}\sin^{2}x} $$
+Montrer que $f$ est non bornée sur $\R^{+}$ et pourtant intégrable sur $\R^{+}$.
+On majorera $f$ sur chaque intervalle du type $[n\pi,(n+1)\pi]$.
+\end{exercice}
+
+\subsection{Intégration sur un intervalle quelconque}
+
+% --- Exercice 6 ---
+\begin{exercice}
+Déterminer l'intégrabilité des fonctions et calculer la valeur des intégrales suivantes :
+$$ \int_{0}^{1}\frac{\dx}{\sqrt{x-x^{2}}}, \quad \int_{1}^{+\infty}\frac{\dx}{(1+x)\sqrt{x^{2}-1}}, \quad \int_{0}^{1}(\ln(x))^{p}\dx, \quad p\in\N $$
+\end{exercice}
+
+% --- Exercice 7 ---
+\begin{exercice}
+Montrer que
+$$ \int_{0}^{+\infty}\ln\paren{1+\frac{1}{x^{2}}}\dx = \pi $$
+(utiliser une intégration par parties)
+\end{exercice}
+
+% --- Exercice 8 ---
+\begin{exercice}
+Calculer
+$$ \int_{0}^{\infty}\frac{\ln(x)}{1+x^{2}}\dx=0 $$
+$$ \int_{0}^{+\infty}\frac{\sqrt{x}\ln(x)}{(1+x)^{2}}\dx $$
+On commencera par poser $x=u^{2}$ puis on effectuera une intégration par parties.
+\end{exercice}
+
+% --- Exercice 9 ---
+\begin{exercice}
+On considère
+$$ \int_{0}^{\pi}\ln(\sin(x))\dx $$
+a) Montrer l'existence de cette intégrale. \\
+b) Utiliser le changement de variable $t=\frac{x}{2}$ pour la calculer.
+\end{exercice}
+
+% --- Exercice 10 ---
+\begin{exercice}
+1) Existence de
+$$ A=\int_{0}^{+\infty}\frac{e^{-x}-e^{-2x}}{x}\dx $$
+2) Valeur de $A$. On considèrera $B(\epsilon)=\int_{\epsilon}^{+\infty}\frac{e^{-x}}{x}\dx$
+\end{exercice}
+
+% --- Exercice 11 ---
+\begin{exercice}
+On considère pour $\alpha,\beta>0$ la fonction
+$$ f_{\alpha,\beta}:x\mapsto\frac{1}{x^{\alpha}(\ln x)^{\beta}} $$
+Montrer que cette fonction est intégrable sur $\interco{2}{+\infty}$ ssi $\alpha>1$ ou $\alpha=1$ et $\beta>1$.
+\end{exercice}
+
+% --- Exercice 12 ---
+\begin{exercice}
+Montrer la convergence et l'égalité des intégrales
+$$ \int_{0}^{+\infty}\frac{\sin^{2}t}{t^{2}}\dt \quad \text{et} \quad \int_{0}^{+\infty}\frac{\sin t}{t}\dt $$
+\end{exercice}
+
+% --- Exercice 13 ---
+\begin{exercice}
+a) Montrer que pour tout $x$ réel la convergence de l'intégrale
+$$ f(x)=\int_{0}^{\pi}\ln(1-2x \cos t+x^{2})\dt $$
+b) Montrer que $f$ est paire. \\
+c) En remarquant que $f(x)=\frac{1}{2}(f(x)+f(-x))$ montrer que pour tout $x$, $f(x)=\frac{1}{2}f(x^{2})$. \\
+d) En déduire que $f$ est nulle sur $\interoo{-1}{1}$. \\
+e) En déduire la valeur de $f$ sur $\R$. (on utilisera l'exercice 9 pour la valeur en 1).
+\end{exercice}
+
+% --- Exercice 14 ---
+\begin{exercice}
+Justifier l'existence et calculer la valeur de
+$$ \int_{0}^{1}\frac{(-1)^{E(1/t)}}{t}\dt $$
+On commencera par démontrer que la fonction est bien continue par morceaux sur $\interoc{0}{1}$ puis on effectuera le changement de variable $t=\frac{1}{u}$.
+\end{exercice}
+
+% --- Exercice 15 ---
+\begin{exercice}
+Soit $f\in \mc{1}([0,1],\R)$ telle que $f(0)=f(1)=0$ et $\operatorname{cotan}=\frac{\cos}{\sin}$ \\
+1) Montrer que les intégrales
+$$ I_{1}=\int_{0}^{1}f(x)f^{\prime}(x)\operatorname{cotan}(\pi x)\dx \quad \text{et} \quad I_{2}=\int_{0}^{1}f(x)^{2}(1+\operatorname{cotan}^{2}(\pi x))\dx $$
+convergent et montrer que $I_{1}=\frac{\pi}{2}I_{2}$. \\
+2) En utilisant $\int_{0}^{1}(f^{\prime}(x)-\pi f(x)\operatorname{cotan}(\pi x))^{2}\dx$, montrer que
+$$ \int_{0}^{1}f(x)^{2}\dx \le \frac{1}{\pi^{2}}\int_{0}^{1}f^{\prime}(x)^{2}\dx $$
+\end{exercice}
+
+% --- Exercice 16 ---
+\begin{exercice}
+Déterminer la limite de la suite
+$$ \int_{0}^{\pi}\frac{|\sin(nt)|}{t}\dt $$
+On pourra minorer $|\sin|$ par $\sin^{2}$.
+\end{exercice}
+
+\subsection{Convergence dominée et échanges}
+
+% --- Exercice 17 ---
+\begin{exercice}
+Déterminer les limites des suites suivantes :
+$$ a_{n}=\int_{0}^{\frac{\pi}{4}}\tan^{n}(x)\dx, \quad b_{n}=\int_{0}^{+\infty}\frac{\sin^{n}(x)}{x^{2}}\dx, \quad c_{n}=\int_{0}^{\infty}\frac{x^{n}}{x^{2n}+1}\dx, \quad d_n = \int_{0}^{+\infty}\frac{e^{-t}}{n+t}\dt $$
+\end{exercice}
+
+% --- Exercice 18 ---
+\begin{exercice}
+Etudier la convergence des séries
+$$ \sum_{n\ge 0}\int_{0}^{+\infty}\frac{x^{n}e^{-x}}{n!(1+x^{2})}\dx, \quad \sum_{n\ge 1}\int_{0}^{+\infty}x \sin x e^{-nx}\dx $$
+\end{exercice}
+
+% --- Exercice 19 ---
+\begin{exercice}
+Utiliser une série pour calculer
+$$ \int_{0}^{+\infty}\frac{x}{\sinh x}\dx $$
+\end{exercice}
+
+% --- Exercice 20 ---
+\begin{exercice}
+Soit $\theta\in\interoo{0}{\pi}$ \\
+1) Montrer que pour tout $x\in\interoo{-1}{1}$ la série $\sum \cos(n\theta)x^{n}$ converge et calculer sa somme. \\
+2) En remarquant que $\frac{\cos(n\theta)}{n+1}=\int_{0}^{1}\cos(n\theta)x^{n}\dx$ montrer que la série $\sum\frac{\cos(n\theta)}{n+1}$ converge et que sa somme vaut
+$$ \sum_{n=0}^{\infty}\frac{\cos(n\theta)}{n+1} = -\ln 2 \cos \theta - \cos \theta \ln \sin\frac{\theta}{2} + \frac{\pi}{2}\sin \theta - \frac{\theta}{2}\sin \theta $$
+\end{exercice}
+
+% --- Exercice 21 ---
+\begin{exercice}
+a) Pour $p\le n\in\N$ calculer
+$$ I_{n,p}=\int_{0}^{1}x^{n}(\ln x)^{p}\dx $$
+b) Montrer la convergence de $\int_{0}^{+\infty}x^{-x}\dx$ \\
+c) Montrer que
+$$ \int_{0}^{1}x^{-x}\dx = \sum_{k=1}^{+\infty}\frac{1}{k^{k}} $$
+\end{exercice}
+
+\subsection{Intégrales à paramètre}
+
+% --- Exercice 22 ---
+\begin{exercice}
+On pose
+$$ f(x)=\int_{0}^{x}e^{-t^{2}}\dt \quad g(x)=\int_{0}^{1}\frac{e^{-x^{2}(1+t^{2})}}{1+t^{2}}\dt $$
+Montrer que $f$ et $g$ sont de classe $\mc{1}$ et que $g+f^{2}$ est constante. \\
+En déduire la valeur de
+$$ \int_{0}^{+\infty}e^{-x^{2}}\dx $$
+\end{exercice}
+
+% --- Exercice 23 ---
+\begin{exercice}
+L'intégrale de Fresnel. \\
+a) Montrer la convergence de
+$$ A=\int_{0}^{+\infty}\cos(t^{2})\dt \quad \text{et de} \quad B=\int_{0}^{+\infty}\sin(t^{2})\dt $$
+b) On pose
+$$ F(x)=\int_{0}^{+\infty}\frac{e^{-x^{2}(i+t^{2})}}{i+t^{2}}\dt $$
+Montrer que $F$ est continue sur $\R^{+}$, dérivable sur $\R^{+*}$ et qu'il existe $K>0$ tel que pour tout $x>0$,
+$$ F^{\prime}(x)=Ke^{-ix^{2}} $$
+(on pourra utiliser le résultat de l'exercice précédent).
+En déduire la valeur de $A$ et $B$ en fonction de $F(0)$. \\
+c) Montrer que $\int_{0}^{+\infty}\frac{1}{t^{4}+1}\dt = \int_{0}^{+\infty}\frac{t^{2}}{t^{4}+1}\dt$. En déduire que $A=B$. \\
+d) En remarquant que
+$$ \frac{1}{2}\cdot\frac{1+t^{2}}{t^{4}+1}=\frac{1}{4}\paren{\frac{1}{t^{2}+\sqrt{2}t+1}+\frac{1}{t^{2}-\sqrt{2}t+1}} $$
+donner la valeur de $A$.
+\end{exercice}
+
+% --- Exercice 24 ---
+\begin{exercice}
+On pose $f(x)=\int_{0}^{+\infty}e^{-t^{2}}\cosh(2xt)\dt$. \\
+a) Montrer que $f$ est de classe $\mc{1}$ sur $\R$ et que $f^{\prime}(x)=2xf(x)$. \\
+b) En déduire que $f(x)=\frac{\sqrt{\pi}}{2}e^{x^{2}}$.
+\end{exercice}
+
+% --- Exercice 25 ---
+\begin{exercice}
+Pour $x$ réel calculer la valeur de
+$$ \int_{0}^{\frac{\pi}{2}}\ln(\cos^{2}t+x^{2}\sin^{2}t)\dt $$
+\end{exercice}
+
+% --- Exercice 26 ---
+\begin{exercice}
+On donne
+$$ f(x)=\int_{0}^{\infty}\frac{e^{-xu}}{1+u^{2}}\mathrm{d}u, \quad \text{et} \quad g(x)=\int_{x}^{+\infty}\frac{\sin(t-x)}{t}\dt $$
+a) Déterminer le domaine de définition de $f$. Montrer qu'elle est de classe $\mc{0}$ sur $\R^{+}$. Montrer qu'elle est de classe $\mc{2}$ sur $\interco{0}{+\infty}$. Déterminer une équation différentielle linéaire d'ordre 2 simple vérifiée par $f$. \\
+b) En faisant apparaitre des intégrales de la borne inférieure, montrer que $g$ est de classe $\mc{2}$ sur $\interoo{0}{+\infty}$ et vérifie la même équation. \\
+c) Trouver la forme de $f-g$. \\
+d) Déterminer la limite en l'infini de $f$ et $g$ et en déduire $f=g$. \\
+e) En déduire, en utilisant l'intégration des relations de comparaison pour l'intégrale divergente, la valeur de l'intégrale impropre $\int_{0}^{+\infty}\frac{\sin t}{t}\dt$.
+\end{exercice}
+
+% --- Exercice 27 ---
+\begin{exercice}
+Soit $f\in \mc{\infty}(\R,\R)$ on définit
+$$ \forall x\in\R^{*}, \quad g(x)=\frac{f(x)-f(0)}{x} $$
+a) Montrer que l'on peut prolonger par continuité $g$ en $0$, en une fonction notée encore $g$ définie sur $\R$. \\
+b) Montrer que $\forall x\in\R$, $g(x)=\int_{0}^{1}f^{\prime}(xt)\dt$. En déduire que $g$ est de classe $\mc{\infty}$ sur $\R$. \\
+c) Calculer $g^{(p)}(0)$ pour tout naturel $p$.
+\end{exercice}
+
+% --- Exercice 28 ---
+\begin{exercice}
+On note
+$$ F(x)=\int_{0}^{2\pi}e^{2x \cos(t)}\dt $$
+1) Montrer que $F$ est définie sur $\R$ et paire. \\
+2) Déterminer une équation différentielle d'ordre 2 vérifiée par $F$. \\
+3) Montrer que $F$ est développable en série entière. \\
+4) Déduire des questions précédentes la valeur des intégrales de Wallis
+$$ W_{n}=\int_{0}^{2\pi}\cos^{2n}(t)\dt $$
+\end{exercice}
+
+% --- Exercice 29 ---
+\begin{exercice}
+Transformée de Laplace. \\
+Soit $f\in L_{c}^{1}(\interco{0}{+\infty},\R)$. On considère sa transformée de Laplace
+$$ F: \interco{0}{+\infty} \to \R, \quad x \mapsto \int_{0}^{+\infty} f(t)e^{-xt}\dt $$
+Montrer que $F$ est de classe $\mc{1}$ sur $\interoo{0}{+\infty}$.
+\end{exercice}
+
+% --- Exercice 30 ---
+\begin{exercice}
+Soit $f\in \mc{2}(\R^{2},\R)$ et
+$$ g: \begin{array}{ccc} \R^{2} & \to & \R^{2} \\ (r,\theta) & \mapsto & (r \cos \theta, r \sin \theta) \end{array} $$
+1) Dans la feuille d'exercices sur le calcul différentiel, on a calculé les dérivées partielles première et seconde de $F=f\circ g$, on en a déduit l'expression en fonction des dérivées partielles de $F$ du laplacien de $f$. \\
+2) On suppose que $\Delta f=0$. On a montré dans cette même feuille que
+$$ \Delta f=\frac{\partial^{2}f}{\partial x^{2}}+\frac{\partial^{2}f}{\partial y^{2}} $$
+3) On définit pour $r\ge 0$,
+$$ M(r)=\int_{0}^{2\pi}f(r \cos \theta, r \sin \theta)\mathrm{d}\theta $$
+Montrer que $M$ est de classe $\mc{2}$, que $r\mapsto rM^{\prime}(r)$ est constante et enfin que $M$ est constante.
+\end{exercice}
+
+
+\section{Corrections}
+
+% --- Exercice 1 ---
+\begin{correction}{1}
+\textbf{a)} Soit $f(x) = \frac{1}{x+1}$. $f$ tend vers 0 en $+\infty$ (donc (1) est vérifiée), mais $\int_0^{+\infty} \frac{1}{x+1}\dx = [\ln(x+1)]_0^{+\infty} = +\infty$, donc elle n'est pas intégrable sur $\R^+$ ((2) fausse).
+
+\textbf{b)} Prenons une fonction $f$ continue, positive, en "dents de scie" formée de triangles centrés en chaque entier $n \ge 1$, de base $1/n^2$ et de hauteur $n$. La surface du $n$-ième triangle est $\frac{1}{2} \times \frac{1}{n^2} \times n = \frac{1}{2n}$. Ainsi, $\int_0^{+\infty} f(x)\dx = \sum \frac{1}{2n}$, qui diverge. Pour obtenir une intégrale convergente, on peut prendre des triangles de base $1/n^3$ et hauteur $n$. L'aire est $\frac{1}{2n^2}$, la série converge donc $f$ est intégrable sur $\R^+$ (vérifie (2)). Cependant, $f(n)=n \to +\infty$, donc $f$ ne tend pas vers $0$ en l'infini ((1) fausse).
+
+\textbf{c)} Supposons par l'absurde que $f$ ne tende pas vers 0 en $+\infty$. Comme $f$ est décroissante et positive, elle admet une limite $\ell \ge 0$. Si $\ell > 0$, alors pour tout $x \in \R^+$, $f(x) \ge \ell$. L'intégrale $\int_0^{+\infty} f(x)\dx \ge \int_0^{+\infty} \ell \dx = +\infty$, ce qui contredit l'intégrabilité (2). Donc $\ell = 0$.
+
+\textbf{d)} Non, cf. l'exemple du a) avec $f(x) = \frac{1}{x+1}$, qui est bien décroissante, de limite nulle, mais non intégrable.
+
+\textbf{e)} Non, prenons une fonction $f$ intégrable et de limite nulle, mais qui présente des oscillations ou de petites "bosses" de hauteur décroissante, par exemple $f(x) = \frac{1+\sin^2(x)}{1+x^2}$. Elle est positive, intégrable $\paren{f(x) \sim \frac{O(1)}{x^2}}$, de limite nulle, mais elle n'est pas décroissante à cause du sinus.
+\end{correction}
+
+% --- Exercice 2 ---
+\begin{correction}{2}
+\begin{itemize}
+    \item $x \mapsto x^2 \cos(x) 2^{-x}$ sur $\R^{+}$ :
+    On a $\abs{x^2 \cos(x) 2^{-x}} \le x^2 e^{-x \ln 2}$. Par croissances comparées, $\lim_{x\to +\infty} x^4 e^{-x \ln 2} = 0$, donc $x^2 \cos(x) 2^{-x} =_{+\infty} o\paren{\frac{1}{x^2}}$. La fonction est continue et dominée par une fonction de Riemann intégrable, donc elle est intégrable.
+    
+    \item $x \mapsto \frac{\ln(1+4x)}{1+x\sqrt{x}}$ sur $\R^{+}$ :
+    En $0$, la fonction est prolongeable par continuité car $\ln(1+4x) \sim 4x$, donc $f(x) \sim 4x \to 0$. Elle est donc intégrable en 0.
+    En $+\infty$, $f(x) \sim \frac{\ln(4x)}{x^{3/2}}$. Or $\frac{\ln(4x)}{x^{3/2}} = o\paren{\frac{1}{x^{5/4}}}$ (puisque $\frac{3}{2} > \frac{5}{4} > 1$). Par le critère de Riemann, elle est intégrable en l'infini. Donc $f$ est intégrable sur $\R^+$.
+    
+    \item $x \mapsto \frac{1}{(a+t)\sqrt{1+t}}$ sur $\R^{+}$ avec $a\in\C\setminus\R$ :
+    Puisque $a \notin \R$, le dénominateur ne s'annule jamais sur $\R^+$. La fonction est donc continue sur $\R^+$. En $+\infty$, $|f(t)| \sim \frac{1}{t \sqrt{t}} = \frac{1}{t^{3/2}}$, qui est le terme général d'une intégrale de Riemann convergente ($3/2 > 1$). La fonction est donc intégrable sur $\R^+$.
+\end{itemize}
+\end{correction}
+
+% --- Exercice 3 ---
+\begin{correction}{3}
+\uindent{Calcul de la première intégrale}
+On décompose en éléments simples $\frac{1}{x^3+1} = \frac{1}{(x+1)(x^2-x+1)}$.
+$$ \frac{1}{x^3+1} = \frac{1/3}{x+1} - \frac{\frac{1}{3}x - \frac{2}{3}}{x^2-x+1} $$
+L'intégration de la première partie donne un logarithme, et celle de la seconde donne un logarithme et un arc tangente. En intégrant de 0 à l'infini et en regroupant les logarithmes pour éviter les formes indéterminées :
+$$ \int_0^{+\infty} \frac{\dx}{x^3+1} = \frac{2\pi}{3\sqrt{3}} $$
+
+\uindent{Calcul de la seconde intégrale}
+Pour $I = \int_{3}^{\infty}\frac{x}{(x^{2}-1)(x^{2}-4)}\dx$, on effectue le changement de variable $u = x^2$, donc $\mathrm{d}u = 2x\dx$. Les bornes deviennent 9 et $+\infty$.
+$$ I = \frac{1}{2} \int_{9}^{+\infty} \frac{\mathrm{d}u}{(u-1)(u-4)} $$
+Décomposition en éléments simples : $\frac{1}{(u-1)(u-4)} = \frac{1/3}{u-4} - \frac{1/3}{u-1}$.
+\begin{align*}
+I &= \frac{1}{6} \int_{9}^{+\infty} \paren{\frac{1}{u-4} - \frac{1}{u-1}} \mathrm{d}u = \frac{1}{6} \left[ \ln\abs{\frac{u-4}{u-1}} \right]_{9}^{+\infty} \\
+  &= \frac{1}{6} \paren{ 0 - \ln\paren{\frac{5}{8}} } = \frac{1}{6} \ln\paren{\frac{8}{5}}
+\end{align*}
+\end{correction}
+
+% --- Exercice 5 ---
+\begin{correction}{5}
+Posons $f(x) = \frac{\sqrt{x}}{1+x^4\sin^2(x)}$.
+La fonction est continue et positive sur $\R^+$. Évaluons-la aux points $x_n = n\pi$ :
+$$ f(n\pi) = \frac{\sqrt{n\pi}}{1 + (n\pi)^4\sin^2(n\pi)} = \sqrt{n\pi} \tpinf{n} +\infty $$
+La fonction $f$ est donc non bornée sur $\R^+$.
+
+Pour l'intégrabilité, étudions l'intégrale sur $I_k = [k\pi, (k+1)\pi]$. Posons le changement de variable $t = u + k\pi$ avec $u \in [0, \pi]$.
+$$ \int_{k\pi}^{(k+1)\pi} f(x)\dx = \int_{0}^{\pi} \frac{\sqrt{u+k\pi}}{1 + (u+k\pi)^4\sin^2(u)}\mathrm{d}u $$
+Sur cet intervalle, $\sqrt{u+k\pi} \le \sqrt{(k+1)\pi}$ et $(u+k\pi)^4 \ge (k\pi)^4$.
+On a de plus $\sin(u) \sim u$ au voisinage de $0$, et par concavité du sinus sur $[0,\pi/2]$, $\sin(u) \ge \frac{2}{\pi}u$. Ceci permet d'obtenir une majoration du type :
+$$ \int_{I_k} f(x)\dx \le C \int_{0}^{\pi/2} \frac{\sqrt{k\pi}}{1+(k\pi)^4(\frac{2}{\pi}u)^2}\mathrm{d}u $$
+Ce qui amène, après intégration (qui donne un Arctan) et majoration, à un terme de l'ordre de $O\paren{\frac{1}{k^{3/2}}}$.
+Comme la série de terme général $1/k^{3/2}$ est convergente (série de Riemann avec $3/2 > 1$), l'intégrale sur $\R^+$ (qui est la somme des intégrales sur les $I_k$) converge.
+\end{correction}
+
+% --- Exercice 6 ---
+\begin{correction}{6}
+\begin{itemize}
+    \item $I_1 = \int_{0}^{1}\frac{\dx}{\sqrt{x-x^{2}}}$ :
+    On met sous forme canonique : $x-x^2 = x(1-x) = \frac{1}{4} - \paren{x-\frac{1}{2}}^2$.
+    Le changement de variable $x - 1/2 = \frac{1}{2}\sin(u)$ conduit à l'intégrale $\int_{-\pi/2}^{\pi/2} 1 \mathrm{d}u = \pi$.
+    
+    \item $I_2 = \int_{1}^{+\infty}\frac{\dx}{(1+x)\sqrt{x^{2}-1}}$ :
+    On pose $x = \cosh(t)$ avec $t \in \interoo{0}{+\infty}$. Alors $\dx = \sinh(t)\dt$ et $\sqrt{x^2-1} = \sinh(t)$.
+    $$ I_2 = \int_{0}^{+\infty} \frac{\sinh(t)}{(1+\cosh(t))\sinh(t)} \dt = \int_{0}^{+\infty} \frac{1}{1+\cosh(t)} \dt $$
+    En utilisant $\cosh(t) = 2\cosh^2(t/2) - 1$, on a $1+\cosh(t) = 2\cosh^2(t/2)$.
+    $$ I_2 = \int_{0}^{+\infty} \frac{1}{2\cosh^2(t/2)} \dt = \left[ \tanh(t/2) \right]_0^{+\infty} = 1 - 0 = 1 $$
+\end{itemize}
+\end{correction}
+
+% --- Exercice 9 ---
+\begin{correction}{9}
+\textbf{a)} La fonction $f(x) = \ln(\sin(x))$ est continue sur $\interoo{0}{\pi}$.
+En $0$, $\sin(x) \sim x$ donc $\ln(\sin(x)) \sim \ln(x)$. Or l'intégrale de $\ln(x)$ converge en 0, donc $f$ est intégrable en 0.
+En $\pi$, par symétrie $x = \pi - u$, on se ramène au voisinage de 0, donc l'intégrale converge également en $\pi$. L'intégrale existe.
+
+\textbf{b)} On note $I = \int_{0}^{\pi} \ln(\sin(x)) \dx$. Par la relation de Chasles et la symétrie, $I = 2 \int_{0}^{\pi/2} \ln(\sin(x)) \dx$.
+Utilisons la formule $\sin(x) = 2\sin(x/2)\cos(x/2)$ :
+\begin{align*}
+I &= \int_{0}^{\pi} \ln\paren{2\sin\paren{\frac{x}{2}}\cos\paren{\frac{x}{2}}} \dx \\
+  &= \int_{0}^{\pi} \ln(2) \dx + \int_{0}^{\pi} \ln\paren{\sin\paren{\frac{x}{2}}} \dx + \int_{0}^{\pi} \ln\paren{\cos\paren{\frac{x}{2}}} \dx
+\end{align*}
+On pose $t=x/2$ dans les deux dernières intégrales :
+$$ I = \pi\ln(2) + 2\int_{0}^{\pi/2} \ln(\sin(t)) \dt + 2\int_{0}^{\pi/2} \ln(\cos(t)) \dt $$
+Or, par le changement de variable $u = \pi/2 - t$, on a $\int_{0}^{\pi/2} \ln(\cos(t)) \dt = \int_{0}^{\pi/2} \ln(\sin(u)) \mathrm{d}u = \frac{I}{2}$.
+Ainsi, $I = \pi\ln(2) + 2\paren{\frac{I}{2}} + 2\paren{\frac{I}{2}} = \pi\ln(2) + 2I$.
+D'où $I = -\pi\ln(2)$.
+\end{correction}
+
+% --- Exercice 10 ---
+\begin{correction}{10}
+\textbf{1)} La fonction $f(x) = \frac{e^{-x}-e^{-2x}}{x}$ est continue sur $\interoo{0}{+\infty}$.
+En $0$, le développement limité donne $e^{-x} = 1 - x + O(x^2)$ et $e^{-2x} = 1 - 2x + O(x^2)$.
+D'où $f(x) = \frac{x + O(x^2)}{x} \to 1$ lorsque $x \to 0$. La fonction est donc prolongeable par continuité en 0.
+En $+\infty$, $f(x) \le \frac{e^{-x}}{x} = o(e^{-x/2})$ donc l'intégrale converge. $A$ est bien définie.
+
+\textbf{2)} Calculons $B(\epsilon) = \int_{\epsilon}^{+\infty}\frac{e^{-x}}{x}\dx$. L'intégrale tronquée pour $A$ s'écrit :
+$$ \int_{\epsilon}^{+\infty} \frac{e^{-x}-e^{-2x}}{x} \dx = \int_{\epsilon}^{+\infty} \frac{e^{-x}}{x} \dx - \int_{\epsilon}^{+\infty} \frac{e^{-2x}}{x} \dx $$
+Dans la seconde intégrale, on pose $u = 2x$, $\mathrm{d}u = 2\dx$ :
+$$ \int_{\epsilon}^{+\infty} \frac{e^{-2x}}{x} \dx = \int_{2\epsilon}^{+\infty} \frac{e^{-u}}{u/2} \frac{\mathrm{d}u}{2} = \int_{2\epsilon}^{+\infty} \frac{e^{-u}}{u} \mathrm{d}u $$
+Ainsi, on a :
+$$ \int_{\epsilon}^{+\infty} \frac{e^{-x}-e^{-2x}}{x} \dx = \int_{\epsilon}^{2\epsilon} \frac{e^{-x}}{x} \dx $$
+Comme $e^{-x}$ est continue en 0 et y vaut 1, on a par la moyenne $\int_{\epsilon}^{2\epsilon} \frac{e^{-x}}{x} \dx \sim e^{0} \int_{\epsilon}^{2\epsilon} \frac{\dx}{x} = [\ln(x)]_{\epsilon}^{2\epsilon} = \ln(2)$.
+En passant à la limite $\epsilon \to 0$, on obtient $A = \ln(2)$ (Intégrale de Frullani).
+\end{correction}
+
+% --- Exercice 12 ---
+\begin{correction}{12}
+Pour $\int_{0}^{+\infty}\frac{\sin^{2}t}{t^{2}}\dt$, l'intégrande est prolongeable par continuité en 0 (elle tend vers 1) et est dominée par $1/t^2$ en $+\infty$, ce qui assure la convergence.
+Par intégration par parties sur $\interoc{\epsilon}{M}$ en posant $u = \sin^2(t)$ et $v' = 1/t^2$ :
+$$ \int_{\epsilon}^{M} \frac{\sin^{2}t}{t^{2}}\dt = \left[ -\frac{\sin^{2}t}{t} \right]_{\epsilon}^{M} + \int_{\epsilon}^{M} \frac{2\sin(t)\cos(t)}{t}\dt $$
+En remarquant que $2\sin(t)\cos(t) = \sin(2t)$, on a :
+$$ \int_{\epsilon}^{M} \frac{\sin^{2}t}{t^{2}}\dt = -\frac{\sin^{2}M}{M} + \frac{\sin^{2}\epsilon}{\epsilon} + \int_{\epsilon}^{M} \frac{\sin(2t)}{t}\dt $$
+Lorsque $\epsilon \to 0$, $\frac{\sin^{2}\epsilon}{\epsilon} \sim \epsilon \to 0$.
+Lorsque $M \to +\infty$, $\abs{\frac{\sin^{2}M}{M}} \le \frac{1}{M} \to 0$.
+Il reste l'intégrale $\int_{0}^{+\infty}\frac{\sin(2t)}{t}\dt$. Avec le changement de variable $u=2t$, $\mathrm{d}u = 2\dt$, on obtient :
+$$ \int_{0}^{+\infty}\frac{\sin(2t)}{t}\dt = \int_{0}^{+\infty}\frac{\sin(u)}{u/2}\frac{\mathrm{d}u}{2} = \int_{0}^{+\infty}\frac{\sin(u)}{u}\mathrm{d}u $$
+L'égalité est donc démontrée.
+\end{correction}
+
+% --- Exercice 17 ---
+\begin{correction}{17}
+Pour les trois premières suites, on applique le théorème de convergence dominée (TCD).
+\begin{itemize}
+    \item $a_{n}=\int_{0}^{\frac{\pi}{4}}\tan^{n}(x)\dx$ :
+    Sur $\interco{0}{\pi/4}$, $\tan(x) \in \interco{0}{1}$, donc $\tan^n(x) \to 0$ simplement. La domination se fait par la fonction constante $1$ (intégrable sur ce segment). La limite est $0$.
+    \item $b_{n}=\int_{0}^{+\infty}\frac{\sin^{n}(x)}{x^{2}}\dx$ :
+    Attention, il faut séparer au voisinage de 0. $\abs{\frac{\sin^n x}{x^2}} \le \abs{\frac{\sin^2 x}{x^2}}$ intégrable et limite simple presque partout nulle (sauf aux $\pi/2 + k\pi$, de mesure nulle). Par TCD, la limite est 0.
+\end{itemize}
+\end{correction}
+
+% --- Exercice 19 ---
+\begin{correction}{19}
+On exprime $\sinh x = \frac{e^x - e^{-x}}{2}$. On a donc :
+$$ \frac{x}{\sinh x} = \frac{2x}{e^x - e^{-x}} = \frac{2xe^{-x}}{1 - e^{-2x}} $$
+Comme $e^{-2x} < 1$ pour $x > 0$, on peut utiliser le développement en série géométrique :
+$$ \frac{1}{1-e^{-2x}} = \sum_{n=0}^{+\infty} e^{-2nx} $$
+Ainsi, l'intégrande s'écrit $\sum_{n=0}^{+\infty} 2x e^{-(2n+1)x}$.
+Puisque tous les termes sont positifs, le théorème d'intégration terme à terme s'applique :
+$$ \int_{0}^{+\infty}\frac{x}{\sinh x}\dx = \sum_{n=0}^{+\infty} \int_{0}^{+\infty} 2x e^{-(2n+1)x} \dx $$
+Une intégration par parties donne $\int_{0}^{+\infty} x e^{-\alpha x} \dx = \frac{1}{\alpha^2}$.
+$$ \int_{0}^{+\infty}\frac{x}{\sinh x}\dx = \sum_{n=0}^{+\infty} \frac{2}{(2n+1)^2} = 2 \left( \sum_{k=1}^{+\infty}\frac{1}{k^2} - \sum_{p=1}^{+\infty}\frac{1}{(2p)^2} \right) = 2 \paren{ \frac{\pi^2}{6} - \frac{1}{4}\frac{\pi^2}{6} } = 2 \paren{ \frac{3}{4}\frac{\pi^2}{6} } = \frac{\pi^2}{4} $$
+\end{correction}
+
+% --- Exercice 20 ---
+\begin{correction}{20}
+\textbf{1)} On considère la série entière complexe $\sum e^{in\theta} x^n$. Pour $\abs{x} < 1$, elle converge car de rayon 1. Sa somme est $\frac{1}{1-x e^{i\theta}}$.
+La série de l'énoncé est la partie réelle de cette somme :
+$$ \re\paren{\frac{1}{1-x\cos\theta - i x\sin\theta}} = \frac{1-x\cos\theta}{(1-x\cos\theta)^2 + (x\sin\theta)^2} = \frac{1-x\cos\theta}{1-2x\cos\theta + x^2} $$
+\textbf{2)} La question suivante intègre cette somme terme à terme entre 0 et 1, ce qui justifie la convergence et donne la formule de l'énoncé, par primitivation de la fraction rationnelle obtenue.
+\end{correction}
+
+% --- Exercice 23 ---
+\begin{correction}{23}
+\textbf{a)} L'intégrale $A$ (Fresnel) converge grâce au changement de variable $u=t^2$, $\dt = \mathrm{d}u/(2\sqrt{u})$, conduisant à $\int_0^{+\infty} \frac{\cos u}{2\sqrt{u}} \mathrm{d}u$. IPP ou règle d'Abel montre la convergence de $A$ et de $B$.
+
+\textbf{b)} Le théorème de dérivation des intégrales à paramètre donne pour $x>0$ :
+$$ F^{\prime}(x) = \int_{0}^{+\infty} -2x e^{-x^2(i+t^2)} \dt = -2x e^{-ix^2} \int_{0}^{+\infty} e^{-x^2 t^2} \dt $$
+Avec $u = xt$, $\dt = \mathrm{d}u/x$, on a $\int_{0}^{+\infty} e^{-x^2 t^2} \dt = \frac{1}{x} \int_{0}^{+\infty} e^{-u^2} \mathrm{d}u = \frac{\sqrt{\pi}}{2x}$.
+D'où $F^{\prime}(x) = -2x e^{-ix^2} \frac{\sqrt{\pi}}{2x} = -\sqrt{\pi} e^{-ix^2}$.
+La constante $K$ vaut $-\sqrt{\pi}$.
+
+En intégrant $F'$ de $0$ à $+\infty$, et comme $F(+\infty) = 0$ par convergence dominée :
+$$ -F(0) = \int_{0}^{+\infty} -\sqrt{\pi} e^{-ix^2} \dx = -\sqrt{\pi}(A - iB) $$
+D'où $A-iB = \frac{F(0)}{\sqrt{\pi}}$.
+
+\textbf{c)} Des changements de variables montrent les égalités requises sur la fraction rationnelle $1/(1+t^4)$, ce qui s'intègre avec Arctan, menant à la valeur finale classique $A=B=\sqrt{\frac{\pi}{8}}$.
+\end{correction}
+
+% --- Exercice 24 ---
+\begin{correction}{24}
+\textbf{a)} Soit $h(x, t) = e^{-t^2}\cosh(2xt)$. La fonction admet une dérivée partielle $\frac{\partial h}{\partial x}(x, t) = 2t e^{-t^2}\sinh(2xt)$.
+Sur tout segment $[-M, M]$, on peut majorer par une fonction intégrable indépendante de $x$.
+Ainsi, le théorème de dérivation sous le signe somme s'applique :
+$$ f'(x) = \int_{0}^{+\infty} 2t e^{-t^2}\sinh(2xt) \dt $$
+Une intégration par parties en posant $u = \sinh(2xt)$ et $v' = 2te^{-t^2}$ (donc $v = -e^{-t^2}$) :
+$$ f'(x) = \left[ -e^{-t^2}\sinh(2xt) \right]_0^{+\infty} + \int_{0}^{+\infty} 2x e^{-t^2}\cosh(2xt) \dt = 0 + 2xf(x) $$
+
+\textbf{b)} On a donc une équation différentielle $y' = 2xy$, dont la solution est de la forme $C e^{x^2}$.
+Pour trouver la constante, on évalue en $x=0$ :
+$$ f(0) = \int_{0}^{+\infty} e^{-t^2} \cosh(0) \dt = \int_{0}^{+\infty} e^{-t^2} \dt = \frac{\sqrt{\pi}}{2} $$
+Finalement, on a bien $f(x) = \frac{\sqrt{\pi}}{2} e^{x^2}$.
+\end{correction}
+
+% --- Exercice 26 ---
+\begin{correction}{26}
+\textbf{a)} La fonction $f(x) = \int_{0}^{\infty}\frac{e^{-xu}}{1+u^{2}}\mathrm{d}u$. Par convergence dominée et intégrabilité de l'exponentielle, le domaine de définition est $\interco{0}{+\infty}$. 
+L'application des théorèmes de continuité et dérivation des intégrales à paramètres (avec des majorations de type $u e^{-xu}$ sur tout $\interco{a}{+\infty}$ pour $a>0$) montre la régularité $\mc{2}$ sur $\interoo{0}{+\infty}$.
+En dérivant deux fois :
+$$ f''(x) = \int_{0}^{\infty} \frac{u^2 e^{-xu}}{1+u^2} \mathrm{d}u $$
+Ainsi, $f(x) + f''(x) = \int_{0}^{\infty} \frac{(1+u^2) e^{-xu}}{1+u^2} \mathrm{d}u = \int_{0}^{\infty} e^{-xu} \mathrm{d}u = \frac{1}{x}$.
+$f$ est solution de $y'' + y = \frac{1}{x}$.
+
+\textbf{b), c), d)} Une analyse similaire pour $g(x)$ (en dérivant avec les bornes) montre qu'elle vérifie la même équation différentielle avec les mêmes limites nulles en $+\infty$. La différence $f-g$ vérifie l'équation homogène $y''+y=0$, donc $f-g = A\cos x + B\sin x$. Les limites nulles forcent $A=B=0$, donc $f=g$.
+
+\textbf{e)} Évaluer $f(0)$ et $g(0)$ permet de conclure sur la valeur de $\int_{0}^{+\infty}\frac{\sin t}{t}\dt = \frac{\pi}{2}$.
+\end{correction}

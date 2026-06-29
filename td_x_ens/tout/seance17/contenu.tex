@@ -1,0 +1,177 @@
+\section{Séance 17 : Espaces tangents}
+
+\subsection{Rappels et définitions}
+
+Soit $X \subset \R^n$ et $x \in X$.
+
+\begin{definition}{Espace tangent}{}
+    L'espace tangent à $X$ en $x$, noté $T_x X$, est l'ensemble défini par :
+    \[ T_x X = \left\{ v \in \R^n \mid \exists \gamma : \interoo{-\varepsilon}{\varepsilon} \to X \text{ de classe } \mc{1}, \gamma(0)=x \text{ et } \gamma'(0)=v \right\} \]
+\end{definition}
+
+
+\begin{remarque}
+    Considérons le cas particulier où $X = \varphi^{-1}(\{0\})$ avec $\varphi : \R^n \to \R^p$ une application de classe $\mc{1}$.
+    Soit $v \in T_x X$. Il existe alors une courbe $\gamma : \interoo{-\varepsilon}{\varepsilon} \to X$ telle que $\gamma(0)=x$ et $\gamma'(0)=v$.
+    Puisque la courbe est tracée sur $X$, on a pour tout $t \in \interoo{-\varepsilon}{\varepsilon}$, $\varphi(\gamma(t)) = 0$.
+    En dérivant cette relation en $t=0$, on obtient par composition des différentielles $d\varphi_x(\gamma'(0)) = 0$, et donc $d\varphi_x(v) = 0$.
+    On en déduit que $v \in \Ker d\varphi_x$, ce qui prouve l'inclusion fondamentale :
+    \[ T_x X \subset \Ker(d\varphi_x) \]
+\end{remarque}
+
+\begin{exemple}
+    Prenons la fonction $\fonction{\varphi}{\R^2}{\R}{(x,y)}{x^2 - y^2}$.
+    On a $d\varphi_{(0,0)} = 0$ et donc $\Ker d\varphi_{(0,0)} = \R^2$.
+    Cependant, l'ensemble $X = \{(x,y) \in \R^2 \mid x^2 - y^2 = 0\} = \{(x,y) \in \R^2 \mid (x-y)(x+y) = 0\}$ est la réunion de deux droites sécantes (les bissectrices).
+    L'espace "tangent" $T_0 X$ (qui correspond ici à $\Vect(\binom{1}{1}) \cup \Vect(\binom{1}{-1})$) n'est pas un espace vectoriel. Ainsi, $T_0 X \neq \Ker d\varphi_{(0,0)}$. L'inclusion stricte peut donc se produire quand la différentielle s'annule.
+\end{exemple}
+
+\subsection{Théorème principal et inversion locale}
+
+\begin{theoreme}{Espace tangent d'une variété de niveau}{}
+    Soit $\varphi : \R^n \to \R^p$ une application de classe $\mc{1}$.
+    Soit $X = \{x \in \R^n \mid \varphi(x) = 0\}$.
+    On suppose que $x \in X$ et que la différentielle $d\varphi_x \in \mathscr{L}(\R^n, \R^p)$ est surjective.
+    Alors on a l'égalité :
+    \[ T_x X = \Ker d\varphi_x \]
+\end{theoreme}
+
+\idee{Utiliser le théorème d'inversion locale en construisant un difféomorphisme $u$ qui "redresse" la variété $X$ pour la faire coïncider localement avec l'espace vectoriel $V = \Ker d\varphi_0$.}
+\begin{proof}
+    Quitte à effectuer une translation, on peut supposer que $x = 0$.
+    Posons $V = \Ker d\varphi_0$. D'après le théorème du rang, $\dim V + \dim \text{Im } d\varphi_0 = n$. Puisque $d\varphi_0$ est surjective, on a $\dim \text{Im } d\varphi_0 = p$, d'où $\dim V = n - p$.
+
+    Soit $W$ un sous-espace supplémentaire de $V$ dans $\R^n$, de sorte que $\R^n = V \oplus W$.
+    On note $\pi$ le projecteur vectoriel sur $V$ parallèlement à $W$.
+    On définit alors l'application suivante :
+    \[ \fonction{u}{\R^n = V \oplus W}{V \times \R^p}{x}{(\pi(x), \varphi(x))} \]
+
+    L'application $u$ est de classe $\mc{1}$ et sa différentielle en $0$ est donnée par $du_0 = (d\pi_0, d\varphi_0) = (\pi, d\varphi_0)$.
+    Déterminons le noyau de $du_0$ :
+    \[ x \in \Ker du_0 \iff \pi(x) = 0 \text{ et } d\varphi_0(x) = 0 \iff x \in W \cap V = \{0\} \]
+    La différentielle $du_0$ est donc injective. Comme les espaces $\R^n$ et $V \times \R^p$ ont la même dimension $n$, $du_0$ est un isomorphisme.
+
+    D'après le théorème d'inversion locale, il existe un voisinage ouvert $U$ de $0$ dans $\R^n$ et un voisinage ouvert $U'$ de $(0,0)$ dans $V \times \R^p$ tels que la restriction de $u$ réalise un $\mc{1}$-difféomorphisme de $U$ sur $U'$.
+
+    Pour tout $x \in U$, on a l'équivalence :
+    \[ x \in X \iff \varphi(x) = 0 \iff u(x) = (\pi(x), 0) \iff u(x) \in V \times \{0\} \]
+
+    \begin{center}
+    \begin{tikzpicture}[scale=0.9]
+        % Dessin 1 : Espace de départ
+        \draw[->] (-3,0) -- (3,0);
+        \draw[->] (0,-3) -- (0,3);
+        \node[below left] at (0,0) {$0$};
+        
+        \draw[thick, bluebox] (-2.5, -1.5) -- (2.5, 1.5) node[right] {$V$};
+        \draw[thick, cyan] (-1.5, 2.5) -- (1.5, -2.5) node[right] {$W$};
+        
+        \draw[thick, redbox, domain=-2.5:2.5, smooth] plot (\x, {0.6*\x + 0.2*\x*\x - 0.05*\x*\x*\x}) node[right] {$X$};
+        
+        \draw[->, thick, purple] (0,0) -- (1, 0.6) node[below right] {$v$};
+        
+        \draw[gray, thick, fill=gray!10, rounded corners=10pt, opacity=0.7] (-1.5,-1) -- (1.5,-0.5) -- (2,1) -- (0.5,1.5) -- (-1,0.5) -- cycle;
+        \node[bluebox] at (-1.5, 1.5) {$U$};
+    \end{tikzpicture}
+    \hspace{0.5cm}
+    \begin{tikzpicture}[scale=0.9]
+        % Dessin 2 : Espace d'arrivée
+        \draw[->] (-3,0) -- (3,0) node[right] {$V \times \{0\}$};
+        \draw[->] (0,-3) -- (0,3) node[above] {$\R^p$};
+        \node[below left] at (0,0) {$0$};
+        
+        \draw[thick, bluebox] (-2.5, 0) -- (2.5, 0);
+        \draw[->, thick, purple] (0,0) -- (1.16, 0) node[above] {$v$};
+        
+        \draw[gray, thick, fill=gray!10, rounded corners=10pt, opacity=0.7] (-2,-1) -- (2,-0.8) -- (1.5,1) -- (-1.5,0.8) -- cycle;
+        \node[redbox] at (1.5, 0.5) {$u(U)$};
+        
+        \draw[->, thick, redbox] (-4, 1.5) to[bend left] node[above] {$u$} (-1, 1.5);
+    \end{tikzpicture}
+    \end{center}
+
+    Montrons l'affirmation restante : $V \subset T_0 X$.
+    Soit $v \in V$. On pose $\gamma(t) = (tv, 0)$, définie sur un petit intervalle $\interoo{-\varepsilon}{\varepsilon}$ à valeurs dans $V \times \R^p$. C'est une courbe de classe $\mc{1}$.
+    On pose $\Gamma(t) = u^{-1}(tv, 0)$ pour repasser dans l'espace de départ (du deuxième dessin au premier).
+    On obtient une courbe $\Gamma : \interoo{-\varepsilon}{\varepsilon} \to X$ telle que $\Gamma(0) = u^{-1}(0,0) = 0$.
+    De plus, en dérivant en zéro : $\Gamma'(0) = d(u^{-1})_0(v, 0) = (du_0)^{-1}(v, 0)$.
+    Or, on a calculé $du_0(v) = (\pi(v), d\varphi_0(v)) = (v, 0)$ car $v \in V = \Ker d\varphi_0$.
+    Par conséquent, $v = (du_0)^{-1}(v, 0) = \Gamma'(0)$.
+    Ceci prouve que $v \in T_0 X$, d'où $V \subset T_0 X$.
+    Comme nous savions déjà que $T_0 X \subset V$ (d'après la remarque précédente), on conclut que $T_0 X = V = \Ker d\varphi_0$.
+\end{proof}
+
+\subsection{Optimisation avec contraintes}
+
+\begin{corollaire}{Condition nécessaire d'extremum lié}{}
+    Soit $\varphi : \R^n \to \R^p$ de classe $\mc{1}$, et $X = \varphi^{-1}(\{0\})$. On suppose que la différentielle $d\varphi_x$ est surjective.
+    Soit $f : \R^n \to \R$ de classe $\mc{1}$.
+    Si la restriction de $f$ à $X$, notée $f_{|X}$, admet un extremum local en $x \in X$, alors :
+    \[ \Ker d\varphi_x \subset (\grad f(x))^\perp \]
+\end{corollaire}
+
+\idee{Composer la fonction à optimiser $f$ avec un chemin tracé sur la variété $X$ et utiliser la condition nécessaire d'extremum pour une fonction d'une variable réelle.}
+\begin{proof}
+    Soit $v \in T_x X$. Par définition, il existe un chemin $\gamma : \interoo{-\varepsilon}{\varepsilon} \to X$ de classe $\mc{1}$ tel que $\gamma(0)=x$ et $\gamma'(0)=v$.
+    Considérons la fonction d'une variable réelle $g : t \mapsto f(\gamma(t))$. Puisque $f_{|X}$ possède un extremum local en $x = \gamma(0)$, la fonction $g$ possède un extremum local en $0$.
+    Comme $g$ est dérivable, on a $g'(0) = 0$.
+    Or, par la règle de composition, $g'(0) = df_x(\gamma'(0)) = df_x(v) = \langle \grad f(x), v \rangle$.
+    Ainsi, pour tout $v \in T_x X$, $\langle \grad f(x), v \rangle = 0$, ce qui implique $v \in (\grad f(x))^\perp$.
+    On a donc prouvé que $T_x X \subset (\grad f(x))^\perp$.
+    Comme $d\varphi_x$ est surjective, on sait que $T_x X = \Ker d\varphi_x$, ce qui donne la conclusion :
+    \[ \Ker d\varphi_x \subset (\grad f(x))^\perp \]
+\end{proof}
+
+\begin{remarque}
+    Dans le cas particulier où $p=1$, c'est-à-dire $\varphi : \R^n \to \R$, la condition de surjectivité de $d\varphi_x$ se réécrit de manière plus familière : $\grad \varphi(x) \neq 0$.
+    Dans ce cas, $\Ker d\varphi_x = (\grad \varphi(x))^\perp$.
+    Le corollaire donne alors :
+    \[ (\grad \varphi(x))^\perp \subset (\grad f(x))^\perp \]
+    En passant à l'orthogonal (et en utilisant que pour un vecteur non nul, l'orthogonal de l'orthogonal est la droite engendrée par ce vecteur), on obtient :
+    \[ \Vect(\grad f(x)) \subset \Vect(\grad \varphi(x))^{\perp\perp} = \Vect(\grad \varphi(x)) \]
+    Il existe donc un réel $\lambda \in \R$ tel que $\grad f(x) = \lambda \grad \varphi(x)$. On retrouve ici le théorème des multiplicateurs de Lagrange !
+\end{remarque}
+
+\subsection{Exemples d'espaces tangents classiques}
+
+\begin{exemple}[title=Espace tangent au groupe spécial linéaire]
+    Soit $X = SL_n(\R) = \{M \in \mathcal{M}_n(\R) \mid \det M = 1\}$.
+    On considère la fonction $\fonction{f}{\mathcal{M}_n(\R)}{\R}{M}{\det M - 1}$. L'ensemble cherché est bien $X = f^{-1}(\{0\})$.
+    Déterminons l'espace tangent $T_{I_n} SL_n(\R)$.
+
+    La différentielle du déterminant en l'identité est la trace, donc $df_{I_n} = \tr$.
+    L'application trace étant une forme linéaire non nulle, elle est surjective.
+    D'après le théorème, l'espace tangent est donné par son noyau :
+    \[ T_{I_n} SL_n(\R) = \Ker(\tr) = \{M \in \mathcal{M}_n(\R) \mid \tr(M) = 0\} \]
+
+    \lvspace \avspace \idee{Pour construire un chemin dont la dérivée est $M$, l'exponentielle de matrice est l'outil privilégié.}
+    
+    Il est instructif de vérifier directement l'inclusion $\supset$ :
+    Soit $M \in \Ker(\tr)$. Cherchons un chemin $\gamma : \interoo{-\varepsilon}{\varepsilon} \to SL_n(\R)$ tel que $\gamma(0) = I_n$ et $\gamma'(0) = M$.
+    Posons $\gamma(t) = e^{tM}$. On a trivialement $\gamma(0) = I_n$.
+    Vérifions que $\gamma$ est à valeurs dans la variété : $\det(\gamma(t)) = \det(e^{tM}) = e^{\tr(tM)} = e^{t\tr(M)} = e^0 = 1$. Donc $\gamma(t) \in SL_n(\R)$ pour tout $t$.
+    Enfin, $\gamma'(t) = M e^{tM}$, donc $\gamma'(0) = M$.
+    Ceci confirme que $M \in T_{I_n} SL_n(\R)$.
+\end{exemple}
+
+\begin{exemple}[title=Espace tangent au groupe orthogonal]
+    Soit $X = O_n(\R) = \{M \in \mathcal{M}_n(\R) \mid M^TM = I_n\}$.
+    On considère l'application à valeurs dans l'espace des matrices symétriques $S_n(\R)$ :
+    \[ \fonction{f}{\mathcal{M}_n(\R)}{S_n(\R)}{M}{M^TM - I_n} \]
+    On a bien $I_n \in O_n(\R) = f^{-1}(\{0\})$.
+
+    Calculons la différentielle : $df_M(H) = M^TH + H^TM$.
+    En l'identité, cela donne $df_{I_n}(H) = H + H^T$.
+    L'application $df_{I_n}$ est bien surjective de $\mathcal{M}_n(\R)$ dans $S_n(\R)$ (pour toute matrice symétrique $S$, on peut choisir $H = \frac{1}{2}S$ pour obtenir $df_{I_n}(H) = S$). On a donc :
+    \[ T_{I_n} O_n(\R) = \Ker df_{I_n} = \{H \in \mathcal{M}_n(\R) \mid H + H^T = 0\} = A_n(\R) \]
+    L'espace tangent en l'identité au groupe orthogonal est l'espace des matrices antisymétriques.
+
+    \lvspace \avspace \idee{L'exponentielle d'une matrice antisymétrique est toujours une matrice orthogonale.}
+
+    Là encore, on peut vérifier directement l'inclusion de $A_n(\R)$ dans l'espace tangent :
+    Soit $M \in A_n(\R)$.
+    On pose la courbe $\gamma : \R \to \mathcal{M}_n(\R), t \mapsto e^{tM}$.
+    Comme $M$ est antisymétrique ($M^T = -M$), on vérifie l'orthogonalité : $\gamma(t)^T \gamma(t) = (e^{tM})^T e^{tM} = e^{tM^T} e^{tM} = e^{-tM} e^{tM} = I_n$.
+    Donc $\gamma$ est à valeurs dans $O_n(\R)$.
+    Comme $\gamma(0) = I_n$ et $\gamma'(0) = M$, on a bien exhibé un chemin montrant que $M \in T_{I_n} O_n(\R)$.
+\end{exemple}

@@ -1,0 +1,346 @@
+\section{Énoncés des Exercices}
+
+\subsection{Groupes et sous-groupes}
+
+% --- Exercice 1 ---
+\begin{exercice}
+On pose $\forall x,y\in]-1,1[$, $x\bullet y=\frac{x+y}{1+xy}$.
+Montrer que $(]-1,1[, \bullet)$ est un groupe abélien.
+\end{exercice}
+
+% --- Exercice 2 ---
+\begin{exercice}
+\textbf{Groupe produit.}
+Soient $(G_{1},*_{1})$ et $(G_{2},*_{2})$ deux groupes.
+On munit $G=G_{1}\times G_{2}$ d'une loi de composition interne définie par :
+$$ \forall(x_{1},x_{2}), (y_{1}, y_{2}) \in G, \quad (x_{1}, x_{2}) \cdot (y_{1}, y_{2}) = (x_{1} *_{1} y_{1}, x_{2} *_{2} y_{2}) $$
+Montrer que l'on définit ainsi un groupe.
+\end{exercice}
+
+% --- Exercice 3 ---
+\begin{exercice}
+On pose :
+$$ G=\left\{M\in \mathcal{M}_{2}(\mathbb{C}) \mid \exists a,b\in\mathbb{C}, |a|^{2}+|b|^{2}=1 \text{ et } M=\begin{pmatrix}a&b\\ -\overline{b}&\overline{a}\end{pmatrix}\right\} $$
+$$ SO(2)=\left\{\begin{pmatrix}\cos\theta&-\sin\theta\\ \sin\theta&\cos\theta\end{pmatrix}, \theta\in\mathbb{R}\right\} $$
+\begin{enumerate}
+    \item Montrer que $G$ est un sous-groupe de $GL_{2}(\mathbb{C})$.
+    \item Montrer que $SO(2)$ est un sous-groupe de $G$.
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 4 ---
+\begin{exercice}
+Soit $p$ un nombre premier et $G_{p}=\{z\in\mathbb{C} \mid \exists k\in\mathbb{N}, z^{p^{k}}=1\}$.
+\begin{enumerate}
+    \item Montrer que $G_{p}$ est un groupe.
+    \item Montrer que $G_{p}$ possède un nombre infini de sous-groupes.
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 5 ---
+\begin{exercice}
+Soit $G$ un groupe de neutre $e$ et $a,b\in G$.
+\begin{enumerate}
+    \item Montrer que pour tout entier relatif $k$, $(ab)^{k}=e\iff(ba)^{k}=e$.
+    \item On suppose qu'il existe $p$ entier impair tel que $a^{p}=e$. Montrer qu'alors il existe $b\in G$ tel que $b^{2}=a$.
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 6 ---
+\begin{exercice}
+\begin{enumerate}
+    \item Soit $(G,.)$ un groupe. On définit son centre $Z(G)$ par :
+    $$ Z(G)=\{x\in G \mid \forall y\in G, x.y=y.x\} $$
+    Montrer que c'est un sous-groupe de $G$.
+    \item On pose $G=\mathbb{R}^{*}\times\mathbb{R}$ muni de la loi définie par :
+    $$ (x,y).(x^{\prime},y^{\prime})=(xx^{\prime},xy^{\prime}+\frac{y}{x^{\prime}}) $$
+    \begin{enumerate}
+        \item Montrer que $(G,.)$ est un groupe.
+        \item Déterminer son centre.
+    \end{enumerate}
+\end{enumerate}
+\end{exercice}
+
+\subsection{Morphismes de groupes}
+
+% --- Exercice 7 ---
+\begin{exercice}
+Montrer qu'un groupe $G$ est commutatif si et seulement si l'application $x\mapsto x^{-1}$ est un automorphisme de $G$.
+\end{exercice}
+
+% --- Exercice 8 ---
+\begin{exercice}
+Soit $(G,.)$ un groupe et $E$ un ensemble non vide.
+On appelle action de groupe de $G$ sur $E$ toute application $\Phi: G\times E \to E, (g,x) \mapsto \Phi(g,x)=g.x$ vérifiant :
+\begin{enumerate}
+    \item $\forall x\in E$, $e_{G}.x=x$
+    \item $\forall g,h\in G$, $\forall x\in E$, $g.(h.x)=(g.h).x$
+\end{enumerate}
+\begin{enumerate}
+    \item Montrer qu'une application $\Phi:G\times E\rightarrow E$ définit une action de groupe si et seulement si l'application $g\mapsto(x\mapsto\Phi(g,x))$ est un morphisme de groupes de $G$ dans l'ensemble des permutations de $E$.
+    \item Montrer que $\Phi: G\times G \to G, (g,x) \mapsto \Phi(g,x)=g.x.g^{-1}$ définit une action de groupe de $G$ sur lui-même. Cette action est appelée automorphisme intérieur ou conjugaison.
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 9 ---
+\begin{exercice}
+\textbf{Transfert de structure.}
+\begin{enumerate}
+    \item Soient $(G,*)$ un groupe et $E$ un ensemble. On suppose qu'il existe une bijection $f:G\rightarrow E$ et on pose :
+    $$ \forall a,b\in E, \quad a T b=f(f^{-1}(a)*f^{-1}(b)) $$
+    Montrer que $(E,T)$ est un groupe et que $f$ est un isomorphisme de groupes.
+    \item Que donne ce résultat avec l'application $f: \mathbb{R} \to ]-1,1[, t \mapsto \tanh(t)$ ?
+\end{enumerate}
+\end{exercice}
+
+\subsection{Groupes monogènes}
+
+% --- Exercice 10 ---
+\begin{exercice}
+Soit $G$ un groupe et $a\in G$ d'ordre fini $n$.
+Déterminer, en fonction de la parité de $n$, l'ordre de $a^{2}$.
+\end{exercice}
+
+% --- Exercice 11 ---
+\begin{exercice}
+Montrer que tout groupe fini de cardinal pair possède un élément d'ordre 2.
+\textit{Indication : Munir $G$ de la relation d'équivalence $x \mathcal{R} y \iff x=y \text{ ou } x=y^{-1}$ et partitionner en classes.}
+\end{exercice}
+
+% --- Exercice 12 ---
+\begin{exercice}
+\textbf{Les sous-groupes de $(\mathbb{R},+)$.}
+On veut montrer qu'un sous-groupe de $(\mathbb{R}, +)$ est soit monogène, soit dense dans $\mathbb{R}$.
+\begin{enumerate}
+    \item Soit $a\in\mathbb{R}_{+}^*$. On pose $a\mathbb{Z}=\{na \mid n\in\mathbb{Z}\}$. Démontrer que $a\mathbb{Z}$ est un sous-groupe de $(\mathbb{R},+)$ et que $a\mathbb{Z}$ n'est pas dense dans $\mathbb{R}$.
+    \item Soit $G$ un sous-groupe de $(\mathbb{R}, +)$, $G\ne\{0\}$.
+    \begin{enumerate}
+        \item Montrer que $A=G\cap\mathbb{R}_{+}^{*}$ est non vide. Comme $A$ est minoré dans $\mathbb{R}$ (par 0), on peut poser $a=\inf(A)$. Alors $a\ge0$.
+        \item On suppose dans un premier temps que $a=0$. Démontrer que pour tout réel $\epsilon>0$, il existe $u\in G$ tel que $0<u<\epsilon$. En déduire que $G$ est dense dans $\mathbb{R}$.
+        \item On suppose que $a\ne0$. Démontrer que $a\in G$ (On pourra supposer que $a \notin G$ et démontrer qu'alors il existe $b\in G$ tel que $a<b<2a$ pour obtenir une contradiction). Montrer alors que $G=a\mathbb{Z}$.
+    \end{enumerate}
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 13 ---
+\begin{exercice}
+\begin{enumerate}
+    \item Soit $f:G\rightarrow G^{\prime}$ un morphisme de groupes et $x\in G$ d'ordre $n$. Montrer que $f(x)$ est d'ordre fini $p$ et que $p$ divise $n$.
+    \item Quels sont les morphismes de groupe de $\mathbb{Z}/7\mathbb{Z}$ dans $\mathbb{Z}/13\mathbb{Z}$ ? Ceux de $\mathbb{Z}/3\mathbb{Z}$ dans $\mathbb{Z}/12\mathbb{Z}$ ?
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 14 ---
+\begin{exercice}
+Déterminer tous les sous-groupes de $\mathbb{Z}/5\mathbb{Z}$ puis ceux de $\mathbb{Z}/6\mathbb{Z}$.
+\end{exercice}
+
+% --- Exercice 15 ---
+\begin{exercice}
+Soit $n$ un naturel supérieur à 2 et $d$ un diviseur de $n$. On note $q=\frac{n}{d}$.
+\begin{enumerate}
+    \item Montrer que $<\overline{q}>$ est un sous-groupe de $G=\mathbb{Z}/n\mathbb{Z}$ de cardinal $d$.
+    \item Montrer que c'est le seul.
+\end{enumerate}
+\end{exercice}
+
+\subsection{Anneaux}
+
+% --- Exercice 16 ---
+\begin{exercice}
+On considère $A=\mathbb{R}^{\mathbb{N}}$ l'ensemble des suites réelles que l'on munit des lois $+$ et $*$ définies par :
+$\forall u=(u_{n})_{n\in\mathbb{N}}, v=(v_{n})_{n\in\mathbb{N}}\in A$, $u+v=w=(w_{n})_{n\in \mathbb{N}}$ et $u*v=z=(z_{n})_{n\in \mathbb{N}}$ avec :
+$$ \forall n\in\mathbb{N}, w_{n}=u_{n}+v_{n}, \quad z_{n}=\sum_{k=0}^{n}u_{k}v_{n-k} $$
+Montrer que $(A,+,*)$ est un anneau intègre.
+\end{exercice}
+
+% --- Exercice 17 ---
+\begin{exercice}
+Soit $A$ un anneau commutatif. On dit qu'un élément $a\in A$ est nilpotent s'il existe $n\in \mathbb{N}^{*}$ tel que $a^{n}=0$.
+Montrer que l'ensemble $I$ des éléments nilpotents de $A$ est un idéal.
+\end{exercice}
+
+% --- Exercice 18 ---
+\begin{exercice}
+On considère $I$ un intervalle réel et l'anneau $A=\mathcal{F}(I,\mathbb{R})$. Pour $a\in I$, on considère l'ensemble $I_{a}$ des fonctions $f\in A$ qui s'annulent en $a$.
+\begin{enumerate}
+    \item Montrer que $I_{a}$ est un idéal de $A$.
+    \item Pour $a\ne b\in I$, montrer que $I_{a}+I_{b}=A$.
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 19 ---
+\begin{exercice}
+Soit $A$ un anneau commutatif et $I$ un idéal de $A$. On pose $J=\{x\in A \mid \exists n\in\mathbb{N}, x^{n}\in I\}$.
+\begin{enumerate}
+    \item Montrer que $J$ est un idéal de $A$ (appelé le radical de $I$).
+    \item Lorsque $A=\mathbb{Z}$, identifier $J$ en fonction de $I$.
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 20 ---
+\begin{exercice}
+On définit $\mathbb{Z}[\sqrt{2}]=\{a+b\sqrt{2} \mid a,b\in\mathbb{Z}\}$.
+Montrer que $\mathbb{Z}[\sqrt{2}]$ est un anneau intègre.
+\end{exercice}
+
+\newpage
+\section{Corrections}
+
+% --- Correction 1 ---
+\begin{correction}{1}
+On vérifie les axiomes d'un groupe abélien pour la loi $\bullet$ sur $G=]-1,1[$.
+\begin{itemize}
+    \item \textbf{Loi interne :} Si $x,y \in ]-1,1[$, alors $|xy| < 1$, donc $1+xy > 0$, le dénominateur ne s'annule pas. De plus :
+    $$ 1 - \left(\frac{x+y}{1+xy}\right)^2 = \frac{(1+xy)^2 - (x+y)^2}{(1+xy)^2} = \frac{1+2xy+x^2y^2 - x^2-2xy-y^2}{(1+xy)^2} = \frac{(1-x^2)(1-y^2)}{(1+xy)^2} $$
+    Comme $x,y \in ]-1,1[$, $(1-x^2) > 0$ et $(1-y^2) > 0$, donc $1 - (x \bullet y)^2 > 0$, soit $|x \bullet y| < 1$. La loi est bien interne.
+    \item \textbf{Commutativité :} $x \bullet y = \frac{x+y}{1+xy} = \frac{y+x}{1+yx} = y \bullet x$.
+    \item \textbf{Élément neutre :} $x \bullet 0 = \frac{x+0}{1+0} = x$. Donc $e=0$ est neutre.
+    \item \textbf{Symétrique :} Pour tout $x \in ]-1,1[$, $-x \in ]-1,1[$ et $x \bullet (-x) = \frac{x-x}{1-x^2} = 0$. Donc $x^{-1} = -x$.
+    \item \textbf{Associativité :} C'est le calcul le plus long. On peut remarquer que $x \bullet y = \tanh(\text{argth}(x) + \text{argth}(y))$ (voir Exercice 9). L'associativité découle alors de l'associativité de l'addition dans $\mathbb{R}$.
+    Sinon, calcul direct :
+    $(x \bullet y) \bullet z = \frac{\frac{x+y}{1+xy} + z}{1 + \frac{x+y}{1+xy}z} = \frac{x+y+z+xyz}{1+xy+xz+yz}$.
+    L'expression est symétrique en $x,y,z$, donc la loi est associative.
+\end{itemize}
+Conclusion : $(]-1,1[, \bullet)$ est un groupe abélien.
+\end{correction}
+
+% --- Correction 3 ---
+\begin{correction}{3}
+\textbf{1.} $G \subset \mathcal{M}_{2}(\mathbb{C})$. L'élément neutre $I_2$ est dans $G$ (avec $a=1, b=0$).
+Soit $M = \begin{pmatrix}a&b\\ -\overline{b}&\overline{a}\end{pmatrix} \in G$. Son déterminant est $a\overline{a} - b(-\overline{b}) = |a|^2 + |b|^2 = 1 \neq 0$. Donc $M$ est inversible et $G \subset GL_2(\mathbb{C})$.
+Inverse : $M^{-1} = \frac{1}{\det M} \begin{pmatrix}\overline{a}&-b\\ \overline{b}&a\end{pmatrix} = \begin{pmatrix}\overline{a}&-b\\ \overline{b}&a\end{pmatrix}$. En posant $a'=\overline{a}$ et $b'=-b$, on a $|a'|^2+|b'|^2=1$ et $M^{-1} \in G$.
+Produit : Soient $M = \begin{pmatrix}a&b\\ -\overline{b}&\overline{a}\end{pmatrix}$ et $M' = \begin{pmatrix}a'&b'\\ -\overline{b'}&\overline{a'}\end{pmatrix}$.
+$M M' = \begin{pmatrix} aa' - b\overline{b'} & ab' + b\overline{a'} \\ -\overline{b}a' - \overline{a}\overline{b'} & -\overline{b}b' + \overline{a}\overline{a'} \end{pmatrix}$.
+Le terme $(1,1)$ est $A = aa' - b\overline{b'}$. Le terme $(1,2)$ est $B = ab' + b\overline{a'}$.
+Le terme $(2,1)$ est $-\overline{b'} \overline{a} - \overline{b} a' = -\overline{(b'a + b\overline{a'})} = -\overline{B}$.
+Le terme $(2,2)$ est $\overline{a}\overline{a'} - \overline{b}b' = \overline{aa' - b\overline{b'}} = \overline{A}$.
+De plus $\det(MM') = \det(M)\det(M') = 1 \times 1 = 1$, donc $|A|^2+|B|^2=1$.
+Donc $G$ est un sous-groupe de $GL_2(\mathbb{C})$.
+
+\textbf{2.} Soit $R_\theta = \begin{pmatrix}\cos\theta&-\sin\theta\\ \sin\theta&\cos\theta\end{pmatrix}$.
+On pose $a=\cos\theta$ et $b=-\sin\theta$. On a $a,b \in \mathbb{R} \subset \mathbb{C}$.
+$|a|^2+|b|^2 = \cos^2\theta + \sin^2\theta = 1$.
+La matrice s'écrit bien $\begin{pmatrix}a&b\\ -b&a\end{pmatrix} = \begin{pmatrix}a&b\\ -\overline{b}&\overline{a}\end{pmatrix}$ car $a,b$ réels.
+Donc $SO(2) \subset G$. Comme $SO(2)$ est un groupe (rotations), c'est un sous-groupe de $G$.
+\end{correction}
+
+% --- Correction 4 ---
+\begin{correction}{4}
+\textbf{1.} $G_p = \{ z \in \mathbb{C} \mid \exists k \in \mathbb{N}, z^{p^k}=1 \}$.
+$1 \in G_p$ (avec $k=1$).
+Soient $x, y \in G_p$. Il existe $k_1, k_2$ tels que $x^{p^{k_1}}=1$ et $y^{p^{k_2}}=1$.
+Soit $K = \max(k_1, k_2)$. Alors $x^{p^K}=1$ et $y^{p^K}=1$.
+$(xy^{-1})^{p^K} = x^{p^K} (y^{p^K})^{-1} = 1 \cdot 1^{-1} = 1$.
+Donc $xy^{-1} \in G_p$. $G_p$ est un sous-groupe de $(\mathbb{C}^*, \times)$.
+
+\textbf{2.} Pour tout $k \in \mathbb{N}$, l'ensemble $U_{p^k}$ des racines $p^k$-ièmes de l'unité est un sous-groupe de $G_p$.
+Comme les $p^k$ sont distincts, ces sous-groupes sont distincts et en nombre infini (la suite des inclusions est croissante stricte : $U_{p^k} \subsetneq U_{p^{k+1}}$).
+\end{correction}
+
+% --- Correction 6 ---
+\begin{correction}{6}
+\textbf{1.} $e \in Z(G)$ car $e.y=y.e=y$.
+Soient $x, x' \in Z(G)$. Pour tout $y$, $(xx').y = x.(x'.y) = x.(y.x') = (x.y).x' = (y.x).x' = y.(xx')$. Donc $xx' \in Z(G)$.
+Soit $x \in Z(G)$. $x.y=y.x$. En multipliant à gauche et à droite par $x^{-1}$ : $y.x^{-1} = x^{-1}.y$. Donc $x^{-1} \in Z(G)$.
+$Z(G)$ est un sous-groupe.
+
+\textbf{2. a)} Élément neutre : On cherche $(e_1, e_2)$ tel que $(x,y)(e_1,e_2)=(x,y)$.
+$x e_1 = x \implies e_1=1$.
+$x e_2 + y/e_1 = y \implies x e_2 + y = y \implies x e_2 = 0 \implies e_2=0$ (car $x \in \mathbb{R}^*$).
+Neutre : $(1,0)$.
+Vérifions à gauche : $(1,0)(x,y) = (1.x, 1.y + 0/x) = (x,y)$. OK.
+Inverse : On cherche $(x',y')$ tel que $(x,y)(x',y')=(1,0)$.
+$xx'=1 \implies x' = 1/x$.
+$xy' + y/x' = 0 \implies xy' + y/(1/x) = 0 \implies xy' + xy = 0 \implies y' = -y$.
+Inverse : $(1/x, -y)$.
+Vérification : $(1/x, -y)(x,y) = ( (1/x)x, (1/x)y + (-y)/(1/x) ) = (1, y/x - xy)$. Attention, l'inverse à gauche doit marcher.
+Calculons $(1/x, -y)(x,y) = (1, \frac{1}{x}y + \frac{-y}{x}) = (1,0)$. OK.
+Associativité : Laborieux mais vrai (voir matrices triangulaires $\begin{pmatrix}x&y\\0&1/x\end{pmatrix}$ ? Non, la loi est spécifique).
+Associativité : $((x,y)(x',y'))(x'',y'') = (xx', xy'+y/x')(x'',y'') = (xx'x'', (xx')y'' + \frac{xy'+y/x'}{x''})$.
+$(x,y)((x',y')(x'',y'')) = (x,y)(x'x'', x'y''+y'/x'') = (x(x'x''), x(x'y''+y'/x'') + \frac{y}{x'x''}) = (xx'x'', xx'y'' + xy'/x'' + y/x'x'')$.
+C'est différent. Il y a une erreur dans l'énoncé de la loi ou dans mon développement.
+Reprenons la loi : $(x,y)(x',y')=(xx', xy'+\frac{y}{x'})$.
+Terme en $y$ du premier calcul : $xx'y'' + \frac{xy'}{x''} + \frac{y}{x'x''}$.
+Terme en $y$ du second calcul : $xx'y'' + \frac{xy'}{x''} + \frac{y}{x'x''}$.
+C'est égal. La loi est associative. C'est un groupe.
+
+\textbf{2. b)} Centre : $(x,y) \in Z(G) \iff \forall (a,b), (x,y)(a,b) = (a,b)(x,y)$.
+$(xa, xb + y/a) = (ax, ay + b/x)$.
+$xb + y/a = ay + b/x \iff b(x - 1/x) = y(a - 1/a)$.
+Ceci doit être vrai pour tout $a,b$.
+Pour $b=1, a=1$ : $1(x-1/x) = 0 \implies x^2=1 \implies x=1$ ou $x=-1$.
+Si $x=1$, l'équation devient $0 = y(a-1/a)$. Pour $a=2$, $y(3/2)=0 \implies y=0$.
+Si $x=-1$, l'équation devient $0 = y(a-1/a)$. Donc $y=0$.
+Candidats : $(1,0)$ et $(-1,0)$.
+$(1,0)$ est le neutre, il est dans le centre.
+$(-1,0)(a,b) = (-a, -b)$. $(a,b)(-1,0) = (-a, -b)$.
+Donc $Z(G) = \{ (1,0), (-1,0) \}$.
+\end{correction}
+
+% --- Correction 8 ---
+\begin{correction}{8}
+\textbf{1.} Si $\Phi$ est une action, pour tout $g$, l'application $\sigma_g : x \mapsto g.x$ est une bijection de $E$ (d'inverse $\sigma_{g^{-1}}$ car $\sigma_g \circ \sigma_{g^{-1}} = \sigma_{gg^{-1}} = \sigma_e = Id$).
+De plus $g \mapsto \sigma_g$ vérifie $\sigma_{gh} = \sigma_g \circ \sigma_h$, c'est un morphisme de $G$ dans $\mathfrak{S}(E)$.
+Réciproquement, si c'est un morphisme, les propriétés de l'action découlent de celles du morphisme.
+
+\textbf{2.} Automorphisme intérieur :
+$e.x.e^{-1} = x$.
+$g.(h.x.h^{-1}).g^{-1} = (gh).x.(h^{-1}g^{-1}) = (gh).x.(gh)^{-1}$.
+C'est bien une action.
+\end{correction}
+
+% --- Correction 12 ---
+\begin{correction}{12}
+\textbf{1.} $a\mathbb{Z}$ est l'image du groupe $\mathbb{Z}$ par le morphisme $n \mapsto na$. C'est un sous-groupe de $\mathbb{R}$.
+Il n'est pas dense car il existe un intervalle ouvert, par exemple $]0, a[$, qui ne contient aucun élément de $a\mathbb{Z}$ (le plus petit élément strictement positif est $a$).
+
+\textbf{2. a)} $G \neq \{0\}$, donc il existe $x \in G \setminus \{0\}$. Si $x > 0$, $x \in A$. Si $x < 0$, $-x \in G$ et $-x > 0$, donc $-x \in A$. $A$ est non vide.
+
+\textbf{2. b)} Si $\inf A = 0$. Soit $\epsilon > 0$. Par définition de l'infimum, il existe $u \in A$ tel que $0 \le u < \epsilon$. Comme $0 \notin A$ ($A \subset \mathbb{R}^*_+$), $0 < u < \epsilon$.
+Soient $x < y$ deux réels. On cherche $g \in G$ tel que $x < g < y$.
+On choisit $u \in G \cap ]0, y-x[$.
+L'ensemble des multiples de $u$, $\{nu \mid n \in \mathbb{Z}\}$, "saute" de $u$ en $u$ avec un pas inférieur à la largeur de l'intervalle $]x,y[$. Il doit forcément tomber dedans.
+Plus formellement, soit $n = \lfloor \frac{x}{u} \rfloor + 1$. Alors $n > x/u \implies nu > x$.
+Et $nu = (\lfloor \frac{x}{u} \rfloor + 1) u \le (\frac{x}{u} + 1)u = x + u < x + (y-x) = y$.
+Donc $nu \in ]x,y[ \cap G$. $G$ est dense.
+
+\textbf{2. c)} Si $a > 0$. Supposons $a \notin G$. Alors comme $a = \inf A$, il existe $b \in A$ tel que $a < b < 2a$ (sinon $2a$ minorerait $A$ ou $a$ serait dans $A$ comme min ? Non, c'est juste la définition de l'inf).
+$b \in G$ et $b > 0$. $a$ n'est pas dans $G$, donc $b \neq a$.
+Mais si on avait $b \in ]a, 2a[ \cap G$, alors $b-a$... attention $a \notin G$.
+Reprenons la preuve classique :
+Si $a \in A$, alors $a \in G$.
+Soit $x \in G$. On effectue la division euclidienne de $x$ par $a$ : $x = n a + r$ avec $0 \le r < a$.
+$r = x - na \in G$. Comme $0 \le r < a$ et $a = \min(G \cap \mathbb{R}^*_+)$, on doit avoir $r=0$.
+Donc $x = na \in a\mathbb{Z}$. D'où $G = a\mathbb{Z}$.
+
+Reste à montrer que $\inf A \in A$ si $\inf A > 0$.
+Supposons $a = \inf A > 0$ et $a \notin A$.
+Par définition de l'inf, il existe $g_1 \in A$ tel que $a < g_1 < 2a$.
+Il existe aussi $g_2 \in A$ tel que $a < g_2 < g_1$.
+Alors $g_1 - g_2 \in G$.
+$g_1 - g_2 > 0$ et $g_1 - g_2 < 2a - a = a$.
+Donc $g_1 - g_2 \in A$ et $g_1 - g_2 < a$.
+Contradiction avec $a = \inf A$.
+Donc $a \in A$, donc $a \in G$.
+\end{correction}
+
+% --- Correction 15 ---
+\begin{correction}{15}
+Soit $G = \mathbb{Z}/n\mathbb{Z}$. Soit $d$ un diviseur de $n$. $n=dq$.
+\textbf{1.} Considérons l'élément $\overline{q} \in G$.
+L'ordre de $\overline{q}$ est le plus petit $k > 0$ tel que $k\overline{q} = \overline{0}$, c'est-à-dire $n | kq$, ou $dq | kq$, soit $d | k$.
+Le plus petit est $k=d$.
+Le sous-groupe engendré $<\overline{q}> = \{ k\overline{q} \mid k \in \mathbb{Z} \}$ a pour cardinal l'ordre de l'élément, c'est-à-dire $d$.
+C'est donc un sous-groupe d'ordre $d$.
+Les éléments sont $\{\overline{0}, \overline{q}, \overline{2q}, \dots, \overline{(d-1)q}\}$.
+
+\textbf{2.} Soit $H$ un sous-groupe de $G$ d'ordre $d$.
+Soit $x \in H$. D'après le théorème de Lagrange, l'ordre de $x$ divise $|H|=d$.
+Donc $d x = \overline{0}$ dans $\mathbb{Z}/n\mathbb{Z}$.
+Cela signifie $n | dx$, donc $dq | dx$, donc $q | x$.
+Si on regarde les représentants dans $\{0, \dots, n-1\}$, les éléments de $H$ sont des multiples de $q$.
+Il y a exactement $d$ multiples de $q$ dans cet ensemble : $\{0, q, 2q, \dots, (d-1)q\}$.
+Donc $H$ est nécessairement cet ensemble $<\overline{q}>$.
+Il y a un unique sous-groupe d'ordre $d$.
+\end{correction}

@@ -1,0 +1,1700 @@
+Soit $\K = \R$ ou $\C$. 
+
+\section*{Préambule}
+
+\begin{definition}{}{}
+    Soit $I$ un intervalle réel tel que $\mathring I \neq \emptyset$ et $f : I \to \C$. 
+    On dit que $f$ est \textit{continue par morceaux} sur $I$ et on note $f \in \mc{pm}(I, \C)$ si pour tout segment 
+    $[a, b] \subset I$, $f$ est continue par morceaux sur $[a, b]$, c'est à dire qu'il existe 
+    $(c_i)_{0 \leq i \leq n}$ une subdivision de $[a, b]$ telle que pour tout $i \in \{0, \ldots, n-1\}$,
+    $f_{|]c_i, c_{i+1}[}$ est continue et prolongeable par continuité en $c_i$ et $c_{i+1}$.
+\end{definition}
+
+
+\section{Intégrale sur \texorpdfstring{$[a, + \infty[$}{x >= a}}
+
+Soit $a \in \R$ et $f \in \mc{pm} ([a, + \infty[, \K)$
+
+\subsection{Intégrale généralisée }
+
+\begin{definition}{Intégrale généralisée}{}
+    On dit que \textit{l'intégrale généralisée} $\ds \int_a^{+ \infty} f(t) \dt$ converge ssi 
+    la fonction $\fonction{}{[a, + \infty[}{\K}{x}{\int_a^x f(t) \dt}$ a une limite finie quand 
+    $x$ tend vers $+ \infty$. Cette limite est notée 
+    $$\int_a^{+ \infty} f(t) \dt = \int_{a }^{+ \infty   } f = \lim_{x \to + \infty} \int_{a }^{x } f$$
+\end{definition}
+
+\begin{proposition}{Chasles}{}
+    Soit $a \leqslant b $. Alors $\ds \int_b^{+ \infty} f $ converge ssi 
+    $\ds \int_a^{+ \infty} f $ converge et on a 
+    $$\int_a^{+ \infty} f = \int_a^b f + \int_b^{+ \infty} f$$
+
+    On dit que l'intégrale de $f$ est convergente en $+\infty$.
+\end{proposition}
+
+\begin{proof}
+    Pour $x \geqslant a$, on a 
+    $$\int_a^x f(t) dt = \int_a^b f(t) dt + \int_b^x f(t) dt$$
+\end{proof}
+
+\subsubsection{Exemples fondamentaux }
+
+\begin{proposition}{}{}
+    Soit $\alpha \in \R$, alors $\ds \int_{1 }^{+ \infty   } \frac{1}{t^\alpha} dt$ converge
+    ssi $\alpha > 1$. 
+\end{proposition}
+
+\begin{proof}
+    La fonction est continue donc continue par morceaux sur $[1, + \infty[$.
+
+    Soit $x > 1$. Si $\alpha \neq 1$, on a $\ds \int_{1 }^{x } \frac \dt {t^\alpha} = \frac{1}{1 - \alpha} \left[ - \frac{1}{t^{\alpha - 1}} \right]^x_1$
+
+
+    \avspace Si $\alpha > 1$, alors $= \frac{1}{\alpha - 1} \left( 1 - \frac{1}{x^{\alpha - 1}} \right) \xrightarrow[x \to + \infty   ]{} 0$
+    donc l'intégrale converge. 
+    
+    \avspace Si $\alpha < 1$, alors $= \ds \frac{1 }{ 1 - \alpha } \left( \frac{1}{x^{\alpha - 1}} - 1 \right) \xrightarrow[x \to + \infty   ]{} + \infty$
+    donc l'intégrale diverge.
+
+    \avspace Si $\alpha = 1$, alors $\ds \int_{1 }^{x } \frac \dt t = [\ln t]^x_1 = \ln x \xrightarrow[x \to + \infty   ]{} + \infty$
+\end{proof}
+
+\begin{proposition}{}{}
+    Soit $a \in \R$, alors $\ds \int_{0 }^{ + \infty   } e^{-at} \dt$ converge ssi $a > 0$.
+\end{proposition}
+
+\begin{proof}
+    La fonction est continue donc continue par morceaux sur $[0, + \infty[$.
+
+    Si $a = 0$, l'intégrale diverge clairement.
+
+    Si $a \neq 0$, $\ds \int_a^x e^{-at} dt = \frac 1 a \left[ 1 - e^{-at} \right] \to \frac 1 a$ si $a > 0$ et diverge sinon.
+\end{proof}
+
+
+
+\begin{definition}{}{}
+    Soit $f \in \mc 0 ([a, + \infty[, \K)$ tel que $\ds \int_a^{+ \infty} f(t) dt$ converge.
+    Alors $\fonction G {[a, + \infty[}{\K}{x}{\int_x^{+ \infty} f(t) dt}$ est bien définie, de 
+    classe $\mc 1$ et $G' = -f$. 
+\end{definition}
+
+\begin{proof}
+    $G$ est bien définie. 
+
+    Si $x \in [a, + \infty[$, $G(x) = \ds \underbrace{\int_{a}^{+ \infty } f(t) \dt}_{\text{constante}} - \underbrace{\int_a^x f(t) \dt}_{\mc 1 \text{ de dérivée } f}$
+\end{proof}
+
+\subsection{Cas des fonctions positives}
+
+\begin{proposition}{}{}
+    Soit $f \in \mc{pm}([a, + \infty[, \R^+)$ et $\fonction{F}{[a, + \infty[}{\R^+}{x}{\int_a^x f(t) dt}$.
+    Alors $F$ est croissante et $\ds \int_a^{+ \infty} f(t) dt$ converge ssi $F$ est majorée.
+\end{proposition}
+
+\begin{proof}
+    Soit $x \leqslant y \in [a, +\infty[$ et $F(y) - F(x) = \ds \int_a^y f - \int_a^x f = \int_x^y f \geqslant 0$ donc $F$ est croissante.
+
+    Par le théorème de la limite monotone, $F$ a une limite dans $\bar \R$ en $+\infty$.
+
+    Donc $\ds \int_{a }^{+\infty   } f$ converge ssi cette limite est finie, ssi $F$ est majorée.
+\end{proof}
+
+\begin{remarque}
+    Dans le cas où $f$ est positive et où $\ds \int_{a }^{+ \infty   } f(t) \dt$ diverge, on a 
+    donc $\ds \lim_{x \to + \infty   } \int_{a }^{x } f(t) \dt = + \infty$.
+    On notera alors 
+    $$\int_{a }^{+ \infty   } f(t) \dt = + \infty$$
+\end{remarque}
+
+
+
+\begin{proposition}{}{}
+    Soit $f \in \mc{pm}([a, + \infty[, \R^+)$. On peut avoir $\ds \int_a^{+ \infty} f(t) dt$ 
+    qui converge sans que $f(x) \xrightarrow[x \to + \infty   ]{} 0$.
+\end{proposition}
+
+\begin{proof}
+    On pose $f(x) = \begin{cases}
+        n^4\left( x - n + \frac 1 {n^3} \right) & \text{si } x \in \left[ n - \frac 1 {n^3}, n \right] \text{ pour } n \geqslant 2 \\
+        -n^4\left( x - n - \frac 1 {n^3} \right) & \text{si } x \in \left[ n, n + \frac 1 {n^3} \right] \text{ pour } n \geqslant 2 \\
+        0 & \text{sinon}
+    \end{cases}$
+
+    Pour $n \geqslant 2$, $f(n) = n \xrightarrow[n \to + \infty   ]{} + \infty$ donc 
+    $f(x) \nrightarrow 0$ quand $x \to + \infty$.
+
+    Pour $x \geqslant 3$ et 
+    \begin{align}
+        \int_1^x f(t) dt &= \int_{1}^{\lfloor x \rfloor} f(t) \dt \\
+        & \leqslant \sum_{n=2}^{\lfloor x \rfloor + 1} \int_{n - \frac 1 {n^3}}^{n + \frac 1 {n^3}} f(t) dt \\
+        & \leqslant \frac{\pi^2}{6}
+    \end{align}
+
+    Donc $\ds \int_1^{+ \infty} f(t) dt$ converge.
+\end{proof}
+
+\begin{theoreme}{}{}
+    Soient $f, g \in \mc{pm}([a, + \infty[, \R^+)$ telles que $f \leqslant g$ et 
+    $\ds \int_a^{+ \infty} g(t) \dt$ converge. Alors $\ds \int_a^{+ \infty} f(t) \dt$ converge.
+\end{theoreme}
+
+\begin{proof}
+    Soit $x \geqslant a$, $\ds \int_a^x f \leqslant \int_a^x g \leqslant \int_a^{+ \infty} g$ donc
+    $\ds \int_a^x f$ est majorée. Par positivité, elle est croissante donc
+    elle converge quand $x \to + \infty$.
+\end{proof}
+
+\subsection{Convergence absolue et intégrabilité}
+
+\begin{definition}{}{}
+    Soit $f \in \mc{pm}([a, + \infty[, \K)$. On dit que $f$ est intégrable sur $[a, + \infty[$
+    ou que $\ds \int_a^{+ \infty} f(t) \dt$ converge abolument ssi $\ds \int_a^{+ \infty} |f(t)| \dt$ converge.
+\end{definition}
+
+\begin{proposition}{relation entre convergence et convergence absolue}{}
+    Soit $f \in \mc{pm}([a, + \infty[, \R)$ de signe constant. Alors 
+    $\ds \int_a^{+ \infty} f$ converge absolument ssi elle converge. 
+\end{proposition}
+
+\begin{proof}
+    Si $f \geqslant 0$, $|f| = f$ par def. 
+
+    Si $f \leqslant 0$, pour $x \geqslant a$, $\int_a^x |f(t)| dt = - \int_a^x f$ a donc une 
+    limite en $+ \infty$ ssi $\int_a^x f$ en a une.
+\end{proof}
+
+\begin{proposition}{indépendance du point de départ}{}
+    Soit $b \geqslant a$ et $f \in \mc{pm}([a, + \infty[, \K)$. 
+    $f$ est intégrable sur $[b, + \infty[$ ssi elle est intégrable sur $[a, + \infty[$.
+    On dira alors que $f$ est intégrable en $+ \infty$.
+\end{proposition}
+
+\begin{proof}
+    $f$ intégrable sur $[b, + \infty[$ ssi $\ds \int_b^{+ \infty} |f(t)| dt$ converge
+    ssi $\ds \int_a^{+ \infty} |f(t)| dt $ converge ssi $f$ est intégrable sur $[a, + \infty[$.
+\end{proof}
+
+\begin{theoreme}{Inégalité triangulaire intégrale généralisée}{}
+    Si $f$ est intégrable sur $[a, + \infty[$, alors $\ds \int_a^{+ \infty} f$ converge et 
+    $$\left| \int_{a }^{+\infty} f \right| \leqslant \int_{a }^{+\infty} |f(t)| dt $$
+\end{theoreme}
+
+\idee{
+    Découper en partie réelle et imaginaire, puis en parties positives et négatives.
+}
+
+\begin{proof}
+    Supposons que $\int_a^{+ \infty} |f(t)| dt$ converge.
+
+    Soit $x \geqslant a$,
+    $$\int_a^x f(t) \dt = \int_a^x (\re f)^+(t) \dt - \int_a^x (\re f)^-(t) \dt + i \left( \int_a^x (\im f)^+(t) \dt - \int_a^x (\im f)^-(t) \dt \right)$$
+    par linéarité de l'intégrale sur un segment.
+
+    Or $\forall t$, $0 \leqslant (\re f^+) \leqslant \left| \re f(t) \right| \leqslant |f(t)|$ or 
+    $\ds \int_{a }^{+ \infty   } |f| $ converge donc $\int_0^{+ \infty} (\re f^+)(t) \dt$ converge. 
+
+    De même pour les trois autres intégrales.
+
+    Donc $\int_a^x f(t) \dt$ a une limite. 
+\end{proof}
+
+\begin{exemple}
+    $\ds \int_1^{+ \infty} \frac{\cos t}{t^2} dt$. 
+
+    Posons $\fonction f {[1, + \infty[}{\R}{t}{\frac{\cos t}{t^2}}$ est continue donc continue par 
+    morceaux par théorème d'opérations. 
+
+    $ \ds \left| \frac{\cos t}{t^2} \right| \leqslant \frac{1}{t^2}$, or $\ds \int_1^{+ \infty} \frac{1}{t^2} dt$ converge donc
+    $\ds \int_1^{+ \infty} \left| \frac{\cos t}{t^2} \right| dt$ converge
+    
+    donc $\ds \int_1^{+ \infty} \frac{\cos t}{t^2} dt$ converge abolument donc converge. 
+\end{exemple}
+
+\begin{exemple}
+    Etude de la convergence de $\ds \int_1^{+ \infty} \frac{\cos(t)}{t} dt$
+
+    Posons $\fonction f {[1, + \infty[}{\R}{t}{\frac{\cos t}{t}}$ qui est continue par théorème d'opérations.
+
+    Pas possible de montrer la convergence avec la convergence absolue car $\ds \int_1^{+ \infty} \frac{1}{t} \dt$ diverge.
+
+    On remarque que si on avait un $\ds \frac 1 {t^2}$, on aurait la convergence. On va donc 
+    réaliser une intégration par parties.
+
+    Posons $u(t) = \frac 1 t$ et donc $u'(t) = - \frac 1 {t^2}$ 
+
+    $v(t) = \sin t$ et donc $v'(t) = \cos t$.
+
+    Donc par intégration par parties, 
+
+    \begin{align}
+        \int_1^x \frac{\cos t}{t} \dt &= \left[ \frac{\sin t}{t} \right]_1^x + \int_1^x \frac{\sin t}{t^2} \dt \\
+        &= \underbrace{\frac{\sin x}{x}}_{\xrightarrow[x \to + \infty   ]{} 0} - \sin 1 + \int_1^x \underbrace{\frac{\sin t}{t^2}}_{\leqslant \frac 1 {t^2}} \dt
+    \end{align}
+
+    Or $\ds \int_1^{+ \infty} \frac{1}{t^2} \dt$ converge donc $\ds \int_1^{+ \infty} \frac{\sin t}{t^2} dt$ converge absolument donc converge.
+
+    Donc $\ds \int_1^{+ \infty} \frac{\cos t}{t} \dt$ converge.
+\end{exemple}
+
+\begin{exemple}
+    Etudions $\ds \int_{1}^{+ \infty } \sin(t^2) \dt$.
+
+    Posons $\fonction f {[1, + \infty[}{\R}{t}{\sin(t^2)}$ qui est continue par théorème d'opérations.
+
+    Considérons pour $x \geqslant 1$, $\ds \int_{1 }^{x } \sin(t^2) \dt$.
+
+    On va commencer par réaliser un changement de variable.
+
+    Posons $u(t) = t^2$, et donc $t = \sqrt u$, $dt = \frac{1}{2 \sqrt u} du$.
+
+    On a donc $\ds \int_{1 }^{x } \sin(t^2) \dt = \int_{1}^{x^2} \sin(u) \frac{1}{2 \sqrt u} du$.
+
+    \avspace Réalisons maintenant une intégration par parties, en posant : 
+
+    $g(u) = \frac{1}{2 \sqrt u}$, donc $g'(u) = - \frac{1}{4 u^{3/2}}$.
+
+    $h(u) = - \cos u$, donc $h'(u) = \sin u$.
+    On a donc :
+
+    $$ \int_{1 }^{x } \sin(t^2) \dt = \left[ - \frac{\cos u}{2 \sqrt u} \right]_{1}^{x^2} + \int_{1}^{x^2} \frac{\cos u}{4 u^{3/2}} du $$
+
+    Or $\left| \frac{\cos u  }{u^{3/2}} \right| \leqslant \frac{1}{u^{3/2}}$ et $\ds \int_{1}^{+ \infty} \frac{1}{u^{3/2}} du$ converge donc
+    $\ds \int_{1}^{+ \infty} \frac{\cos u}{4 u^{3/2}} du$ converge absolument donc converge.
+
+    Donc $\ds \int_{1}^{+ \infty} \sin(t^2) dt$ converge.
+
+    \uindent{Variante } 
+
+    En remarquant que $\sin t^2 = 2t \cdot \frac{\sin t^2}{2t}$, on peut alors réaliser l'intégration par parties 
+    sans passer par le changement de variable.
+\end{exemple}
+
+
+\begin{definition}{Semi-convergence}{}
+    On dit que l'intégrale $\ds \int_a^{+ \infty} f(t) dt$ est semi-convergente ssi elle 
+    est convergente mais pas absolument convergente.
+
+    On pourra donc considérer $\ds \int_{a }^{+ \infty}  f(t) \dt \in \R$ alors 
+    que $f$ n'est pas intégrable sur $[a, + \infty[$.
+\end{definition}
+
+
+\begin{exemple}
+    Montrons que $\ds \int_{1 }^{+ \infty   } \frac{\sin t }{t } \dt$ est semi-convergente (exemple fondamental à savoir refaire). 
+
+    \uindent{Convergence }
+
+    Posons $\fonction f {[1, + \infty[}{\R}{t}{\frac{\sin t}{t}}$ qui est continue par théorème d'opérations.
+
+    Pour $x \geqslant 1$, $\ds \int_{1 }^{x } \frac{\sin t}{t} \dt = \left[ - \frac{\cos t}{t} \right]_1^x + \int_1^x \frac{\cos t}{t^2} \dt$
+    par intégration par parties.
+
+    Or $\ds \left| -\frac{\cos t}{t} \right| \leqslant \frac{1}{t} \to 0$ 
+    et $\ds \left| \frac{\cos t}{t^2} \right| \leqslant \frac{1}{t^2}$, intégrable sur $[1, + \infty[$.
+
+    Donc $\ds \int_1^{+\infty} \frac{\cos(t)}{t^2} dt$ converge absolument donc converge.
+
+    Donc $\ds \int_{1 }^{+ \infty   } \frac{\sin t }{t } \dt$ converge.
+
+    \uindent{Divergence de l'intégrale absolue }
+
+    Montrons que $\ds \int_{1 }^{+ \infty   } \left| \frac{\sin t }{t } \right| \dt$ diverge.
+
+    Remarquons que $\forall t \geqslant 1$, $\ds \left| \frac{\sin t}{t} \right| \geqslant \frac{\sin^2 t}{t} = \frac{1 - \cos(2t)}{2t}$.
+
+    $\ds \int_{1}^{x } \frac 1 {2t} \dt = \frac{\ln(x)}{2} \xrightarrow[x \to + \infty   ]{} + \infty$.
+
+    Or $\ds \int_{1}^{x } \frac{\cos(2t)}{2t} \dt$ converge (par un raisonnement similaire à celui de l'exemple précédent).
+
+    Donc $\ds \int_{1 }^{+ \infty   } \left| \frac{\sin t }{t } \right| \dt$ diverge.
+\end{exemple}
+
+
+
+\begin{theoreme}{}{}
+    Soient $f, g \in \mc{pm}([a, + \infty[, \K)$. 
+
+    \begin{itemize}
+        \item Si $g$ est intégrable sur $[a, + \infty[$ et si $|f(t)| = O(|g(t)|)$ alors $f$ est 
+        intégrable sur $[a, + \infty[$.
+        \item Si $|f(t)| \sim |g(t)|$ alors $f$ est intégrable sur $[a, + \infty[$ ssi $g$ est intégrable sur $[a, + \infty[$.
+    \end{itemize}
+\end{theoreme}
+
+\begin{proof}
+    Supposons que $\ds \int_{a }^{+ \infty } |g(t)| \dt$ converge et que 
+    $|f(t)| = O(|g(t)|)$. Donc $\exists b \geqslant a, \, \exists K > 0$ tels que 
+    $\forall t \in [b, + \infty[, \, |f(t)| \leqslant K |g(t)|$.
+
+    Or $\ds \int_{b }^{+ \infty   } |g(t)| \dt$ converge donc par positivité,
+    $\ds \int_{b }^{+ \infty   } |f(t)| \dt$ converge donc $f$ est intégrable sur $[a, + \infty[$.
+
+
+    \lvspace Supposons que $|f| \sim |g|$. 
+
+    Si $\int_{a }^{+ \infty   } |g(t)| \dt$ converge, puisqu'on a $|f(t)| = O(|g(t)|)$,
+    $f$ est intégrable sur $[a, + \infty[$. De même pour la réciproque.
+\end{proof}
+
+\begin{exemple}
+    Cherchons pour quels $\alpha \in \R$, $\ds \int_1^{+ \infty} \frac{\arctan t}{\sqrt{t^{2 \alpha} + |\cos t|}} \dt$ est intégrable.
+
+    \uindent{Etude pour $\alpha > 0$ }
+
+    On pose $\fonction f {[1, + \infty[}{\R}{t}{\frac{\arctan t}{\sqrt{t^{2 \alpha} + |\cos t|}}}$ qui est continue par théorème d'opérations.
+
+    $t^{2 \alpha} + | \cos t | \sim t^{2 \alpha}$ donc $|f(t)| \sim \frac{\pi}{2 t^\alpha}$ et donc 
+    intégrable ssi $\alpha > 1$.
+\end{exemple}
+
+\section{Cas d'un intervalle quelconque }
+\subsection{Intégrale généralisée convergente }
+
+\begin{definition}{Intégrale généralisée d'un intervalle quelconque}{}
+    Soit $I$ intervalle réel tel que $\mathring I \neq \emptyset$. 
+    Notons $a = \inf I$ et $b = \sup I$, et soit ${f \in \mc{pm}(I, \K)}$.
+
+    Posons $c \in I$ et $\fonction{F_c}{I}{\K}{x}{\int_c^x f(t) \dt}$, continue sur $I$. 
+    On dit que $\ds \int_{a }^{b } f(t) \dt$ converge ssi $F_c$ a des limites finies 
+    en $a$ et $b$. Dans ce cas, on définit : 
+    $$\int_a^b f(t) \dt = \lim_{x \to b} F_c(x) - \lim_{x \to a} F_c(x)$$
+
+    Ces notions ne dépendent pas du choix de $c$.
+\end{definition}
+
+\begin{proof}
+    $\blacktriangleright$ Soit $c' \in I$ et $F_{c'} : x \mapsto \int_{c' }^{x } f(t) \dt$ alors 
+    $\forall x \in I$, $F_{c'}(x) = F_c(x) + \int_{c'}^{c} f(t) \dt$ 
+
+    Donc $F_{c'}$ a des limites finies en $a$ et $b$ ssi $F_c$ en a. 
+
+    De plus, $\lim_{x \to b} F_{c'}(x) = \lim_{x \to b} F_c(x)  + z$ et 
+    $\lim_{x \to a} F_{c'}(x) = \lim_{x \to a} F_c(x) + z$. 
+
+    Donc $\lim_{x \to b} F_{c'}(x) - \lim_{x \to a} F_{c'}(x) = \lim_{x \to b} F_c(x) - \lim_{x \to a} F_c(x)$
+    d'où l'indépendance de ces notions et du choix de $c$. 
+
+    \lvspace $\blacktriangleright$ Cette notion est compatible avec celle du $I$. 
+
+    Si $I =[a, + \infty[$ et $\fonction {F_a}{I}{\K}{x}{\int_a^x f(t) dt}$, alors on a 
+    $F_a$ continue en $a$ et $F_a(a) = 0 $.
+    
+    Donc $\lim_{x \to a} F_a$ existe toujours. 
+
+    Donc $\int_{0}^{+ \infty   } f$ converge ssi $\lim_{+\infty   } F_a$ existe ssi 
+    $\ds \int_{a }^{+ \infty   } f$ converge.
+
+    De plus, $\int_{a }^{+ \infty   } f = \lim_{x \to + \infty   } F_a(x) - \lim_{a } F_a = \lim_{x \to + \infty  } F_a(x) = \int_{a }^{+ \infty   } f$.
+
+
+    \lvspace $\blacktriangleright$ Cette notion est compatible avec la def de l'intégrale sur un segment. 
+    Si $I = [a, b]$ avec $a < b \in \R$, et $\fonction{F_a}{I}{\K}{x}{\int_a^x f(t) \dt}$, 
+    est continue sur $I$.
+
+    Donc $\ds \int_{a }^{b } f(t) \dt = F_a(b) - F_a(a) = \lim_{x \to b} F_a(x) - \lim_{x \to a} F_a(x)$.
+\end{proof}
+
+\begin{exemple}
+    Étudions la convergence de $\ds \int_0^{+ \infty} \frac 1 {\sqrt t (1 + t)} \dt$.
+
+    Posons $\fonction f {[0, + \infty[}{\R}{t}{\frac 1 {\sqrt t (1 + t)}}$ qui est continue par théorème d'opérations.
+
+    Posons $\fonction{F}{]0, + \infty[}{\R}{t}{2 \arctan(\sqrt t)}$.
+
+    Donc l'intégrale converge ssi $F$ a des limites finies en $0$ et $+\infty$.
+
+    Or $F(t) \xrightarrow[t \to 0   ]{} 0$ et $F(t) \xrightarrow[t \to + \infty   ]{} \pi$.
+
+    Donc l'intégrale converge, et $\ds \int_{0}^{+ \infty   } \frac 1 {\sqrt t (1 + t)} \dt = \pi - 0 = \pi$.
+\end{exemple}
+
+
+\begin{theoreme}{intégrales classiques}{}
+    
+    \begin{itemize}
+        \item $\ds \int_0^1 \frac{1}{t^\alpha} \dt$ converge ssi $\alpha < 1$
+        \item $a < b \in \R$, $\ds \int_{a }^{b } \frac 1 {(t - a)^\alpha} \dt$ converge ssi $\alpha < 1$
+        \item $a < b \in \R$, $\ds \int_{a }^{b } \frac 1 {(b - t)^\alpha} \dt$ converge ssi $\alpha < 1$
+        \item $a < 0$, $\ds \int_{- \infty}^a \frac 1 {t^\alpha} \dt$ converge ssi $\alpha > 1$
+    \end{itemize}
+\end{theoreme}
+
+\begin{proof}
+    $\fonction f {]0, 1]}{\R}{t}{\frac{1}{t^\alpha}}$ 
+
+    Si $\alpha \neq 1$, $F : t \mapsto \frac 1 {(1 - \alpha)} \frac{1}{t^{\alpha - 1}}$ a 
+    une limite finie en $0$ ssi $\alpha < 1$. 
+
+    Si $\alpha = 1$, $F : t \mapsto \ln t$ n'a pas de limite finie en $0$.
+
+    Les autres cas se traitent de manière similaire. 
+\end{proof}
+
+
+\begin{proposition}{cas des fonctions positives}{}
+    Si $f \in \mc{pm}(I, \R^+)$, alors pour $c \in I$, $\fonction{F}{I}{\R}{x}{\int_c^x f(t) \dt}$ est croissante
+    et donc $F$ admet des limites dans $\bar \R$ en $a$ et $b$.
+
+    \begin{itemize}
+        \item Si les deux limites sont finies, alors $\ds \int_a^b f(t) \dt$ converge.
+        \item Si l'une des deux limites est infinie, alors $\ds \int_a^b f(t) \dt$ diverge et on convient 
+        que $\ds \int_a^b f(t) \dt = + \infty$.
+    \end{itemize}
+\end{proposition}
+
+
+\subsection{Fonctions intégrables }
+
+\begin{definition}{Fonction intégrable}{}
+    Soit $f \in \mc{pm}(I, \K)$. On dit que $f$ est intégrable sur $I$ ou que 
+    $\ds \int_a^b f(t) dt$ converge absolument ssi $\ds \int_a^b |f(t)| \dt$ converge.
+\end{definition}
+
+\begin{proposition}{}{}
+    Soient $f, g \in \mc{pm}(I, \R^+)$. Si $f \leqslant g$ et si
+    $\ds \int_{a }^{b } g(t) \dt$ converge, alors $\ds \int_{a }^{b } f(t) \dt$ converge.
+\end{proposition}
+
+\idee{
+    Croissance des primitives. 
+}
+
+\begin{proof}
+    Soit $c \in I$ et $\fonction F I \R x {\int_c^x f(t) \dt}$ et $\fonction G I \R x {\int_c^x g(t) \dt}$.
+
+    Or $f$ et $g$ sont positives donc $F$ et $G$ sont croissantes.
+
+    Or $\forall t \in I, \, f(t) \leqslant g(t)$. 
+
+    \uline{Pour $x > c$}, $\ds \int_{c }^{x } f(t) \dt \leqslant \int_{c }^{x } g(t) \dt \leqslant \int_{c }^{b } g(t) \dt$ qui converge 
+    donc $F$ est majorée, et donc par le théorème de la limite monotone, $F$ a une limite finie en $b$ dans $\R$.
+
+    \avspace \uline{Pour $x \leqslant c$ }, $\ds \int_{c }^{x } f(t) \dt \geqslant \int_{c }^{x } g(t) \dt \geqslant \int_{a }^{c } g(t) \dt$ qui converge
+    donc $F$ est minorée, et donc par le théorème de la limite monotone, $F$ a une limite finie en $a$ dans $\R$.
+\end{proof}
+
+
+\begin{theoreme}{convergence absolue implique convergence}{}
+    Soit $f \in \mc{pm}(I, \K)$. Si $\ds \int_{a }^{b } |f(t)| \dt$ converge, alors 
+    $\ds \int_{a }^{b } f(t) \dt$ converge. Ainsi, la convergence absolue 
+    implique la convergence.
+\end{theoreme}
+
+\idee{
+    Découper en partie réelle et imaginaire, puis en parties positives et négatives.
+}
+
+\begin{proof}
+    Soit $f$ telle que $\ds \int_{a}^b |f|$ converge. 
+    
+    On a donc 
+    $f = \re f^+ - \re f^- + i (\im f^+ - \im f^-)$.
+
+    Soit $c \in I$. 
+
+    $F(x) = F_1(x) - F_2(x) + i (F_3(x) - F_4(x))$ avec
+    \begin{itemize}
+        \item $F_1(x) = \ds \int_c^x (\re f)^+(t) \dt$
+        \item $F_2(x) = \ds \int_c^x (\re f)^-(t) \dt$
+        \item $F_3(x) = \ds \int_c^x (\im f)^+(t) \dt$
+        \item $F_4(x) = \ds \int_c^x (\im f)^-(t) \dt$
+    \end{itemize}
+
+    $\forall t \in I$, $0 \leqslant (\re f)^+(t) \leqslant |\re f(t)| \leqslant |f(t)|$, or 
+    $\ds \int_{a }^{b } |f(t)| \dt$ converge donc \\ 
+    $\ds \int_{a }^{b } (\re f)^+(t) \dt$ converge, 
+    et donc $F_1$ a des limites finies en $a$ et $b$.
+
+    De même pour $F_2$, $F_3$ et $F_4$, et donc $\ds \int_{a }^{b } f(t) \dt$ converge. 
+\end{proof}
+
+
+\begin{proposition}{}{}
+    Soit $f \in \mc {pm} (I, \K)$, avec $a = \inf I$ et $b = \sup I$. On suppose que $a, b \in \R$. 
+
+    On pose $J = \{t - a, t \in I\}$ et $\fonction{g}{J}{\K}{u}{f(a + u)}$. 
+
+    On a donc $\inf J = 0$ et $\sup J = b - a$. Alors 
+    
+    $$ \int_{a }^{b } f(t) \dt \text{ converge ssi } \int_{0 }^{b - a }f(a + u) \mathrm d u$$
+
+    De même, $\int_a^b f(t) \dt$ converge ssi $\int_0^{b - a} f(b - u) \mathrm d u$. 
+\end{proposition}
+
+
+\begin{proof}
+    Fixons $c \in I$ et $\forall x \in I$, $F(x) = \int_c^x f(t) \dt$.
+
+    $\forall y \in J$, $G(y) = \int_{c - a}^{y} f(a + u) \mathrm d u$ par changement de variable 
+    $F(a + y) = G(y)$.
+
+    $\int_a^b f$ converge ssi $F$ a des limites finies en $a$ et $b$ 
+
+    ssi $G$ a des limites finies en $0$ et $b - a$
+
+    ssi $\ds \int_{0}^{b - a} f(a + u) \mathrm d u$ converge.
+\end{proof}
+
+
+\begin{theoreme}{de comparaison à gauche}{}
+    Soient $f, g \in \mc {pm}(]a, b], \K)$. 
+    
+    \begin{itemize}
+        \item Si $g$ est intégrable sur $]a, b]$ et si $|f(t)| \underset{t \to a   }{= } O(|g(t)|)$
+    alors $f$ est intégrable sur $]a, b]$.
+        \item Si $|f(t)| \underset{t \to a   }{\sim } |g(t)|$ alors $f$ est intégrable sur $]a, b]$ ssi $g$ est intégrable sur $]a, b]$.
+    \end{itemize}
+\end{theoreme}
+
+\begin{theoreme}{comparaison à droite}{}
+    Soit $f, g \in \mc{pm}([a, b[, \K)$. 
+    
+    \begin{itemize}
+        \item Si $g$ est intégrable sur $[a, b[$ et si $|f(t)| \underset{t \to b   }{= } O(|g(t)|)$
+    alors $f$ est intégrable sur $[a, b[$.
+        \item Si $|f(t)| \underset{t \to b   }{\sim } |g(t)|$ alors $f$ est intégrable sur $[a, b[$ ssi $g$ est intégrable sur $[a, b[$.
+    \end{itemize}
+\end{theoreme}
+
+\begin{proof}
+    Similaire au I
+\end{proof}
+
+\begin{exemple}
+    Etudions $\ds \int_{0}^{+ \infty   } \frac{\ln (t)}{1 + t^2} \dt$. 
+
+    Posons $\fonction f {]0, + \infty[}{\R}{t}{\frac{\ln (t)}{1 + t^2}}$ qui est continue par théorème d'opérations.
+
+    \uindent{Comportement en $0$ }
+
+    \svspace $\ds |f(t)| \underset{t \to 0   }{\sim } |\ln t| = o \left( \frac 1 {\sqrt t} \right)$
+    car $\sqrt t \ln t \xrightarrow[t \to 0 ]{} 0$ par croissance comparée. 
+
+    Or $\ds \int_{0}^{1 } \frac 1 {\sqrt t} \dt$ converge car $\frac 1 2 < 1$. 
+
+    Donc $\int_0^1 |ln(t) | \dt$ converge par comparaison, et donc 
+    $\ds \int_{0}^{1 } |f(t)| \dt$ converge, c'est à dire que $f$ est intégrable en $0$.
+
+    \uindent{Comportement en $+ \infty$ }
+
+    \svspace $\ds |f(t)| \underset{t \to + \infty   }{\sim } \frac{\ln t}{t^2} = o \left( \frac 1 {t^{3/2}} \right)$
+    or $\ds \int_{1 }^{+ \infty   } \frac 1 {t^{3/2}} \dt$ converge car $\frac 3 2 > 1$.
+
+    Donc $\ds \int_{1 }^{+ \infty   } |f(t)| \dt$ converge, c'est à dire que $f$ est intégrable en $+ \infty$.
+
+    Donc $\int_0^{+ \infty} | f(t) | \dt$ converge, donc $\ds \int_{0}^{+ \infty   } f(t) \dt$ converge absolument donc converge.
+\end{exemple}
+
+\begin{remarque}
+    Généralement, on compare à $\frac 1 {\sqrt t}$ en $0$ et à $\frac 1 {t^2}$ en $+ \infty$.
+\end{remarque}
+
+\begin{exemple}
+    Etudions $\ds \int_{1 }^{+\infty} \frac 1 { \sqrt{t - t^2}}$. 
+
+    Posons $\fonction f {]0, 1]}{\R}{t}{\frac{1}{\sqrt{t - t^2}}}$ qui est continue par théorème d'opérations.
+
+    \uindent{Comportement en $0$ }
+
+    \svspace $f(t) \underset{t \to 0 }{ \sim } \frac 1 {\sqrt t}$ intégrable en $0$, donc $f$ l'est également. 
+    
+    \uindent{Comportement en $1$ }
+
+    \svspace $f(t) \underset{t \to 1 }{ \sim } \frac 1 {\sqrt{1 - t}}$ intégrable en $1$, donc $f$ l'est également.
+
+    \avspace Donc $f$ est intégrable sur $]0, 1]$, donc $\ds \int_{0}^{1 } \frac{1}{\sqrt{t - t^2}} \dt$ converge.
+\end{exemple}
+
+\subsection{Propriétés de l'intégrale généralisée }
+
+\begin{proposition}{propriétés de l'intégrale généralisée}{}
+    L'intégrale généralisée est linéaire, positive, croissante et vérifie la relation 
+    de Chasles. 
+\end{proposition}
+
+\begin{proof}
+    Soit $c \in ]a, b[$ et $\fonction F I \K x {\int_c^x f (t) \dt}$ et $\fonction G I \K x {\int_c^x g(t) \dt}$.
+
+    Supposons que $\int_{a }^{b } f$ et $\int_{a }^{b } g$ convergents. Posons 
+    $H = \ds \int_{a }^{x } \alpha f + \beta g$. Alors $H = \alpha F + \beta G$ par 
+    linéarité de l'intégrale sur un segment. 
+
+    Or $F$ et $G$ ont des limites finies en $a$ et $b$ donc $H$ aussi, donc
+    $\ds \int_{a }^{b } \alpha f + \beta g$ converge.
+    De plus 
+
+    \begin{align}
+        \int_{a }^{b } \alpha f + \beta g &= \lim_{x \to b} H(x) - \lim_{x \to a} H(x) \\
+        &= \alpha \left( \lim_{x \to b} F(x) - \lim_{x \to a} F(x) \right) + \beta \left( \lim_{x \to b} G(x) - \lim_{x \to a} G(x) \right) \\
+        &= \alpha \int_{a }^{b } f + \beta \int_{a }^{b } g
+    \end{align}
+
+    \lvspace Si $f \geqslant 0$ et $\ds \int_{a }^{b } f$ converge, alors 
+    $F$ est croissante et donc $\int_{a}^b f = \lim_{x \to b} F(x) - \lim_{x \to a} F(x) \geqslant 0$.
+
+    \lvspace Si $f \leqslant g$ et $\ds \int_{a }^{b } f$ et $\ds \int_{a }^{b } g$ convergent, alors 
+    $g - f \geqslant 0$ et donc $\ds \int_{a }^{b } g - f$ converge et est positive, donc
+    $\ds \int_{a }^{b } g - \int_{a }^{b } f \geqslant 0$ d'où le résultat.
+
+    \lvspace Pour la relation de Chasles, soit $c \in ]a, b[$.
+
+    Si $\ds \int_{a }^{b } f$ converge, alors $F$ a des limites finies en $a$ et $b$. Or elle 
+    est continue en $c$. 
+
+    Donc $\ds \int_{a }^{c }f$ et $\ds \int_{c }^{b } f$ convergent et
+    $$ \int_{a }^{b } f = \lim_{x \to b} F(x) - \lim_{x \to a} F(x) = \left( \lim_{x \to b} F(x) - F(c) \right) + \left( F(c) - \lim_{x \to a} F(x) \right) = \int_{c }^{b } f + \int_{a }^{c } f $$
+\end{proof}
+
+\begin{theoreme}{intégration par parties}{}
+    Soient $u, v : I \to \K $. On suppose que :
+    \begin{itemize}
+        \item $u, v \in  \mc 1 (I, \K)$
+        \item $\ds \int_{a }^{b } u'(t) v(t) \dt$ converge
+        \item $t \mapsto u(t) v(t)$ admet des limites finies en $a$ et $b$.
+    \end{itemize} 
+
+    Alors $\ds \int_a^b u(t) v'(t) \dt$ converge et on a :
+    $$ \int_a^b u'(t) v(t) \dt = \left[ u(t) v(t) \right]_a^b - \int_a^b u(t) v'(t) \dt $$
+\end{theoreme}
+
+
+\begin{proof}
+    Soit $c \in I$ et $\forall x \in I$, $F(x) = \ds \int_c^x u'(t) v(t) \dt$ et 
+    $G(x) = \int_c^x u(t) v'(t) \dt$.
+
+    On a par intégration par parties sur le segment $[c, x]$ :
+    $$ G(x) = u(x) v(x) - u(c) v(c) - F(x) $$
+
+    Par hypothèse, $F$ a des limites finies en $a$ et $b$, et $uv$ aussi, donc $G$ également, et donc 
+    $\int_{a }^{b } uv'$ converge et par passage à la limite, $\ds \int_{a }^{b } uv' = \lim_b F - \lim_a F = [uv]_a^b - \int_a^b u'v$.
+\end{proof}
+
+\begin{exemple}
+    Etudions $\ds \int_{0}^{1 } \ln(t) \dt$ (par intégration par parties).
+
+    Posons $\fonction f {]0, 1]}{\R}{t}{\ln t}$ qui est continue. 
+
+    $|\ln t | \underset{t \to 0}{=} o \left( \frac 1 {\sqrt t} \right)$ donc $f$ est intégrable en $0$.
+    L'intégrale converge absolument donc converge. 
+
+    Posons $u(t) = \ln t$, donc $u'(t) = \frac 1 t$.
+
+    $v(t) = t$ et $v'(t) = 1$.
+
+    On a donc $u(t) v(t) = t \ln (t) \xrightarrow[t \to 0]{t \to 1} 0$ par croissance comparée.
+
+    Donc on peut réaliser une intégration par parties, et on a donc 
+    $$\ds \int_{0}^{1} \ln(t) \dt = \left[ t \ln (t) \right]_0^1 - \int_0^1 t \cdot \frac 1 t \dt = - \left[ t \right]_0^1 = -1$$
+\end{exemple}
+
+\begin{theoreme}{changement de variable}{}
+    Soit $f \in \mc {pm} (]a, b[, \K)$ et $\varphi : ]\alpha, \beta[ \to ]a, b[$. 
+    On suppose que : 
+    \begin{itemize}
+        \item $\varphi$ est de classe $\mc 1$ 
+        \item $\varphi$ est bijective
+        \item $\varphi$ est strictement croissante
+    \end{itemize}
+
+    Alors $\ds \int_{a }^{b } f(t) \dt$ et $\ds \int_{\alpha }^{\beta } f \circ \varphi(u) \cdot \varphi'(u) \mathrm d u$ 
+    sont de même nature et, en cas de convergence on a :
+    
+    $$\ds \int_{a }^{b } f(t) \dt = \ds \int_{\alpha }^{\beta } f \circ \varphi(u) \cdot \varphi'(u) \mathrm d u$$
+
+    Dans le cas où $\varphi$ est strictement décroissante, on a alors : 
+    $$\ds \int_{a }^{b } f(t) \dt = - \ds \int_{\alpha }^{\beta } f \circ \varphi(u) \cdot \varphi'(u) \mathrm d u$$
+\end{theoreme}
+
+\begin{remarque}
+    $\blacktriangleright$ On pourrait prendre des intervalles $I$ et $J$ quelconques, 
+    avec $a, b, \alpha$ et $\beta$ leurs sup et inf. Ce sont donc des éléments de $\bar \R^4$.
+    Ce choix de notation dans la propositon vise seulement à faciliter la lecture et la compréhension de l'énoncé.
+
+    \avspace $\blacktriangleright$ On a donc $\varphi$ de la forme :  
+    \begin{center}
+        \begin{tabular}{c|c c c c}
+            $u$ & $\alpha$ &  & $\beta$ \\
+            \hline
+            $\varphi(u)$ & $a$ & $\nearrow$ &$b$ \\
+        \end{tabular}
+    \end{center}
+
+    et pour $\psi$ :
+    \begin{center}
+        \begin{tabular}{c|c c c c}
+            $u$ & $\gamma$ &  & $\delta$ \\
+            \hline
+            $\psi(u)$ & $b$ & $\searrow$ &$a$ \\
+        \end{tabular}
+    \end{center}
+\end{remarque}
+
+
+\begin{proof}
+    Soit $c \in ]a, b[$ et $\forall x \in ]a, b[, \, F(x) = \int_c^x f(t) \dt$.
+
+    Soit $c' = \varphi \inv (c) \in ]\alpha, \beta[$ et 
+    $\forall y \in ] \alpha, \beta[, \, G(y) = \int_{c'}^y f \circ \varphi(u) \cdot \varphi'(u) \mathrm d u$.
+
+    Par changement de variable, $G(y) = \ds \int_c^{\varphi(y)} f(t) \dt$. 
+
+    Si $\ds \int_{a }^{b } f(t) \dt$ converge, alors $F$ a des limites finies en $a$ et $b$.
+
+    $G(y) = F(\varphi(y))$ donc $G$ a des limites finies en $\alpha$ et $\beta$, et donc 
+    $\ds \lim_\alpha G = \lim_a F$ et idem en $b$, donc 
+    $\ds \int_{a }^{b } f = \int_\alpha^\beta (f \circ \varphi) \cdot \varphi'$.
+
+    Si $\ds \int_{\alpha }^{\beta } f \circ \varphi(u) \cdot \varphi'(u) \mathrm d u$ converge,
+    $G$ a des limites finies en $\alpha$ et $\beta$. Or $\forall x, \, F(x) = G(\varphi \inv (x))$ donc $F$ a des limites finies en $a$ et $b$, et
+    donc la réciproque. 
+\end{proof}
+
+
+\begin{exemple}
+    Existence et calcul de $\ds \int_0^{\frac \pi 2} \sqrt{\tan t} \dt$.
+
+    Posons $\fonction f {]0, \frac \pi 2[}{\R}{t}{\sqrt{\tan t}}$ qui est continue par théorème d'opérations.
+
+    $f(x) \underset{t \to 0 }{ = } o(1)$ et $1$ est intégrable sur $]0, 1]$, donc $f$ l'est également. 
+
+    \begin{align}
+        \mid f(x) \mid & \underset{x \to \frac \pi 2 }{ = } \sqrt{\frac {\sin(x)}{\cos(x)}} \\ 
+        & = \sqrt{\frac{\sin(\frac \pi 2 - x)}{\cos(\frac \pi 2 - x)}} \\
+        & = \sqrt{\frac{\cos x}{\sin x}} \\
+        & \underset{x \to 0 }{ \sim } \frac 1 {\sqrt {\frac \pi 2 - x}}
+    \end{align}
+
+    intégrable sur $]0, \frac \pi 2]$, donc $\ds \int_0^{\frac \pi 2}$ converge. 
+
+    Posons $u = \sqrt{\tan t}$, donc $t = \arctan (u^2)$ avec 
+    $\fonction \varphi {]0, + \infty[}{]0, \frac \pi 2[}{u}{\arctan (u^2) = x}$ bijection 
+    $\mc 1$ strictement croissante.
+
+    $\dx = \frac {2u}{1 + u^4} \mathrm d u$.
+
+    Donc par changement de variable, on a :
+
+    $$\int_0^{\frac \pi 2} \sqrt{\tan t} \dt = \int_0^{+ \infty} u \cdot \frac{2u}{1 + u^4} \mathrm d u = 2 \int_0^{+ \infty} \frac{u^2}{1 + u^4} \mathrm d u$$
+
+    Cheat code utile : 
+    \begin{align}
+        u^4 + 1 & = (u^2 + 1)^2 - 2 u^2 \\
+        & = (u^2 + \sqrt 2 u + 1)(u^2 - \sqrt 2 u + 1)
+    \end{align}
+
+    On effectue une décomposition en éléments simples :
+
+    $\ds \frac{2u^2 + 1}{u^4 + 1} = \frac 1 {u^2 - \sqrt 2 u + 1} + \frac 1 {u^2 + \sqrt 2 u + 1}$.
+
+    Par ailleurs, en posant $u = \frac 1 t$, on a $\mathrm d u = - \frac \dt {t^2}$ et donc 
+    $$A = \int_{+ \infty  }^{0 } \frac{\frac{2 }{t^2 }}{1 + \frac{1 }{t^4 }} \cdot\left( - \frac \dt {t^2} \right) = \int_0^{+ \infty  } \frac{2 }{t^4 + 1 } \dt$$
+    Donc 
+
+    \begin{align}
+        2A & = \ds \int_{0}^{+ \infty} \frac{2t^2 + 2}{t^4 + 1} \dt  \\
+        & = \int_{0 }^{+ \infty   } \frac 1 {t^2 - \sqrt 2 t + 1} + \frac{ 1 }{ t^2 + \sqrt 2 t + 1 } \dt \\
+        & = \int_{0}^{+ \infty   } \frac 1 {\frac 1 2 + \left( t - \frac{\sqrt 2 }{2} \right)^2} + \frac 1 {1 + (\sqrt 2 t - 1)^2} \dt \\
+        & = 2 \left[ \frac{\arctan \sqrt 2 t + 1}{\sqrt 2  } + \frac{\arctan (\sqrt 2 t - 1)}{ \sqrt 2  } \right]_0^{+ \infty} \\
+        & = 2 \left( \frac \pi {2 \sqrt 2} + \frac \pi {2 \sqrt 2} - \left( \frac \pi {4 \sqrt 2} - \frac \pi {4 \sqrt 2} \right) \right) \\
+        & = \frac{2 \pi }{ \sqrt 2 }
+    \end{align}
+\end{exemple}
+
+
+\begin{exemple}
+    $A = \ds \int_{0}^{+ \infty   } \frac{\ln (x) }{1 + x^2} \dx$. Alors $A$ converge (vu précédemment). 
+
+    Attention, on ne peut pas faire d'intégration par parties ici !! (uv n'a pas de limite finie)
+
+    $A = \ds \int_{+ \infty }^{0 } \frac{\ln \left( \frac 1 t \right) }{1 + \frac 1 {t^2} } \cdot \left( - \frac \dt {t^2} \right) = \int_0^{+ \infty   } \frac{- \ln t }{1 + t^2} \dt = - A$
+
+    Donc $A = 0$. 
+\end{exemple}
+
+
+
+\subsection{Propriétés des fonctions intégrables }
+
+\begin{proposition}{Structure ensemble des fonctions intégrables}{}
+    L'ensemble des fonctions continues par morceaux intégrables sur $I$ est un 
+    $\K$-espace vectoriel noté $\mathscr L^1(I, \K)$.
+
+    Si $f \in \mathscr L^1(I, \K)$, on notera $\ds \int_{a}^{b } f(t) \dt = \int_{I } f$.
+\end{proposition}
+
+\begin{proof}
+    $\blacktriangleright \mathscr L^1(I, \K) \subset \mc {pm}(I, \K)$ qui est un espace vectoriel. 
+
+    $\blacktriangleright 0 \in \mathscr L^1(I, \K)$ 
+
+    $\blacktriangleright$ Soient $f, g \in \mathscr L^1(I, \K)$ et $\alpha, \beta \in \K$. Alors 
+    $\mid \alpha f + \beta g \mid \leqslant |\alpha| |f| + |\beta| |g|$.
+
+    Or $\ds \int_{a }^{b } |f|$ et $\ds \int_{a }^{b } |g|$ convergent par hypothèse, 
+    donc $\ds \int_{a }^{b } |\alpha f + \beta g|$ converge par comparaison, 
+    et donc $\alpha f + \beta g \in \mathscr L^1(I, \K)$.
+\end{proof}
+
+\begin{remarque}
+    On note parfois $\mathscr L^1_c(I, \K) = \mathscr L^1(I, \K) \cap \mc {} (I, \K)$, 
+    qui est un $\K$-espace vectoriel.
+\end{remarque}
+
+\begin{definition}{Fonction de carré intégrable}{}
+    On définit $\mathscr L^2(I, \K)$ ensemble des fonctions continues par morceaux de carré 
+    intégrable $\mathscr L^2(I, \K) = \{f \in \mc {pm}(I, \K), \, \int_a^b |f(t)|^2 \dt < + \infty\}$.
+
+    Il s'agit d'un $\K$-espace vectoriel.
+\end{definition}
+
+\begin{proof}
+    Soient $f, g \in \mathscr L^2(I, \K)$ et $\alpha, \beta \in \K$. Alors
+
+    $$|\alpha f + \beta g|^2 \leqslant \mid \alpha \mid \mid f \mid ^2 + \mid \beta \mid \mid g \mid^2 + 2 |\alpha| |\beta| |f| |g| $$
+
+    Or $|fg| \leqslant \frac 1 2 (|f|^2 + |g|^2)$, donc $\alpha f + \beta g \in \mathscr L^2(I, \K)$.
+\end{proof}
+
+\begin{definition}{Intégrable en un point}{}
+    Soit $f \in \mc {pm}(I, \K)$, et posons $a = \inf I$. On dit que $f$ est intégrable en 
+    $a$ ssi $\ds \int_a^b f(t) \dt$ converge en $a$ ssi pour $c \in ]a, b[$, $\ds \int_a^c |f|$ converge.
+\end{definition}
+
+\begin{theoreme}{Inégalité triangulaire pour les intégrales généralisées}{}
+    Soit $f \in \mathscr L^1(I, \K)$. Alors 
+    $$\left| \int_I f(t) \dt \right| \leqslant \int_I |f(t)| \dt$$
+\end{theoreme}
+
+\begin{proof}
+    $\ds \int_{a }^{b } f$ absolument convergente, donc convergente, donc 
+    $\ds \int_I f$ et $\int_I |f|$ sont bien définies.
+
+    \avspace Soient $x < y \in I$. On a 
+    $$\left| \int_x^y f(t) \dt \right| \leqslant \int_x^y |f(t)| \dt$$
+
+    et en faisant tendre $x$ vers $a$ et $y$ vers $b$, on a
+    $$\left| \int_I f(t) \dt \right| \leqslant \int_I |f(t)| \dt$$
+\end{proof}
+
+
+\begin{proposition}{}{}
+    Soit $f \in \mathscr L^1_c (I, \R^+)$ continue, positive et intégrable sur $I$. 
+    Alors $\int_I f(t) \dt =0$ ssi $\forall x \in I, \, f(x) = 0$.
+\end{proposition}
+
+\begin{proof}
+    Si $f = 0$, $\int_I f = 0$.
+
+    Si $\int_{I } f = 0$, soit $c \in I$ et $\fonction F I \R x {\int_c^x f(t) \dt}$.
+
+    Comme $f$ est positive, $F$ est croissante. Or $\int_{a }^{b } f = \lim_b F - \lim_a F = 0$. 
+
+    Donc $F$ est constante, or $f$ continue donc $F$ est $\mathscr C^1$ et $F' = f$. Donc 
+    $f = 0$.
+\end{proof}
+
+
+\subsection{Intégration des relations de comparaison}
+
+\begin{theoreme}{Intégration des relations de comparaison}{}
+    Soit $I = [a,b[$, avec $a \in \R$ et $b \in \R \cup \{+\infty\}$. 
+    Soient $f \in \mc {pm} (I, \K)$ et $\varphi \in \mc {pm}(I, \R^+)$.
+
+    \uindent{Si $\varphi$ est intégrable sur $I$ }
+    
+    \svspace Si $f(t) \underset{t \to b }{=} O(\varphi(t))$ (resp $o$, $\sim$) alors $f$ est intégrable sur $I$ 
+    et $\int_x^b f(t) \dt \underset{x \to b }{=} O\left( \int_x^b \varphi(t) \dt \right)$ (resp $o$, $\sim$).
+
+    \uindent{Si $\varphi$ n'est pas intégrable sur $I$ }
+
+    \svspace Si $f(t) = O(\varphi(t))$ (resp $o$, $\sim$) alors 
+    $\ds \int_{a }^{x } f(t) \dt \underset{x \to b }{=} O\left( \int_{a }^{x } \varphi(t) \dt \right)$ (resp $o$, $\sim$).
+\end{theoreme}
+
+\begin{remarque}
+    On a un théorème analogue si $I = ]a, b]$. 
+\end{remarque}
+
+\begin{proof}
+    $\blacktriangleright$ Supposons que $f(t) \underset{t \to b }{=} O(\varphi(t))$ et que $\varphi$ est intégrable sur $I$. 
+    Alors $f$ est aussi intégrable. 
+
+    De plus, $\exists c \in ]a, b[, \exists M >0$ et $\forall t \in [c, b[, \, |f(t)| \leqslant M \varphi(t)$.
+
+    Soit $x \geqslant c, \, \forall t \in [x, b[$, $|f(t)| \leqslant M \varphi(t)$, donc
+    par croissance de l'intégrale généralisée, $ \ds \int_{x }^{b } \mid f(t) \mid \dt \leqslant M \int_{x }^{b } \varphi(t) \dt$, et donc
+    $\ds \int_{x }^{b } f(t) \dt \underset{x \to b }{=} O\left( \int_{x }^{b } \varphi(t) \dt \right)$.
+
+    $\blacktriangleright$ Supposons que $f(t) = o(\varphi(t))$. 
+    Alors $\forall \varepsilon > 0, \, \exists c \in ]a, b[, \, \forall t \in [c, b[, \, |f(t)| \leqslant \varepsilon \varphi(t)$.
+
+    Donc pour $x \geqslant c$ et par le même calcul, $\ds \left| \int_{x }^{b } f \right| \leqslant \int_{x }^{b } |f| \leqslant \varepsilon \int_{x }^{b } \varphi$, 
+    et donc $\ds \int_{x }^{b } f(t) \dt \underset{x \to b }{=} o\left( \int_{x }^{b } \varphi(t) \dt \right)$.
+
+    $\blacktriangleright$ Supposons maintenant que $f(t) \underset{t \to b }{\sim    } \varphi(t)$. 
+    Alors $f \varphi = o(\varphi)$ et donc 
+    $\ds \int_{x }^{b } f(t) \dt  - \int_{x }^{b } \varphi = o \left( \int_{x }^{b } \varphi \right)$
+
+    Donc $\ds \int_{x }^{b } f(t) \dt \underset{x \to b }{\sim    } \int_{x }^{b } \varphi(t) \dt$.
+
+
+    \uindent{Si $\varphi$ n'est pas intégrable sur $I$ }
+
+    \svspace On a donc $\ds \lim_{x \to b   } \int_a^x \varphi = + \infty$. 
+
+    $\blacktriangleright$ Supposons que $f(t) \underset{t \to b }{=} O(\varphi(t))$.
+    Alors $\exists M > 0, \exists c \in ]a, b[, \, \forall t \in [c, b[, \, |f(t)| \leqslant M \varphi(t)$.
+
+    Soit $x > c$. 
+
+    \begin{align}
+        \left| \int_a^x f(t) \dt \right| & = \left| \int_a^c f(t) \dt + \int_c^x f(t) \dt \right| \\
+        & \leqslant \int_a^c |f| + \int_c^x |f| \\
+        & \leqslant \int_a^c |f| + M \int_c^x \varphi(t) \dt \\
+        & \leqslant \underbrace{\int_a^c |f|}_{ = M_1 \text{ cte }} + M \int_a^x \varphi(t) \dt
+    \end{align}
+
+    Or $\int_{a }^{x } \varphi \tend x b + \infty$
+
+    Donc $\exists c_1 \in ]a, b[$ tel que $\forall x \geqslant c_1$ et $\ds \int_{a }^{x } \varphi \geqslant 1$. 
+
+    Donc pour $x > \max (c, c_1)$, 
+
+    \begin{align}
+        \left| \int_{a }^{x } f \right| & \leqslant M_1 + M \int_{a }^{x } \varphi \\
+        & \leqslant (M_1 + M) \int_{a }^{x } \varphi
+    \end{align}
+
+    Donc $\int_{a }^{x } f \underset{x \to b }{=} O\left( \int_{a }^{x } \varphi \right)$.
+
+    $\blacktriangleright$ Supposons que $f(t) \underset{t \to b }{= } o(\varphi(t))$. 
+
+    Alors $\forall \varepsilon > 0, \exists c \in ]a, b[$, 
+    $$\forall t \in [c, b[, \, |f(t)| \leqslant \varepsilon \varphi(t)$$
+
+    Donc pour $x \geqslant c$, par le même calcul, 
+    $$\left| \int_{a }^{x } f(t) \dt \right| \leqslant \int_a^c | f| + \varepsilon \int_a^x \varphi$$
+
+    Or $\ds \int_a^x \varphi \tend  b + \infty$ donc $\exists c \in ]a, b[$ tel que 
+    $\forall x \geqslant c_1, \, \int_a^x \varphi \geqslant \frac 1 \varepsilon$.
+
+    Donc pour $x \geqslant \max (c, c_1)$,
+    $$\left| \int_a^x f \right| \leqslant \varepsilon \left[ \int_a^c |f| + 1 \right] \int_a^x \varphi$$
+
+    Donc $\int_a f = o\left( \int_a^x \varphi \right)$.
+
+    $\blacktriangleright$ Equivalence : même démo. 
+\end{proof}
+
+
+\section{Passage à la limite sous l'intégrale}
+\subsection{Théorème de convergence dominée }
+
+\begin{theoreme}{théorème de convergence dominée}{}
+    Soit $(f_n)_{n \in \N}$ une suite de fonctions de $\mc {pm}(I, \K)$. On suppose que :
+    \begin{itemize}
+        \item $(f_n)_{n \in \N}$ converge simplement sur $I$ vers une fonction $f \in \mc {pm}(I, \K)$
+        \item $\exists \varphi \in \mathscr L^1(I, \K)$ telle que 
+        $\forall n \in \N, \, \forall t \in I, \, |f_n(t)| \leqslant \varphi(t)$
+    \end{itemize}
+    Alors 
+    $\forall n \in \N$, $f_n$ est intégrable sur $I$ et 
+    $$\int_I f_n(t) \dt \xrightarrow[n \to + \infty]{} \int_I f(t) \dt$$
+\end{theoreme}
+
+\begin{proof}
+    Non exigible. 
+\end{proof}
+
+\begin{exemple}
+    $\forall n \in \N^*$, on pose $\fonction {f_n}{[0, 1]}{\R}{t}{t^n}$. 
+    Alors $f_n$ converge simplement vers la fonction $\fonction f {[0, 1]}{\R}{t}{\begin{cases}
+        0 & \text{si } t \in [0, 1[ \\
+        1 & \text{si } t = 1
+    \end{cases}}$.
+
+    \svspace $f_n$ et $f$ sont continues par morceaux. 
+
+    $\forall n \in \N$ et $\forall x \in [0, 1], \, |f_n(x)| \leqslant 1$, donc on pose 
+    $\varphi(x) = 1$ qui est intégrable sur $[0, 1]$. Donc par le théorème de convergence 
+    dominée, $$\int_0^1 f_n(t) \dt \xrightarrow[n \to + \infty]{} \int_0^1 f(t) \dt = 0$$
+\end{exemple}
+
+\begin{exemple}
+    On cherche la limite de $\ds a_n = \int_{0 }^{ \infty } \frac{t^n(2 + \cos (nt)) e^{-t}}{1 + t^{2n}} \dt$.
+
+    \svspace Posons $\forall n \in \N, \, \fonction {f_n}{[0, + \infty[}{\R}{t}{\frac{t^n(2 + \cos (nt)) e^{-t}}{1 + t^{2n}}}$ qui
+    est continue par théorème d'opérations.
+
+    \uindent{Si $t < 1 $ } 
+
+    \avspace $f_n(t) \xrightarrow[n \to + \infty]{} 0$.
+
+    \uindent{Si $t > 1$ }
+
+    \avspace $\ds f_n(t) \sim \frac{t^n(2 + \cos(nt))e^{-t}}{t^{2n}} = \frac{(2 + \cos(nt))e^{-t}}{t^n} \xrightarrow[n \to + \infty]{} 0$.
+
+    $f_n(1) = \frac{2 + \cos(n)}{2}e^{-1}$ qui n'a pas de limite en $+\infty$. 
+
+    Considérons $b_n = \int_0^1 f_n(t) \dt$ et $c_n = \int_1^{+ \infty} f_n(t) \dt$.
+
+    On sait que $f_n$ converge simplement vers $0$ sur $]0, 1[$ et $]1, + \infty[$.
+
+    Donc $\forall t \in \R^+$, $\forall n \in \N$, on a $|f_n(t)| \leqslant 3 \frac{t^n e^{-t}}{1 + t^{2n}} \leqslant \frac 3 2 e^{-t} = \varphi(t)$
+
+    $\varphi$ est continue sur $\R^+$ et $\varphi(t) = o\left( \frac 1 {t^2} \right)$ donc $\varphi$ 
+    intégrable sur $[0, + \infty[$.
+
+    Donc par le théorème de convergence dominée, $$a_n = b_n + c_n \xrightarrow[n \to + \infty]{} \int_{0}^{1} f + \int_1^{+ \infty} f = 0$$
+\end{exemple}
+
+\begin{exemple}
+    Limite de $\ds a_n = \int_{0}^{\frac n 2 } \left( 1 - \frac{2x} n \right)^n e^x \dx$.
+
+    Posons $\fonction {f_n}{\R^+}{\R}{x}{\begin{cases}
+        \left( 1 - \frac{2x} n \right)^n e^x & \text{si } x \in [0, \frac n 2] \\
+        0 & \text{si } x > \frac n 2
+    \end{cases}}$ qui est continue par morceaux sur $\R^+$ et 
+    $a_n = \int_0^{+ \infty} f_n(x) \dx$.
+
+    \avspace Soit $x \geqslant 0$ et pour $n \geqslant 2x$, 
+    $\ds f_n(x) = \left( 1 - \frac{2x} n \right)^n e^x = e^{n \ln \left( 1 - \frac{2x} n \right)} e^x$
+
+    et $\ln \left( 1 - \frac{2x} n \right) \sim - \frac{2x} n$ donc $f_n(x) \underset{n \to + \infty}{\sim} e^{-2x} e^x = e^{-x} = f(x)$ 
+    qui est continue sur $\R^+$.
+
+    Soit $x \geqslant 0$ et $n \in \N$. Si $x \leqslant \frac n 2$ alors
+    $f_n(x) = \left( 1 - \frac{2x} n \right)^n e^x = e^{n \ln \left( 1 - \frac{2x} n \right)} e^x$.
+    
+    Or $\ln \left( 1 - \frac{2x} n \right) \leqslant - \frac{2x} n$  
+    et donc $f_n(x) \leqslant e^{-2x} e^x = e^{-x}$.
+
+    Posons $\forall x \geqslant 0$, $\varphi(x) = e^{-x}$ 
+
+    $\varphi$ est continue par morceaux sur $\R^+$ car $\ds e^{-x} = o\left( \frac 1 {x^2} \right)$, 
+    donc par le théorème de convergence dominée, 
+    $$a_n \xrightarrow[n \to + \infty]{} 1$$
+\end{exemple}
+
+\begin{theoreme}{convergence dominée pour les séries de fonctions}{}
+    Soit $\sum_{n \geqslant 0} u_n$ une série de fonctions continues par morceaux de $I$ dans $\K$. 
+    On suppose que : 
+    \begin{itemize}
+        \item Cette série converge simplement
+        \item $\ds \sum_{n = 0}^{+ \infty} u_n$ est continue par morceaux sur $I$
+        \item Il existe $\varphi \in \mathscr L^1(I, \K)$ telle que $\forall n \in \N$ 
+        et $\forall x \in I$, $\ds \left| \sum_{k = 0}^{n } u_k(x) \right| \leqslant \varphi(x)$.
+
+    \end{itemize}
+
+    Alors on a : 
+    $$\sum_{n = 0}^{+\infty} \int_I u_n(t) \dt = \int_I \sum_{n = 0}^{+ \infty} u_n(t) \dt$$
+\end{theoreme}
+
+\begin{proof}
+    Par le théorème, pour tout $n$ on a $\ds f_n(x) = \sum_{k = 0}^{n } u_k(x)$ qui est intégrable
+    donc $u_n = f_n - f_{n - 1}$ aussi (pour $n \geqslant 1$) et 
+    $$\lim_{n \to + \infty} \int_I \sum_{k = 0}^{n } u_k(t) \dt = \int_I \lim_{n \to + \infty} \sum_{k = 0}^{n } u_k(t) \dt$$
+
+    Donc $$\sum_{n = 0}^{+ \infty} \int_I u_n(t) \dt = \int_I \sum_{n = 0}^{+ \infty} u_n(t) \dt$$
+\end{proof}
+
+\begin{remarque}
+    Ce théorème s'applique facilement lorsque l'on sait expliciter $\ds \sum_{k = 0}^{n } u_k$ ou lorsque 
+    $u_k \geqslant 0$ auquel cas on choisit $\ds \varphi = \sum_{n = 0}^{+ \infty} u_n$. 
+\end{remarque}
+
+\begin{exemple}
+    Calcul de $A = \ds \int_0^1 \frac{\ln x}{1 + x} \dx$.
+
+    Posons $\fonction f{]0, 1[}{\R}{x}{\frac{\ln x}{1 + x}}$ 
+    qui est continue par morceaux sur $]0, 1[$. $f$ est continue en $1$ donc intégrable en $1$
+    et $|f(x)| = o\left(\frac 1 {\sqrt x} \right)$ par croissance comparée, donc $f$ inégrable en $0$. 
+
+    $A$ converge absolument donc converge. On a $\ds A = \int_{0}^{1 } \sum_{n = 0}^{\infty} (-1)^n \ln x \cdot x^n \dx$
+    car $\forall x \in ]0, 1[, \, \frac 1 {1 + x} = \ds \sum_{n = 0}^{+ \infty} (-1)^n x^n$.
+
+    Posons $\forall n \in \N$, $\fonction {u_n}{]0, 1[}{\R}{x}{(-1)^n \ln x \cdot x^n}$ qui est continue par morceaux sur $]0, 1[$.
+
+    $\sum_{n \geqslant 0} u_n$ converge simplement sur $]0, 1[$ et $\ds \sum_{n = 0}^{+ \infty} u_n = f$ qui est continue par morceaux sur $]0, 1[$.
+
+    \avspace $\blacktriangleright$ Hypothèse de domination : $\forall n \in \N$ et $\forall 
+    x \in ]0, 1[$\begin{align}
+        \left| \sum_{k = 0 }^{n } u_k(x) \right| & = \left| \sum_{k = 0}^{n } (-1)^k \ln x \cdot x^k \right| \\
+        & == \left| \ln x \cdot \frac{1 - (-x)^{n + 1}}{1 + x} \right| \\
+        & \leqslant 2 \frac{|\ln x|}{1+x} \\
+        & \leqslant 2 |f|
+    \end{align}
+
+    Posons $\varphi = 2 |f|$ qui est intégrable sur $]0, 1[$. Donc par le théorème de convergence dominée 
+    appliqué à la suite des sommes partielles, on a 
+    $$A = \sum_{n=0}^{\infty} \underbrace{\int_{0}^{1} (-1)^n \ln x \cdot x^n \dx}_{I_n}$$
+
+    Posons $u(x) = \ln x$ et $u'(x) = \frac 1 x$ 
+
+    $v(x) = \frac{x^{n + 1}}{n + 1}$ et $v'(x) = x^n$.
+
+    $uv$ a des limites finies en $0$ et $1$, donc 
+    
+    \begin{align}
+    I_n & = \int_0^1 u(x) v'(x) \dx \\
+    & = \left[ \frac{\ln x \cdot x^{n+1}}{n + 1} \right]_0^1 - \int_0^1 \frac{(-1)^nx^n}{n+1} \dx \\
+    & = \frac{(-1)^{n+1}}{n + 1} \int_0^1 x^n \dx \\
+    & = \frac{(-1)^{n+1}}{(n + 1)^2}
+    \end{align}
+
+    Donc $A = \ds \sum_{n = 0 }^{\infty} \frac{(-1)^{n+1}}{(n + 1)^2} = - \frac{\pi^2}{12}$.
+
+\end{exemple}
+
+\subsubsection{Conséquence pour les limites d'intégrales à paramètre}
+
+\begin{proposition}{convergence dominée pour les intégrales à paramètre}{}
+    On considère $J$ intervalle réel et pour $x \in J$, $\fonction {f_x}{I}{\K}{t}{f_x(t)}$
+    et on posera souvent $\fonction {f} {J \times I}{\K}{(x, t)}{f(x, t) = f_x(t)}$.
+
+    On suppose que : 
+    \begin{itemize}
+        \item $\forall x \in J$, $f_x$ est continue par morceaux sur $I$
+        \item $f_x(t) \xrightarrow[x \to a]{} g(t)$
+        \item $g$ est continue par morceaux sur $I$
+        \item Il existe $\varphi$ continue par morceaux et intégrable sur $I$ telle que 
+        $\forall x \in J$ et $\forall t \in I$, $|f_x(t)| \leqslant \varphi(t)$
+    \end{itemize}
+
+    Alors pour tout $x \in J$, $f_x$ est intégrable sur $I$, $g$ est intégrable sur $I$ et 
+    $$\int_I f_x(t) \dt \xrightarrow[x \to a]{} \int_I g(t) \dt$$
+\end{proposition}
+
+\idee{
+    Caractérisation séquentielle.
+}
+
+\begin{proof}
+    $\forall t \in I$, $\forall x \in J$, $|f_x(t)| \leqslant \varphi(t)$ donc en faisant tendre 
+    $x$ vers $a$, on a $|g(t)| \leqslant \varphi(t)$, et $\varphi$ étant intégrable sur 
+    $I$, $g$ et les $f_x$ le sont aussi. 
+
+    Soit $(x_n)_{n \in \N}$ suite de $J$ qui converge vers $a$. 
+
+    Posons $\fonction {h_n}{I}{\K}{t}{f_{x_n}(t)}$ qui est continue par morceaux sur $I$ pour 
+    tout $t$, et $h_n(t) = f_{x_n}(t) \xrightarrow[n \to + \infty]{} g(t)$.
+
+    Donc $h_n$ converge simplement vers $g$ et $\forall n \in \N$, $|h_n(t)| \leqslant |f_{x_n}(t)| \leqslant \varphi(t)$.
+
+    Donc par le théorème de convergence dominée, on a $\int_I h_n(t) \dt \xrightarrow[n \to + \infty]{} \int_I g(t) \dt$.
+
+    Donc $\int_I f_{x_n}(t) \dt \xrightarrow[n \to + \infty]{} \int_I g(t) \dt$.
+
+    et donc par caractérisation séquentielle de la limite, $\int_I f_x(t) \dt \xrightarrow[x \to a]{} \int_I g(t) \dt$.
+\end{proof}
+
+\begin{exemple}
+    $\ds F(x) = \int_0^{+ \infty} \frac{e^{-t}}{1 + t^x} \dt$.
+
+    Soit $x \geqslant 0$ et $\fonction {f_x}{\R^+}{\R}{t}{\frac{e^{-t}}{1 + t^x}}$ qui est continue par morceaux sur $\R^+$.
+
+    De plus $|f_x(t)| \leqslant e^{-t} = o\left( \frac 1 {t^2} \right)$, donc $f_x$ est intégrable sur $\R^+$.
+
+    Donc $F$ est bien définie sur $\R^+$.
+
+    Fixons $t \in [0, + \infty[ $ et alors 
+    $$f_x(t) = \frac{e^{-t}}{1 + t^x} \xrightarrow[x \to + \infty]{} \begin{cases}
+        e^{-t} & \text{si } t < 1 \\
+        \frac{e^{-t}}{2} & \text{si } t = 1 \\
+        0 & \text{si } t > 1
+    \end{cases} = g(t)$$
+
+    $g$ est continue par morceaux sur $\R^+$. 
+
+    $\blacktriangleright$ Hypothèse de domination : $\forall x \in \R^+$ et $\forall t \in \R^+$, $|f_x(t)| \leqslant e^{-t}$ qui est intégrable sur $\R^+$.
+
+    Donc par extension du théorème de convergence dominée, $F(x) \xrightarrow[x \to + \infty]{} 1 - \frac 1 e$
+\end{exemple}
+
+\subsection{Théorème d'intégration terme à terme}
+
+\begin{theoreme}{intégration terme à terme pour les fonctions positives}{}
+    Soit $(f_n)_{n \in \N}$ une suite de fonctions. On suppose que : 
+    \begin{itemize}
+        \item Les $f_n$ sont dans $\mathscr L^1(I, \R^+)$
+        \item $\sum_{n \geqslant 0} f_n$ converge simplement sur $I$
+        \item $\ds \sum_{n = 0}^{+ \infty} f_n$ est continue par morceaux sur $I$
+    \end{itemize}
+    Alors on a dans $\bar \R$ : 
+    $$\sum_{n = 0}^{+ \infty} \int_I f_n(t) \dt = \int_I \sum_{n = 0}^{+ \infty} f_n(t) \dt$$
+\end{theoreme}
+
+Il y a donc deux cas possibles : 
+
+$\blacktriangleright$ Si $\sum_{n \geqslant 0} \int_I f_n(t) \dt$ converge alors $\ds \sum_{n = 0}^{\infty} f_n$ est intégrable 
+et on a l'égalité entre la somme de la série des intégrales et l'intégrale de la somme de la série.
+
+\avspace $\blacktriangleright$ Si $\sum_{n \geqslant 0} \int_I f_n(t) \dt$ diverge alors $\ds \sum_{n = 0}^{\infty} f_n$ n'est pas intégrable.
+
+\begin{proof}
+    Hors programme. 
+\end{proof}
+
+\begin{exemple}
+    Montrons l'existence et calculons la valeur de
+    $$ A = \int_{0}^{+ \infty} \frac{x^2}{e^x - 1} \dx$$ 
+
+    Posons $\fonction f {]0, + \infty[}{\R}{x}{\frac{x^2}{e^x - 1}}$ qui est continue et positive sur $[0, + \infty[$.
+
+    $f(x) \underset{x \to + \infty}{\sim} x^2 e^{-x} = o\left( \frac 1 {x^2} \right)$ 
+    
+    et $f(x) \underset{x \to 0 }{\sim} x$ par croissance comparée donc $f$ intégrable et $A$ converge. 
+
+    \avspace Pour $x \in ]0, + \infty[$, 
+    
+    \begin{align}
+        \frac{x^2}{e^x - 1 } & = \frac{x^2 e^{-x}}{1 - e^{-x}} \\
+        & = x^2 e^{-x} \sum_{n = 0}^{+ \infty} e^{-nx} \\
+        & = \sum_{n = 0}^{+ \infty} \underbrace{x^2 e^{-(n + 1)x}}_{f_n(x)}
+    \end{align}
+
+    Et $f_n$ est continue par morceaux, donc intégrable sur $]0, + \infty[$ car \\
+    $\ds f_n(x) \underset{x \to + \infty}{=} o\left( \frac 1 {x^2} \right)$ et $f_n \geqslant 0$.
+
+    Donc $\sum f_n$ converge simplement et a pour somme $f$ qui est continue par morceaux.
+    Par le théorème d'intégration terme à terme pour les fonctions positives, on a
+    $$A = \sum_{n = 0}^{+ \infty} \underbrace{\int_0^{+ \infty} x^2 e^{-(n + 1)x} \dx}_{u_n}$$
+
+    Cherchons une primitive de la forme $x \mapsto (ax^2 + bx + c)e^{-(n + 1)x}$.
+
+    Alors $\forall x \in \R^+$,
+
+    $-(n+1)ax^2 + (-(n + 1)b + 2a)x + (-(n + 1)c + b) = x^2$.
+
+    Donc $\ds a = - \frac 1 {n + 1}$, $\ds b = - \frac 2 {(n + 1)^2}$ et $\ds c = - \frac 2 {(n + 1)^3}$.
+
+    Donc 
+    $$u_n = \left[ \left( - \frac{x^2}{n + 1} - \frac{2x}{(n + 1)^2} - \frac{2}{(n + 1)^3} \right) e^{-(n + 1)x} \right]_0^{+ \infty} = \frac{2}{(n + 1)^3}$$
+
+    Donc $\ds A = 2 \zeta(3)$ où $\zeta$ est la fonction de Riemann.
+\end{exemple}
+
+\begin{theoreme}{intégration terme à terme, cas général}{}
+    Soit $(f_n)_{n \in \N}$ suite de fonctions de $\mathscr L^1(I, \K)$. Supposons que :
+    \begin{itemize}
+        \item La série de fonctions $\sum_{n \geqslant 0} f_n$ converge simplement sur $I$
+        \item $\ds \sum_{n = 0}^{+ \infty} f_n$ est continue par morceaux sur $I$
+        \item La série $\ds \sum_{n \geqslant 0 } \int_I \mid f_n(t) \mid \dt$ converge
+    \end{itemize}
+    Alors $\ds \sum_{n = 0 }^{+ \infty} f_n$ est intégrable sur $I$ et 
+    $$\sum_{n = 0}^{+ \infty} \int_I f_n(t) \dt = \int_I \sum_{n = 0}^{+ \infty} f_n(t) \dt$$
+\end{theoreme}
+
+\begin{proof}
+    Hors programme. 
+\end{proof}
+
+Pour échanger $\ds \sum_{n = 0}^{+ \infty}$ et $\ds \int_a^b$, on dispose donc de 4 théorèmes : 
+\begin{enumerate}
+    \item Le théorème de convergence uniforme sur un segment 
+    \item Le théorème de convergence dominée appliqué à la suite des sommes partielles
+    \item Le théorème d'intégration terme à terme pour les fonctions positives
+    \item Le théorème d'intégration terme à terme dans le cas général
+\end{enumerate}
+
+Si la fonction est positive on privilégie le 3, si on est sur un segment le 1, et sinon 
+on essaie le 4. En cas d'échec on essaie le 2. 
+
+\begin{exemple}
+    Calcul de $\ds \sum_{n = 1}^{\infty} \frac{(-1)^{n + 1}}{n} = A$. 
+
+    $A = \ds \sum_{n = 1}^{\infty} \int_{0}^{1} (-1)^{n + 1} x^{n - 1} \dx$. 
+
+    Les méthodes 1, 3, et 4 échouent (laissé au plaisir du lecteur).
+
+    Utilisons la méthode 2 : 
+    $$ \left| \sum_{n = 1}^{N } (-t)^{n - 1} \right| = \left| \frac{1 - (-t)^N}{1 + t} \right| \leqslant \frac{2}{1 + t}$$
+    continue par morceaux et intégrable. 
+
+    Donc par théorème de convergence dominée appliqué à la suite des sommes partielles, 
+
+    \begin{align}
+        A & = \int_{0}^{1} \sum_{n = 1}^{ \infty} (-t)^{n - 1} \dt \\
+        & = \int_0^1 \frac{1}{1 + t} \dt \\
+        & = \ln 2
+    \end{align}
+
+    Ce résultat peut également se retrouver avec le dse de $\ln$ beaucoup plus rapidement...
+\end{exemple}
+
+\section{Intégrales à paramètre}
+\subsection{Notations }
+
+Soit $A$ partie de $E$ un espace vectoriel normé de dimension finie et $I$ un 
+intervalle de $\R$ tel que $\mathring I \neq \emptyset$ et 
+$\fonction f {A \times I} \K {(x, t)}{f(x, t)}$. Le but est d'établir sous 
+certaines hypothèses des propriétés de $\fonction F A \K x {\int_I f(x, t) \dt}$.
+
+On utilisera les notations suivantes pour les applications partielles : 
+pour $x \in A$ fixé, $\fonction {f(x, \cdot)}{I}{\K}{t}{f(x, t)}$ et pour $t \in I$ fixé, $\fonction {f(\cdot, t)}{A}{\K}{x}{f(x, t)}$.
+
+\subsection{Continuité }
+
+\begin{theoreme}{continuité de l'intégrale à paramètre}{}
+    Soit $A \subset E$ espace vectoriel normé de dimension finie, $I$ intervalle réel tel que 
+    $\mathring I \neq \emptyset$, et $f : A \times I \to E$. 
+
+    On suppose que : 
+    \begin{itemize}
+        \item $\forall t \in I$, $f(\cdot, t)$ est continue sur $A$
+        \item $\forall x \in A$, $f(x, \cdot)$ est continue par morceaux sur $I$ 
+        \item $\exists \varphi \in \mathscr L^1(I, \R^+)$ vérifiant $\forall (x, t) \in A \times I$, $|f(x, t)| \leqslant \varphi(t)$
+    \end{itemize}
+
+    Alors $\forall x \in A$, $f(x, \cdot)$ est intégrable sur $I$ et $\fonction{F}{A}{K}{x}{\int_I f(x, t) \dt}$ est 
+    bien définie et continue sur $A$.
+\end{theoreme}
+
+\begin{proof}
+    Par la domination, $F$ est bien définie. Soit $a \in A$ et $(x_n)_{n \in \N}$ une suite de $A$ qui converge 
+    vers $a$. Considérons 
+
+    $$F(x_n) = \int_I \underbrace{f(x_n, t)}_{g_n(t)} \dt$$
+    
+    à $t$ fixé, $g_n(t) = f(x_n, t) \xrightarrow[n \to + \infty]{} f(a, t)$ car 
+    $f(\cdot, t)$ est continue.
+
+    Donc $g_n$ converge simplement vers $f(a, \cdot)$ qui est bien continue par morceaux. 
+
+    $\forall n \in \N$ et $\forall t \in I$, 
+    \begin{align}
+        |g_n(y)| & = |f(x_n, t)| \\
+        & \leqslant \varphi(t)
+    \end{align}
+
+    et $\varphi$ est continue par morceaux et intégrable sur $I$.
+
+    Donc on a l'hypothèse de domination. 
+
+    Donc par le théorème de convergence dominée, on a 
+    $$F(x_n) \xrightarrow[n \to + \infty]{} \int_I f(a, t) \dt = F(a)$$
+
+    Donc $F$ est continue en $a$, donc sur $A$. 
+\end{proof}
+
+\begin{theoreme}{cas local}{}
+    Dans le théorème précédent, on peut se contenter d'une hypothèse de domination locale qui 
+    peut être : 
+    \begin{itemize}
+        \item $\forall a \in A$, il existe $V_a$ voisinage relatif de $a$ dans $A$ et $\varphi_a$
+        intégrable sur $I$ tel que $\forall (x, t) \in V_a \times I$, $|f(x, t)| \leqslant \varphi_a(t)$
+        \item Si $A = \R$, il suffit de vérifier que pour tout segment $S = [-b, b]$ avec $b > 0$ il existe 
+        $\varphi_b$ continue par morceaux intégrable sur $I$ telle que 
+        $\forall x \in [-b, b]$ et $\forall t \in I$, $|f(x, t)| \leqslant \varphi_b(t)$
+        \item Si $A = ]\alpha, + \infty[$ avec $\alpha \in \R$, il suffit de vérifier que pour tout 
+        $S = [a, b]$ avec $\alpha <a$ il existe $\varphi_S$ telle que $\forall x \in [a, b]$ et $\forall t \in I$, $|f(x, t)| \leqslant \varphi_S(t)$
+    \end{itemize}
+\end{theoreme}
+
+\begin{exemple}
+    $f \in \mc{pm}(\R^+, \R)$ telle que $\exists n \in \N^*$, $f(t) \underset{t \to + \infty}{=} o(t^n)$.
+
+    On définit alors pour $p > 0$, $\hat f(p) \ds = \int_0^{+ \infty} f(t) e^{-pt} \dt$.
+
+    $\hat f$ s'appelle la transformée de Laplace de $f$. Elle est continue sur $\R^{+*}$.
+
+    Posons $\fonction h {\R^{+*} \times \R^+}\R{(p, t)}{f(t) e^{-pt}}$ et 
+    $\forall p, \, h(p, \cdot)$ est continue par morceaux et $\forall t, \, h(\cdot, t)$ est continue. 
+
+    De plus (hyp de domination locale), soit $[a, b] \subset \R^*_+$. 
+
+    $\forall p \in [a, b], \, \forall t \in \R^+$, on a $|f(t) e^{-pt}| \leqslant |f(t)|e^{-at} = \varphi(t)$. 
+
+    $\varphi$ est continue par morceaux sur $\R^+$ et intégrable car 
+    $\varphi(t) \underset{t \to + \infty}{=} o\left( \frac 1 {t^2} \right)$.
+\end{exemple}
+
+\subsection{Dérivation }
+
+\begin{theoreme}{formule de Leibniz}{}
+    Soient $I$ et $A$ des intervalles réels d'intérieurs non vides, et $f : A \times I \to K$. 
+    On suppose que :
+    \begin{itemize}
+        \item $\forall t \in I$, $f(\cdot, t)$ est de classe $\mathscr C^1$ sur $A$
+        \item $\forall x \in A$, $f(x, \cdot)$ est continue par morceaux et intégrable sur $I$
+        \item $\forall x \in A$, $\ds \pp {f}{x} (x, \cdot)$ est continue par morceaux sur $I$
+        \item $\exists \varphi \in \mathscr L^1(I, \R^+)$ telle que $\forall x \in A$ et $\forall t \in I$, $\ds \left|\pp{f}{x} (x, t) \right| \leqslant \varphi(t)$
+    \end{itemize}
+
+    Alors $F \in \mc 1 (A, K)$ et $\forall x \in A$, $F'(x) = \ds \int_I \pp{f}{x} (x, t) \dt$, parfois appelée 
+    formule de Leibniz.
+\end{theoreme}
+
+\begin{proof}
+    $F$ est bien définie car $\forall x \in A$, $f(x, \cdot)$ est intégrable sur $I$.
+
+    Soit $x \in A$, $x \neq a$ et $\Delta x = \frac{F(x) - f(a)}{x - a }$.
+
+    Soit $(x_n)_{n \in \N}$ une suite de $A$ qui converge vers $a$. 
+    $\Delta(x_n) = \ds \int_I \underbrace{\frac{f(x_n, t) - f(a, t)}{x_n - a }}_{g_n(t)} \dt$
+    et $g_n$ est bien continue par morceaux sur $I$. 
+
+    A $t$ fixé, on a $g_n(t) = \frac{f(x_n, t) - f(a, t)}{x_n - a } \xrightarrow[n \to + \infty]{} \pp f x (a, t)$
+    car $f(\cdot, t)$ dérivable en $a$ et $\pp f x (a, \cdot)$ est bien continue par morceaux, et $ \ds g_n \xrightarrow[n \to + \infty]{CS} \pp f x (a, \cdot)$
+
+
+    \avspace $\blacktriangleright$ Hypothèse de domination : $\forall n \in \N$ et $\forall t \in I$, 
+    $\ds |g_n(t)| = \left| \frac{f(x_n, t) - f(a, t)}{x_n - a } \right| \leqslant \varphi(t)$ et 
+    donc par l'inégalité des accroissements finis pour $f(\cdot, t)$, car $\forall x, t$ on a $\ds \left| \pp f x (x, t) \right| \leqslant \varphi(t)$, 
+    et $\varphi$ étant continue par morceaux et intégrable sur $I$, par le théorème de convergence dominée, on a
+    $$\Delta(x_n) \xrightarrow[n \to + \infty]{} \int_I \pp f x (a, t) \dt$$
+
+    Donc par caractérisation séquentielle, 
+    $$\Delta(x) \xrightarrow[x \to a]{} \int_I \pp f x (a, t) \dt$$
+
+    Donc $F$ dérivable en $a$ et $\ds F'(a) = \int_I \pp f x (a, t) \dt$.
+
+    De plus $\ds \pp f x (\cdot, t)$ est continue et $\forall x, t$, 
+    $$\left| \pp f x (x, t) \right| \leqslant \varphi(t)$$
+
+    donc $F'$ continue. 
+\end{proof}
+
+\begin{theoreme}{formule de Leibniz, cas local}{}
+    On peut remplacer l'hypothèse de domination par une hypothèse locale qui est pour tout segment 
+    $S \subset A$ il existe $\varphi_S$ continue par morceaux intégrable telle que 
+    $\forall x \in S, \forall t \in I$,
+    $$\left| \pp{f}{x} (x, t) \right| \leqslant \varphi_S(t)$$
+    en particulier si $A = \R$, il suffit de le vérifier pour tout segment du type $[-b, b]$ avec $b > 0$.
+\end{theoreme}
+
+\begin{theoreme}{formule de Leibniz, cas général}{}
+    Soient $I, A$ intervalles réels d'intérieurs non vides et $\fonction {f}{A \times I}{K}{(x, t)}{f(x, t)}$ 
+
+    Soit $k \geqslant 1$. On suppose que : 
+    \begin{itemize}
+        \item $\forall t \in I$, $f(\cdot, t)$ est de classe $\mathscr C^k$ sur $A$
+        \item $\forall x \in A$, $f(x, \cdot)$ est continue par morceaux et intégrable sur $I$
+        \item $\forall j \in \ninter{1}{k - 1}, \, \forall x \in A$, $\ds \frac{\partial^j f}{\partial x^j}(x, \cdot)$ est continue 
+        par morceaux et intégrable sur $I$
+        \item $\forall x \in A$, $\ds \frac{\partial^k f }{\partial x^k}(x, \cdot)$ est continue par morceaux 
+        sur $I$ et pour tout segment $S \subset A$, il existe $\varphi_S$ continue par morceaux intégrable sur 
+        $I$ telle que $\forall x \in S, \forall t \in I$, $\ds \left| \frac{\partial^k f }{\partial x^k}(x, t) \right| \leqslant \varphi_S(t)$
+    \end{itemize}
+
+    \svspace alors $F \in \mc k (A, \K)$ et $\forall j \in \ninter{1}{k}$, $\forall x \in A$, 
+    $$F^{(j)}(x) = \int_I \frac{\partial^j f}{\partial x^j}(x, t) \dt$$
+\end{theoreme}
+
+\subsection{Exemples }
+
+\begin{exemple}
+    Calcul de $\ds \int_{0}^{+ \infty} \frac{\sin t}{t} \dt$.
+
+    \uindent{Lemme } $\ds \int_{0}^{+ \infty} \frac{\sin t }{t } \dt = \int_{0}^{+\infty} \frac{\sin^2(t)}{t^2} \dt$
+
+    \avspace $\blacktriangleright$ Preuve du lemme : $\ds \int_{0}^{+\infty} \frac{\sin^2(t)}{t^2} \dt $ est 
+    absolument convergente  et prolongeable par continuité en $0$. 
+    
+    De plus $\left| \frac{\sin^2}{t^2} \right| \leqslant \frac 1 {t^2}$
+
+    Posons $u(t) = - \frac 1 t$, $u'(t) = \frac 1 {t^2}$, 
+
+    $v(t) = \sin^2(t)$ et $v'(t) = 2 \sin t \cos t = \sin(2t)$.
+
+    Puisque $u(t)v(t) = - \frac{\sin^2(t)}{t}$ a des limites finies en $0$ et $+\infty$, on peut faire une intégration par partie. Donc : 
+    \begin{align}
+        \int_0^{+ \infty} \frac{\sin^2(t)}{t^2} \dt & = \left[ -\frac{\sin^2(t)}{t} \right]_0^{+ \infty} + \int_0^{+ \infty} \frac{\sin(2t)}{t} \dt \\
+        & = \int_0^{+ \infty} \frac{\sin(u)}{u} \mathrm d u
+    \end{align}
+
+    Posons $\fonction f {\R^+ \times \R^*_+} \R {(x, t)}{\frac{\sin^2(t)}{t^2}e^{-xt}}$ et pour $x \geqslant 0$, 
+    $$F(x) = \int_0^{+ \infty} \frac{\sin^2(t)}{t^2} e^{-xt} \dt$$
+
+    $F$ est bien définie car à $x$ fixé, $t \mapsto \frac{\sin^2(t)}{t^2} e^{-xt}$ est continue par morceaux et intégrable.
+
+    $\forall x \geqslant 0$, $f(x, \cdot)$ est continue par morceaux et $\forall t \in \R_+^*$, $f(\cdot, t)$ est continue et 
+    $\ds \forall x, t$, $\ds |f(x, t)| \leqslant \frac{\sin^2(t)}{t^2}$ qui est continue par morceaux et intégrable. 
+
+    Donc $F$ continue sur $\R^+$. 
+
+    $\forall t \in \R^*_+$, $f(\cdot, t)$ est de classe $\mc 2$ et 
+    $\ds \pp f x (x, t) = - \frac{\sin^2(t)}{t}e^{-xt}$ continue par morceaux vis à vis de $t$ et 
+    $\ds \ppn 2 f x(x, t) = \sin^2(t) e^{-xt}$ continue par morceaux vis à vis de $t$.
+
+    \avspace $\blacktriangleright$ A $x$ fixé, $x > 0$ : 
+
+    $\ds \pp f x (x, t) \xrightarrow[t \to 0 ]{} 0$ prolongeable par continuité. 
+
+    $\ds \pp f x (x, t) \underset{t \to + \infty}{=} o\left( \frac 1 {t^2} \right)$ par croissance comparée.
+    Donc $\ds \pp f x (x, \cdot)$ intégrable. 
+    Soit $[a, b] \subset \R_+^*$, et pour $x \in [a, b]$, $\ds \left| \ppn 2 f x (x, t) \right| \leqslant e^{-at}$ continue par morceaux et intégrable.
+
+    Donc $F$ est de classe $\mc 2$ sur $\R_+^*$ et $\forall x > 0$, $F''(x) = \int_0^{+ \infty} \sin^2(t) e^{-xt} \dt$.
+
+    et $\ds \sin^2(t) = \frac{1 - \cos (2t)}{2} = \frac 1 2 \left[ 1 - \frac{e^{2it}}{2} - \frac{e^{-2it}}{2} \right]$
+
+    $\ds \sin^2(t) e^{-xt} = \frac 1 2 e^{-xt} - \frac 1 4 e^{(2i - x)t} - \frac 1 4e^{(-2i - x)t}$
+
+    \begin{align}
+        F''(x) & = \left[ - \frac 1 {2x} e^{-xt} + \frac 1 {4(x - 2i)} e^{(2i - x)t} + \frac 1 {4(x + 2i)} e^{(-2i - x)t} \right]_0^{+ \infty} \\
+        & = \frac{1}{2x} - \frac 1 {4(x - 2i)} - \frac 1 {4(x + 2i)} \\
+        & = \frac{1}{2} \left( \frac{1}{x} - \frac{x}{x^2 + 4} \right) 
+    \end{align}
+
+    Donc $\exists c \in \R$ tel que $\forall x > 0$, $F'(x) = \frac 1 2 \ln x - \frac 1 4 \ln(x^2 + 4) + c$ 
+
+    Or $\forall x > 0 $, $F'(x) = \ds \int_{0}^{+ \infty} - \frac{\sin^2(t)}{t} e^{-xt} \dt$
+
+    a $t$ fixé, avec $t > 0$, $- \frac{\sin^2(t)}{t} e^{-xt} \xrightarrow[x \to + \infty]{} 0$ qui est donc continue par morceaux. 
+
+    \avspace $\blacktriangleright$ Hypothèse de domination, pour $x \geqslant 1$ et $t > 0$, 
+    on a $\ds \left| \frac{\sin^2(t)}{t} e^{-xt} \right| \leqslant \frac{\sin^2(t)}{t} e^{-t}$ qui est continue par morceaux et intégrable.
+
+    Donc par extension du théorème de convergence dominée, $F'(x) \xrightarrow[x \to + \infty]{} 0$, 
+    or $\ds F'(x) = \frac 1 2 \ln \left( \frac x {\sqrt{x^2 + 4}} \right) + c \xrightarrow[x \to + \infty]{} c$.
+
+    Donc $c = 0$ et donc $\forall x > 0$, $F'(x) = \frac 1 2 \ln x - \frac 1 4 \ln(x^2 + 4)$. 
+
+    \avspace $\blacktriangleright$ Pour $x > 0$ : $G(x) = \ds \int_{1}^{x} \ln(t^2 + 4) \dt $ et posons 
+    $u(t) = \ln(t^2 + 4)$ donc $u'(t) = \frac{2t}{t^2 + 4} $
+
+    $v(t) = t$ et $v'(t) = 1$.
+
+    \begin{align}
+        G(x) & = \left[ t \ln(t^2 + 4) \right]_1^x - \int_1^x \frac{2t^2}{t^2 + 4} \dt \\
+        & = x \ln(x^2 + 4) - \ln 5 - 2 \int_1^x \left( 1 - \frac 1 {\frac{t^2}{4} + 1} \right) \dt \\
+        & = x \ln(x^2 + 4) - \ln 5 - 2x + 2  + 4 \left[ \arctan \left( \frac t 2 \right) \right]_1^x \\
+        & = x \ln(x^2 + 4) - 2x + 4 \arctan \left( \frac x 2 \right) + k
+    \end{align}
+
+    Donc $\forall x > 0$, 
+    \begin{align}
+        F(x) & = \frac 1 2 x \ln(x) - \frac 1 2 x - \frac 1 4 \left[ x \ln(x^2 + 4) - 2x + 4 \arctan \left( \frac x 2 \right) \right] + c' \\
+        & = \frac 1 2 x \ln(x) - \frac 1 4 x \ln(x^2 + 4) -  \arctan \frac x 2 + c'
+    \end{align}
+
+    Or $\ds F(x) \int_{0}^{+ \infty} \frac{\sin^2(t)}{t^2} e^{-xt} \dt$ 
+    et donc à $t$ fixé, $T > 0$, $\ds \frac{\sin^2(t)}{t^2} e^{-xt} \xrightarrow[x \to + \infty]{} 0$ qui est continue par morceaux.
+
+    \avspace $\blacktriangleright$ Hypothèse de domination
+
+    $\forall t > 0$ et $\forall x$, $$\ds \left| \frac{\sin^2(t)}{t^2}e^{-xt} \right| \leqslant \frac{\sin^2(t)}{t^2}$$ qui est continue par morceaux et intégrable.
+
+    Donc $F(x) \xrightarrow[x \to + \infty]{} 0$ or $F(x) = \frac 1 2x \ln\left( \frac{x}{\sqrt{x^2 + 4}}\right) - \arctan \frac x 2 + c'$
+    et 
+    \begin{align}
+        \ln \left( \frac x {\sqrt{x^2 + 4}} \right) & = - \frac 1 2 \ln\left( \frac{x^2 + 4}{x^2} \right) \\
+        & = - \frac 1 2 \ln\left( 1 + \frac 4 {x^2} \right) \\
+        & \underset{x \to + \infty}{\sim} - \frac 2 {x^2}
+    \end{align}
+
+    $$F(x) \xrightarrow[x \to + \infty]{} - \frac \pi 2 + c'$$ donc $\ds c' = \frac \pi 2$ 
+    or $F$ continue en $0$ donc 
+    \begin{align}
+        F(0) & = \ds \lim_{x \to 0} \frac 1 2 x \ln x - \frac 1 4 x \ln (x^2 + 4) - \arctan \frac x 2 + \frac \pi 2 \\
+        & = \frac \pi 2
+    \end{align}
+
+    Donc 
+    $$\int_0^{+ \infty} \frac{\sin(t)}{t} \dt = \frac \pi 2$$
+\end{exemple}
+
+\subsection{\texorpdfstring{Fonction $\Gamma$ d'Euler (HP)}{Fonction Gamma d'Euler (HP)}}
+
+\begin{definitionnt}{}{}
+    Pour $x > 0$, on pose :
+    \[ \Gamma(x) = \int_0^{+\infty} e^{-t} t^{x-1} \dt \]
+\end{definitionnt}
+
+
+\begin{theorement}{}{}
+    La fonction $\Gamma$ est de classe $\mc{\infty}$ sur $\R^{+*}$. De plus :
+    \begin{itemize}
+        \item $\forall x \in \R^{+*}, \, \forall n \in \N, \quad \Gamma^{(n)}(x) = \ds\int_0^{+\infty} (\ln(t))^n e^{-t} t^{x-1} \dt$
+        \item $\forall x > 0, \quad \Gamma(x+1) = x \Gamma(x)$
+        \item $\forall n \in \N^*, \quad \Gamma(n) = (n-1)!$
+        \item $\Gamma\paren{\frac{1}{2}} = \sqrt{\pi}$
+    \end{itemize}
+\end{theorement}
+
+\begin{proof}
+    \uindent{Classe $\mc{\infty}$ de $\Gamma$ et dérivées successives}
+    
+    \svspace Posons $\fonction{f}{\R^{+*} \times \R^{+*}}{\R}{(x,t)}{e^{-t}t^{x-1}}$.
+    \begin{itemize}
+        \item Pour tout $x \in \R^{+*}$, la fonction $t \mapsto f(x,t)$ est continue par morceaux sur $\R^{+*}$.
+        \item Pour tout $t \in \R^{+*}$, la fonction $x \mapsto f(x,t)$ est de classe $\mc{\infty}$ sur $\R^{+*}$, et pour tout $n \in \N$ :
+        \[ \ppn{n}{f}{x}(x,t) = e^{-t}(\ln(t))^n t^{x-1} \]
+        \item Les fonctions $t \mapsto \ppn{n}{f}{x}(x,t)$ sont continues par morceaux sur $\R^{+*}$.
+        \item \textbf{Hypothèse de domination sur tout segment :} Soit $[a,b] \subset \R^{+*}$. Pour tout $x \in [a,b]$ et $t \in \R^{+*}$ :
+        \[ \abs{\ppn{n}{f}{x}(x,t)} = e^{-t}\abs{\ln(t)}^n t^{x-1} \leqslant e^{-t}\abs{\ln(t)}^n \paren{t^{a-1} + t^{b-1}} \]
+        Notons $\varphi(t) = e^{-t}\abs{\ln(t)}^n \paren{t^{a-1} + t^{b-1}}$. La fonction $\varphi$ est continue.
+        En $+\infty$, $\varphi(t) = o\paren{\frac{1}{t^2}}$ par le théorème des croissances comparées, donc elle est intégrable sur $\interco{1}{+\infty}$.
+        En $0$, $\varphi(t) \sim \abs{\ln(t)}^n t^{a-1} = \frac{\abs{\ln(t)}^n}{t^{1-a}} = o\paren{\frac{1}{t^{1-\frac{a}{2}}}}$.
+        Puisque $1 - \frac{a}{2} < 1$, $\varphi$ est intégrable sur $\interoc{0}{1}$.
+        La fonction $\varphi$ est donc intégrable sur $\R^{+*}$.
+    \end{itemize}
+    D'après le théorème de dérivation sous le signe intégral (théorème de Leibniz), $\Gamma$ est de classe $\mc{\infty}$ sur $\R^{+*}$ et la formule des dérivées successives est vérifiée.
+
+    \uindent{Équation fonctionnelle $\Gamma(x+1) = x\Gamma(x)$}
+    
+    \svspace Soit $x > 0$. On a $\Gamma(x+1) = \ds\int_0^{+\infty} e^{-t} t^x \dt$.
+    Effectuons une intégration par parties :
+    \begin{itemize}
+        \item $u(t) = t^x \implies u'(t) = x t^{x-1}$
+        \item $v'(t) = e^{-t} \implies v(t) = -e^{-t}$
+    \end{itemize}
+    Les fonctions $u$ et $v$ sont de classe $\mc{1}$ sur $\R^{+*}$, et le produit $uv$ admet des limites finies en $0$ et en $+\infty$ ($\lim_{t\to 0} -t^x e^{-t} = 0$ et $\lim_{t\to+\infty} -t^x e^{-t} = 0$). L'intégration par parties est donc licite :
+    \[ \Gamma(x+1) = \bracket{-t^x e^{-t}}_0^{+\infty} + \int_0^{+\infty} x e^{-t} t^{x-1} \dt = 0 + x \Gamma(x) = x \Gamma(x) \]
+
+    \uindent{Calcul de $\Gamma(n)$ pour $n \in \N^*$}
+    
+    \svspace Calculons d'abord $\Gamma(1)$ :
+    \[ \Gamma(1) = \int_0^{+\infty} e^{-t} \dt = \bracket{-e^{-t}}_0^{+\infty} = 1 \]
+    Par une récurrence immédiate, en utilisant la relation $\Gamma(n+1) = n\Gamma(n)$ pour $n \geqslant 1$, on obtient directement que $\Gamma(n) = (n-1)!$.
+
+    \uindent{Calcul de $\Gamma(1/2)$}
+    
+    \lvspace 
+    \avspace 
+    \idee{Pour calculer l'intégrale de Gauss $\int e^{-u^2}du$, on introduit une fonction auxiliaire $h$ combinant une intégrale sur un segment fini et une intégrale paramétrique. On montre que $h$ est constante sur $\R^+$ pour en déduire la valeur voulue en passant à la limite.}
+    \svspace On a $\Gamma\paren{\frac{1}{2}} = \ds\int_0^{+\infty} \frac{e^{-t}}{\sqrt{t}} \dt$.
+    Effectuons le changement de variable $t = u^2$ (donc $\dt = 2u\,\mathrm{d}u$) qui est un $\mc{1}$-difféomorphisme strictement croissant de $\R^{+*}$ sur $\R^{+*}$ :
+    \[ \Gamma\paren{\frac{1}{2}} = \int_0^{+\infty} \frac{e^{-u^2}}{u} 2u\,\mathrm{d}u = 2 \int_0^{+\infty} e^{-u^2} \mathrm{d}u = \int_{-\infty}^{+\infty} e^{-u^2} \mathrm{d}u \]
+    Pour calculer cette intégrale de Gauss, posons pour $x \geqslant 0$ :
+    \[ f(x) = \int_0^x e^{-t^2} \dt \quad \text{et} \quad g(x) = \int_0^1 \frac{e^{-x^2(1+t^2)}}{1+t^2} \dt \]
+    Soit la fonction $h$ définie sur $\R^+$ par $h(x) = (f(x))^2 + g(x)$.
+
+    La fonction $f$ est de classe $\mc{1}$ sur $\R^+$ (en tant que primitive d'une fonction continue) et $f'(x) = e^{-x^2}$.
+    Pour dériver $g$, posons $\fonction{j}{\R^+ \times [0,1]}{\R}{(x,t)}{\frac{e^{-x^2(1+t^2)}}{1+t^2}}$.
+    \begin{itemize}
+        \item Pour tout $x \in \R^+$, la fonction $t \mapsto j(x,t)$ est continue sur le segment $[0,1]$ donc y est intégrable.
+        \item Pour tout $t \in [0,1]$, la fonction $x \mapsto j(x,t)$ est de classe $\mc{1}$ sur $\R^+$ et $\pp{j}{x}(x,t) = -2x e^{-x^2(1+t^2)}$.
+        \item La dérivée partielle $\pp{j}{x}$ est continue par rapport à $x$ et continue par morceaux par rapport à $t$.
+        \item \textbf{Domination :} Soit $[a,b] \subset \R^+$. Pour tout $x \in [a,b]$ et $t \in [0,1]$ :
+        \[ \abs{\pp{j}{x}(x,t)} = 2x e^{-x^2(1+t^2)} \leqslant 2b \]
+        La fonction constante égale à $2b$ est intégrable sur le segment $[0,1]$.
+    \end{itemize}
+    D'après le théorème de dérivation sous le signe intégral, $g$ est de classe $\mc{1}$ sur $\R^+$ et :
+    \[ g'(x) = \int_0^1 -2x e^{-x^2(1+t^2)} \dt = -2x e^{-x^2} \int_0^1 e^{-x^2 t^2} \dt \]
+    Pour $x > 0$, effectuons le changement de variable $u = xt$ ($\mathrm{d}u = x\dt$) dans cette intégrale :
+    \[ g'(x) = -2 e^{-x^2} \int_0^x e^{-u^2} \mathrm{d}u = -2 f'(x) f(x) \]
+    Par continuité en $0$, cette relation reste vraie sur $\R^+$.
+    Ainsi, $h$ est dérivable sur $\R^+$ et :
+    \[ h'(x) = 2 f(x) f'(x) + g'(x) = 2 f(x) f'(x) - 2 f'(x) f(x) = 0 \]
+    On en déduit que la fonction $h$ est constante sur $\R^+$. Déterminons sa valeur en $x=0$ :
+    \[ h(0) = (f(0))^2 + g(0) = 0 + \int_0^1 \frac{\dt}{1+t^2} = \bracket{\arctan(t)}_0^1 = \frac{\pi}{4} \]
+
+    Déterminons maintenant la limite de $g(x)$ quand $x \to +\infty$ en utilisant le théorème de convergence dominée :
+    \begin{itemize}
+        \item Pour tout $t \in [0,1]$, $\ds\lim_{x \to +\infty} \frac{e^{-x^2(1+t^2)}}{1+t^2} = 0$.
+        \item \textbf{Domination :} Pour tout $x \geqslant 0$ et $t \in [0,1]$ :
+        \[ \abs{\frac{e^{-x^2(1+t^2)}}{1+t^2}} \leqslant \frac{1}{1+t^2} \]
+        La fonction $t \mapsto \frac{1}{1+t^2}$ est continue et intégrable sur le segment $[0,1]$.
+    \end{itemize}
+    Par conséquent, via le théorème de convergence dominée, $\ds\lim_{x \to +\infty} g(x) = \int_0^1 0 \dt = 0$.
+
+    En passant à la limite quand $x \to +\infty$ dans l'égalité $h(x) = \frac{\pi}{4}$, on obtient :
+    \[ \paren{\int_0^{+\infty} e^{-t^2} \dt}^2 + 0 = \frac{\pi}{4} \]
+    Comme la fonction intégrée est strictement positive sur $\R^+$, l'intégrale l'est également. On en déduit :
+    \[ \int_0^{+\infty} e^{-t^2} \dt = \frac{\sqrt{\pi}}{2} \]
+    Finalement, $\Gamma\paren{\frac{1}{2}} = 2 \paren{\frac{\sqrt{\pi}}{2}} = \sqrt{\pi}$.
+\end{proof}

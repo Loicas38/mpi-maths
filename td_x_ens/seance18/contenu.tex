@@ -1,0 +1,128 @@
+\section{Calcul Différentiel et Inégalité des Accroissements Finis}
+
+\begin{theoreme}{Inégalité des accroissements finis}{iaf}
+    Soit $U \subset E$ un ouvert convexe, et $F$ un espace vectoriel euclidien de dimension finie. Soit $f : U \to F$ une application de classe $\mc{1}$. Alors :
+    \[ \forall a,b \in U, \quad \norm{f(b) - f(a)}_F \leqslant M \norm{b - a}_E \]
+    où $M = \sup_{x \in [a,b]} \norm{df(x)}$.
+\end{theoreme}
+
+\idee{Exprimer l'accroissement à l'aide d'une intégrale de la différentielle le long du segment reliant $a$ à $b$.}
+\begin{proof}
+    D'après le théorème fondamental du calcul intégral appliqué à la fonction $t \mapsto f((1-t)a + tb)$, on a :
+    \[ f(b) - f(a) = \int_0^1 df_{(1-t)a + tb}(b - a) \dt \]
+    En passant à la norme et en majorant l'intégrande, on obtient le résultat.
+\end{proof}
+
+\begin{definition}{Ensemble négligeable}{negligeable}
+    Soit $A$ une partie de $\R^n$. On dit que $A$ est de mesure nulle (ou négligeable) si :
+    \[ \forall \varepsilon > 0, \quad \exists (B(a_i, r_i))_{i \in I} \text{ (famille de boules) telle que } \begin{cases} A \subset \bigcup_{i \in I} B(a_i, r_i) \\ \sum_{i \in I} Vol(B(a_i, r_i)) \leqslant \varepsilon \end{cases} \]
+    Rappelons qu'en dimension $n$, le volume d'une boule s'écrit $Vol(B(a,r)) = C_n r^n$ où $C_n$ est une constante relative à la dimension.
+\end{definition}
+
+\begin{proposition}{Union dénombrable d'ensembles négligeables}{union_neg}
+    Une union dénombrable d'ensembles négligeables est négligeable.
+\end{proposition}
+
+\idee{Utiliser une série de terme général $\varepsilon / 2^{m+1}$ pour borner la somme des volumes de l'union sans dépasser $\varepsilon$.}
+\begin{proof}
+    Soit $(A_m)_{m \in \N}$ une suite d'ensembles négligeables. Soit $\varepsilon > 0$.
+    Pour chaque $m \in \N$, il existe une famille de boules $(B(a_{i,m}, r_{i,m}))_{i \in \N}$ recouvrant $A_m$ et telle que $\sum_{i \in \N} Vol(B(a_{i,m}, r_{i,m})) \leqslant \frac{\varepsilon}{2^{m+1}}$.
+    L'ensemble $A = \bigcup_{m \in \N} A_m$ est recouvert par l'union de toutes ces boules, et la somme totale des volumes est majorée par $\sum_{m \in \N} \frac{\varepsilon}{2^{m+1}} = \varepsilon$.
+\end{proof}
+
+\begin{proposition}{Image d'un espace par une fonction \texorpdfstring{$\mc{1}$}{C1}}{image_neg}
+    Soit $f : \R^n \to \R^m$ avec $n < m$ une application de classe $\mc{1}$. Alors $f(\R^n)$ est négligeable.
+\end{proposition}
+
+\begin{remarque}
+    Ce résultat est faux pour des fonctions de classe $\mc{0}$. Il existe par exemple des fonctions continues surjectives $f : [0,1] \to [0,1] \times [0,1]$ (appelées courbes de Peano).
+\end{remarque}
+
+\idee{Subdiviser un pavé $[-A, A]^n$ en petits segments et majorer le volume de leur image via l'Inégalité des Accroissements Finis.}
+\begin{proof}
+    Soit $A > 0$. On subdivise le segment $[-A, A]$ en $k$ segments de taille $\frac{2A}{k}$. Par extension, le pavé $[-A, A]^n$ est subdivisé en petits cubes.
+    Soit $C = \prod [x_i, x_{i+1}]$ un tel cube de taille $\frac{2A}{k}$.
+    Pour tout $x \in C$, l'inégalité des accroissements finis donne $\norm{f(x) - f(x_C)} \leqslant M \frac{2A}{k}$ (où $x_C$ est un point de référence du cube).
+    Ainsi, $f(C) \subset B\left(f(x_C), M \frac{2A}{k}\right)$.
+    Donc $f([-A,A]^n) \subset \bigcup_{C} B\left(f(x_C), M \frac{2A}{k}\right)$.
+    En sommant les volumes des images pour les $k^n$ cubes :
+    \[ \sum Vol \leqslant k^n C_m \paren{M \frac{2A}{k}}^m = C_m M^m (2A)^m \frac{k^n}{k^m} \tend{k}{+\infty} 0 \]
+    car $n < m$. Donc $f([-A,A]^n)$ est négligeable.
+    Comme $\R^n = \bigcup_{N \in \N} [-N,N]^n$, $f(\R^n)$ est une union dénombrable d'ensembles négligeables, donc négligeable.
+\end{proof}
+
+\begin{exemple}[title=Inversion de matrice par la méthode de Newton]
+    Soit $B \in GL_m(\R)$. On considère la fonction :
+    \[ \fonction{f}{M_m(\R)}{M_m(\R)}{A}{2A - ABA} \]
+    On a $f(B^{-1}) = 2B^{-1} - B^{-1}BB^{-1} = B^{-1}$. Ainsi, $B^{-1}$ est un point fixe de $f$.
+    
+    Calculons la différentielle de $f$ en un point $A$ :
+    \[ df_A(H) = 2H - HBA - ABH \]
+    Évaluée au point $B^{-1}$, on obtient :
+    \[ df_{B^{-1}}(H) = 2H - HBB^{-1} - B^{-1}BH = 2H - H - H = 0 \]
+    C'est donc un point critique.
+    
+    Par continuité de la différentielle, il existe $r > 0$ tel que pour tout $A \in B(B^{-1}, r)$, $\norm{df_A} \leqslant \frac{1}{2}$.
+    D'après l'inégalité des accroissements finis, on a alors :
+    \[ \norm{f(A) - f(B^{-1})} \leqslant \frac{1}{2} \norm{A - B^{-1}} \]
+    Si on définit la suite $(A_k)$ par $A_{k+1} = f(A_k)$, avec $A_0 \in B(B^{-1}, r)$, on montre par récurrence que :
+    \[ \forall k \in \N, \quad A_k \in B(B^{-1}, r) \quad \text{et} \quad \norm{A_k - B^{-1}} \leqslant \frac{1}{2^k} \norm{A_0 - B^{-1}} \]
+    La suite $(A_k)$ converge donc très rapidement vers $B^{-1}$.
+\end{exemple}
+
+\section{Algèbre bilinéaire}
+
+\subsection{Racine carrée de matrice et applications}
+
+\begin{theoreme}{Racine carrée d'une matrice symétrique définie positive}{racine_carree}
+    Soit $A \in S_n^{++}(\R)$. Alors il existe une unique matrice $B \in S_n^{++}(\R)$ telle que $A = B^2$.
+\end{theoreme}
+
+\begin{remarque}
+    Rappel (hors programme) : Pour toute matrice $A \in S_n^+(\R)$, il existe un polynôme $P \in \R[X]$ tel que $B = P(A)$ soit sa racine carrée.
+\end{remarque}
+
+\begin{proposition}{Inégalité sur le déterminant}{det_ineq}
+    Pour toutes matrices $A, B \in S_n^{++}(\R)$, on a :
+    \[ \det(A+B) \geqslant \det(A) + \det(B) \]
+\end{proposition}
+
+\idee{Se ramener au cas où $A=I_n$ en factorisant par la racine carrée de $A$.}
+\begin{proof}
+    Traitons d'abord le cas où $A = I_n$. Soient $\lambda_1, \dots, \lambda_n > 0$ les valeurs propres de $B \in S_n^{++}(\R)$. On a :
+    \[ \det(I_n + B) = \prod_{i=1}^n (1 + \lambda_i) \geqslant 1 + \prod_{i=1}^n \lambda_i = 1 + \det(B) = \det(I_n) + \det(B) \]
+    Pour le cas général, on écrit $A = R^2$ avec $R \in S_n^{++}(\R)$.
+    \begin{align*}
+        \det(A+B) &= \det(R^2 + B) \\
+        &= \det\paren{R(I_n + R^{-1}BR^{-1})R} \\
+        &= \det(R)^2 \det(I_n + R^{-1}BR^{-1}) \\
+        &= \det(A) \det(I_n + R^{-1}BR^{-1})
+    \end{align*}
+    Puisque $R^{-1}BR^{-1} \in S_n^{++}(\R)$, on peut appliquer le résultat précédent :
+    \[ \det(A+B) \geqslant \det(A)\paren{1 + \det(R^{-1}BR^{-1})} = \det(A) + \det(A)\det(R^{-1})\det(B)\det(R^{-1}) = \det(A) + \det(B) \]
+\end{proof}
+
+\lvspace \avspace \idee{ La matrice carrée permet de factoriser proprement. Pour généraliser ce résultat à des matrices semi-définies positives, on peut considérer $A + \varepsilon I_n \in S_n^{++}(\R)$ avec $\varepsilon > 0$ puis passer à la limite. }
+
+\begin{proposition}{Diagonalisation du produit de matrices symétriques}{diag_prod}
+    Soient $A, B \in S_n^{++}(\R)$. Alors la matrice $AB$ est diagonalisable sur $\R$ avec des valeurs propres strictement positives.
+\end{proposition}
+
+\idee{Montrer que $AB$ est semblable à une matrice symétrique définie positive en utilisant la racine de $A$.}
+\begin{proof}
+    Soit $R \in S_n^{++}(\R)$ telle que $A = R^2$. On peut écrire :
+    \[ AB = R^2 B = R(RBR)R^{-1} \]
+    La matrice $AB$ est donc semblable à $RBR$. Or, $RBR$ est symétrique (car $(RBR)^T = R^T B^T R^T = RBR$) et définie positive car $B$ l'est. 
+    Ainsi, $RBR \in S_n^{++}(\R)$. Ses valeurs propres sont donc strictement positives et elle est diagonalisable, il en va de même pour $AB$ qui lui est semblable.
+\end{proof}
+
+\begin{proposition}{Produit de trois matrices symétriques}{prod_trois}
+    Soient $A, B, C \in S_n^{++}(\R)$. Si la matrice $ABC$ est symétrique, alors $ABC \in S_n^{++}(\R)$.
+\end{proposition}
+
+\idee{Factoriser par la racine de $C$ pour révéler la similitude avec une matrice connue tout en exploitant la symétrie de $ABC$.}
+\begin{proof}
+    Soit $R \in S_n^{++}(\R)$ telle que $C = R^2$. On a :
+    \[ ABC = ABR^2 = R^{-1}(RABR)R \]
+    La matrice $ABC$ est donc semblable à $RABR$. Par ailleurs, on exploite la symétrie globale : puisque $ABC$ est supposée symétrique et qu'elle a le même spectre strictement positif que les produits étudiés, elle est diagonalisable avec des valeurs propres dans $\R_+^*$. On en conclut que $ABC \in S_n^{++}(\R)$.
+\end{proof}

@@ -1,0 +1,421 @@
+\section{Énoncés des Exercices}
+
+% --- SÉRIES NUMÉRIQUES ---
+\subsection{Séries Numériques}
+
+% --- Exercice 1 (Source: EXERCICE 7 analyse) ---
+\begin{exercice}
+\textbf{1.} Soient $(u_{n})_{n\in \mathbb{N}}$ et $(v_{n})_{n\in \mathbb{N}}$ deux suites de nombres réels positifs.
+On suppose que $(v_{n})_{n\in \mathbb{N}}$ est non nulle à partir d'un certain rang.
+Montrer que si $u_n \sim v_n$ alors $\sum u_n$ et $\sum v_n$ sont de même nature.
+
+\textbf{2.} Étudier la convergence de la série:
+$$ \sum_{n\ge2}\frac{(i-1)\ln n \sin(\frac{1}{n})}{(\sqrt{n+3}-1)} $$
+(où $i$ est le complexe tel que $i^2 = -1$).
+\end{exercice}
+
+% --- Exercice 2 (Source: EXERCICE 46 analyse) ---
+\begin{exercice}
+On considère la série $\sum_{n\ge1}\cos(\pi\sqrt{n^{2}+n+1})$.
+\begin{enumerate}
+    \item Prouver que, au voisinage de $+\infty$, $\pi\sqrt{n^{2}+n+1}=n\pi+\frac{\pi}{2}+\alpha\frac{\pi}{n}+O(\frac{1}{n^{2}})$ où $\alpha$ est un réel que l'on déterminera.
+    \item En déduire que $\sum_{n\ge1}\cos(\pi\sqrt{n^{2}+n+1})$ converge.
+    \item La série converge-t-elle absolument ?
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 3 (Source: Exercice 1) ---
+\begin{exercice}
+\textbf{1)} Pour $s\in\mathbb{C}$ tel que $\text{Re}(s)>1$, justifier la convergence absolue de la série de Riemann de somme $\zeta(s)=\sum_{n=1}^{\infty}\frac{1}{n^{s}}$.
+\textbf{2)} Pour $s\in\mathbb{R}$ tel que $s>0$, justifier la convergence de la série alternée de Riemann de somme $A(s)=\sum_{n=1}^{\infty}\frac{(-1)^{n}}{n^{s}}$.
+\textbf{3)} Pour $s\in\mathbb{C}$ tel que $\text{Re}(s)>1$, simplifier $A(s)+\zeta(s)$ et en déduire un lien entre $\zeta(s)$ et $A(s)$.
+\textbf{4)} On s'intéresse à la convergence de $A(s)$ pour $s$ complexe tel que $\text{Re}(s)>0$.
+On fixe $s=a+ib$ avec $a>0$ et $b\in\mathbb{R}$ et on pose $u_{n}=\frac{(-1)^{n}}{n^{s}}$. On note $v_{n}=\text{Re}(u_{n})$ et $w_{n}=\text{Im}(u_{n})$.
+\begin{enumerate}
+    \item On pose $V_{n}=v_{2n}+v_{2n+1}$. En montrant que $\frac{1}{(2n+1)^{a}}=\frac{1}{(2n)^{a}}+O(\frac{1}{n^{1+a}})$, montrer que la série $\sum V_{n}$ est absolument convergente.
+    \item En déduire que la série $\sum v_{n}$ converge.
+    \item Conclure en raisonnant de même avec $\sum w_{n}$.
+\end{enumerate}
+\textit{Note : La question 5 évoque l'hypothèse de Riemann (non demandée ici).}
+\end{exercice}
+
+% --- Exercice 4 (Source: Exercice 2) ---
+\begin{exercice}
+\textbf{1) a)} Calculer pour $x\in[0,1]$, $\sum_{k=0}^{N}(-x^{2})^{k}$.
+\textbf{b)} Intégrer cette égalité sur $[0, 1]$.
+\textbf{c)} En déduire que $\sum_{n=0}^{+\infty}\frac{(-1)^{n}}{2n+1}=\frac{\pi}{4}$.
+
+\textbf{2)} On définit pour tout $n$, $I_{n}=\int_{0}^{\pi/2}x^{2}\frac{\sin(2nx)}{\sin x}dx$.
+\begin{enumerate}
+    \item Montrer que $I_{n+1}-I_{n}=\int_{0}^{\pi/2}2x^{2}\cos((2n+1)x)dx$ et en déduire que $I_{n+1}-I_{n}=\frac{(-1)^{n}\pi^{2}}{2(2n+1)}-\frac{4(-1)^{n}}{(2n+1)^{3}}$.
+    \item On pose pour $x>0$, $f(x)=\frac{x^{2}}{\sin x}$. Montrer que $f$ se prolonge en 0 en une fonction de classe $C^{1}$.
+    \item Utiliser une intégration par parties pour montrer que $|I_{n}|\le\frac{|f(\pi/2)|+\int_{0}^{\pi/2}|f^{\prime}(x)|dx}{2n}$.
+    \item En déduire que $\sum_{n=0}^{+\infty}\frac{(-1)^{n}}{(2n+1)^{3}}=\frac{\pi^{3}}{32}$. % Note: PDF says pi^3/32
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 5 (Source: Exercice 3) ---
+\begin{exercice}
+On pose pour $\theta\in]0,\pi[$, $u_{n}=\frac{\cos n\theta}{n}$.
+\begin{enumerate}
+    \item On pose $C_{n}=\sum_{k=0}^{n}\cos(k\theta)$. Montrer que cette suite est bornée.
+    \item En remarquant que pour tout $n\ge1$, $\cos n\theta=C_{n}-C_{n-1}$ et en considérant sa somme partielle, montrer que la série $\sum u_{n}$ converge.
+    \item Montrer que $|\cos(n\theta)|\ge \cos^{2}(n\theta)$ et en déduire que la série $\sum u_{n}$ ne converge pas absolument.
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 6 (Source: Exercice 4) ---
+\begin{exercice}
+Préciser la nature des séries suivantes:
+$$ \sum\frac{(-1)^{n}}{3n-1}, \quad \sum\frac{(-1)^{n}}{n^{\alpha}-(-1)^{n}n^{\beta}} \ (\alpha\ne\beta), \quad \sum \ln\left(1+(-1)^{n}\frac{\ln n}{n^{\alpha}}\right) \ (\alpha>0) $$
+
+\end{exercice}
+
+% --- Exercice 7 (Source: Exercice 5 - Stirling) ---
+\begin{exercice}
+Montrer que pour tout naturel $n$, $n!e=p_{n}+\frac{1}{n+1}+O(\frac{1}{n^{2}})$ où $p_{n}$ est un entier dont on précisera la parité en fonction de $n$.
+En déduire la nature des séries $\sum \sin(n!2\pi e)$ et $\sum \sin(n!\pi e)$.
+\end{exercice}
+
+% --- Exercice 8 (Source: Exercice 6 - Cesaro) ---
+\begin{exercice}
+Soit $(\sum u_{n})$ une série numérique convergente. On pose $S_{n}=\sum_{k=0}^{n}u_{k}$.
+\begin{enumerate}
+    \item Exprimer $\sum_{k=1}^{n}ku_{k}$ à l'aide de $\sum_{k=1}^{n}S_{k}$ (utiliser $u_n = S_n - S_{n-1}$).
+    \item En déduire que $\lim_{n\rightarrow\infty}\frac{1}{n}\sum_{k=1}^{n}ku_{k}=0$.
+    \item On pose $v_{n}=\frac{1}{n(n+1)}\sum_{k=1}^{n}ku_{k}$. Exprimer $\sum_{k=1}^{n}v_{k}$ à l'aide de $S_{n}$. En déduire que la série $(\sum v_{n})$ converge et a même somme que $(\sum u_{n})$.
+\end{enumerate}
+\end{exercice}
+
+% --- SÉRIES DANS UN EVN ---
+\subsection{Séries dans un EVN de dimension finie}
+
+% --- Exercice 9 (Source: EXERCICE 40 analyse) ---
+\begin{exercice}
+Soit $\mathcal{A}$ une algèbre de dimension finie admettant $e$ pour élément unité et munie d'une norme telle que $\|uv\| \le \|u\|\|v\|$.
+\begin{enumerate}
+    \item Soit $u \in \mathcal{A}$ tel que $\|u\| < 1$.
+    \begin{enumerate}
+        \item Démontrer que la série $\sum u^{n}$ est convergente.
+        \item Démontrer que $(e-u)$ est inversible et que $(e-u)^{-1}=\sum_{n=0}^{+\infty}u^{n}$.
+    \end{enumerate}
+    \item Démontrer que, pour tout $u \in \mathcal{A}$, la série $\sum\frac{u^{n}}{n!}$ converge.
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 10 (Source: EXERCICE 61 algèbre) ---
+\begin{exercice}
+On note $\mathcal{M}_{n}(\mathbb{C})$ l'espace des matrices carrées d'ordre $n$. Pour $A=(a_{i,j})$, on pose $\|A\| = \sup_{i,j} |a_{i,j}|$.
+\begin{enumerate}
+    \item Prouver que $\|\cdot\|$ est une norme.
+    \item Démontrer que $\|AB\| \le n\|A\|\|B\|$ et $\|A^p\| \le n^{p-1}\|A\|^p$.
+    \item Démontrer que la série $\sum\frac{A^{p}}{p!}$ est absolument convergente.
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 11 (Source: Exercice 7) ---
+\begin{exercice}
+Calculer les exponentielles des matrices suivantes:
+$$ \begin{pmatrix} 0 & a \\ -a & 0 \end{pmatrix}, \quad \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix} $$
+
+\end{exercice}
+
+% --- Exercice 12 (Source: Exercice 8) ---
+\begin{exercice}
+On pose $A=\begin{pmatrix}3&6\\ 4&1\end{pmatrix}$.
+\begin{enumerate}
+    \item Déterminer deux suites $(a_{n})$ et $(b_{n})$ telles que $A^{n}=a_{n}(A-7I_{2})+b_{n}(A+3I_{2})$.
+    \item En déduire $\exp(A)$.
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 13 (Source: Exercice 9) ---
+\begin{exercice}
+Montrer que pour une matrice $A\in \mathcal{M}_{p}(\mathbb{K})$ de norme suffisamment petite la série $\sum_{n\ge0}A^{n}$ est absolument convergente. Montrer que sa somme est l'inverse de $I_{p}-A$.
+\end{exercice}
+
+% --- Exercice 14 (Source: Exercice 10) ---
+\begin{exercice}
+On munit $\mathcal{M}_{p}(\mathbb{C})$ d'une norme d'algèbre.
+\begin{enumerate}
+    \item Pour tout naturel $n$ et tout $k\in\{0,\dots,n\}$ on pose $a_{n,k}=\frac{1}{k!}-\frac{n!}{k!(n-k)!n^{k}}$. Montrer que $a_{n,k}\ge0$.
+    \item On pose $M_{n}=(I_{p}+\frac{1}{n}A)^{n}$.
+    \begin{enumerate}
+        \item Montrer que $M_{n}-\sum_{k=0}^{\infty}\frac{1}{k!}A^{k}$ tend vers 0.
+        \item En déduire que la suite $(M_{n})$ converge vers $\exp(A)$.
+    \end{enumerate}
+\end{enumerate}
+\end{exercice}
+
+% --- SÉRIES À TERMES POSITIFS ---
+\subsection{Séries à Termes Positifs}
+
+% --- Exercice 15 (Source: EXERCICE 5 analyse) ---
+\begin{exercice}
+\textbf{1.} On considère la série de terme général $u_{n}=\frac{1}{n(\ln n)^{\alpha}}$ ($n\ge2, \alpha\in\mathbb{R}$).
+\begin{itemize}
+    \item Cas $\alpha\le0$ : En utilisant une minoration simple, démontrer que la série diverge.
+    \item Cas $\alpha>0$ : Étudier la nature de la série (comparaison série-intégrale avec $f(x)=\frac{1}{x(\ln x)^{\alpha}}$).
+\end{itemize}
+\textbf{2.} Déterminer la nature de la série $\sum_{n\ge3}\frac{(e-(1+\frac{1}{n})^{n})e^{\frac{1}{n}}}{(\ln(n^{2}+n))^{2}}$[.
+\end{exercice}
+
+% --- Exercice 16 (Source: Exercice 11) ---
+\begin{exercice}
+Établir la convergence et calculer la somme de la série télescopique : $\sum_{n\ge2}\ln(1-\frac{1}{n^{2}})$.
+\end{exercice}
+
+% --- Exercice 17 (Source: Exercice 12) ---
+\begin{exercice}
+\textbf{1)} Comparer pour $a, b \in \mathbb{R}^{+}$, $\arctan(a) - \arctan(b)$ avec $\arctan \frac{a-b}{1+ab}$.
+\textbf{2)} En déduire la convergence et la somme de $\sum_{n\ge1}\arctan(\frac{1}{n^{2}+n+1})$.
+\textbf{3)} On définit la suite de Fibonacci $(F_{n})$ par $F_{0}=0, F_{1}=1, F_{n+2}=F_{n}+F_{n+1}$.
+\begin{enumerate}
+    \item Montrer la convergence de $\sum_{k\ge1}\arctan(\frac{1}{F_{2k+1}})$.
+    \item Montrer que pour tout $n$, $\frac{\pi}{4}=\sum_{k=1}^{n}\arctan(\frac{1}{F_{2k+1}})+\arctan(\frac{1}{F_{2n+2}})$.
+    \item En déduire que $\sum_{k=1}^{\infty}\arctan(\frac{1}{F_{2k+1}}) = \frac{\pi}{4}$.
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 18 (Source: Exercice 13) ---
+\begin{exercice}
+Soient $a, b, c, d > 0$ et $u_{n}$ telle que $\frac{u_{n+1}}{u_{n}}=\frac{(n+a)(n+b)}{(n+c)(n+d)}$.
+\begin{enumerate}
+    \item Pour $\alpha>0$, on pose $v_{n}=\ln(n^{\alpha}u_{n})$. Écrire un développement asymptotique de $v_{n+1}-v_{n}$. À quelle condition la série télescopique converge-t-elle ?
+    \item En déduire un équivalent de $u_{n}$.
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 19 (Source: Exercice 14) ---
+\begin{exercice}
+Si $\sum u_{n}$ converge (à termes positifs), établir la convergence des séries $\sum u_{n}^{2}$, $\sum\frac{u_{n}}{1+u_{n}^{2}}$, $\sum\frac{\sqrt{u_{n}}}{n^{\alpha}}$ avec $\alpha>\frac{1}{2}$
+\end{exercice}
+
+% --- Exercice 20 (Source: analyse) ---
+\begin{exercice}
+Soit $(u_{n})$ strictement positifs.
+\textbf{1.} Démontrer que si $\lim \frac{u_{n+1}}{u_{n}}=l < 1$, alors $\sum u_{n}$ converge
+\textbf{2.} Quelle est la nature de $\sum_{n\ge1}\frac{n!}{n^{n}}$ ?
+\end{exercice}
+
+% --- Exercice 21 (Source: Exercice 15 - Raabe Duhamel) ---
+\begin{exercice}
+\textbf{a)} Montrer que si $\sum u_{n}$ et $\sum v_{n}$ sont deux séries à TP telles que pour $n$ assez grand $\frac{u_{n+1}}{u_{n}}\le\frac{v_{n+1}}{v_{n}}$, alors la convergence de $\sum v_{n}$ implique celle de $\sum u_{n}$
+\textbf{b)} On suppose $\frac{u_{n+1}}{u_{n}}=1-\frac{\alpha}{n}+o(\frac{1}{n})$. Montrer que $\sum u_{n}$ converge pour $\alpha>1$ et diverge pour $\alpha<1$ (comparer avec $v_n = \frac{1}{n^\beta}$).
+\end{exercice}
+
+% --- Exercice 22 (Source: Exercice 16) ---
+\begin{exercice}
+Trouver la nature des séries :
+$$ \sum \frac{1}{\ln(n)^{\ln n}}, \quad \sum \frac{n!^2}{(2n)!}, \quad \sum (\sin\frac{1}{n}) n^\alpha $$
+\end{exercice}
+
+% --- Exercice 23 (Source: Exercice 17) ---
+\begin{exercice}
+Soit $\sum u_{n}$ une série à TP, $u_0 > 0$. On pose $S_{n}=\sum_{k=0}^{n}u_{k}$.
+\begin{enumerate}
+    \item Supposons $\sum u_{n}$ converge. Montrer que $\sum\frac{u_{n}}{S_{n}}$ converge
+    \item Supposons $\sum\frac{u_{n}}{S_{n}}$ converge. Trouver la nature de $\sum \ln(\frac{S_{n-1}}{S_{n}})$. En déduire que $\sum u_{n}$ converge
+    \item Montrer que si $\sum a_{n}$ diverge (TP), il existe $\sum b_{n}$ divergente (TP) telle que $b_{n}=o(a_{n})$.
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 24 (Source: Exercice 18) ---
+\begin{exercice}
+Soit $\alpha>1$ et $R_{n}=\sum_{k=n+1}^{\infty}\frac{1}{k^{\alpha}}$.
+\begin{enumerate}
+    \item Équivalent de $R_{n}$ ? 
+    \item Condition nécessaire sur $\alpha$ de convergence de $\sum R_{n}$.
+    \item Valeur de la somme dans ce cas ?
+\end{enumerate}
+\end{exercice}
+
+\newpage
+\section{Corrections}
+
+% --- Correction Exercice 3 ---
+\begin{correction}{3}
+\textbf{1)} Soit $s=a+ib$ avec $a>1$.
+$|\frac{1}{n^s}| = \frac{1}{|n^a e^{ib\ln n}|} = \frac{1}{n^a}$.
+C'est une série de Riemann avec $a>1$, donc convergente. Absolue convergence vérifiée.
+
+\textbf{2)} Pour $s>0$ réel, la suite $\frac{1}{n^s}$ tend vers 0 en décroissant.
+D'après le Théorème Spécial des Séries Alternées (TSSA), $\sum \frac{(-1)^n}{n^s}$ converge.
+
+\textbf{3)} $A(s)+\zeta(s) = \sum_{n=1}^\infty \frac{(-1)^n+1}{n^s}$.
+Si $n$ est impair, $(-1)^n+1=0$. Si $n=2p$ est pair, $(-1)^n+1=2$.
+$$ A(s)+\zeta(s) = \sum_{p=1}^\infty \frac{2}{(2p)^s} = \frac{2}{2^s} \sum_{p=1}^\infty \frac{1}{p^s} = 2^{1-s} \zeta(s) $$
+D'où $A(s) = (2^{1-s}-1)\zeta(s)$.
+
+\textbf{4)} $s=a+ib$ avec $a>0$.
+$u_n = \frac{(-1)^n}{n^s} = \frac{(-1)^n}{n^a} \cos(b\ln n) - i \frac{(-1)^n}{n^a} \sin(b\ln n)$.
+Soit $v_n = \text{Re}(u_n)$.
+$V_n = v_{2n} + v_{2n+1} = \frac{1}{(2n)^a}\cos(b\ln(2n)) - \frac{1}{(2n+1)^a}\cos(b\ln(2n+1))$.
+Développement asymptotique :
+$\frac{1}{(2n+1)^a} = \frac{1}{(2n)^a}(1+\frac{1}{2n})^{-a} = \frac{1}{(2n)^a} - \frac{a}{(2n)^{a+1}} + o(\frac{1}{n^{a+1}})$
+$\cos(b\ln(2n+1)) = \cos(b\ln(2n) + b\ln(1+\frac{1}{2n})) \approx \cos(b\ln(2n)) - \sin(b\ln(2n))\frac{b}{2n}$.
+En combinant, on obtient $V_n = O(\frac{1}{n^{1+a}})$.
+Comme $1+a > 1$, $\sum V_n$ converge absolument.
+Puisque $v_n \to 0$, la convergence de $\sum (v_{2n}+v_{2n+1})$ implique celle de $\sum v_n$.
+Idem pour la partie imaginaire. Donc $A(s)$ converge pour $\text{Re}(s)>0$.
+\end{correction}
+
+% --- Correction Exercice 4 ---
+\begin{correction}{4}
+\textbf{1)}
+$\sum_{k=0}^N (-x^2)^k = \frac{1-(-x^2)^{N+1}}{1-(-x^2)} = \frac{1-(-1)^{N+1}x^{2N+2}}{1+x^2}$.
+En intégrant sur $[0,1]$ :
+$\int_0^1 \sum (-x^2)^k dx = \sum_{k=0}^N (-1)^k \int_0^1 x^{2k} dx = \sum_{k=0}^N \frac{(-1)^k}{2k+1}$.
+D'autre part : $\int_0^1 \frac{dx}{1+x^2} - \int_0^1 \frac{(-1)^{N+1}x^{2N+2}}{1+x^2} dx = [\arctan x]_0^1 - R_N = \frac{\pi}{4} - R_N$.
+Majoration du reste : $|R_N| \le \int_0^1 x^{2N+2} dx = \frac{1}{2N+3} \to 0$.
+Donc $\sum_{n=0}^\infty \frac{(-1)^n}{2n+1} = \frac{\pi}{4}$.
+
+\textbf{2)}
+$I_{n+1}-I_n = \int_0^{\pi/2} \frac{x^2}{\sin x} (\sin((2n+2)x) - \sin(2nx)) dx$.
+Utilisation de $\sin p - \sin q = 2 \sin\frac{p-q}{2} \cos\frac{p+q}{2}$.
+$I_{n+1}-I_n = \int_0^{\pi/2} 2x^2 \cos((2n+1)x) dx$.
+Par double IPP ou calcul direct, on obtient le résultat donné.
+$f(x) = \frac{x^2}{\sin x} \sim_0 x$. $f(0)=0$. $f$ est continue en 0.
+$f'(x) = \frac{2x\sin x - x^2\cos x}{\sin^2 x}$. $f$ est $C^1$.
+Par IPP sur $I_n$ (avec $u=f(x)$ et $v'=\sin(2nx)$), on obtient la majoration en $1/n$ (ou $1/2n$).
+$\sum (I_{n+1}-I_n)$ est une série télescopique qui converge vers $-I_0 = 0$ (car $I_n \to 0$ par Riemann-Lebesgue).
+La somme des termes en $1/(2n+1)$ donne $\pi^2/8$ (pré-requis ?). La somme des termes en $1/(2n+1)^3$ s'en déduit.
+Correction indique $\sum \frac{(-1)^n}{(2n+1)^3} = \frac{\pi^3}{32}$.
+\end{correction}
+
+% --- Correction Exercice 6 ---
+\begin{correction}{6}
+\begin{itemize}
+    \item $\sum \frac{(-1)^n}{3n-1}$ : Converge par le TSSA ($1/(3n-1) \searrow 0$). Ne converge pas absolument.
+    \item $\sum \frac{(-1)^n}{n^\alpha - (-1)^n n^\beta}$ avec $\alpha \neq \beta$.
+    Supposons $\alpha > \beta$.
+    $u_n = \frac{(-1)^n}{n^\alpha(1 - (-1)^n n^{\beta-\alpha})} = \frac{(-1)^n}{n^\alpha} + \frac{1}{n^{2\alpha-\beta}} + o(\dots)$.
+    Le terme $\frac{(-1)^n}{n^\alpha}$ est le terme général d'une série convergente (TSSA).
+    Le terme $\frac{1}{n^{2\alpha-\beta}}$ est de signe constant positif.
+    La série converge ssi $\sum \frac{1}{n^{2\alpha-\beta}}$ converge, soit $2\alpha - \beta > 1$.
+    \item $\sum \ln(1 + \frac{(-1)^n (\ln n)}{n^\alpha})$.
+    DL : $u_n = \frac{(-1)^n \ln n}{n^\alpha} - \frac{\ln^2 n}{2 n^{2\alpha}} + \dots$
+    Le premier terme converge (TSSA). Le second terme est de signe constant.
+    La série converge ssi $2\alpha > 1$, donc $\alpha > 1/2$.
+\end{itemize}
+\end{correction}
+
+% --- Correction Exercice 11 (Matrices) ---
+\begin{correction}{11}
+\begin{itemize}
+    \item $A = \begin{pmatrix} 0 & a \\ -a & 0 \end{pmatrix}$.
+    $A^2 = -a^2 I$. $A^3 = -a^3 J$ (avec $J=\begin{pmatrix} 0 & 1 \\ -1 & 0 \end{pmatrix}$).
+    En fait $A = a J$. $J^2 = -I$.
+    $\exp(A) = \sum \frac{A^k}{k!} = \sum (-1)^p \frac{a^{2p}}{(2p)!} I + \sum (-1)^p \frac{a^{2p+1}}{(2p+1)!} J$.
+    $\exp(A) = (\cos a) I + (\sin a) J = \begin{pmatrix} \cos a & \sin a \\ -\sin a & \cos a \end{pmatrix}$.
+    \item $A = \begin{pmatrix} 1 & 1 \\ 0 & 1 \end{pmatrix} = I + N$ avec $N=\begin{pmatrix} 0 & 1 \\ 0 & 0 \end{pmatrix}$.
+    $I$ et $N$ commutent. $\exp(A) = \exp(I)\exp(N) = e (I+N) = \begin{pmatrix} e & e \\ 0 & e \end{pmatrix}$.
+\end{itemize}
+\end{correction}
+
+% --- Correction Exercice 12 ---
+\begin{correction}{12}
+$A = \begin{pmatrix} 3 & 6 \\ 4 & 1 \end{pmatrix}$. Polynôme caractéristique : $X^2 - 4X - 21 = (X-7)(X+3)$.
+Valeurs propres $7$ et $-3$.
+$A^n = \alpha_n A + \beta_n I$. Ou système avec les valeurs propres.
+$7^n = 7a_n + b_n$ (système adapté à la décomposition de l'énoncé).
+On trouve $A^n = \frac{1}{10} [ 7^n (A+3I) - (-3)^n (A-7I) ]$ (vérifier les coefficients selon l'énoncé).
+$\exp(A) = \frac{e^7}{10}(A+3I) - \frac{e^{-3}}{10}(A-7I)$.
+\end{correction}
+
+% --- Correction Exercice 13 (Ratio) ---
+\begin{correction}{13}
+$u_n > 0$. $\frac{u_{n+1}}{u_n} = \frac{(n+a)(n+b)}{(n+c)(n+d)} \to 1$. Cas douteux d'Alembert.
+$v_n = \ln(n^\alpha u_n)$.
+$v_{n+1}-v_n = \alpha \ln(1+\frac{1}{n}) + \ln \frac{u_{n+1}}{u_n}$.
+DL de $\frac{u_{n+1}}{u_n} = 1 + \frac{a+b-c-d}{n} + O(\frac{1}{n^2})$.
+$v_{n+1}-v_n = \frac{\alpha + a+b-c-d}{n} + O(\frac{1}{n^2})$.
+Série télescopique converge ssi le terme en $1/n$ est nul.
+Condition : $\alpha = c+d-a-b$.
+Si cette condition est remplie, $v_n \to L$.
+Donc $n^\alpha u_n \to e^L$.
+$u_n \sim \frac{K}{n^{c+d-a-b}}$.
+\end{correction}
+
+% --- Correction Exercice 14 (Matrices) ---
+\begin{correction}{14}
+\textbf{1.} $a_{n,k} = \frac{1}{k!} (1 - \frac{n(n-1)\dots(n-k+1)}{n^k})$.
+Le produit $\frac{n}{n} \dots \frac{n-k+1}{n}$ est $\le 1$. Donc le terme parenthèse est positif. $a_{n,k} \ge 0$.
+\textbf{2.} $M_n = (I + A/n)^n = \sum_{k=0}^n \binom{n}{k} \frac{A^k}{n^k} = \sum_{k=0}^n \frac{1}{k!} \frac{n!}{n^k(n-k)!} A^k$.
+Différence : $D_n = \sum_{k=0}^n a_{n,k} A^k + \sum_{k=n+1}^\infty \frac{A^k}{k!}$ (la correction semble traiter la différence avec la somme partielle).
+En norme : $\|D_n\| \le \sum a_{n,k} \|A\|^k + \text{reste}$.
+On utilise l'exponentielle réelle : $(1+\frac{\|A\|}{n})^n \to e^{\|A\|}$.
+La différence tend vers 0. $M_n \to \exp(A)$.
+\end{correction}
+
+% --- Correction Exercice 15 (Raabe) ---
+\begin{correction}{15}
+\textbf{a)} Si $\frac{u_{n+1}}{u_n} \le \frac{v_{n+1}}{v_n}$, alors $\frac{u_{n+1}}{v_{n+1}} \le \frac{u_n}{v_n}$.
+La suite $(u_n/v_n)$ est décroissante, donc bornée. $u_n = O(v_n)$.
+Si $\sum v_n$ converge, alors $\sum u_n$ converge.
+\textbf{b)} Comparaison avec Riemann $v_n = 1/n^\beta$.
+$\frac{v_{n+1}}{v_n} = (1+\frac{1}{n})^{-\beta} = 1 - \frac{\beta}{n} + o(\frac{1}{n})$.
+Si $\frac{u_{n+1}}{u_n} = 1 - \frac{\alpha}{n} + o(\frac{1}{n})$.
+Si $\alpha > 1$, on peut choisir $\beta$ tel que $1 < \beta < \alpha$.
+Alors pour $n$ grand, $1 - \frac{\alpha}{n} < 1 - \frac{\beta}{n}$, donc $\frac{u_{n+1}}{u_n} < \frac{v_{n+1}}{v_n}$.
+$\sum v_n$ converge (Riemann $\beta>1$), donc $\sum u_n$ converge.
+Si $\alpha < 1$, divergence par comparaison avec $\beta \in ]\alpha, 1[$.
+\end{correction}
+
+% --- Correction Exercice 17 (u/S) ---
+\begin{correction}{17}
+\textbf{a)} Si $\sum u_n$ converge, $S_n \to S > 0$. Donc $u_n/S_n \sim u_n/S$. Converge.
+\textbf{b)} Si $\sum u_n/S_n$ converge.
+$\ln(\frac{S_n}{S_{n-1}}) = \ln(1 + \frac{u_n}{S_{n-1}}) \approx \frac{u_n}{S_{n-1}} \approx \frac{u_n}{S_n}$.
+La série $\sum \ln(S_n) - \ln(S_{n-1})$ est de même nature que $\sum u_n/S_n$.
+C'est une somme télescopique $\ln S_n$.
+Si elle converge, $\ln S_n$ a une limite, donc $S_n$ a une limite finie. $\sum u_n$ converge.
+\end{correction}
+
+% --- Correction Exercice 18 (Restes) ---
+\begin{correction}{18}
+$R_n = \sum_{k=n+1}^\infty \frac{1}{k^\alpha}$.
+Comparaison série-intégrale : $R_n \sim \int_n^\infty \frac{dt}{t^\alpha} = \frac{1}{(\alpha-1)n^{\alpha-1}}$.
+$\sum R_n$ converge ssi $\sum \frac{1}{n^{\alpha-1}}$ converge.
+Ssi $\alpha-1 > 1 \iff \alpha > 2$.
+Somme : $\sum_{n=1}^\infty R_n = \sum_{n=1}^\infty \sum_{k=n+1}^\infty \frac{1}{k^\alpha} = \sum_{k=2}^\infty \frac{1}{k^\alpha} \sum_{n=1}^{k-1} 1 = \sum_{k=2}^\infty \frac{k-1}{k^\alpha} = \zeta(\alpha-1) - \zeta(\alpha)$.
+\end{correction}
+
+% --- Correction Exercice 2 (du fichier source, Exercice 46 ici) ---
+\begin{correction}{2}
+\textbf{1)} $\pi\sqrt{n^2+n+1} = \pi n (1 + \frac{1}{n} + \frac{1}{n^2})^{1/2} = \pi n (1 + \frac{1}{2n} + \frac{3}{8n^2} + O(\frac{1}{n^3}))$.
+$= \pi n + \frac{\pi}{2} + \frac{3\pi}{8n} + O(\frac{1}{n^2})$.
+\textbf{2)} $\cos(\pi\sqrt{\dots}) = \cos(n\pi + \pi/2 + \epsilon_n) = (-1)^n \cos(\pi/2 + \epsilon_n) = (-1)^{n+1} \sin(\epsilon_n)$.
+$\sin(\epsilon_n) \sim \frac{3\pi}{8n}$.
+C'est une série alternée $\sum (-1)^{n+1} \frac{K}{n}$. Elle converge (TSSA).
+Absolue convergence ? Non, car en $1/n$.
+\end{correction}
+
+% --- Correction Exercice 9 (Algèbre) ---
+\begin{correction}{9}
+\textbf{1. a)} $\|u\| < 1$. La série $\sum \|u\|^n$ converge (géométrique).
+Donc $\sum u^n$ converge absolument (donc converge car l'espace est complet - dimension finie).
+\textbf{1. b)} $(e-u) \sum_{k=0}^n u^k = e - u^{n+1}$.
+Comme $u^n \to 0$, le produit tend vers $e$.
+Donc $(e-u)$ est inversible d'inverse la somme de la série.
+\end{correction}
+
+% --- Correction Exercice 22 (Nature) ---
+\begin{correction}{22}
+\begin{itemize}
+    \item $u_n = \frac{n^n}{e^{n^2}}$. $n^2 u_n \to 0$. Converge (racine n-ième).
+    \item $u_n = \frac{n!^2}{(2n)!}$. Stirling : $\frac{n^{2n} e^{-2n} (2\pi n)}{(2n)^{2n} e^{-2n} \sqrt{4\pi n}} \sim \frac{\sqrt{\pi n}}{4^n}$. Converge (géométrique raison 1/4).
+    \item $u_n = (\sin \frac{1}{n}) n^\alpha \sim n^{\alpha-1}$. Converge ssi $1-\alpha > 1 \iff \alpha < 0$. (Attention, énoncé dit $e^{n^\alpha \ln(...)}$, vérifier l'énoncé exact, correction mentionne exponentielle).
+    L'énoncé PDF source mentionne $\sum (\sin \frac{1}{n}) n^\alpha$.
+    La correction manuscrite traite $u_n = e^{n^\alpha \ln(n \sin(1/n))}$.
+    $n \sin(1/n) = 1 - \frac{1}{6n^2}$.
+    $\ln(\dots) \sim -\frac{1}{6n^2}$.
+    Exposant $\sim - \frac{n^{\alpha-2}}{6}$.
+    Si $\alpha < 2$, exposant $\to 0$, $u_n \to 1$. Diverge.
+    Si $\alpha = 2$, $u_n \to e^{-1/6}$. Diverge.
+    Si $\alpha > 2$, exposant $\to -\infty$ (très vite ? ou vers 0 par valeurs négatives ?).
+    Attention, il y a $n^\alpha$ en facteur devant le log dans l'exposant.
+    Si $\alpha > 2$, $n^{\alpha-2} \to +\infty$, terme $\to e^{-\infty} = 0$.
+    Règle $n^2 u_n$.
+\end{itemize}
+\end{correction}

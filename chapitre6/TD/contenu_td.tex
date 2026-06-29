@@ -1,0 +1,350 @@
+\section{Énoncés des Exercices}
+
+\subsection{Dérivation}
+
+% --- Exercice 1 (Source: EXERCICE 4 analyse) ---
+\begin{exercice}
+\begin{enumerate}
+    \item Énoncer le théorème des accroissements finis.
+    \item Soit $f:[a,b]\longrightarrow\mathbb{R}$ et soit $x_{0}\in]a,b[$. On suppose que $f$ est continue sur $[a, b]$ et que $f$ est dérivable sur $]a, x_{0}[$ et sur $]x_{0}, b[$.
+    Démontrer que, si $f'$ admet une limite finie en $x_{0}$, alors $f$ est dérivable en $x_{0}$ et $f'(x_{0})=\lim_{x\rightarrow x_{0}}f'(x)$.
+    \item Prouver que l'implication : ($f$ est dérivable en $x_{0}) \Rightarrow$ ($f'$ admet une limite finie en $x_{0}$) est fausse.
+    \textit{Indication : on pourra considérer la fonction $g$ définie par : $g(x)=x^{2}\sin\frac{1}{x}$ si $x\ne0$ et $g(0)=0$.}
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 2 (Source: Exercice 1) ---
+\begin{exercice}
+Étudier (prolongement, variations, courbes) sur $\mathbb{R}^{+*}$ la fonction $x\mapsto x^{x}$.
+\end{exercice}
+
+% --- Exercice 3 (Source: Exercice 2) ---
+\begin{exercice}
+Soit $f$ définie au voisinage du réel $a$ prenant ses valeurs dans $E$, un EVN de dimension finie, et continue en $a$.
+\begin{enumerate}
+    \item Comparer la dérivabilité de $f$ en $a$ et l'existence de $\lim_{t\rightarrow0}\frac{f(a+t)-f(a-t)}{2t}$.
+    \item Même question avec l'existence de $\lim_{t\rightarrow0}\frac{f(a+2t)-f(a+t)}{t}=\lambda$.
+    On pourra commencer par montrer que pour $t>0$ et $n\in\mathbb{N}^{*}$ on a :
+    $$ \frac{f(a+t)-f(a)}{t} - \lambda = \sum_{k=0}^{n}\frac{1}{2^{k+1}}\left(\frac{f(a+\frac{t}{2^{k}})-f(a+\frac{t}{2^{k+1}})}{\frac{t}{2^{k+1}}} - \lambda\right) + \frac{f(a+\frac{t}{2^{n+1}})-f(a)}{t} - \frac{1}{2^{n+1}}\lambda $$
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 4 (Source: Exercice 3) ---
+\begin{exercice}
+Étudier la dérivabilité sur $[0, 1]$ de $x\mapsto \arcsin(1-x^{3})$.
+\end{exercice}
+
+% --- Exercice 5 (Source: Exercice 4) ---
+\begin{exercice}
+Montrer que $t\mapsto e^{-\frac{1}{|t|}}$ est de classe $\mathcal{C}^{\infty}$ sur $\mathbb{R}$.
+\end{exercice}
+
+% --- Exercice 6 (Source: Exercice 5) ---
+\begin{exercice}
+Soit $A\in \mathcal{M}_{n}(\mathbb{R})$ et $\varphi\in \mathcal{F}(\mathbb{R},\mathbb{R})$ définie par $\forall t\in\mathbb{R}$, $\varphi(t)=\det(tA+I_{n})$.
+Montrer que $\varphi$ est dérivable en 0 et que $\varphi'(0)=\text{Tr}(A)$.
+\end{exercice}
+
+% --- Exercice 7 (Source: Exercice 6) ---
+\begin{exercice}
+Soit $f$ dérivable sur $[a, b]$ à valeurs dans $\mathbb{R}$.
+\begin{enumerate}
+    \item On suppose que $f'(a)>0$ et $f'(b)<0$.
+    Montrer qu'il existe $c\in]a,b[$ vérifiant $f'(c)=0$.
+    \textit{Indication : On utilisera le fait que $f$ est continue sur le segment et on montrera qu'il n'est pas possible que ses deux extremums ne soient atteints qu'en $a$ et $b$.}
+    \item En déduire le théorème de Darboux : "Toute dérivée d'une fonction dérivable de $[a, b]$ dans $\mathbb{R}$ vérifie le théorème des valeurs intermédiaires".
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 8 (Source: Exercice 7) ---
+\begin{exercice}
+Soit $f\in \mathcal{C}^{1}([a,b],\mathbb{R})$ telle que $f'(a)=f'(b)$.
+Montrer qu'il existe $c\in]a,b[$ tel que
+$$ f'(c)=\frac{f(c)-f(a)}{c-a} $$
+\textit{Indication : On définira $g:x\mapsto\frac{f(x)-f(a)}{x-a}$ prolongée par continuité sur $[a, b]$ et on montrera qu'elle atteint un de ses extremums en un point $c\in]a,b[$.}
+\end{exercice}
+
+% --- Exercice 9 (Source: EXERCICE 3 analyse) ---
+\begin{exercice}
+\begin{enumerate}
+    \item On pose $g(x)=e^{2x}$ et $h(x)=\frac{1}{1+x}$.
+    Calculer, pour tout entier naturel $k$, la dérivée d'ordre $k$ des fonctions $g$ et $h$ sur leurs ensembles de définitions respectifs.
+    \item On pose $f(x)=\frac{e^{2x}}{1+x}$.
+    En utilisant la formule de Leibniz, concernant la dérivée $n$-ième d'un produit de fonctions, déterminer, pour tout entier naturel $n$ et pour $x\in\mathbb{R}\setminus\{-1\}$, la valeur de $f^{(n)}(x)$.
+    \item Démontrer, dans le cas général, la formule de Leibniz, utilisée dans la question précédente.
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 10 (Source: Exercice 8) ---
+\begin{exercice}
+Calculer la dérivée $n$-ième de $t \mapsto t^{n-1} \ln t$.
+Procéder par récurrence et formule de Leibniz.
+\end{exercice}
+
+% --- Exercice 11 (Source: Exercice 9) ---
+\begin{exercice}
+Calculer de deux manières différentes la dérivée $n$-ième de $x\mapsto x^{2n}=x^{n}.x^{n}$ pour calculer la valeur de $\sum_{k=0}^{n}\binom{n}{k}^{2}$.
+\end{exercice}
+
+\subsection{Intégration sur un segment}
+
+% --- Exercice 12 (Source: EXERCICE 56 analyse) ---
+\begin{exercice}
+On considère la fonction $H$ définie sur $]1, +\infty[$ par $H(x)=\int_{x}^{x^{2}}\frac{dt}{\ln t}$.
+\begin{enumerate}
+    \item Montrer que $H$ est $\mathcal{C}^{1}$ sur $]1,+\infty[$ et calculer sa dérivée.
+    \item Montrer que la fonction $u$ définie par $u(x)=\frac{1}{\ln x}-\frac{1}{x-1}$ admet une limite finie en $x=1$.
+    \item En utilisant la fonction $u$ de la question 2, calculer la limite en $1^+$ de la fonction $H$.
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 13 (Source: Exercice 10) ---
+\begin{exercice}
+Soit $f\in \mathcal{C}^{2}(\mathbb{R},\mathbb{R})$ telle que $f+f''>0$. Démontrer que
+$$ \forall x\in\mathbb{R}, \quad f(x)+f(x+\pi)\ge0 $$
+\textit{Indication : considérer $\int_{0}^{\pi}\sin(t)(f(t)+f''(t))dt$.}
+\end{exercice}
+
+% --- Exercice 14 (Source: Exercice 11) ---
+\begin{exercice}
+Déterminer $\lim_{x\rightarrow0^{+}}\int_{x}^{2x}\frac{e^{t}}{\arcsin t}dt$.
+\end{exercice}
+
+% --- Exercice 15 (Source: Exercice 12) ---
+\begin{exercice}
+Étudier la fonction définie par $f(x)=\int_{x}^{x^{2}}\frac{dt}{\ln t}$.
+\end{exercice}
+
+% --- Exercice 16 (Source: Exercice 13) ---
+\begin{exercice}
+Après avoir montré son existence, en utilisant un changement de variable affine échangeant les bornes, calculer $\int_{0}^{\pi}\frac{x}{1+\sin x}dx$.
+\end{exercice}
+
+% --- Exercice 17 (Source: Exercice 14) ---
+\begin{exercice}
+Soit $f$ de classe $\mathcal{C}^{1}$ sur $\mathbb{R}^{+}$, strictement croissante et réalisant une bijection de $\mathbb{R}^{+}$ sur $\mathbb{R}^{+}$.
+Montrer que pour tout $x\ge0$,
+$$ xf(x)=\int_{0}^{x}f(t)dt+\int_{0}^{f(x)}f^{-1}(t)dt $$
+\textit{Indication : Dériver. Interprétation géométrique ?}
+\end{exercice}
+
+% --- Exercice 18 (Source: Exercice 15) ---
+\begin{exercice}
+Soit $f\in \mathcal{C}^{2}([a,b],E)$ telle que $f(a)=f(b)=0$. Montrer que
+$$ \left\| \int_{a}^{b}f(t)dt \right\| \le \frac{(b-a)^{3}}{12} \sup_{[a,b]} \|f''(t)\| $$
+Poser $P(t)=\frac{1}{2}(t-a)(b-t)$ et intégrer par parties $\int_{a}^{b}P(t)f''(t)dt$.
+\end{exercice}
+
+% --- Exercice 19 (Source: Exercice 16) ---
+\begin{exercice}
+Soit $A\in \mathcal{M}_{n}(\mathbb{C})$. Calculer de deux manières différentes, pour $r>0$ assez grand,
+$$ I(r)=\int_{0}^{2\pi}re^{i\theta} \det(re^{i\theta}I_{n}-A) (re^{i\theta}I_{n}-A)^{-1} d\theta $$
+Et en déduire le théorème de Cayley-Hamilton.
+\begin{enumerate}
+    \item Commencer par montrer que pour $r>0$ assez grand $(re^{i\theta}I_{n}-A)$ est bien inversible pour tout $\theta$, ce qui assure bien l'existence de $I(r)$.
+    On supposera dans toute la suite que $r>0$ est assez grand pour que $I(r)$ existe.
+    \item 
+    \begin{enumerate}
+        \item Utiliser la relation entre inverse et comatrice pour montrer que $I(r)=\int_{0}^{2\pi}re^{i\theta} \text{Com}(re^{i\theta}I_n-A)^{T} d\theta$.
+        \item En déduire que pour tous $i,j\in\{1,\dots,n\}$ il existe un polynôme $Q_{ij}$ tel que $(I(r))_{i,j}=\int_{0}^{2\pi}re^{i\theta}Q_{i,j}(re^{i\theta}) d\theta$.
+        \item En déduire que $I(r)=0$.
+    \end{enumerate}
+    \item 
+    \begin{enumerate}
+        \item Montrer que pour tout matrice de norme assez petite, $(I_{n}-B)^{-1}=\sum_{k=0}^{\infty}B^{k}$.
+        \item Utiliser ce résultat et une interversion somme/intégrale (que l'on admet pour le moment) pour montrer que
+        $$ I(r)=\sum_{k=0}^{\infty}r^{-k}A^{k}\int_{0}^{2\pi}\det(re^{i\theta}I_{n}-A)e^{-ik\theta}d\theta $$
+        (Note: correction dans l'exposant de $r$ selon le contexte classique).
+        \item En notant le polynôme caractéristique de $A$, $\chi_{A}=\det(XI_{n}-A)=\sum_{p=0}^{n}a_{p}X^{p}$, conclure en remarquant que $\int_{0}^{2\pi}e^{i(p-k)\theta}d\theta=0$ sauf si $k=p$.
+    \end{enumerate}
+\end{enumerate}
+\end{exercice}
+
+% --- Exercice 20 (Source: Exercice 17) ---
+\begin{exercice}
+Déterminer $\lim_{n\rightarrow\infty}\sum_{k=1}^{n}\sin(\frac{k}{n})\sin(\frac{k}{n^{2}})$.
+On se ramènera par un encadrement de $\sin x$ à la recherche de $\lim_{n\rightarrow\infty}\sum_{k=1}^{n}\sin(\frac{k}{n})\frac{k}{n^{2}}$.
+\end{exercice}
+
+% --- Exercice 21 (Source: Exercice 18) ---
+\begin{exercice}
+Trouver un équivalent de $\sum_{k=1}^{n}k \cos(\frac{k\pi}{n})$.
+\end{exercice}
+
+% --- Exercice 22 (Source: Exercice 19) ---
+\begin{exercice}
+Soit $x$ réel différent de -1 et 1.
+Après avoir vérifié son existence, utiliser les sommes de Riemann pour calculer $\int_{0}^{2\pi}\ln(x^{2}-2x \cos t + 1)dt$.
+\end{exercice}
+
+\newpage
+\section{Corrections}
+
+% --- Correction 2 (Source: Exercice 1) ---
+\begin{correction}{2}
+Soit $f : x \mapsto x^x$ définie sur $\mathbb{R}^{+*}$.
+On écrit $f(x) = e^{x \ln x}$.
+$f$ est $\mathcal{C}^{\infty}$ par théorèmes d'opérations.
+$\forall x \in \mathbb{R}^{+*}, f'(x) = (\ln x + 1) e^{x \ln x}$.
+\textbf{Variations :}
+$f'(x) = 0 \iff \ln x = -1 \iff x = e^{-1} = 1/e$.
+Sur $]0, 1/e[$, $f'(x) < 0$, $f$ décroissante.
+Sur $]1/e, +\infty[$, $f'(x) > 0$, $f$ croissante.
+Minimum en $1/e$ valant $(1/e)^{1/e} = e^{-1/e}$.
+\textbf{Limites :}
+En $0^+$ : $x \ln x \to 0$, donc $f(x) \to e^0 = 1$.
+Prolongement par continuité en posant $f(0)=1$.
+Dérivabilité en 0 du prolongement :
+$\frac{f(x)-f(0)}{x} = \frac{e^{x \ln x}-1}{x} \sim_{0} \frac{x \ln x}{x} = \ln x \to -\infty$.
+Donc tangente verticale en 0.
+En $+\infty$ : $f(x) \to +\infty$.
+Courbe : branche parabolique de direction $(Oy)$ car $f(x)/x = x^{x-1} \to \infty$ (si $x>2$).
+\end{correction}
+
+% --- Correction 3 (Source: Exercice 2) ---
+\begin{correction}{3}
+\textbf{1.} On considère le taux $\Delta(t) = \frac{f(a+t)-f(a-t)}{2t}$.
+Si $f$ est dérivable en $a$, $\Delta(t) = \frac{1}{2} (\frac{f(a+t)-f(a)}{t} + \frac{f(a-t)-f(a)}{-t}) \to \frac{1}{2}(f'(a)+f'(a)) = f'(a)$.
+La limite existe et vaut $f'(a)$.
+Réciproque fausse : Contre-exemple $f(x)=|x|$ en $a=0$.
+$\frac{|t|-|-t|}{2t} = 0 \to 0$, pourtant $f$ non dérivable en 0.
+
+\textbf{2.} Avec la relation fournie.
+Si la limite existe et vaut $\lambda$, cela n'implique pas la dérivabilité.
+Exemple : fonction de Weierstrass (continue partout, nulle part dérivable) ? Ou plus simple.
+La formule fournie permet de relier le taux classique au taux généralisé par une série.
+\end{correction}
+
+% --- Correction 4 (Source: Exercice 3) ---
+\begin{correction}{4}
+$f(x) = \arcsin(1-x^3)$. Définie si $-1 \le 1-x^3 \le 1 \iff 0 \le x^3 \le 2 \iff 0 \le x \le \sqrt[3]{2}$.
+Sur $[0, 1]$, $f$ est définie et continue.
+Dérivabilité sur $]0, 1[$ : composition de fonctions dérivables.
+$f'(x) = \frac{-3x^2}{\sqrt{1-(1-x^3)^2}} = \frac{-3x^2}{\sqrt{1-(1-2x^3+x^6)}} = \frac{-3x^2}{\sqrt{2x^3-x^6}} = \frac{-3x^2}{x^{3/2}\sqrt{2-x^3}} = \frac{-3\sqrt{x}}{\sqrt{2-x^3}}$.
+En $0^+$ : $f'(x) \to 0$. Par le théorème de la limite de la dérivée (puisque $f$ est continue en 0), $f$ est dérivable en 0 et $f'(0)=0$.
+En $1^-$ : $f'(x) \to -3$. Donc $f$ dérivable en 1 et $f'(1)=-3$.
+\end{correction}
+
+% --- Correction 6 (Source: Exercice 5) ---
+\begin{correction}{6}
+Soit $\varphi(t) = \det(tA+I_n)$.
+On sait que $\det(I+H) = 1 + \text{Tr}(H) + o(\|H\|)$.
+$\varphi(t) = \det(I+tA) = 1 + \text{Tr}(tA) + o(t) = 1 + t\text{Tr}(A) + o(t)$.
+Donc $\frac{\varphi(t)-\varphi(0)}{t} = \frac{1+t\text{Tr}(A)+o(t)-1}{t} \to \text{Tr}(A)$.
+Donc $\varphi'(0) = \text{Tr}(A)$.
+Autre méthode : $\varphi(t) = \prod (1+t\lambda_i)$. $\varphi'(t) = \sum \lambda_i \prod_{j \ne i} (1+t\lambda_j)$.
+En $0$, $\varphi'(0) = \sum \lambda_i = \text{Tr}(A)$.
+\end{correction}
+
+% --- Correction 7 (Source: Exercice 6) ---
+\begin{correction}{7}
+\textbf{a)} $f$ est dérivable donc continue sur le segment $[a,b]$. Elle est bornée et atteint ses bornes.
+Si le maximum est atteint en $c \in ]a,b[$, alors $f'(c)=0$.
+Si le minimum est atteint en $c \in ]a,b[$, alors $f'(c)=0$.
+Si le max est en $a$ et le min en $b$ (ou inversement), alors $f$ est décroissante (resp. croissante).
+Or $f'(a)>0 \implies f$ croissante au voisinage de $a$. Donc $a$ n'est pas un maximum.
+$f'(b)<0 \implies f$ décroissante au voisinage de $b$. Donc $b$ n'est pas un minimum.
+Donc il existe un extremum local à l'intérieur, donc $f'(c)=0$.
+
+\textbf{b)} Théorème de Darboux : Si $f$ est dérivable, $f'$ vérifie le TVI.
+Soit $y$ entre $f'(a)$ et $f'(b)$. On pose $g(x) = f(x) - yx$.
+$g'(a) = f'(a)-y$ et $g'(b)=f'(b)-y$ sont de signes contraires.
+D'après a), il existe $c$ tel que $g'(c)=0$, soit $f'(c)=y$.
+\end{correction}
+
+% --- Correction 8 (Source: Exercice 7) ---
+\begin{correction}{8}
+Posons $g(x) = \frac{f(x)-f(a)}{x-a}$ pour $x \ne a$ et $g(a)=f'(a)$.
+$g$ est continue sur $[a,b]$.
+$g(b) = \frac{f(b)-f(a)}{b-a}$.
+Si $g$ atteint un extremum en $c \in ]a,b[$, alors $g'(c)=0$.
+Calculons $g'(x)$ pour $x \ne a$ : $g'(x) = \frac{f'(x)(x-a) - (f(x)-f(a))}{(x-a)^2} = \frac{f'(x)-g(x)}{x-a}$.
+Si $g'(c)=0$, alors $f'(c) = g(c) = \frac{f(c)-f(a)}{c-a}$.
+Le résultat demandé est légèrement différent de la forme des accroissements finis usuels ?
+L'énoncé demande $f'(c) = \frac{f(c)-f(a)}{c-a}$. C'est exactement $g'(c)=0 \implies f'(c)=g(c)$.
+Reste à montrer que $g$ a un extremum.
+Comme $g(a)=f'(a)$ et $f'(a)=f'(b)$, on peut utiliser un raisonnement similaire au Rolle classique ou Darboux.
+\end{correction}
+
+% --- Correction 11 (Source: Exercice 9) ---
+\begin{enumerate}
+    \item $x \mapsto x^{2n}$. Dérivée $n$-ième : $(x^{2n})^{(n)} = \frac{(2n)!}{(2n-n)!} x^{2n-n} = \frac{(2n)!}{n!} x^n$.
+    En $x=1$, valeur $\frac{(2n)!}{n!}$.
+    \item Leibniz sur $x^n \cdot x^n$.
+    $(x^{2n})^{(n)} = \sum_{k=0}^n \binom{n}{k} (x^n)^{(k)} (x^n)^{(n-k)}$.
+    Or $(x^n)^{(k)} = \frac{n!}{(n-k)!} x^{n-k}$.
+    En $x=1$, $(x^n)^{(k)}(1) = \frac{n!}{(n-k)!}$.
+    Donc $(x^{2n})^{(n)}(1) = \sum_{k=0}^n \binom{n}{k} \frac{n!}{(n-k)!} \frac{n!}{k!} = n! \sum_{k=0}^n \binom{n}{k} \binom{n}{n-k} = n! \sum_{k=0}^n \binom{n}{k}^2$.
+    \item Égalité des résultats : $\frac{(2n)!}{n!} = n! \sum \binom{n}{k}^2$.
+    D'où $\sum_{k=0}^n \binom{n}{k}^2 = \frac{(2n)!}{(n!)^2} = \binom{2n}{n}$.
+\end{enumerate}
+
+% --- Correction 13 (Source: Exercice 10) ---
+\begin{correction}{13}
+Posons $I = \int_0^\pi (f(t)+f''(t)) \sin t dt$.
+Par IPP (deux fois) sur $\int f'' \sin$ :
+$\int_0^\pi f''(t) \sin t dt = [f'(t)\sin t]_0^\pi - \int_0^\pi f'(t) \cos t dt = 0 - ([f(t)\cos t]_0^\pi - \int_0^\pi f(t)(-\sin t)dt)$
+$= - (-f(\pi) - f(0) + \int f \sin) = f(\pi)+f(0) - \int f \sin$.
+Donc $I = \int f \sin + f(\pi)+f(0) - \int f \sin = f(\pi)+f(0)$.
+Comme $f+f''>0$ et $\sin t > 0$ sur $]0,\pi[$, l'intégrale $I$ est strictement positive.
+Donc $f(\pi)+f(0) > 0$.
+En appliquant ce résultat à $x \mapsto f(x+t)$, on montre que pour tout $t$, $f(t+\pi)+f(t) > 0$.
+\end{correction}
+
+% --- Correction 14 (Source: Exercice 11) ---
+\begin{correction}{14}
+Soit $f(x) = \int_x^{2x} \frac{e^t}{\arcsin t} dt$.
+Quand $t \to 0$, $\frac{e^t}{\arcsin t} \sim \frac{1}{t}$.
+On compare avec $g(x) = \int_x^{2x} \frac{1}{t} dt = [\ln t]_x^{2x} = \ln 2$.
+$f(x) - g(x) = \int_x^{2x} (\frac{e^t}{\arcsin t} - \frac{1}{t}) dt$.
+La fonction $h(t) = \frac{e^t}{\arcsin t} - \frac{1}{t}$ se prolonge par continuité en 0 (limite 1).
+Donc $\int_x^{2x} h(t) dt \approx x \cdot h(0) \to 0$.
+Ainsi, $\lim_{x\to 0^+} f(x) = \ln 2$.
+\end{correction}
+
+% --- Correction 16 (Source: Exercice 13) ---
+\begin{correction}{16}
+$I = \int_0^\pi \frac{x}{1+\sin x} dx$.
+Changement de variable $u = \pi - x$. $dx = -du$.
+Bornes : $\pi \to 0$.
+$I = \int_\pi^0 \frac{\pi-u}{1+\sin(\pi-u)} (-du) = \int_0^\pi \frac{\pi-u}{1+\sin u} du$.
+$2I = \int_0^\pi \frac{x + \pi - x}{1+\sin x} dx = \pi \int_0^\pi \frac{1}{1+\sin x} dx$.
+Calcul de $J = \int_0^\pi \frac{1}{1+\sin x} dx$.
+On peut utiliser $1+\sin x = 1 + \cos(\frac{\pi}{2}-x) = 2 \cos^2(\frac{\pi}{4}-\frac{x}{2})$.
+$J = \frac{1}{2} \int_0^\pi \frac{dx}{\cos^2(\frac{\pi}{4}-\frac{x}{2})}$. Primitive $\tan$.
+$J = [\tan(\frac{x}{2}-\frac{\pi}{4})]_0^\pi = \tan(\frac{\pi}{4}) - \tan(-\frac{\pi}{4}) = 1 - (-1) = 2$.
+Donc $2I = 2\pi \implies I = \pi$.
+\end{correction}
+
+% --- Correction 20 (Source: Exercice 17) ---
+\begin{correction}{20}
+On cherche $\lim \sum \sin(k/n) \sin(k/n^2)$.
+Pour $n$ grand, $k/n^2$ est petit. $\sin(k/n^2) \sim k/n^2$.
+On compare la somme à $S_n = \sum_{k=1}^n \sin(k/n) \frac{k}{n^2} = \frac{1}{n} \sum_{k=1}^n \frac{k}{n} \sin(\frac{k}{n})$.
+C'est une somme de Riemann pour la fonction $x \mapsto x \sin x$ sur $[0,1]$.
+Elle converge vers $\int_0^1 x \sin x dx$.
+IPP : $[-x\cos x]_0^1 + \int_0^1 \cos x dx = -\cos 1 + [\sin x]_0^1 = \sin 1 - \cos 1$.
+Majoration de l'erreur : $|\sin u - u| \le \frac{|u|^3}{6}$.
+L'erreur totale tend vers 0. La limite est $\sin 1 - \cos 1$.
+\end{correction}
+
+% --- Correction 21 (Source: Exercice 18) ---
+\begin{correction}{21}
+$S_n = \sum_{k=1}^n k \cos(\frac{k\pi}{n})$.
+On écrit $S_n = n^2 \frac{1}{n} \sum_{k=1}^n \frac{k}{n} \cos(\frac{k\pi}{n})$.
+La somme est une somme de Riemann pour $x \mapsto x \cos(\pi x)$ sur $[0,1]$.
+L'intégrale est $\int_0^1 t \cos(\pi t) dt = \dots = -2/\pi^2$.
+Donc $S_n \sim n^2 \times (-2/\pi^2)$.
+\end{correction}
+
+% --- Correction 22 (Source: Exercice 19) ---
+\begin{correction}{22}
+$I = \int_0^{2\pi} \ln(x^2 - 2x \cos t + 1) dt$.
+Sommes de Riemann : $R_n = \frac{2\pi}{n} \sum_{k=0}^{n-1} \ln(x^2 - 2x \cos(2k\pi/n) + 1)$.
+$x^2 - 2x \cos \theta + 1 = |x - e^{i\theta}|^2$.
+$\sum \ln |x-e^{i\theta_k}|^2 = 2 \ln \prod |x-e^{2ik\pi/n}| = 2 \ln |x^n-1|$.
+$R_n = \frac{4\pi}{n} \ln |x^n-1|$.
+Si $|x| > 1$, $|x^n-1| \sim |x|^n$. $R_n \sim \frac{4\pi}{n} n \ln |x| = 4\pi \ln |x|$.
+Si $|x| < 1$, $|x^n-1| \to 1$. $R_n \to 0$.
+Donc $I = 4\pi \ln \max(1, |x|)$.
+\end{correction}

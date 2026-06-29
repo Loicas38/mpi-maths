@@ -1,0 +1,195 @@
+% Package de raccourcis personnalisés
+% Auteur: Lucas Dehmas
+% Date: 2025
+
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{../commun/raccourcis}[2025/01/01 Raccourcis personnalisés]
+
+% Raccourcis mathématiques couramment utilisés
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\K}{\mathbb{K}}
+\newcommand{\U}{\mathbb{U}}
+\newcommand{\dx}{\,\mathrm{d}x}
+\newcommand{\dt}{\,\mathrm{d}t}
+\newcommand{\dy}{\,\mathrm{d}y}
+% \newcommand{\L}{\mathcal{L}}
+\newcommand{\mc}[1]{\,\mathscr C^{#1}}
+
+% Raccourcis pour les opérateurs
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\paren}[1]{\left(#1\right)}
+\newcommand{\bracket}[1]{\left[#1\right]}
+
+% Raccourcis pour les fonctions
+\newcommand{\card}{\operatorname{card}}
+\newcommand{\pgcd}{\operatorname{pgcd}}
+\newcommand{\ppcm}{\operatorname{ppcm}}
+
+% Raccourcis pour les limites et sommes
+\newcommand{\tend}[2]{\xrightarrow[#1 \to #2]{}}
+\newcommand{\tpinf}[1]{\xrightarrow[#1 \to +\infty]{}}
+\newcommand{\tminf}[1]{\xrightarrow[#1 \to -\infty]{}}
+
+% Raccourcis pour les probabilités
+\newcommand{\proba}[1]{\mathbb{P}\left(#1\right)}
+\newcommand{\esp}[1]{\mathbb{E}\left[#1\right]}
+\newcommand{\var}[1]{\text{Var}\left(#1\right)}
+
+% Raccourcis pour les dérivées
+\newcommand{\dd}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
+\newcommand{\ddd}[3]{\frac{\mathrm{d}^{#3}#1}{\mathrm{d}#2^{#3}}}
+\newcommand{\pp}[2]{\frac{\partial #1}{\partial #2}}
+\newcommand{\ppn}[3]{\frac{\partial^{#1} #2}{\partial #3^{#1}}}
+
+% Raccourcis pour les intervalles
+\newcommand{\inter}[2]{\left[#1, #2\right]}
+\newcommand{\interoo}[2]{\left]#1, #2\right[}
+\newcommand{\interoc}[2]{\left]#1, #2\right]}
+\newcommand{\interco}[2]{\left[#1, #2\right[}
+\newcommand{\ninter}[2]{[\![#1, #2]\!]}
+
+% raccourcis pour les fonctions 
+\newcommand{\fonction}[5]{
+  #1: \space \begin{array}{|ccc}
+    \displaystyle #2 & \to & \displaystyle #3 \\
+    \displaystyle #4 & \mapsto & \displaystyle #5
+  \end{array}
+}
+
+\newcommand{\limit}[2]{
+  \underset{#1 \to #2}{\longrightarrow}
+}
+
+\newcommand{\limitnorme}[3]{\xrightarrow[#2 \to #3]{#1}}
+
+
+\newcommand{\re}{
+  \operatorname{Re} \,
+}
+
+\newcommand{\im}{
+  \operatorname{Im} \,
+}
+
+% Mise en forme 
+\newcommand{\svspace}{
+  \vspace{0.2em}
+}
+
+\newcommand{\avspace}{
+  \vspace{0.5em}
+}
+
+\newcommand{\lvspace}{
+  \vspace{1em}
+}
+
+% Indentation avec soulignement, utiliser de préférence \svspace sur la ligne qui suit
+\newcommand{\uindent}[1]{
+  \lvspace \qquad \uline{#1 : }
+}
+
+% Raccourcis pour des opérateurs divers et variés 
+\newcommand{\Fr}{
+  \operatorname{Fr} \,
+}
+
+\newcommand{\id}{\operatorname{id}}
+
+\newcommand{\zz}[1]{
+  \mathbb{Z}/#1\mathbb{Z}
+}
+
+\newcommand{\Vect}{
+  \operatorname{Vect} \,
+}
+
+\newcommand{\Ker}{
+  \operatorname{Ker} \,
+}
+
+\newcommand{\Card}{
+  \operatorname{Card} \,
+}
+
+\newcommand{\rg}{
+  \operatorname{rg} \,
+}
+
+\newcommand{\Id}{
+  \operatorname{Id}
+}
+
+\newcommand{\Sp}{
+  \operatorname{Sp} \,
+}
+
+\newcommand{\Mat}{
+  \operatorname{Mat} \,
+}
+
+\newcommand{\tr}{
+  \operatorname{tr} \,
+}
+
+\newcommand{\cov}{
+  \operatorname{Cov} \,
+}
+
+\newcommand{\Diag}{
+  \operatorname{Diag} \,
+}
+
+\newcommand{\grad}{
+  \overrightarrow{\operatorname{grad}} \,
+}
+
+\newcommand{\ds}{
+  \displaystyle 
+}
+
+\newcommand{\inv}{
+  ^{-1}
+}
+
+% Raccourci pour mettre une page blanche entre les chapitres
+\newcommand{\pagevide}{
+  \pagestyle{empty}
+  % Page blanche entre les chapitres
+  \clearpage
+  \null
+  \clearpage
+  \pagestyle{fancy}
+}
+
+\newcommand{\warningsign}{\tikz[baseline=-.75ex] \node[shape=regular polygon, regular polygon sides=3, inner sep=0pt, draw, thick] {\textbf{!}};}
+
+\newcommand{\Det}{
+  \operatorname{Det} \,
+}
+
+% en test 
+\newcommand{\sev}{
+  sous-espace vectoriel
+}
+
+\newcommand{\cad}{
+  c'est-à-dire
+}
+
+\newcommand{\ev}{
+  espace vectoriel
+}
+
+\newcommand{\Sim}{
+  \operatorname{Sim}
+}
+
+% Fin du package
+\endinput

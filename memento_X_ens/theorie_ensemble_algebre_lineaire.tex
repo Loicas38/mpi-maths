@@ -1,0 +1,1108 @@
+\documentclass{prepacours}
+
+
+\auteur{Lucas Dehmas}
+\annee{2025-2026}
+\etablissement{Lycée Champollion}
+\filiere{MPI / MPI*}
+
+\begin{document}
+
+\chapitre{1}{Théorie des ensembles et algèbre générale}
+
+\pagedegarde
+
+\section{Arithmétique des nombres premiers}
+
+\begin{proposition}{Infinité des nombres premiers}{infinite_premiers}
+    \begin{enumerate}
+        \item L'ensemble des nombres premiers $\mathcal{P}$ est infini.
+        \item Il existe une infinité de nombres premiers congrus à $-1$ modulo $4$ (c'est-à-dire de la forme $4k+3$).
+    \end{enumerate}
+\end{proposition}
+
+\noindent \textbf{Grandes lignes de la preuve :}
+\begin{itemize}
+    \item \textbf{Pour 1. :} Raisonnement par l'absurde d'Euclide. On construit un entier $N$ à partir d'une liste finie de premiers qui n'est divisible par aucun d'entre eux.
+    \item \textbf{Pour 2. :} Raisonnement similaire. On construit $N = 4(p_1 \dots p_n) - 1$. On montre que $N$ admet nécessairement un diviseur premier de la forme $4k+3$.
+\end{itemize}
+
+\begin{proof}
+    \textbf{1. Infinité des nombres premiers :} \\
+    Supposons par l'absurde qu'il n'existe qu'un nombre fini de nombres premiers, notés $\mathcal{P} = \{p_1, \dots, p_n\}$.
+    Posons $N = p_1 p_2 \dots p_n + 1$.
+    $N$ est un entier $>1$, il admet donc un diviseur premier $q$.
+    Comme $q \in \mathcal{P}$, il existe $i$ tel que $q = p_i$.
+    Ainsi, $q$ divise le produit $p_1 \dots p_n$ et $q$ divise $N$. Par combinaison linéaire, $q$ divise $N - p_1 \dots p_n = 1$, ce qui est impossible.
+    L'ensemble des nombres premiers est donc infini.
+
+    \vspace{0.5em}
+    \textbf{2. Infinité des premiers congrus à $-1 \pmod 4$ :} \\
+    Supposons qu'il existe un nombre fini de premiers de la forme $4k+3$. Notons-les $p_1, \dots, p_n$ (notez que cette liste ne contient pas 2, car $2 \equiv 2 \pmod 4$).
+    Considérons l'entier $N = 4 p_1 \dots p_n - 1$.
+    On remarque que $N \equiv -1 \equiv 3 \pmod 4$.
+    Soit $N = q_1 \dots q_r$ la décomposition de $N$ en facteurs premiers.
+    \begin{itemize}
+        \item Aucun $q_j$ ne peut être égal à $2$ (car $N$ est impair).
+        \item Si tous les $q_j$ étaient congrus à $1 \pmod 4$, alors leur produit $N$ serait congru à $1 \pmod 4$ (car le produit de nombres congrus à 1 reste congru à 1). Or $N \equiv 3 \pmod 4$.
+    \end{itemize}
+    Il existe donc au moins un facteur premier $q$ de $N$ tel que $q \equiv 3 \equiv -1 \pmod 4$.
+    Ce premier $q$ appartient donc à notre liste $\{p_1, \dots, p_n\}$.
+    Par conséquent, $q$ divise $N$ et $q$ divise le produit $4 p_1 \dots p_n$.
+    Il divise donc leur différence : $1$. Absurde.
+\end{proof}
+
+\section{Structures Algébriques Finies}
+
+\begin{proposition}{Régularité et Inversibilité en dimension finie}{regulier_inversible}
+    \begin{enumerate}
+        \item Soit $M$ un monoïde fini (ensemble muni d'une loi associative avec neutre). Tout élément régulier (simplifiable) de $M$ est inversible.
+        \item Soit $A$ une $K$-algèbre de dimension finie. Tout élément régulier de $A$ est inversible.
+    \end{enumerate}
+\end{proposition}
+
+\noindent \textbf{Grandes lignes de la preuve :}
+\begin{itemize}
+    \item L'idée centrale est un argument de cardinalité (principe des tiroirs ou application injective entre ensembles de même cardinal fini).
+    \item On considère l'application de multiplication à gauche $\phi_a : x \mapsto ax$.
+    \item La régularité implique l'injectivité de $\phi_a$.
+    \item La finitude implique alors la bijectivité. L'antécédent du neutre fournit l'inverse.
+\end{itemize}
+
+\restaurergeometrie
+
+\begin{proof}
+    \textbf{1. Cas du monoïde fini $M$ :} \\
+    Soit $a \in M$ un élément régulier. Considérons l'application $\phi_a : M \to M$ définie par $\phi_a(x) = ax$.
+    Comme $a$ est régulier, $ax = ay \implies x = y$. L'application $\phi_a$ est donc injective.
+    Or $M$ est un ensemble fini et $\phi_a$ va de $M$ dans $M$. Une injection d'un ensemble fini dans lui-même est nécessairement surjective (et bijective).
+    Par surjectivité, le neutre $e$ de $M$ admet un antécédent $b \in M$ tel que $\phi_a(b) = e$, soit $ab = e$.
+    (On montre de même qu'il existe un inverse à gauche en utilisant la régularité à droite, et dans un monoïde, inverse à gauche et à droite coïncident). Donc $a$ est inversible.
+
+    \vspace{0.5em}
+    \textbf{2. Cas de la $K$-algèbre $A$ de dimension finie :} \\
+    Soit $a \in A$ régulier. L'application linéaire $u_a : x \mapsto ax$ est un endomorphisme de l'espace vectoriel $A$.
+    Puisque $a$ est régulier, $ax = 0 \implies x = 0$ (car $0 = a \cdot 0$). Donc $\ker(u_a) = \{0\}$.
+    $u_a$ est injective. Comme $A$ est de dimension finie, le théorème du rang (ou l'équivalence injection/bijection pour les endomorphismes en dim finie) assure que $u_a$ est bijective.
+    Il existe donc $b \in A$ tel que $u_a(b) = 1_A$, soit $ab = 1_A$.
+\end{proof}
+
+\begin{exemple}
+    Dans $\mathcal{M}_n(\mathbb{K})$, une matrice est régulière si elle n'est pas diviseur de zéro. Si $M$ est régulière, alors $\ker(M) = \{0\}$, donc $M$ est inversible (car on est en dimension finie).
+    Contre-exemple en dimension infinie : L'opérateur de décalage à droite sur les suites $(u_0, u_1, \dots) \mapsto (0, u_0, u_1, \dots)$ est injectif (régulier) mais non surjectif (non inversible).
+\end{exemple}
+
+\section{Nombres complexes}
+
+\begin{proposition}{Cas d'égalité de l'inégalité triangulaire}{inegalite_triangulaire}
+    Soient $(z_1, z_2) \in \mathbb{C}^2$. On a l'inégalité $|z_1 + z_2| \le |z_1| + |z_2|$.
+    \\
+    Le cas d'égalité $|z_1 + z_2| = |z_1| + |z_2|$ est vérifié si et seulement si :
+    \[ z_1 = 0 \quad \text{ou} \quad \exists \lambda \in \mathbb{R}^+, z_2 = \lambda z_1 \]
+    (On dit que les complexes sont positivement liés).
+\end{proposition}
+
+\noindent \textbf{Grandes lignes de la preuve :}
+\begin{itemize}
+    \item On raisonne par équivalence en élevant l'égalité au carré (les modules sont positifs).
+    \item On développe $|z_1+z_2|^2$ avec le produit scalaire hermitien implicite.
+    \item On se ramène à l'égalité $\text{Re}(z_1\overline{z_2}) = |z_1z_2|$.
+    \item Ceci équivaut à dire que $z_1\overline{z_2}$ est un réel positif.
+\end{itemize}
+
+\begin{proof}
+    On élève au carré les deux membres (positifs) :
+    \begin{align*}
+        |z_1 + z_2| = |z_1| + |z_2| &\iff |z_1 + z_2|^2 = (|z_1| + |z_2|)^2 \\
+        &\iff (z_1+z_2)(\overline{z_1}+\overline{z_2}) = |z_1|^2 + |z_2|^2 + 2|z_1||z_2| \\
+        &\iff |z_1|^2 + z_1\overline{z_2} + z_2\overline{z_1} + |z_2|^2 = |z_1|^2 + |z_2|^2 + 2|z_1 z_2| \\
+        &\iff z_1\overline{z_2} + \overline{z_1\overline{z_2}} = 2|z_1 z_2| \\
+        &\iff 2\text{Re}(z_1\overline{z_2}) = 2|z_1\overline{z_2}| \\
+        &\iff \text{Re}(Z) = |Z| \quad \text{avec } Z = z_1\overline{z_2}
+    \end{align*}
+    Or, pour tout complexe, $\text{Re}(Z) \le |Z|$ avec égalité ssi $Z$ est un réel positif ou nul.
+    Donc l'égalité équivaut à $z_1\overline{z_2} \in \mathbb{R}^+$.
+    \begin{itemize}
+        \item Si $z_1 = 0$, la condition est vérifiée.
+        \item Si $z_1 \neq 0$, alors $z_1\overline{z_2} \in \mathbb{R}^+ \iff \frac{z_1\overline{z_2}}{|z_1|^2} \in \mathbb{R}^+ \iff \frac{\overline{z_2}}{\overline{z_1}} \in \mathbb{R}^+ \iff \frac{z_2}{z_1} \in \mathbb{R}^+$.
+        Donc il existe $\lambda \ge 0$ tel que $z_2 = \lambda z_1$.
+    \end{itemize}
+\end{proof}
+
+\section{Calcul de sommes trigonométriques}
+
+\begin{proposition}{Sommes de cosinus et sinus en progression arithmétique}{sommes_trigo}
+    Soient $x, y \in \mathbb{R}$ et $n \in \mathbb{N}$. Si $y \not\equiv 0 \pmod{2\pi}$, alors :
+    \[ C_n = \sum_{k=0}^n \cos(x+ky) = \cos\left(x + n\frac{y}{2}\right) \frac{\sin\left((n+1)\frac{y}{2}\right)}{\sin\left(\frac{y}{2}\right)} \]
+    \[ S_n = \sum_{k=0}^n \sin(x+ky) = \sin\left(x + n\frac{y}{2}\right) \frac{\sin\left((n+1)\frac{y}{2}\right)}{\sin\left(\frac{y}{2}\right)} \]
+\end{proposition}
+
+\noindent \textbf{Grandes lignes de la preuve :}
+\begin{itemize}
+    \item On calcule la somme complexe $U_n = \sum_{k=0}^n e^{i(x+ky)} = C_n + i S_n$.
+    \item On reconnait une somme géométrique de raison $e^{iy}$.
+    \item On factorise par l'angle moitié (méthode de l'arc moitié) pour faire apparaître des sinus.
+    \item On identifie parties réelle et imaginaire.
+\end{itemize}
+
+\begin{proof}
+    Calculons $U_n = \sum_{k=0}^n e^{i(x+ky)} = e^{ix} \sum_{k=0}^n (e^{iy})^k$.
+    Si $y \not\equiv 0 \pmod{2\pi}$, alors $e^{iy} \neq 1$, on utilise la formule de la somme géométrique :
+    \[ U_n = e^{ix} \frac{1 - (e^{iy})^{n+1}}{1 - e^{iy}} = e^{ix} \frac{1 - e^{i(n+1)y}}{1 - e^{iy}} \]
+    On utilise la technique de l'angle moitié ($1-e^{i\theta} = -2i\sin(\theta/2)e^{i\theta/2}$) :
+    \[ U_n = e^{ix} \frac{-2i\sin\left(\frac{(n+1)y}{2}\right) e^{i\frac{(n+1)y}{2}} }{-2i\sin\left(\frac{y}{2}\right) e^{i\frac{y}{2}} } \]
+    On simplifie et on regroupe les exponentielles :
+    \[ U_n = e^{ix} e^{i\frac{(n+1)y}{2}} e^{-i\frac{y}{2}} \frac{\sin\left(\frac{(n+1)y}{2}\right)}{\sin\left(\frac{y}{2}\right)} = e^{i\left(x + \frac{ny}{2}\right)} \frac{\sin\left(\frac{(n+1)y}{2}\right)}{\sin\left(\frac{y}{2}\right)} \]
+    En prenant la partie réelle pour $C_n$ et la partie imaginaire pour $S_n$, on obtient les formules annoncées.
+\end{proof}
+
+\begin{exemple}
+    Si $y \equiv 0 \pmod{2\pi}$, alors $\cos(x+ky) = \cos(x)$. La somme vaut trivialement $(n+1)\cos(x)$. Les formules ci-dessus ne s'appliquent pas (division par 0).
+\end{exemple}
+
+\section{Argument principal et Arctangente}
+
+\begin{proposition}{Expression analytique de l'argument principal}{arg_arctan}
+    Soit $z = x+iy \in \mathbb{C}^*$. L'argument principal $\theta = \text{Arg}(z) \in ]-\pi, \pi]$ s'exprime en fonction de $x$ et $y$ par :
+    \[
+    \text{Arg}(z) =
+    \begin{cases}
+    \arctan\left(\frac{y}{x}\right) & \text{si } x > 0 \\
+    \arctan\left(\frac{y}{x}\right) + \pi & \text{si } x < 0 \text{ et } y \ge 0 \\
+    \arctan\left(\frac{y}{x}\right) - \pi & \text{si } x < 0 \text{ et } y < 0 \\
+    \frac{\pi}{2} & \text{si } x = 0 \text{ et } y > 0 \\
+    -\frac{\pi}{2} & \text{si } x = 0 \text{ et } y < 0
+    \end{cases}
+    \]
+    On peut aussi utiliser la formule de l'angle moitié valable pour tout $z \notin \mathbb{R}^-$ :
+    \[ \text{Arg}(z) = 2 \arctan\left( \frac{y}{x + \sqrt{x^2+y^2}} \right) \]
+\end{proposition}
+
+\noindent \textbf{Grandes lignes de la preuve :}
+\begin{itemize}
+    \item On part de $x = r\cos\theta$ et $y=r\sin\theta$. On a $\tan\theta = y/x$ si $x \neq 0$.
+    \item La fonction $\arctan$ renvoie une valeur dans $]-\pi/2, \pi/2[$.
+    \item Il faut ajuster cette valeur selon le quadrant du plan complexe (signe de $x$) pour retomber dans $]-\pi, \pi]$.
+\end{itemize}
+
+\begin{proof}
+    Soit $\theta = \text{Arg}(z) \in ]-\pi, \pi]$. On sait que $\tan(\theta) = y/x$ lorsque $x \neq 0$.
+    Or, $\theta \equiv \arctan(y/x) \pmod \pi$.
+    \begin{itemize}
+        \item \textbf{Si $x > 0$ :} Le point est dans le demi-plan droit. $\theta \in ]-\pi/2, \pi/2[$. Comme $\arctan(y/x)$ est aussi dans cet intervalle, $\theta = \arctan(y/x)$.
+        \item \textbf{Si $x < 0$ :} Le point est dans le demi-plan gauche. $\theta \in ]-\pi, -\pi/2[ \cup ]\pi/2, \pi]$.
+        \begin{itemize}
+            \item Si $y \ge 0$, $\theta \in ]\pi/2, \pi]$. Or $\arctan(y/x) \in ]-\pi/2, 0]$. Il faut ajouter $\pi$.
+            \item Si $y < 0$, $\theta \in ]-\pi, -\pi/2[$. Or $\arctan(y/x) \in ]0, \pi/2[$. Il faut retrancher $\pi$.
+        \end{itemize}
+        \item \textbf{Si $x=0$ :} Immédiat selon le signe de $y$.
+    \end{itemize}
+\end{proof}
+
+
+\section{Théorie des Groupes : Lagrange et commutativité}
+
+\begin{proposition}{Théorème de Lagrange}{lagrange}
+    Soit $G$ un groupe fini et $H$ un sous-groupe de $G$.
+    \begin{enumerate}
+        \item La relation définie par $x \sim y \iff x^{-1}y \in H$ est une relation d'équivalence (congruence à gauche).
+        \item Les classes d'équivalence sont les ensembles $xH = \{xh \mid h \in H\}$ (classes à gauche).
+        \item \textbf{Théorème de Lagrange :} L'ordre de $H$ divise l'ordre de $G$. Plus précisément :
+        \[ |G| = [G:H] \times |H| \]
+        où $[G:H]$ est l'indice de $H$ dans $G$ (nombre de classes à gauche).
+    \end{enumerate}
+\end{proposition}
+
+\noindent \textbf{Grandes lignes de la preuve :}
+\begin{itemize}
+    \item On vérifie les axiomes d'équivalence pour $\sim$.
+    \item On montre que la classe d'un élément $x$ est exactement l'ensemble $xH$.
+    \item On construit une bijection $h \mapsto xh$ entre $H$ et $xH$ pour prouver que toutes les classes ont le même cardinal que $H$.
+    \item Les classes formant une partition de $G$, le cardinal total est la somme des cardinaux des classes.
+\end{itemize}
+
+\begin{proof}
+    \textbf{1. Relation d'équivalence :}
+    \begin{itemize}
+        \item \textit{Réflexivité :} $x^{-1}x = e \in H$, donc $x \sim x$.
+        \item \textit{Symétrie :} Si $x \sim y$, alors $x^{-1}y = h \in H$. Donc $y^{-1}x = (x^{-1}y)^{-1} = h^{-1} \in H$ (car $H$ est un groupe). D'où $y \sim x$.
+        \item \textit{Transitivité :} Si $x \sim y$ et $y \sim z$, alors $x^{-1}y \in H$ et $y^{-1}z \in H$. Le produit $(x^{-1}y)(y^{-1}z) = x^{-1}z$ est dans $H$. Donc $x \sim z$.
+    \end{itemize}
+    
+    \textbf{2. Cardinalité des classes :}
+    La classe de $x$ est $\bar{x} = \{y \in G \mid x \sim y\} = \{y \in G \mid x^{-1}y \in H\} = \{y \in G \mid \exists h \in H, y = xh\} = xH$.
+    L'application $f : H \to xH$ définie par $h \mapsto xh$ est surjective par définition et injective (par régularité à gauche dans un groupe). C'est une bijection, donc $|xH| = |H|$.
+    
+    \textbf{3. Lagrange :}
+    Les classes d'équivalence forment une partition de $G$. Si $k$ est le nombre de classes distinctes (noté $[G:H]$), alors $|G| = \sum_{i=1}^k |x_i H| = \sum_{i=1}^k |H| = k \times |H|$.
+\end{proof}
+
+\begin{proposition}{Groupes d'exposant 2}{groupe_carre}
+    Soit $G$ un groupe tel que pour tout $x \in G$, $x^2 = 1$ (élément neutre).
+    Alors $G$ est abélien (commutatif).
+\end{proposition}
+
+\noindent \textbf{Grandes lignes de la preuve :}
+\begin{itemize}
+    \item La condition $x^2=1$ signifie que tout élément est son propre inverse ($x = x^{-1}$).
+    \item On applique cela au produit $xy$.
+\end{itemize}
+
+\begin{proof}
+    Soient $x, y \in G$.
+    Par hypothèse, $(xy)^2 = 1$, donc $xy = (xy)^{-1}$.
+    Or, dans tout groupe, l'inverse d'un produit est le produit des inverses dans l'ordre inverse : $(xy)^{-1} = y^{-1}x^{-1}$.
+    Puisque $y^2=1 \implies y=y^{-1}$ et $x^2=1 \implies x=x^{-1}$, on a :
+    \[ xy = y^{-1}x^{-1} = yx \]
+    Donc $G$ est commutatif.
+\end{proof}
+
+\section{Groupe Symétrique}
+
+\begin{proposition}{Conjugaison de cycles dans $\mathfrak{S}_n$}{conjugaison_sn}
+    Soit $\sigma \in \mathfrak{S}_n$ et $c = (a_1, a_2, \dots, a_p)$ un $p$-cycle.
+    Le conjugué de $c$ par $\sigma$ est le cycle obtenu en appliquant $\sigma$ aux éléments du support :
+    \[ \sigma \circ (a_1, a_2, \dots, a_p) \circ \sigma^{-1} = (\sigma(a_1), \sigma(a_2), \dots, \sigma(a_p)) \]
+\end{proposition}
+
+\noindent \textbf{Grandes lignes de la preuve :}
+\begin{itemize}
+    \item On note $\phi = \sigma c \sigma^{-1}$ et $c' = (\sigma(a_1), \dots, \sigma(a_p))$.
+    \item On teste l'égalité en évaluant $\phi(y)$ pour deux cas : si $y$ est un des $\sigma(a_i)$ et si $y$ n'est pas dans l'image du support.
+\end{itemize}
+
+\begin{proof}
+    Posons $\phi = \sigma \circ c \circ \sigma^{-1}$.
+    \begin{itemize}
+        \item \textbf{Cas 1 :} Soit $y = \sigma(a_i)$ (avec la convention $a_{p+1} = a_1$).
+        Alors $\sigma^{-1}(y) = a_i$.
+        On applique $c$ : $c(a_i) = a_{i+1}$.
+        On applique $\sigma$ : $\sigma(a_{i+1})$.
+        Donc $\phi(\sigma(a_i)) = \sigma(a_{i+1})$. C'est exactement l'action du cycle $(\sigma(a_1), \dots, \sigma(a_p))$.
+        
+        \item \textbf{Cas 2 :} Soit $y \notin \{\sigma(a_1), \dots, \sigma(a_p)\}$.
+        Alors $\sigma^{-1}(y) \notin \{a_1, \dots, a_p\}$. Ce point n'est pas dans le support de $c$, donc $c(\sigma^{-1}(y)) = \sigma^{-1}(y)$.
+        Ensuite, $\phi(y) = \sigma(\sigma^{-1}(y)) = y$.
+        $\phi$ laisse fixes les éléments hors du support, tout comme le cycle image.
+    \end{itemize}
+    Conclusion : $\phi$ et $c'$ coïncident partout.
+\end{proof}
+
+\begin{proposition}{Générateurs de $\mathfrak{S}_n$ et $\mathfrak{A}_n$}{generateurs_sn_an}
+    \begin{enumerate}
+        \item Le groupe symétrique $\mathfrak{S}_n$ est engendré par les transpositions de la forme $(1, k)$ pour $2 \le k \le n$.
+        \item Le groupe alterné $\mathfrak{A}_n$ (pour $n \ge 3$) est engendré par les 3-cycles.
+    \end{enumerate}
+\end{proposition}
+
+\noindent \textbf{Grandes lignes de la preuve :}
+\begin{itemize}
+    \item \textbf{Pour 1 :} On sait déjà que toutes les transpositions engendrent $\mathfrak{S}_n$. Il suffit de montrer que n'importe quelle transposition $(i, j)$ peut s'écrire avec des $(1, k)$.
+    \item \textbf{Pour 2 :} $\mathfrak{A}_n$ est l'ensemble des produits pairs de transpositions. Il suffit de montrer que le produit de deux transpositions est un produit de 3-cycles.
+\end{itemize}
+
+\begin{proof}
+    \textbf{1. Générateurs de $\mathfrak{S}_n$ :} \\
+    On sait que toute permutation se décompose en produit de transpositions $(i, j)$.
+    Si $1 \notin \{i, j\}$, on a la relation de conjugaison :
+    \[ (i, j) = (1, i) \circ (1, j) \circ (1, i) \]
+    (Remarque : c'est $(1,i)$ est son propre inverse).
+    Ainsi, toute transposition est engendrée par la famille $\{(1, k)\}_{k \ge 2}$.
+    
+    \textbf{2. Générateurs de $\mathfrak{A}_n$ :} \\
+    Un élément de $\mathfrak{A}_n$ est un produit d'un nombre pair de transpositions. Il suffit de regarder le produit de deux transpositions $\tau_1 \tau_2$.
+    \begin{itemize}
+        \item Si $\tau_1 = \tau_2$, le produit est l'identité.
+        \item Si elles ont un support disjoint $(i, j)(k, l)$ : On insère un terme pivot.
+        $(i, j)(k, l) = (i, j)(j, k)(j, k)(k, l) = (i, j, k) \circ (j, k, l)$.
+        \item Si elles ont un point commun $(i, j)(j, k)$ avec $i, j, k$ distincts :
+        $(i, j)(j, k) = (i, j, k)$ (Attention à l'ordre de composition : ici $k \to j \to i$, $j \to k$, $i \to j$).
+    \end{itemize}
+    Tout produit pair est donc décomposable en 3-cycles.
+\end{proof}
+
+\section{Actions de Groupes}
+
+\begin{proposition}{Orbite, Stabilisateur et Relation fondamentale}{orbit_stab}
+    Soit $G \times E \to E, (g, x) \mapsto g \cdot x$ une action de groupe.
+    \begin{enumerate}
+        \item \textbf{Orbites :} L'orbite de $x$, notée $\mathcal{O}_x = \{g \cdot x \mid g \in G\}$, est la classe d'équivalence de $x$ pour la relation $x \sim y \iff \exists g \in G, y = g \cdot x$. Les orbites forment une partition de $E$.
+        \item \textbf{Stabilisateur :} L'ensemble $\text{Stab}(x) = \{g \in G \mid g \cdot x = x\}$ est un sous-groupe de $G$.
+        \item \textbf{Formule des classes (ou relation Orbite-Stabilisateur) :} Il existe une bijection entre l'orbite $\mathcal{O}_x$ et l'ensemble des classes à gauche $G/\text{Stab}(x)$. Si $G$ est fini :
+        \[ |\mathcal{O}_x| = \frac{|G|}{|\text{Stab}(x)|} \]
+    \end{enumerate}
+\end{proposition}
+
+\noindent \textbf{Grandes lignes de la preuve :}
+\begin{itemize}
+    \item Pour la bijection, on définit $\Psi : G/\text{Stab}(x) \to \mathcal{O}_x$ par $\Psi(g \text{Stab}(x)) = g \cdot x$.
+    \item Le point crucial est de montrer que $\Psi$ est \textit{bien définie} (ne dépend pas du représentant $g$ choisi).
+    \item Le cardinal découle du principe des bergers (ou du théorème de Lagrange appliqué au stabilisateur).
+\end{itemize}
+
+\begin{proof}
+    Notons $S = \text{Stab}(x)$.
+    Considérons l'application $f : G \to \mathcal{O}_x$ définie par $f(g) = g \cdot x$. $f$ est surjective par définition de l'orbite.
+    Quand a-t-on $f(g) = f(g')$ ?
+    \[ g \cdot x = g' \cdot x \iff g^{-1}g' \cdot x = x \iff g^{-1}g' \in S \iff gS = g'S \]
+    Ainsi, $g$ et $g'$ ont la même image si et seulement si ils appartiennent à la même classe à gauche modulo $S$.
+    On peut donc passer au quotient : l'application $\bar{f} : G/S \to \mathcal{O}_x$ définie par $\bar{f}(gS) = g \cdot x$ est :
+    \begin{itemize}
+        \item Bien définie (indépendante du représentant).
+        \item Injective (d'après l'équivalence ci-dessus).
+        \item Surjective (car $f$ l'est).
+    \end{itemize}
+    C'est une bijection. D'où $|\mathcal{O}_x| = |G/S| = [G:S] = |G|/|S|$.
+\end{proof}
+
+\begin{exemple}
+    $G = \mathfrak{S}_n$ agit sur $E = \{1, \dots, n\}$.
+    L'orbite de n'importe quel $k$ est $E$ tout entier (l'action est transitive).
+    Le stabilisateur de $n$ est l'ensemble des permutations qui fixent $n$, c'est-à-dire $\mathfrak{S}_{n-1}$ (en identifiant les groupes).
+    On vérifie la formule : $|\mathcal{O}_n| \times |\text{Stab}(n)| = n \times (n-1)! = n! = |G|$.
+\end{exemple}
+
+\section{Arithmétique avancée et Corps}
+
+\begin{proposition}{Caractéristique d'un corps}{caracteristique}
+    Soit $K$ un corps. On appelle caractéristique de $K$, notée $\text{car}(K)$, l'entier positif $c$ tel que le noyau de l'unique morphisme d'anneaux $\chi : \mathbb{Z} \to K$ soit $c\mathbb{Z}$.
+    \begin{itemize}
+        \item La caractéristique d'un corps est soit nulle ($0$), soit un nombre premier ($p$).
+        \item Exemples : $\mathbb{Q}, \mathbb{R}, \mathbb{C}$ sont de caractéristique $0$. Les corps finis $\mathbb{Z}/p\mathbb{Z}$ (et leurs extensions) sont de caractéristique $p$.
+    \end{itemize}
+\end{proposition}
+
+\noindent \textbf{Grandes lignes de la preuve :}
+\begin{itemize}
+    \item On considère le morphisme $\chi : n \mapsto n \cdot 1_K$. Son noyau est un idéal de $\mathbb{Z}$, donc de la forme $c\mathbb{Z}$ avec $c \ge 0$.
+    \item On utilise le premier théorème d'isomorphisme : $\mathbb{Z}/c\mathbb{Z} \cong \text{Im}(\chi)$.
+    \item Comme $K$ est un corps, c'est un anneau intègre. Donc le sous-anneau $\text{Im}(\chi)$ est intègre.
+    \item $\mathbb{Z}/c\mathbb{Z}$ est intègre si et seulement si $c=0$ ou $c$ est un nombre premier.
+\end{itemize}
+
+\begin{proof}
+    Soit $\chi : \mathbb{Z} \to K$ défini par $\chi(n) = n \cdot 1_K$. C'est un morphisme d'anneaux.
+    Son noyau $\ker(\chi)$ est un idéal de l'anneau principal $\mathbb{Z}$, donc il existe un unique entier naturel $c$ tel que $\ker(\chi) = c\mathbb{Z}$.
+    D'après le théorème de factorisation, l'image $\text{Im}(\chi)$ est isomorphe à l'anneau quotient $\mathbb{Z}/c\mathbb{Z}$.
+    Puisque $K$ est un corps, $K$ ne possède pas de diviseurs de zéro. Tout sous-anneau de $K$ (ici $\text{Im}(\chi)$) est donc intègre.
+    Par conséquent, l'anneau $\mathbb{Z}/c\mathbb{Z}$ doit être intègre.
+    Or, $\mathbb{Z}/c\mathbb{Z}$ est intègre si et seulement si $c \mathbb{Z}$ est un idéal premier, c'est-à-dire si $c=0$ ou $c$ est un nombre premier.
+\end{proof}
+
+\begin{proposition}{Divisibilité des coefficients binomiaux}{divisibilite_k_parmi_p}
+    Soit $p$ un nombre premier.
+    Pour tout entier $k$ tel que $1 \le k \le p-1$, $p$ divise le coefficient binomial $\binom{p}{k}$.
+\end{proposition}
+
+\noindent \textbf{Grandes lignes de la preuve :}
+\begin{itemize}
+    \item On utilise la formule reliant $\binom{p}{k}$ et $\binom{p-1}{k-1}$.
+    \item On applique le lemme de Gauss (ou d'Euclide) sachant que $p$ est premier et ne divise pas $k$.
+\end{itemize}
+
+\begin{proof}
+    On utilise la formule :
+    \[ k \binom{p}{k} = p \binom{p-1}{k-1} \]
+    Ainsi, $p$ divise le produit $k \binom{p}{k}$.
+    Comme $p$ est premier, d'après le lemme d'Euclide, si $p$ divise un produit, il divise l'un des facteurs.
+    Or, $1 \le k \le p-1$, donc $p$ ne divise pas $k$.
+    Par conséquent, $p$ divise nécessairement $\binom{p}{k}$.
+\end{proof}
+
+\begin{proposition}{Formule de Legendre}{legendre}
+    Soit $n$ un entier naturel et $p$ un nombre premier. La valuation $p$-adique de $n!$, notée $v_p(n!)$, est donnée par :
+    \[ v_p(n!) = \sum_{k=1}^{\infty} \left\lfloor \frac{n}{p^k} \right\rfloor \]
+    (La somme est finie car les termes sont nuls dès que $p^k > n$).
+\end{proposition}
+
+\noindent \textbf{Grandes lignes de la preuve :}
+\begin{itemize}
+    \item $v_p(n!) = \sum_{m=1}^n v_p(m)$.
+    \item Au lieu de sommer les valuations par entier $m$, on compte combien d'entiers sont multiples de $p$, de $p^2$, etc.
+    \item Le nombre de multiples de $p^k$ inférieurs ou égaux à $n$ est exactement $\lfloor n/p^k \rfloor$.
+\end{itemize}
+
+\begin{proof}
+    Par définition, $v_p(n!) = v_p\left(\prod_{m=1}^n m\right) = \sum_{m=1}^n v_p(m)$.
+    On peut écrire $v_p(m) = \sum_{k=1}^{\infty} \mathbb{1}_{p^k | m}$ (la valuation est le nombre de puissances de $p$ qui divisent $m$).
+    En intervertissant les sommes (sommes finies) :
+    \[ v_p(n!) = \sum_{m=1}^n \sum_{k=1}^{\infty} \mathbb{1}_{p^k | m} = \sum_{k=1}^{\infty} \sum_{m=1}^n \mathbb{1}_{p^k | m} \]
+    La somme intérieure $\sum_{m=1}^n \mathbb{1}_{p^k | m}$ compte le nombre d'entiers $m \in \{1, \dots, n\}$ divisibles par $p^k$.
+    Ce nombre est exactement le nombre de multiples de $p^k$ inférieurs à $n$, soit $\lfloor \frac{n}{p^k} \rfloor$.
+    D'où la formule.
+\end{proof}
+
+\begin{proposition}{Indicatrice d'Euler}{indicatrice}
+    L'indicatrice d'Euler $\varphi(n)$ compte le nombre d'entiers dans $\{1, \dots, n\}$ premiers avec $n$.
+    \begin{enumerate}
+        \item $\varphi$ est multiplicative : si $\gcd(a,b)=1$, alors $\varphi(ab) = \varphi(a)\varphi(b)$.
+        \item Pour $p$ premier et $\alpha \ge 1$, $\varphi(p^\alpha) = p^\alpha - p^{\alpha-1}$.
+        \item Formule générale : $\varphi(n) = n \prod_{p|n} (1 - \frac{1}{p})$.
+        \item \textbf{Identité de la somme :} $n = \sum_{d|n} \varphi(d)$.
+    \end{enumerate}
+\end{proposition}
+
+\noindent \textbf{Grandes lignes de la preuve de la somme :}
+\begin{itemize}
+    \item On considère le groupe des racines $n$-ièmes de l'unité $\mathbb{U}_n = \{z \in \mathbb{C} \mid z^n = 1\}$. C'est un groupe cyclique d'ordre $n$.
+    \item On partitionne $\mathbb{U}_n$ selon l'ordre des éléments. L'ordre d'un élément divise toujours $n$.
+    \item Pour chaque diviseur $d$ de $n$, on compte les éléments d'ordre exactement $d$.
+    \item Les éléments d'ordre $d$ sont les générateurs du sous-groupe unique d'ordre $d$. Il y en a $\varphi(d)$.
+\end{itemize}
+
+\begin{proof}
+    \textbf{Preuve de $n = \sum_{d|n} \varphi(d)$ :} \\
+    Soit $\mathbb{U}_n$ le groupe des racines $n$-ièmes de l'unité. $|\mathbb{U}_n| = n$.
+    Pour tout $z \in \mathbb{U}_n$, son ordre, noté $\text{ord}(z)$, est un diviseur de $n$.
+    On partitionne $\mathbb{U}_n$ par les ordres possibles :
+    \[ \mathbb{U}_n = \bigsqcup_{d|n} \{z \in \mathbb{U}_n \mid \text{ord}(z) = d\} \]
+    En passant aux cardinaux : $n = \sum_{d|n} |\{z \in \mathbb{U}_n \mid \text{ord}(z) = d\}|$.
+    Or, dans un groupe cyclique, il existe un unique sous-groupe $C_d$ d'ordre $d$. Les éléments d'ordre $d$ sont exactement les générateurs de ce sous-groupe $C_d$.
+    Le nombre de générateurs d'un groupe cyclique d'ordre $d$ est $\varphi(d)$.
+    Donc $n = \sum_{d|n} \varphi(d)$.
+    
+    \vspace{0.5em}
+    \textbf{Inversion de Möbius :}
+    La formule $n = \sum_{d|n} \varphi(d)$ peut s'écrire $Id = \varphi * \mathbf{1}$ (produit de convolution de Dirichlet).
+    En inversant, on obtient $\varphi = Id * \mu$, soit :
+    \[ \varphi(n) = \sum_{d|n} \mu(d) \frac{n}{d} \]
+\end{proof}
+
+\begin{proposition}{Théorème de Wilson}{wilson}
+    Soit $p$ un entier $> 1$.
+    $p$ est premier si et seulement si $(p-1)! \equiv -1 \pmod p$.
+\end{proposition}
+
+\noindent \textbf{Grandes lignes de la preuve :}
+\begin{itemize}
+    \item On se place dans le corps $\mathbb{Z}/p\mathbb{Z}$. On considère le produit de tous les éléments non nuls $1 \times 2 \times \dots \times (p-1)$.
+    \item On regroupe chaque élément $x$ avec son inverse $x^{-1}$.
+    \item Seuls les éléments qui sont leur propre inverse ne s'éliminent pas.
+    \item $x = x^{-1} \iff x^2 = 1 \iff x = 1$ ou $x = -1$ (car on est dans un corps).
+\end{itemize}
+
+\begin{proof}
+    \textbf{Si $p$ est premier :} \\
+    Considérons le produit $P = 1 \times 2 \times \dots \times (p-1)$ dans le corps $\mathbb{Z}/p\mathbb{Z}$.
+    L'équation $x^2 = \overline{1}$ dans $\mathbb{Z}/p\mathbb{Z}$ a pour solutions les racines du polynôme $X^2 - 1$, qui sont $\overline{1}$ et $\overline{-1} = \overline{p-1}$.
+    \begin{itemize}
+        \item Si $p=2$, $(2-1)! = 1 \equiv -1 \pmod 2$.
+        \item Si $p>2$, alors $\overline{1} \neq \overline{-1}$. On peut regrouper les éléments de $\{2, \dots, p-2\}$ par paires $\{x, x^{-1}\}$ distinctes. Le produit de chaque paire vaut $1$.
+    \end{itemize}
+    Il ne reste dans le produit $P$ que les éléments $\overline{1}$ et $\overline{-1}$.
+    Donc $(p-1)! \equiv 1 \times (-1) \equiv -1 \pmod p$.
+    
+    \textbf{Réciproque (contraposée) :} Si $p$ est composé, $p$ a un diviseur $d$ avec $1 < d < p$. Alors $d$ divise $(p-1)!$, donc $(p-1)! \equiv 0 \pmod d$, ce qui est incompatible avec $(p-1)! \equiv -1 \pmod p$ (sauf cas triviaux). Si $p=4$, $3! = 6 \equiv 2 \not\equiv -1 \pmod 4$.
+\end{proof}
+
+
+\section{Arithmétique des carrés et Résidus quadratiques}
+
+\begin{proposition}{Carrés modulo 4}{carres_mod_4}
+    Soit $x$ un entier.
+    \begin{itemize}
+        \item Si $x$ est pair, $x^2 \equiv 0 \pmod 4$.
+        \item Si $x$ est impair, $x^2 \equiv 1 \pmod 4$.
+    \end{itemize}
+    En conséquence, un entier congru à 2 ou 3 modulo 4 ne peut jamais être un carré parfait.
+\end{proposition}
+
+\noindent \textbf{Grandes lignes de la preuve :}
+\begin{itemize}
+    \item On raisonne par disjonction de cas sur la parité de $x$ (ou modulo 4).
+    \item $x = 2k \implies x^2 = 4k^2$.
+    \item $x = 2k+1 \implies x^2 = 4k^2 + 4k + 1$.
+\end{itemize}
+
+\begin{proof}
+    \begin{itemize}
+        \item Si $x \equiv 0 \pmod 2$, alors $x = 2k$. $x^2 = 4k^2 \equiv 0 \pmod 4$.
+        \item Si $x \equiv 1 \pmod 2$, alors $x = 2k+1$. $x^2 = 4k^2 + 4k + 1 = 4(k^2+k) + 1 \equiv 1 \pmod 4$.
+    \end{itemize}
+    L'image de l'application $x \mapsto x^2$ dans $\mathbb{Z}/4\mathbb{Z}$ est donc $\{\bar{0}, \bar{1}\}$.
+\end{proof}
+
+\begin{exemple}
+    L'équation $x^2 + y^2 + z^2 = 8n + 7$ n'a pas de solution. En effet, une somme de trois carrés modulo 8 ne peut valoir que $0+0+0, 0+0+1, 0+1+1, 1+1+1, 0+0+4, 0+1+4, 1+1+4, 4+4+4 \dots$ (les carrés mod 8 sont 0, 1, 4). On ne peut jamais atteindre 7.
+    Plus simplement modulo 4 : $a^2+b^2 = 1234567 \equiv 3 \pmod 4$ est impossible car $0+0=0, 0+1=1, 1+1=2$.
+\end{exemple}
+
+\begin{proposition}{Carrés dans $\mathbb{Z}/p\mathbb{Z}$ et Symbole de Legendre}{residus_quadratiques}
+    Soit $p$ un nombre premier impair.
+    \begin{enumerate}
+        \item Il y a exactement $\frac{p-1}{2}$ carrés non nuls dans $\mathbb{Z}/p\mathbb{Z}$.
+        \item \textbf{Critère d'Euler :} $x$ est un carré non nul si et seulement si $x^{\frac{p-1}{2}} \equiv 1 \pmod p$.
+        \item $-1$ est un carré dans $\mathbb{Z}/p\mathbb{Z}$ si et seulement si $p \equiv 1 \pmod 4$.
+        \item \textbf{Théorème :} Il existe une infinité de nombres premiers de la forme $4k+1$.
+    \end{enumerate}
+\end{proposition}
+
+\noindent \textbf{Grandes lignes de la preuve :}
+\begin{itemize}
+    \item \textbf{1.} On étudie le noyau du morphisme carré $x \mapsto x^2$. Le noyau est $\{1, -1\}$.
+    \item \textbf{2.} On utilise le petit théorème de Fermat. Les carrés sont racines de $X^{\frac{p-1}{2}} - 1$.
+    \item \textbf{3.} On applique le critère à $x=-1$. $(-1)^{\frac{p-1}{2}} = 1 \iff \frac{p-1}{2}$ pair.
+    \item \textbf{4.} On adapte la preuve d'Euclide en construisant $N = (2p_1 \dots p_n)^2 + 1$. Ses diviseurs premiers vérifient une propriété spécifique liée à $-1$ carré.
+\end{itemize}
+
+\begin{proof}
+    \textbf{1. Dénombrement :} Considérons le morphisme de groupes multiplicatifs $f : (\mathbb{Z}/p\mathbb{Z})^* \to (\mathbb{Z}/p\mathbb{Z})^*$ défini par $f(x) = x^2$.
+    Son noyau est $\ker f = \{x \mid x^2 = 1\} = \{1, -1\}$ (car $\mathbb{Z}/p\mathbb{Z}$ est un corps).
+    D'après le premier théorème d'isomorphisme, $|\text{Im } f| = |(\mathbb{Z}/p\mathbb{Z})^*| / |\ker f| = (p-1)/2$.
+    
+    \textbf{2. Critère d'Euler :} D'après Fermat, pour tout $x \neq 0$, $(x^2)^{\frac{p-1}{2}} = x^{p-1} = 1$. Donc tous les carrés sont racines du polynôme $P(X) = X^{\frac{p-1}{2}} - 1$.
+    Comme ce polynôme a au plus $(p-1)/2$ racines dans un corps et que nous avons trouvé $(p-1)/2$ carrés distincts, les carrés sont exactement les racines de ce polynôme.
+    
+    \textbf{3. Cas de -1 :} $-1$ est un carré $\iff (-1)^{\frac{p-1}{2}} = 1$.
+    Ceci est vrai si et seulement si l'exposant $\frac{p-1}{2}$ est pair, c'est-à-dire $\frac{p-1}{2} = 2k \iff p = 4k+1 \iff p \equiv 1 \pmod 4$.
+    
+    \textbf{4. Infinité de premiers $4k+1$ :}
+    Supposons qu'il y en ait un nombre fini $p_1, \dots, p_n$. Posons $N = (2 p_1 \dots p_n)^2 + 1$.
+    Soit $q$ un diviseur premier de $N$. On a $(2 p_1 \dots p_n)^2 \equiv -1 \pmod q$.
+    Donc $-1$ est un carré modulo $q$. D'après le point précédent, $q \equiv 1 \pmod 4$.
+    Or $q$ ne peut être aucun des $p_i$ (sinon $q$ diviserait 1).
+    On a donc trouvé un nouveau premier de la forme $4k+1$. Contradiction.
+\end{proof}
+
+\section{Polynômes}
+
+\begin{proposition}{Polynômes de Tchebycheff}{tchebycheff}
+    Il existe une unique suite de polynômes $(T_n)_{n \in \mathbb{N}}$ telle que :
+    \[ \forall \theta \in \mathbb{R}, \quad T_n(\cos \theta) = \cos(n\theta) \]
+    Propriétés :
+    \begin{itemize}
+        \item Relation de récurrence : $T_0 = 1, T_1 = X$ et $\forall n \ge 1, T_{n+1} = 2X T_n - T_{n-1}$.
+        \item Degré et coefficient dominant : $\deg(T_n) = n$ et pour $n \ge 1$, $\text{dom}(T_n) = 2^{n-1}$.
+        \item Expression explicite : $T_n(X) = \sum_{k=0}^{\lfloor n/2 \rfloor} \binom{n}{2k} X^{n-2k} (X^2-1)^k$.
+    \end{itemize}
+    \textit{Note :} Pour $\sin(n\theta)$, on utilise les polynômes de seconde espèce $U_n$ tels que $\sin(n\theta) = U_{n-1}(\cos \theta)\sin \theta$. Ce n'est pas directement un polynôme en $\cos \theta$.
+\end{proposition}
+
+\noindent \textbf{Grandes lignes de la preuve :}
+\begin{itemize}
+    \item On utilise la formule trigonométrique $\cos((n+1)\theta) + \cos((n-1)\theta) = 2\cos(\theta)\cos(n\theta)$.
+    \item Cela traduit directement la relation de récurrence sur les polynômes.
+    \item Le degré et le coefficient dominant se déduisent par récurrence immédiate.
+\end{itemize}
+
+\begin{proof}
+    \textbf{Existence et Récurrence :}
+    Pour $n=0, \cos(0)=1 \implies T_0=1$. Pour $n=1, \cos(\theta) \implies T_1=X$.
+    On sait que $\cos(a+b) + \cos(a-b) = 2\cos a \cos b$.
+    Posons $a=n\theta$ et $b=\theta$. Alors :
+    $\cos((n+1)\theta) + \cos((n-1)\theta) = 2\cos(n\theta)\cos(\theta)$.
+    En termes de polynômes évalués en $\cos \theta$ : $T_{n+1}(x) + T_{n-1}(x) = 2x T_n(x)$.
+    D'où $T_{n+1} = 2X T_n - T_{n-1}$.
+    
+    \textbf{Coefficient dominant :}
+    Par récurrence. Vrai pour $T_1$ ($2^{1-1}=1$).
+    Si $\text{dom}(T_n) = 2^{n-1}$, alors le terme de plus haut degré de $T_{n+1}$ vient de $2X \cdot T_n$, soit $2 \cdot 2^{n-1} = 2^n$.
+\end{proof}
+
+\begin{proposition}{Polynômes Cyclotomiques}{cyclotomique}
+    Le $n$-ième polynôme cyclotomique est défini par $\Phi_n(X) = \prod_{k \in (\mathbb{Z}/n\mathbb{Z})^*} (X - e^{i \frac{2k\pi}{n}})$.
+    \begin{enumerate}
+        \item $\deg(\Phi_n) = \varphi(n)$.
+        \item Relation fondamentale : $X^n - 1 = \prod_{d|n} \Phi_d(X)$.
+        \item Conséquence : $\sum_{d|n} \varphi(d) = n$ (par égalité des degrés).
+        \item $\Phi_n \in \mathbb{Z}[X]$ (coefficients entiers).
+    \end{enumerate}
+\end{proposition}
+
+\noindent \textbf{Grandes lignes de la preuve :}
+\begin{itemize}
+    \item La relation produit vient de la partition des racines $n$-ièmes de l'unité selon leur ordre.
+    \item Pour les coefficients entiers, on procède par récurrence forte. On divise le polynôme monique $X^n-1$ par le produit des $\Phi_d$ pour $d<n$, qui est un polynôme monique à coefficients entiers.
+\end{itemize}
+
+\begin{proof}
+    \textbf{Produit :} Les racines de $X^n-1$ sont l'ensemble $\mathbb{U}_n$.
+    On regroupe ces racines selon leur ordre $d$ (qui divise $n$).
+    Une racine $z$ est d'ordre $d$ si et seulement si elle est racine primitive $d$-ième de l'unité.
+    Le produit des $(X-z)$ pour $z$ d'ordre $d$ est exactement $\Phi_d(X)$.
+    Donc $X^n - 1 = \prod_{d|n} \Phi_d(X)$.
+    
+    \textbf{Coefficients entiers :}
+    Par récurrence forte sur $n$.
+    $\Phi_1(X) = X-1 \in \mathbb{Z}[X]$.
+    Supposons que $\forall k < n, \Phi_k \in \mathbb{Z}[X]$.
+    On a $X^n - 1 = \Phi_n(X) \times Q(X)$ où $Q(X) = \prod_{d|n, d<n} \Phi_d(X)$.
+    Par hypothèse de récurrence, $Q(X)$ est un produit de polynômes à coefficients entiers, donc $Q \in \mathbb{Z}[X]$. De plus $Q$ est unitaire (monique).
+    La division euclidienne de $X^n-1$ (coeffs entiers) par $Q$ (coeffs entiers, monique) donne un quotient à coefficients entiers. Ce quotient est $\Phi_n$.
+\end{proof}
+
+\section{Anneaux Euclidiens}
+
+\begin{proposition}{L'anneau des entiers de Gauss $\mathbb{Z}[i]$}{gauss}
+    L'ensemble $\mathbb{Z}[i] = \{a+ib \mid (a,b) \in \mathbb{Z}^2\}$ est un sous-anneau de $\mathbb{C}$.
+    \begin{enumerate}
+        \item On définit la norme (multiplicative) $N(z) = |z|^2 = a^2+b^2 \in \mathbb{N}$.
+        \item Les inversibles de $\mathbb{Z}[i]$ sont les éléments de norme 1 : $\{1, -1, i, -i\}$.
+        \item $\mathbb{Z}[i]$ est un anneau euclidien pour la stathme $N$. Pour tout $a, b \neq 0$, il existe $q, r \in \mathbb{Z}[i]$ tels que $a = bq + r$ avec $N(r) < N(b)$.
+        \item Conséquence : $\mathbb{Z}[i]$ est principal (et factoriel).
+    \end{enumerate}
+\end{proposition}
+
+\noindent \textbf{Grandes lignes de la preuve :}
+\begin{itemize}
+    \item \textbf{Inversibles :} $z$ inversible $\iff z z' = 1 \implies N(z)N(z') = 1$ dans $\mathbb{N}$. Donc $N(z)=1$.
+    \item \textbf{Division euclidienne :} On effectue la division dans $\mathbb{C}$ : $\frac{a}{b} = x + iy$. On approche le complexe $x+iy$ par l'entier de Gauss $q$ le plus proche. La distance sera inférieure à la demi-diagonale du carré unité.
+\end{itemize}
+
+\begin{proof}
+    \textbf{Division Euclidienne :}
+    Soient $a, b \in \mathbb{Z}[i]$ avec $b \neq 0$. Considérons le quotient complexe exact $z = \frac{a}{b} \in \mathbb{C}$.
+    Soit $q \in \mathbb{Z}[i]$ l'entier de Gauss le plus proche de $z$.
+    Géométriquement, les entiers de Gauss forment un quadrillage. Tout point du plan complexe est distant d'un point du réseau d'au plus la moitié de la diagonale d'un carré $1 \times 1$.
+    La distance max est $\frac{\sqrt{1^2+1^2}}{2} = \frac{\sqrt{2}}{2} < 1$.
+    Donc $| \frac{a}{b} - q | \le \frac{\sqrt{2}}{2} < 1$.
+    Posons $r = a - bq$. Alors $r \in \mathbb{Z}[i]$.
+    $N(r) = |a - bq|^2 = |b|^2 \left| \frac{a}{b} - q \right|^2 < |b|^2 \cdot 1 = N(b)$.
+    La condition de la stathme est vérifiée.
+    
+    \textbf{Caractère principal :}
+    Tout anneau euclidien est principal. (La preuve classique : soit $I$ un idéal, soit $b \in I \setminus \{0\}$ de norme minimale. Pour tout $a \in I$, la division $a=bq+r$ impose $r \in I$ et $N(r) < N(b)$, donc $r=0$ par minimalité. Donc $I = (b)$).
+\end{proof}
+
+\section{Extensions de corps et Polynômes}
+
+\begin{proposition}{Idéal annulateur et Polynôme minimal}{ideal_annulateur}
+    Soit $K$ un sous-corps de $\mathbb{C}$ (par exemple $\mathbb{Q}$) et $\alpha \in \mathbb{C}$.
+    Soit $\varphi_\alpha : K[X] \to \mathbb{C}$ le morphisme d'évaluation $P \mapsto P(\alpha)$.
+    On note $I_\alpha = \ker(\varphi_\alpha) = \{P \in K[X] \mid P(\alpha) = 0\}$.
+    \begin{enumerate}
+        \item $I_\alpha$ est un idéal de $K[X]$. Comme $K[X]$ est principal, cet idéal est engendré par un unique polynôme unitaire $\pi_\alpha$ (si $I_\alpha \neq \{0\}$).
+        \item Ce polynôme $\pi_\alpha$ est appelé \textbf{polynôme minimal} de $\alpha$ sur $K$.
+        \item $\pi_\alpha$ est irréductible dans $K[X]$.
+        \item Tout polynôme $P$ annulant $\alpha$ est multiple de $\pi_\alpha$.
+    \end{enumerate}
+\end{proposition}
+
+\noindent \textbf{Grandes lignes de la preuve :}
+\begin{itemize}
+    \item Structure d'idéal : noyau d'un morphisme d'anneaux.
+    \item Générateur unique : $K[X]$ est euclidien donc principal. Le générateur est le polynôme de plus petit degré annulant $\alpha$ (rendu unitaire).
+    \item Irréductibilité : Si $\pi_\alpha = AB$, alors $A(\alpha)B(\alpha) = 0$, donc $A(\alpha)=0$ ou $B(\alpha)=0$. Par minimalité du degré, l'un est constant.
+\end{itemize}
+
+\begin{proof}
+    $I_\alpha$ est le noyau d'un morphisme d'anneaux, c'est donc un idéal.
+    Dans $K[X]$, tout idéal est principal. Si $\alpha$ est transcendant sur $K$, $I_\alpha = \{0\}$.
+    Si $\alpha$ est algébrique, $I_\alpha \neq \{0\}$. Il est engendré par un polynôme unitaire $\pi_\alpha$.
+    Supposons $\pi_\alpha = QR$ avec $Q, R \in K[X]$.
+    $\pi_\alpha(\alpha) = 0 \implies Q(\alpha)R(\alpha) = 0$. Comme $\mathbb{C}$ est intègre, $Q(\alpha)=0$ ou $R(\alpha)=0$.
+    Supposons $Q(\alpha)=0$. Alors $Q \in I_\alpha$, donc $\pi_\alpha$ divise $Q$.
+    Comme $Q$ divise $\pi_\alpha$, $Q$ et $\pi_\alpha$ sont associés. Donc $R$ est une constante inversible.
+    $\pi_\alpha$ est donc irréductible.
+\end{proof}
+
+\begin{proposition}{Structure de corps de $K[\alpha]$}{corps_rupture}
+    Soit $\alpha$ un nombre algébrique sur $K$. On note $K[\alpha]$ la plus petite sous-$K$-algèbre de $\mathbb{C}$ contenant $\alpha$.
+    \begin{enumerate}
+        \item $K[\alpha]$ est un corps. C'est le plus petit sous-corps contenant $K$ et $\alpha$, souvent noté $K(\alpha)$.
+        \item On a l'isomorphisme : $K[\alpha] \cong K[X] / (\pi_\alpha)$.
+        \item La dimension de $K[\alpha]$ en tant que $K$-espace vectoriel est égale au degré de $\pi_\alpha$, noté $d$. Une base est $(1, \alpha, \dots, \alpha^{d-1})$.
+        \item \textbf{Calcul de l'inverse :} Si $x = P(\alpha) \neq 0$, alors $\pi_\alpha$ ne divise pas $P$. Comme $\pi_\alpha$ est irréductible, $\gcd(P, \pi_\alpha) = 1$. L'identité de Bézout donne l'inverse.
+    \end{enumerate}
+\end{proposition}
+
+\noindent \textbf{Grandes lignes de la preuve :}
+\begin{itemize}
+    \item Isomorphisme : Théorème de factorisation par le noyau pour le morphisme surjectif $K[X] \to K[\alpha]$.
+    \item Corps : Le quotient d'un anneau principal par un idéal premier (engendré par un irréductible) est un corps.
+    \item Dimension : Division euclidienne par $\pi_\alpha$ pour réduire les degrés $\ge d$.
+\end{itemize}
+
+\begin{proof}
+    \textbf{Structure de corps :}
+    L'application $\bar{\varphi} : K[X]/(\pi_\alpha) \to K[\alpha]$ est un isomorphisme d'anneaux.
+    L'idéal $(\pi_\alpha)$ est maximal car $\pi_\alpha$ est irréductible dans l'anneau principal $K[X]$.
+    Donc le quotient $K[X]/(\pi_\alpha)$ est un corps. Par transport de structure, $K[\alpha]$ est un corps.
+
+    \textbf{Inverse via Bézout :}
+    Soit $\beta \in K[\alpha] \setminus \{0\}$. Il existe $P \in K[X]$ tel que $\beta = P(\alpha)$.
+    Puisque $\beta \neq 0$, $P \notin (\pi_\alpha)$.
+    $\pi_\alpha$ étant irréductible, $\gcd(P, \pi_\alpha) = 1$.
+    D'après Bézout, $\exists (U, V) \in K[X]^2, U P + V \pi_\alpha = 1$.
+    En évaluant en $\alpha$ (sachant $\pi_\alpha(\alpha)=0$) : $U(\alpha) P(\alpha) = 1$.
+    Donc $\beta^{-1} = U(\alpha)$.
+\end{proof}
+
+\section{Arithmétique : Convolution de Dirichlet}
+
+\begin{proposition}{Fonctions multiplicatives et Convolution}{dirichlet}
+    Soit $\mathcal{A}$ l'ensemble des fonctions arithmétiques $f : \mathbb{N}^* \to \mathbb{C}$.
+    \begin{enumerate}
+        \item \textbf{Convolution de Dirichlet :} On définit $(f \star g)(n) = \sum_{d|n} f(d)g(n/d)$.
+        \item $(\mathcal{A}, +, \star)$ est un anneau commutatif unitaire. Le neutre pour $\star$ est $\delta_1$ ($\delta_1(1)=1$ et $0$ sinon).
+        \item Si $f$ et $g$ sont multiplicatives ($f(mn)=f(m)f(n)$ pour $m \wedge n = 1$), alors $f \star g$ est multiplicative.
+            \textit{Astuce :} Cela repose sur la bijection $D_{mn} \cong D_m \times D_n$ pour des entiers premiers entre eux.
+        \item \textbf{Inversion de Möbius :} Soit $\mathbf{1} : n \mapsto 1$ et $\mu$ la fonction de Möbius (inverse de $\mathbf{1}$ pour $\star$).
+        \[ g = f \star \mathbf{1} \iff f = g \star \mu \]
+        C'est-à-dire : $g(n) = \sum_{d|n} f(d) \iff f(n) = \sum_{d|n} \mu(d) g(n/d)$.
+    \end{enumerate}
+\end{proposition}
+
+\noindent \textbf{Grandes lignes de la preuve :}
+\begin{itemize}
+    \item Multiplicativité : On écrit la somme sur $d|mn$. Comme $m \wedge n = 1$, tout diviseur s'écrit de manière unique $d = d_1 d_2$ avec $d_1|m, d_2|n$. La somme se factorise.
+    \item Inversion : On vérifie simplement que $\mu \star \mathbf{1} = \delta_1$. La formule d'inversion est alors une simple multiplication par $\mu$ dans l'anneau.
+\end{itemize}
+
+\begin{proof}
+    \textbf{Bijection des diviseurs :} Si $n = p_1^{\alpha_1} \dots p_k^{\alpha_k}$, un diviseur est déterminé par un tuple d'exposants. Si $m \wedge n = 1$, leurs facteurs premiers sont disjoints. L'ensemble des diviseurs $D_{mn}$ est en bijection avec $D_m \times D_n$ par l'application $(d_1, d_2) \mapsto d_1 d_2$.
+    
+    \textbf{Multiplicativité de $h = f \star g$ :} Soient $m, n$ premiers entre eux.
+    \begin{align*}
+        h(mn) &= \sum_{d|mn} f(d)g\left(\frac{mn}{d}\right) = \sum_{d_1|m} \sum_{d_2|n} f(d_1 d_2) g\left(\frac{m}{d_1} \frac{n}{d_2}\right) \\
+        &= \sum_{d_1|m} \sum_{d_2|n} f(d_1)f(d_2) g\left(\frac{m}{d_1}\right)g\left(\frac{n}{d_2}\right) \quad \text{(par multiplicativité de } f, g) \\
+        &= \left(\sum_{d_1|m} f(d_1)g\left(\frac{m}{d_1}\right)\right) \left(\sum_{d_2|n} f(d_2)g\left(\frac{n}{d_2}\right)\right) = h(m)h(n)
+    \end{align*}
+
+    \textbf{Inversion :} Par définition, $\mu$ est l'inverse de $\mathbf{1}$.
+    $g = f \star \mathbf{1} \implies g \star \mu = (f \star \mathbf{1}) \star \mu = f \star (\mathbf{1} \star \mu) = f \star \delta_1 = f$.
+\end{proof}
+
+\begin{exemple}
+    \begin{itemize}
+        \item Nombre de diviseurs $d(n)$ : $d = \mathbf{1} \star \mathbf{1}$.
+        \item Somme des diviseurs $\sigma(n)$ : $\sigma = \text{Id} \star \mathbf{1}$.
+        \item Indicatrice d'Euler $\varphi(n)$ : On sait que $\sum_{d|n} \varphi(d) = n$, donc $\text{Id} = \varphi \star \mathbf{1}$. Par inversion : $\varphi = \text{Id} \star \mu$.
+        Expression explicite : $\varphi(n) = \sum_{d|n} \mu(d) \frac{n}{d} = n \sum_{d|n} \frac{\mu(d)}{d} = n \prod_{p|n} (1 - \frac{1}{p})$.
+    \end{itemize}
+\end{exemple}
+
+\section{Nombres Réels : Dénombrabilité et Développement}
+
+\begin{proposition}{Indénombrabilité de $\mathbb{R}$ (Diagonale de Cantor)}{cantor}
+    L'intervalle $[0, 1]$ (et donc $\mathbb{R}$) n'est pas dénombrable.
+\end{proposition}
+
+\noindent \textbf{Grandes lignes de la preuve :}
+\begin{itemize}
+    \item Raisonnement par l'absurde. On suppose qu'on peut lister tous les réels de $[0,1]$ : $x_1, x_2, \dots$.
+    \item On écrit leur développement décimal (en évitant les périodes 9 infinis pour l'unicité).
+    \item On construit un réel $y$ dont la $k$-ième décimale diffère de la $k$-ième décimale de $x_k$.
+    \item $y$ ne peut être égal à aucun $x_k$. Contradiction.
+\end{itemize}
+
+\begin{proof}
+    Supposons que $[0, 1] = \{x_1, x_2, x_3, \dots\}$.
+    On écrit le développement décimal propre de chaque $x_n$ :
+    $x_n = 0, a_{n,1} a_{n,2} a_{n,3} \dots$ où $a_{n,i} \in \{0, \dots, 9\}$.
+    Construisons un réel $y = 0, y_1 y_2 y_3 \dots$ de la manière suivante :
+    \[
+    y_n = \begin{cases}
+    1 & \text{si } a_{n,n} \neq 1 \\
+    2 & \text{si } a_{n,n} = 1
+    \end{cases}
+    \]
+    Le réel $y$ ainsi défini appartient à $[0, 1]$.
+    Pour tout entier $n$, $y \neq x_n$ car leur $n$-ième décimale diffère ($y_n \neq a_{n,n}$).
+    Donc $y$ n'appartient pas à la liste, ce qui contredit la surjectivité de l'énumération.
+\end{proof}
+
+\begin{proposition}{Rationnels et Base $B$}{base_b}
+    Soit $x \in \mathbb{R}$ et $B \ge 2$ un entier.
+    $x$ est rationnel si et seulement si son développement en base $B$ est \textbf{ultimement périodique}.
+\end{proposition}
+
+\noindent \textbf{Grandes lignes de la preuve :}
+\begin{itemize}
+    \item ($\Longleftarrow$) Une suite périodique correspond à une série géométrique de raison $B^{-T}$, qui converge vers un rationnel.
+    \item ($\Longrightarrow$) On pose la division euclidienne (algorithme "école primaire"). À chaque étape, le reste $r_k$ appartient à $\{0, \dots, \text{diviseur}-1\}$.
+    \item Par le principe des tiroirs, un reste finit par se répéter, ce qui enclenche la périodicité.
+\end{itemize}
+
+\begin{proof}
+    \textbf{Sens périodique $\implies \mathbb{Q}$ :}
+    Si $x = 0, a_1 \dots a_k \overline{p_1 \dots p_T}$ en base $B$.
+    La partie périodique correspond à $S = \sum_{j=1}^\infty \frac{P}{B^{k+jT}}$ avec $P$ l'entier formé par $p_1\dots p_T$. C'est une série géométrique de raison $1/B^T \in \mathbb{Q}$, donc la somme est rationnelle.
+    
+    \textbf{Sens $\mathbb{Q} \implies$ périodique :}
+    Soit $x = p/q$. On effectue la division de $p$ par $q$ en base $B$.
+    Soit $r_n$ le reste à l'étape $n$. On a $r_n \in \{0, \dots, q-1\}$.
+    La suite des restes $(r_n)_{n \in \mathbb{N}}$ prend ses valeurs dans un ensemble fini de cardinal $q$.
+    D'après le principe des tiroirs, il existe nécessairement deux indices $i < j$ tels que $r_i = r_j$.
+    La division étant un processus déterministe ne dépendant que du reste courant, la séquence de décimales générée entre $i$ et $j$ va se répéter indéfiniment.
+\end{proof}
+
+\section{Analyse Réelle et Géométrie des Polynômes}
+
+\begin{proposition}{Sous-groupes additifs de $\mathbb{R}$}{sous_groupes_R}
+    Soit $G$ un sous-groupe additif de $\mathbb{R}$. Alors $G$ est soit :
+    \begin{itemize}
+        \item Le groupe trivial $\{0\}$.
+        \item Un groupe discret de la forme $a\mathbb{Z}$ avec $a > 0$.
+        \item Un groupe dense dans $\mathbb{R}$.
+    \end{itemize}
+\end{proposition}
+
+\noindent \textbf{Grandes lignes de la preuve :}
+\begin{itemize}
+    \item On examine l'ensemble $G_+^* = G \cap ]0, +\infty[$.
+    \item On considère la borne inférieure $\alpha = \inf(G_+^*)$.
+    \item \textbf{Cas 1 ($\alpha > 0$) :} On montre que $\alpha \in G$ et que $G = \alpha\mathbb{Z}$ (sinon on trouverait un élément dans $]0, \alpha[$ par division euclidienne, contredisant la définition de l'infimum).
+    \item \textbf{Cas 2 ($\alpha = 0$) :} On montre que pour tout intervalle $]x, y[$, on peut glisser un multiple d'un élément $\epsilon \in G$ très petit.
+\end{itemize}
+
+\begin{proof}
+    Si $G = \{0\}$, le cas est traité. Supposons $G \neq \{0\}$. Comme $G$ est un groupe, si $x \in G$, $-x \in G$, donc $G$ contient des éléments strictement positifs.
+    Posons $\alpha = \inf \{x \in G \mid x > 0\}$.
+    
+    \textbf{Cas 1 : $\alpha > 0$.}
+    Supposons par l'absurde que $\alpha \notin G$. Par définition de l'infimum, il existe $x \in G$ tel que $\alpha < x < 2\alpha$. Mais alors $x$ n'est pas un multiple entier de $\alpha$...
+    Plus rigoureusement : Soit $x \in G$. Effectuons la division euclidienne de $x$ par $\alpha$ (si $\alpha \in G$) ou approchons-le.
+    Montrons que $\alpha \in G$. Si $\alpha \notin G$, il existe $g \in G \cap ]\alpha, 2\alpha[$. Puis $g' \in G \cap ]\alpha, g[$, etc. On montre que $G \cap ]\alpha, 2\alpha[ = \emptyset$ est impossible.
+    En fait, si $\alpha > 0$, alors nécessairement $\alpha \in G$ (sinon on pourrait trouver $g_1, g_2$ arbitrairement proches de $\alpha$ et $g_1-g_2$ serait un positif strictement inférieur à $\alpha$).
+    Ensuite, pour tout $x \in G$, on écrit $x = n\alpha + r$ avec $0 \le r < \alpha$. Comme $r = x - n\alpha \in G$ et $r < \alpha$, on a forcément $r=0$. Donc $G = \alpha\mathbb{Z}$.
+
+    \textbf{Cas 2 : $\alpha = 0$.}
+    Soit $x < y$ deux réels. On cherche $g \in G \cap ]x, y[$.
+    Comme $\inf(G_+^*) = 0$, il existe $\epsilon \in G$ tel que $0 < \epsilon < y-x$.
+    L'ensemble des multiples $\{k\epsilon \mid k \in \mathbb{Z}\}$ fait des "sauts" de longueur $\epsilon < y-x$.
+    Il est impossible de sauter par-dessus l'intervalle $]x, y[$ sans tomber dedans. Il existe donc $k$ tel que $k\epsilon \in ]x, y[$. $G$ est dense.
+\end{proof}
+
+\begin{exemple}
+    $\mathbb{Z}$ est discret (forme $1\cdot\mathbb{Z}$). $\mathbb{Q}$ est dense. L'ensemble $\mathbb{Z} + \sqrt{2}\mathbb{Z} = \{a + b\sqrt{2} \mid (a,b) \in \mathbb{Z}^2\}$ est dense dans $\mathbb{R}$.
+\end{exemple}
+
+\begin{proposition}{Théorème de Rolle pour les polynômes (Polynômes scindés)}{rolle_polynome}
+    Soit $P \in \mathbb{R}[X]$ un polynôme scindé sur $\mathbb{R}$ (toutes ses racines sont réelles).
+    Alors son polynôme dérivé $P'$ est aussi scindé sur $\mathbb{R}$.
+\end{proposition}
+
+\noindent \textbf{Grandes lignes de la preuve :}
+\begin{itemize}
+    \item On applique le théorème de Rolle entre deux racines distinctes consécutives de $P$.
+    \item On compte les racines obtenues grâce à Rolle.
+    \item On ajoute les racines multiples de $P$ qui sont aussi racines de $P'$ (avec multiplicité réduite de 1).
+    \item La somme des multiplicités atteint $\deg(P') = n-1$.
+\end{itemize}
+
+\begin{proof}
+    Notons $n = \deg(P)$. Soient $x_1 < x_2 < \dots < x_k$ les racines distinctes de $P$ de multiplicités respectives $m_1, \dots, m_k$. On a $\sum m_i = n$.
+    \begin{enumerate}
+        \item \textbf{Racines de Rolle :} Sur chaque intervalle $]x_i, x_{i+1}[$ (pour $1 \le i < k$), la fonction polynomiale $t \mapsto P(t)$ est dérivable et s'annule aux bornes. D'après le théorème de Rolle, il existe $\alpha_i \in ]x_i, x_{i+1}[$ tel que $P'(\alpha_i) = 0$.
+        Cela nous donne $k-1$ racines distinctes.
+        \item \textbf{Racines multiples :} Si $x_i$ est racine de multiplicité $m_i$ de $P$, alors $x_i$ est racine de multiplicité $m_i - 1$ de $P'$.
+        Le nombre de racines comptées ainsi est $\sum_{i=1}^k (m_i - 1) = (\sum m_i) - k = n - k$.
+    \end{enumerate}
+    Total des racines trouvées (comptées avec multiplicité) : $(k-1) + (n-k) = n - 1$.
+    Comme $\deg(P') = n-1$, nous avons identifié toutes les racines de $P'$, et elles sont toutes réelles.
+\end{proof}
+
+\begin{proposition}{Théorème de Gauss-Lucas}{gauss_lucas}
+    Soit $P \in \mathbb{C}[X]$ un polynôme non constant.
+    Les racines de $P'$ appartiennent à l'enveloppe convexe de l'ensemble des racines de $P$.
+\end{proposition}
+
+\noindent \textbf{Grandes lignes de la preuve :}
+\begin{itemize}
+    \item On utilise la dérivée logarithmique : $\frac{P'}{P} = \sum \frac{1}{X - z_k}$.
+    \item Si $P'(w)=0$ et $P(w)\neq 0$, on a $\sum \frac{1}{w-z_k} = 0$.
+    \item On utilise l'identité $\frac{1}{z} = \frac{\bar{z}}{|z|^2}$ pour faire apparaître une combinaison barycentrique à coefficients positifs.
+\end{itemize}
+
+\begin{proof}
+    Soient $z_1, \dots, z_n$ les racines de $P$ (pas nécessairement distinctes).
+    $P(z) = \lambda \prod_{k=1}^n (z - z_k)$.
+    Pour $z \notin \{z_1, \dots, z_n\}$, la dérivée logarithmique donne :
+    \[ \frac{P'(z)}{P(z)} = \sum_{k=1}^n \frac{1}{z - z_k} \]
+    Soit $w$ une racine de $P'$.
+    \begin{itemize}
+        \item Si $w$ est aussi racine de $P$, alors $w$ est un sommet de l'enveloppe convexe, le résultat est trivial.
+        \item Si $P(w) \neq 0$, alors $\sum_{k=1}^n \frac{1}{w - z_k} = 0$.
+        En conjuguant : $\sum_{k=1}^n \frac{\overline{w - z_k}}{|w - z_k|^2} = 0 \implies \sum_{k=1}^n \frac{\bar{w} - \bar{z_k}}{|w - z_k|^2} = 0$.
+        En prenant le conjugué de l'équation entière : $\sum_{k=1}^n \frac{w - z_k}{|w - z_k|^2} = 0$.
+        Soit $\mu_k = \frac{1}{|w - z_k|^2}$. Ce sont des réels strictement positifs.
+        On a $(\sum \mu_k) w = \sum \mu_k z_k \implies w = \frac{\sum \mu_k z_k}{\sum \mu_k}$.
+    \end{itemize}
+    $w$ est donc un barycentre des racines $z_k$ avec des coefficients positifs, il appartient à leur enveloppe convexe.
+\end{proof}
+
+\begin{proposition}{Polynômes Interpolateurs de Lagrange}{lagrange}
+    Soient $(x_0, \dots, x_n)$ $n+1$ points distincts (abscisses) et $(y_0, \dots, y_n)$ des valeurs arbitraires.
+    Il existe un \textbf{unique} polynôme $P$ de degré $\le n$ tel que $\forall i, P(x_i) = y_i$.
+    Il est donné par :
+    \[ P(X) = \sum_{i=0}^n y_i L_i(X) \quad \text{avec} \quad L_i(X) = \prod_{\substack{j=0 \\ j \neq i}}^n \frac{X - x_j}{x_i - x_j} \]
+\end{proposition}
+
+\noindent \textbf{Grandes lignes de la preuve :}
+\begin{itemize}
+    \item \textbf{Existence :} On vérifie que la base de Lagrange $(L_i)_i$ fonctionne. $L_i(x_j) = \delta_{i,j}$ (symbole de Kronecker : 1 si $i=j$, 0 sinon). Donc $\sum y_i L_i(x_j) = y_j$.
+    \item \textbf{Unicité :} Soient $P$ et $Q$ deux solutions. $R = P-Q$ est de degré $\le n$ et s'annule en $n+1$ points distincts. C'est donc le polynôme nul.
+\end{itemize}
+
+\begin{exemple}
+    Pour interpoler les points $(1, 2)$ et $(3, 4)$, on utilise :
+    $L_0 = \frac{X-3}{1-3} = -\frac{1}{2}(X-3)$ et $L_1 = \frac{X-1}{3-1} = \frac{1}{2}(X-1)$.
+    $P(X) = 2 L_0(X) + 4 L_1(X) = -(X-3) + 2(X-1) = -X+3+2X-2 = X+1$.
+\end{exemple}
+
+\begin{proposition}{Factorisation de $X^n - 1$}{factorisation_xn}
+    Le polynôme $X^n - 1$ possède $n$ racines distinctes dans $\mathbb{C}$ : les racines $n$-ièmes de l'unité $\mathbb{U}_n = \{e^{i \frac{2k\pi}{n}} \mid k \in \{0, \dots, n-1\}\}$.
+    \begin{enumerate}
+        \item \textbf{Dans $\mathbb{C}[X]$ :} $X^n - 1 = \prod_{k=0}^{n-1} (X - e^{i \frac{2k\pi}{n}})$.
+        \item \textbf{Identité algébrique :} $X^n - 1 = (X-1)(1 + X + X^2 + \dots + X^{n-1})$.
+        \item \textbf{Dans $\mathbb{R}[X]$ :} On regroupe les racines conjuguées $e^{i\theta}$ et $e^{-i\theta}$.
+        \[ (X - e^{i\theta})(X - e^{-i\theta}) = X^2 - 2\cos(\theta)X + 1 \]
+       
+    \end{enumerate}
+\end{proposition}
+
+\noindent \textbf{Grandes lignes de la preuve :}
+\begin{itemize}
+    \item Les racines de $X^n-1=0$ sont exactement les éléments de $\mathbb{U}_n$. Le polynôme est unitaire, d'où la factorisation produit.
+    \item Pour la somme géométrique : on développe $(X-1)\sum X^k$ par télescopage.
+    \item Pour la forme réelle : On utilise que $e^{i\theta} + e^{-i\theta} = 2\cos\theta$ et $e^{i\theta}e^{-i\theta} = 1$.
+\end{itemize}
+
+\begin{exemple}
+    Pour $X^3 - 1$ :
+    Dans $\mathbb{C}$ : $(X-1)(X-j)(X-j^2)$.
+    Dans $\mathbb{R}$ : $(X-1)(X^2+X+1)$. (Ici $2\cos(2\pi/3) = -1$).
+\end{exemple}
+
+
+\section{Propriétés structurelles et analytiques des Polynômes}
+
+\begin{proposition}{Irréductibilité dans $\mathbb{Q}[X]$}{irreductible_Q}
+    Pour tout entier $d \ge 1$, il existe une infinité de polynômes de degré $d$ irréductibles dans $\mathbb{Q}[X]$.
+    
+    \textbf{Exemple standard :} Le critère d'Eisenstein permet de construire facilement de tels polynômes.
+    Pour tout nombre premier $p$, le polynôme $X^d - p$ est irréductible sur $\mathbb{Q}$.
+\end{proposition}
+
+\noindent \textbf{Grandes lignes de la preuve :}
+\begin{itemize}
+    \item On utilise le critère d'Eisenstein.
+    \item Soit $P = X^d - p$. Le coefficient dominant est $1$ (non divisible par $p$).
+    \item Tous les autres coefficients sont nuls (donc divisibles par $p$).
+    \item Le coefficient constant est $-p$ (divisible par $p$ mais pas par $p^2$).
+    \item Donc $P$ est irréductible sur $\mathbb{Q}$.
+\end{itemize}
+
+\begin{proof}
+    Considérons le polynôme $P(X) = X^d - 2$.
+    D'après le critère d'Eisenstein appliqué avec le nombre premier $p=2$ :
+    \begin{itemize}
+        \item $2$ ne divise pas le coefficient de $X^d$ (qui vaut 1).
+        \item $2$ divise tous les coefficients intermédiaires (qui sont nuls).
+        \item $2$ divise le terme constant ($-2$).
+        \item $2^2 = 4$ ne divise pas le terme constant.
+    \end{itemize}
+    Le polynôme est donc irréductible dans $\mathbb{Q}[X]$.
+\end{proof}
+
+\begin{proposition}{Racines des polynômes irréductibles}{racines_simples}
+    Soit $P \in \mathbb{Q}[X]$ un polynôme irréductible.
+    Alors, dans $\mathbb{C}$, toutes les racines de $P$ sont \textbf{simples}.
+\end{proposition}
+
+\noindent \textbf{Grandes lignes de la preuve :}
+\begin{itemize}
+    \item Une racine multiple est racine commune à $P$ et $P'$.
+    \item On regarde le $\text{pgcd}(P, P')$.
+    \item L'irréductibilité de $P$ impose que ce pgcd soit soit 1, soit $P$.
+    \item Des considérations de degré éliminent le cas $P$.
+\end{itemize}
+
+\begin{proof}
+    Les racines multiples de $P$ sont les racines du polynôme $\text{pgcd}(P, P')$.
+    Puisque $P$ est irréductible dans $\mathbb{Q}[X]$, ses seuls diviseurs unitaires sont $1$ et $\frac{1}{\text{dom}(P)}P$.
+    Ainsi, $\text{pgcd}(P, P')$ est soit $1$, soit associé à $P$.
+    Or, $\mathbb{Q}$ est de caractéristique nulle, donc $\deg(P') = \deg(P) - 1 < \deg(P)$ (car $P$ n'est pas constant).
+    Le pgcd ne peut donc pas être $P$.
+    Il vaut nécessairement $1$. $P$ et $P'$ n'ont aucune racine commune dans $\mathbb{C}$.
+    Toutes les racines de $P$ sont donc simples.
+\end{proof}
+
+\begin{proposition}{Nombre de racines distinctes}{nb_racines_distinctes}
+    Soit $P \in \mathbb{C}[X]$ un polynôme non nul. Le nombre de racines distinctes de $P$ est donné par :
+    \[ N_{\text{racines}} = \deg(P) - \deg(P \wedge P') \]
+\end{proposition}
+
+\noindent \textbf{Grandes lignes de la preuve :}
+\begin{itemize}
+    \item On écrit la décomposition en facteurs irréductibles : $P = \lambda \prod (X - a_i)^{m_i}$.
+    \item On calcule $P \wedge P'$. Les racines communes conservent une multiplicité $m_i - 1$.
+    \item On compare les degrés.
+\end{itemize}
+
+\begin{proof}
+    Soit $P = \lambda \prod_{i=1}^k (X - \alpha_i)^{m_i}$ où les $\alpha_i$ sont les racines distinctes. On a $\deg(P) = \sum m_i$.
+    On sait que $\alpha_i$ est racine de $P'$ avec multiplicité $m_i - 1$.
+    Le pgcd $D = P \wedge P'$ contient exactement ces facteurs communs avec la plus petite puissance :
+    \[ D = \mu \prod_{i=1}^k (X - \alpha_i)^{m_i - 1} \]
+    Calculons son degré :
+    \[ \deg(D) = \sum_{i=1}^k (m_i - 1) = \sum_{i=1}^k m_i - \sum_{i=1}^k 1 = \deg(P) - k \]
+    D'où le nombre de racines distinctes $k = \deg(P) - \deg(D)$.
+\end{proof}
+
+\begin{proposition}{Décomposition en éléments simples (Formules usuelles)}{des_formules}
+    Soit $P \in \mathbb{C}[X]$ scindé $P = \lambda \prod_{k=1}^n (X-a_k)^{m_k}$.
+    \begin{enumerate}
+        \item \textbf{Dérivée logarithmique :}
+        \[ \frac{P'}{P} = \sum_{k=1}^n \frac{m_k}{X - a_k} \]
+        \item \textbf{Inverse (si racines simples) :} Si $P$ est scindé à racines simples $(m_k=1)$, alors :
+        \[ \frac{1}{P} = \sum_{k=1}^n \frac{1/P'(a_k)}{X - a_k} \]
+        Le coefficient $\lambda_k = \frac{1}{P'(a_k)}$ s'obtient par la formule du résidu : $\lambda_k = \lim_{x \to a_k} (x-a_k)\frac{1}{P(x)}$.
+    \end{enumerate}
+\end{proposition}
+
+\noindent \textbf{Grandes lignes de la preuve :}
+\begin{itemize}
+    \item Pour $P'/P$, on dérive le produit $P$.
+    \item Pour $1/P$, on écrit la forme théorique de la DES $\sum \frac{\lambda_k}{X-a_k}$. On multiplie par $(X-a_j)$ et on évalue en $a_j$.
+    \item On reconnait la limite du taux d'accroissement de $P$ à l'inverse.
+\end{itemize}
+
+\begin{proof}
+    \textbf{Pour $1/P$ à racines simples :}
+    La théorie assure que $\frac{1}{P(X)} = \sum_{k=1}^n \frac{\lambda_k}{X - a_k}$.
+    Pour trouver $\lambda_j$, on multiplie par $(X - a_j)$ :
+    \[ \frac{X - a_j}{P(X)} = \lambda_j + (X - a_j) \sum_{k \neq j} \frac{\lambda_k}{X - a_k} \]
+    En passant à la limite $X \to a_j$ :
+    \[ \lambda_j = \lim_{X \to a_j} \frac{X - a_j}{P(X) - P(a_j)} = \frac{1}{P'(a_j)} \]
+\end{proof}
+
+\begin{proposition}{Polynômes de plusieurs variables (Principe d'identité)}{poly_plusieurs_var}
+    Soit $K$ un corps infini (ex: $\mathbb{R}, \mathbb{C}$) et $P \in K[X_1, \dots, X_n]$.
+    \begin{enumerate}
+        \item Si $P(x_1, \dots, x_n) = 0$ pour tout $(x_1, \dots, x_n) \in K^n$, alors $P$ est le polynôme nul.
+        \item \textbf{Version topologique (sur $\mathbb{R}$ ou $\mathbb{C}$) :} Si $P$ s'annule sur un ouvert non vide (une boule), alors $P$ est nul.
+    \end{enumerate}
+\end{proposition}
+
+\noindent \textbf{Grandes lignes de la preuve :}
+\begin{itemize}
+    \item On procède par récurrence sur le nombre de variables $n$.
+    \item On écrit $P$ comme un polynôme en $X_n$ à coefficients dans $K[X_1, \dots, X_{n-1}]$.
+    \item On fixe les $n-1$ premières variables. On obtient un polynôme d'une variable qui a une infinité de racines (car $K$ est infini), donc ses coefficients sont nuls.
+    \item Par hypothèse de récurrence, les coefficients polynomiaux sont identiquement nuls.
+\end{itemize}
+
+\begin{proof}
+    \textbf{Récurrence sur $n$ :}
+    Pour $n=1$, un polynôme non nul a un nombre fini de racines. Si $K$ est infini et $P$ s'annule partout, $P=0$.
+    Supposons le résultat vrai pour $n-1$. Écrivons $P \in K[X_1, \dots, X_n]$ sous la forme :
+    \[ P(X_1, \dots, X_n) = \sum_{j=0}^d A_j(X_1, \dots, X_{n-1}) X_n^j \]
+    Pour tout $(x_1, \dots, x_{n-1}) \in K^{n-1}$ fixé, le polynôme $Q(X) = \sum A_j(x_1, \dots, x_{n-1}) X^j$ s'annule pour tout $x \in K$.
+    Comme c'est un polynôme à une variable qui a une infinité de racines, tous ses coefficients sont nuls :
+    \[ \forall j, \quad \forall (x_1, \dots, x_{n-1}) \in K^{n-1}, \quad A_j(x_1, \dots, x_{n-1}) = 0 \]
+    Par hypothèse de récurrence, les polynômes $A_j$ sont nuls. Donc $P=0$.
+
+    \textbf{Cas topologique :} Si $P$ est nul sur une boule $B$, on restreint chaque variable à un segment infini inclus dans la projection de la boule, ou on utilise le fait que $P$ est continu et que les zéros isolés sont impossibles pour une fonction polynomiale multivariable sauf si nulle. Plus simplement : un polynôme non nul est non nul presque partout (l'ensemble des zéros est d'intérieur vide).
+\end{proof}
+
+
+
+
+
+
+
+
+\end{document}
+

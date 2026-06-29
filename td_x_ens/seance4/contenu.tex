@@ -1,0 +1,150 @@
+Soit $(E, ||\cdot||)$ un espace vectoriel normé, et soit $(x_n)_{n\in\mathbb{N}} \in E^\N$, 
+$x \in E$. ON dit que $(x_n)$ converge fiablement vers $x$ si 
+$\forall \varphi \in \mathscr L_C(E, \R), \, \varphi(x_n) \to \varphi(x)$.
+
+On dit que $(x_n)$ converge fortement vers $x$ si $||x_n - x|| \to 0$.
+
+L'objectif de la séance est de comparer ces deux notions de convergence.
+
+\begin{remarque}
+    Si $x_n \to x$ fortement, par continuité séquentielle des applications linéaires, 
+    on a bien $\forall \varphi \in \mathscr L_C(E, \R), \, \varphi(x_n) \to \varphi(x)$,
+    donc la convergence forte implique la convergence faible.
+\end{remarque}
+
+\begin{remarque}
+    Si on est en dimension finie, soit $(e_1, \ldots, e_n)$ une base de $E$, 
+
+    $\displaystyle x = \sum_{i = 1 }^{p } x_i e_i \in E$, et
+    $\forall i \in \ninter 1 p, \, \fonction{\varphi_i}{E}{\R}{x}{x_i}$ avec $\varphi_i \in \mathscr L_C(E, \R)$.
+
+    Alors $x_n \to x $ssi $\forall i \in \ninter 1 p, \, \varphi_i(x_n) \to \varphi_i(x)$. 
+    Donc en dimension finie, les deux notions de convergence coïncident.
+\end{remarque}
+    
+\begin{exemple}
+    Exemple de convergence faible n'impliquant pas la convergence forte.
+
+    Soit $E$ un espace de Hilbert dimension infinie. 
+    
+    Alors $\varphi \in \mathscr L_c(E, \R) \Leftrightarrow \exists u \in E, \, \forall x \in E, \, \varphi(x) = \langle x, u \rangle$.
+
+    Donc $(x_n)$ converge faiblement vers $x$ $\Leftrightarrow \forall u \in E, \, \langle x_n, u \rangle \to \langle x, u \rangle$.
+    
+    Soit $(e_n)_{n\in\N}$ une suite de vecteurs orthonormés de $E$, tels que 
+    $\forall n \in \N, \, ||e_n|| = 1$ et $\forall n \neq m, \, \langle e_n, e_m \rangle = 0$.
+
+    Soit $a \in E$. Le projeté orthogonal de $a$ sur $Vect(e_1, \ldots, e_n) = F_n$ est donné 
+    par $p_n = \sum_{k = 1}^n \langle a, e_k \rangle e_k$.
+
+    Alors $||p_n||^2 = \sum_{k = 1}^n |\langle a, e_k \rangle|^2$ et 
+    $||a||^2 = ||a - p_n||^2 + ||p_n||^2$ (Pythagore).
+
+    De plus, $||p_n||^2 + ||a - p_n||^2 \geqslant ||p_n||^2 = \sum_{k = 1}^n |\langle a, e_k \rangle|^2$.
+
+    On en déduit que la série $\sum_{k = 1}^{+\infty} |\langle a, e_k \rangle|^2$ converge, et 
+    donc $|\langle a, e_k \rangle| \to 0 = \langle 0_E, a \rangle$.
+
+    Autrement dit, la suite $(e_n)$ converge faiblement vers $0_E$, et $||e_n|| = 1$ pour tout $n$, donc elle ne converge pas fortement vers $0_E$.
+
+    \lvspace 
+
+    $\ell^2 = \{(x_n)_{n\in\N} \in \R^\N \mid \sum_{n = 0}^{+\infty} x_n^2 < +\infty \}$, 
+    donc $(e_n) = (0, \ldots, 0, 1, 0, \ldots)$ (1 en position $n$) est une suite de vecteurs orthonormés de $\ell^2$.
+
+\end{exemple}
+
+Toutefois il existe des cas très rares où la convergence faible implique la convergence forte.
+
+Voyons un exemple avec le lemme de Schur. 
+
+\begin{theoreme}{Lemme de Schur}{}
+    Soit $(u_k)_{k\in\N} \in \ell^1(\N)^\N$. Si $(x_n)$. Alors 
+    $u^k \to 0$ faiblement $\Leftrightarrow u^k \to 0$ fortement.
+
+    Autrement dit, $u^k \to 0$ fortement $\Leftrightarrow \forall v \in \ell^\infty(\N), \, \sum_{n = 0}^{+\infty} u_n^k v_n \to 0$.
+\end{theoreme}
+
+\begin{proof}
+    Convergence forte $\Rightarrow$ convergence faible est déjà vue.
+
+    Montrons que la convergence faible $\Rightarrow$ convergence forte.
+
+    On suppose que $\forall v \in \ell^\infty(\N), \, \sum_{n = 0}^{+\infty} u_n^k v_n \to 0$, 
+    et on veut $\sum_{n = 0 }^{+\infty } |u_n^k| = ||u^k||_1 \to 0$.
+
+    \uindent{Etape 1 }
+
+    \svspace $\forall n \in \N, \, u_n^k \xrightarrow[k \to + \infty]{} 0$, 
+    et $v^N = (0, \ldots, 0, 1, 0, \ldots) \in \ell^\infty(\N)$ (1 en position $N$).
+
+    Donc $\displaystyle \forall N \in \N, \, \sum_{n = 0 }^{+ \infty} u_n^k v_n^N = u_N^k \xrightarrow[k \to + \infty]{} 0$
+
+    %\restaurergeometrie
+
+    \uindent{Etape 2 (absurde) }
+
+    \svspace On suppose que $||u^k||_1$ ne tend pas vers $0$, ce qui s'écrit 
+    $\exists \varepsilon > 0, \, \forall K \in \N, \, \exists k \geqslant K, \, ||u^k||_1 \geqslant \varepsilon$.
+
+    Donc on peut extraire une sous-suite $(u^{\varphi(k)})_{k\in\N}$ telle que 
+    $\forall k \in \N, \, ||u^{\varphi(k)}||_1 \geqslant \varepsilon$.
+
+    \uindent{Etape 3 }
+
+    \svspace Soient $N_k, \varphi(k)$ deux suites strictement croissantes de $\N$ telles 
+    que $\displaystyle \varphi(0) = 0$ et 
+    $\displaystyle \sum_{n = N_0 + 1}^{+\infty} |u_n^{\varphi(0)}| < \frac{\varepsilon}{5}$,
+    et pour tout $k \geqslant 1$,
+    \[\sum_{n = 0}^{N_{k - 1}} |u_n^{\varphi(k)}| \leqslant \frac{\varepsilon}{5}\]
+    et
+    \[\sum_{n = N_k + 1}^{+\infty} |u_n^{\varphi(k)}| < \frac{\varepsilon}{5}\]
+
+    Or $\sum \mid u_n^0 \mid $ est convergente, donc on peut trouver $N_0$ tel que 
+    $\sum_{n = N_0 + 1}^{+\infty} |u_n^0| < \frac{\varepsilon}{5}$.
+
+    Par récurrence, on suppose avoir construit $N_0, \ldots, N_{k}$ et $\varphi(0), \ldots, \varphi(k)$, 
+    et on veut construire $N_{k + 1}$ et $\varphi(k + 1)$ tels que 
+    \[\sum_{n = 0}^{N_{k}} |u_n^{m}| \xrightarrow[n \to + \infty]{} 0\] comme 
+    somme fini de termes qui tendent vers $0$ par l'étape 1.
+
+    Pour $m > \varphi(k)$ et suffisament grand, on a donc
+    \[\sum_{n = 0}^{N_{k}} |u_n^{m}| \leqslant \frac{\varepsilon}{5}\]
+
+    On pose $m = \varphi(k + 1)$, et donc $\sum_{n = 0 }^{N_k} |u_n^{\varphi(k + 1)}| \leqslant \frac{\varepsilon}{5}$.
+
+    Donc la série $\sum |u_n^{\varphi(k + 1)}|$ est convergente. 
+
+    Pour $N$ suffisament grand, on a
+    \[\sum_{n = N + 1}^{+\infty} |u_n^{\varphi(k + 1)}| < \frac{\varepsilon}{5}\]
+
+    On pose $N = N_{k + 1} > N_k$, et on a donc $\sum_{n = N_{k + 1} + 1}^{+\infty} |u_n^{\varphi(k + 1)}| < \frac{\varepsilon}{5}$.
+
+    \uindent{Etape 4 }
+
+    \svspace On définit $v \in \ell^\infty(\N)$ par : 
+    \[ \forall k \in \N, \, \forall n \in \ninter{N_{k -1} + 1}{N_k}, \, v_n = \text{signe}(u_n^{\varphi(k)}) \]
+
+    Alors 
+    \begin{align}
+        \sum_{n = N_{k - 1} + 1}^{N_k} u_n^{\varphi(k)} v_n & = \sum_{n = N_{k - 1} + 1}^{N_k} |u_n^{\varphi(k)}| \\
+        & = \underbrace{||u^{\varphi(k)}||_1}_{\geqslant \varepsilon} - \underbrace{\sum_{n = 0}^{N_{k - 1}} |u_n^{\varphi(k)}|}_{\leqslant \frac \varepsilon 5} - \underbrace{\sum_{n = N_k + 1}^{+\infty} |u_n^{\varphi(k)}|}_{\leqslant \frac \varepsilon 5} \\
+        & \geqslant \frac{3 \varepsilon}{5}
+    \end{align}
+
+    \uindent{Etape 5 }
+
+    \svspace \begin{align}
+        \sum_{n = 0}^{+\infty} u_n^{\varphi(k)} v_n & = \sum_{n = 0}^{N_{k - 1}} u_n^{\varphi(k)} v_n + \sum_{n = N_{k - 1} + 1}^{N_k} u_n^{\varphi(k)} v_n + \sum_{n = N_k + 1}^{+\infty} u_n^{\varphi(k)} v_n \\
+        & \geqslant \frac \varepsilon 5 
+    \end{align}
+
+    car $\displaystyle \left| \sum_{n = 0}^{N_{k - 1}} u_n^{\varphi(k)} v_n \right| \leqslant \sum_{n = 0}^{N_{k - 1}} |u_n^{\varphi(k)}| \leqslant 3 \frac \varepsilon 5$
+
+    et $\displaystyle \sum_{n = N_k + 1}^{+\infty} u_n^{\varphi(k)} v_n \geqslant \frac{3 \varepsilon}{5}$ et 
+    $\displaystyle \left| \sum_{n = N_k + 1}^{+\infty} u_n^{\varphi(k)} v_n \right| \leqslant \frac \varepsilon 5$
+
+
+    Or, par hypothèse de convergence faible,
+    \[\sum_{n = 0}^{+\infty} u_n^{\varphi(k)} v_n \xrightarrow[k \to + \infty]{} 0\]
+\end{proof}

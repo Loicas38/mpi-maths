@@ -1,0 +1,59 @@
+% Package de raccourcis personnalisés
+% Auteur: Lucas Dehmas
+% Date: 2025
+
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{raccourcis}[2025/01/01 Raccourcis personnalisés]
+
+% Raccourcis mathématiques couramment utilisés
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\K}{\mathbb{K}}
+% \newcommand{\L}{\mathcal{L}}
+
+% Raccourcis pour les opérateurs
+\newcommand{\abs}[1]{\left|#1\right|}
+\newcommand{\norm}[1]{\left\|#1\right\|}
+\newcommand{\paren}[1]{\left(#1\right)}
+\newcommand{\bracket}[1]{\left[#1\right]}
+
+% Raccourcis pour les fonctions
+\newcommand{\card}{\operatorname{card}}
+\newcommand{\pgcd}{\operatorname{pgcd}}
+\newcommand{\ppcm}{\operatorname{ppcm}}
+
+% Raccourcis pour les limites et sommes
+\newcommand{\tend}[2]{\xrightarrow[#1 \to #2]{}}
+\newcommand{\tpinf}[1]{\xrightarrow[#1 \to +\infty]{}}
+\newcommand{\tminf}[1]{\xrightarrow[#1 \to -\infty]{}}
+
+% Raccourcis pour les probabilités
+\newcommand{\proba}[1]{\mathbb{P}\left(#1\right)}
+\newcommand{\esp}[1]{\mathbb{E}\left[#1\right]}
+\newcommand{\var}[1]{\text{Var}\left(#1\right)}
+
+% Raccourcis pour les dérivées
+\newcommand{\dd}[2]{\frac{\mathrm{d}#1}{\mathrm{d}#2}}
+\newcommand{\ddd}[3]{\frac{\mathrm{d}^{#3}#1}{\mathrm{d}#2^{#3}}}
+\newcommand{\pp}[2]{\frac{\partial #1}{\partial #2}}
+
+% Raccourcis pour les intervalles
+\newcommand{\inter}[2]{\left[#1, #2\right]}
+\newcommand{\interoo}[2]{\left]#1, #2\right[}
+\newcommand{\interoc}[2]{\left]#1, #2\right]}
+\newcommand{\interco}[2]{\left[#1, #2\right[}
+\newcommand{\ninter}[2]{[\![#1, #2]\!]}
+
+% raccourcis pour les fonctions 
+\newcommand{\fonction}[5]{
+  #1: \space \begin{array}{|rcl}
+    #2 & \to & #3 \\
+    #4 & \mapsto & #5
+  \end{array}
+}
+
+% Fin du package
+\endinput

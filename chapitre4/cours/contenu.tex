@@ -1,0 +1,1257 @@
+
+\section{Définitions }
+\subsection{Séries}
+
+\begin{definition}{Série}{}
+    \index{Serie@Série}
+    On appelle série à termes dans $E$ tout couple de suites de $E$ $\left( (u_n)_{n\in\N}, (S_n)_{n\in\N} \right)$ vérifiant 
+    $$\forall n \in \N, \, S_n = \sum_{k=0}^n u_k$$
+
+    On appelle $u_n$ le terme général de la série et $S_n$ la somme partielle d'ordre $n$.
+
+    La donnée d'une de ces 2 suites caractérise complètement la série. 
+
+    Cette série sera notée $\sum_{n \geqslant 0} u_n$.
+\end{definition}
+
+\begin{proposition}{structure ensemble des séries}{}
+    L'ensemble des séries à termes dans $E$ est un $\K$-espace vectoriel.
+\end{proposition}
+
+\begin{proof}
+    Notons $B$ cet ensemble. Alors $B \subset E^\N \times E^\N$.
+
+    Alors $(0, 0) \in B$
+
+    Soient $c_1 = \left( (u_n), (S_n) \right)$ et $c_2 = \left( (v_n), (T_n) \right)$ 
+    deux séries dans $B$ et $\alpha, \beta \in \K$. 
+
+    Alors $\alpha c_1 + \beta c_2 = \left( (\alpha(u_n)_{n \in \N} + \beta(v_n)_{n \in \N}), (\alpha(S_n)_{n \in \N} + \beta(T_n)_{n \in \N}) \right)$
+
+    $ = \left( (\alpha u_n + \beta v_n)_{n \in \N}, (\alpha S_n + \beta T_n)_{n \in \N} \right)$
+
+    On a bien pour $n \in \N, \alpha S_n + \beta T_n = \sum_{k=0}^n (\alpha u_k + \beta v_k)$
+
+    Donc $\alpha c_1 + \beta c_2 \in B$.
+
+\end{proof}
+
+\subsection{Convergence }
+
+\begin{definition}{Convergence d'une série}{}
+    On dit que la série $\sum u_n$ converge ssi sa somme partielle $S_n$ converge 
+    dans $E$. 
+
+    La limite de la suite $(S_n)$ est appelée somme de la série et est notée 
+    $$\sum_{n=0}^{+\infty} u_n$$
+
+    Dans le cas contraire on dit que la série diverge.
+\end{definition}
+
+\marginenote{Remarque}{La convergence de la série dépend de la norme seulement si $E$ est de dimension infinie.}
+
+\begin{definition}{Reste d'une série}{}
+    \index{Reste d'une série}
+    Soit $N$ une norme sur $E$ et $\sum u_n$ une série \textbf{convergente} pour $N$.
+
+    En notant $S_n = \sum_{k=0}^n u_k$, on a donc $S_n \limitnorme{N}{n}{+ \infty} S$.
+
+    Pour $n_0 \in \N$, considérons la série $((u_n)_{n \geqslant n_0 + 1}, (T_n)_{n \in \N})$ où
+    $\displaystyle \forall n \in \N$, 
+    
+    $\displaystyle T_n = \sum_{k = n_0 + 1}^{n} u_k$. 
+
+    Soit $n \geqslant n_0 + 1$. On a alors $\forall n \in \N, \, T_n = S_n - S_{n_0}$, 
+    donc $T_n \longrightarrow S - S_{n_0}$. Ainsi cette série converge et 
+    $$\sum_{k = n_0 + 1}^{+\infty} u_k = S - S_{n_0}$$
+
+    $\displaystyle R_{n_0} = \sum_{k = n_0 + 1}^{+\infty} u_k$ est appelé le reste de rang $n_0$ de 
+    la série. 
+
+    On a donc $R_{n_0} \longrightarrow 0$.
+
+\end{definition}
+
+\begin{theoreme}{Série télescopique}{}
+    Soit $(a_n)_{n \in \N}$ une suite de $E$. 
+
+    Cette suite converge ssi la série $\sum_{n \geqslant 1} (a_n - a_{n-1})$ converge.
+
+    Cette série est appelée série télescopique. 
+
+    En cas de convergence, on a : 
+    $$a_n \limit{n}{+ \infty} \left( \sum_{k = 1 }^{+ \infty } (a_k - a_{k-1}) \right) + a_0$$
+\end{theoreme}
+
+\begin{proof}
+    Notons $(S_n)$ la somme partielle de cette série. 
+
+    On a $\forall n \geqslant 1, $
+
+    \begin{align*}
+        S_n & = \sum_{k=1}^n (a_k - a_{k-1}) \\
+            & = \sum_{k=1}^n a_k - \sum_{j=0}^{n-1} a_j \\
+            & = a_n - a_0
+    \end{align*}
+
+    On a donc $(a_n)$ qui converge ssi $(S_n)$ converge.
+\end{proof}
+
+\begin{theoreme}{Limite du terme général}{}
+    Le terme général d'une série convergente tend vers $0_E$, et par contraposée 
+    
+    si $u_n \not \longrightarrow 0_E$, alors la série diverge grossièrement. 
+\end{theoreme}
+
+\begin{remarque}
+    Réciproque fausse avec $u_n = \ln(n + 1) - \ln(n)$ par exemple. 
+\end{remarque}
+
+
+\begin{proof}
+    Supposons que la série $\sum u_n$ converge, et notons $\displaystyle S_n = \sum_{k=0}^n u_k$ sa somme partielle.
+
+    Alors pour $n \geqslant 1$, on a $u_n = S_n - S_{n-1} \longrightarrow S - S = 0_E$.
+\end{proof}
+
+\begin{proposition}{structure ensemble des séries convergentes}{}
+    L'ensemble des séries convergentes est un $\K$-espace vectoriel.
+
+    Si on le note $C$, l'application $\fonction{}{C}{E}{\sum_{n \geqslant 0} u_n}{\sum_{n = 0}^{+\infty} u_n}$ 
+    est linéaire, c'est à dire si $\sum u_n$ et $\sum v_n$ sont 2 séries convergentes et
+    $\alpha, \beta \in \K$, alors $\sum (\alpha u_n + \beta v_n)$ est une série convergente.
+\end{proposition}
+
+\begin{remarque}
+    Réciproque fausse.
+\end{remarque}
+
+\begin{proof}
+    Notons $S_n = \displaystyle \sum_{k=0}^n u_k$ et $T_n = \displaystyle \sum_{k=0}^n v_k$.
+
+    On a $\displaystyle \forall n \in \N, \, \sum_{k=0}^n (\alpha u_k + \beta v_k) = \alpha S_n + \beta T_n \longrightarrow \alpha S + \beta T$.
+    par théorème d'opérations. 
+
+    Don la combinaison linéaire de 2 séries convergentes est une série convergente.
+\end{proof}
+
+
+\begin{proposition}{convergence par les coordonnées}{}
+    On suppose $E$ de dimension finie, et posons $B = (b_1, \ldots, b_p)$ une base de $E$.
+
+    Soit $\sum u_n$ une série de $E$. 
+
+    Notons $\forall n \in \N, \, u_n = \sum_{j = 1 }^p u_n^{(j)} b_j$. 
+
+    Alors la série $\sum u_n$ converge ssi $\forall j \in \ninter{1}{p}, \, \sum u_n^{(j)}$ converge, 
+
+    et on a alors :
+    $$\sum_{n = 0}^{+\infty} u_n = \sum_{j = 1}^p \left( \sum_{n = 0}^{+\infty} u_n^{(j)} \right) b_j$$
+\end{proposition}
+
+\begin{proof}
+    Notons $\forall n \in \N, \, S_n = \sum_{k=0}^n u_k$. 
+
+    on a donc $\displaystyle S_n = \sum_{j=1}^p \left( \sum_{k = 0}^{n} u_{k, j} \right) b_j$. 
+
+    Donc $S_n$ converge ssi $\forall j \in \ninter{1}{p}, \, \sum_{k=0}^n u_{k, j}$ converge.
+\end{proof}
+
+\subsection{Exemples fondamentaux}
+
+\begin{theoreme}{série géométrique}{}
+    Soit $a \in \C$. Alors la série $\sum_{n \geqslant 0} a^n$ converge ssi $\abs{a} < 1$, 
+    et on a $$\forall n_0 \in \N, \, \sum_{n = n_0}^{+ \infty} a^n = \frac{a^{n_0}}{1 - a}$$
+\end{theoreme}
+
+\idee{
+    Formule suite géométrique.
+}
+
+\begin{proof}
+    Si $a \neq 1$ : 
+
+    $\displaystyle S_n = \sum_{k = 0}^{n } a^k = \frac{1 - a^{n+1}}{1 - a}$ converge ssi 
+    $a^{n+1} $ converge ssi $\abs{a} < 1$.
+
+    Et alors $\lim S_n = \frac{1}{1 - a}$.
+
+    Et $\displaystyle \sum_{k = n_0 }^{N} a^k = a^{n_0} \frac{1 - a^{N - n_0 + 1}}{1 - a} \limit{N}{+ \infty} \frac{a^{n_0}}{1 - a}$.
+
+    Si $a = 1$, la série diverge grossièrement.
+\end{proof}
+
+\begin{theoreme}{Série de Riemann}{}
+    Soit $s \in \R$. Alors $\displaystyle \sum_{n \geqslant 1} \frac{1}{n^s}$ converge ssi $s > 1$.
+
+    On définit alors sa somme $\displaystyle \zeta(s) = \sum_{n = 1}^{+\infty} \frac{1}{n^s}$ qui est la fonction zêta de Riemann.
+    
+    On a (LHP), $\zeta(2) = \frac{\pi^2}{6}$ et $\zeta(4) = \frac{\pi^4}{90}$.
+\end{theoreme}
+
+\idee{
+    Regarder la suite des sommes partielles, et utiliser la convergence monotone et 
+    comparaison série intégrale.
+}
+
+\begin{proof}
+    Soit $s \in \R$. 
+
+    Posons pour $\displaystyle n \geqslant 1, \, S_n = \sum_{k = 1 }^{n} \frac{1}{k^s}$.
+
+    $(s_n)$ est une suite croissante car $\frac 1 {k^s} \geqslant 0$. 
+
+    Soit $k \leqslant 1, \, t \in [k, k+1]$. Alors $\frac 1 {(k + 1)^s} \leqslant \frac 1 {t^s} \leqslant \frac 1 {k^s}$.
+
+    \svspace Par croissance de l'intégrale, $\displaystyle \int_{k }^{k + 1} \frac 1 {(k + 1)^s} \text d t \leqslant \int_{k }^{k + 1} \frac{\text d t}{t^s} \leqslant \int_{k }^{k + 1} \frac 1 {k^s} \text d t$.
+
+    $\frac 1 {(k + 1)^s} \leqslant \int_{k }^{k + 1} \frac{\text d t}{t^s} \leqslant \frac 1 {k^s}$.
+
+    Sommons de $k = 1$ à $n - 1$ : 
+
+    \begin{align*}
+        \sum_{k = 1}^{n - 1} \frac 1 {(k + 1)^s} & \leqslant \sum_{k = 1}^{n - 1} \int_{k }^{k + 1} \frac{\text d t}{t^s} \leqslant \sum_{k = 1}^{n - 1} \frac 1 {k^s} \\
+        S_n - 1 & \leqslant \int_{1 }^{n } \frac{\text d t}{t^s} \leqslant S_n  - \frac 1 {n^s} \\
+        \left( \int_{1}^{n } \frac{\text d t}{t^s} \right) + \frac 1 {n^s} & \leqslant S_n \leqslant \left( \int_{1 }^{n } \frac{\text d t}{t^s} \right) + 1
+    \end{align*}
+
+    \uindent{Si $s \leqslant 1$ }
+
+    \avspace $\displaystyle \int_{1 }^{n} \frac{\text d t}{t^s}  \geqslant \int_{1 }^{n } \frac{\text d t}{t} = \ln(n) \limit{n}{+ \infty} +\infty$.
+
+    Donc $S_n \limit{n}{+ \infty} +\infty$ et la série diverge. 
+
+    \uindent{Si $s > 1$ }
+
+    \svspace $\int_{1 }^{n} \frac{\text d t}{t^s}  = \left[ \frac{t^{-s + 1}}{-s + 1} \right]_{1}^{n} = \frac 1 {s - 1} \left( 1 - \frac 1 {n^{s - 1}} \right) \leqslant \frac 1 {s - 1}$.
+
+    Donc $S_n \leqslant \frac 1 {s - 1} + 1$.
+
+    Donc $(S_n)$ est croissante et majorée, donc elle converge.
+
+\end{proof}
+
+\begin{proposition}{série harmonique}{}
+    $\displaystyle \sum_{n \geqslant 1} \frac 1 n$ diverge et (LHP)
+    $\displaystyle \sum_{k = 1 }^{n } \frac 1 k = \ln(n) + \gamma + o(1)$ où $\gamma \approx 0,577$ est la constante d'Euler.
+    Donc 
+    $$\displaystyle \sum_{k = 1}^{n} \frac 1 k - \ln(n) \limit{n}{+ \infty} \gamma$$
+\end{proposition}
+
+Savoir démontrer tout ça 
+
+\idee{
+    Poser une série télescopique.
+}
+
+\begin{proof}
+    Posons pour $n \geqslant 1$, $\displaystyle a_n = \left( \sum_{k = 1 }^{n } \frac 1 k \right) - \ln(n)$.
+
+    Posons pour $n \geqslant 1$, $b_n = a_n - a_{n - 1}$. 
+
+    \begin{align*}
+        b_n & = \frac 1 n - \ln(n) + \ln(n - 1) \\
+            & = \frac 1 n + \ln\left( 1 - \frac 1 n \right) \\
+            & = \frac 1 n -  \frac 1 n - \frac 1 {2 n^2} + o\left( \frac 1 {n^2} \right) 
+    \end{align*}
+
+    Donc $- b_n \sim \frac 1 {2 n^2}$.
+
+    Or $\sum \frac 1 {2 n^2}$ est une série à termes positifs convergente, donc 
+    $\sum - b_n$ converge, donc $\sum b_n$ converge donc $(a_n)$ converge.
+\end{proof}
+
+\begin{proposition}{série exponentielle}{}
+    Pour $z \in \C$ la série $\sum_{n \geqslant 0} \frac{z^n}{n!}$ converge et a pour somme 
+    $$e^z = \sum_{n = 0}^{+\infty} \frac{z^n}{n!}$$
+\end{proposition}
+
+\idee{
+    Inégalité de Taylor Lagrange.
+}
+
+\begin{proof}
+    Soit $\fonction f \R \C t {e^{tz}}$, alors $f$ est $\mathscr C^\infty$ et 
+    
+    $\forall n \in \N, \, \forall t \in \R, \; f^{(n)}(t) = z^n e^{tz}$.
+
+    Par l'inégalité de Taylor Lagrange entre 0 et 1, 
+    $$\abs{f(1) - \sum_{k = 0}^{n} \frac{f^{(k)}(0)t^k}{k!}} \leqslant \sup_{[0, 1]}\abs{f^{(n + 1)}} \frac{(1 - 0)^{n + 1}}{(n + 1)!}$$
+
+    Donc 
+    $$\abs{e^z - \sum_{k = 0 }^{n }\frac{z^k}{k!}} \leqslant \abs z ^n \sup_{t \in [0, 1]} \abs{e^{tz}} \frac{1}{(n + 1)!} \longrightarrow 0$$
+\end{proof}
+
+\begin{proposition}{série de Bertrand HP}{}
+    Soient $a, b \in \R$. 
+
+    Alors $\displaystyle \sum_{n \geqslant 2} \frac 1 {n^a(\ln(n))^b}$ converge ssi $a > 1$ ou $a = 1$ et $b > 1$.
+
+\end{proposition}
+
+\idee{Poser la bonne puissance et comparaison série de Riemann}
+
+\begin{proof}
+    \uline{Si a > 1 :}
+
+    \svspace $\displaystyle \frac 1 {n^a(\ln(n))^b} = o \left( \frac 1 {n^{\frac{a + 1} 2}} \right)$
+
+    En effet, $\displaystyle \frac{\frac 1 {n^a (\ln n)^b}}{\frac 1 {n^{\frac{a + 1} 2}}} = \frac{n^{\frac{a + 1} 2}}{n^a(\ln n)^b} = \frac{1}{n^{\frac{a - 1} 2}(\ln n)^b} \longrightarrow 0$.
+
+    Or $\frac{a + 1} 2 > 1 $ donc la série de Riemann $\sum_{n \geqslant 1 } \frac 1 {n^{\frac{a + 1} 2}}$ converge, donc par critère de comparaison,
+    de séries termes positifs, la série converge. 
+
+
+    \uindent{Si a < 1 }
+
+    \svspace $\displaystyle \frac 1 n = o \left( \frac{1 }{n^a (\ln n)^b} \right)$
+
+     car $\displaystyle \frac{\frac 1 n}{\frac 1 {n^a (\ln n)^b}} = \frac{(\ln(n))^b }{n^{1 - a}} \longrightarrow 0$ par croissance comparée.
+
+     Donc $\sum \frac 1 n $ diverge d'où la divergence par comparaison. 
+
+     \uindent{Si $ a = 1$ et $b < 0$ }
+
+     \svspace $ \frac 1 n = o \left( \frac 1 {n (\ln n)^b} \right)$ d'où la divergence. 
+
+    \uindent{Si $a = 1$ et $b \geqslant 0$ }
+
+    \svspace $\fonction f {[2, + \infty[} \R t {\frac 1 {t (\ln t)^b}}$ est décroissante (issue de produit
+    de facteurs croissants positifs). 
+
+    Comparaison série intégrale : 
+
+    Soit $k \geqslant 2, \, t \in [k, k + 1]$, alors $f(k + 1) \leqslant f(t) \leqslant f(k)$
+
+    Donc $\int_{k}^{k + 1} f(k + 1) \text d t \leqslant \int_{k}^{k + 1} f(t) \text d t \leqslant \int_{k}^{k + 1} f(k) \text d t$
+
+    Donc $f(k + 1) \leqslant \int_{k}^{k + 1} f(t) \text d t \leqslant f(k)$
+
+    Sommons de $k = 2$ à $n - 1$, pour $n \geqslant 3$, en notant $\displaystyle S_n = \sum_{k = 2}^{n} f(k)$. 
+
+    Alors $S_n - f(2) \leqslant \int_{2}^{n} f(t) \text d t \leqslant S_n - f(n)$
+
+    $$ \int_{2}^{n} f(t) \text d t + f(n) \leqslant S_n \leqslant \int_{2}^{n} f(t) \text d t + f(2)$$
+
+    Or $\int_{2}^{n} f(t) \text d t = \int_{2}^{n} \frac 1 {t (\ln t)^b} \text d t$.
+
+    \qquad \uindent{Si $b = 1$ }
+
+    $ = \left[ \ln(\ln t) \right]_{2}^{n} = \ln(\ln n) - \ln(\ln 2) \longrightarrow + \infty$
+
+    Donc $S_n \limit{n}{+ \infty} + \infty$ et la série diverge.
+
+    \qquad \uindent{Sinon }
+
+    $ = \left[ \frac{(\ln t)^{-b + 1}}{-b + 1} \right]_{2}^{n}$ 
+
+    \qquad \uindent{Si $b > 1$ }
+
+    $S_n \leqslant \frac 1 {b - 1} \left[ (\ln 2)^{1 - b} - (\ln n)^{1 - b} \right] \leqslant \frac{(\ln 2)^{1 - b}}{b - 1}$
+
+    Donc majorée, or $S_n$ croissante donc converge.
+
+    \qquad \uindent{Si $b < 1$ }
+
+    $\frac 1 {1 - b} \left[ (\ln n)^{1 - b} - (\ln 2)^{1 - b} \right] \leqslant S_n \longrightarrow + \infty$
+    et la série diverge. 
+
+\end{proof}
+
+
+\subsection{Exemple de séries dans un evn de dimension infine }
+
+
+$\forall n \in \N, \, \fonction{f_n}{[0, 1 / 2]}{\R}{x}{x^n}$ dans $\mathscr C^0([0, 1 / 2], \R)$ 
+munie de la la norme infinie. 
+
+
+Etude de $\sum_{n \geqslant 0} f_n$.
+
+\avspace $\forall n \in \N, \fonction{S_n}{[0, 1 / 2]} \R x {\sum_{k = 0}^n x^k = \frac{1 - x^{n + 1}}{1 - x}}$ car $x \neq 1$. 
+
+\avspace A $x$ fixé, $S_n(x) \limit{n}{+ \infty} \frac 1 {1 - x} = h(x)$.
+
+Or $\displaystyle \forall x \in [0, 1 / 2], \, \abs{S_n(x) - h(x)} = \abs{\frac{x^{n + 1}}{1 - x}} \leqslant 2 \left( \frac 1 {2^{n + 1}} \right) = \frac 1 {2^n}$
+
+Donc $|| S_n - h ||_\infty \leqslant \frac 1 {2^n} \longrightarrow 0$.
+
+Donc $S_n \longrightarrow h$ Donc la série converge et 
+$$\sum_{n = 0}^{+\infty} f_n = h$$
+
+
+\section{Convergence absolue }
+
+\begin{definition}{convergence absolue}{}
+    Soit $(E, N)$ un espace vectoriel normé de \textbf{dimension finie} et $\sum_{n \leqslant 0} u_n$
+    une série à termes dans $E$. 
+
+    On dit que cette série converge absolument ssi la série numérique à termes positifs 
+    $\sum_{n \geqslant 0} N(u_n)$ converge. 
+\end{definition}
+
+
+\begin{remarque}
+    Cette notion ne dépend pas du choix de la norme car $E$ est de dimension finie.
+\end{remarque}
+
+
+\begin{theoreme}{lien entre convergence et convergence absolue}{}
+    Dans un evn de dimension finie, toute série absolument convergente est convergente.
+\end{theoreme}
+
+\idee{\uline{Solution 1 :} Montrer le cas réel puis l'utiliser sur les normes et convergence par les coordonnées
+
+\uline{Solution 2 :} Utiliser BW pour extraire une somme convergente, 
+et calculer $N(S_{\varphi(n)} - S_n)$
+}
+
+\begin{proof} 
+    \uline{Solution 1 }
+
+    \uindent{Si $E = \R$ }
+    \svspace Soit $\sum u_n$ une série réelle absolument convergente.
+
+    Posons $\forall n \in \N$
+
+    $\left\{ \begin{array}{rl}
+        u_n^+ & = \frac{\abs{u_n} + u_n}{ 2} \\
+        u_n^- & = \frac{\abs{u_n} - u_n}{ 2}
+    \end{array} \right.$
+
+    On a $0 \leqslant u_n^+ \leqslant \abs{u_n}$ et $0 \leqslant u_n^- \leqslant \abs{u_n}$
+
+    Donc (comparaison série à termes positifs) $\sum u_n^+$ et $\sum u_n^-$ convergent. 
+
+    Or $u_n = u_n^+ - u_n^-$ donc $\sum u_n$ converge.
+
+    \uindent{Cas 2 } $E$ un $K-$ev de dimension $n$. 
+    
+    Alors $E$ est un $\R$ ev de dimension $k = $ $p$ si $\K = \R$, $2p$ si $\K = \C$.
+
+    Soit $B = (b_1, \ldots, b_k)$ une base de $E$, et considérons $|| \cdot ||_\infty$ associée. 
+
+    Soit $\sum_{n \leqslant 0} u_n$ une série de $E$ absolument convergente.
+
+    Alors par équivalence des normes, $\sum_{n \geqslant 0} || u_n ||_\infty$ converge.
+
+    Notons $\displaystyle \forall n, \, u_n = \sum_{j = 1}^k u_{n, j} b_j$.
+
+    Alors $\forall j, \forall n, \, \abs{u_{n, j}} \leqslant || u_n ||_\infty$.
+
+    Par comparaison de séries à termes positifs, $\sum_{n \geqslant 0} \abs{u_{n, j}}$ converge.
+
+    Donc $\sum_{n \geqslant 0} u_{n, j}$ converge. 
+
+    Donc par convergence par les coordonnées, $\sum_{n \geqslant 0} u_n$ converge.
+
+
+    \uindent{Solution 2 }
+
+    Notons $\displaystyle \forall n, \, S_n = \sum_{k = 0}^{n } u_k $, $\displaystyle T_n = \sum_{k = 0 }^{n } N(u_k)$.
+
+    Par hypothèse, $T_n$ converge vers $\displaystyle \ell = \sum_{k = 0}^{+\infty} N(u_k)$.
+
+    On a $\forall n, \, N(S_n) \leqslant \sum_{k = 0 }^{n } N(u_k) = T_n$ convergente donc bornée. 
+
+    Donc $(S_n)$ bornée. 
+
+    Donc par Bolzano-Weierstrass, on peut en extraitre $S_{\varphi(n)} \to L \in E$
+
+    Or 
+
+    \begin{align*}
+        N(S_{\varphi(n)} - S_n) & = N\left( \sum_{k = 0 }^{\varphi(n)} u_k - \sum_{k = 0 }^{n } u_k \right) \\
+                                & = N \left( \sum_{k = n + 1 }^{\varphi(n)} u_k \right) \\
+                                & \leqslant \sum_{k = n + 1 }^{\varphi(n)} N(u_k) \\
+                                & \leqslant \sum_{k = 0 }^{\varphi(n) } N(u_k) - \sum_{k = 0 }^{n } N(u_k) \\
+                                & \leqslant T_{\varphi(n)} - T_n \limit{n}{+ \infty} 0
+    \end{align*}
+
+    Donc $N(S_n - L) = N(S_n - S_{\varphi(n)} + S_{\varphi(n)} - L)$
+
+    \qquad \qquad \qquad $ \leqslant N(S_n - S_{\varphi(n)}) + N(S_{\varphi(n)} - L) \limit{n}{+ \infty} 0$.
+\end{proof}
+
+\subsection{Complément HP }
+
+\begin{definition}{série critère de Cauchy HP}{}
+    Soit $\sum_{n \geqslant 0} u_n$ une série de $E$.
+
+    On dit que cette série satisfait au critère de Cauchy ssi la suite $\displaystyle S_n = \sum_{k = 0}^n u_k$ 
+    est de Cauchy. 
+
+    $\displaystyle \sum_{k = n + 1}^{n + p} u_k$ s'appelle une tranche de Cauchy. 
+\end{definition}
+
+\begin{theoreme}{critère de Cauchy HP}{}
+    Toute série convergente est de Cauchy, et la réciproque est vraie si $E$ est complet.
+\end{theoreme}
+
+\begin{remarque}
+    Les espaces vectoriels normés de dimension finie sont notamment complets, donc 
+    le critère de Cauchy s'y applique.
+\end{remarque}
+
+
+\begin{proposition}{}{}
+    Soit $\sum u_n$ une série à termes dans $E$.
+
+    Considérons $\displaystyle S_n = \sum_{k = 0}^n u_k$ et $\displaystyle S_{2n} - S_n = \sum_{k = n + 1}^{2n} u_k$
+    une tranche de Cauchy particulière.
+    
+    Si la série converge, $S_{2n} - S_n \longrightarrow 0_E$.
+
+    Par contraposée si $S_{2n} - S_n \not \longrightarrow 0_E$, la série diverge. 
+\end{proposition}
+
+
+\begin{exemple}
+    Considérons la série harmonique. 
+
+    $\displaystyle S_{2n} - S_n = \sum_{k = 1}^{2n} \frac 1 k - \sum_{k = 1}^{n} \frac 1 k = \sum_{k = n + 1}^{2n} \frac 1 k \geqslant n \cdot \frac 1 {2n} = \frac 1 2$.
+
+    Donc $S_{2n} - S_n \not \longrightarrow 0$ et la série diverge.
+\end{exemple}
+
+\subsection{Semi-convergence }
+
+\begin{definition}{série semi-convergente}{}
+    Soit $E$ un evn de dimension finie. On dit que la série $\sum u_n$ est semi-convergente 
+    ssi $\sum u_n$ converge et $\sum N(u_n)$ diverge.
+\end{definition}
+
+\begin{exemple}
+    Exemple plutôt important !!
+
+    $\displaystyle \sum_{n \geqslant 1 } \frac{(-1)^{n + 1}} n $ est semi-convergente et $\displaystyle \sum_{n = 1 }^{+ \infty} \frac{(-1)^{n + 1}} n = \ln(2)$.
+
+    $\sum \frac 1 n$ diverge donc la série n'est pas absolument convergente. 
+
+    Posons $\forall n \in \N^*, $
+
+    \begin{align*}
+        S_n & = \sum_{k = 1}^{n} \frac{(-1)^{k + 1}} k \\
+        & = \sum_{k = 1 }^{n } (-1)^{k + 1} \int_0^1 t^{k - 1} \text d t \\
+        & = \int_0^1 \sum_{k = 1 }^{n } (-t)^{k - 1} \text d t \\
+        & = \int_0^1 \frac{1 - (-t)^n}{1 + t} \text d t \text{ car } -t \neq 1\\
+        & = \int_0^1 \frac 1 {1 + t} \text d t - \int_0^1 \frac{(-t)^n}{1 + t} \text d t \\
+        & = \ln(2) + u_n
+    \end{align*}
+
+    $\abs{u_n} \leqslant \int_0^1 \abs{(-t)^n} \text d t \leqslant \left[ \frac{t^{n + 1 }}{n + 1} \right]_0^1 = \frac 1 {n + 1} \longrightarrow 0$.
+
+    Donc $S_n \longrightarrow \ln(2)$.
+
+    La série converge et a pour somme ln 2
+
+    \uindent{Variante }
+
+    \begin{align*}
+        S_{2n} & = \sum_{k = 1}^{2n} \frac{(-1)^{k + 1}} k \\
+                & = \sum_{\substack {k = 1, \\ k \text{ pair}}}^{2n} \frac {(-1)^{k + 1}} k + \sum_{\substack{k = 1, \\ k \text{ impair}}}^{2n} \frac {(-1)^{k + 1}} k \\
+                & = \sum_{p = 1}^{n} \frac{-1}{2p} + \sum_{p = 0}^{n - 1} \frac{1}{2p + 1} \\
+                & = -2 \sum_{p = 1 }^{n } \frac 1 {2p} + \sum_{p = 0}^{n - 1} \frac 1 {2 p + 1} + \sum_{p = 1}^{n} \frac 1 {2p} \\
+                & = - \sum_{p = 1 }^{n } \frac 1 p + \sum_{p = 1}^{2n} \frac 1 p \\
+                & = - (\ln n + \gamma + o (1)) + \ln (2n) + \gamma + o(1) \\
+                & = \ln(2) + o(1) \longrightarrow \ln(2)
+    \end{align*}
+
+    $S_{2n + 1} = S_{2n} + \frac{1}{2n + 1} \longrightarrow \ln(2)$ aussi, donc $S_n \longrightarrow \ln(2)$.
+\end{exemple}
+
+\begin{theoreme}{critère spécial des séries alternées}{}
+    Soit $(a_n)$ une suite de réels positifs telle que $a_n \longrightarrow 0$ et $(a_n)$ \textbf{décroît}. 
+
+    Alors la série $\sum_{n \geqslant 0} (-1)^n a_n$ converge, et on a $\forall n \in \N$ : 
+
+    $$\abs{R_n} \leqslant a_{n + 1}$$
+
+    Le reste est majoré par le premier terme négligé, et du même signe que celui-ci.
+\end{theoreme}
+
+\begin{proof}
+    cf cours première année, mais sinon l'idée c'est d'utiliser les suites adjacentes. 
+\end{proof}
+
+
+\begin{exemple}
+    Soit $\alpha > 0$, et considérons la série $\sum_{n \geqslant 1} \frac{(-1)^n }{n^\alpha}$.
+
+    Remarquons que pour $\alpha > 1$ et $n \in \N$, $\displaystyle S_{2n} = \sum_{k = 1}^{2n} \frac{(-1)^k}{k^\alpha}$ et 
+    $\displaystyle T_{2n} = \sum_{k = 1 }^{2n} \frac{1}{k^\alpha}$ qui sont liées par : 
+
+    \begin{align*}
+        S_{2n} + T_{2n} & = \sum_{k = 1}^{2n} \frac{(-1)^k + 1}{k^\alpha} \\
+                        & = 2 \sum_{p = 1}^{n} \frac{1}{(2p)^\alpha} \\
+                        & = \frac{1}{2^{\alpha - 1}} T_n 
+    \end{align*}
+
+    En notant $\displaystyle A(\alpha) = \sum_{n = 1}^{+\infty} \frac{(-1)^n}{n^\alpha}$ et $\displaystyle \zeta(\alpha) + A(\alpha) = \frac{1}{2^{\alpha - 1}} \zeta(\alpha)$
+
+    Donc $A(\alpha) = \left( \frac{1 - 2^{\alpha - 1}}{2^{\alpha - 1}} \right) \zeta(\alpha)$.
+
+    Donc pour $\alpha > 1$, $\displaystyle \zeta(\alpha) = \frac 1 {2^{1 - \alpha} - 1} A(\alpha)$.
+\end{exemple}
+
+
+\subsubsection{Complément HP : transformation d'Abel }
+
+
+Exo 3 du TD 
+
+Sur l'exemple : convergence de $\sum_{n \geqslant 1} \frac{\cos(\theta n)}{n}$ où $\theta \not \equiv 0 [2\pi]$.
+
+Notons pour $n \geqslant 1, $
+
+\begin{align*}
+    C_n & = \sum_{k = 0}^{n} \cos(\theta k) \\
+        & = \re \left( \sum_{k = 0}^{n} e^{i \theta k} \right) \\
+        & = \re \left( \frac{1 - e^{i \theta (n + 1)}}{1 - e^{i \theta}} \right) 
+\end{align*}
+
+$\abs{C_n} \leqslant \abs{\frac{1 - e^{i \theta (n + 1)}}{1 - e^{i \theta}}} \leqslant \frac{2}{\abs{1 - e^{i \theta}}} = M$.
+
+\begin{align*}
+    S_n & = \sum_{k = 1}^{n} \frac{\cos(\theta k)}{k} \\
+        & = \sum_{k = 1}^{n} \frac{C_k - C_{k - 1}}{k} \\
+        & = \sum_{k = 1}^{n} \frac {C_k} k - \sum_{k = 1}^{n} \frac{C_{k - 1}}{k} \\
+        & = \sum_{k = 1}^{n} \frac{C_k}{k} - \sum_{p = 0}^{n - 1} \frac{C_p}{p + 1} \\
+        & = \sum_{k = 1}^{n - 1} \frac{c_k}{k} - \sum_{k = 0 }^{n - 1 } \frac{C_k}{k + 1} \\
+        & = \frac{C_n} n + \sum_{k = 1}^{n - 1} C_k \left( \frac 1 k - \frac 1 {k + 1} \right) - 1 
+\end{align*}
+
+Or $\abs{C_k \left( \frac 1 k - \frac 1 {k + 1} \right)} \leqslant M \left( \frac 1 k - \frac 1 {k + 1} \right) \leqslant \frac M {k(k+1)}$
+de limite nulle 
+
+Donc $\sum_{k \geqslant 1} C_k \left( \frac 1 k - \frac 1 {k + 1} \right)$ converge. 
+
+Donc $S_n$ converge et $\sum_{n \geqslant 1 } \frac{\cos(\theta n)}{n}$ converge.
+
+Ce résultat se généralise à $\sum_{n \geqslant 1} C_n \varepsilon_n$ avec $(C_n)$ telle que $\displaystyle \sum_{k = 0 }^{n } c_k$ bornée et 
+$\varepsilon_n \longrightarrow 0$ décroissante.
+
+\lvspace Montrons que $\sum_{n \geqslant 1} \left| \frac{\cos(\theta n)}{n} \right|$ diverge. 
+
+$\displaystyle \frac{\abs{\cos{k \theta }}}{ k } \geqslant  \frac{\cos^2(k \theta )}{k } \geqslant \underbrace{\frac{\cos(2k \theta)}{2k}}_{\text{TGSCV}} + \underbrace{\frac{ 1 }{ 2 k }}_{\text{TGSDV}}$ 
+donc diverge. 
+
+\subsection{Séries matricielles }
+
+On se place dans $\mathscr M_p(\K)$ muni d'une norme matricielle. 
+
+Par exemple $\fonction N {\mathscr M_p(\K)} {\R^+} A {p ||A||_\infty}$. 
+
+On a alors $\forall A, B \in \mathscr M_p(\K), \, N(AB) \leqslant N(A) N(B)$.
+
+\begin{theoreme}{exponentielle de matrices}{}
+    Pour $A \in \mathscr M_p(\K)$, la série $\sum_{n \geqslant 0} \frac{A^n}{n!}$ converge absolument. 
+    Sa somme est appelée exponentielle de $A$ et est notée 
+    $$\displaystyle \operatorname{exp} A = e^A = \sum_{n = 0}^{+\infty} \frac{A^n}{n!}$$
+\end{theoreme}
+
+\idee{
+    Utiliser la sous multiplicativité norme matricielle. 
+}
+
+\begin{proof}
+    Pour $n \geqslant 1$, $N(A^n) \leqslant N(A)^n$.
+
+    Vrai pour $n = 1$. 
+
+    Supposons le pour un certain $n$, alors 
+
+    $N(A^{n + 1}) = N(A^n A) \leqslant N(A^n) N(A) \leqslant N(A)^n N(A) = N(A)^{n + 1}$
+    par HR 
+
+    Donc pour $n \geqslant 1$, $N\left( \frac{A^n}{n!} \right) \leqslant \frac{N(A)^n}{n!}$ TGSCV. 
+\end{proof}
+
+\begin{exemple}
+    $\begin{pmatrix}
+        2 & 0 \\
+        0 & 3
+    \end{pmatrix}$ donc $\forall n \in \N, \, A^n = \begin{pmatrix}
+        2^n & 0 \\
+        0 & 3^n
+    \end{pmatrix}$
+
+    Donc $\displaystyle e^A = \sum_{n = 0}^{+\infty} \begin{pmatrix}
+        \frac{2^n}{n!} & 0 \\
+        0 & \frac{3^n}{n!}
+    \end{pmatrix} = \begin{pmatrix}
+        e^2 & 0 \\
+        0 & e^3
+    \end{pmatrix}$
+
+    \lvspace $A = \begin{pmatrix}
+        1 & 4 \\
+        2 & 3
+    \end{pmatrix}$ donc $A^2 = \begin{pmatrix}
+        9 & 16 \\
+        8 & 17
+    \end{pmatrix} = 4A + 5 I_2$. 
+
+    En posant $P = X^2 - 4X - 5$, on a $P(A) = 0$ et $P = (X - 5)(X + 1)$.
+
+    Effectuons la division euclidienne de $X^n$ par $P$ : $X^n = P Q_n + R_n$. 
+    
+    Mais $\deg(R_n) < 2$ donc $R_n(X) = a_n X + b_n$. 
+
+    Donc $X^n = (X - 5)(X + 1) Q_n(X) + a_n X + b_n$. Alors en évaluant en 5 et -1, on trouve
+    $\left\{ \begin{array}{rl}
+        5^n & = 5 a_n + b_n \\
+        (-1)^n & = -a_n + b_n
+    \end{array} \right.$ donc $\left\{ \begin{array}{rl}
+        a_n & = \frac{5^n - (-1)^n}{6} \\
+        b_n & = \frac{5^{n} + 5(-1)^n}{6}
+    \end{array} \right.$
+
+    En évaluant en $A$, on trouve 
+    
+    $A^n = P(A) Q_n(A) + a_n A + b_n I_2 = \frac{5^n - (-1)^n}{6} A + \frac{5^n + 5(-1)^n}{6} I_2$.
+
+    Donc $A_n = 5^n \underbrace{\left( \frac{A + I_2} 6 \right)}_{B} + (-1)^n \underbrace{\left( \frac{-A + 5 I_2}{6} \right)}_{C}$.
+
+    Donc $\displaystyle e^A = \sum_{n = 0}^{+\infty} \frac{5^n}{n!}B + \frac{(-1)^n}{n!} C = e^5 B + e^{-1} C$.
+
+    \uindent{Exemple 2 } 
+    
+    \svspace $\begin{pmatrix}
+        2 & -1 & 3\\
+        1 & 1 & 2 \\
+        3 & -3 & 4 \\
+    \end{pmatrix}$ et remarquons que si on pose $P = X(X - 4)(X - 3)$, 
+    
+    alors $P(X) = X^3 - 7 X^2 + 12X$. Par calcul on trouve que $P(A) = 0$.
+
+    Effectuons la division euclidienne de $X^n$ par $P$ : (*)$X^n = P Q_n + R_n$ avec 
+    $\deg(R_n) < 3$ donc $\exists a_n, b_n, c_n \in \K, \, R_n(X) = a_n X^2 + b_n X + c_n$.
+
+    On peut alors résoudre le système en évaluent en 0, 3 et 4. 
+
+    Sinon on peut aussi dire que $\exists \alpha_n, \beta_n, \gamma_n \in \K$,  
+    
+    $R_n(X) = \alpha_n X(X - 4) + \beta_n X(X - 3) + \gamma_n (X - 4)(X - 3)$
+    car ces 3 polynômes forment une base de $\R_2[X]$.
+
+    Pour $n \geqslant 1$, en évaluant (*) en 0, 3 et 4, on trouve : 
+
+    $\left\{ \begin{array}{rcl}
+        0 & = 12 \gamma_n & \text{ donc } \gamma_n = 0\\
+        3^n & = -3 \alpha_n & \text{ donc } \alpha_n = - 3^{n - 1} \\
+        4^n & = 4 \beta_n & \text{ donc } \beta_n = 4^{n - 1}\\
+    \end{array} \right.
+    $ en évaluant en $A$. 
+
+    $\forall n \geqslant 1, \, A^n = -3^{n - 1} A(A - 4 I_3) + 4^{n - 1} A(A - 3 I_3)$.
+
+    $\displaystyle e^A = I_3 + \sum_{n = 1}^{+\infty} \frac{3^n}{n!} \underbrace{\frac{A(4I - A)}{3}}_B + \frac{4^n}{n!} \underbrace{\frac{A(A - 3 I)}{4}}_C$
+
+    $e^A = e^3 B + e^4 C + I_3 - B - C$.
+\end{exemple}
+
+\begin{remarque}
+    Si $E$ est de dimension finie et $u \in \mathscr{L }(E)$, on définit de la même manière 
+    $\displaystyle e^u = \sum_{n = 0}^{+\infty} \frac{u^n}{n!}$ où $u^n = u \circ u \circ \cdots \circ u$ ($n$ fois)
+    car cette série est absolument convergente. 
+\end{remarque}
+
+\begin{exemple} (= Exo 40)
+
+    Munissons $\mathscr M_p (\K)$ de $|| \cdot ||$ norme matricielle. 
+
+    Soit $A \in \mathscr M_p(\K)$ telle que $|| A || < 1$. 
+
+    Alors $\sum_{n \geqslant 0 } A^n$ est absolument convergente car 
+    $\forall n \geqslant 1$, \, $|| A^n || \leqslant || A ||^n$ par récurrence. 
+
+    Sa somme $\displaystyle S = \sum_{n = 0}^{+ \infty } A^n$ vérifie alors $(I_p - a ) S = S(I_p - A) = I_p$.
+
+    En particulier, $I_p - A \in \operatorname{GL}_p (\K)$ et $(I_p - A)^{-1} = S$. 
+
+    $\displaystyle (I_p - A)S = (I_p - A) \left(\lim_{n \to + \infty} \sum_{k = 0 }^{n } A^k \right) = \lim_{n \to + \infty} (I_p - A) \left( \sum_{k = 0}^{n } A^k \right) $
+
+    Car $\fonction {}{\mathscr M_p(\K)}{\mathscr M_p(\K)}{M}{(I_p - A)M}$ est continue car linéaire
+    en dimension finie. 
+
+    $\displaystyle (I_p - A)S = \lim_{n \to + \infty} \left( \sum_{k = 0}^{n } A^k - \sum_{k = 0}^{n } A^{k + 1} \right) = \lim_{n \to + \infty} (I_p - A^{n + 1})$.
+
+    Or $|| A^{n + 1} || \leqslant || A ||^{n + 1} \longrightarrow 0$ donc $A^{n + 1} \longrightarrow 0$.
+
+    Donc $(I_p - A)S = I_p$. De même $S(I_p - A) = I_p$.
+
+\end{exemple}
+
+\section{Compléments sur les séries numériques}
+\subsection{Comparaison série intégrale }
+
+Le résultat du calcul doit être refait si utilisé aux concours. 
+
+$\mathscr C^{pm}$ = continue par morceaux.
+
+Soit $f \in \mathscr C^{pm}( [a, + \infty[ , \R^+)$ décroissante. 
+
+Pour $k \geqslant a$ et $ t \in [k, k+ 1 ], \, f(k + 1) \leqslant f(t) \leqslant f(k)$
+
+Donc $\displaystyle \int_{k}^{k + 1} f(k + 1) \text d t \leqslant \int_{k}^{k + 1} f(t) \text d t \leqslant \int_{k}^{k + 1} f(k) \text d t$
+
+Donc $\displaystyle f(k + 1) \leqslant \int_{k}^{k + 1} f(t) \text d t \leqslant f(k)$
+
+Pour $n_0 = \lfloor a \rfloor$, sommes de $n_0$ à $n - 1$, et notons $\displaystyle S_n = \sum_{k = n_0}^{n} f(k)$.
+
+Par Chasles : $S_n - f(n_0) \leqslant \int_{n_0}^{n} f(t) \text d t \leqslant S_n - f(n)$
+
+Donc $\displaystyle f(n) + \int_{n_0}^{n} f(t) \text d t \leqslant S_n \leqslant f(n_0) + \int_{n_0}^{n} f(t) \text d t$
+
+
+\begin{theoreme}{LHP}{}
+    Soit $f \in \mathscr C^{pm}([a, + \infty[, \R^+)$ décroissante. 
+    Notons $\forall n \in \N,$ 
+    $$\omega_n = \left( \int_{n - 1 }^{n } f(t) \text d t \right) - f(n)$$
+
+    Alors $\displaystyle \sum_{n \geqslant \lfloor a \rfloor + 1} \omega_n$ converge.
+\end{theoreme}
+
+\idee{
+    Utiliser théorème de la convergence uniforme. 
+}
+
+\begin{proof}
+    $f$ est décroissante donc $\forall t \in [n - 1, n], \, f(n) \leqslant f(t)$ 
+
+    Donc $f(n) \leqslant \int_{n - 1}^{n} f(t) \text d t$ donc $\omega_n \geqslant 0$.
+
+    De plus $\int_{n - 1 }^{n } f(t) \text d t \leqslant f(n - 1)$. Donc $\omega_n \leqslant f(n - 1 ) - f(n)$
+
+    Donc 
+    \begin{align*}
+        \sum_{k = \lfloor a \rfloor + 1}^{n} \omega_k & \leqslant \sum_{k = \lfloor a \rfloor + 1}^{n } (f(k - 1) - f(k)) \\
+                                                        & \leqslant f(\lfloor a \rfloor + 1) - f(n) \\
+                                                        & \leqslant f(\lfloor a \rfloor + 1)
+    \end{align*}
+
+    La suite est donc majorée donc converge. 
+\end{proof}
+
+\begin{proposition}{conséquence HP }{}
+    Soit $f \in \mathscr C^{pm}([a, + \infty[, \R^+)$ décroissante. 
+
+    Alors la série $\displaystyle \sum_{n \geqslant \lfloor a \rfloor + 1} f(n)$ converge ssi la suite 
+    $\displaystyle \int_{\lfloor a \rfloor + 1 }^{n } f(t) \text d t$ converge.
+\end{proposition}
+
+\begin{proof}
+    \begin{align*}
+        \sum_{k = \lfloor a \rfloor + 2}^{n} f(k) & = \sum_{k = \lfloor a \rfloor + 2}^{n} \int_{k - 1 }^{k} f- \omega_k \\
+                                                    & = \int_{\lfloor a \rfloor + 1}^{n} f(t) \text d t - \sum_{k = \lfloor a \rfloor + 2}^{n} \omega_k                                 
+    \end{align*}
+
+\end{proof}
+
+\subsection{Rappels sur les séries à termes positifs }
+
+\begin{theoreme}{trucs de comparaison }{}
+    Soient $\sum_{n \geqslant 0 } a_n$ et $\sum_{n \geqslant 0} b_n$ deux séries à termes positifs. Si 
+    
+    \begin{enumerate}
+        \item $a_n \leqslant b_n$ ou
+        \item $a_n = O(b_n)$ ou
+        \item $a_n = o(b_n)$ 
+    \end{enumerate}
+
+    et $\sum b_n$ converge, alors $\sum a_n$ converge.
+
+    Par contraposée, si 
+    \begin{enumerate}
+        \item $a_n \leqslant b_n$ ou
+        \item $a_n = O(b_n)$ ou
+        \item $a_n = o(b_n)$ 
+    \end{enumerate}
+    et $\sum a_n$ diverge, alors $\sum b_n$ diverge. 
+\end{theoreme}
+
+Conséquence : Soient $\sum a_n$ et $\sum b_n$ deux séries à termes positifs.
+
+Si $a_n \sim b_n$, alors $\sum a_n$ et $\sum b_n$ sont de même nature.
+
+\subsection{Règle de d'Alembert }
+
+\begin{theoreme}{règle de d'Alembert}{}
+    Soit $(u_n)$ une suite de nombres réels ou complexes qui ne s'annule pas 
+    à partir d'un certain rang. On suppose que $\ds \frac{|u_{n + 1}|}{|u_n|} \to \ell$.
+    Alors : 
+    
+    \begin{enumerate}
+        \item Si $\ell < 1$, la série converge.
+        \item Si $\ell > 1$, la série diverge.
+        \item Si $\ell = 1$, on ne peut rien conclure.
+    \end{enumerate}
+\end{theoreme}
+
+\idee{
+    Minorer $a_n$ par $u_n$ telle que $\sum u_n$ diverge.
+}
+
+\begin{proof}
+    Supposons que $\frac{a_{n + 1 }}{a_n } \longrightarrow \ell > 1$. 
+
+    Considérons $\varepsilon = \frac{\ell - 1 }{2 }$.
+
+    Donc $\exists n_0 \in \N, \, \forall n \geqslant n_0, \, \abs{\frac{a_{n + 1}}{a_n} - \ell} < \varepsilon$.
+
+    Donc $\ell - \varepsilon \leqslant \frac{a_{n + 1}}{a_n} $ donc $1 < \ell' = \frac{1 + \ell  }{2} \leqslant \frac{a_{n + 1}}{a_n}$.
+
+    Alors $\displaystyle \forall n \geqslant n_0$, $\displaystyle a_n \geqslant (\ell')^n \frac{a_{n_0}}{(\ell')^{n_0}}$.
+
+    En effet, c'est vrai au rang $n_0$ et si c'est vrai au rang $n$, 
+    alors 
+    \begin{align*}
+        a_{n + 1} & \geqslant \ell' a_n \\
+                  & \geqslant \ell' (\ell')^n \frac{a_{n_0}}{(\ell')^{n_0}} \\
+                  & \geqslant (\ell')^{n + 1} \frac{a_{n_0}}{(\ell')^{n_0}}
+    \end{align*} par récurrence. 
+
+
+    Or $\ell' > 1$ donc $\sum (\ell')^n$ diverge donc par comparaison de séries à termes positifs, 
+    $\sum a_n$ diverge.
+
+    Si $\frac{a_{n + 1}}{a_n} \longrightarrow \ell < 1$, posons $\varepsilon = \frac{1 - \ell}{2}$.
+
+    Donc $\exists n_0 \in \N, \, \forall n \geqslant n_0, \, \abs{\frac{a_{n + 1}}{a_n} - \ell} < \varepsilon$.
+
+    Donc $\frac{a_{n + 1}}{a_n} < \ell + \varepsilon = \ell'$ et par rec, $a_n \leqslant (\ell')^{n} \frac{a_{n_0}}{(\ell')^{n_0}}$.
+
+    Or $\ell' < 1$ donc $\sum (\ell')^n$ converge donc $\sum a_n$ converge. 
+
+\end{proof}
+
+
+\begin{exemple}
+    $u_n = \frac{1 }{5^n } \binom{2n}{n}$, alors $u_n > 0$. 
+
+    Donc $\displaystyle u_n = \frac{(2n)!}{5^n (n!)^2}$ et $\frac{u_{n + 1}}{u_n} = \frac{(2n + 2)(2n + 1)}{5 (n + 1)^2} \sim \frac{4 n^2}{5 n^2} \longrightarrow \frac 4 5 < 1$.
+
+    Donc par la règle de d'Almebert, $\sum u_n$ converge.
+
+    \lvspace $\displaystyle a_n = \frac{1}{4^n} \binom{2n}{n} > 0$. 
+
+    Donc $\frac{a_{n + 1}}{a_n} \longrightarrow 1$ par le même caclul. 
+
+    Formule de Stirling : $n! \sim \sqrt{2 \pi n} \left( \frac{n}{e} \right)^n$.
+
+    \svspace Donc $\displaystyle a_n \sim_{n \to \infty} \frac{\frac{1}{4^n} \sqrt{4 \pi n} \left( \frac{2n} e \right)^{2n}}{\left( \sqrt{2 \pi n} \left( \frac{n}{e} \right)^n \right)^2 } \sim \frac 1 {\sqrt{ \pi n}}$
+    Terme général d'une série de Riemann divergente 
+
+    Donc $\sum a_n$ diverge.
+
+    \lvspace $u_n = \left\{ \begin{array}{rl}
+        \frac{1}{4^n} & \text{ si } n \text{ pair} \\
+        \frac{1}{5^n} & \text{ si } n \text{ impair}
+    \end{array} \right.$
+    donc $0 \leqslant u_n \leqslant \frac 1 {4^n}$ pour tout $n$ car $4 < 5$.
+
+    Or $\frac 1 {4^n}$ terme généra d'une série convergente donc $\sum u_n$ converge. 
+
+    Mais on peut montrer que $\frac{u_{n + 1}}{u_n}$ ne converge pas.
+\end{exemple}
+
+\subsection{Plan d'étude des séries numériques }
+
+Soit $\displaystyle \sum_{n \ge 0} a_n$ où $a_n \in \mathbb{C}$.
+
+\begin{center}
+\begin{tikzpicture}[
+    scale=0.85, % Réduction légère de l'échelle
+    node distance=1.5cm and 0.3cm, % Espacement réduit
+    every node/.style={align=center},
+    box/.style={draw, rounded corners, minimum width=3.2cm, minimum height=1cm, font=\small} % Bulles un peu plus petites
+]
+
+% Structure en arbre vertical
+% Niveau 1 : Point de départ
+\node[box] (start) {$a_n \to 0$ ?};
+
+% Niveau 2 : Première bifurcation
+\node[box, below left=of start] (div) {Diverge\\grossièrement};
+\node[box, below right=of start] (absstudy) {Étude de $\sum |a_n|$};
+
+% Niveau 3 : Deuxième bifurcation depuis absstudy
+\node[box, below left=of absstudy] (absconv) {$\sum |a_n|$ converge};
+\node[box, below right=of absstudy] (applytssa) {Peut-on appliquer\\le TSSA ?\\(séries alternées)};
+
+% Niveau 4 : Conclusions finales
+\node[box, below left=of absconv] (seriecv1) {$\sum a_n$ converge\\(convergence absolue)};
+\node[box, below left=of applytssa] (seriecv2) {$\sum a_n$ converge\\(convergence conditionnelle)};
+\node[box, below right=of applytssa] (devtg) {Développement\\asymptotique\\du théorème général};
+
+% Flèches de l'arbre
+\draw[->] (start) -- node[left, font=\small]{non} (div);
+\draw[->] (start) -- node[right, font=\small]{oui} (absstudy);
+
+\draw[->] (absstudy) -- node[left, font=\small]{converge} (absconv);
+\draw[->] (absstudy) -- node[right, font=\small]{diverge} (applytssa);
+
+\draw[->] (absconv) -- (seriecv1);
+\draw[->] (applytssa) -- node[left, font=\small]{oui} (seriecv2);
+\draw[->] (applytssa) -- node[right, font=\small]{non} (devtg);
+
+\end{tikzpicture}
+\end{center}
+
+\vspace{1em}
+
+\noindent
+\textbf{Rappels de comparaison asymptotique :}
+
+\begin{itemize}
+  \item Si $a_n = b_n + O(w_n)$ où $\sum |w_n|$ CV, \\
+  alors $\displaystyle \sum_{n\ge0} a_n$ et $\displaystyle \sum_{n\ge0} b_n$ sont de même nature.
+
+  \item Si $a_n = b_n + c_n + o(c_n)$ où $\sum b_n$ CV et $c_n > 0$, \\
+  alors $\displaystyle \sum_{n\ge0} a_n$ et $\displaystyle \sum_{n\ge0} c_n$ sont de même nature.
+\end{itemize}
+
+
+
+\begin{exemple}
+    $\displaystyle a_n = \frac{(-1)^n}{n + (-1)^n\sqrt{n}}$ pour $n \geqslant 2$. 
+
+    Etude de $\sum a_n$.
+
+    $\abs{a_n} \sim \frac 1 n $ terme général série divergente donc pas de convergence absolue. 
+
+    $\displaystyle \frac 1 {n + (-1)^n \sqrt n}$ n'est pas décroissante, on ne peut pas appliquer le TSSA. 
+
+    \begin{align*}
+        a_n & = \frac{(-1)^n} n \left[ \frac 1 {1 + \frac{(-1)^n} {\sqrt n}} \right] \\
+            & = \frac{(-1)^n} n \left[ 1 - \frac{(-1)^n}{\sqrt n} + o\left( \frac 1 {\sqrt n} \right) \right] \\
+            & = \underbrace{\frac{(-1)^n} n}_{\text{TGSCV par TSSA}} - \underbrace{\frac 1 {n^{3/2}} + o\left( \frac 1 {n^{3/2}} \right)}_{TGSCV}
+    \end{align*}
+    
+    Donc $\sum a_n$ converge.
+
+    \lvspace (exo 5) $u_n = \sin(n! \pi e)$ et $v_n = \sin(2 n! \pi e)$, $\displaystyle e = \sum_{k = 0 }^{ + \infty } \frac{1}{k!}$
+
+    Donc \begin{align*}
+        n! e & = \sum_{k = 0 }^{+ \infty } \frac{n!}{k!} \\
+              & = \underbrace{\sum_{k = 0}^{n - 2} \frac{n!}{k!}}_{\substack{P_n \text{ somme} \\ \text{d'entiers pairs}}} + n + 1 + \frac{1}{n + 1} + \frac{1}{(n + 1)(n + 2)} + \frac 1 {(n + 1)(n + 2)(n + 3)} + \sum_{k = n + 4 }^{\infty } \frac{n! }{k!} \\
+    \end{align*}
+
+    $\displaystyle \forall k \geqslant n + 4$, $\displaystyle \frac{n!}{k!} = \frac{1}{(n + 1)(n + 2) \cdots (k)} \leqslant \frac{1}{(n + 1)(n + 2)\ldots(k - 1)k}$
+
+    \begin{align*}
+        \sum_{k = n + 4 }^{+ \infty } \frac{n! }{k!} & \leqslant \sum_{k = n + 4 }^{\infty    }\frac 1 {(n + 1)(n + 2) (k-1)k} \\
+                                                    & \leqslant \frac 1 {(n + 1)(n + 2)} \underbrace{\sum_{k = 2 }^{+ \infty } \frac 1 {(k - 1)k}}_C \\
+    \end{align*}
+
+    Donc $n ! e = qn + \frac 1 {n + 1} + O(\frac 1 {n^2})$ $a_n$ entier jsp quoi 
+
+    \begin{align*}
+        \sin(2 \pi n! e) & = \sin \left( 2 \pi \left( q_n + \frac 1 {n + 1} + O\left( \frac 1 {n^2} \right) \right) \right) \\
+                                    & = \sin \left( 2 \pi \left( \frac 1 {n + 1} + O\left( \frac 1 {n^2} \right) \right) \right) \\
+                                    & = \frac {2 \pi}{n + 1} + O\left( \frac 1 {n^2} \right) \\
+    \end{align*}
+
+    Donc $\sum v_n$ diverge. (La fin de la preuve est de copilot, pas eu la temps de noter, si qqun peut 
+    vérifier que c'est bien ou m'envoyer le vrai truc, merci !) 
+    
+    \begin{align*}
+        \sin(n! \pi e) & = \sin \left( \pi \left( q_n + \frac 1 {n + 1} + O\left( \frac 1 {n^2} \right) \right) \right) \\
+                                    & = \sin \left( \pi \left( \frac 1 {n + 1} + O\left( \frac 1 {n^2} \right) \right) \right) \\
+                                    & = (-1)^{q_n} \left( \frac{\pi}{n + 1} + O\left( \frac 1 {n^2} \right) \right) \\
+    \end{align*}
+
+
+\end{exemple}
+
+\subsection{Sommation des relations de comparaison }
+
+Soient $\sum u_n$ et $\sum v_n$ deux séries réelles telles que $v_n$ est de signe constant à partir 
+d'un certain rang. 
+
+\subsubsection{Cas des séries divergentes }
+
+\begin{proposition}{Sommation des relations comparaison}{}
+    Si $\sum v_n$ diverge ($v_n$ de signe constant à partir d'un certain rang) et si $u_n = O(v_n)$ (resp $u_n = o(v_n)$, resp $u_n \sim v_n$),
+    alors 
+    
+    $$\displaystyle \sum_{k = 1 }^{n }u_k = O\left( \sum_{k = 1}^{n} v_k \right)$$ 
+    (resp $o$, resp $\sim$).
+\end{proposition}
+
+\begin{proof} $v_n > 0$ à partir d'un certain rang.
+    
+    \uline{Cas du O : }
+
+    \svspace On suppose que $\exists M$, $\forall n \geqslant n_0, \, \abs{u_n} \leqslant M v_n$.
+    Alors \begin{align*}
+        \abs{\sum_{k = 0 }^{n } u_k} & \leqslant \sum_{k=0 }^{n } \abs{u_k} \\
+                                    & \leqslant \sum_{k = 0}^{n_0 - 1} \abs{u_k} + \sum_{k = n_0}^{n } M v_k \\
+                                    & \leqslant \sum_{k = 0}^{n_0 - 1} \abs{u_k - M v_k} + M \sum_{k = 0}^{n } v_k \\
+    \end{align*} 
+
+    Or $\sum v_n$ diverge et $v_n > 0$ à partir d'un certain rang donc $\sum_{k = 0}^{n } v_k \longrightarrow + \infty$.
+
+    \svspace Donc $\displaystyle \frac{\sum_{k = 0 }^{n_0 - 1} (\abs{u_k} - M v_k)}{ \sum_{k = 0}^n v_k} \longrightarrow 0 \leqslant 1$ pour $n > n_1$.
+
+    \svspace Donc pour $\displaystyle n \leqslant \max(n_0, n_1)$, $\displaystyle \abs{\sum_{k = 0 }^{n } u_k} \leqslant \left( 1 + M \right) \sum_{k = 0}^{n } v_k$.
+
+    Donc $\displaystyle \sum_{k = 0}^{n } u_k = O\left( \sum_{k = 0}^{n } v_k \right)$.
+
+    \uindent{Cas du $o$ }
+
+    \svspace On suppose que $\forall \varepsilon > 0, \exists n_0 \in \N, \, \forall n \geqslant n_0, \, \abs{u_n} \leqslant \varepsilon v_n$.
+
+    Soit $\varepsilon > 0$. 
+
+    Par le même calcul, $\exists n_0 \in \N, \, \exists n_1 \in \N$ tel que 
+
+    $$\abs{\sum_{k = 0 }^{n } u_k} \leqslant \sum_{k = 0}^{n_0 - 1} (\abs{u_k} - \varepsilon v_k) + \varepsilon \sum_{k = 0}^{n } v_k$$
+
+    et $\displaystyle \frac{\sum_{k = 0 }^{n_0 - 1} (\abs{u_k} - \varepsilon v_k)}{\sum_{k = 0}^{n } v_k} \leqslant \varepsilon$ 
+
+    \svspace Donc pour $n \geqslant \max(n_0, n_1)$, $\displaystyle \abs{\sum_{k = 0 }^{n } u_k} \leqslant 2 \varepsilon \sum_{k = 0}^{n } v_k$.
+
+    Donc $\displaystyle \sum_{k = 0}^{n } u_k = o\left( \sum_{k = 0}^{n } v_k \right)$.
+
+    \uindent{Cas du $\sim$ }
+
+    \svspace Supposons que $u_n \sim v_n$.
+
+    Alors $\displaystyle u_n - v_n = o(v_n)$, donc $\displaystyle \sum_{k = 0}^{n } (u_k - v_k) = o\left( \sum_{k = 0}^{n } v_k \right)$.
+
+    Donc $\displaystyle \sum_{k = 0}^{n } u_k = \sum_{k = 0}^{n } v_k + o\left( \sum_{k = 0}^{n } v_k \right) \sim \sum_{k = 0}^{n } v_k$.
+\end{proof} 
+
+\begin{proposition}{théorème de Cesaro}{}
+    Soit $(a_n)$ telle que $a_n \longrightarrow \ell \in \overline \R$. Alors 
+    $$\frac 1 n \sum_{k = 1}^{n } a_k \longrightarrow \ell$$
+    
+\end{proposition}
+
+\idee{Sommation des relations de comparaison}
+
+\begin{proof}
+    Si $\ell \in \R^*$, posons $v_n = \ell$, alors $\sum v_n$ diverge et $(v_n)$ est de signe constant.
+
+    Or $\displaystyle a_n \sim v_n$ donc $\displaystyle \sum_{k = 1}^{n } a_k \sim \sum_{k = 1}^{n } v_k = n \ell$ (sommation des relations de comparaison). 
+
+    Donc $\displaystyle \frac 1 n \sum_{k = 1}^{n } a_k \longrightarrow \ell$.
+
+    \avspace Si $\ell = 0$, alors $a_n = o(1)$, posons $v_n = 1$.
+
+    De même, $\displaystyle \sum_{k = 1}^{n } a_k = o(n)$ donc $\displaystyle \frac 1 n \sum_{k = 1}^{n } a_k \longrightarrow 0$.
+
+    \uindent{Si $\ell = + \infty$ } 
+
+    \svspace Alors $a_n > 0 $ à partir d'un certain rang, et donc $1 = o(a_n)$.
+
+    De même, $\displaystyle n = \sum_{k = 1}^{n } 1 = o\left( \sum_{k = 1}^{n } a_k \right)$ 
+
+    Donc $\displaystyle 1 = o\left( \frac 1 n \sum_{k = 1}^{n } a_k \right)$ donc $\displaystyle \frac 1 n \sum_{k = 1}^{n } a_k \longrightarrow + \infty$.
+\end{proof}
+
+
+
+\begin{exemple}
+    Pour obtenir un équivalent d'une somme partielle de série à termes positifs, 
+    on peut espérer le trouver en utilisant la comparaison série intégrale.
+
+    $\alpha > 0$, $\displaystyle S_n = \sum_{k = 0 }^{n } k^\alpha$. 
+
+    Pour $\alpha = 1$, $\displaystyle S_n = \sum_{k = 0 }^{n } k = \frac{n(n + 1)}{2} \sim \frac{n^2}{2}$.
+
+    Pour $\alpha = 2$, $\displaystyle S_n = \sum_{k = 0 }^{n } k^2 = \frac{n(n + 1)(2n + 1)}{6} \sim \frac{n^3}{3}$.
+
+    Pour $\alpha = 3$, $\displaystyle S_n = \sum_{k = 0 }^{n } k^3 = \left( \frac{n(n + 1)}{2} \right)^2 \sim \frac{n^4}{4}$.
+
+    Montrons qu'en géénral, $\displaystyle S_n \sim \frac{n^{\alpha + 1}}{\alpha + 1}$.
+
+    Soit $k \geqslant 0$, $t \in [k, k + 1], \, k^\alpha \leqslant t^\alpha \leqslant (k + 1)^\alpha$.
+
+    En intégrant sur $[k, k + 1]$, on trouve : $k^\alpha \leqslant \int_{k}^{k + 1} t^\alpha \text d t \leqslant (k + 1)^\alpha$
+
+    Divisons par $k^\alpha$ : 
+    $$ 1 \leqslant \frac 1 {k^\alpha} \int_{k}^{k + 1} t^\alpha \text d t \leqslant \left( \frac{k+1} k \right)^\alpha \longrightarrow 1$$
+
+    Donc $k^\alpha \sim \int_{k }^{k + 1} t^\alpha \text d t$, or $\sum_{k \geqslant 0 } k^\alpha$ série à termes positifs divergente. 
+
+    Donc par sommation des relation de comparaison, 
+
+    $$S_n \sim \sum_{k = 0}^{n } \int_{k}^{k + 1} t^\alpha \text d t \sim \frac{n^{\alpha + 1}}{\alpha + 1}$$
+\end{exemple}
+
+
+\subsection{Cas des séries convergentes }
+
+\begin{theoreme}{Sommation des relations de comparaison}{}
+    Soient $\sum u_n$ et $\sum v_n$ deux séries numériques telles que 
+    $v_n$ réelle de signe constant à partir d'un certain rang et $\sum v_n$ converge.
+
+    Supposons que $u_n = O(v_n)$ (resp $u_n = o(v_n)$, resp $u_n \sim v_n$).
+    Alors $\sum u_n$ converge et on peut donc définir les restes des deux séries, et 
+    $\displaystyle R_n(u) = O(R_n(v))$ (resp $o$, resp $\sim$).
+\end{theoreme}
+
+\begin{proof}
+    La convergence de $\sum u_n$ est immédiate par comparaison. 
+
+    De plus, si $u_n =  O(v_n)$, alors $\exists M > 0, \exists n_0 \in \N, \, \forall k \geqslant n_0, \, \abs{u_k} \leqslant M \abs{v_k}$.
+
+    Donc $\displaystyle \forall n \geqslant n_0, \, \forall N > n, \, \abs{\sum_{k = n + 1 }^{N } u_k} \leqslant \sum_{k = n + 1 }^{N } \abs{u_k} \leqslant M \sum_{k = n + 1}^{N } \abs{v_k}$.
+
+    et donc par passage à la limite, $\abs{R_n(u)} \leqslant M \abs{R_n(v)}$ car $c_k$ de signe constant. 
+
+    donc $R_n(u) = O(R_n(v))$.
+
+    \lvspace Si $u_n = o(v_n)$ : 
+
+    Même raisonnement avec $\forall \varepsilon$ à la place de $\exists M$. 
+
+    \lvspace Si $u_n \sim v_n$, alors $u_n - v_n = o(v_n)$. 
+
+    Donc $R_n(u - v) = o(R_n(v))$ donc $R_n(u) = R_n(v) + o(R_n(v)) \sim R_n(v)$.
+\end{proof}
+
+
+\begin{exemple}
+    Equivalent du reste d'une série de Riemann convergente. 
+
+    Soit $\alpha > 1$, $\displaystyle \sum_{k = n + 1}^{+ \infty } \frac 1 {k^\alpha}$.
+
+    Posons $\displaystyle v_k = \int_k^{k + 1} \frac 1 {t^\alpha} \text d t$. 
+
+    $\displaystyle \forall t \in [k, k + 1], \, \frac 1 {(k + 1)^\alpha} \leqslant \frac 1 {t^\alpha} \leqslant \frac 1 {k^\alpha}$
+
+    Donc $\displaystyle \left( \frac k {k +  1} \right)^\alpha \leqslant \frac {v_k}{u_k} \leqslant 1$.
+
+    Donc $v_k \sim u_k$.
+
+    Donc $R_n(u) \sim R_n(v)$, or 
+
+    \begin{align*}
+        \sum_{k = n + 1 }^{N } v_k & = \sum_{k = n + 1}^{N } \int_k^{k + 1} \frac 1 {t^\alpha} \text d t \\
+                                            & = \int_{n + 1}^{N + 1} \frac 1 {t^\alpha} \text d t \\
+                                            & = \left[ \frac{t^{1 - \alpha}}{1 - \alpha} \right]_{n + 1}^{N + 1} \\
+                                            & = \frac 1 {\alpha - 1} \left( \frac 1 {(n + 1)^{\alpha - 1}} - \frac 1 {N + 1}^{\alpha - 1} \right) \\
+                                            & \sim \frac 1 {\alpha - 1} \frac 1 {(n + 1)^{\alpha - 1}} 
+    \end{align*}
+
+    Donc $\displaystyle \sum_{k = n + 1}^{\infty} \frac 1 {k^\alpha} \sim \frac 1 {\alpha - 1} \frac 1 {(n + 1)^{\alpha - 1}}$.
+    
+    
+    \uindent{Exemple 2 }
+
+    \svspace Equivalent de $\displaystyle \sum_{k = n + 1}^{\infty } \frac 1 {k^2} = R_n$
+    Donc $\displaystyle \frac 1 {k^2} \sim \frac 1 {k(k + 1)}$.
+
+    Or $\displaystyle \sum_{k = n + 1}^{N} \frac 1 {k(k + 1)} = \sum_{k = n + 1}^{N } \left( \frac 1 k - \frac 1 {k + 1} \right) = \frac 1 {n + 1} - \frac 1 {N + 1}$
+
+    Donc $\displaystyle R_n \sim \frac 1 n$
+
+    Or par sommation des relations de comparaison, 
+    
+    $\displaystyle \sum_{k = n + 1}^{\infty } \frac 1 {k^2} \sim \sum_{k = n + 1}^{\infty } \frac 1 {k(k + 1)} \sim \frac 1 {n + 1} \sim \frac 1 n$.
+
+\end{exemple}

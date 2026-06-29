@@ -1,0 +1,2490 @@
+
+Dans ce chapitre, on se place dans $\K = \R$ ou $\C$ et $(E, N)$ est un espace vectoriel normé.
+
+\section{Topologie d'un espace vectoriel normé}
+
+\subsection{Ouverts }
+
+\begin{definition}{Partie ouverte }{}
+    Soit $A \subset E$. On dit que $A$ est ouverte ou que $A$ est un ouvert ssi 
+    $$ \forall a \in A, \, \exists R > 0, \, B(a, R) \subset A.$$
+\end{definition}
+
+\begin{propositionnt}{}{}
+    Toute boule ouverte est un ouvert.
+\end{propositionnt}
+
+\idee{
+    Prendre un point de B, et trouver le rayon pour avoir une boule entièrement dans B.
+}
+
+\begin{proof}
+    Soit $\omega \in E$, et $R > 0$. 
+
+    Notons $A = B(\omega, R)$.
+
+    Soit $a \in A$, et posons $R' = \frac{R - d(a, \omega)}{2}$. 
+
+    Puisque $a \in A$, on a $R' > 0$.
+
+    Soit $b \in B(a, R')$. On a : 
+
+    \begin{align*}
+        d(b, \omega) & \leqslant d(b, a) + d(a, \omega) \\
+        & \leqslant R' + d(a, \omega) \\
+        & \leqslant \frac{R - d(a, \omega)}{2 } + d(a, \omega) \\
+        & \leqslant \frac{R + d(a, \omega)}{2} \\
+        & < R \text{ car } d(a, \omega) < R.
+    \end{align*}
+
+\end{proof}
+
+\begin{exemple}
+    Dans $\R$, si $a < b$, $]a, b[ = B\left(\frac{a+b}{2}, \frac{b-a}{2}\right)$ est une boule 
+    ouverte, donc un ouvert de $\R$.
+\end{exemple}
+
+\subsection{Stabilité}
+
+\marginenote{Remarque}{Le caractère fini de l'intersection évite des contre-exemples du type $]0, \frac 1 n[$, 
+dont l'intersection infinie est $\{0\}$.}
+
+\lvspace \avspace \begin{proposition}{opérations sur les ouverts}{}
+    \begin{itemize}
+        \item Toute réunion d'ouverts est un ouvert.
+        \item Toute intersection \textbf{finie} d'ouverts est un ouvert.
+        \item Tout produit cartésien \textbf{fini} d'ouverts est un ouvert.
+    \end{itemize}
+\end{proposition}
+
+\restaurergeometrie
+
+\idee{
+    1. utiliser la def 
+
+    2. idem
+
+
+}
+
+
+\begin{proof}
+    \uline{Réunion :}
+
+    \svspace Soit $I$ un ensemble non vide tel que $\forall i \in I, \, A_i$ est un ouvert de $E$, et 
+    $\displaystyle B = \bigcup_{i \in I} A_i$.
+
+    Soit $x \in B$. Il existe $i \in I$ tel que $x \in A_i$.
+
+    Or $A_i$ est un ouvert, donc il existe $R > 0$ tel que $B(x, R) \subset A_i \subset B$, 
+    donc $B$ est un ouvert.
+
+    \avspace \qquad \uline{Intersection : }
+
+    \svspace Soit $x \in B$. 
+
+    Alors $\forall i \in \ninter 1 n, \, x \in A_i$. 
+
+    $A_i$ étant ouvert, il existe $R_i > 0$ tel que $B(x, R_i) \subset A_i$.
+
+    Posons $R = \min(R_1, \dots, R_n)$.
+
+    Soit $y \in B(x, R)$. Alors $\forall i \in \ninter 1 n, \, y \in B(x, R_i)$, donc $y \in A_i$.
+
+    Donc $y \in B$, et $B(x, R) \subset B$. Donc $B$ est un ouvert.
+
+    \avspace \qquad \uline{Produit cartésien : }
+
+    \svspace Soit $(E_1, N_1), \dots, (E_p, N_p)$ des espaces vectoriels normés, et 
+    $A_1 \subset E_1, \dots, A_p \subset E_p$ des ouverts.
+
+    Prenons $E = E_1 \times \dots \times E_p$ l'espace vectoriel normé produit muni de $N_\infty$
+    et $B = A_1 \times \dots \times A_p \subset E$.
+
+    Montrons que $B$ est un ouvert de $E$.
+
+    Soit $x \in B$. Alors $x = (x_1, \dots, x_p)$ avec $x_i \in A_i$, où les $A_i$ sont des ouverts.
+
+    Donc $\exists R_j > 0, \, B(x_j, R_j) \subset A_j$.
+
+    Posons $R = \min(R_1, \dots, R_p)$.
+
+    Soit $y \in B(x, R)$. 
+
+    Notons $y = (y_1, \dots, y_p)$, et $N_\infty(x - y) < R$.
+
+    Donc $\forall j \in \ninter 1 p, \, N_j(x_j - y_j) \leqslant R \leqslant R_j$, donc $y_j \in B(x_j, R_j)$.
+
+    Donc $y_j \in A_j$, donc $y \in B$.
+
+\end{proof}
+
+
+\subsubsection{Voisinages}
+
+\begin{definition}{voisinage}{}
+    Soit $a \in E$ et $A \subset E$. On dit que $A$ est un voisinage de $a$ ssi
+    $$ \exists R > 0, \, B(a, R) \subset A$$
+\end{definition}
+
+\begin{remarque}
+    En particulier, comme $a \in B(a, R)$, si $A$ est un voisinage de $a$, alors $a \in A$.
+\end{remarque}
+
+
+\begin{exemple}
+    $\R^+$ est un voisinage de $3$ car $[2, 4] \subset \R^+$.
+\end{exemple}
+
+\begin{proposition}{caractérisation des ouverts avec voisinages}{}
+    Soit $A \subset E$. Alors $A$ est un ouvert ssi $A$ est un voisinage de chacun de ses points.
+\end{proposition}
+
+\begin{proposition}{voisinages de l'infini}{}
+    Soient $E = \R, \, A \subset \R$. On dit que $A$ est un voisinage de $+\infty$
+    ssi $\exists c \in \R, \, [c, +\infty[ \subset A$. 
+
+    On dit que $A$ est un voisinage de $-\infty$ ssi 
+    $\exists c \in \R, \, ]-\infty, c] \subset A$.
+\end{proposition}
+
+
+\subsection{Fermés}
+
+\begin{definition}{fermé}{}
+    Soit $A \subset E$. On dit que $A$ est un fermé ssi son complémentaire 
+    $E \setminus A = C_E B$ est un ouvert.
+\end{definition}
+
+
+\begin{exemple}
+    $\emptyset$ et $E$ sont des fermés de $E$. 
+\end{exemple}
+
+\begin{theoreme}{caractérisation séquentielle des fermés}{}
+
+    Soit $B \subset E$. 
+
+    $B$ est un fermé ssi pour toute suite $(u_n)_{n \in \N}$ d'éléments de $B$ qui converge 
+    vers $\ell \in E$, on a $\ell \in B$.
+
+\end{theoreme}
+
+\idee{
+    $\Rightarrow$ : par l'absurde, on suppose la limite dans le complémentaire. 
+}
+
+\begin{proof}
+    Montrons $\Rightarrow$. Supposons donc que $B$ est un fermé.
+
+    Soit $(u_n)$ une suite d'éléments de $B$ qui converge vers $\ell \in E$.
+
+    Montrons que $\ell \in B$.
+
+    Supposons $\ell \in A$. $B$ est fermé, donc $A$ est ouvert, donc $\exists R > 0, \, B(\ell, R) \subset A$.
+
+    Or $u_n \limit n \infty \ell$. Prenons $\varepsilon = \frac R 2$. 
+
+    Alors $\exists n_0 \in \N, \, \forall n \geqslant n_0, \, d(u_{n}, \ell) \leqslant \varepsilon$. 
+
+    En particulier, $d(u_{n_0}, \ell) \leqslant \frac R 2 < R$, donc $u_{n_0} \in A$, or $u_{n_0} \in B$, ce qui est absurde.
+
+    Donc $\ell \not \in A$, donc $\ell \in B$.
+
+    \avspace $\Leftarrow$ Supposons maintenant que $B$ n'est pas fermé. Donc $A$ n'est pas ouvert, ce qui s'écrit : 
+
+    $$\exists a \in A, \, \forall R > 0, \, \exists x \in B(a, R) \text{ tel que } x \not \in A$$
+
+    En particulier, pour $n \in \N^*$, $R = \frac 1 n$ fournit un $x_n \in B(a, \frac 1 n)$ tel que $x_n \not \in A$, donc $x_n \in B$ 
+    et $d(x_n, a) < \frac 1 n$.
+
+    Donc $(x_n)$ est une suite de $B$ qui converge vers $a \in A$, avec $a \not \in B$.
+
+    C'est la contraposée de la réciproque, d'où l'équivalence. 
+\end{proof}
+
+
+\begin{proposition}{fermés usuels}{}
+    Une boule fermée, une sphère, un singleton sont des fermés. 
+\end{proposition}
+
+\idee{
+    Caractérisaiton séquentielle avec distance au centre.
+}
+
+\begin{proof}
+    Soit $R \geqslant 0$, et $\omega \in E$.
+
+    Considérons la boule fermée $\overline{B}(\omega, R)$.
+
+    \begin{itemize}
+        \item Si $R > 0$, alors c'est une boule fermée
+        \item Si $R = 0$, c'est un singleton. 
+    \end{itemize}
+
+    Soit $(x_n)_{n \in \N}$ suite de $B$ qui converge vers $\ell \in E$.
+
+    $\forall n \in \N, \, N(x_n - \omega) \leqslant R$.
+
+    Or $x_n \limit n \infty \ell$, donc $x_n - \omega \limit n \infty \ell - \omega$.
+
+    Donc $N(x_n - \omega) \limit n \infty N(\ell - \omega)$.
+
+    Donc par passage à la limite dans $\R$, $N(\ell - \omega ) \leqslant R$, donc $\ell \in B$.
+
+    Donc $B$ est un fermé par caractérisation séquentielle.
+
+    Pour la sphère, la preuve est identique, en remplaçant $\leqslant$ par $=$.
+\end{proof}
+
+
+\subsubsection{Stabilité }
+
+\begin{proposition}{opérations sur les fermés}{}
+    \begin{itemize}
+        \item Toute réunion \textbf{finie} de fermés est un fermé.
+        \item Toute intersection quelconque de fermés est un fermé.
+        \item Tout produit cartésien \textbf{fini} de fermés est un fermé.
+    \end{itemize}
+\end{proposition}
+
+Astuce pour ne pas inverser avec les ouverts : se rappeler que chaque ensemble est l'union des singletons 
+de ses éléments, or tout ensemble n'est pas fermé. 
+
+\idee{
+    Utiliser la définition de fermé avec les ouverts. 
+
+    Pour le produit cartésien, utiliser la caractérisation séquentielle.
+}
+
+\begin{proof}
+    Soit $B_1, \dots, B_n$ des fermés de $E$, et $\displaystyle C = \bigcup_{i=1}^n B_i$.
+
+    Ainsi, $E \setminus C = \underbrace{\bigcap_{i=1}^n \underbrace{(E \setminus B_i)}_{\text{ouverts}}}_{\text{ouverts}}$.
+
+    Donc $C$ est un fermé.
+
+    \lvspace Soit $I$ un ensemble non vide, et $(B_i)_{i \in I}$ une famille de fermés de $E$.
+
+    Posons $\displaystyle C = \bigcap_{i \in I} B_i$.
+
+    Ainsi, $\displaystyle E \setminus C = \bigcup_{i \in I} (E \setminus B_i)$, qui est une réunion d'ouverts, donc un ouvert.
+
+    Donc $C$ est un fermé.
+
+    \lvspace Soit $(E_1, N_1), \dots, (E_p, N_p)$ des espaces vectoriels normés, et
+    $E = E_1 \times \dots \times E_p$ l'espace vectoriel normé produit muni de $N_\infty$.
+
+    $\forall j \in \ninter 1 p, \, B_j$ est un fermé de $E_j$.
+
+    Soit $B = B_1 \times \dots \times B_p$. 
+
+    Soit $(x_n)_{n \in \N}$ une suite de $B$. Notons $\forall n \in \N, \, x_n = (x_{n, 1}, \dots, x_{n, p})$.
+
+    Supposons que $(x_n)$ converge vers $\ell \in E$. 
+
+    Notons $\ell = (\ell_1, \dots, \ell_p)$.
+
+    On a $\forall j \in \ninter 1 p, \, x_{n, j} \limit n \infty \ell_j$.
+
+    Or $\forall n \in \N, \, x_{n, j} \in B_j$, et $B_j$ est un fermé, donc $\ell_j \in B_j$.
+
+    Donc $\ell \in B$, et $B$ est un fermé par caractérisation séquentielle.
+
+\end{proof}
+
+
+\qquad \uline{Conséquence : }
+
+\svspace Tout ensemble fini est fermé, car réunion finie de singletons.
+
+\begin{theoreme}{hors programme}{}
+    Les seules parties à la fois ouvertes et fermées de $E$ sont $\emptyset$ et $E$.
+\end{theoreme}
+
+\idee{
+    Par l'absurde, on prend deux ensembles ouverts et fermés complémentaires, et 
+    on cherche à aller sur la frontière. 
+}
+
+\begin{proof}
+    Supposons par l'absurde qu'il existe $A \subset E$ telle que $A \neq \emptyset$, $A \neq E$, et $A$ est à la fois ouvert et fermé.
+
+    Alors $B = E \setminus A$ n'est pas vide, et est ouvert et fermé. 
+
+    Puisque $A \neq \emptyset, \, B \neq \emptyset$, il existe $a \in A$, et $b \in B$, 
+    et considérons 
+    
+    $S = \left\{\lambda b + (1 - \lambda )a, \, \lambda \in \inter 0 1\right\}$
+
+    Notons $C = \left\{\lambda \in \inter 0 1, \, \lambda b + (1 - \lambda )a \in A\right\}$
+
+    Donc $0 \in C$, donc $C \neq \emptyset$.
+
+    De plus, $C \subset \R$ non vide et borné. Posons alors $\lambda_0 = \sup C \in \R$, et 
+    $d = \lambda_0 b + (1 - \lambda_0)a \in E$.
+
+    On a $\forall t \in C, \, t \leqslant \lambda_0$
+
+    Posons pour $\displaystyle n \in \N$, $\displaystyle t_n = \lambda_0 + \frac{1 - \lambda_0}{n + 1}$. 
+
+    On a $\forall t_n \in \interoc{\lambda_0}{1}$, donc $t_n \not \in C$, donc $t_n b + (1 - t_n)a \in B$.
+
+    Or $t_n b + (1 - t_n)a \limit n \infty d$. Or $B$ est fermé, donc $d \in B$.
+
+    Par caractérisation séquantielle du sup, il existe une suite $(u_n)_{n \in \N}$ de $C$ qui converge 
+    vers $\lambda_0$.
+
+    Donc $u_n b + (1 - u_n)a \in A$, or $u_n b + (1 - u_n)a \limit n \infty d$.
+
+    Or $A$ est fermé, donc $d \in A$.
+
+    Donc $A \cap B \neq \emptyset$ absurde.
+\end{proof}
+
+\begin{theoreme}{nature sous espace vectoriel de dimension finie}{}
+    Tout sous espace vectoriel de dimension finie de $E$ est un fermé. 
+\end{theoreme}
+
+\idee{
+    Utilisation de Bolzano-Weierstrass et unicité de la limite. 
+}
+
+\begin{proof}
+    Soit $F$ un sous espace vectoriel de dimension finie de $E$. 
+
+    \begin{itemize}
+        \item Si $F = \{0_E\}$, c'est un singleton, donc un fermé.
+        \item Sinon, supposons $F \neq \emptyset$. 
+    \end{itemize}
+
+    Soit $(u_n)_{n \in \N}$ une suite de $F$ qui converge vers $\ell \in E$.
+
+    Cette suite converge, donc c'est une suite bornée de $F$ pour $N$. 
+
+    Donc par le théorème de Bolzano-Weierstrass, on peut en extraite une sous-suite $(u_{\varphi(n)})_{n \in \N}$ qui converge vers
+    $\ell_1 \in F$.
+
+    Or $u_n \limit n \infty \ell$, donc $\ell_1 = \ell$, donc $\ell \in F$.
+\end{proof}
+
+Montrons qu'au contraire, cela n'est pas vrai en dimension infinie.
+
+\begin{proof}
+    $E = \R [X]$ muni de $N: P \mapsto \int_{0}^1 |P(t)| dt$.
+
+    Soit $H = \{P \in E, \, P(1) = 0\}$, qui est un sous espace vectoriel de $E$.
+
+    Montrons que $H$ n'est pas fermé.
+
+    Posons $\forall n \in \N, \, P_n = X^n - 1$. On a donc bien $P_n \in H$.
+
+    Posons $Q = -1$. Alors 
+
+    $$ N(p_n - Q ) = \int_0^1 |X^n| dt = \frac 1 {n+1} \limit n \infty 0.$$
+
+    Donc $P_n \limit n \infty Q$ et pourtant $Q \not \in H$.
+
+    Donc $H$ n'est pas fermé.
+\end{proof}
+
+
+\subsection{Intérieur, adhérence, frontière}
+
+\begin{definition}{point intérieur}{}
+    Soit $A \subset E$, et $a \in E$.
+
+    On dit que $a$ est un point intérieur à $A$ ssi $\exists R > 0, \, B(a, R) \subset A$,
+    ssi $A$ est un voisinage de $a$. 
+\end{definition}
+
+
+
+\begin{definition}{intérieur d'un ensemble}{}
+    Soit $A \subset E$. 
+
+    On appelle intérieur de $A$, et on note $\mathring{A}$, l'ensemble des points intérieurs à $A$, 
+    c'est à dire : 
+
+    $$ \mathring{A} = \{a \in A, \, \exists R > 0, \, B(a, R) \subset A\}.$$
+\end{definition}
+
+\begin{proposition}{inclusion de l'intérieur}{}
+    On a $\mathring{A} \subset A$ avec égalité ssi $A$ est un ouvert.
+\end{proposition}
+
+\begin{proof}
+    Par définition, $\mathring{A} \subset A$.
+
+    Si $A$ est un ouvert, alors $A$ est un voisinage de chacun de ses points, donc $\mathring{A} = A$.
+
+    Réciproquement, si $\mathring{A} = A$, 
+    alors $a \in \mathring A$ donc par def, $\exists R > 0, \, B(a, R) \subset A$, donc $A$ est un ouvert.
+\end{proof}
+
+\begin{corollaire}{intérieur d'une boule fermée}{}
+    Soit $\omega \in E, \, R_0 > 0$, et $A = B'(\omega, R_0)$, alors $\mathring{A} = B(\omega, R_0)$.
+\end{corollaire}
+
+Je ne garantis pas que l'une ou l'autre des preuves soit juste (même si celle du cours 
+doit l'être à peu près). 
+
+\idee{ Montrer l'inclusion, puis que les éléments de la sphère ne sont pas 
+intérieurs avec une suite. }
+
+\begin{proof}
+
+    \uline{Preuve donnée en cours :}
+    Soit $a \in B(\omega, R_0)$. 
+
+    On sait que $B(\omega, R_0)$ est un ouvert. 
+
+    Donc $\exists R > 0, \, B(a, R) \subset B(\omega, R_0)$ 
+    donc $B(a, R) \subset A$ donc $a \in \mathring{A}$.
+
+    Ainsi, $B(\omega, R_0) \subset \mathring{A} \subset B'(\omega, R_0)$.
+
+    Soit $x \in B'(\omega, R_0) \setminus B(\omega, R_0)$.
+
+    Alors $x \in S(\omega, R_0)$. 
+
+    Montrons que $x \not \in \mathring A$. 
+
+    Soit $R > 0$. Posons $u = \frac{x - \omega}{N(x - \omega)}$ et $y = x + \frac R 2 u$.
+
+    Alors $d(y, x) = N(y - x) = N\left( \frac R 2 u \right) = \frac R 2 < R$, donc $y \in B(x, R)$.
+    et $d(\omega, y) = N(y - \omega)$, 
+
+    \begin{align*}
+        N(y - \omega) & = N\left(x + \frac R 2 \frac{x - \omega}{N(x - \omega)} - \omega\right) \\
+        & = N\left( \left( N(x - \omega) + \frac R 2 \right) \left( \frac{x - \omega}{N(x - \omega)}\right) \right) \\
+        & = N(x - \omega) + \frac R 2 \\
+        & > R_0.
+    \end{align*}
+
+    Donc $y \not \in B(\omega, R_0)$, donc $x \not \in \mathring A$.
+
+    Donc $\mathring A = B(\omega, R_0)$
+
+    \uindent{Preuve alternative }
+
+    Si \( x \in B(\omega, R_0) \), alors \( d(x, \omega) < R_0 \).
+    Posons \( \varepsilon = R_0 - d(x, \omega) > 0 \).
+    La boule ouverte \( B(x, \varepsilon) \) est contenue dans \( B'(\omega, R_0) \).
+    Donc \( x \) est un point intérieur de \( A \).
+    Donc \( B(\omega, R_0) \subset \mathring{A} \).
+
+    Si \( x \in \mathring{A} \), alors il existe \( \varepsilon > 0 \) tel que
+    \( B(x, \varepsilon) \subset B'(\omega, R_0) \).
+    Donc pour tout \( y \in B(x, \varepsilon) \), \( d(y, \omega) \leq R_0 \).
+    En particulier, \( d(x, \omega) < R_0 \) (strict, sinon il n'y aurait pas de marge pour contenir une boule autour de \( x \)).
+    Donc \( x \in B(\omega, R_0) \).
+    Donc \( \mathring{A} \subset B(\omega, R_0) \).
+
+    Conclusion :
+    \( \mathring{A} = B(\omega, R_0) \).
+\end{proof}
+
+
+\begin{theoreme}{intérieur comme réunion d'ouverts}{}
+    Soit $A \subset E$.
+
+    \begin{itemize}
+        \item Alors $\mathring{A}$ est la réunion des ouverts contenus dans $A$.
+        \item C'est le plus grand ouvert dans $A$.
+    \end{itemize}
+\end{theoreme}
+
+\begin{proof}
+    Notons $(U_i)_{i \in I}$ la famille des ouverts contenus dans $A$, 
+    
+    et $C = \bigcup_{i \in I} U_i$.
+
+    $\mathring A$ est un ouvert inclus dans $A$, donc c'est l'un des $U_i$, donc $\mathring A \subset C$.
+
+    Soit $x \in C$. Alors $\exists i \in I, \, x \in U_i$.
+
+    Or $U_i$ est un ouvert, donc $\exists R > 0, \, B(x, R) \subset U_i$. 
+
+    Mais alors $B(x, R) \subset A$. Donc $x \in \mathring A$.
+
+    Donc $C \subset \mathring A$.
+
+    Ainsi $\mathring A$ est un ouvert inclus dans $A$. Si $B$ est un ouvert inclus dans 
+    $A$, c'est l'un des $U_i$ donc $B \subset C = \mathring A$.
+
+    Donc $\mathring A$ est le plus grand ouvert inclus dans $A$.
+\end{proof}
+
+\begin{definition}{point adhérent}{}
+    Soit $A \subset E$ et $x \in E$.
+
+    On dit que $x$ est adhérent à $A$ ssi 
+
+    $$ \forall \varepsilon > 0, \, B(x, \varepsilon) \cap A \neq \emptyset.$$
+\end{definition}
+
+\begin{theoreme}{caractérisation séquentielle des points adhérents}{}
+    Soit $A \subset E$ et $x \in E$.
+
+    Alors $x$ est adhérent à $A$ ssi il existe une suite $(a_n)_{n \in \N}$ d'éléments de $A$ 
+    qui converge vers $x$.
+\end{theoreme}
+
+\begin{proof}
+    Soit $x \in E$ adhérent à $A$. 
+
+    Alors $\forall R > 0, \, \exists a \in A, \, d(x, a) < R$.
+
+    Soit $n \in \N*$, avec $R = \frac 1 n$n cela fournit $a_n \in A$ tel que $d(x, a_n) < \frac 1 n$.
+
+    Donc $a_n \limit n \infty x$.
+
+    Réciproquement, soit $x \in E$ tel qu'il existe une suite $(a_n)_{n \in \N}$ d'éléments 
+    de $A$ qui converge vers $x$. 
+
+    Soit $R > 0$ 
+
+    Par def de la limite, $\exists n_0 \in \N, \, \forall n \geqslant n_0, \, d(x, a_n) < R$.
+
+    Donc $a_{n_0} \in B(x, R) \cap A$. 
+\end{proof}
+
+\begin{definition}{adhérence d'un ensemble}{}
+    Soit $A \subset E$. 
+    L'ensemble des points adhérents à $A$ est appelé adhérence de $A$, et noté 
+    $\overline{A}$.
+\end{definition}
+
+\begin{proposition}{inclusion de l'adhérence}{}
+    Soit $A \subset E$. Alors $A \subset \overline{A}$ avec égalité ssi $A$ est un fermé.
+\end{proposition}
+
+\begin{proof}
+    Soit $x \in A$. Pour tout $R > 0, \, x \in B(x, R) \cap A$ donc $x \in \overline{A}$.
+    Donc $A \subset \overline{A}$.
+
+    \avspace Si $A$ est fermé. 
+
+    Soit $y \in \overline{A}$. Alors il existe une suite $(a_n)_{n \in \N}$ d'éléments
+    de $A$ qui converge vers $y$.
+
+    Or $A$ est fermé, donc $y \in A$, et $\overline{A} \subset A$ et donc $\overline{A} = A$.
+
+    \qquad \avspace \uline{Si $\overline{A} = A$ : }
+
+    \svspace Soit $(a_n)_{n \in \N}$ une suite d'éléments de $A$ qui converge vers $\ell \in E$.
+
+    Alors par caractérisation séquentielle, $\ell \in \overline{A} $ Donc $A$ fermé. 
+\end{proof}
+
+\begin{proposition}{adhérence des boules}{}
+    Soit $\omega \in E$ et $R > 0$. Alors
+     $$\overline{B(\omega, R)} = B'(\omega, R)$$
+\end{proposition}
+
+\begin{proof}
+    Soit $x \in \overline{B(\omega, R)}$.
+
+    Par caractérisation séquentielle, il existe une suite $(a_n)_{n \in \N}$ d'éléments de
+    $B(\omega, R)$ qui converge vers $x$.
+
+    $N(a_n - \omega) < R$, donc par passage à la limite, $N(x - \omega) \leqslant R$. 
+
+    Donc $x \in B'(\omega, R)$, et $\overline{B(\omega, R)} \subset B'(\omega, R)$.
+
+    \avspace \qquad \uline{Réciproquement : }
+
+    \svspace Soit $x \in B'(\omega, R)$.
+
+    Si $x = \omega$, alors $x \in B(\omega, R)$ donc $x \in \overline{B(\omega, R)}$.
+
+    Si $x \neq \omega$, posons $u = \frac{x - \omega }{N(x - \omega)}$.
+
+    Posons $a_n = \omega + \frac n {n + 1} N(x - \omega)u$. 
+
+    \begin{align*}
+        N(a_n - \omega) & = N\left( \frac n {n + 1} N(x - \omega) u \right) \\
+        & = \frac n {n + 1} N(x - \omega) 
+        & \leqslant \frac n {n + 1} R < R.  
+    \end{align*}
+
+    Donc $a_n \in B(\omega, R)$.
+
+    \begin{align*}
+        N(a_n - x) & = N\left( \omega - x + \frac n {n + 1} (x - \omega) \right) \\
+        & = N\left( \frac 1 {n + 1}(\omega - x) \right) \\
+        & = \frac 1 {n + 1} N(\omega - x) \limit n \infty 0.
+    \end{align*}
+
+    Donc $a_n \limit n \infty x$, 
+
+    Donc $x \in \overline{B(\omega, R)}$, donc $B'(\omega, R) \subset \overline{B(\omega, R)}$.
+\end{proof}
+
+\begin{theoreme}{adhérence comme intersection de fermés}{}
+    Soit $A \subset E$.
+    $\overline{A}$ est l'intersection de tous les fermés contenant $A$.
+    C'est le plus petit fermé contenant $A$.
+\end{theoreme}
+
+\begin{proof}
+    Notons $(F_i)_{i \in I}$ la famille des fermés contenant $A$, et
+    $ \displaystyle C = \bigcap_{i \in I} F_i$. Montrons que $C = \overline{A}$.
+
+    $\overline{A}$ est un fermé contenant $A$, donc c'est l'un des $F_i$, donc $ C \subset \overline{A}$.
+
+    Soit $x \in \overline{A}$, et soit $i \in I$. 
+
+    Par caractérisation séquentielle de l'adhérence, il existe une suite $(a_n)_{n \in \N}$ d'éléments de $A$ qui converge vers $x$.
+
+    Mais $A \subset F_i$, donc $a_n \in F_i$.
+
+    Or $F_i$ fermé, donc $x \in F_i$ et donc $\overline A \subset F_i$, 
+    et alors $\overline A \subset C$.
+
+    $\overline A$ est un fermé contenant $A$. 
+
+    Soit $B$ un fermé contenant $A$. C'est l'un des $F_i$, donc $C \subset B$, 
+    donc $\overline A \subset B$.
+\end{proof}
+
+
+\uindent{Bilan}
+
+\avspace Si $A \subset E$, alors
+$$\mathring A \subset A \subset \overline A$$
+
+
+\begin{proposition}{hors programme}{}
+    Soit $A \subset E, \, B \subset E$. Alors 
+    \begin{itemize}
+        \item $\overline{E \setminus A} = E \setminus \mathring{A}$
+        \item $\overline{A \cup B} = \overline{A} \cup \overline{B}$
+        \item $\overline{A \cap B} \subset \overline{A} \cap \overline{B}$
+    \end{itemize} 
+\end{proposition}
+
+
+\begin{proof}
+    On a $\mathring A \subset A$. 
+
+    Donc $E \setminus A \subset \underbrace{E \setminus \underbrace{\mathring A}_{\text{ouvert}}}_{\text{fermé}}$.
+
+    Donc $\overline{E \setminus A} \subset E \setminus \mathring A$.
+
+
+    \uindent{Réciproquement }
+
+    \svspace $E \setminus A \subset \overline{E \setminus A}$
+
+    Donc $E \setminus \overline{E \setminus A} \subset A$.
+
+    Donc $E \setminus \overline{E \setminus A} \subset \mathring A$ 
+
+    Donc $E \setminus \mathring A \subset \overline{E \setminus A}$. 
+
+    \uindent {Deuxième point }
+
+    \svspace $A \subset \overline A$, et $B \subset \overline B$,
+
+    Donc $A \cup B \subset \underbrace{\overline A \cup \overline B}_{\text{fermé}}$.
+
+    Donc $\overline{A \cup B} \subset \overline A \cup \overline B$.
+
+
+    \uindent{Réciproquement }
+
+    \svspace $A \subset A \cup B$, donc $A \subset \overline{A \cup B}$.
+
+    Donc $\overline A \subset \overline{A \cup B}$.
+
+    De même, $\overline B \subset \overline{A \cup B}$.
+
+    Donc $\overline A \cup \overline B \subset \overline{A \cup B}$.
+
+    \uindent{Troisième point }
+
+    $A \cap B \subset A$, donc $A \cap B \subset \overline A$. 
+
+    Donc $\overline {A \cap B} \subset \overline A$.
+
+    De même $\overline {A \cap B} \subset \overline B$.
+
+    Donc $\overline {A \cap B} \subset \overline A \cap \overline B$.
+\end{proof}
+
+\textbf{Attention}, l'inclusion réciproque n'est pas vraie : 
+
+Avec $E = \R$, $A = \interoo 0 1$, $B = \interoo 1 2$, on a 
+$\overline A = [0, 1]$, $\overline B = [1, 2]$, donc $A \cap B = \emptyset$, et 
+$\overline A \cap \overline B = \{1\}$.
+
+\begin{definition}{frontière d'un ensemble}{}
+    Soit $A \subset E$. 
+
+    On appelle frontière de $A$ et on note $\operatorname{Fr}(A)$ la partie de $E$ définie 
+    par 
+    $$ \operatorname{Fr}(A) = \overline A \setminus \mathring A$$
+\end{definition}
+
+\begin{exemple}
+    Si $A = \Q$, 
+
+    $\mathring A = \emptyset$, $\overline A = \R$, donc $\operatorname{Fr}(A) = \R$.
+\end{exemple}
+
+
+\begin{proposition}{nature de la frontière}{}
+    Soit $A \subset E$. Alors $\Fr(A)$ est un fermé et $\Fr(A) = \Fr(E \setminus A)$.
+\end{proposition}
+
+\begin{proof}
+    $\Fr A = \overline A \cap (E \setminus \mathring A)$. 
+
+    De plus $E \setminus \mathring A = \overline{E \setminus A}$.
+
+    Donc $\Fr A = \overline A \cap \overline{E \setminus A} = \Fr (E \setminus A)$ 
+\end{proof}
+
+\subsection{Partie dense }
+
+\begin{definitionnt}{Partie dense inclusion}{}
+    Soient $A, B \in \mathscr P(E)$.
+
+    On dit que $A$ est dense dans $B$ ssi 
+    $$A \subset B \subset \overline A$$
+\end{definitionnt}
+
+\begin{definitionnt}{Partie dense égalité}{}
+    Soit $A \in \mathscr P(E)$.
+
+    On dit que $A$ est dense dans $E$ ssi $\overline A = E$.
+\end{definitionnt}
+
+\begin{exemple}
+    \begin{enumerate}
+        \item $\Q$ est dense dans $\R$.
+        \item $\operatorname{GL}_p(\K)$ est dense dans $\mathcal M_p(\K)$.
+        \item Si $H$ est un hyperplan de $E$, alors $H$ est fermé ou dense
+    \end{enumerate}
+
+
+    \uindent{Preuve du 2. }
+
+    \svspace Soit $A \in \mathcal M_p(\K)$.
+
+    Pour $n \in \N^*$, posons $B_n = A - \frac 1 n I_p$.
+
+    Par théorème des valeurs propres, $B_n \limit n {+ \infty} A$.
+
+    Or 
+    \begin{align*}
+        \det(B_n) & = \det((A_{i, j} - \frac 1 n \delta_{i, j})_{1 \leqslant i, j \leqslant p}) \\
+        & = \sum_{ \sigma \in S_p} \varepsilon(\sigma) \prod_{i=1}^p (A_{i, \sigma(i)} - \frac 1 n \delta_{i, \sigma(i)}) 
+    \end{align*}
+
+    Posons $x = \frac 1 n > 0$. 
+
+    Donc $\det(B_n) $ est un polynôme en $x$ de degré inférieur à $p$. 
+
+    Le coef de $x^p$ provient unisuement de $\sigma = \text{Id}$, et vaut $(-1)^p$.
+
+    Ce polynôme a au plus $p$ racines. 
+
+    D'où $\exists n_0 \in \N, \, \forall n \geqslant n_0, \, \frac 1 n$ n'en est pas une racine. 
+
+    Donc $\forall n \geqslant n_0, \, B_n \in \operatorname{GL}_p(\K)$.
+
+
+    \uindent{Preuve du 3. }
+
+    \svspace Soit $H$ un hyperplan de $E$. Si $\varphi$ est une forme linéaire non nulle
+    telle que $H = \ker \varphi$.
+
+    Soit $a \in E $tel que $\varphi(a) \neq 0$, alors $E = H \oplus \operatorname{Vect}(a)$.
+
+    En effet, pour $x \in E$ : 
+    
+    \uindent{Analyse }
+
+    \svspace Supposons que $x = h + \lambda a$ avec $h \in H$ et $\lambda \in \K$.
+
+    Alors $\varphi(x) = \varphi(h) + \lambda \varphi(a) = \lambda \varphi(a)$, donc
+    $\lambda = \frac{\varphi(x)}{\varphi(a)}$ et $h = x - \frac{\varphi(x)}{\varphi(a)} a$.
+
+    d'où l'unicité sous réserve d'existence. 
+
+    \uindent{Synthèse }
+
+    Posons $\lambda = \frac{\varphi(x)}{\varphi(a)}$ et $h = x - \lambda a$.
+
+    Alors $x = h + \lambda a$ par calcul. $\lambda \in \K$. 
+
+    $\varphi(h) = \varphi(x) - \frac{\varphi(x)}{\varphi(a)} \varphi(a) = 0$, donc $h \in H$.
+
+    Supposons que $H$ n'est pas fermé, et montrons qu'il est dense.
+
+    Il existe une suite $(h_n)_{n \in \N}$ d'éléments de $H$ telle que 
+    $h_n \limit n \infty \ell$ avec $\ell \not \in H$, donc $\varphi(\ell) \neq 0$.
+
+    Donc $E = H \oplus \operatorname{Vect}(\ell)$.
+
+    Soit $x \in E$. Décomposons $x = h_x + \lambda_x \ell$ où $h_x \in H$ et $\lambda_x \in \K$.
+
+    Posons $x_n = h_x + \lambda_x h_n$. On a bien $x_n \in H$, et $x_n \limit n \infty x$ 
+    d'où $\overline H = E$.
+
+
+\end{exemple}
+
+
+\subsection{Invariance}
+
+\begin{theoreme}{invariance topologique en dimension finie}{}
+    Les notions topologiques (ouverts, fermés, intérieur, adhérence, frontière) sont invariantes
+    par remplacement de la norme par une norme équivalente. 
+\end{theoreme}
+
+\begin{proof}
+    La notion de fermé qui vient de la caractérisation séquentielle est invariante car la notion de 
+    limite de suire l'est. 
+
+    La notions d'ouvert ausi par complémentarité. 
+
+    Les autres notions également car elles s'expriment en fonction des deux premières.
+\end{proof}
+
+
+\begin{corollaire}{invariance topologique en dimension finie}{}
+    En dimension finie, ces notions topologiques ne dépendent pas du choix de la norme. 
+\end{corollaire}
+
+
+
+\subsubsection{Topologie relative}
+
+Dans toute cette partie, on fixe $A$ partie non vide de $E$.
+
+\begin{definition}{ouvert relatif}{}
+    Soit $U \subset A$. On dit que $U$ est un ouvert relatif de $A$ 
+    ssi $\forall a \in U, \, \exists R > 0, \, \forall x \in A, \, D(a, x) < R \Rightarrow x \in U$.
+
+    C'est à dire $B(a, R) \cap A \subset U$.
+ 
+\end{definition}
+
+\begin{definition}{voisinage relatif}{}
+    Soit $U \subset A$, et $a \in A$. 
+
+    On dit que $U$ est un voisinage relatif de $a$ vis à vis de $A$ ssi 
+    $\exists R > 0, \, B(a, R) \cap A \subset U$.
+
+    ainsi un ouvert relatif est voisinage relatif de chacun de ses points.
+\end{definition}
+
+\begin{exemple}
+    $E = \R$, $A = \R^+$, $U = \interco 0 1$ est un voisinage relatif de $0$ 
+    car $B(0, 1) \cap \R^+ \subset U$. 
+\end{exemple}
+
+
+\begin{definition}{fermé relatif}{}
+    Soit $V \subset A$. 
+
+    On dit que $V$ est un fermé relatif de $A$ ssi $A \setminus V$ est un ouvert relatif de $A$.
+\end{definition}
+
+
+\begin{proposition}{caractérisation des fermés relatifs}{}
+    Soit $V \subset A$ est un fermé relatif de $A$ ssi il existe $W$ fermé de $E$ tel que $V = W \cap A$.
+\end{proposition}
+
+\idee{
+    $\Rightarrow$ Utilisation de $\overline V$ et absurde. 
+
+    $\Leftarrow$ Utilisation du complémentaire. 
+}
+
+\begin{proof}
+    $\Rightarrow$ : Supposons que $V$ est un fermé relatif de $A$.
+
+    Posons $W = \overline{V}$, $W$ est un fermé de $E$ et montrons que $V = W \cap A$.
+
+    $V \subset A$, $V \subset \overline V = W$, donc $V \subset W \cap A$.
+
+    Supposons que $x \in \overline V \cap A$ mais que $x \not \in V$.
+
+    Notons $U = A \setminus V$, on a donc $x \in U$ et par def, $U$ est un ouvert relatif. 
+
+    Donc $\exists R > 0, \, B(x, R) \cap A \subset U$.
+
+    Mais $x \in  \overline V$ donc $B(x, R) \cap V \neq \emptyset$.
+
+    Donc il existe un $y \in A$ tel que $y \in V$, $y \in B(x, R)$. Donc $y \in U$.
+
+    Absurde car $U \cap V = \emptyset$.
+
+    Donc $V = W \cap A$.
+
+    \uindent{Réciproquement }
+
+    Supposons qu'il existe $W$ fermé tel que $V = W \cap A$. 
+
+    Alors $U = A \setminus V = A \setminus (A \cap W)$
+
+    Notons $C = E \setminus W$ ouvert.
+
+    Soit $a \in U$. Alors $a \in C$ et $C$ est ouvert. 
+
+    Donc $\exists R > 0, B(a, R) \subset C$.
+
+    Donc $B(a, R) \subset C \cap A = U$ 
+
+    Donc $U$ est un ouvert relatif de $A$, donc $V$ est un fermé relatif de $A$.
+\end{proof}
+
+
+\begin{proposition}{caractérisation séquentielle des fermés relatifs}{}
+    Soit $V \subset A$. 
+
+    Alors $V$ est un fermé relatif de $A$ ssi pour toute suite $(a_n)_{n \in \N}$ d'éléments de $V$
+    qui converge vers $\ell \in A$, on a $\ell \in V$.
+    
+\end{proposition}
+
+\idee{
+    Utilisation de la caractérisation séquentielle des fermés, et proposition précédente.
+}
+
+\begin{proof}
+    Supposons que $V$ est un fermé relatif de $A$. 
+    Alors $V = \overline V \cap A$. 
+
+    Soit $(a_n)_{n \in \N}$ une suite d'éléments de $V$ qui converge vers $\ell \in A$.
+
+    Alors $\ell \in \overline V$, donc $\ell \in \overline V \cap A$ donc $\ell \in V$.
+
+    \uindent{Réciproquement }
+
+    \svspace Supposons que pour toute suite $(a_n)_{n \in \N}$ d'éléments de $V$ qui converge vers
+    $\ell \in A$, on a $\ell \in V$, et montrons que $V = \overline V \cap A$. 
+
+    On a $V \subset \overline V$ et $V \subset A$, donc $V \subset \overline V \cap A$.
+
+    Soit $\ell \in \overline V \cap A$.
+
+    Alors $\ell \in \overline V$ donc il existe une suite $(a_n)_{n \in \N}$ d'éléments de $V$ qui converge vers $\ell$.
+
+    Or $\ell \in A$, donc par hypothèse, $\ell \in V$.
+
+    Donc $\overline V \cap A \subset V$, donc $V = \overline V \cap A$.
+
+    Donc $V$ est un fermé relatif de $A$.
+\end{proof}
+
+
+\begin{proposition}{caractérisation des ouverts relatifs}{}
+    Soit $U \subset A$. 
+
+    Alors $U$ est un ouvert relatif de $A$ ssi il existe un ouvert $V$ de $E$ tel que 
+    $U = V \cap A$.
+    
+\end{proposition}
+
+\begin{proof}
+    Supposons que $U$ est un ouvert relatif de $A$.
+
+    Alors $V = a \setminus U$ est un fermé relatif de $A$.
+
+    Donc $V = \overline V \cap A$, donc $U = A \setminus (\overline V \cap A)$. 
+
+    Donc $U = A \cap \underbrace{(E \setminus \overline V)}_{\text{ouvert de } E}$
+
+    \avspace Supposons qu'il existe $C$ ouvert de $E$ tel que $U = C \cap A$.
+
+    Soit $x \in U$. Alors $x \in C$ et $C$ est ouvert.
+
+    Donc $\exists R > 0, \, B(x, R) \subset C$.
+
+    Donc $B(x, R) \cap A \subset U$ donc $U$ est un ouvert relatif de $A$.
+\end{proof}
+
+
+
+\section{Etude locale d'une application}
+
+\begin{definition}{limite}{}
+    Soient $(E, N)$ et $(E', N')$ deux espaces vectoriels normés. 
+
+    Soit $A \subset E$ non vide, et $\fonction{f}{A}{E'}{x}{f(x)}$
+
+    Soit $a \in \overline A$, et $\ell \in E'$.
+
+    On dit que $f$ a pour limite $\ell$ en $a$ ssi 
+    $$\forall \varepsilon > 0, \, \exists \eta > 0, \, \forall x \in A, \, N(x - a) < \eta \Rightarrow N'(f(x) - \ell) < \varepsilon$$
+
+    c'est à dire $d(x, a) \leqslant \eta \Rightarrow d(f(x), \ell) \leqslant \varepsilon$.
+
+    c'est à dire $x \in B'(a, \eta) \Rightarrow f(x) \in B'(\ell, \varepsilon)$.
+
+    $\ell$ est alors unique, on l'appelle limite de $f$ en $a$ et on note 
+
+    $$f(x) \xrightarrow[x \to a ]{N'} \ell$$
+
+\end{definition}
+
+
+\begin{proof}
+    Preuve de l'unicité 
+
+    Supposons que $\ell_1$ et $\ell_2$ conviennent. Soit $\varepsilon > 0$.
+
+    Par def, $\exists M_1 > 0, \, \forall x \in A, \, d(x, a) < M_1  \Rightarrow d(f(x), \ell_1) \leqslant \varepsilon$
+
+    $\exists M_2 > 0, \, \forall x \in A, \, d(x, a) < M_2  \Rightarrow d(f(x), \ell_2) \leqslant \varepsilon$
+
+    Posons $M_3 = \min(M_1, M_2)$, et soit $x \in A$ tel que $d(x, a) < M_3$.
+
+    Un tel $x$ existe car $a \in \overline A$.
+
+    On a $d(\ell_1, \ell_2) \leqslant d(\ell_1, f(x)) + d(f(x), \ell_2) \leqslant 2 \varepsilon$.
+
+    Vrai pour tout $\varepsilon > 0$, donc $d(\ell_1, \ell_2) = 0$, donc $\ell_1 = \ell_2$.
+\end{proof}
+
+\begin{remarque}
+    Cette définiton est invariante si on remplace $N$ et $N'$ par des normes équivalentes.
+\end{remarque}
+
+\begin{proof}
+    Soit $||\cdot||$ une norme équivalente à $N$, norme de $E$, 
+    et $||\cdot||'$ une norme équivalente à $N'$, norme de $E'$.
+
+    Alors $\exists \alpha, \beta, \gamma, \tau > 0, \forall x \in E, \, \beta ||x|| \leqslant N(x) \leqslant \alpha ||x||$.
+    et $\forall y \in E', \, \gamma ||y||' \leqslant N'(y) \leqslant \tau ||y||'$.
+
+    Supposons que $f(x) \limitnorme{N'} x a \ell$. Ainsi, $\forall \varepsilon > 0, \exists \eta > 0, \, \forall x \in A, \, N(x - a) < \eta \Rightarrow N'(f(x) - \ell) < \varepsilon$.
+
+    Soit $\varepsilon > 0$, et posons $\eta' = \frac \eta \alpha$ où $\eta$ vient de la 
+    définitions de la limite avec $\gamma \varepsilon$ das le rôle de $\varepsilon$.
+
+    Soit $x \in A$. Supposons que $||x - a|| < \eta'$. 
+
+    Alors $||f(x) - \ell||' < \frac 1 \gamma N(f(x) - \ell)$
+
+    Or \begin{align*}
+        N(x - a) & \leqslant \alpha ||x - a|| \\
+        & \leqslant \alpha \eta ' \leqslant eta 
+    \end{align*}
+
+    Donc $N'(f(x) - \ell) \leqslant \gamma \varepsilon$, donc $||f(x) - \ell||' < \varepsilon$.
+\end{proof}
+
+
+
+\subsubsection{Cas où a appartient à A}
+
+\begin{theoreme}{continuité en un point}{}
+    Soit $f : A \subset E \to E'$, et $a \in A$, $\ell \in E'$. 
+
+    Si $f(x) \limitnorme{N'}{x}{a} \ell$. Alors $\ell = f(a)$.
+
+    En ce cas on dit que $f$ est continue en $a$. Ainsi, $f$ continue en $a \in A$ ssi 
+    $$\forall \varepsilon > 0, \, \exists \eta > 0, \, \forall x \in A, \, N(x - a) < \eta \Rightarrow N'(f(x) - f(a)) < \varepsilon$$
+\end{theoreme}
+
+
+\begin{proof}
+    Supposons que $f(x) \limit x a \ell$. On a : 
+
+    $\forall \varepsilon > 0, \, \exists \eta > 0, \, \forall x \in A, \, N(x - a) \leqslant \eta \Rightarrow N'(f(x) - \ell) \leqslant \varepsilon$.
+
+    Soit $\varepsilon > 0$, et considérons $x = a$.
+
+    On a alors bien $N(a - a) = 0 < \eta$, donc $N'(f(a) - \ell) \leqslant \varepsilon$.
+
+    Or c'est vrai pour tout $\varepsilon > 0$, donc $N'(f(a) - \ell) = 0$, donc $f(a) = \ell$.
+\end{proof}
+
+
+\subsection{Extensions }
+
+\begin{definition}{extension notion de limite}{}
+    On étend la notion de limite aux cas suivants : 
+    \begin{enumerate}
+        \item Si $E = \R, \, a = + \infty, \, (E', N')$ quelconque, $\ell \in E'$, et $A \subset \R$ 
+            voisinage de $+ \infty$ et $f : A \to E'$.
+
+            Alors $f(x) \limitnorme{N'}{x}{+ \infty} \ell$ ssi $\forall \varepsilon > 0, \, \exists c \in \R, \, \forall x \in A, \, x \geqslant c \Rightarrow N'(f(x) - \ell) \leqslant \varepsilon$.
+
+        \item Si $E = \R, a = - \infty, \, \ell \in E'$, et $A \subset \R$ voisinage de $- \infty$, et $f : A \to E'$.
+
+            Alors $f(x) \limitnorme{N'}{x}{- \infty} \ell$ ssi $\forall \varepsilon > 0, \, \exists c \in \R, \, \forall x \in A, \, x \leqslant c \Rightarrow N'(f(x) - \ell) \leqslant \varepsilon$.
+        
+        \item Si $E = E' = \R$, et $f(x) \limit x {\pm \infty} \pm \infty$ cf première année. 
+        \item Soit $E$ un espace vectoriel normé, $A \subset E$, $a \in \overline A$, $E' = \R$ et $f: A \to \R$. Alors 
+            $f(x) \limit x a + \infty$ ssi $\forall c \in \R, \, \exists \eta > 0, \, \forall x \in A, \, N(x - a) \leqslant \eta \Rightarrow f(x) \geqslant c$.
+
+        \item Mêmes hypothèses. Alors $f(x) \limit x a - \infty$ ssi $\forall c \in \R, \, \exists \eta > 0, \, \forall x \in A, \, N(x - a) \leqslant \eta \Rightarrow f(x) \leqslant c$.
+        \item Soit $A \subset E$ non borné, $f : E \to F, \, \ell \in F$. Alors $f(x) \limitnorme{N'}{x}{+ \infty} \ell$ ssi $\forall \varepsilon > 0, \, \exists c \in \R, \, \forall x \in A, \, N(x) \geqslant c \Rightarrow N'(f(x) - \ell) \leqslant \varepsilon$.
+    \end{enumerate}
+\end{definition}
+
+\begin{theoreme}{hors programme}{}
+    Soit $f : A \subset E \to F$, $a \in \overline A$ (éventuellement $a = \pm \infty$ si $E = \R$), 
+    $\ell \in E'$ (éventuellement $\ell = \pm \infty$ si $E' = \R$).
+
+    Alors $f(x) \limitnorme{N'}{x}{a} \ell$ ssi l'image réciproque de tout voisinage de 
+    $\ell$ est un voisinage relatif de $a$ vis à vis de $A$.
+\end{theoreme}
+
+\begin{remarque}
+    Cette caractérisation concerne la définition et ses extensions, sauf la 6.
+\end{remarque}
+
+\idee{
+    $\Rightarrow$ Utilisation de la limite avec des boules comme voisinages. 
+
+    $\Leftarrow$ même idée dans l'autre sens. 
+}
+
+\begin{proof}
+    Dans le cas $a \in E$, $\ell \in E'$. 
+
+    Supposons que $f(x) \limitnorme{N'}{x}{a} \ell$.
+
+    Soit $V$ un voisinage de $\ell$. Alors $\exists R > 0, \, B(\ell, R) \subset V$.
+
+    Par définition de la limite avec $\varepsilon = \frac R 2$, $\exists \eta > 0, \, \forall x \in A, \, N(x - a) \leqslant \eta \Rightarrow N'(f(x) - \ell) \leqslant \frac R 2$.
+
+    Donc si $x \in A \cap B(a, \eta)$, on a $f(x) \in V$. 
+
+    Donc $A \cap B(a, \eta) \subset f^{-1}(V)$. 
+
+    Donc $f^{-1}(V)$ est un voisinage relatif de $a$ vis à vis de $A$.
+
+    \uindent{Réciproquement }
+
+    \svspace Soit $\varepsilon > 0$. 
+
+    Considérons $V = B'(\ell, \varepsilon)$. Donc $V$ est bien un voisinage de $\ell$. 
+
+    Donc par hypothèse, $f^{-1}(V)$ est un voisinage relatif de $a$ vis à vis de $A$.
+
+    Donc il existe $R > 0$ tel que $A \cap B(a, R) \subset f^{-1}(V)$.
+
+    Posons $\eta = \frac R 2$. 
+
+    Soit $x \in A$ tel que $d(x, a) \leqslant \eta$. On a $d(x, a) < R$, 
+    donc $x \in A \cap B(a, R) $ donc $x \in f^{-1}(V)$, donc $f(x) \in V$, donc
+    $d'(f(x), \ell) < \varepsilon$.
+\end{proof}
+
+
+
+\subsection{Caractérisation séquentielle }
+
+\begin{theorement}{caractérisation séquentielle de la limite}{}
+    Soit $A \subset E$ non vide, $a \in \overline A$, $\ell \in E'$. 
+
+    Alors $f(x) \limitnorme{N'}{x}{a} \ell$ ssi pour toute suite $(u_n)_{n \in \N}$ 
+    d'éléments de $A$ qui converge vers $a$, on a $f(u_n) \limitnorme{N'}{n}{\infty} \ell$.
+\end{theorement}
+
+\idee{
+    $\Rightarrow$ Utilisation des defs et voisinages. 
+
+    $\Leftarrow$ Raisonner par contraposée et absurde. 
+}
+
+\begin{proof}
+    Supposons que $\forall \varepsilon > 0, \, \exists \eta > 0, \, \forall x \in A, \, N(x - a) \leqslant \eta \Rightarrow N'(f(x) - \ell) \leqslant \varepsilon$ (1).
+
+    Soit $(u_n)_{n \in \N}$ une suite d'éléments de $A$ qui converge vers $a$.
+
+    Alors $\forall \varepsilon > 0, \, \exists n_0 \in \N, \, \forall n \geqslant n_0, \, N(u_n - a) < \varepsilon$ (2)
+
+    Soit $\varepsilon > 0$. Le (1) nous fournit un $\eta$, utilisons le dans le rôle de $\varepsilon$ dans (2),
+    cela fournit alors un $n_0$.
+
+    Soit $n \geqslant n_0$. 
+
+    Alors on a (grâce au (2)) $N(u_n - a) \leqslant \eta$ donc (grâce au (1)) $N'(f(u_n) - \ell) \leqslant \varepsilon$.
+
+    Donc $f(u_n) \limitnorme{N'}{n}{\infty} \ell$.
+
+    \uindent{Réciproquement } raisonnons par contraposée. 
+
+    \svspace Supposons que $\exists \varepsilon > 0, \, \forall \eta > 0, \, \exists x \in A, \, d(x, a) \leqslant \eta $ et $d'(f(x), \ell) > \varepsilon$ (3).
+
+    Soit $n \in \N^*$. Cette phrase avec $\frac 1 n$ dans le rôle de $\eta$ fournit
+    un $x_n \in A$ tel que $N(x_n - a) \leqslant \frac 1 n$ et $N'(f(x_n) - \ell) > \varepsilon$.
+
+    On a $N(x_n - a) \limit n \infty 0$, donc $x_n \limitnorme N n \infty a$.
+
+    On a de plus $N'(f(x_n) - \ell) > \varepsilon$. Si on avait $f(x_n) \limitnorme{N'}{n}{\infty} \ell$, 
+    on aurait $\varepsilon$ la limite, donc $0 \geqslant \varepsilon$, absurde.
+
+    Donc $f(x_n)$ ne converge pas vers $\ell$.
+\end{proof}
+
+
+\begin{theoreme}{carac séquentielle continuité}{}
+    Soit $A \subset E$ non vide, $a \in A$. 
+
+    Alors $f$ est continue en $a$ ssi pour toute suite $(u_n)_{n \in \N}$ d'éléments de $A$ 
+    qui converge vers $a$ on a $f(u_n) \limitnorme{N'}{n}{\infty} f(a)$.
+\end{theoreme}
+
+\subsection{Opérations}
+
+\begin{theoreme}{}{}
+    Soient $f, g : A \subset E \to F$, $\lambda : A \to \K$, $\alpha \in K$ et $\ell_1, \ell_2 \in F$. 
+
+    Si $f(x) \limitnorme{N'}{x}{a} \ell_1$ et $g(x) \limitnorme{N'}{x}{a} \ell_2$, alors
+    $(f + g)(x) \limit x a \ell_1 + \ell_2$ et $\alpha f(x) \limit x a \alpha \ell_1$
+
+    Si $f(x) \limit x a \ell_1$ et $\lambda(x) \limit x a \alpha$, alors $(\lambda f)(x) \limit x a \alpha \ell_1$
+\end{theoreme}
+
+
+\begin{proof}
+    Par caractérisaiton séquentielle. Soit $u_n \longrightarrow a$. 
+
+    Supposons que $f(x) \limit x a \ell_1$ et $g(x) \limit x a \ell_2$ alors 
+    $f(u_n) \limit n {+ \infty} \ell_1$ et $g(u_n) \longrightarrow \ell_2$. 
+
+    Par caractérisation séquentielle. Donc $(f + g)(u_n) \longrightarrow \ell_1 + \ell_2$. 
+
+    Donc (carac seq), $(f + g)(x) \longrightarrow \ell_1 + \ell_2$
+
+    De même pour les autres. 
+\end{proof}
+
+Conséquence : soient $f, g : A \subset E \to F$, $\lambda : A \to \K$, $\alpha \in \K, a \in A$. 
+
+Si $f$ et $g$ dont continues en $a$, $f + g$ et $\alpha f$ aussi. 
+
+Si $f$ et $\lambda$ continues en a, $\lambda f$ aussi. 
+
+\begin{proposition}{}{}
+    Soit $A \subset E$, $a \in \overline A$, $B \subset E'$, $b \in \overline B$ et 
+    $(E", N")$ un evn, et soit $\ell \in E"$, $f : A \to E'$ tel que $\forall x \in A, f(x) \in B$, $g: B \to E"$. 
+
+    Si $f(x) \limitnorme{N'}x a b \text{ et } g(y) \limitnorme{N"}y a \ell$ alors 
+
+    $$(g \circ f )(x) \limitnorme{N"} x a \ell$$
+\end{proposition}
+
+\begin{proof}
+    $\forall \varepsilon > 0, \exists \eta_1 > 0, \forall x \in A, N(x - a) \leqslant \eta_1 \Rightarrow N'(f(x) - b) \leqslant \varepsilon$ (1)
+
+    $\forall \varepsilon > 0, \exists \eta_2 > 0, \forall y \in B, N(y - b) \leqslant \eta_2 \Rightarrow N"(g(y) - \ell) \leqslant \varepsilon$
+
+    Soit $\varepsilon > 0$, (2) fournit $\eta$. Utilisons le (1) avec $\eta_2$ dans le rôle 
+    de $\varepsilon$. Cela fournit $\eta_1$
+
+    Soit $x \in A$ te qie $N(x - a) \leqslant \eta_1$ alors $N'(f(x) - b) \leqslant \eta_2$ par 1
+
+    Donc $N"(g(f(x)) - \ell) \leqslant \varepsilon$ par 2 avec $y = f(x)$
+\end{proof}
+
+Conséquence : 
+
+Soit $f : A \subset E \to E'$ tel que $f(A) \subset B$, $g : B \to E"$ $a \in A$. Si $f$ continue en $a$ et $g$ continue en $f(a)$ alors $g \circ f$ continue en a 
+
+
+\subsection{Cas des espaces vectoriels normés produits}
+
+Soient $(E'_1, N'_1), \ldots, (E'_p, N'_p)$ des evn, et $E' = E'_1 \times \cdots \times E'_p$.
+muni de la norme produit $N'_\infty$, et $\fonction{f}{A\subset E}{E'}{x}{f(x) = (f_1(x), \ldots, f_p(x))}$.
+
+
+\begin{proposition}{limite espace produit}{}
+    Soit $a \in \overline A$, $\ell \in E', \, \ell = (\ell_1, \ldots, \ell_p)$.
+
+    Alors $f(x) \limitnorme{N'_\infty}{x}{a} \ell$ ssi $\forall j \in \ninter{1}{p}, \, f_j(x) \limitnorme{N'_j}{x}{a} \ell_j$.
+
+\end{proposition}
+
+\uindent{Conséquence }
+
+Soit $a \in A$. Alors $f$ est continue en $a$ ssi $\forall j \in \ninter{1}{p}, \, f_j$ est continue en $a$.
+
+\idee{
+    Caractérisation séquentielle de la limite.
+}
+
+\begin{proof}
+    $f(x) \limitnorme{N'_\infty}{x}{a} \ell$ ssi pour toute suite $(u_n)_{n \in \N}$ 
+    d'éléments de $A$ qui converge vers $a$, on a $f(u_n) \limitnorme{N'_\infty}{n}{\infty} \ell$.
+    ssi pour toute suite $(u_n)_{n \in \N}$ d'éléments de $A$ qui converge vers $a$, 
+    $\forall j \in \ninter{1}{p}, \, f_j(u_n) \limitnorme{N'_j}{n}{\infty} \ell_j$.
+
+    ssi $\forall j \in \ninter{1}{p}, \, f_j(x) \limitnorme{N'_j}{x}{a} \ell_j$.
+\end{proof}
+
+
+
+\section{Continuité sur une partie}
+
+\begin{definition}{continuité restriction sur une partie }{}
+    Soit $f: A \to E$, et soit $B \subset A$. On dit que $f$ est continue sur $B$ ssi 
+    $\forall a \in B, \, f_{|B}$ est continue en $a$.
+\end{definition}
+
+
+\begin{definition}{continuité sur un ensemble}{}
+    Soit $f : A \to E$. On dit en particulier que $f$ est continue sur $A$ ssi
+    $\forall a \in A, \, f$ est continue en $a$.
+\end{definition}
+
+
+\begin{proposition}{continuité sur un ensemble}{}
+    Soit $f : E \to E'$ et $U \subset E$ un ouvert.
+
+    Alors $f$ est continue sur $U$ ssi $\forall a \in A$, $f$ est continue en $a$. 
+\end{proposition}
+
+\begin{proof}
+    $f$ est continue sur $U$ ssi $\forall a \in U, \, f_{|U}$ est continue en $a$ 
+    
+    ssi $\forall a \in U, \, \forall (u_n)_{n \in \N}$ suite d'éléments de $U$ qui converge vers $a$,
+    $f_{|U}(u_n) \limitnorme{N'}{n}{\infty} f(a)$
+
+    ssi $\forall a \in U, \, \forall (u_n)_{n \in \N}$ suite d'éléments de $E$ qui converge vers $a$,
+    $f(u_n) \limitnorme{N'}{n}{\infty} f(a)$ car comme $U$ est ouvert, pour $n$ assez
+    grand, si $u_n \in E$ et $u_n \to a$, alors $u_n \in U$.
+
+    ssi $\forall a \in U, \, f$ est continue en $a$.
+\end{proof}
+
+\subsection{Théorèmes d'opérations}
+
+\begin{theorement}{vfv}{}
+    Soit $f, g, : A \to E$, $\lambda : A \to \K$, $\alpha \in \K$.
+
+    Si $f$ et $g$ sont continues sur $A$, alors $\alpha f + g$ et $\lambda f$ sont 
+    continues sur $A$. 
+\end{theorement}
+
+
+\uindent{Conséquence }
+
+L'ensemble $\mathscr C(A, E')$ des applications continues de $A$ dans $E'$ est un $\K$-espace vectoriel.
+
+\begin{theorement}{ff}{}
+    Soit $f : A \to E'$, $g : B \subset E' \to E"$ tel que $f(A) \subset B$.
+
+    Si $f \in \mathscr C(A, E')$ et $g \in \mathscr C(B, E")$, alors 
+    $g \circ f \in \mathscr C(A, E")$.
+\end{theorement}
+
+\begin{theoreme}{égalité d'applications avec la densité}{}
+    Deux applications continues qui coincident sur une partie dense sont égales. 
+\end{theoreme}
+
+\idee{
+    Caractérisation séquentielle, on utilise une suite par point de $A$. 
+}
+
+\begin{proof}
+    Soient $f, g \in \mathscr C(A, E')$ et $B \subset A$ dense dans $A$ telles que
+    $A \subset \overline B$ telle que $\forall x \in B, \, f(x) = g(x)$.
+
+    Soit $x \in A$. 
+
+    $x \in \overline B$, donc il existe une suite $(u_n)_{n \in \N}$ d'éléments de $B$ qui converge vers $x$.
+    
+    Comme $u_n \in B$, on a $\forall n \in \N, \, f(u_n) = g(u_n)$ et alors par 
+    passage à la limite, $f(x) = g(x)$ car $f$ et $g$ sont continues en $x$.
+
+    Donc $f = g$
+\end{proof}
+
+\begin{exemple}
+    Soit $f \in \mathscr C(\R, \R)$ telle que $\forall x, y \in \R, \, f(x + y) = f(x) + f(y)$.
+
+    Montrons que $\forall x \in \R, \, f(x) = f(1) x$.
+
+    Posons $\forall x \in \R, \, g(x) = f(1) x$. Donc $g \in \mathscr C(\R, \R)$ et 
+    par récurrence, on a $\forall n \in \N, \, f(n) = g(n)$.
+
+    Soit $p \in \Z$ tel que $p < 0$. Alors $f(-p) + f(p) = f(p - p) = f(0)$
+
+    Donc $f(-p) = - f(p)$, donc $\forall p \in \Z, \, f(p) = g(p)$.
+
+    Donc égalité pour $x \in \Z$. 
+
+    Soit $x \in \Q$. Il existe $p \in \Z, \, q \in \N^*$ tels que $x = \frac p q$.
+
+    Alors : 
+    \begin{align*}
+        qf(x) & = f(qx) \\
+        & = f(p) \\
+        & = g(p) = pf(1) = q \frac p q f(1) \\
+        & = q g(x)
+    \end{align*}
+
+    Donc $f(x) = g(x)$ pour $x \in \Q$.
+
+    Or $\Q$ est dense dans $\R$, donc par le théorème, $f = g$.
+\end{exemple}
+
+\subsection{Continuité et image réciproque }
+
+\begin{theoreme}{nature image réciproque fonction continue }{}
+    Soit $f \in \mathscr C(A, E')$. Alors l'image réciproque d'un ouvert (resp. fermé) 
+    de $E'$ par $f$ est un ouvert (resp. fermé) relatif de $A$.
+
+    Soit $f \in \mathscr C(E, E')$. Alors l'image réciproque d'un ouvert (resp. fermé)
+    de $E'$ par $f$ est un ouvert (resp. fermé) de $E$.
+\end{theoreme}
+
+\begin{remarque}
+    La réciproque est vraie mais pas au programme.
+\end{remarque}
+
+\begin{proof}
+    Soit $f \in \mathscr C(A, E')$, soit $B \subset E'$ fermé. 
+
+    Montrons que $f^{-1}(B)$ est un fermé relatif de $A$.
+
+    Considérons $(u_n) _{n \in \N}$ une suite d'éléments de $f^{-1}(B)$ qui converge vers $\ell \in A$.
+
+    $f$ est continues en $\ell$, donc $f(u_n) \rightarrow f(\ell)$. 
+    Or $\forall n, \, f(u_n) \in B$ et $B$ est fermé, donc $f(\ell) \in B$.
+
+    Donc $\ell \in f^{-1}(B)$. 
+
+    Donc $f^{-1}(B)$ est un fermé relatif de $A$.
+
+    \uindent{Pour un ouvert }
+
+    \svspace Soit $U$ un ouvert de $E'$.
+
+    Prenons $B = E' \setminus U$, alors $f^{-1}(U) \subset A$. 
+
+    Donc $f^{-1}(U) = A \setminus f^{-1}(B)$ or $f^{-1}(B)$ est un fermé relatif de $A$.
+
+    Donc $f^{-1}(U)$ est un ouvert relatif de $A$.
+\end{proof}
+
+\subsection{Applications uniformément continues et lipschitziennes}
+
+\begin{definition}{uniforme continuité}{}
+    Soit $f : A \subset E \to E'$. On dit que $f$ est uniformément continue sur $A$ ssi 
+    $$\forall \varepsilon > 0, \, \exists \eta > 0, \, \forall x, y \in A, \, N(x - y) \leqslant \eta \Rightarrow N'(f(x) - f(y)) \leqslant \varepsilon$$
+\end{definition}
+
+\begin{definition}{lipschitzienne}{}
+    Soit $f : A \subset E \to E'$ et $k \geqslant 0$. On dit que $f$ est lipschitzienne 
+    de rapport $k$ ssi 
+    $$\forall x, y \in A, \, N'(f(x) - f(y)) \leqslant k N(x - y)$$
+
+    On dit que $f$ est lipschitzienne ssi elle est lipschitzienne de rapport $k$ pour un certain $k \geqslant 0$.
+\end{definition}
+
+
+\begin{remarque}
+    La caractère lipschitzien est invariant si on change les normes en des normes 
+    équivalentes, mais le rapport peut changer.
+\end{remarque}
+
+\begin{proposition}{lien entre lipschitzienne, uniforme continuité et continuité}{}
+    Toute applications lipschitzienne est uniformément continue. 
+
+    Toute application uniformément continue est continue.
+\end{proposition}
+
+\idee{
+    Poser le bon $\eta$.
+}
+
+\begin{proof}
+    Soit $f$ $k$ lipschitzienne de $A$ dans $E'$.
+
+    Soit $\varepsilon > 0$, posons $\eta = \frac \varepsilon k$.
+
+    Soient $x, y \in A$ tels que $N(x - y) \leqslant \eta$.
+
+    alors $N'(f(x) - f(y)) \leqslant k N(x - y) \leqslant k \eta = \varepsilon$.
+
+\end{proof}
+
+\begin{proposition}{nature applications coordonnées}{}
+    Dans un evn de dimension finie, les applications coordonnées sont lipschitziennes, 
+    donc uniformément continues, donc continues. 
+\end{proposition}
+
+
+\begin{proof}
+    $E$ evn de base $B = (e_1, \ldots, e_n)$. Munissons le de la norme $||\cdot||_\infty$.
+
+    Soit $i \in \ninter{1}{n}$, et soit $\fonction{c_i}{E}{\K}{x = \sum_{j=1}^n x_j e_j}{x_i}$.
+
+    Soient $x, y \in E$. Alors $|c_i(x) - c_i(y)| = |c_i(x - y) | \leqslant ||x - y||_\infty$.
+
+    Donc $c_i$ est 1-lipschitzienne. 
+\end{proof}
+
+
+\begin{theoreme}{lien dérivée et lipschitzienne}{}
+    Soit $f \in \mathscr C^1(I, \R)$, alors $f$ est lipschitzienne ssi $f'$ est bornée.
+\end{theoreme}
+
+
+\begin{proof}
+    Supposons que $f$ est $k$-lipschitzienne. 
+
+    Soit $x \in I$ tel que $\forall y \in I$ avec $x \neq y$, $\left|\frac{f(x) - f(y) }{x - y}\right| \leqslant k$. 
+
+    Et en faisant tendre $y$ vers $x$, on obtient $|f'(x)| \leqslant k$.
+\end{proof}
+
+\begin{proposition}{nature fonction distance à une partie}{}
+    Soit $A \subset E$ non vide, et $\fonction{f}{E}{R}{x}{d_A(x)}$. 
+
+    Alors $d_A$ est 1-lipschitzienne. 
+\end{proposition}
+
+\begin{proof}
+    Soient $x, y \in E$. 
+
+    Notons $D_x = \{d(x, a), a \in A\}$ et $D_y = \{d(y, a), a \in A\}$.
+
+    Soit $a \in A$. 
+
+    On a $N(x - a) \leqslant N(x - y) + N(y - a)$, donc $N(x - a) \in D_x$ et 
+    $d_A(x)$ en est un minorant donc $\forall a \in A, \, d_A(x) \leqslant N(x - y) + \underbrace{N(y - a)}_{\in D_y}$.
+
+    Et donc $\underbrace{d_A(x) - N(x - y)}_{\text{minorant de } D_y} \leqslant N(y - a)$
+
+    Donc $d_A(x) - N(x - y) \leqslant d_A(y)$.
+
+    Donc $d_A(x) - d_A(y) \leqslant N(x - y)$, et par symétrie des rôles, 
+
+    $|d_A(x) - d_A(y)| \leqslant N(x - y)$.
+\end{proof}
+
+
+\section{Continuité des applications (multi)linéaires}
+\subsection{Théorème : critère de continuité }
+
+\begin{theorement}{critère de continuité pour une application linéaire}{}
+    Soient $(E, N)$ et $(E', N')$ deux evn, et $ f \in \mathscr L(E, E')$.
+
+    Alors $f$ est continue sur $E$ ssi 
+    $$\exists c > 0, \, \forall x \in E, \, N'(f(x)) \leqslant c N(x)$$
+\end{theorement}
+
+\idee{
+    $\Rightarrow$ Utilisation de la continuité en 0 et du fait que $f$ est linéaire.
+
+    $\Leftarrow$ Montrer $f$ lipschitzienne $\eta$.
+}
+
+\begin{proof} 
+    $\Rightarrow$ Supposons que $f$ est continue sur $E$. En particulier, $f$ est 
+    continue en $0_E$. Considérons $\varepsilon = 1$.
+
+    Cela fournit $\eta > 0$ tel que $\forall x \in E, \, N(x - 0) \leqslant \eta \Rightarrow N'(f(x) - f(0)) \leqslant 1$.
+
+    Or $f$ linéaire, donc $f(0_E) = 0_{E'}$ donc 
+    
+    $$N(x) \leqslant \eta \Rightarrow N'(f(x)) \leqslant 1$$
+
+    Soit $x \in E \setminus \{0\}$. 
+    
+    Posons $\displaystyle y = \eta \frac {x}{N(x)} $.
+
+    Alors $N(y) = \eta$, donc $N'(f(y)) \leqslant 1$.
+
+    Donc $N'\left( \frac{\eta }{N(x)} f(x) \right) \leqslant 1$ car $f$ linéaire, 
+    
+    et par homogénéité de $N'$, $ \frac{\eta }{N(x)} N'(f(x)) \leqslant 1$.
+
+    Donc $N'(f(x)) \leqslant \frac{N(x)}{\eta}$.
+
+    Comme $N'(f(0_E)) = N(0_{E'}) = 0 \leqslant \frac 1 \eta 0 $, 
+    
+    en posant $c = \frac 1 \eta$, on a bien le résultat. 
+
+    \lvspace $\Leftarrow$ Supposons l'inégalité et montrons que $f$ est $c$-lipschitzienne. 
+
+    Soient $x, y \in E$. Alors $N'(f(x) - f(y)) = N'(f(x - y)) $ car $f$ linéaire.
+
+    Donc $N'(f(x) - f(y)) \leqslant c N(x - y)$ par hypothèse. 
+
+    Donc $f$ est $c$-lipschitzienne, donc continue sur $E$.
+\end{proof}
+
+\begin{remarque}
+    On a montré au passage que $f$ est continue sur $E$ ssi $f$ est continue en $0$ ssi $f$ est lipschitzienne.  
+
+    Pour montrer que $f$ n'est pas continue, on exhibe une suite $(x_n)_{n \in \N}$ de $E$ 
+    telle que $\displaystyle \frac{N'(f(x_n))}{N(x_n)} \to + \infty$. Alors $\forall c > 0, \, \exists x_n \in E, \, N'(f(x_n)) > c N(x_n)$, 
+    donc $f$ non continue.
+\end{remarque}
+
+\begin{exemple}
+    Soit $\fonction f {\R[X]} \R P {P(1)}$, $f$ est linéaire. 
+
+    \avspace En munissant $\R[X]$ de la norme $||P||_\infty = \max\{P(t), t \in [0, 1]\}$, on a 
+    $\forall P \in \R[X], \, |f(P)| = |P(1)| \leqslant ||P||_\infty$.
+
+    Donc par critère de continuité des applications linéaires, $f$ est continue.
+
+    \avspace En munissant $\R[X]$ de la norme $N_\infty = \max\{P(t), t \in \inter 0 {\frac 1 2}\}$
+
+    Posons $P_n = X^n$. Alors $| f(P_n) | = 1$ et $||P_n||_\infty = \max\{P_n(t), t \in \inter 0 {\frac 1 2}\} = \left(\frac 1 2\right)^n$.
+\end{exemple}
+
+\begin{definition}{applications linéaires continues}{}
+    On pose $\mathscr L_c(E, E') = \mathscr L (E, E') \cap \mathscr C(E, E')$ l'espace vectoriel 
+    des applications linéaires continues de $E$ dans $E'$.
+\end{definition}
+
+\begin{theoreme}{continuité des applications linéaires en dimension finie}{}
+    Si $E$ est de dimension finie, alors $\mathscr L_c(E, E') = \mathscr L(E, E')$.
+
+    Ainsi toute application linéaire au départ d'un espace de dimension finie est continue
+\end{theoreme}
+
+\begin{proof}
+    Soit $E$ un $\K$-espace vectoriel de dimension finie et de base 
+    $B = (e_1, \ldots, e_p)$. Munissons $E$ de la norme $||\cdot||_\infty$ asociée à $B$.
+
+    Soit $(E', N')$ un $\K$ evn. 
+
+    Soit $f \in \mathscr L(E, E')$, et soit $x \in E$. 
+
+    Décomposons le en $\displaystyle x = \sum_{i=1}^p x_i e_i$. Alors : 
+
+    \begin{align*}
+        N'(f(x)) & = N'\left( f\left( \sum_{i=1}^p x_i e_i \right) \right) \\
+        & = N'\left( \sum_{i=1}^p x_i f(e_i) \right) \\
+        & \leqslant \sum_{i=1}^p N(x_i f(e_i)) \\
+        & \leqslant \sum_{i=1}^p |x_i| N'(f(e_i)) \\
+        & \leqslant \underbrace{\left( \sum_{i=1}^p N'(f(e_i)) \right)}_{ = K \geqslant 0} ||x||_\infty
+    \end{align*}
+
+    Donc par critère de continuité des applications linéaires, $f$ est continue.
+\end{proof}
+
+\uindent{Conséquence } 
+
+En dimension finie, les applications coordonnées sont continues car linéaires, donc 
+tout polynôme en les coordonnées est continu. 
+
+
+\avspace $\fonction{}{\mathscr M_n(\K)} \K A {\det(A)}$ est continue.
+
+$\fonction {}{\mathscr M_{n, p}(\K) \times \mathscr M_{p, q}(\K)}{\mathscr M_{n, q}(\K)}{(A, B)}{AB}$ est continue.
+
+\begin{proof}
+    Le déterminant est polynôme en les coordonées de la matrice dans la base cononique des 
+    matrices élémentaires. 
+
+    \svspace Chacune des coordonnées de $AB$ est un polynôme en les coordonnées de $A$ et $B$.
+\end{proof}
+
+
+\subsection{Norme subordonnée d'une application linéaire continue }
+
+\begin{definition}{norme d'opérateur}{}
+    Soient $(E, N)$, $(E', N')$ deux evn sur $\K$ et $f \in \mathscr L_c(E, E')$.
+
+    Alors par critère de continuité, $\left\{ \frac{N'(f(x))}{N(x)}, x \in E \setminus \{0\} \right\}$ est
+    une partie de $\R^+$ majorée. 
+
+    On appelle norme d'opération (ou norme subordonnée, ou parfois norme triple) de $f$ le réel : 
+    $$||f||_{op} = |||f||| = \sup \left\{ \frac{N'(f(x))}{N(x)}, x \in E \setminus \{0\} \right\} $$ 
+
+
+    On a en particulier $\forall x \in E, \, N'(f(x)) \leqslant |||f||| \cdot N(x)$.
+\end{definition}
+
+
+\begin{exemple}
+    $\fonction u E \R \varphi {\int_0^1 \varphi}$ donc $u \in \mathscr L(E, \R)$. 
+
+    Donc $|u(\varphi)| = \left| \int_0^1 \varphi(t) dt \right| \leqslant \int_0^1 |\varphi(t)| dt \leqslant ||\varphi||_\infty$.
+
+    Donc $u$ est continue. 
+
+    Posons $\varphi = 1$, alors $|u(\varphi)| = 1 = ||\varphi||_\infty$.
+
+    Donc le majorant 1 de $\left\{ \frac{|u(\varphi)|}{||\varphi||_\infty}, \varphi \in E \setminus \{0\} \right\}$ est atteint. 
+
+    Donc $|||u||| = 1$.
+\end{exemple}
+
+
+\begin{proposition}{}{}
+    Soit $f \in \mathscr L_c(E, E')$ alors $|||f||| = \sup \{ N'(f(x)), \, x \in S(0, 1) \}$
+\end{proposition}
+
+\begin{proof}
+    Notons $A = \{\frac{N'(f(x))}{N(x)}, \, x \in E \setminus \{0\}\}$,
+    $B = \{N'(f(x)), \, x \in E \mid N(x) = 1\}$.
+
+    Soit $\alpha \in A$, il existe $x \in E $ tel que $x \neq 0$ et $\alpha = \frac{N'(f(x))}{N(x)}$.
+
+    Posons $y = \frac x {N(x)}$, alors : 
+
+    \begin{align*}
+        N'(f(y)) & = N'\left( f\left( \frac x {N(x)} \right) \right) \\
+        & = N'\left( \frac{1}{N(x)} f(x) \right) \\
+        & = \frac{1}{N(x)} N'(f(x)) \\
+        & = \alpha
+    \end{align*}
+
+    Donc $\alpha \in B$. 
+
+    Il existe $y \in S(0, 1)$, $\beta = N'(f(y))$. 
+
+    Posons $x = y$, on a $\beta = \frac{N'(f(y))}{N(y)}$. 
+
+    Donc $\beta \in A$.
+\end{proof}
+
+
+\begin{theoreme}{norme d'opérateur est une norme }{}
+    La norme d'opérateur $|||\cdot|||$ est une norme sur $\mathscr L_c(E, E')$.
+\end{theoreme}
+
+
+\begin{proof}
+    \begin{itemize}
+        \item $|||\cdot|||$ est positive par définition.
+        \item Supposons que $|||f||| = 0$, alors $\forall x \in E \setminus \{0\}, \, N'(f(x)) = 0$.
+            Donc $f(x) = 0_{E'}$ car $N'$ est une norme. Donc $f = 0_{\mathscr L(E, E')}$ car linéaire. 
+        \item Soit $\lambda \in \K$
+    \end{itemize}
+
+    $|||\lambda f||| = \sup \left\{ \frac{N'(\lambda f(x))}{N(x)}, x \in E \setminus \{0\} \right\} = \sup \left\{ |\lambda| \frac{N'(f(x))}{N(x)}, x \in E \setminus \{0\} \right\} = |\lambda| |||f|||$.
+
+    \begin{itemize}
+        \item Soient $f, g \in \mathscr L_c(E, F)$.
+    \end{itemize}
+
+    Soit $x \in E$ tel que $x \neq 0$.
+
+    \begin{align*}
+         \frac{N'((f + g)(x))}{N(x)} & = \frac{N'(f(x) + g(x))}{N(x)} \\
+            & \leqslant \frac{N'(f(x)) }{N(x)} + \frac{N'(g(x))}{N(x)} \\
+            & \leqslant |||f||| + |||g|||
+    \end{align*}
+
+    Donc par def du sup, $|||f + g||| \leqslant |||f||| + |||g|||$.
+\end{proof}
+
+
+\begin{proposition}{Sous-multiplicativité de la norme d'opérateur }{}
+    Soient $(E, N)$, $(E', N')$, $(E", N")$ trois evn sur $\K$, et soient $f \in \mathscr L_c(E, E')$ et $g \in \mathscr L_c(E', E")$.
+
+    Alors $g \circ f \in \mathscr L_c(E, E")$ et $|||g \circ f||| \leqslant |||g||| \cdot |||f|||$.
+\end{proposition}
+
+\begin{proof}
+    Pour $x \in E, \, N'(f(x)) \leqslant |||f||| N(x)$ vrai si $x \neq 0$ par def 
+    de la norme d'opérateur, et si $x = 0$, $N'(f(0)) = N'(0) = 0$.
+    Donc  
+
+    \begin{align*}
+        N"(g(f(x))) & \leqslant |||g||| N'(f(x)) \\
+        & \leqslant |||g||| \cdot |||f||| N(x)
+    \end{align*}
+
+    Donc $|||g||| \cdot |||f|||$ est un majorant de $\left\{ \frac{N"(g\circ f(x))}{N(x)}, x \in E \setminus \{0\} \right\}$.
+
+    Donc $|||g \circ f||| \leqslant |||g||| \cdot |||f|||$.
+\end{proof}
+
+\subsubsection{Cas des endomorphismes }
+
+\begin{proposition}{norme d'algèbre}{}
+    Pour $f \in \mathscr L_c(E)$, on a $||||f||| = \sup \left\{ \frac{N(f(x))}{N(x)}, \, x \in E \setminus \{0\} \right\}$
+    et $|||f|||$ est une norme qui vérifie : 
+
+    $$\forall f, g \in \mathscr L_c(E), \, |||f \circ g||| \leqslant |||f||| \cdot |||g|||$$
+
+    On dit que $|||\cdot|||$ est une norme d'algèbre. 
+\end{proposition}
+
+
+\subsubsection{Cas des matrices }
+
+\begin{proposition}{norme matricielle}{}
+    On se place dans $\mathscr M_n(\K)$ et on munit $\K^n$ d'une norme $N$.
+
+    On définit pour $A \in \mathscr M_n(\K)$, $|||A||| = \sup \left\{ \frac{N(AX)}{N(X)}, X \in \K^n \setminus \{0\} \right\}$
+    
+    Alors $|||\cdot|||$ est une norme d'algèbre sur $\mathscr M_n(\K)$, en particulier 
+    $$\forall A, B \in \mathscr M_n(\K), \, |||AB||| \leqslant |||A||| \cdot |||B|||$$
+
+    On dit aussi que $|||\cdot|||$ est une norme matricielle. 
+\end{proposition}
+
+\begin{remarque}
+    Une norme équivalente à une norme matricielle n'est pas forcément une norme matricielle.
+\end{remarque}
+
+\begin{proof}
+    On identifie $\K^n = \mathscr M_{n, 1}(\K)$ matrices colonnes qui existe 
+    car $\fonction{}{\K^n}{\K^n}{X}{AX}$ est linéaire et continue car $\K^n$ est de dimension finie. 
+    
+\end{proof}
+
+
+
+\begin{exemple}
+    Posons $N_\infty(A) = \max\{ |a_{i, j}|, \, i, j \in \ninter{1}{n}\}$. 
+    C'est bien une norme, mais elle n'est pas matricielle. 
+
+    En effet, posons 
+    $A = \begin{pmatrix}
+        1 & \dots & 1 \\
+        \vdots & \ddots & \vdots \\
+        1 & \dots & 1
+    \end{pmatrix}$ alors $N_\infty(A) = 1$.
+
+    On a $A^2 = nA$, donc $N_\infty(A^2) = n$ et donc $||A^2||_\infty = n > 1 = ||A||_\infty^2$. 
+
+    \lvspace Posons $N(A) = n \cdot N_\infty(A)$, qui est bien une norme, équivalente à $N_\infty$.
+
+    Montrons que $N$ est une norme matricielle.
+
+    Soient $A, B \in \mathscr M_n(\K)$, et $C = AB$. 
+    \begin{align*}
+        |c_{i, j}| & = \left| \sum_{k=1}^n a_{i, k} b_{k, j} \right| \\
+        & \leqslant \sum_{k=1}^n |a_{i, k}| |b_{k, j}| \\
+        & \leqslant n N_\infty(A) N_\infty(B)
+    \end{align*}
+
+    Donc 
+    \begin{align*}
+        N(C) & = n N_\infty(C) \\
+        & \leqslant n^2 N_\infty(A) N_\infty(B) \\
+        &  \leqslant N(A) N(B)
+    \end{align*}
+
+
+\end{exemple}
+
+
+\subsubsection{LHP, étude de $||| \cdot |||_1$ associée à $|| \cdot ||_1$}
+
+
+Soit $A \in \mathscr M_n(\K)$, $|||A|||_1 = \sup (\{ ||AX||_1, X \in \K^n, ||X||_1 = 1 \} = z) $.
+
+Soit $X \in \K^n$ tel que $||X||_1 = 1$, c'est à dire $X = (x_1, \ldots, x_n)^T$ et $\sum_{i=1}^n |x_i| = 1$.
+
+$AX = \begin{pmatrix}
+    y_1 \\
+    \vdots \\
+    y_n
+\end{pmatrix}$  avec $||AX||_1 = \sum_{i=1}^n |y_i|$, 
+or $\displaystyle \forall i, \, y_i = \sum_{j=1}^n a_{i, j} x_j$. 
+
+Donc 
+\begin{align*}
+    || AX ||_1 & = \sum_{i=1}^n \left| \sum_{j=1}^n a_{i, j} x_j \right| \\
+    & \leqslant \sum_{i=1}^n \sum_{j=1}^n |a_{i, j}| |x_j| \\
+    & \leqslant \sum_{j=1}^n |x_j| \sum_{i=1}^n |a_{i, j}| 
+\end{align*}
+
+
+Posons $k = \max \left\{ \sum_{i=1}^n |a_{i, j}|, j \in \ninter{1}{n} \right\}$.
+
+Alors $||AX||_1 \leqslant k \sum_{j=1}^n |x_j| = k ||X||_1 = k$.
+
+
+Soit $j_0$ un indice tel que $k = \sum_{i=1}^n |a_{i, j_0}|$, et posons pour 
+$j \neq j_0, \, x_j = 0$ et $x_{j_0} = 1$ on a bien $||X||_1 = 1$ et
+$||AX||_1 = \sum_{i=1}^n |a_{i, j_0} x_{j_0}| = k$.
+
+Donc $k$ est un majorant de $z$ qui est atteint en $X$,
+
+Donc $k = |||A|||_1$.
+
+Donc $|||A|||_1 = \max \left\{ \sum_{i=1}^n |a_{i, j}|, j \in \ninter{1}{n} \right\}$.
+
+
+\subsubsection{LHP, étude de $||| \cdot |||_\infty$ associée à $|| \cdot ||_\infty$}
+
+Soit $A \in \mathscr M_n(\K)$, $|||A|||_\infty = \sup (\{ ||AX||_\infty, X \in \K^n, ||X||_\infty = 1 \} = z) $.
+
+Soit $X \in \K^n$ tel que $||X||_\infty = 1$, c'est à dire $X = (x_1, \ldots, x_n)^T$ et $\max(|x_1|, \ldots, |x_n|) = 1$.
+
+$AX = \begin{pmatrix}
+    y_1 \\
+    \vdots \\
+    y_n
+\end{pmatrix}$  avec $||AX||_\infty = \max(|y_1|, \ldots, |y_n|)$, 
+or $\displaystyle \forall i, \, y_i = \sum_{j=1}^n a_{i, j} x_j$. Donc 
+
+\begin{align*}
+    |y_i| & = \left| \sum_{j=1}^n a_{i, j} x_j \right| \\
+    & \leqslant \sum_{j=1}^n |a_{i, j}| |x_j| \\
+    & \leqslant \sum_{j=1}^n |a_{i, j}| ||X||_\infty \leqslant \sum_{j=1}^n |a_{i, j}|
+\end{align*}
+
+Donc $\displaystyle ||AX||_\infty = \max \left\{ \sum_{j = 1 }^{n } |a_{i, j}|, i \in \ninter 1 n  \right\} = k$
+
+Soit $i_0$ un indice tel que $k = \sum_{j=1}^n |a_{i_0, j}|$, et posons 
+$X = (x_1, \ldots, x_n)^T$. Notons $\forall j, \, a_{i_0, j} = |a_{i_0, j}| e^{i \theta_j}$ 
+
+Posons $x_j = e^{-i \theta_j}$, alors $||X||_\infty = 1$.
+
+Alors $|y_{i_0}| = \left|\sum_{j = 1 }^{n } | a_{i_0, j} | e^{i \theta_j e^{-i \theta_j}}\right| = \sum_{j=1}^n |a_{i_0, j}| = k$.
+
+Donc $|| AX||_\infty \geqslant k$, or $k$ majorant donc $k = |||AX |||_\infty$ et $k = \sup Z$. 
+
+
+\subsection{Applications multilinéaires }
+
+\begin{theoreme}{continuité application $p$-linéaire}{}
+    Soient $(E_1, N_1), \ldots, (E_p, N_p)$ et $(E', N')$ des evn et 
+    
+    $\fonction{f}{E_1 \times \cdots \times E_p}{E'}{(x_1, \ldots, x_p)}{f(x_1, \ldots, x_p)}$ 
+    $p$-linéaire. 
+
+    Alors $f$ est continue ssi $$\exists c > 0, \, \forall (x_1, \ldots, x_p) \in E_1 \times \cdots \times E_p, \, N'(f(x_1, \ldots, x_p)) \leqslant c \prod_{i=1}^p N_i(x_i)$$
+\end{theoreme}
+
+
+Démo non exigible 
+
+
+\begin{proposition}{continuité application $p$-linéaire en dimension finie}{}
+    Soient $(E_1, N_1), \ldots, (E_p, N_p)$ des evn de dimension finie et $(E', N')$ un evn.
+
+    Alors si $f : E_1 \times \cdots \times E_p \to E'$ est $p$-linéaire, alors $f$ est continue.
+\end{proposition}
+
+\begin{proof}
+    Soit $B_1 = (e_{1, 1}, \ldots, e_{1, n_1})$ une base de $E_1$, ..., $B_p = (e_{p, 1}, \ldots, e_{p, n_p})$ une base de $E_p$.
+
+    Soient $\displaystyle x_1 = \sum_{i=1}^{n_1} a_{1, i_1} e_{1, i_1} \in E_1$, ..., $\displaystyle x_p = \sum_{i=1}^{n_p} a_{p, i_p} e_{p, i_p} \in E_p$.
+
+    Alors 
+    
+    \begin{align*}
+        f(x_1, \ldots, x_p) & = f\left( \sum_{i_1=1}^{n_1} a_{1, i_1} e_{1, i_1}, \ldots, \sum_{i_p=1}^{n_p} a_{p, i_p} e_{p, i_p} \right) \\
+        & = \sum_{i_1=1}^{n_1} \cdots \sum_{i_p=1}^{n_p} a_{1, i_1} \cdots a_{p, i_p} f(e_{1, i_1}, \ldots, e_{p, i_p}) 
+    \end{align*}
+
+    Donc 
+    \begin{align*}
+        N'(f(x_1, \ldots, x_p)) & \leqslant \sum_{i_1=1}^{n_1} \cdots \sum_{i_p=1}^{n_p} |a_{1, i_1}| \cdots |a_{p, i_p}| N'(f(e_{1, i_1}, \ldots, e_{p, i_p})) \\
+        & \leqslant \underbrace{\left( \sum_{i_1=1}^{n_1} \cdots \sum_{i_p=1}^{n_p} N'(f(e_{1, i_1}, \ldots, e_{p, i_p})) \right)}_{ = K \geqslant 0} \prod_{j=1}^p \left( N_{\infty, j}(x_j) \right)
+    \end{align*}
+
+    Par le critère de continuité des applications $p$-linéaires, $f$ est continue.
+    
+\end{proof}
+
+\begin{exemple}
+    Soit $E$ un espace préhilbertien réel, muni de $<\cdot, \cdot>$ et de la norme $||\cdot||$ associée.
+
+    Alors $<\cdot, \cdot>$ est continue de $E \times E$ dans $\R$. 
+
+    En munissant $E$ de la norme $||\cdot||_2$. 
+
+    En effet, $\forall (x, y) \in E^2, \, |<x, y>| \leqslant ||x|| \cdot ||y||$ par inégalité de Cauchy-Schwarz,
+    et la continuité par le critère. 
+
+    \lvspace Soit $n, p, q \in \N^*$, $\fonction{}{\mathscr M_{n, p}(\K) \times \mathscr M_{p, q}(\K)}{\mathscr M_{n, q}(\K)}{(A, B)}{AB}$ est
+    continue car bilinéaire depuis des espaces de dimesnion finie. 
+
+
+    \lvspace Soient $E, F, G$ espaces vectoriels de dimension finie.
+    
+    Alors $\fonction{\varphi}{\mathscr L(F, G) \times \mathscr L(E, F)}{\mathscr L(E, G)}{(v, u)}{v \circ u}$ est bilinéaire
+    et $||| v \circ u||| \leqslant |||v||| \cdot |||u|||$ donc continue vis à vis des normes d'opérateur par 
+    le critère. 
+\end{exemple}
+
+
+\section{Compacts d'un espace vectoriel normé }
+
+\begin{definition}{compact}{}
+    Soit $A \subset E$. 
+
+    On dit que $A$ est compact (ou que $A$ est un compact) ssi toute suite de $A$ possède une 
+    valeur d'adhérence dans $A$. 
+
+    C'est à dire pour toute suite $(u_n)_{n \in \N}$ de $A$, on peut en extraire une suite 
+    $(u_{\varphi(n)})_{n \in \N}$ telle que $u_{\varphi(n)} \to \ell \in A$.
+\end{definition}
+
+
+\begin{definition}{Borel-Lebesgue}{}
+    Soit $A \subset E$, alors
+    $A$ est un compact ssi de toute recouvrement de $A$ par des ouverts on peut extraire un sous 
+    recouvrement fini, c'est à dire pour toute famille $(U_i)_{i \in I}$ d'ouverts de $E$ 
+    telle que $\displaystyle A \subset \bigcup_{i \in I} U_i$, il existe $i_1, \ldots, i_n \in I$ tels que
+    $$\displaystyle A \subset \bigcup_{k=1}^n U_{i_k}$$
+\end{definition}
+
+\subsection{Propriétés des compacts }
+
+\begin{proposition}{propriétés des compacts }{}
+    \begin{enumerate}
+        \item Un compact est fermé et borné.
+        \item Un fermé relatif d'un compact est un compact.
+        \item Une suite d'un compact converge ssi elle possède une unique valeur d'adhérence. 
+        \item Un produit fini de compacts est un compact.
+    \end{enumerate}
+\end{proposition}
+
+\idee{
+    1. caractérisation séquentielle des fermés et absurde 
+
+    2. caractérisation séquentielle 
+
+    3. absurde 
+
+    4. extractions successives
+}
+
+\begin{proof}
+    1. Soit $A \subset E$ un compact. Montrons que $A$ est fermé.
+
+    Soit $(u_n)_{n \in \N}$ une suite de $A$ qui converge vers $\ell \in E$.
+
+    $A$ étant compact, il existe une sous-suite $(u_{\varphi(n)})_{n \in \N}$ qui converge vers
+    $\ell' \in A$. Or $u_{\varphi(n)} \to \ell$ donc $\ell = \ell' \in A$, donc $A$ est fermé.
+
+    Supposons que $A$ n'est pas borné, pour tout $n \in \N$, il existe 
+    $x_n \in A$ tel que $N(x_n) > n$.
+
+    $A$ étant compact, on peut extraire de $(x_n)_{n \in \N}$ une sous-suite $(x_{\varphi(n)})_{n \in \N}$ qui converge vers $\ell \in A$.
+
+    Donc $(x_{\varphi(n)})_{n \in \N}$ est bornée, or $\forall n \in \N, \, N(x_{\varphi(n)}) > \varphi(n) \geqslant n$, absurde 
+
+    Donc $A$ est borné.
+
+    \lvspace 2. Soit $V$ un fermé relatif de $A$. Aors $V = \overline V \cap A$. Montrons 
+    que $V$ est compact. 
+
+    Soit $(u_n)_{n \in \N}$ une suite de $V$. $A$ étant compact, on peut en extraire 
+    une sous-suite $(u_{\varphi(n)})_{n \in \N}$ qui converge vers $\ell \in A$.
+
+    $u_{\varphi(n)} $ est une suite de $V$, donc $\ell \in \overline V$. Donc 
+    $\ell \in V$. Donc $V$ est compact.
+
+    \lvspace 3. Toute suite convergente possède une unique valeur d'adhérence d'où $\Rightarrow$. 
+
+    $\Leftarrow$ Soit $(u_n)_{n \in \N}$ une suite d'un compact $A$. Supposons qu'elle possède 
+    une unique valeur d'adhérence $a$.
+
+    Supposons par l'absurde que $(u_n)_{n \in \N}$ ne converge pas vers $a$.
+
+    Alors $ \exists \varepsilon > 0, \, \forall N \in \N, \, \exists n \geqslant N, \, d(u_n, a) > \varepsilon$.
+
+    En particulier, $M_\varepsilon = \{ n \in \N, \, d(u_n, a) > \varepsilon \}$ est infini. 
+
+    Numérotons $\varphi(0) < \varphi(1) < \ldots < \varphi(n) < \ldots$ les éléments
+    de $M_\varepsilon$. Alors $(u_{\varphi(n)})_{n \in \N}$ est une suite de $A$, donc 
+    possède une valeur d'adhérence $b \in A$ qui est aussi une valeur d'adhérence de 
+    $(u_n)_{n \in \N}$. Par hypothèse, $b = a$.
+
+    Or $\forall n \in \N, \, N(u_{\varphi(n)} - a) > \varepsilon$, 
+    donc à la limite $0 \geqslant \varepsilon$, absurde.
+
+    \lvspace 4. Soient $(E_1, N_1), \ldots, (E_p, N_p)$ des evn tels que 
+    $\forall i, \, A_i$ compact de $E_i$ et $A = A_1 \times \cdots \times A_p$. 
+
+    Soit $(u_n)_{n \in \N}$ une suite de $A$.
+
+    Notons $u_n = (u_{n, 1}, \ldots, u_{n, p})$ avec $(u_{n, 1})$ une suite de $A_1$, et $A_1$ est un compact. 
+
+    On peut donc en extraire une sous-suite $(u_{\varphi_1(n), 1})_{n \in \N}$ qui converge vers $\ell_1 \in A_1$.
+
+    De même, on peut extraire de $(u_{\varphi_1(n), 2})_{n \in \N}$ une sous-suite bla bla bla 
+
+    De proches en proches on obtient $u_{\varphi_1 \circ \ldots \circ \varphi_p(n)} \to \ell_p \in A_p$.+
+
+    Donc $(u_{\varphi_1 \circ \ldots \circ \varphi_p(n)}) \to (\ell_1, \ldots, \ell_p) \in A$.
+
+    D'où $A$ compact. 
+\end{proof}
+
+
+
+\subsection{Cas de la dimension finie }
+
+\begin{theoreme}{compacts en dimension finie }{}
+    Si $(E, N)$ est un evn de dimension finie, tout fermé borné de $E$ est compact. Ainsi, en 
+    dimension finie les compacts \textbf{sont} les fermés bornés. 
+\end{theoreme}
+
+\idee{
+    Bolzano-Weierstrass
+}
+
+\begin{proof}
+    Soit $A$ un fermé borné de $E$, soit $(u_n)_{n \in \N}$ une suite de $A$.
+
+    Alors $(u_n)$ est bornée donc par Bolzano-Weierstrass, on peut en extraire une
+    sous-suite $(u_{\varphi(n)})_{n \in \N}$ qui converge vers $\ell \in E$.
+
+    Or $A$ est fermé donc $\ell \in A$. Donc $A$ est compact.
+\end{proof}
+
+
+\begin{theoreme}{Riesz, HP}{}
+    Si $(E, N)$ est de dimension infinie, $B'(0, 1)$ n'est pas compacte. 
+
+    Ainsi un evn est de dimension finie ssi sa boule unité est compacte. 
+\end{theoreme}
+
+\begin{proof}
+    A la fin du TD.
+\end{proof}
+
+
+\subsection{Compacité et continuité }
+
+\begin{theoreme}{Heine, uniforme continuité}{}
+    Toute fonction continue sur un compact est uniformément continue. 
+\end{theoreme}
+
+\idee{
+    Absurde
+}
+
+\begin{proof}
+    Soit $A \subset E$ compact et $f \in \mathscr C(A, E')$. 
+
+    Montrons que $f$ est uniformément continue sur $A$. 
+
+    Par l'absurde, supposons que $\exists \varepsilon > 0, \, \forall \eta > 0, \, \exists x, y \in A, \, N(x - y) \leqslant \eta$ et $N'(f(x) - f(y)) > \varepsilon$.
+
+    Soit $n \in \N^*$, $\eta = \frac 1 n$ fournit $x_n, y_n \in A$ tels que $N(x_n - y_n) \leqslant \frac 1 n$
+    et $N'(f(x_n) - f(y_n)) > \varepsilon$.
+
+    $A^2$ est compact, donc on peut extraire $(x_{\varphi(n)}, y_{\varphi(n)})_{n \in \N}$ qui converge vers $(\ell_1, \ell_2) \in A^2$.
+    $\forall n \in \N, \, N(x_{\varphi(n) - y_{\varphi(n)}}) \leqslant \frac 1 {\varphi(n)}$ et $N'(f(x_{\varphi(n)}) - f(y_{\varphi(n)})) > \varepsilon$.
+
+    En passant à la limite, on obtient $N(\ell_1 - \ell_2) \leqslant 0$ et comme $f$ continue, 
+    $N'(f(\ell_1) - f(\ell_2)) \geqslant \varepsilon$.
+
+    Donc $\ell_1 = \ell_2$ et $0 \geqslant \varepsilon$, absurde.
+\end{proof}
+
+\begin{theoreme}{image d'un compact par une application continue}{}
+    L'image d'un compact par une application continue est un compact. 
+\end{theoreme}
+
+\idee{
+    Suites avec fonction
+}
+
+\begin{proof}
+    Soit $A \subset E$ compact et $f : A \to E'$ continue. Considérons $B = f(A)$. 
+
+    Soit $(b_n)_{n \in \N}$ suite de $B$. Alors $\forall n \in \N, \, \exists a_n \in A, \, b_n = f(a_n)$
+    $(a_n)_{n \in \N}$ est une suite de $A$ qui est compact, on peut donc en extraire 
+    $a_{\varphi(n)} \limit n \infty \ell \in A$. 
+
+    Donc $b_{\varphi(n)} = f(a_{\varphi(n)}) \limit n \infty f(\ell) $ car $f$ continue en 
+    $\ell$ car $f$ continue sur $A$. Or $f(\ell) \in B$, donc $B$ est compact.
+\end{proof}
+
+\begin{theoreme}{Théorème des bornes atteintes}{}
+    Toute fonction numérique continue sur un compact est bornée et atteint ses bornes, c'est à dire 
+    si $A \subset E$ compact et $f \in \mathscr C(A, \R)$, alors 
+    $\exists x_1, x_2 \in A$,  $$\forall x \in A, \, f(x_1) \leqslant f(x) \leqslant f(x_2)$$
+
+    Ainsi, $f(x_1) = \min \{ f(x), x \in A \}$ et $f(x_2) = \max \{ f(x), x \in A \}$.
+\end{theoreme}
+
+\idee{Caractérisation séquentielle du sup et de l'inf}
+
+\begin{proof}
+    Par le théorème précédent, $f(A)$ compact de $\R$, donc borné, $f(A) \neq \emptyset$ donc 
+    $ \inf(A)$ et $\sup(A)$ existent par caractérisation séquentielle, et donc il existe une suite 
+    $\alpha_n$ de $f(A)$ telle que $\alpha_n \limit n \infty \sup(f(A))$.
+
+    Or $f(A)$ fermé donc $\sup(f(A)) \in f(A)$, donc c'est un max, idem pour l'inf. 
+\end{proof}
+
+\subsubsection{Equivalence des normes en dimension finie }
+
+Montrons le théorème d'équivalence des normes en dimension finie.
+
+Démo non exigible.
+
+\idee{
+    Montrer que toute norme est équivalente à la norme infinie, et montrer 
+    que la norme de $E$ restreinte à la sphère de rayon $1$ et de centre $0$ pour la norme 
+    infinie est lipschitzienne. 
+}
+
+\begin{proof}
+    Soit $E$ un $\K$-ev de dimension finie. 
+
+    Soit $B = (e_1, \ldots, e_p)$ une base de $E$, soit $N$ une norme sur $E$ et $N_\infty$ définie par 
+    
+    $$N_\infty \left( \sum_{i=1}^p x_i e_i \right) = \max(|x_1|, \ldots, |x_p|)$$
+
+    Considérons $S_\infty (0, 1) = \{ x \in E, \, N_\infty(x) = 1 \}$ et 
+    $\fonction f {S_\infty(0, 1)}{\R}{x}{N(x)}$.
+
+    Soient $x, y \in S_\infty(0, 1)$. Alors $| f(x) - f(y)| = |N(x) - N(y)| \leqslant N(x - y)$ par la deuxième inégalité triangulaire. 
+
+    Or \begin{align*}
+        N(x - y) & = N\left( \sum_{i=1}^p (x_i - y_i) e_i \right) \\
+        & \leqslant \sum_{i=1}^p |x_i - y_i| N(e_i) \\
+        & \leqslant \left( \sum_{i=1}^p N_\infty(x - y) N(e_i) \right) \\
+        & \leqslant K N_\infty(x - y) \text{ avec } K = \sum_{i=1}^p N(e_i) > 0
+    \end{align*}
+
+    Donc $f$ est $K$-lipschitzienne de $(E, N_\infty)$ dans $(\R, |\cdot |)$, donc continue.
+
+    Or $S_\infty(0, 1)$ est fermée bornée de $E$ dans compact car $E$ de dimension finie. 
+
+    Donc (th des bornes atteintes) il existe $x_1$, $x_2 \in S_\infty(0, 1)$ tels que
+
+    $\forall x \in S_\infty(0, 1), \, f(x_1) \leqslant f(x) \leqslant f(x_2)$ et 
+    $x_1 \neq 0$ donc $f(x_1) = N(x_1) > 0$. 
+
+    Posons $ \alpha = f(x_1), \, \beta = f(x_2)$. On a $\alpha, \beta > 0$. 
+
+    Soit $y \in E$ tel que $y \neq 0$. Posons $x = \frac y {N_\infty(y)}$ $N_\infty(x) = 1$.
+
+    Donc $\alpha \leqslant f(x) \leqslant \beta$ donc $\alpha N_\infty(y) \leqslant N(y) \leqslant \beta N_\infty(y)$.
+
+    Vrai aussi pour $y = 0$. Donc $N$ et $N_\infty$ sont équivalentes.
+\end{proof}
+
+
+\section{Connexité par arcs }
+
+\begin{definition}{chemin }{}
+    Soit $A \subset E$ non vide, soient $a, b \in A$. 
+
+    On appelle chemin ou arc joignant $a$ à $b$ toute application continue $f$ de 
+    $\inter 0 1$ dans $A$ telle que $f(0) = a$ et $f(1) = b$.
+\end{definition}
+
+
+\subsection{Connexité par arcs }
+
+
+\begin{definition}{connexité par arcs }{}
+    Soit $A \subset E$. 
+    On dit que $A$ est connexe par arcs ssi $\forall (a, b) \in A^2, \, \exists f \in \mathscr C(\inter 0 1, A), f(0) = a \text{ et } f(1) = b$. 
+
+    C'est à dire que pour tout $(a, b) \in A^2$, il existe un chemin de $A$ reliant $a$ à $b$.
+\end{definition}
+
+
+\begin{definition}{ensemble étoilé }{}
+    Soit $A \subset E$.
+    On dit que $A$ est étoilée par rapport à l'un de ses points ssi $\exists \omega \in A, 
+    \, \forall a \in A, \inter a \omega \subset A$.
+\end{definition}
+
+\begin{proposition}{liens entre convexité et étoilé }{}
+    Soit $A \subset E$ non vide. 
+
+    Si $A$ est convexe, alors $A$ est étoilée par rapport à tous ses points. 
+
+    Si $A$ est étoilée par rapport à l'un de ses points, $A$ est connexe par arcs. 
+\end{proposition}
+
+\idee{poser la bonne fonction }
+
+\begin{proof}
+    1. par def de convexe car $A$ non vide. 
+
+    \avspace 2. Supposons que $A$ est étoilée par rapport à $\omega \in A$.
+
+    Alors si $x, y \in A$. Posons $f: \space \begin{array}{|ccc}
+    \inter 0 1 & \to & A \\
+    t & \mapsto & \left\{ \begin{array}{cc}
+        2t \omega + (1 - 2t)x & \text{ si } t \in \inter 0 {\frac 1 2} \\
+        (2 - 2t) \omega + (2t - 1)y & \text{ si } t \in \inter {\frac 1 2} 1        
+    \end{array} \right.
+  \end{array}$
+
+    $f$ est bien continue sur $\interco 0 {\frac 1 2}$ et $\interoc {\frac 1 2} 1$ et 
+    $\displaystyle \lim_{t \to \frac 1 2^-} f(t) = \lim_{t \to \frac 1 2^+} f(t) = \omega$ donc $f$ est continue sur $\inter 0 1$.
+
+    $\displaystyle \forall t \in \inter 0 {\frac 1 2}, \, f(t) \in \inter x \omega \subset A$ et
+    $\displaystyle \forall t \in \inter {\frac 1 2} 1, \, f(t) \in \inter \omega y \subset A$.
+
+    Donc $f$ est bien à valeurs dans $A$, et $f(0) = x$, $f(1) = y$. 
+    Donc $f$ est un chemin de $A$ joignant $x$ à $y$. Donc $A$ est connexe par arcs.
+\end{proof}
+
+\subsection{Relation d'équivalence }
+
+\begin{theoreme}{relation d'équivalence}{}
+    Soit $A \subset E$ non vide.
+
+    On définit la relation $\mathcal R_A$ sur $A$ par : 
+    $$\forall (a, b) \in A^2, \, a \mathcal R b \Leftrightarrow \exists f \in \mathscr C(\inter 0 1, A), f(0) = a \text{ et } f(1) = b$$
+
+    ou plus simplement $\forall x, y \in A, \, x \mathcal R y$ ssi il existe un chemin de $A$ joignant $x$ à $y$.
+    
+    Alors $\mathcal R$ est une relation d'équivalence.
+\end{theoreme}
+
+\begin{proof}
+    \uline{Réflexivité :}
+
+    \svspace Soit $x \in A$. Posons $\fonction f {\inter 0 1} A t {f(t) = x}$. 
+
+    $f$ est continue à valeurs dans $A$, et $f(0) = x$, $f(1) = x$. Donc $x \mathcal R x$.
+
+    \uindent{Symétrie }
+
+    \svspace Soient $x, y \in A$ tels que $x \mathcal R y$. Alors il existe $\fonction f {\inter 0 1} A t {f(t)}$
+    telle que $f(0) = x$ et $f(1) = y$.
+
+    Posons $\fonction g {\inter 0 1} A t {g(t) = f(1 - t)}$. On a bien $\forall t \in \inter 0 1, \, g(t) \in A$. 
+
+    $g$ est continue par composition, $g(0) = f(1) = y$ et $g(1) = f(0) = x$. 
+
+    \uindent{Transitivité }
+
+    \svspace Soient $x, y, z \in A$ tels que $x \mathcal R y$ et $y \mathcal R z$.
+
+    Par hypothèse, il existe $f : \inter 0 1 \to A$ continue telle que $f(0) = x$ et $f(1) = y$, 
+    et $g : \inter 0 1 \to A$ continue telle que $g(0) = y$ et $g(1) = z$.
+
+    Posons $\fonction h {\inter 0 1} A t { \left\{ \begin{array}{cc} 
+        f(2t) & \text{ si } t \leqslant \frac 1 2 \\
+        g(2t - 1) & \text{ si } t > \frac 1 2
+    \end{array} \right. }$ alors h est bien définie, continue sur $\interco 0 {\frac 1 2}$ et $\interoc {\frac 1 2} 1$ par 
+    composition, et $\displaystyle \lim_{t \to \frac 1 2^-} h(t) = \lim_{t \to \frac 1 2^+} h(t) = y$ donc $h$ est continue en $\frac 1 2$.
+
+    De plus $h(0) = f(0) = x$ et $h(1) = g(1) = z$, donc $h$ est bien un chemin de 
+    $A$ joignant $x$ à $z$. Donc $x \mathcal R z$.
+\end{proof}
+
+\begin{definition}{composantes connexes par arcs }{}
+    Avec ces notations, les classes d'équivalence de $\mathcal R_A$ sont appelées 
+    les composantes connexes par arcs de $A$.
+\end{definition}
+
+\begin{exemple}
+    $A = R^*$ a deux composantes connexes par arcs : $\R_+^*$ et $\R_-^*$.
+
+    En effet, si $x, y \in \R_+^*$, le segment $[x, y] \subset \R_+^*$ donc $x \mathcal R y$.
+    De même pour $\R_-^*$.
+
+    Soient $x \in \R_+^*$ et $y \in \R_-^*$, et montrons que $x \not\mathcal R y$.
+
+    S'il existait $f \in \mathscr C(\inter 0 1, \R^*)$ telle que $f(0) = x$ et $f(1) = y$,
+    et par le TVI il existerait $t_0 \in \inter 0 1$ tel que $f(t_0) = 0$, absurde.
+\end{exemple}
+
+\begin{theoreme}{image d'une partie connexe par arcs par une application continue }{}
+    L'image d'une partie connexe par arcs par une application continue est connexe par arcs.
+\end{theoreme}
+
+\begin{proof}
+    Soit $f : A \to E'$ continue où $A \subset E$. Supposons que 
+    $A$ est connexe par arcs et montrons que $f(A)$ est connexe par arcs. 
+
+    Soient $a, b \in B = f(A)$. Il existe $x, y \in A$ tels que $f(x) = a$ et $f(y) = b$ or 
+    $A$ est connexe par arcs. 
+
+    Donc il existe $\varphi : \inter 0 1 \to A$ continue telle que $\varphi(0) = x$ et $\varphi(1) = y$.
+
+    Posons $\fonction \psi {\inter 0 1}{E'} t { f \circ \varphi(t)}$, on a bien 
+
+    \begin{itemize}
+        \item $\forall t \in \inter 0 1, \, f \circ \varphi (t) \in B $ 
+        \item $\psi$ continue par composition 
+        \item $\psi(0) = 0, \, \psi(1) = b$
+    \end{itemize}
+
+    Donc $\psi $ est un chemin de $B$ reliant $a$ à $b$. Donc $B$ est connexe par arcs.
+\end{proof}
+
+\subsection{Application à \texorpdfstring{$\R$}{R}}
+
+\begin{theoreme}{connexité par arcs dans R}{}
+    Les parties connexes par arcs de $\R$ sont les intervalles.
+\end{theoreme}
+
+\begin{proof}
+    Soit $A \subset \R$. 
+
+    Si $A$ est un intervalle, alors $A$ est convexe donc $A$ est connexe par arcs. 
+
+    Supposons que $A$ est connexe par arcs. 
+
+    Soient $a \leqslant b \in A$. Montrons que $[a, b] \subset A$.
+
+    Or il existe $\fonction f {\inter 0 1} A t {f(t)}$ continue telle que $f(0) = a$ et $f(1) = b$.
+
+    Soit $c \in \inter a b$. Par le TVI, $f$ étant continue, $\exists t_0 \in \inter 0 1, \, f(t_0) = c$, 
+    donc $c \in A$ donc $A$ convexe donc $A$ est un intervalle.
+\end{proof}
+
+\begin{theoreme}{théorème des valeurs intermédiaires }{}
+    Soit $A \subset E$ connexe par arcs, $f \in \mathscr C(A, \R)$ et $a, b \in A$.
+
+    Soit $x$ compris entre $f(a)$ et $f(b)$. Alors il existe $c \in A$ tel que $f(c) = x$.
+    
+\end{theoreme}
+
+\idee{nature image d'un connexe par arcs dans R}
+
+\begin{proof}
+    $f(a)$ est connexe par arcs car $A$ l'est et $f$ continue, or $f(a) \subset \R$ donc 
+    $f(A)$ est un intervalle, et $f(a), f(b) \in f(A)$ donc $x \in f(A)$. 
+\end{proof}
+
+\begin{exemple}
+    $A = GL_n(\R)$ alors $\det A \to \R$ est continue, or $det(A) = \R^*$
+
+    Si $\alpha \in \R^*$ posons $M = \operatorname{Diag}(\alpha, 1, \ldots, 1)$. 
+    Alors $M \in A$ et $\det(M) = \alpha$.
+
+    Or $\R^*$ n'est pas connexe par arcs donc par contraposée du théorème, $A$ non plus. 
+\end{exemple}
+
+\subsection{Complément HP}
+
+\begin{definition}{connexité HP}{}
+    Soit $A \subset E$. 
+
+    On dit que $A$ est connexe ssi toute application $f : A \to \{0, 1\}$ continue est constante. 
+
+\end{definition}
+
+\begin{proposition}{connexité par arcs implique connexité HP}{}
+    Toute partie connexe par arcs est connexe. 
+\end{proposition}
+
+\idee{absurde et TVI}
+
+\begin{proof}
+    Soit $A \subset E$ connexe par arcs et $f : A \to \{0, 1\}$ continue. Supposons $f$ non constante. 
+
+    Alors $\exists a, b \in A$ tel que $f(a) = 0$ et $f(b) = 1$.
+
+    Il existe $\varphi : \inter 0 1 \to A$ continue telle que $\varphi(0) = a$ et $\varphi(1) = b$.
+
+    Donc $f \circ \varphi : \inter 0 1 \to \{0, 1\}$ est continue, $f \circ \varphi(0) = 0$ et $f \circ \varphi (1) = 1$. 
+
+    Or $\frac 1 2 \in \inter 0 1$, par le TVI, il existe $t \in \inter 0 1$, $f \circ \varphi (t) = \frac 1 2$, absurde. 
+    
+\end{proof}
+
+\begin{exemple}
+    $A \{(t, \sin \frac 1 t), t > 0\} \cup \{(0, u), \, u \in \inter {-1} 1\}$
+
+    On montre que $A$ est connexe mais que $A$ n'est pas connexe par arcs.
+\end{exemple}

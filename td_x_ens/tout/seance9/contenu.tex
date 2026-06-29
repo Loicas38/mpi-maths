@@ -1,0 +1,190 @@
+\section*{Action d'un groupe par conjugaison sur lui-même}
+
+\begin{remarque}
+\textbf{Remarque fondamentale :}
+\begin{align*}
+    \mathcal{O}(x) = \{x\} &\iff \forall g \in G, \quad g \cdot x = x \\
+    &\iff \forall g \in G, \quad g x g^{-1} = x \\
+    &\iff \forall g \in G, \quad gx = xg \\
+    &\iff x \in Z(G) = \{ \text{centre de } G \}
+\end{align*}
+\end{remarque}
+
+Soit $G$ un groupe fini, $N$ le nombre d'orbites.
+\[ |G| = \sum_{i=1}^N |\mathcal{O}(x_i)| = |Z(G)| + \sum_{i=1}^M |\mathcal{O}(x_i)| \]
+où la seconde somme porte sur les $M$ orbites de cardinal $> 1$. (C'est l'\textbf{équation aux classes} de G).
+
+\vspace{0.5cm}
+
+\begin{theoreme}{Application : Cauchy}{cauchy}
+Si $p \in \mathbb{P}$ et $p \mid |G|$, alors $G$ possède un élément d'ordre $p$.
+\end{theoreme}
+
+\textbf{Rappel :} Vu si $G$ est abélien (séance précédente).
+
+\textbf{Passage au cas général :} par récurrence forte sur le cardinal de $G$.
+
+\underline{\textbf{1\textsuperscript{er} cas :}} $\exists$ un sous-groupe $H$ de $G$ tel que $p \mid |H|$ (strict).
+\[ \text{HR} : \exists x \in H \subset G \text{ d'ordre } p. \]
+
+\underline{\textbf{2\textsuperscript{nd} cas :}} $\forall H$ sous-groupe strict de $G$, $p \nmid |H|$.
+
+\[ |G| = \sum_{i=1}^N |\mathcal{O}(x_i)| = |Z(G)| + \sum_{i=1}^M \frac{|G|}{|G_{x_i}|} \]
+
+Analysons le terme $\frac{|G|}{|G_{x_i}|}$ :
+\begin{itemize}
+    \item $|G|$ a $p$ en facteur (par hypothèse).
+    \item $|G_{x_i}|$ n'a pas $p$ en facteur (car c'est un sous-groupe strict pour les orbites de taille $>1$).
+\end{itemize}
+Donc $\frac{|G|}{|G_{x_i}|}$ est un multiple de $p$.
+
+Ainsi $|Z(G)|$ est un multiple de $p$ (non nul car $e \in Z(G)$).
+$Z(G)$ est un sous-groupe abélien donc le cardinal est un multiple de $p$. On peut donc lui appliquer le cas abélien.
+
+\noindent Par Cauchy abélien, $\exists x \in Z(G) \subset G$ d'ordre $p$. \hfill \faStop
+
+\vspace{0.5cm}
+
+\begin{exemple}
+Si $G$ est un groupe abélien et si $|G| = p_1 \times \dots \times p_r$ (avec $p_i$ premiers distincts 2 à 2),\\
+Alors $G$ est isomorphe à $\mathbb{Z}/p_1 \dots p_r \mathbb{Z} \simeq \mathbb{Z}/p_1\mathbb{Z} \times \dots \times \mathbb{Z}/p_r\mathbb{Z}$.
+\end{exemple}
+
+\section*{Étude des $p$-groupes, $p \in \mathbb{P}$}
+
+Soit $G$ un groupe fini, on dit que $G$ est un $p$-groupe si $|G| = p^\alpha$.
+
+\begin{theorement}
+Si $G$ est un $p$-groupe, alors $Z(G) \neq \{e\}$.
+\end{theorement}
+
+\textbf{Dém :}
+\[ |G| = \sum_{i=1}^N |\mathcal{O}(x_i)| = |Z(G)| + \underbrace{\sum_{i=1}^M |G/G_{x_i}|}_{\text{puissance de } p} \]
+Le terme sous la somme correspond aux orbites de cardinal $> 1$.
+Donc $|Z(G)|$ est un multiple de $p$. \hfill \faStop
+
+\vspace{0.5cm}
+
+\begin{theoreme}{Théorèmes de Sylow}{sylow}
+Soit $G$ un groupe fini, alors $|G| = p^\alpha m$, avec $p \nmid m$ ($p \in \mathbb{P}, \alpha \geqslant 1$).
+
+\textbf{Affirmations :}
+\begin{itemize}
+    \item \textbf{1\textsuperscript{er} théorème de Sylow :}
+    \begin{enumerate}
+        \item[(1)] $\exists H$ sous-groupe de $G$ tq $|H| = p^\alpha$. On dit que $H$ est un $p$-Sylow de $G$.
+        \item[(2)] Deux $p$-Sylow sont toujours conjugués :
+        \[ \exists a \in G, \quad H_1 = a H_2 a^{-1} \]
+    \end{enumerate}
+    
+    \item \textbf{2\textsuperscript{ème} théorème de Sylow :}
+    \begin{enumerate}
+        \item[(3)] Soit $n_p$ le nombre de $p$-Sylow de $G$. Alors :
+        \[ n_p \equiv 1 \pmod p \quad \text{et} \quad n_p \mid m \]
+    \end{enumerate}
+\end{itemize}
+\end{theoreme}
+
+\begin{exemple}
+$A_4 = \{ \sigma \in S_4 \mid \varepsilon(\sigma) = 1 \}$, $|A_4| = 12 = 2^2 \times 3$.
+$\hookrightarrow$ Décrire tous les 2-Sylow et 3-Sylow de $A_4$.
+\end{exemple}
+
+\section*{Démonstration du 1\textsuperscript{er} théorème}
+
+\underline{\textbf{Étape 1 :}} Démontrer le thm pour $G = GL_n(\mathbb{Z}/p\mathbb{Z})$.
+
+\[ |G| = \underbrace{p^{\frac{n(n-1)}{2}}}_{p^\alpha} \times \underbrace{(p^n - 1)(p^{n-1}-1)\dots(p-1)}_{m} \]
+
+Considérons le sous-groupe $H$ des matrices triangulaires supérieures strictes (avec des 1 sur la diagonale) :
+\[ H = \left\{ \begin{pmatrix} 1 & & * \\ & \ddots & \\ 0 & & 1 \end{pmatrix} \right\} \implies |H| = p^{\frac{n(n-1)}{2}} \]
+Donc $H$ est un $p$-Sylow de $G$.
+
+\vspace{0.5cm}
+
+\underline{\textbf{Étape 2 :}} $|G| = p^\alpha m = n$.
+Alors $\exists \varphi$ un morphisme de groupe injectif $\varphi : G \hookrightarrow GL_n(\mathbb{Z}/p\mathbb{Z})$.
+($G$ est isomorphe à un sous-groupe de $GL_n(\mathbb{Z}/p\mathbb{Z})$).
+
+\textbf{Dém :}
+\begin{enumerate}
+    \item $G \hookrightarrow S_n$ (Théorème de Cayley : isomorphisme de $G$ dans un sous-groupe de $S_n$).
+    \[ \text{Dém : } G \to \text{Bij}(G), \quad g \mapsto \tau_g : x \mapsto g \cdot x \]
+    
+    \item $S_n \hookrightarrow GL_n(\mathbb{Z}/p\mathbb{Z})$.
+    \[ \sigma \longmapsto M_\sigma = (m_{i,j}) = \begin{cases} 1 \text{ si } j = \sigma(i) \\ 0 \text{ sinon} \end{cases} \]
+    \[ M_\sigma = [\tilde{\sigma}]_{\text{can}}, \quad \tilde{\sigma} : \mathbb{K}^n \to \mathbb{K}^n, \quad e_i \mapsto e_{\sigma(i)} \]
+\end{enumerate}
+\hfill \faStop
+
+\vspace{0.5cm}
+
+\underline{\textbf{Étape 3 :}} Soit $G$, $|G| = p^\alpha m$, soit $H$ un sous-groupe de $G$.
+Soit $S$ un $p$-Sylow de $G$.
+Alors $\exists a \in G$ tq $a S a^{-1} \cap H$ est un $p$-Sylow de $H$.
+
+\textbf{Dém :}
+\[ G/S = \{ aS \} = \{ \text{classes à gauche de } G \text{ modulo } S \} \]
+$H$ agit sur $G/S$ de la façon suivante...
+
+\begin{align*}
+    H \times G/S &\longrightarrow G/S \\
+    (h, aS) &\longmapsto haS
+\end{align*}
+Bien définie, il faut $aS = a'S \implies haS = ha'S$.
+\idee{
+$aS = a'S \iff a'^{-1}a \in S \iff (ha')^{-1}ha \in S$\\
+$\iff a'^{-1}h^{-1}ha \in S \iff a'^{-1}a \in S$.
+}
+
+Stabilisateur :
+\begin{align*}
+    H_{aS} &= \{ h \in H \mid haS = aS \} \\
+           &= \{ h \in H \mid a^{-1}ha \in S \} \\
+           &= \{ h \in H \mid a^{-1}ha \in S \} = \{ h \in H \mid h \in aSa^{-1} \} = H \cap aSa^{-1}
+\end{align*}
+
+\[ |G/S| = \sum_{i=1}^N |H|/|H_{a_iS}| \]
+Or $|G/S| = m$ est premier avec $p$.
+
+Donc l'un des $|H|/|H_{a_iS}|$ n'est pas un multiple de $p$.
+Soit $|H| = p^\beta \times \tilde{m}$.
+Alors l'un des $|H_{a_iS}|$ est de cardinal $|H_{a_iS}| = p^\beta \times \tilde{m}'$ (partie $p$-aire maximale).
+
+Or $|H_{a_iS}| \mid |aSa^{-1}| = p^\alpha$.
+
+Donc $|H_{a_iS}|$ est une puissance de $p$.
+Donc $|H_{a_iS}| = p^\beta$. $H_{a_iS}$ est un $p$-Sylow de $H$.
+
+\underline{(1) est démontré.} \hfill \faCheckSquare
+
+\vspace{0.5cm}
+
+\textbf{(2) Deux $p$-Sylow sont conjugués ?}
+
+Soit $G$ un groupe, $|G| = p^\alpha m$.
+Soient $S$ et $H$ deux $p$-Sylow de $G$.
+D'après le (1), $\exists a \in G$ tq $aSa^{-1} \cap H$ est un $p$-Sylow de $H$.
+Donc égal à $H$ (car cardinal maximal $p^\alpha$ dans $H$).
+\[ aSa^{-1} \cap H = H \implies H \subset aSa^{-1} \]
+Or ils ont même cardinal $p^\alpha$, donc $H = aSa^{-1}$. \hfill \faStop
+
+\vspace{0.5cm}
+
+\begin{corollairent}{Existence de sous-groupes d'ordre $p^i$}
+Soit $G$ tq $|G| = p^\alpha m$.
+Alors $\forall i \in [\![ 1, \alpha ]\!]$, $\exists H_i$ sous-groupe de cardinal $p^i$.
+\end{corollairent}
+
+\textbf{Dém :}
+$i=1$ : Cauchy.
+$i=\alpha$ : Sylow.
+
+Récurrence sur $|G|$. Soit $H$ un $p$-Sylow. $|H| = p^\alpha$. $H$ est un $p$-groupe.
+$Z(H) \neq \{e\}$ et $Z(H)$ sous-groupe distingué de $H$.
+Soit $x \in Z(H)$ d'ordre $p$.
+
+\[ H \xrightarrow{\pi} H/\langle x \rangle \quad \text{groupe de card } p^{\alpha-1} \]
+
+Par hypothèse de récurrence, il existe $K_i \subset H/\langle x \rangle$ sous-groupe de card $p^i$.
+Alors $\pi^{-1}(K_i)$ est un sous-groupe de $H$ (donc de $G$) de card $p^{i+1}$.

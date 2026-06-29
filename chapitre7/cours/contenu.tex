@@ -1,0 +1,999 @@
+
+\section{Groupes, sous-groupes et morphismes }
+\subsection{Groupe}
+
+\begin{definition}{groupe}{}
+    \index{Groupe}
+    Soit $G$ un ensemble muni d'une loi de composition interne $\ast$. 
+    On dit que $(G, \ast)$ est un \emph{groupe} ssi 
+    \begin{itemize}
+        \item $\ast$ est associative
+        \item $\ast$ possède un neutre noté $e_G \in G$, unique.
+        \item Tout élément de $G$ est symétrisable par $\ast$, c'est-à-dire que pour tout $x \in G$, 
+        il existe un unique élément de $G$ appelé symétrique de $x$ noté $x^{-1}$ tel que $x \ast x^{-1} = e_G$.
+    \end{itemize}
+
+    Si de plus $\ast$ est commutative, c'est à dire si $\forall x, y \in G, x \ast y = y \ast x$, 
+    on dit que $(G, \ast)$ est un \emph{groupe abélien}.
+\end{definition}
+
+
+\subsubsection{Notations - Vocabulaire }
+
+\begin{itemize}
+    \item Dans le cas où la loi de $G$ est notée $+$, on dit que $(G, +)$ est un \emph{groupe additif},
+    La loi $+$ est en général commutative, et son neutre noté $0_G$. Le symétrique de $x \in G$ 
+    est appelé opposé de $x$ et noté $-x$.
+
+    Pour $n \in \N$, l'élément du groupe obtenu en itérant $n$ fois la loi $+$ sur $x$ est noté
+    $nx$. Pour $n \in \Z, n < 0$, on pose $nx = (-n)(-x)$. $(G, +)$ est un $\Z$-module (HP).
+    \item Dans le cas où la loi de $G$ est notée $\cdot$, on dit que $(G, \cdot)$ est un \emph{groupe multiplicatif}.
+    Son neutre est alors noté $1_G$. Le symétrique de $x \in G$ est appelé inverse de $x$ et noté $x^{-1}$.
+    Pour $n \in \N^*$, l'élément du groupe obtenu en itérant $n$ fois la loi $\cdot$ sur $x$ est noté $x^n$. 
+    Pour $n \in \Z, n < 0$, on pose $x^n = (x^{-1})^{-n}$.
+    
+    Si et uniquement si $(G, \cdot)$ est abélien, alors $\forall n \in \Z$, $\forall x, y \in G, (xy)^n = x^n y^n$.
+    \item Dans le cas général la loi de $G$ est notée $\ast$, $\top$, $\bot$ ou $\cdot$. 
+
+    \item Si $E \neq \emptyset$, $\mathscr P(E)$ est muni de la loi $\Delta$ (différence 
+    symétrique) définie par $A \Delta B = (A \cup B) \setminus (A \cap B)$. 
+    
+    $(\mathscr P(E), \Delta)$ est un groupe abélien, dont le neutre est $\emptyset$ et
+    le symétrique de $A$ est $A$ lui-même. De plus $\Delta$ est associative et commutative.
+
+    \item Si $E \neq \emptyset$, l'ensemble $\mathfrak{S}(E)$ des bijections de $E$ dans $E$ est un groupe pour la composition $\circ$. 
+    $\circ$ est bien une loi de composition interne associative, l'identité le neutre et l'inverse de $f \in \mathfrak{S}(E)$ est $f^{-1}$.
+
+    \item Si $n \in \N^*$, l'ensemble $\mathfrak{S}_n$ des permutations de $\{1, \ldots, n\}$ est un groupe pour la composition.
+\end{itemize}
+
+\subsection{Sous-groupes}
+
+\begin{definition}{sous-groupe}{}
+    \index{Sous-groupe}
+    Soit $(G, \ast)$ un groupe et $H \subset G$. On dit que $H$ est un \emph{sous-groupe} de
+    $(G, \ast)$ si $(H, \ast)$ est un groupe.
+\end{definition}
+
+\begin{proposition}{caractérisations des sous-groupes}{}
+    Soit $(G, \ast)$ un groupe et $H \subset G$. 
+    Alors $H$ est un sous-groupe de $(G, \ast)$ ssi :
+    \begin{itemize}
+        \item $H \neq \emptyset$
+        \item $\forall x, y \in H, x \ast y \in H$ 
+        \item $\forall x \in H, x^{-1} \in H$
+    \end{itemize}
+    ou encore ssi :
+    \begin{itemize}
+        \item $H \neq \emptyset$
+        \item $\forall x, y \in H, x \ast y^{-1} \in H$
+    \end{itemize}
+
+    De plus si $G$ est abélien, alors $H$ est abélien.
+\end{proposition}
+
+
+
+\begin{remarque}
+    Si $(G, +)$ est un groupe additif et $H \subset G$, cette caractérisation devient : 
+    \begin{itemize}
+        \item $H \neq \emptyset$
+        \item $\forall x, y \in H, x - y \in H$
+    \end{itemize}
+\end{remarque}
+
+\begin{theoreme}{intersection de sous-groupes}{}
+    Soit $(G, \ast)$ un groupe. Soit $I \neq \emptyset$ et 
+    $(H_i)_{i \in I}$ une famille de sous-groupes de $(G, \ast)$.
+    Alors $\displaystyle \bigcap_{i \in I} H_i$ est un sous-groupe de $(G, \ast)$.
+\end{theoreme}
+
+\begin{proof}
+    Notons $H = \bigcap_{i \in I} H_i$, alors $H \subset G$ 
+    et $\forall i \in I, e \in G_i$, donc $e \in H$ et $H \neq \emptyset$.
+
+    Soient $x, y \in H$, alors $\forall i \in I, x, y \in H_i$, or 
+    $G_i$ est un sous-groupe de $(G, \ast)$, donc $x \ast y^{-1} \in H$
+\end{proof}
+
+\begin{proposition}{réunion de deux sous-groupes (LHP)}{}
+    Soit $(G, \ast)$ un groupe et $G_1, G_2$ deux sous-groupes de $(G, \ast)$.
+
+    Alors $G_1 \cup G_2$ est un sous-groupe de $(G, \ast)$ ssi $G_1 \subset G_2$ ou $G_2 \subset G_1$.
+\end{proposition}
+
+\begin{proof}
+    Si $G_1 \subset G_2$, alors $G_1 \cup G_2 = G_2$ est un sous-groupe de $(G, \ast)$.
+    Si $G_2 \subset G_1$, alors $G_1 \cup G_2 = G_1$ est un sous-groupe de $(G, \ast)$.
+
+    \avspace Supposons maintenant que $G_1 \not \subset G_2$ et $G_2 \not \subset G_1$.
+
+    Alors $\exists g_1 \in G_1, g_1 \not \in G_2$ et $\exists g_2 \in G_2, g_2 \not \in G_1$.
+
+    On a $g_1 \in G_1 \cup G_2$ et $g_2 \in G_1 \cup G_2$, pourtant $g_1 g_2 \not \in G_1$, 
+    sinon on aurait $g_2 = g_1^{-1} (g_1 g_2) \in G_1$, ce qui est absurde.
+
+    De même, $g_1 g_2 \not \in G_2$, sinon on aurait $g_1 = (g_1 g_2) g_2^{-1} \in G_2$, ce qui est absurde.
+
+    Donc $G_1 \cup G_2$ pas stable par $\ast$. 
+\end{proof}
+
+\begin{theoreme}{sous-groupes de $(\Z, +)$}{}
+    Les sous-groupes de $(\Z, +)$ sont les $n\Z$ où $n \in \N^*$.
+    
+\end{theoreme}
+
+\idee{Utiliser la division euclidienne, et l'existence d'un min dans $\N^*$.}
+
+\begin{proof}
+    Soit $n \in \N$ et $H = n \Z$ : 
+    \begin{itemize}
+        \item $H \neq \emptyset$ car $0 \in H$
+        \item Soient $x, y \in H$, alors $\exists a, b \in \Z$ tels que $x = na$ et $y = nb$.
+        Donc $x - y = na - nb = n(a - b) \in H$.
+    \end{itemize}
+
+    Donc $H$ est un sous-groupe de $(\Z, +)$.
+
+    Soit maintenant $H$ un sous-groupe de $(\Z, +)$. 
+    
+    Si $H = \{0\}$, alors $H = 0 \Z$.
+
+    Sinon, $H \neq \{0\}$, donc $\exists h \in H, h \neq 0$.
+    Si $h < 0$, alors $-h \in H \cap \N^*$, et si $h > 0$, alors $h \in H \cap \N^*$.
+
+    Donc $H \cap \N^*$ est une partie non vide de $\N^*$. Notons $n$ son plus petit élément.
+
+    Montrons que $H = n \Z$.
+    
+    Soit $x \in n \Z$, $x = nk$ avec $k \in \Z$.
+
+    Donc $x \in H$ car $H$ est un sous-groupe de $(\Z, +)$.
+
+    Donc $n \Z \subset H$.
+
+    Soit $x \in H$. 
+
+    Par division euclidienne par $n$, $\exists q, r \in \Z$ tels que $x = nq + r$ avec $0 \leq r < n$.
+    Donc $r = x - nq \in H$ car $x \in H$ et $nq \in H$.
+
+    Or $n$ est le plus petit élément de $H \cap \N^*$, donc $r = 0$ et $x = nq \in n \Z$.
+\end{proof}
+
+\subsection{Morphisme de groupes }
+
+\begin{definition}{morphisme de groupes}{}
+    \index{Morphisme!de groupes}
+    Soit $(G, \ast)$ et $(H, \top)$ deux groupes, et $\varphi : G \to H$ une application.
+    On dit que $\varphi$ est un \emph{morphisme de groupes} de $(G, \ast)$ dans $(H, \top)$ ssi
+    $$\forall x, y \in G, \varphi(x \ast y) = \varphi(x) \top \varphi(y)$$
+\end{definition}
+
+\begin{proposition}{propriétés des morphismes de groupes}{}
+    Soit $\varphi : (G, \ast) \to (H, \top)$ un morphisme de groupes.
+    Alors :
+    \begin{itemize}
+        \item $\varphi(e_G) = e_H$
+        \item $\forall x \in G, \varphi(x^{-1}) = (\varphi(x))^{-1}$
+        \item $\forall x \in G, \forall n \in \Z, \varphi(x^n) = (\varphi(x))^n$
+    \end{itemize}
+\end{proposition}
+
+\begin{exemple}
+    $\fonction{}{(\R_+^*, \cdot)}{(\R, +)}{x}{\ln(x)}$ est un morphisme de groupes.
+    
+    $\fonction{}{(\R, +)}{(\mathbb U, \cdot)}{x}{e^{ix}}$ est un morphisme de groupes.
+
+    La dernière propriété s'écrit $\forall x \in \R, \forall n \in \Z, e^{i(nx)} = (e^{ix})^n$, 
+    la formule de Moivre.
+\end{exemple}
+
+\begin{theoreme}{noyau d'un morphisme de groupes}{}
+    Soit $\varphi : (G, \ast) \to (H, \top)$ un morphisme de groupes. 
+    Alors $\varphi^{-1}(\{e_H\})$ est un sous-groupe de $(G, \ast)$ appelé noyau de 
+    $\varphi$ et noté $\ker \varphi$.
+\end{theoreme}
+
+\begin{exemple}
+    $$
+    \begin{array}{c|c}
+        \text{Morphisme} & \text{Noyau} \\ \hline
+        \fonction{}{(\C^*, \cdot)}{(\R_+^*, \cdot)}{z}{|z|} & \mathbb U \\ \hline
+        \fonction{}{(\C^*, \cdot)}{(\C^*, \cdot)}{z}{z^n} & \mathbb U_n \\ \hline
+        \fonction{}{(\R, +)}{(\mathbb U, \cdot)}{\theta}{e^{i\theta}} & 2\pi \Z \\ \hline
+        \fonction{}{(GL_n(\R), \cdot)}{(\R^*, \cdot)}{A}{\det(A)} & SL_n(\R) \\ \hline
+    \end{array}$$
+\end{exemple}
+
+\begin{theoreme}{injectivité d'un morphisme de groupes avec noyau}{}
+    Soit $\varphi : (G, \ast) \to (H, \top)$ un morphisme de groupes.
+    Alors $\varphi$ est injective ssi $\ker \varphi = \{e_G\}$.
+\end{theoreme}
+
+\begin{remarque}
+    Comme $\varphi(e_G) = e_H$, on a toujours $e_G \in \ker \varphi$.
+    Il n'y a donc qu'à montrer que $\ker \varphi \subset \{e_G\}$ pour prouver l'injectivité de $\varphi$.
+\end{remarque}
+
+\begin{proposition}{image d'un morphisme de groupes}{}
+    Soit $\varphi : (G, \ast) \to (H, \top)$ un morphisme de groupes. Alors l'image directe de 
+    $G$ par $\varphi$, est appelée image de $\varphi$ et notée $\im \varphi$. C'est un sous-groupe de $H$.
+    $$\im \varphi = \varphi(G) = \{\varphi(x), x \in G\}$$
+    
+\end{proposition}
+
+\begin{definition}{isomorphisme de groupes}{}
+    \index{Isomorphisme!de groupes}
+    Soit $\varphi : G \to H$ un morphisme de groupes. On dit que $\varphi$ est un isomorphisme 
+    de groupes ssi $\varphi$ est une bijection. 
+\end{definition}
+
+\begin{theoreme}{nature réciproque isomorphisme de groupes}{}
+    Soit $\varphi : G \to H$ un isomorphisme de groupes. Alors $\varphi^{-1} : H \to G$ est aussi un isomorphisme de
+    groupes.
+\end{theoreme}
+
+\idee{Calculer l'image réciproque d'un produit dans $H$.}
+
+\begin{proof}
+    Soit $\varphi : G \to H$ un isomorphisme de groupes. 
+
+    Alors $\varphi^{-1} : H \to G$ est bijecive. 
+
+    Soient $h_1, h_2 \in H$. Alors 
+    \begin{align*}
+        \varphi^{-1}(h_1 \top h_2) & = \varphi^{-1}(\varphi(\varphi^{-1}(h_1)) \top \varphi(\varphi^{-1}(h_2)))\\
+        & = \varphi^{-1}(\varphi(\varphi^{-1}(h_1) \ast \varphi^{-1}(h_2))) \\
+        & = \varphi^{-1}(h_1) \ast \varphi^{-1}(h_2)
+    \end{align*}
+\end{proof}
+
+
+\section{Les groupes \texorpdfstring{$\Z / n \Z$}{Z/nZ}}
+\subsection{Définitions }
+
+Soit $n \in \N, \, n \geqslant 2$.
+
+\begin{definition}{congruence modulo n}{}
+    \index{Congruence}
+    On dit que $a$ est congru à $b$ modulo $n$ et on note $a \equiv b [n]$ ssi
+    $\exists k \in \Z, b - a = kn$, c'est à dire $n \mid b - a$.    
+\end{definition}
+
+\begin{propositionnt}{type relation congruence}{}
+    On définit ainsi une relation d'équivalence.
+\end{propositionnt}
+
+\begin{proof}
+    \uline{Réflexivité : }
+    Soit $a \in \Z$ alors $a - a = 0 = 0 \cdot n$, donc $a \equiv a [n]$.
+
+    \uindent{Symétrie }
+    Soient $a, b \in \Z$ tels que $a \equiv b [n]$.
+
+    \svspace Alors $\exists k \in \Z, \, b - a = kn$, donc $a - b = -kn = (-k)n$, donc $b \equiv a [n]$.
+
+    \uindent{Transitivité } Soient $a, b, c \in \Z$ tels que $a \equiv b [n]$ et $b \equiv c [n]$.
+
+    \svspace Alors $\exists k_1, k_2 \in \Z, \, b - a = k_1 n$ et $c - b = k_2 n$.
+
+    Donc $c - a = (k_1 + k_2)n$, donc $a \equiv c [n]$.
+
+\end{proof}
+
+\begin{proposition}{reste division euclidienne avec congruences}{}
+    Soit $k \in \Z$, alors $\exists ! x \in \ninter{0}{n-1}$ tel que $k \equiv x [n]$ 
+    et $x$ est alors le reste de la division euclidienne de $k$ par $n$.
+\end{proposition}
+
+\idee{Pour la réciproque, partir du fait que $x \equiv k [n]$}
+
+\begin{proof}
+    Notons $r$ le reste de la division euclidienne de $k$ par $n$. 
+    On a donc $k = nq + r$ avec $q \in \Z$ et $0 \leqslant r < n$.
+    
+    Donc $n \mid k - r$, donc $k \equiv r [n]$.
+
+    \avspace Soit $x \in \ninter 0 {n-1}$ tel que $x \equiv k [n]$.
+    Alors $x \equiv r [n]$, donc $n \mid x - r$.
+
+    Or $0 \leqslant x < n$, donc $0 \leqslant r < n$
+    et donc $-n < x - r < n$.
+
+    Donc $x - r = 0$, donc $x = r$.
+\end{proof}
+
+\begin{definition}{classe d'équivalence modulo n}{}
+    Pour $k \in \Z$, sa classe d'équivalence pour la relation de congruence modulo $n$ 
+    est notée $\operatorname{cl}_n(k) = \hat k$. 
+    $$\hat k = \{x \in \Z, x \equiv k [n]\}$$
+\end{definition}
+
+\begin{definition}{groupe Z/nZ}{}
+    \index{Groupe!Z/nZ}
+    L'ensemble des classes d'équivalence pour cette relation est noté $\Z/n\Z$.
+    $$\Z/n\Z = \{\hat k, k \in \Z\}$$
+\end{definition}
+
+\begin{theorement}{nature applications entre Z et Z/nZ}{}
+    On peut définir les applications suivantes : 
+    \begin{itemize}
+        \item $\fonction{\varphi}{\Z}{\Z/n\Z}{k}{\hat k}$ surjective
+        \item \avspace $\fonction{\psi}{\ninter{0}{n-1}}{\Z/n\Z}{k}{\hat k}$ bijective
+    \end{itemize}
+\end{theorement}
+
+\idee{Utiliser la proposition sur les restes de la division euclidienne (pas loin 
+au dessus).}
+
+\begin{proof}
+    $\varphi$ est surjective par définition de $\Z/n\Z$.
+
+    Soit $c \in \Z/n\Z$. Par def, $\exists x \in \Z, c = \hat x$. Or $\exists ! r \in \ninter{0}{n-1}$ 
+    tel que $x \equiv r [n]$, c'est à dire tel que $c = \hat r = \psi(r)$
+\end{proof}
+
+\begin{corollaire}{contenu de $\Z/n\Z$}{}
+    $\Z/n\Z = \{\hat 0, \hat 1, \ldots, \widehat{n-1}\}$ et ces éléments sont 
+    deux à deux distincts.
+\end{corollaire}
+
+\begin{exemple}
+    $n = 2$ : $\Z/2\Z = \{\hat 0, \hat 1\}$
+
+    et $\hat 0 = \{k \in \Z, k \equiv 0 [2]\} = 2 \Z$ et $\hat 1 = \{k \in \Z, k \equiv 1 [2]\} = 1 + 2 \Z$.
+\end{exemple}
+
+\subsection{Structure }
+
+\begin{proposition}{loi de composition interne sur Z/nZ}{}
+    Soient $c, d \in \Z/n\Z$, et soient $x \in c$ et $y \in d$. 
+
+    Alors $e = \widehat{x + y} \in \Z/n \Z$ et la valeur de $e$ ne dépend pas du choix de $x$
+    dans $c$ et de $y$ dans $d$.
+
+    On notera alors $e = c + d$.
+    $+$ définit donc une loi de composition interne sur $\Z/n\Z$.
+\end{proposition}
+
+\idee{Prendre des représentants et claculer.}
+
+\begin{proof}
+    Soient $x, x' \in c$ et $y, y' \in d$.
+    Alors $x \equiv x' [n]$ et $y \equiv y' [n]$, donc
+    $\exists k, k' \in \Z$ tels que $x = x' + kn$ et $y = y' + k'n$.
+
+    Donc $x + y = x' + y' + (k + k')n$, donc $x + y \equiv x' + y' [n]$,
+    donc $\widehat{x + y} = \widehat{x' + y'}$
+\end{proof}
+
+\begin{theoreme}{}{}
+    $(\Z/n\Z, +)$ est un groupe abélien.
+
+    De plus $\fonction{}{(\Z, +)}{(\Z/n\Z, +)}{k}{\hat k}$ est un morphisme de groupes surjectif.
+\end{theoreme}
+
+
+\begin{proof}
+    $+$ est commutative et associative. 
+
+    Soient $c_1, c_2, c_3 \in \Z/n\Z$ et soient $x_1 \in c_1, x_2 \in c_2, x_3 \in c_3$.
+
+    Alors $c_1 + c_2 = \widehat{x_1 + x_2} = \widehat{x_2 + x_1} = c_2 + c_1$.
+
+    $c_1 + (c_2 + c_3) = \widehat{x_1 + (x_2 + x_3)} = \widehat{(x_1 + x_2) + x_3} = (c_1 + c_2) + c_3$.
+
+    \avspace Le neutre est $\hat 0$ car $\forall c \in \Z/n\Z$, si $x \in c$, alors
+    $c + \hat 0 = \widehat{x + 0} = \hat x = c$.
+
+    \avspace $c_1 + \hat{-x_1} = \widehat{x_1 + (-x_1)} = \hat 0$, donc le symétrique de $c_1$ est $\hat{-x_1}$.
+
+    \avspace $\varphi(k_1 + k_2) = \widehat{k_1 + k_2} = \hat{k_1} + \hat{k_2} = \varphi(k_1) + \varphi(k_2)$.
+\end{proof}
+
+\subsection{Isomorphisme }
+
+\begin{theoreme}{}{}
+    L'application $\fonction{\varphi}{(\Z/n\Z, +)}{(\mathbb U, \cdot)}{c = \hat k}{e^{\frac{2i\pi k} n}}$
+    est bien définie et est un isomorphisme de groupes.
+\end{theoreme}
+
+\begin{proof}
+    Soit $c \in \Z /n \Z$, $k_1, k_2 \in c$. Alors $c = \hat{k_1} = \hat{k_2}$, donc
+    $k_1 \equiv k_2 [n]$, donc $\exists p \in \Z$ tel que $k_2 = k_1 + pn$.
+
+    Donc $\displaystyle e^{\frac{2i\pi k_1}n} = e^{\frac{2i\pi (k_2 - pn)} n} = e^{\frac{2i\pi k_2} n} e^{-2i\pi p} = e^{\frac{2i\pi k_2} n}$.
+
+    Donc $\varphi$ est bien définie.
+
+    \svspace Soient $c_1, c_2 \in \Z/n\Z$, $k_1 \in c_1, k_2 \in c_2$.
+
+    Alors
+
+     $$\begin{aligned}
+        \varphi(c_1 + c_2) & = \varphi(\hat{k_1} + \hat{k_2}) \\
+        & = \varphi(\widehat{k_1 + k_2}) \\
+        & = e^{\frac{2i\pi (k_1 + k_2)} n} \\
+        & = e^{\frac{2i\pi k_1} n} e^{\frac{2i\pi k_2} n} \\
+        & = \varphi(c_1) \cdot \varphi(c_2)
+    \end{aligned}$$
+
+    Donc $\varphi$ est un morphisme de groupes.
+
+    Soit $c \in \ker \varphi$, et soit $k \in c$.
+
+    Alors $\varphi(c) = 1$, donc $e^{\frac{2i\pi k} n} = 1$, donc $\frac k n \in \Z$ donc 
+    $c = \hat 0$, donc $\varphi$ est injective.
+
+    \avspace $\Z / n \Z$ et $\mathbb U$ ont même cardinal $n$, donc $\varphi$ est bijecive.
+\end{proof}
+
+
+\begin{remarque}
+    Deux groupes de même cardinal ne sont pas forcément isomorphes.
+\end{remarque}
+
+\begin{exemple}
+    Les groupes $(\Z/4\Z, +)$ et $\Z / 2\Z \times \Z / 2\Z$ ont même cardinal 4,
+    mais ne sont pas isomorphes car $\forall x \in \Z / 2\Z \times \Z / 2\Z, x + x = 0$,
+    alors que dans $(\Z/4\Z, +)$, $\hat 1 + \hat 1 = \hat 2 \neq \hat 0$.
+\end{exemple}
+
+\section{Ordre d'un élément}
+
+Soit $(G, \ast)$ un groupe et $a \in G$.
+
+\subsection{Morphisme fondamental}
+\begin{theoreme}{Puissances d'un élément et morphisme}{}
+    L'application $\fonction{\varphi_a}{(\Z, +)}{(G, \ast)}{k}{a^k}$ est un morphisme de groupes.
+\end{theoreme}
+
+\begin{proof}
+    Pour $p, n \in \Z$, $a^{p + n} = a^p \ast a^n$ déjà vu. 
+\end{proof}
+
+\begin{definition}{sous-groupe engendré}{}
+    \index{Sous-groupe!Engendre par un element@Engendré par un élément}
+    Soit $a \in G$. 
+    L'image du morphisme $\varphi_a$ est un sous-groupe de $(G, \ast)$ appelé
+    sous-groupe engendré par $a$ et noté $\langle a \rangle$. 
+    Ainsi, 
+    $$\langle a \rangle = \{a^k, k \in \Z\}$$
+\end{definition}
+
+\begin{exemple}
+    $G = \mathbb U$, $a = -1$. 
+    Alors $\langle a \rangle = \{(-1)^k, k \in \Z\} = \{1, -1\}$.
+
+    $\displaystyle a = j = e^{\frac{2i\pi}3}$.
+    Alors $\langle a \rangle = \{1, j, j^2\} = \mathbb U_3$.
+\end{exemple}
+
+
+\begin{remarque}
+    Si $(G, +)$ est un groupe additif et $a \in G$, alors 
+    $\fonction {\varphi_a} \Z G k {ka}$ 
+\end{remarque}
+
+\begin{exemple}
+    $G = (\Z, +)$, alors $\langle 0 \rangle = \{0\}$, $\langle -1 \rangle = \Z$
+\end{exemple}
+
+\begin{definition}{}{}
+    Soit $a \in G$, alors $\ker \varphi_a$ est un sous-groupe de $(\Z, +)$. 
+
+    $\ker \varphi_a = \{k \in \Z, a^k = e_G\}$, et donc 
+    $\exists ! n \in \N$ tel que $\ker \varphi_a = n \Z$. 
+\end{definition}
+
+\begin{definition}{Ordre d'un élément}{}
+    \index{Ordre!d'un element@d'un élément}
+    Soit $n \in \N$, 
+    $\ker \varphi_a = n\Z$. 
+
+    Si $n = 0$, $\varphi_a$ est injective et on dit que $a$ est d'ordre infini.
+
+    Si $n \geq 1$, $\varphi_a$ n'est pas injective et $\ker \varphi_a = n \Z$.
+    On dit que $a$ est d'ordre $n$. Ainsi, $n = \min \{k \in \N^*, a^k = e_G\}$.
+\end{definition}
+
+\begin{exemple}
+    $G = \C^*$ pour $\cdot$, $\langle 2 \rangle = \{2^k, k \in \Z\}$ et
+    $2^k = 1$ ssi $k = 0$, donc $2$ est d'ordre infini.
+
+    Dans $(\Z, +)$, $\langle 1 \rangle = \Z$ et $1$ est d'ordre infini.
+
+    \avspace Dans $(\C^*, \cdot)$, $\langle 1 \rangle = \{1\}$ et
+    $1^k = 1$ pour tout $k \in \Z$, donc $1$ est d'ordre $1$ et 
+    $\ker \varphi_1 = \Z$.
+\end{exemple}
+
+
+\subsection{Eléments d'ordre infini}
+
+\begin{proposition}{}{}
+    \index{Ordre!infini}
+    Soit $a \in G$ d'ordre infini et $\fonction {\varphi_a} \Z G k {a^k}$ 
+    alors $\ker \varphi_a = \{0\}$ et $\varphi_a$ est injective.
+
+    Ainsi, $\fonction{\tilde \varphi_a} \Z {\langle a \rangle} k {a^k}$  est un 
+    isomorphisme de groupes.
+
+    En particulier, $\langle a \rangle$ est infini.
+\end{proposition}
+
+\begin{exemple}
+    $\fonction{\tilde \varphi_2}{\Z}{\langle 2 \rangle \subset \C^*}{k}{2^k}$ est un isomorphisme de groupes.
+
+\end{exemple}
+
+
+\subsection{Eléments d'ordre fini}
+
+Soit $a \in G$ d'ordre fini $n$.
+
+\begin{proposition}{}{}
+    Soit $a \in G$ d'ordre fini $n$.
+    Soit $k \in \Z$, alors
+    $a^k = e_G$ ssi $n \mid k$.
+\end{proposition}
+
+\begin{proof}
+    $a^k = e_G$ ssi $k \in \ker \varphi_a$ ssi $k \in n \Z$ ssi $n \mid k$.
+\end{proof}
+
+\begin{proposition}{}{}
+    Soit $a \in G$ d'ordre fini $n$.
+    $\langle a \rangle$ est un groupe fini de cardinal $n$ et 
+    $$\langle a \rangle = \{e_G, a, a^2, \ldots, a^{n-1}\}$$
+\end{proposition}
+
+\idee{Division euclidienne puis cardinal.}
+
+\begin{proof}
+    Notons $B = \{e_G, a, a^2, \ldots, a^{n-1}\}$.
+
+    Montrons que $\langle a \rangle = B$. 
+    
+    On a clairement $B \subset \langle a \rangle$.
+
+    Soit maintenant $b \in \langle a \rangle$, alors $\exists k \in \Z$ tel que $b = a^k$.
+
+    Par division euclidienne, $\exists q, r \in \Z$ tels que $k = nq + r$ avec $0 \leq r < n$.
+
+    Donc $b = a^{nq + r} = (a^n)^q a^r = e_G^q a^r = a^r \in B$.
+
+    \avspace Montrons que Card $B = n$.
+
+    Soient $k_1, k_2 \in \ninter{0}{n-1}$ tels que $a^{k_1} = a^{k_2}$.
+
+    Alors $a^{k_1 - k_2} = e_G$, donc $n \mid k_1 - k_2$.
+    Or $-(n-1) < k_1 - k_2 < n-1$, donc $k_1 - k_2 = 0$ et $k_1 = k_2$.
+
+    Donc les éléments de $B$ sont deux à deux distincts, et Card $B = n$.
+
+\end{proof}
+
+\begin{corollaire}{}{}
+    $a \in G$ est d'ordre fini ssi $\langle a \rangle$ est fini, et alors l'ordre de 
+    $a$ est $\operatorname{Card} \langle a \rangle$.
+\end{corollaire}
+
+\begin{exemple}
+    $i \in (\C^*, \cdot)$ est d'ordre $4$ car
+    $\langle i \rangle = \{1, i, -1, -i\}$
+\end{exemple}
+
+\begin{theoreme}{}{}
+    Soit $(G, \ast)$ un groupe fini et $a \in G$, 
+    alors $a$ est d'ordre fini. 
+
+    De plus, l'ordre de $a$ divise le cardinal de $G$.
+    
+\end{theoreme}
+
+\idee{Cas commutatif uniquement. Poser le produit de tous les éléments, et 
+bijection par multiplication à gauche.}
+
+\begin{proof}
+    Dans le cas où $G$ est commutatif. 
+
+    Remarquons que $\fonction{f} G G x {a \ast x}$ est une bijection de $G$ dans $G$
+    et considérons $\displaystyle b = \prod_{x \in G} x$ (possible car $G$ est commutatif).
+
+    Par bijectivité de $f$, on a aussi $\displaystyle b = \prod_{x \in G} (a \ast x)$.
+
+    Et alors $\displaystyle b = a^{\operatorname{Card} G} \ast \prod_{x \in G} x = a^{\operatorname{Card} G} \ast b$.
+
+    Donc $a^{\operatorname{Card} G} = e_G$, donc $a$ est d'ordre fini.
+
+    Donc l'ordre de $a$ divise $\operatorname{Card} G$.
+\end{proof}
+
+Le théorème de Lagrange généralise ce résultat.
+
+\begin{theoreme}{Hors programme, théorème de Lagrange}{}
+    \index{Lagrange}
+    Soit $(G, \ast)$ un groupe fini et $H$ un sous-groupe de $(G, \ast)$.
+    Alors le cardinal de $H$ divise le cardinal de $G$.
+    
+\end{theoreme}
+
+Preuve du théorème précédent en utilisant Lagrange :
+\begin{proof}
+    Si on adment ce théorème, soit $a \in G$.
+
+    Posons $H = \langle a \rangle$, alors l'ordre de $a$ est le cardinal de $H$.
+    Par le théorème de Lagrange, le cardinal de $H$ divise le cardinal de $G$.
+\end{proof}
+
+
+\avspace \idee{Poser une relation d'équivalence, dont les classes sont 
+de même cardinal que $H$.}
+
+\uindent{Preuve du théorème de Lagrange (hors programme) }
+
+\svspace \begin{proof}
+    Considérons la relation $R$ sur $G$ définie par :
+    $$\forall (x, y) \in G^2, x R y \Leftrightarrow x^{-1} \ast y \in H$$
+
+    Montrons que $R$ est une relation d'équivalence.
+
+    \uindent{Réflexivité } 
+    
+    \svspace Soit $x \in G$, alors $x^{-1} \ast x = e_G \in H$, donc $x R x$.
+    
+    \uindent{Symétrie }
+
+    \svspace Si $x R y$, alors $\exists h \in H$, $x = hy$ donc $y = h^{-1} x$ 
+    et $h^{-1} \in H$, car $H$ est un sous-groupe donc $y R x$.
+
+    \uindent{Transitivité }
+
+    \svspace Soit $x, y, z \in G$ tels que $x R y$ et $y R z$.
+
+    Alors $\exists h_1, h_2 \in H$ tels que $x = h_1 y$ et $y = h_2 z$.
+
+    Donc $x = h_1 h_2 z$ et $h_1 h_2 \in H$, donc $x R z$.
+
+    
+    \lvspace Soit $c$ une classe d'équivalence telle que $x \in c$. 
+
+    Considérons $\fonction \varphi {\hat e_G = H}c h {h x}$. 
+    $\varphi$ est bien définie car $hx R x$ donc $hx \in c$. 
+
+    Considérons $\fonction{\psi} c H {y} {yx^{-1}}$.
+
+    $\psi$ est bien définie car $y \in c$ donc $\exists h \in H$, $y = hx$ donc $yx^{-1} = h \in H$.
+
+    $\varphi \circ \psi = \id_c$ et $\psi \circ \varphi = \id_H$, donc $\varphi$ est bijective. 
+
+    Donc $\operatorname{Card} c = \operatorname{Card} H$, or $G$ est l'union disjointe de ses classes d'équivalences.
+
+    Donc $\operatorname{Card} G = \sum_{i \in I} \operatorname{Card} c_i = \sum_{i \in I} \operatorname{Card} H = \operatorname{Card} I \cdot \operatorname{Card} H$.
+\end{proof}
+
+\section{Groupes monogènes et cycliques }
+
+\begin{definition}{groupe monogène et cyclique}{}
+    \index{Groupe!monogène}
+    \index{Groupe!cyclique}
+    Soit $(G, \ast)$ un groupe. On dit que $G$ est monogène ssi il existe $a \in G$ tel que 
+    $G = \langle a \rangle$. 
+
+    $a$ est alors appelé un générateur de $G$.
+
+    Si de plus $G$ est fini, on dit que $G$ est cyclique.
+\end{definition}
+
+\begin{exemple}
+    $\Z = \langle 1 \rangle$ est un groupe monogène d'ordre infini.
+
+    $\U_n = \langle e^{\frac{2i\pi} n} \rangle$ est un groupe cyclique d'ordre $n$.
+
+    $(\Z/n\Z, +) = \langle \hat 1 \rangle$ est un groupe cyclique d'ordre $n$.
+
+    $(Z / 10 \Z) = \langle \hat 3 \rangle$ est un groupe cyclique d'ordre $10$.
+    
+    $(\Z / 2 \Z) \times (\Z / 2 \Z)$ n'est pas monogène car tous ses éléments sont d'ordre $2$. 
+\end{exemple}
+
+\begin{theoreme}{isomorphisme des groupes monogènes}{}
+    Tout groupe monogène infini est isomorphe à $(\Z, +)$.
+\end{theoreme}
+
+\idee{Utiliser $\varphi_a$.}
+
+\begin{proof}
+    Soit $(G, \ast)$ un groupe monogène infini, et soit $a \in G$ tel que $G = \langle a \rangle$.
+
+    Puisque $G$ est infini, $a$ est d'ordre infini.
+
+    Considérons $\fonction{\varphi_a}{(\Z, +)}{(G, \ast)}{k}{a^k}$.
+
+    Comme $G = \langle a \rangle$, $\varphi_a$ est surjective.
+
+    Comme $a$ est d'ordre infini, $\ker \varphi_a = \{0\}$, donc $\varphi_a$ est injective.
+
+    Donc $\varphi_a$ est un isomorphisme de groupes.
+\end{proof}
+
+\begin{theoreme}{isomorphisme des groupes cycliques}{}
+    Tout groupe cyclique de cardinal $n$ est isomorphe à $(\Z/n\Z, +)$.
+\end{theoreme}
+
+\idee{Utiliser $\varphi_a$.}
+
+\begin{proof}
+    Soit $(G, \ast)$ un groupe cyclique de cardinal $n$, et soit $a \in G$ tel que $G = \langle a \rangle$.
+
+    Donc $a$ est d'ordre fini $n$.
+
+    Considérons $\fonction{\varphi}{(\Z/n\Z, +)}{(G, \ast)}{c = \hat k}{a^k}$.
+
+    \uindent{Montrons que $\varphi$ est bien définie }
+
+    \svspace Soient $k_1, k_2 \in c$. Alors $k_1 \equiv k_2 [n]$, donc $\exists b \in \Z, k_2 = k_1 + bn$.
+    
+    Donc $a^{k_2} = a^{k_1 + bn} = a^{k_1} (a^n)^b = a^{k_1} e_G^b = a^{k_1}$.
+
+    Donc $\varphi_a$ est bien définie.
+
+    \uindent{Montrons que $\varphi$ est un morphisme de groupes }
+
+    \svspace Soient $c_1, c_2 \in \Z/n\Z$, $k_1 \in c_1, k_2 \in c_2$.
+
+    $$ \begin{aligned}
+        \varphi(c_1 + c_2) & = \varphi(\hat{k_1} + \hat{k_2}) \\
+        & = \varphi(\widehat{k_1 + k_2}) \\
+        & = a^{k_1 + k_2} \\
+        & = a^{k_1} \ast a^{k_2} \\
+        & = \varphi(c_1) \ast \varphi(c_2)
+    \end{aligned}$$
+
+    Donc $\varphi$ est un morphisme de groupes.
+
+    Soit $b \in G, $ alors $\exists k \in \Z$ tel que $b = a^k$, donc $b = \varphi(\hat k)$, donc $\varphi$ est surjective.
+
+    Or $\operatorname{Card} \Z/n\Z = n = \operatorname{Card} G$, donc $\varphi$ est bijective.
+\end{proof}
+
+\subsection{Generateurs de \texorpdfstring{$\Z / n \Z$}{Z/nZ} et \texorpdfstring{$\mathbb U$}{U}}
+
+\begin{theoreme}{Générateurs de $\Z / n \Z$}{}
+    Les générateurs de $(\Z/n\Z, +)$ sont les éléments $\hat k$ tels que 
+    $k \in \ninter{1}{n-1}$ et $\pgcd(k, n) = 1$.
+\end{theoreme}
+
+\idee{Bézout}
+
+\begin{proof}
+    Soit $k \in \ninter{1}{n-1}$ tel que $\pgcd(k, n) = 1$.
+
+    Montrons que $\langle \hat k \rangle = \Z / n \Z$.
+
+    On a clairement $\langle \hat k \rangle \subset \Z / n \Z$.
+
+    Soit $c \in \Z / n \Z$ et $b \in c$.
+
+    $k \wedge n = 1$ donc $\exists u, v \in \Z$ tels que $uk + vn = 1$.
+
+    Donc $u\hat k = \hat 1$, donc $ub \hat k = b \hat 1 = \hat b = c$. Donc $c \in \langle \hat k \rangle$, 
+    donc $\hat k$ est un générateur de $\Z / n \Z$.
+
+    \avspace Soit maintenant $c \in \Z / n \Z$ tel que $\langle c \rangle = \Z / n \Z$.
+
+    Soit $k \in \ninter {0}{n-1}$ tel que $c = \hat k$.
+
+    On a $\langle 0 \rangle = \{\hat 0\} \neq \Z / n \Z$, donc $k \neq 0$.
+
+    $\hat 1 \in \Z / n \Z$ donc $\exists u \in \Z$ tel que $\hat 1 = u c$. 
+
+    Donc $\hat 1 = \widehat{uk}$, donc $1 \equiv uk [n]$, donc $\exists v \in \Z$ tel que $uk - 1 = vn$.
+
+    Donc (par Bézout) $\pgcd(k, n) = 1$.
+
+\end{proof}
+
+\begin{corollaire}{Générateurs de $U_n$}{}
+    Les générateurs de $(\mathbb U_n, \cdot)$ sont les $e^{\frac{2i\pi k} n}$ tels que 
+    $k \in \ninter{1}{n-1}$ et $\pgcd(k, n) = 1$ que l'on appelle les racines primitives $n$-ièmes de l'unité.
+\end{corollaire}
+
+\begin{proof}
+    Isomorphisme entre $(\Z / n \Z, +)$ et $(\mathbb U_n, \cdot)$.
+\end{proof}
+
+\begin{exemple}
+    $n = 2$ : $X^2 - 1 = (X - 1)(X + 1) = (X - e^{\frac{2 \cdot 0 \pi} 2})(X - e^{\frac{2 \cdot 1 \pi}2})$
+    Donc une racine primitive $2$-ième de l'unité : $-1$.
+    
+    \avspace $n = 3$ : $X^3 - 1 = (X - 1)(X - j)(X - j^2)$ avec $j = e^{\frac{2i\pi}3}$.
+    $1 \wedge 3 = 1 = 2 \wedge 3$ donc 2 racines $3$-ième de l'unité.
+
+    \avspace $n = 4$ : $X^4 - 1 = (X - 1)(X + 1)(X - i)(X + i) = (X - 1)(X + 1)(X^2 + 1)$
+    Donc $1 \wedge 4 = 1 = 3 \wedge 4$ donc 2 racines primitives $4$-ième de l'unité : $i$ et $-i$.
+    
+    \avspace $n = 5$ : $X^5 - 1 = (X - 1)(X - e^{\frac{2i\pi}5})(X - e^{\frac{4i\pi}5})(X - e^{\frac{6i\pi}5})(X - e^{\frac{8i\pi}5})$
+    Donc $1 \wedge 5 = 1 = 2 \wedge 5 = 3 \wedge 5 = 4 \wedge 5$ donc 4 racines primitives $5$-ième de l'unité.
+
+
+\end{exemple}
+
+\section{Sous-groupe engendré par une partie }
+
+\begin{definition}{sous-groupe engendré par une partie}{}
+    \index{Sous-groupe!Engendre par une partie@Engendré par une partie}
+    Soit $(G, \ast)$ un groupe et $E \subset G$.
+
+    On appelle sous-groupe engendré par $E$ et on note $\langle E \rangle$
+    l'intersection de tous les sous-groupes de $(G, \ast)$ contenant $E$.
+\end{definition}
+
+\begin{remarque}
+    Une intersection de sous-groupes étant un sous-groupe, $\langle E \rangle$ est bien un sous-groupe de $(G, \ast)$
+    qui contient $E$, qui est le plus petit pour l'inclusion.
+\end{remarque}
+
+\begin{exemple}
+    $\langle \emptyset \rangle = \{e_G\}$ et $\langle G \rangle = G$.
+\end{exemple}
+
+\begin{proposition}{sous-groupe engendré par un singleton}{}
+    Soit $a \in G, \langle \{a\} \rangle = \langle a \rangle$.
+\end{proposition}
+
+\begin{proof}
+    $\langle a \rangle$ est un sous-groupe de $(G, \ast)$ contenant $\{a\}$ donc $\langle \{a\} \rangle \subset \langle a \rangle$.
+
+    Soit $b \in \langle a \rangle$, alors $\exists k \in \Z$ tel que $b = a^k$.
+
+    Or $\{a\} \subset \langle \{a\} \rangle$ donc $a \in \langle \{a\} \rangle$.
+
+    Mais $\langle \{a\} \rangle$ est un sous-groupe donc $a^k \in \langle \{a\} \rangle$.
+
+    Donc $b \in \langle \{a\} \rangle$, donc $\langle a \rangle \subset \langle \{a\} \rangle$.
+\end{proof}
+
+\begin{definition}{partie génératrice d'un groupe}{}
+    On dit qu'une partie $A$ est génératrice de $(G, \ast)$ ssi $\langle A \rangle = G$.
+\end{definition}
+
+\begin{theoreme}{}{}
+    Soit $A \subset G$ non vide. Alors 
+    
+    $\langle A \rangle = \{y \in G, \, \exists n \in \N^*, \exists a_1, \ldots, a_n \in A, \exists k_1, \ldots, k_n \in \Z, y = a_1^{k_1} \ast \cdots \ast a_n^{k_n}\}$.
+\end{theoreme}
+
+\idee{Caractérisation des sous-groupes.}
+
+\begin{proof}
+    Posons $B$ l'horreur dans le théorème précédent. 
+
+    Soit $x \in A$, alors $x = x^1 \in B$, donc $A \subset B$.
+
+    Montrons que $B$ est un sous-groupe de $(G, \ast)$.
+
+    $A \neq \emptyset$ donc $B \neq \emptyset$.
+
+    Soient $y, z \in B$. Alors 
+    $\exists n, m \in \N^*, \exists a_1, \ldots, a_n \in A, \exists k_1, \ldots, k_n \in \Z, y = a_1^{k_1} \ast \cdots \ast a_n^{k_n}$
+    et $\exists a'_1, \ldots, a'_m \in A, \exists k'_1, \ldots, k'_m \in \Z, z = a_1^{', k'_1} \ast \cdots \ast a_m^{', k'_m}$.
+
+    alors $y \ast z^{-1} = a_1^{k_1} \ast \cdots \ast a_n^{k_n} \ast a_1^{' -k'_1} \ast \cdots \ast a_m^{' -k'_m} \in B$.
+    Donc $B$ est un sous-groupe de $(G, \ast)$ contenant $A$, donc $\langle A \rangle \subset B$.
+
+    Soit $y \in B$. 
+    $y = a_1^{k_1} \ast \cdots \ast a_n^{k_n}$ avec $a_1, \ldots, a_n \in A$, donc $a_1, \ldots, a_n \in \langle A \rangle$.
+    Donc $y \in \langle A \rangle$, donc $B \subset \langle A \rangle$.
+\end{proof}
+
+\begin{exemple}
+    $G = \Z$ et $k_1, k_2 \in \Z$, $A = \{k_1, k_2\}$. 
+    Alors $\langle A \rangle = k_3 \Z$, avec $k_3 = \pgcd(k_1, k_2)$.
+
+    Posons $k_3 = \pgcd(k_1, k_2)$. et montrons que $\langle A \rangle = k_3 \Z$.
+
+    Par théorème, $\langle A \rangle = \{y \in \Z | \exists \alpha, \beta \in \Z, y = \alpha k_1 + \beta k_2\}$.
+    car $+$ est commutative, donc une somme de $n$ éléments égaux à des multiples de $k_1$ et $k_2$
+    se transforme en une somme de deux éléments égaux à des multiples de $k_1$ et $k_2$.
+
+    Soit $y \in B, \, \exists \alpha, \beta \in \Z, y = \alpha k_1 + \beta k_2$. 
+    Or $k_3 \mid k_1$ et $k_3 \mid k_2$, donc $k_3 \mid y$, donc $y \in k_3 \Z$ et 
+    $B \subset k_3 \Z$.
+
+    Soit maintenant $y \in k_3 \Z$, alors $\exists p \in \Z, y = p k_3$.
+
+    Notons $k_1 = k_3 b$ et $k_2 = k_3 c$. Alors $b \wedge c = 1$.
+
+    $\exists u, v \in \Z$ tels que $ub + vc = 1$.
+
+    Donc $ubk_3 + vck_3 = k_3$, donc $uk_1 + vk_2 = k_3$.
+
+    Donc $k_3 \in B$, donc $B = k_3 \Z$
+
+    \uindent{Exemple 2 (énoncé) }
+
+    $G = \R$, $k_1 \neq k_2 \in \R^*$, $A = \{k_1, k_2\}$. Alors : 
+
+    Si $\frac{k_1}{k_2} \in \Q$ ($k_1$ et $k_2$ sont dits commensurables), alors il existe 
+    $k_3 \in \R$ tel que $\langle A \rangle = k_3 \Z$.
+
+    Si $\frac{k_1}{k_2} \notin \Q$, alors $\not exists k_3 \in \R, \, \langle A \rangle = k_3 \Z$, 
+    c'est à dire que $\langle A \rangle$ est monogène et donc (par exo 12 du TD), 
+    $\langle A \rangle$ est dense dans $\R$.
+
+    \uindent{Preuve de l'exemple 2 }
+
+    \svspace Supposons que $\frac{k_1}{k_2} = \frac p q \in \Q$ avec $p, q \in \Z^*$, $p \wedge q = 1$.
+
+    Soit $y \in \langle A \rangle$, alors $\exists \alpha, \beta \in \Z, y = \alpha k_1 + \beta k_2$.
+
+    Donc $\displaystyle y = \alpha \frac p q k_2 + \beta k_2 = \frac{\alpha p + \beta q} q k_2$.
+
+    Donc $y \in \frac{k_2} q \Z$, et il existe $c \in \Z$ tel que $\displaystyle y = c \frac{k_2} q$.
+
+    Alors par le théorème de Bézout, $\exists u, v \in \Z$ tels que $up + vq = 1$.
+
+    Donc $\displaystyle y = c \frac{k_2} q (pu + qv) = \frac{c k_2 p u}{q} + cv k_2 = c u k_1 + cv k_2 \in \langle A \rangle$.
+
+    Donc $k_3 = \frac{k_2} q$ et $\langle A \rangle = k_3 \Z$.
+
+    \svspace Supposons maintenant que $\frac{k_1}{k_2} \notin \Q$ et montrons 
+    que $\langle A \rangle$ n'est pas monogène.
+
+    Par l'absurde, s'il était monogène, il existerait $k_3 \in \R$ tel que
+    $\langle A \rangle = \langle k_3 \rangle$. 
+
+    $k_1 \in \langle A \rangle$ donc $\exists u \in \Z$ tel que $k_1 = u k_3$, 
+
+    $k_2 \in \langle A \rangle$ donc $\exists v \in \Z$ tel que $k_2 = v k_3$, $v \neq 0$ car $k_2 \neq 0$.
+
+    Donc $\frac{k_1}{k_2} = \frac u v \in \Q$, ce qui est absurde.
+
+    \uindent{Exemple 3 }
+
+    $\alpha < \beta \in \R$, et $\langle ]\alpha, \beta[ \rangle = \R$.
+
+    Posons $B = \langle ]\alpha, \beta[ \rangle$, et $\kappa = \beta - \alpha > 0$.
+
+    Montrons que $\forall \varepsilon \in [0, \frac{\kappa} 2], \, \varepsilon \in B$.
+
+    Soit $x \in ]\alpha, \frac{\alpha + \beta} 2[$, alors $x + \varepsilon \in ]\alpha, \beta[$.
+
+    $x \in ]\alpha, \beta[$ et $x + \varepsilon \in ]\alpha, \beta[$ donc $\varepsilon = \left(x + \frac{\kappa}{2}\right) - x \in B$
+
+    $z = y - \lceil \frac {2y} \kappa \rceil \frac \kappa 2 \in [0, \frac \kappa 2]$. 
+
+    En effet, $\frac{2y} \kappa - 1 < \lceil \frac {2y} \kappa \rceil \leq \frac {2y} \kappa$.
+
+    $y - \frac{\kappa }{2 } \leqslant \lceil \frac {2y} \kappa \rceil \frac \kappa 2 \leqslant y$
+
+    $0 \leqslant y - \lceil \frac {2y} \kappa \rceil \frac \kappa 2 \leqslant \frac \kappa 2$.
+
+    Donc $z \in [0, \frac \kappa 2]$, donc $z \in B$, or $\frac \kappa 2 \in B$, donc $y = z + \lceil \frac {2y} \kappa \rceil \frac \kappa 2 \in B$.
+
+    Donc $\R \subset B$, donc $B = \R$.
+
+    \uindent{Exemple 4 }
+
+    $G = SL_2(\Z) = \left\{ M = \begin{pmatrix}
+    a & b \\
+    c & d
+    \end{pmatrix} \in \mathcal M_2(\R), a, b, c, d \in \Z \text{ et } ad - bc = 1 \right\}$ 
+
+    $G$ est un sous-groupe de $GL_2(\R)$ avec $S = \begin{pmatrix}
+    0 & 1 \\
+    -1 & 0
+    \end{pmatrix}$ et $T = \begin{pmatrix}
+    1 & 1 \\
+    0 & 1
+    \end{pmatrix}$.
+    Alors $\langle \{S, T\} \rangle = G$
+\end{exemple}
+
+
+
+
+
+

@@ -1,0 +1,212 @@
+\section{Réduction simultanée}
+
+\begin{theoreme}{}{}
+    $E$ un $\K$-ev de dimension finie, $(u_i)_{i \in I} \in \mathscr L(E)^I$ famille d'endomorphismes de $E$.
+    \begin{enumerate}
+        \item $\forall i, u_i$ est diagonalisable. $\forall i \neq j, \, u_i \circ u_j = u_j \circ u_i$. \\
+        Alors $\exists \beta$ base de $E$ tq $\forall i, [u_i]_\beta \in \mathcal D_n(\K)$ (matrices diagonales).
+        \item $\forall i, u_i$ trigonalisable, $\forall i \neq j, u_i \circ u_j = u_j \circ u_i$. \\
+        Alors $\exists \beta$ base de $E, [u_i]_\beta \in \mathcal T_n(\K)$ (triangulaire supérieure).
+    \end{enumerate}
+\end{theoreme}
+
+\begin{proof}
+    Par récurrence forte sur $\dim E$.
+    
+    (1) On suppose qu'il existe $i_0$, $u_{i_0}$ n'est pas une homothétie.
+    Soit $\lambda \in \text{Sp}(u_{i_0})$.
+    
+    $F_\lambda = \ker(u_{i_0} - \lambda \text{id}) \neq \{0\}$ et $\neq \{E\}$ (car pas $\lambda \text{id}$).
+    
+    $u_i \circ u_{i_0} = u_{i_0} \circ u_i$ alors $F_\lambda$ est $u_i$ stable.
+    
+    Soit $v_i = u_i|_{F_\lambda} : F_\lambda \to F_\lambda$ endo induit.
+    (grâce au polynôme annulateur scindé racines simples)
+    
+    Chaque $u_i$ est diagonalisable $\implies v_i = u_i|_{F_\lambda}$ est diagonalisable 
+    et $\forall i, \forall j, \, v_i \circ v_j = v_j \circ v_i$.
+    
+    \[ E = \bigoplus_{\lambda \in \text{Sp}(u_{i_0})} E_\lambda(u_{i_0}) \]
+    
+    Puis HR sur chaque $E_\lambda(u_{i_0})$, la famille $u_i|_{E_\lambda}$ possède une base $\beta_\lambda$ de vecteurs propres.
+    
+    Par concaténation des $\beta_\lambda$, on a une base $\beta$ commune de vecteurs propres.
+    
+    \lvspace
+    (2), pour trigonaliser, récurrence sur $\dim E$.
+    
+    Soit $i_0$ tq $u_{i_0}$ pas une homothétie, soit $\lambda$ une valeur propre $E_\lambda(u_{i_0})$ associé.
+
+\[ E = E_\lambda(u_{i_0}) \oplus G \quad \text{avec } G \text{ un supp.} \]
+
+$E_\lambda(u_{i_0})$ est $u_i$ stable $\forall i$ (par commutativité).
+
+Dans une base $\beta$ adaptée à la somme directe : 
+\[ [u_i]_\beta = \begin{pmatrix} A_i & B_i \\ 0 & C_i \end{pmatrix} \begin{matrix} E_\lambda(u_{i_0}) \\ G \end{matrix} \]
+
+\[ \forall i, \forall j, \quad \begin{pmatrix} A_i & B_i \\ 0 & C_i \end{pmatrix} \begin{pmatrix} A_j & B_j \\ 0 & C_j \end{pmatrix} = \begin{pmatrix} A_j & B_j \\ 0 & C_j \end{pmatrix} \begin{pmatrix} A_i & B_i \\ 0 & C_i \end{pmatrix} \]
+
+\[ \text{donc } \begin{pmatrix} A_i A_j & * \\ 0 & C_i C_j \end{pmatrix} = \begin{pmatrix} A_j A_i & * \\ 0 & C_j C_i \end{pmatrix} \]
+
+$A_i A_j = A_j A_i$ de même pour les $C_i$, et par HR, $\exists P, Q$,
+\[ \forall i, \quad A_i = P T_i P^{-1} \text{ et } C_i = Q T'_i Q^{-1} \]
+
+\[
+    \begin{pmatrix} P^{-1} & 0 \\ 0 & Q^{-1} \end{pmatrix}
+    \begin{pmatrix} A_i & B_i \\ 0 & C_i \end{pmatrix}
+    \begin{pmatrix} P & 0 \\ 0 & Q \end{pmatrix}
+\]
+
+\[
+    = \begin{pmatrix} T_i & * \\ 0 & T'_i \end{pmatrix}
+\]
+
+Or $T_i$ et $T'_i$ sont triangulaires, donc la matrice obtenue est triangulaire.
+Théorème démontré.
+\end{proof}
+
+
+\begin{tcolorbox}[colframe=ideabar, colback=white, title=Idée à retenir]
+    Pour exos similaires : récurrence sur la dimension + exhiber un sous-espace stable non trivial.
+\end{tcolorbox}
+
+\section*{Applications directes du théorème}
+
+\begin{enumerate}
+    \item $(GL_n(\C), \times)$ est isomorphe comme groupe à $(GL_m(\C), \times) \implies n=m$.
+\end{enumerate}
+
+\begin{proof}
+    Étude des sous-groupes $H$ de $GL_n(\C)$ vérifiant :
+    \[ \forall M \in H, \, M^2 = I \]
+    
+    Soit $H$ un tel sous-groupe. $H$ est abélien.
+    $M, N \in H \implies (MN)^2 = I \implies MNMN = I$.
+    Or $M^{-1} = M$ et $N^{-1} = N$, donc $MN = N^{-1} M^{-1} = NM$.
+    
+    $\forall M \in H$, $X^2 - 1$ annule $M$ et $(X^2 - 1) = (X-1)(X+1)$.
+    Donc chaque $M$ est diagonalisable avec $\text{Sp}(M) \subset \{-1, 1\}$.
+    
+    Les éléments commutent et sont diagonalisables, ils sont donc simultanément diagonalisables.
+    \[ \exists P \in GL_n(\C) \text{ tq } \forall M \in H, \, M = P \begin{pmatrix} \pm 1 & & 0 \\ & \ddots & \\ 0 & & \pm 1 \end{pmatrix} P^{-1} \]
+    
+    Donc $|H| \leqslant 2^n$. De plus, si $H = \left\{ \begin{pmatrix} \pm 1 & & 0 \\ & \ddots & \\ 0 & & \pm 1 \end{pmatrix} \right\}$, convient, de card $2^n$.
+    Donc la borne est optimale.
+    
+    Soit $\fonction{\varphi}{GL_n(\C)}{GL_m(\C)}{}{}$ un isomorphisme.
+    Soit $H_n$ un sous-groupe optimal de $GL_n(\C)$ (card $2^n$).
+    Alors $|\varphi(H_n)| = 2^n$.
+    
+    Or $\varphi(H_n)$ est un sous-groupe de $GL_m(\C)$ d'exposant 2 (car $\varphi$ morphisme).
+    Donc $|\varphi(H_n)| \leqslant 2^m$.
+    
+    Donc $2^n \leqslant 2^m \implies n \leqslant m$.
+    Par symétrie, $m \leqslant n$. Donc $n = m$.
+\end{proof}
+
+\begin{enumerate}
+    \setcounter{enumi}{1}
+    \item Soit $A \in \mathscr M_n(\C)$, soit $\fonction{u_A}{\mathscr M_n(\C)}{\mathscr M_n(\C)}{M}{AM}$.
+    
+    $u_A \circ u_A = M \mapsto A^2 M$ et $u_A^k : M \mapsto A^k M$.
+    
+    Si $P \in \C[X]$, $P(u_A) : M \mapsto P(A)M$.
+    
+    $\forall P \in \C[X]$, $P(u_A) = 0 \iff P(A) = 0$ (en prenant $M=I_n$).
+    
+    Donc $\mu_A = \mu_{u_A}$.
+    On en déduit que $A$ est diagonalisable si et seulement si $u_A$ l'est.
+\end{enumerate}
+
+%\restaurergeometrie
+
+$\text{Sp}(A) = \text{Sp}(u_A)$ (mais pas les mêmes multiplicités).
+
+Si $A$ diagonalisable, $AM = \lambda M \implies (A - \lambda I) M = 0$.
+Donc $\im(M) \subset \ker(A - \lambda I) = E_\lambda(A)$.
+
+\[ 
+    E_\lambda(u_A) = \{ M \in \mathscr M_n(\C) \mid \im(M) \subset E_\lambda(A) \} 
+\]
+\[ 
+    = \left\{ (C_1 \dots C_n) \mid C_i \in E_\lambda(A) \right\} 
+\]
+\[ 
+    \simeq (E_\lambda(A))^n 
+\]
+
+Donc $\dim E_\lambda(u_A) = n \dim E_\lambda(A)$.
+
+\[ \chi_{u_A} = (\chi_A)^n, \quad \operatorname{tr}(u_A) = n \operatorname{tr}(A) \quad \text{et} \quad \det(u_A) = (\det A)^n \]
+
+Si $A$ pas diagonalisable :
+Fonctions continues de $A$ (densité des matrices diagonalisables) :
+\[ \chi_{u_A} = (\chi_A)^n ; \quad \operatorname{tr}(u_A) = n \operatorname{tr}(A) \quad \text{et} \quad \det(u_A) = (\det A)^n \]
+
+\lvspace
+\uindent{Application} $A, B \in \mathscr M_n(E)$, 
+\[
+    \fonction{}{\mathscr M_n(E)}{\mathscr M_n(E)}{M}{AM + MB}
+\]
+\[ = u_A(M) + v_B(M) \]
+
+Si $A$ et $B$ sont diagonalisables, $u_A$ et $v_B$ le sont.
+\[ u_A \circ v_B = v_B \circ u_A \]
+(car $A(MB) = (AM)B$).
+
+$u_A$ et $v_B$ sont simultanément diagonalisables, et donc $\varphi = u_A + v_B$ est diagonalisable.
+
+On verra que $\varphi$ diago $\implies A$ et $B$ diago.
+
+\uindent{Application (3) (Rayon spectral)} Soit $A \in \mathscr M_n(\C)$,
+\[ \rho(A) = \max_{\lambda \in \text{Sp}(A)} |\lambda| = \text{rayon spectral de } A. \]
+
+Aucun lien en général entre $\rho_{A+B}, \rho_{AB}$ et $\rho_A, \rho_B$.
+
+\begin{theoreme}{}{}
+    Si $AB = BA$, alors $\rho(A+B) \leqslant \rho(A) + \rho(B)$
+    et $\rho(AB) \leqslant \rho(A) \rho(B)$.
+\end{theoreme}
+
+\begin{proof}
+    Trigonalisation simultanée ; $\exists P$ tq $A = P T_1 P^{-1}$ et $B = P T_2 P^{-1}$.
+    
+    Donc $A+B = P(T_1 + T_2) P^{-1}$
+    et $AB = P(T_1 T_2) P^{-1}$.
+\end{proof}
+
+\lvspace
+\uindent{Exo 1} Soit $A, B \in \mathscr M_n(\C)$ tq $AB = 0$. Alors $A$ et $B$ sont simultanément trigonalisables.
+
+\marginnote{difficile}
+\uindent{Exo 2} $A, B \in \mathscr M_n(\C)$. On suppose que $\operatorname{rg}(AB - BA) \leqslant 1$.
+Alors $A$ et $B$ sont simultanément trigonalisables.
+
+
+\begin{proof}[Dém exo 1]
+    Si $A \in GL_n(\C)$, $B = 0 \implies$ évident.
+    
+    Si $A \notin GL_n(\C)$. Alors $\im(A) \neq \C^n$ et $\ker A \neq \{0\}$.
+    
+    \uindent{Aff} $\ker A$ stable par $B$.
+    Si $X \in \ker A$, $A(BX) = 0$ (car $AB=0 \implies \im B \subset \ker A$).
+
+Considérons l'endomorphisme induit $f_B : \ker A \to \ker A$ défini par $X \mapsto BX$.
+C'est bien défini car $\ker A$ est stable par $B$.
+
+Soit $X \in \ker A \setminus \{0\}$ un vecteur propre de $f_B$ (existe car on travaille sur $\C$).
+On complète $X$ en une base $\beta$ de $\C^n$.
+
+Dans cette base, comme $X \in \ker A$, la première colonne de $A$ est nulle :
+\[ [A]_\beta = \left[ \begin{array}{c|c} 0 & * \\ \hline 0 & A_1 \end{array} \right] \]
+
+Comme $X$ est vecteur propre de $B$ (pour une valeur propre $\lambda$), la première colonne de $B$ est de la forme $(\lambda, 0, \dots, 0)^T$ :
+\[ [B]_\beta = \left[ \begin{array}{c|c} \lambda & * \\ \hline 0 & B_1 \end{array} \right] \]
+
+Calculons le produit $AB = 0$ par blocs :
+\[ [A]_\beta [B]_\beta = \left[ \begin{array}{c|c} 0 & * \\ \hline 0 & A_1 B_1 \end{array} \right] = 0 \]
+
+Donc $A_1 B_1 = 0$.
+Par hypothèse de récurrence (H.R), $A_1$ et $B_1$ sont simultanément trigonalisables.
+On en déduit que $A$ et $B$ sont simultanément trigonalisables.
+\end{proof}
