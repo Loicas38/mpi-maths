@@ -1,6 +1,6 @@
 # Projet 
 
-Ce cours latex est tapé par un élève de MPI* du lycée Champollion. Il regroupe l'ensemble du programme de MPI ainsi que des dépassements de celui-ci, notamment à travers les TD X-ENS.
+Ce cours latex est tapé et amélioré par moi même lors de mon année de MPI* au lycée Champollion. Il regroupe l'ensemble du programme de MPI ainsi que des dépassements de celui-ci, notamment à travers les TD X-ENS. Je remercie M. Quibel et M. Bonavero, dont les cours dispensés en classe m'ont permis de rédiger ce poly. Un grand merci également aux futures générations de MPI* qui continueront de faire évoluer ce poly sur [https://github.com/mp2i-mpi-champo/mpi-maths](ce repo).
 
 # Fonctionnement général du cours LaTeX
 
